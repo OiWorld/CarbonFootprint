@@ -1,0 +1,100 @@
+<html>
+<head>
+    <title>Google Maps Carbon Footprint Options</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="green.css" type="text/css" media="screen" />
+</head>
+<script type="text/javascript">
+
+
+// Saves options to localStorage.
+function save_options() {
+  var emission = document.getElementById("emission");
+  var carbonEmission = emission.value;
+  localStorage["carbonEmission"] = carbonEmission;
+
+  // Update status to let user know options were saved.
+  var status = document.getElementById("save-message");
+  status.innerHTML = "Saved!";
+  setTimeout(function() {
+    status.innerHTML = "";
+  }, 750);
+}
+
+// Restores select box state to saved value from localStorage.
+function restore_options() {
+  var carbonEmission = localStorage["carbonEmission"];
+  if (!carbonEmission) {
+    carbonEmission = 217
+  }
+  var emission = document.getElementById("emission");
+  emission.setAttribute('value', carbonEmission);
+}
+
+function restore_options_timeout(){
+  setTimeout('restore_options();',50);
+}
+
+
+window.onload = restore_options_timeout();
+
+
+</script>
+
+<body>
+
+   <script>
+     var _gaq = _gaq || [];
+     _gaq.push(['_setAccount', 'UA-1471148-11']);
+     _gaq.push(['_trackPageview']);
+
+     (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = 'https://ssl.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+     })();
+   </script>
+    
+    <div id="logo-wrapper">
+        <div id="logo">
+            <h1> Carbon Footprint for Google Maps&trade; </h1>
+            <div id="globe"><img src="images/globe-256.png" height="128px"/> </div>   
+        </div>
+    </div>
+    <div id="content-wrapper">
+        <div id="description">
+            Whenever you ask Google Maps for driving directions, this browser extension automatically 
+            estimates the total CO<sub>2</sub> emission for 
+            the driving route suggested by Google Maps. 
+            The estimation is then shown to the left of the map, 
+            next to the route's total distance.
+        </div>
+        <div id="emission-div">
+            To improve the accuracy of the estimation, <br />
+            please fill in below how much CO<sub>2</sub> your car emits (in g/km): <br />
+            <input id="emission" type="text" size="5" style="text-align:center" name="CO2Emission"/>
+            <button onclick="save_options()">Save</button> <br /> 
+            <span id="save-message"></span> <br />
+        </div>
+        <div id="offset">
+            <a href="https://sites.google.com/site/mapsfootprint/average-co2-emissions-of-cars" target="_blank">Find out how much CO<sub>2</sub> your car emits</a> <br /> 
+            <a href="https://sites.google.com/site/mapsfootprint/offset-your-carbon-emissions" target="_blank">Offset your carbon emissions now!</a>
+        </div>
+        <div id="links">
+            <a href="https://sites.google.com/site/mapsfootprint/contact" target="_blank">Suggest a feature or report a bug</a> | 
+            <a href="https://sites.google.com/site/mapsfootprint/donations" target="_blank">Make a donation</a> <br />
+        </div>
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-6672379263773124";
+        /* Maps Carbon Footprint Options */
+        google_ad_slot = "2417717510";
+        google_ad_width = 468;
+        google_ad_height = 15;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+    </div>
+</body>
+</html>
