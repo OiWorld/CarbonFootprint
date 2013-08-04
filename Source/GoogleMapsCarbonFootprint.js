@@ -2,7 +2,7 @@
  * Copyright (c) 2011 Bruno Woltzenlogel Paleo. All rights reserved.
  */
 
-var treeGrowthPerYear = 22000 // in g of CO2 captured.
+var treeGrowthPerYear = 8300 // in g of CO2 captured.
 var carbonEmission = 217 // in grams of CO2 per km
 
 
