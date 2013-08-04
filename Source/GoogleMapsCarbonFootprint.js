@@ -90,7 +90,7 @@ function addCarbonFootprint(routeInfoDiv) {
           "' class='carbon' id='carbon'>" + 
           carbonFootprintToString(carbonFootprint) +
       "</a> <a class='offset-link' href='http://goo.gl/yxdIs' target='_blank' title='"+ 
-          trees + "'>plant trees!</a>"  
+          trees + "'>offset</a>"
 }
 
 function computeCarbonFootprint(distance) {
