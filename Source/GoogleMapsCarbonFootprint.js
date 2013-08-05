@@ -12,12 +12,19 @@ if (host.match(/maps[.]google/gi)) {
   chrome.extension.sendRequest({carbonEmission : "Request Carbon Efficiency..."}, function(response) {
 	//alert("got response from background: " + response);
     carbonEmission = response.carbonEmission;
-    setInterval('checksDOM()',500);
+     
+    var observer = new MutationObserver(function(mutations) {
+      checkDOM();
+      //mutations.forEach(function(mutation) { console.log(mutation.type); })
+    })
+    var target = document.getElementsByTagName("body")[0];
+    var config = { attributes: true, childList: true, characterData: true, subtree: true }
+    observer.observe(target, config)
   });
 }
 
 
-function checksDOM() {
+function checkDOM() {
   var route = document.getElementById("altroute_0")
 //  alert(route.innerHTML)
 //  alert(route.innerText)
@@ -31,6 +38,9 @@ function checksDOM() {
     }
   }
 };
+
+
+
 
 function getDistanceString(routeInfoDiv) {
   return routeInfoDiv.getElementsByTagName("SPAN")[0].innerHTML
