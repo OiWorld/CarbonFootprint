@@ -7,10 +7,12 @@ A Google Chrome browser extension that displays carbon footprint information in 
 License
 -------
 
-[![License](http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US)
+[![License](https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 
 Contributions
 -------------
 
-If you would like to contribute to the development of this extension, please [contact the developers](mailto:info@oiworld.org).
+If you would like to contribute to the development of this extension, please [contact the developers](mailto:bruno.wp@gmail.com).
+
+* [Google Summer of Code](GoogleSummerOfCode.md) grants are available every year. If you would like to apply, it is never too early to contact us. 
