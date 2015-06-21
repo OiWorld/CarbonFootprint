@@ -2,10 +2,10 @@
  * Copyright (c) 2011 Bruno Woltzenlogel Paleo. All rights reserved.
  */
 
-console.log("Script injected");
+console.log("Carbon Footprint Script Starting");
 
-var treeGrowthPerYear = 8300 // in g of CO2 captured.
-var carbonEmission = 217 // in grams of CO2 per km
+var treeGrowthPerYear = 8300; // in g of CO2 captured.
+var carbonEmission = 217; // in grams of CO2 per km
 
 
 var href = location.href;
@@ -27,37 +27,101 @@ if (href.match(/maps/gi)) {
   });
 }
 
-
+/*
+ * This function is called whenever 
+ * a change is observed in Google Maps. It is the main function.
+ */
 function updateFootprintInGoogleMaps() {
-
-  // Get all non-transit routes suggested by Google Maps.
   var routes = [];
-  var r = document.getElementsByClassName("cards-directions-body cards-directions-non-transit cards-directions-animated");
-  for (var i = r.length - 1; i >= 0; i--) { // Filtering spurious routes.
-    if (r[i].childNodes.length > 0) {
-      routes.push(r[i]);
-    }
+
+  // Get all non-transit driving routes suggested by Google Maps.
+  if (isDriving(getTravelMode())) {
+    var r = document.getElementsByClassName("cards-directions-body cards-directions-non-transit cards-directions-animated");
+    for (var i = r.length - 1; i >= 0; i--) { // Filtering spurious routes.
+      if (r[i].childNodes.length > 0) {
+        routes.push(r[i]);
+      }
+    };
   };
   //console.log(routes);
 
-  // For each route, update footprint
+  // For each route, insert footprint
   for (var i = routes.length - 1; i >= 0; i--) {
     console.log("update footprint for route " + i);
-    updateFootprint(routes[i]);
+    insertFootprint(routes[i]);
   };
-
-  
-//  var carbon = document.getElementById("carbon")
-//   if ((routes != null) && (carbon == null)) {
-//     while (route.nodeName == "LI") {
-//       var routeInfoDiv = route.getElementsByTagName("DIV")[1]
-// //      alert(kmDiv.innerHTML)
-//       addCarbonFootprint(routeInfoDiv);
-//       route = route.nextSibling;
-//     }
-//   }
 };
 
+
+/*
+ Arguments:
+   route: DOM element containing all info about the route 
+          and where the footprint information should be inserted.
+ */
+function insertFootprint(route) {
+  var distance = convertDistance(getDistanceString(route));
+
+  var footprint = computeFootprint(distance);
+  var trees = computeTrees(footprint);
+
+  insertElement(route, createElement(footprint, trees));
+}
+
+
+/*
+ * Creates the footprint element to be inserted in the webpage.
+ *
+ * Arguments:
+ *   - footprint: amount of CO2 in grams
+ *   - trees: amount of trees to offset the CO2 emission in one year of growth
+ */
+function createElement(footprint, trees) {
+  var e = document.createElement("div");
+  var treesStr = treesToString(trees);
+  e.innerHTML = " <a href='http://goo.gl/yxdIs' target='_blank' title='"+ 
+                treesStr + 
+                "' class='carbon' id='carbon'>" + 
+                footprintToString(footprint) +
+                "</a> <a class='offset-link' href='http://goo.gl/yxdIs' target='_blank' title='"+ 
+                treesStr + "'>offset</a>"  
+  return e;
+}
+
+
+/*
+ * Inserts the footprint element in the webpage.
+ * Arguments:
+ *   - route: div element of the route where footprint should be inserted
+ *   - e: element that should be added
+ */
+function insertElement(route, e) {
+  if (route.getElementsByClassName("carbon").length == 0) { // In this case, "e" has not been added yet. We may proceed and add it.
+    route.getElementsByClassName("cards-directions-details cards-directions-distance")[0].appendChild(e);    
+  }
+}
+
+
+/*
+ * return:
+ *   - A number representing the travel mode:
+ *       0 = driving; 1 = cycling; 2 = walking; 
+ *       3 = transit; 4 = flight;
+ */
+function getTravelMode() {
+  var mode = -1;
+  var selected = document.getElementsByClassName("travel-mode selected")[0];
+  if (selected != null) {
+    mode = selected.getAttribute("travel_mode");
+  }
+  console.log("Travel Mode: " + mode);
+  return mode;  
+}
+
+function isDriving(mode) { return mode == 0 ; }
+function isCycling(mode) { return mode == 1 ; }
+function isWalking(mode) { return mode == 2 ; }
+function isTransit(mode) { return mode == 3 ; }
+function isFlight(mode)  { return mode == 4 ; }
 
 
 /*
@@ -74,6 +138,7 @@ function getDistanceString(route) {
 
 /*
  * Converts the distance string into a number.
+ *
  * Arguments:
  *   - distanceStr: the string containing the distance of the route.
  * Return:
@@ -118,42 +183,7 @@ function convertDistance(distanceStr) {
   return distance;
 }
 
-/*
- Arguments:
-   route: div element containing all info about suggested route
- */
-function updateFootprint(route) {
-  var distance = convertDistance(getDistanceString(route));
 
-  var footprint = computeFootprint(distance);
-  var trees = computeTrees(footprint);
-
-  insertElement(route, createElement(footprint, trees));
-}
-
-function createElement(footprint, trees) {
-  var e = document.createElement("div");
-  var treesStr = treesToString(trees);
-  e.innerHTML = " <a href='http://goo.gl/yxdIs' target='_blank' title='"+ 
-                treesStr + 
-                "' class='carbon' id='carbon'>" + 
-                footprintToString(footprint) +
-                "</a> <a class='offset-link' href='http://goo.gl/yxdIs' target='_blank' title='"+ 
-                treesStr + "'>offset</a>"  
-  return e;
-}
-
-/*
- * Inserts the footprint in the webpage.
- * Arguments:
- *   - route: div element of the route where footprint should be inserted
- *   - e: element that should be added
- */
-function insertElement(route, e) {
-  if (route.getElementsByClassName("carbon").length == 0) { // In this case, "e" has not been added yet. We may proceed and add it.
-    route.getElementsByClassName("cards-directions-details cards-directions-distance")[0].appendChild(e);    
-  }
-}
 
 
 /*
@@ -204,6 +234,7 @@ function computeTrees(carbonFootprint) {
   return trees;
 }
 
+
 /*
  * Converts the number of trees into a human-readable string.
  *
@@ -231,3 +262,5 @@ function treesToString(trees) {
                      " tropical trees growing for 1 day to capture that much CO2!" 
   }
 }
+
+console.log("Carbon Footprint Script Ending");
