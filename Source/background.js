@@ -10,8 +10,9 @@ function S(key) { return localStorage[key]; }
 
 	
 function onRequest(request, sender, sendResponse) {
-  // alert("got request");	
+  console.log("Request Received");	
   if (request.carbonEmission) {
+    console.log("Show pageAction icon in tab: " + sender.tab.id)
     chrome.pageAction.show(sender.tab.id); // shows icon
     sendResponse({carbonEmission : S("carbonEmission")});
   }

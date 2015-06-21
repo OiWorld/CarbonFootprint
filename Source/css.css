@@ -1,7 +1,7 @@
-a.carbon:link {color:red; text-decoration:none;font-size:80%; }
-a.carbon:visited {color:red; text-decoration:none;font-size:80%; }
-a.carbon:hover {color:red; text-decoration:none;font-size:80%; }
-a.carbon:active {color:red; text-decoration:none;font-size:80%; }
+a.carbon:link {color:red; text-decoration:none; }
+a.carbon:visited {color:red; text-decoration:none; }
+a.carbon:hover {color:red; text-decoration:none; }
+a.carbon:active {color:red; text-decoration:none; }
 
 
 a.offset-link:link {color:green; text-decoration:underline;font-size:60%; }
