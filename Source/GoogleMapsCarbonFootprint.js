@@ -35,20 +35,21 @@ function updateFootprintInGoogleMaps() {
   var routes = [];
 
   // Get all non-transit driving routes suggested by Google Maps.
-  if (isDriving(getTravelMode())) {
-    var r = document.getElementsByClassName("cards-directions-body cards-directions-non-transit cards-directions-animated");
-    for (var i = r.length - 1; i >= 0; i--) { // Filtering spurious routes.
-      if (r[i].childNodes.length > 0) {
-        routes.push(r[i]);
-      }
-    };
+  var r = document.getElementsByClassName("cards-directions-body cards-directions-non-transit cards-directions-animated");
+  for (var i = r.length - 1; i >= 0; i--) { // Filtering spurious routes.
+    if (r[i].childNodes.length > 0) {
+      routes.push(r[i]);
+    }
   };
   //console.log(routes);
 
   // For each route, insert footprint
   for (var i = routes.length - 1; i >= 0; i--) {
     console.log("update footprint for route " + i);
-    insertFootprint(routes[i]);
+    var travelMode = getMode(routes[i]);
+    if (isDrive(travelMode)) {
+      insertFootprint(routes[i]);
+    }
   };
 };
 
@@ -102,26 +103,28 @@ function insertElement(route, e) {
 
 
 /*
+ * This function is applicable only to non-transit routes.
+ *
  * return:
- *   - A number representing the travel mode:
- *       0 = driving; 1 = cycling; 2 = walking; 
- *       3 = transit; 4 = flight;
+ *   - One of the following strings:
+ *     "drive"; "bike"; "walk"; "fly";
  */
-function getTravelMode() {
-  var mode = -1;
-  var selected = document.getElementsByClassName("travel-mode selected")[0];
-  if (selected != null) {
-    mode = selected.getAttribute("travel_mode");
-  }
-  console.log("Travel Mode: " + mode);
-  return mode;  
+function getMode(route) { 
+  var m = route.getElementsByClassName("cards-directions-travel-mode-icon");
+  for (var i = m.length - 1; i >= 0; i--) {
+    var style = m[i].parentElement.style;
+    if ( style.display != "none" ) {
+      var mode = m[i].classList[1]
+      console.log("Route mode: " + mode);
+      return mode;
+    }
+  };
 }
 
-function isDriving(mode) { return mode == 0 ; }
-function isCycling(mode) { return mode == 1 ; }
-function isWalking(mode) { return mode == 2 ; }
-function isTransit(mode) { return mode == 3 ; }
-function isFlight(mode)  { return mode == 4 ; }
+function isDrive(mode) { return mode == "drive"; }
+function isBike(mode) { return mode == "bike" ; }
+function isWalk(mode) { return mode == "walk" ; }
+function isFly(mode)  { return mode == "fly" ; }
 
 
 /*
