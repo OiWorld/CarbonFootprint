@@ -1,5 +1,5 @@
 function initializeLocalStorage() {
-  if (localStorage["carbonEmission"] == null) {
+  if (!localStorage["carbonEmission"]) {
     localStorage["carbonEmission"] = 217;
   } 
 }
