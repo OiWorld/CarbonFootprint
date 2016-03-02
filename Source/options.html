@@ -24,10 +24,81 @@
         </div>
         <div id="emission-div">
             To improve the accuracy of the estimation, <br />
-            please fill in below how much CO<sub>2</sub> your car emits (in g/km): <br />
-            <input id="emission" type="text" size="5" style="text-align:center" name="CO2Emission"/>
-            <button id="save-button">Save</button> <br /> 
-            <span id="save-message"></span> <br />
+            choose amongst one of the following you wish to enter:<br />
+            <div id="emission-type-cont">
+                <div class="emission-input-type" >Fuel Consumption</div>
+                <div class="emission-input-type" >Fuel Efficiency</div>
+                <div class="emission-input-type selected" >CO<sub>2</sub> Emission</div>
+            </div>
+            <div class="emission-input-cont">
+                <div class="emission-input">
+                    <label for="fuel-type-in">Fuel Type</label>
+                    <select style="text-align:center" id="fuel-type-in" >
+                        <option value="0" selected="">Diesel</option>
+                        <option value="1">Gasoline</option>
+                        <option value="2">LPG</option>
+                        <option value="3">e10</option>
+                        <option value="4">e25</option>
+                        <option value="5">e85</option>
+                        <option value="6">Ethanol</option>
+                        <option value="7">Bio-Diesel</option>
+                    </select>
+                    <label for="fuel-intake">Fuel Intake</label>
+                    <input type="text" size="5" style="text-align:center" id="fuel-intake"/>
+                    <label for="fuel-intake-unit">Units</label>
+                    <select style="text-align:center" id="fuel-intake-unit" >
+                        <option value="0" selected="">L/km</option>
+                        <option value="1">mL/km</option>
+                        <option value="2">gal/km</option>
+                        <option value="3">L/mi</option>
+                        <option value="4">mL/mi</option>
+                        <option value="5">gal/mi</option>
+                    </select>
+                    <button class="save-button">Save</button> <br /> 
+                    <span class="save-message"></span> <br />
+                </div>
+                <div class="emission-input">
+                    <label for="fuel-type-eff">Fuel Type</label>
+                    <select style="text-align:center" id="fuel-type-eff" >
+                        <option value="0" selected="">Diesel</option>
+                        <option value="1">Gasoline</option>
+                        <option value="2">LPG</option>
+                        <option value="3">e10</option>
+                        <option value="4">e25</option>
+                        <option value="5">e85</option>
+                        <option value="6">Ethanol</option>
+                        <option value="7">Bio-Diesel</option>
+                    </select>
+                    <label for="fuel-efficiency">Fuel Ffficiency</label>
+                    <input type="text" size="5" style="text-align:center" id="fuel-efficiency"/>
+                    <label for="fuel-efficiency-unit">Units</label>
+                    <select id="fuel-efficiency-unit" style="text-align:center"  >
+                        <option value="0" selected="">km/L</option>
+                        <option value="1">km/mL</option>
+                        <option value="2">km/gal</option>
+                        <option value="3">mi/L</option>
+                        <option value="4">mi/mL</option>
+                        <option value="5">mi/gal</option>
+                    </select>
+                    <button class="save-button">Save</button> <br /> 
+                    <span class="save-message"></span> <br />
+                </div>
+                <div class="emission-input open">
+                    <label for="emission">CO<sub>2</sub> Emission</label>
+                    <input id="emission" type="number" size="5" style="text-align:center"/>
+                    <label for="CO2Emission-units">Units</label>
+                    <select id="CO2Emission-units" style="text-align:center" >
+                        <option value="g/km" selected>g/km</option>
+                        <option value="kg/km">kg/km</option>
+                        <option value="lbs/km">lbs/km</option>
+                        <option value="g/mi">g/mi</option>
+                        <option value="kg/mi">kg/mi</option>
+                        <option value="lbs/mi">lbs/mi</option>
+                    </select>
+                    <button class="save-button">Save</button> <br /> 
+                    <span class="save-message"></span> <br />
+                </div>
+            </div>
         </div>
         <div id="offset">
             <a href="http://goo.gl/MyDst" target="_blank">Offset your carbon emissions now!</a>

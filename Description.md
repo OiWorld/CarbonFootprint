@@ -30,39 +30,73 @@ Spread this extension and help us raise environmental awareness! Let's preserve 
 German (de)
 -----------
 
-Translated by: 
+Translated by: Prateek Gupta
 
-(Short: ToDo )
+(Kurz: Schätzungen der CO2-Emissionen für das Fahren auf Strecken vorgeschlagen von Google Maps!)
 
-ToDo
+Jedes Mal, wenn Sie Google Maps fragen Richtungen für den Antrieb , diese Browser-Erweiterung berechnet automatisch die gesamten CO2- Emissionen verursacht , indem Sie auf den vorgeschlagenen Routen fahren. Die Schätzung wird neben dem Route Distanz insgesamt gezeigt .
+
+Um die Genauigkeit der Schätzungen zu verbessern, lassen Sie die Optionen, die Sie auf die den Kraftstoffverbrauch und Umweltfreundlichkeit des Autos mehrere Parameter in Bezug auf konfigurieren.
+
+Wenn Sie Anmerkungen oder Fragen haben, wenden Sie sich bitte , sie zu MapsCarbonFootprint@gmail.com senden.
+
+Wenn Sie diese Erweiterung mögen, es bitte eine gute Bewertung geben , wie es auf Facebook ( http://www.facebook.com/pages/Carbon-Footprint-for-Google-Maps/217487891623173 ) und +1 auf Google+ (https : //plus.google.com/b/112973863308036008385/112973863308036008385/posts ) .
+
+Verbreiten Sie diese Erweiterung und uns helfen, das Umweltbewusstsein zu erhöhen ! Lassen Sie uns die Umwelt zu schonen , die globale Erwärmung zu stoppen und unseren Planeten zu retten!
+
 
 Spanish (es)
 ------------
 
-Translated by: 
+Translated by: Prateek Gupta
 
-(Short: ToDo)
+(Corta: Estimaciones de las emisiones de CO2 para la circulación por rutas sugeridas por Google Maps !)
 
-ToDo
+Siempre que preguntas a Google Maps para direcciones de manejo , esta extensión del navegador calcula automáticamente la emisión total de CO2 causadas por la circulación por las rutas sugeridas. La estimación se muestra junto a la distancia total de la ruta .
+
+Para mejorar la precisión de las estimaciones , las opciones le permiten configurar varios parámetros relacionados con el Consumo de combustible y el respeto del medio ambiente de su coche.
+
+Si tiene algún comentario o pregunta, por favor, envíe a MapsCarbonFootprint@gmail.com .
+
+Si te gusta esta extensión , por favor, darle una buena calificación , al igual que en Facebook ( http://www.facebook.com/pages/Carbon-Footprint-for-Google-Maps/217487891623173 ) y +1 en Google+ ( https : //plus.google.com/b/112973863308036008385/112973863308036008385/posts ).
+
+Difundir esta extensión y ayudar a crear conciencia ambiental ! Vamos a conservar el medio ambiente , detener el calentamiento global y salvar nuestro planeta !
 
 
 French (fr)
 -----------
 
-Translated by: 
+Translated by: Prateek Gupta
 
-(Short: )
+(Short : Estimations des émissions de CO2 pour la conduite sur les routes proposées par Google Maps ! )
 
+Chaque fois que vous demandez à Google Maps pour obtenir les directions , cette extension de navigateur estime automatiquement le total des émissions de CO2 causées par la conduite sur les routes proposées. L'estimation est affiché à côté de la distance totale de la route .
+
+Pour améliorer la précision des estimations , les options vous permettent de configurer plusieurs paramètres liés à la Consommation de carburant et respect de l'environnement de votre voiture .
+
+Si vous avez des commentaires ou des questions , s'il vous plaît envoyez-les à MapsCarbonFootprint@gmail.com .
+
+Si vous aimez cette extension , donnez s'il vous plaît une bonne note, comme sur facebook ( http://www.facebook.com/pages/Carbon-Footprint-for-Google-Maps/217487891623173 ) et +1 sur Google+ ( https : //plus.google.com/b/112973863308036008385/112973863308036008385/posts ).
+
+Étaler cette extension et nous aider à accroître la sensibilisation environnementale ! Préservons l'environnement , arrêter le réchauffement climatique et sauver notre planète!
 
 
 Italian (it)
 -----------
 
-Translated by: 
+Translated by: Prateek Gupta
 
-(Short: ToDo )
+(Short : le stime delle emissioni di CO2 per la guida su percorsi suggeriti da Google Maps ! )
 
-ToDo
+Ogni qualvolta si chiede di Google Maps per le indicazioni stradali , questa estensione per il browser calcola automaticamente le emissioni totali di CO2 causata dalla guida su gli itinerari proposti . La stima viene visualizzato accanto alla distanza totale del percorso.
+
+Per migliorare la precisione delle stime , le opzioni consentono di configurare diversi parametri relativi al Consumo di carburante e rispetto dell'ambiente della vostra auto .
+
+Se avete commenti o domande , si prega di inviare a MapsCarbonFootprint@gmail.com .
+
+Se ti piace questa estensione , si prega di dare un buon rating , come su facebook ( http://www.facebook.com/pages/Carbon-Footprint-for-Google-Maps/217487891623173 ) e +1 su Google+ ( https : //plus.google.com/b/112973863308036008385/112973863308036008385/posts ).
+
+Diffondere questa estensione e aiutarci ad aumentare la consapevolezza ambientale ! Cerchiamo di preservare l'ambiente , fermare il riscaldamento globale e salvare il nostro pianeta !
 
 
 Bielorussian

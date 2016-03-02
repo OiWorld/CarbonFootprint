@@ -1,6 +1,7 @@
 function initializeLocalStorage() {
-  if (localStorage["carbonEmission"] == null) {
-    localStorage["carbonEmission"] = 217;
+  if (!localStorage.carbonEmission && !localStorage.carbonEmissionUnit) {
+    localStorage.carbonEmission = 217;
+    localStorage.carbonEmissionUnit = 'g/km';
   } 
 }
 initializeLocalStorage();
