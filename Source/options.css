@@ -65,9 +65,32 @@ h1 {
   font-size: 11px;
   padding-bottom: 20px;
 }
+/*Styling for tabs of Emission, fuel intake , fuel efficiency*/
+div#emission-type-cont > div.emission-input-type{
+  display: inline-block;
+  cursor: pointer;
+  margin: 20px;
+  background: #eee;
+  padding: 5px;
+  color:#444;
+  opacity: 0.9;
+}
 
-#save-message {
-  font-size: 9pt;
+div#emission-type-cont > div.emission-input-type.selected{
+  background: #f0f0f0;
+  opacity: 1;
+}
+
+div.emission-input-cont > div.emission-input{
+  display: none;
+}
+
+div.emission-input-cont > div.emission-input.open{
+  display: block;
+}
+
+.save-message {
+  font-size: 9px;
 }
 
 a:link {color:yellow; text-decoration:underline; }
