@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <title>Google Maps Carbon Footprint Options</title>
     <link rel="stylesheet" href="options.css" type="text/css" media="screen" />
@@ -7,38 +8,55 @@
 <script src="options.js"></script>
 
 <body>
-    
     <div id="logo-wrapper">
         <div id="logo">
             <h1> Carbon Footprint for Google Maps&trade; </h1>
-            <div id="globe"><img src="images/globe-256.png" height="128px"/> </div>   
+            <div id="globe"><img src="images/globe-256.png" height="128px" /> </div>
         </div>
     </div>
     <div id="content-wrapper">
         <div id="description">
-            Whenever you ask Google Maps for driving directions, this browser extension automatically 
-            estimates the total CO<sub>2</sub> emission for 
-            the driving route suggested by Google Maps. 
-            The estimation is then shown to the left of the map, 
-            next to the route's total distance.
+            Whenever you ask Google Maps for driving directions, this browser extension automatically estimates the total CO<sub>2</sub> emission for the driving route suggested by Google Maps. The estimation is then shown to the left of the map, next to the route's total distance.
         </div>
         <div id="emission-div">
-            Please fill in below how much fuel your car consumes or<br /> how much CO<sub>2</sub> it emits: <br />
-            <input id="emission" type="text" size="5" style="text-align:center" name="CO2Emission"/>
-            <select id="unit" style="text-align:center" name="CO2Emission units" >
-			  <option value="g/km">g/km</option>
-			  <option value="kg/km">kg/km</option>
-			  <option value="g/mi">g/mi</option>
-			  <option value="kg/mi">kg/mi</option>
-			  <option value="ltr/km">ltr/km</option>
-			  <option value="gal/km">gal/km</option>
-			</select>
-            <button id="save-button">Save</button> <br /> 
-            <span id="save-message"></span> <br />
+            Please fill in below how much fuel your car consumes or
+            <br /> how much CO<sub>2</sub> it emits:
+            <br />
+            <input id="emission" type="text" size="5" style="text-align:center" name="CO2Emission" />
+            <select id="input-format" style="text-align:center" name="inputFormat">
+                <option value="co2">CO2 Emission</option>
+                <option value="fuel">Fuel Consumption</option>
+            </select>
+            <div id="format-list">
+                <div id="co2-list" class="unit-list">
+                    <select id="co2-unit" style="text-align:center" name="CO2EmissionUnits">
+                        <option value="g/km">g/km</option>
+                        <option value="kg/km">kg/km</option>
+                        <option value="g/mi">g/mi</option>
+                        <option value="kg/mi">kg/mi</option>
+                    </select>
+                </div>
+                <div id="fuel-list" class="unit-list">
+                    <select id="fuel-consumption" style="text-align:center" name="fuelConsumption">
+                        <option value="ltr/km">ltr/km</option>
+                        <option value="km/ltr">km/ltr</option>
+                        <option value="gal/km">gal/km</option>
+                        <option value="km/gal">km/gal</option>
+                        <option value="mi/gal">mi/gal</option>
+                        <option value="gal/mi">gal/mi</option>
+                    </select>
+                </div>
+            </div>
         </div>
+        <button id="save-button">Save</button>
+        <br />
+        <span id="save-message"></span>
+        <br />
         <div id="offset">
             <a href="http://goo.gl/MyDst" target="_blank">Offset your carbon emissions now!</a>
         </div>
     </div>
+    </div>
 </body>
+
 </html>
