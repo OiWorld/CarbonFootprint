@@ -1,6 +1,6 @@
 ## Instructions for Google Summer of Code
 
-If you are interested in applying for a [Google Summer of Code](http://www.google-melange.com/gsoc/homepage/google/gsoc2015) grant to work on Carbon Footprint for Google Maps, please follow [Google's instructions](http://www.google-melange.com/gsoc/document/show/gsoc_program/google/gsoc2014/help_page#4._How_does_a_student_apply), choosing [Computer Science and Engineering at TU-Wien](http://www.iue.tuwien.ac.at/cse/index.php/gsoc.html) as your mentoring organization and writing your proposal according to [TU-Wien's template](http://www.iue.tuwien.ac.at/cse/index.php/gsoc/2015/how-to-apply.html).
+If you are interested in applying for a [Google Summer of Code](https://summerofcode.withgoogle.com) grant to work for Carbon Footprint for Google Maps, please follow [Google's instructions](https://summerofcode.withgoogle.com/help/), choosing [Computer Science and Engineering at TU-Wien](http://www.iue.tuwien.ac.at/cse/index.php/gsoc.html) as your mentoring organization and writing your proposal according to [TU-Wien's template](https://summerofcode.withgoogle.com/organizations/6221502189928448/).
 
 In your proposal, please elaborate one of Carbon Footprint for Google Maps' [suggested ideas](http://www.iue.tuwien.ac.at/cse/index.php/gsoc.html) or feel free to suggest your own ideas. We highly encourage you to [contact us](https://groups.google.com/forum/#!forum/cse-tuwien-gsoc15/join) while you are preparing your application, but please also keep in mind that we have a limited capacity to answer students' questions.
 
