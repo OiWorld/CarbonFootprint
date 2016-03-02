@@ -3,6 +3,9 @@ function save_options() {
     var unit = document.getElementById("unit");
     var carbonEmission = emission.value;
     var emissionUnit = unit.value;
+
+    //corversion factors from https://goo.gl/z1bTk5 
+    //and https://goo.gl/PMz9VN (google unit converter) 
     switch (emissionUnit) {
         case "kg/km":
             carbonEmission = 1000 * carbonEmission;
@@ -14,10 +17,10 @@ function save_options() {
             carbonEmission = 621.371 * carbonEmission;
             break;
         case "ltr/km":
-            carbonEmission = 2320 * carbonEmission;
+            carbonEmission = 2320 * carbonEmission;     //assuming gasoline
             break;
         case "gal/km":
-            carbonEmission = 8782.155 * carbonEmission;
+            carbonEmission = 8782.155 * carbonEmission; //assuming gasoline
             break;
         default:
             emissionUnit = emission.value;
