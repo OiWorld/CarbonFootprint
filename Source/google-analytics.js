@@ -1,4 +1,4 @@
-function google_analytics(account) {
+function googleAnalytics(account) {
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', account]);
   _gaq.push(['_trackPageview']);
