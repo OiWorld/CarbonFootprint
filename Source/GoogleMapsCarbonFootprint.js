@@ -80,7 +80,7 @@ function createElement(footprint, trees) {
                 footprintToString(footprint) +
                 '</a> <a class=\'offset-link\' href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
                 treesStr + '\'>offset</a>';
-  return e;
+  return e.innerHTML;
 }
 
 /*
@@ -91,7 +91,7 @@ function createElement(footprint, trees) {
  */
 function insertElement(route, e) {
   if (route.getElementsByClassName('carbon').length == 0) { // In this case, "e" has not been added yet. We may proceed and add it.
-    route.getElementsByClassName('widget-pane-section-directions-trip-distance widget-pane-section-directions-trip-secondary-text')[0].appendChild(e);
+    route.getElementsByClassName('widget-pane-section-directions-trip-distance widget-pane-section-directions-trip-secondary-text')[0].appendChild(e.innerHTML);
   }
 }
 
