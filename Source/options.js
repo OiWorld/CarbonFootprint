@@ -280,9 +280,9 @@ document.addEventListener('DOMContentLoaded', function () {
   //Attaching change event for unit conversion  in fuel consumption
   document.getElementById("fuel-efficiency-unit").addEventListener("change", changeEfficiencyUnit);
 
-  //Initalising previouEffUnit
+  //Initalising previouEmmiUnit
   previousEmmiUnit = document.getElementById("CO2Emission-units").value;
-  //Attaching change event for unit conversion  in fuel consumption
+  //Attaching change event for unit conversion  in CO2 emission
   document.getElementById("CO2Emission-units").addEventListener("change", changeEmissionUnit);
 });
 
