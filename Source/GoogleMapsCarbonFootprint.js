@@ -6,6 +6,8 @@ console.log('Carbon Footprint Script Starting');
 
 var treeGrowthPerYear = 8300; // in g of CO2 captured.
 var carbonEmission = 217; // in grams of CO2 per km
+var vehicleAverage = 15; // Average distance travelled in km by vehicle
+var vehicleFuelPrice = 70; //Average fuel price per liter 
 
 var href = location.href;
 
@@ -15,6 +17,8 @@ if (href.match(/maps/gi)) {
   chrome.extension.sendRequest({carbonEmission: 'Request Carbon Efficiency...'}, function(response) {
     // alert("got response from background: " + response);
     carbonEmission = response.carbonEmission;
+    vehicleAverage = response.vehicleAverage;
+    vehicleFuelPrice = response.vehicleFuelPrice;
 
     var observer = new MutationObserver(function(mutations) {
       updateFootprintInGoogleMaps();
@@ -60,8 +64,12 @@ function insertFootprint(route) {
 
   var footprint = computeFootprint(distance);
   var trees = computeTrees(footprint);
+  
+  var cost = parseInt((distance/vehicleAverage)*vehicleFuelPrice);
+  var costToStr=cost.toString();
 
-  insertElement(route, createElement(footprint, trees));
+
+  insertElement(route, createElement(footprint, trees, costToStr));
 }
 
 /*
@@ -71,13 +79,16 @@ function insertFootprint(route) {
  *   - footprint: amount of CO2 in grams
  *   - trees: amount of trees to offset the CO2 emission in one year of growth
  */
-function createElement(footprint, trees) {
+function createElement(footprint, trees, costToStr) {
   var e = document.createElement('div');
   var treesStr = treesToString(trees);
   e.innerHTML = ' <a href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
                 treesStr +
                 '\' class=\'carbon\' id=\'carbon\'>' +
                 footprintToString(footprint) +
+                '<br><a href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
+                '\' class=\'cost\' id=\'cost\'>Cost: ' +
+                costToStr +
                 '</a> <a class=\'offset-link\' href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
                 treesStr + '\'>offset</a>';
   return e;
