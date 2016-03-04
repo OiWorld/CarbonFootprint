@@ -24,12 +24,29 @@
             next to the route's total distance.
         </div>
         <div id="emission-div">
-            To improve the accuracy of the estimation, <br />
+            To improve the accuracy of the estimation: <br />
             please fill in below how much CO<sub>2</sub> your car emits (in g/km): <br />
-            <input id="emission" type="text" size="5" style="text-align:center" name="CO2Emission"/>
-            <button id="save-button">Save</button> <br /> 
-            <span id="save-message"></span> <br />
+            <input id="emission" type="number" size="5" style="text-align:center" name="CO2Emission"/>
+            <button id="save-button-emission">Save</button> <br /> 
+            <span id="save-message-emission"></span> <br />
         </div>
+
+        <input type="checkbox" id="display-travel-cost" unchecked> Display fuel cost estimation<br>
+
+        <div id="average-mileage-div">
+            please fill in below the mileage of your vehicle (in L/Km): <br />
+            <input id="average-mileage" type="number" size="5" style="text-align:center" name="average-mileage"/>
+            <button id="save-button-average-mileage">Save</button> <br /> 
+            <span id="save-message-average-mileage"></span> <br />
+        </div>
+
+        <div id="fuel-cost-div">
+            please fill in below the fuel cost per litre (in $/L): <br />
+            <input id="fuel-cost" type="number" size="5" style="text-align:center" name="fuel-cost"/>
+            <button id="save-button-fuel-cost">Save</button> <br /> 
+            <span id="save-message-fuel-cost"></span> <br />
+        </div>
+
         <div id="offset">
             <a href="http://goo.gl/MyDst" target="_blank">Offset your carbon emissions now!</a>
         </div>
