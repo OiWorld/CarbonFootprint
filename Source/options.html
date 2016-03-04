@@ -26,7 +26,9 @@
         <div id="emission-div">
             To improve the accuracy of the estimation, <br />
             please fill in below how much CO<sub>2</sub> your car emits (in g/km): <br />
-            <input id="emission" type="text" size="5" style="text-align:center" name="CO2Emission"/>
+            <input id="emission" type="number" min="0" size="5" style="text-align:center" name="CO2Emission"/>
+            <input id="average" type="number" min="0" size="5" style="text-align:center" name="average" placeholder="Avg/L" />
+            <input id="price" type="number" min="0" size="5" style="text-align:center" name="price" placeholder="Price/L"/>
             <button id="save-button">Save</button> <br /> 
             <span id="save-message"></span> <br />
         </div>
