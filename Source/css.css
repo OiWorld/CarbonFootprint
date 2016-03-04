@@ -3,6 +3,10 @@ a.carbon:visited {color:red; text-decoration:none; }
 a.carbon:hover {color:red; text-decoration:none; }
 a.carbon:active {color:red; text-decoration:none; }
 
+a.cost:link {color:black; text-decoration:none; }
+a.cost:visited {color:black; text-decoration:none; }
+a.cost:hover {color:black; text-decoration:none; }
+a.cost:active {color:black; text-decoration:none; }
 
 a.offset-link:link {color:green; text-decoration:underline;font-size:60%; }
 a.offset-link:visited {color:green; text-decoration:underline;font-size:60%; }
