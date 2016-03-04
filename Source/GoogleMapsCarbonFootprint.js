@@ -6,6 +6,9 @@ console.log('Carbon Footprint Script Starting');
 
 var treeGrowthPerYear = 8300; // in g of CO2 captured.
 var carbonEmission = 217; // in grams of CO2 per km
+var vehicleAverage = 15; // Vehicle Average per litre
+var vehicleFuelPrice = 70; // Fuel price per litre
+
 
 var href = location.href;
 
@@ -13,16 +16,18 @@ console.log('Location: ' + href);
 
 if (href.match(/maps/gi)) {
   chrome.extension.sendRequest({carbonEmission: 'Request Carbon Efficiency...'}, function(response) {
-    // alert("got response from background: " + response);
+    //alert("got response from background: " + response);
     carbonEmission = response.carbonEmission;
-
+    vehicleAverage = response.vehicleAverage;
+    vehicleFuelPrice = response.vehicleFuelPrice;
+  
     var observer = new MutationObserver(function(mutations) {
       updateFootprintInGoogleMaps();
     });
     var target = document.getElementsByTagName('body')[0];
     var config = {attributes: true, childList: true, characterData: true, subtree: true};
     observer.observe(target, config);
-  });
+  }); 
 }
 
 /*
@@ -32,13 +37,14 @@ if (href.match(/maps/gi)) {
 function updateFootprintInGoogleMaps() {
   var routes = [];
 
-  // Get all non-transit driving routes suggested by Google Maps. widget-pane-section-directions-trip clearfix
+  // Get all non-transit driving routes suggested by Google Maps.
   var r = document.getElementsByClassName('widget-pane-section-directions-trip clearfix');
   for (var i = r.length - 1; i >= 0; i--) { // Filtering spurious routes.
     if (r[i].childNodes.length > 0) {
       routes.push(r[i]);
     }
   };
+  //console.log(routes);
 
   // For each route, insert footprint
   for (var i = routes.length - 1; i >= 0; i--) {
@@ -61,7 +67,9 @@ function insertFootprint(route) {
   var footprint = computeFootprint(distance);
   var trees = computeTrees(footprint);
 
-  insertElement(route, createElement(footprint, trees));
+  var cost = parseInt((distance/vehicleAverage)*vehicleFuelPrice);
+  var costToStr=cost.toString();
+  insertElement(route, createElement(footprint, trees, costToStr));
 }
 
 /*
@@ -71,13 +79,16 @@ function insertFootprint(route) {
  *   - footprint: amount of CO2 in grams
  *   - trees: amount of trees to offset the CO2 emission in one year of growth
  */
-function createElement(footprint, trees) {
+function createElement(footprint, trees, costToStr) {
   var e = document.createElement('div');
   var treesStr = treesToString(trees);
   e.innerHTML = ' <a href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
                 treesStr +
                 '\' class=\'carbon\' id=\'carbon\'>' +
-                footprintToString(footprint) +
+                footprintToString(footprint) + 
+                '<br><a href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
+                '\' class=\'cost\' id=\'cost\'>Cost: ' +
+                costToStr + 
                 '</a> <a class=\'offset-link\' href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
                 treesStr + '\'>offset</a>';
   return e;
@@ -139,6 +150,8 @@ function getDistanceString(route) {
  * Return:
  *   - the distance of the route, in kilometers.
  */
+
+
 function convertDistance(distanceStr) {
   var distanceAndUnit = distanceStr.split(/ /);
   var distance = distanceAndUnit[0];
