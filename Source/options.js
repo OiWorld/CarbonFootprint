@@ -72,19 +72,15 @@ var fuel_info = [
 function save_options() {
   switch(index_et)
   {
-    case 0: var fuelInType = document.getElementById("fuel-type-in"),
+    case 0: var fuelInType = document.getElementById("fuel-type-in").value,
                 fuelIntake = document.getElementById("fuel-intake").value, 
-                fuelInUnit = document.getElementById("fuel-intake-unit");
-            fuelInType = fuelInType.options[fuelInType.selectedIndex].value;
-            fuelInUnit = fuelInUnit.options[fuelInUnit.selectedIndex].value ;
+                fuelInUnit = document.getElementById("fuel-intake-unit").value;
             CalcCarbonEmission(index_et,fuelInType,fuelIntake,fuelInUnit);     
             break;
-    case 1: var fuelEffType = document.getElementById("fuel-type-eff"),
+    case 1: var fuelEffType = document.getElementById("fuel-type-eff").value,
                 fuelEfftake = document.getElementById("fuel-efficiency").value, 
-                fuelEffUnit = document.getElementById("fuel-efficiency-unit");
+                fuelEffUnit = document.getElementById("fuel-efficiency-unit").value;
             fuelEfftake = 1/fuelEfftake;
-            fuelEffType = fuelEffType.options[fuelEffType.selectedIndex].value;
-            fuelEffUnit = fuelEffUnit.options[fuelEffUnit.selectedIndex].value ;
             CalcCarbonEmission(index_et,fuelEffType,fuelEfftake,fuelEffUnit);     
             break;
     case 2: var emission = document.getElementById("emission");
