@@ -75,13 +75,13 @@ function save_options() {
     case 0: var fuelInType = document.getElementById("fuel-type-in").value,
                 fuelIntake = document.getElementById("fuel-intake").value, 
                 fuelInUnit = document.getElementById("fuel-intake-unit").value;
-            CalcCarbonEmission(index_et,fuelInType,fuelIntake,fuelInUnit);     
+            CalcCarbonEmission(fuelInType,fuelIntake,fuelInUnit);     
             break;
     case 1: var fuelEffType = document.getElementById("fuel-type-eff").value,
                 fuelEfftake = document.getElementById("fuel-efficiency").value, 
                 fuelEffUnit = document.getElementById("fuel-efficiency-unit").value;
             fuelEfftake = 1/fuelEfftake;
-            CalcCarbonEmission(index_et,fuelEffType,fuelEfftake,fuelEffUnit);     
+            CalcCarbonEmission(fuelEffType,fuelEfftake,fuelEffUnit);     
             break;
     case 2: var emission = document.getElementById("emission");
             var emissionUnit = document.getElementById("CO2Emission-units");
@@ -99,7 +99,7 @@ function save_options() {
 }
 
 //Function to handle different Units
-function CalcCarbonEmission(index,type,intake,unit){
+function CalcCarbonEmission(type,intake,unit){
   switch(unit){
      case '0' : localStorage["carbonEmission"] = intake * fuel_info[type]["CO2Emission"];
                 localStorage["carbonEmissionUnit"] = 'g/km'
@@ -120,6 +120,8 @@ function CalcCarbonEmission(index,type,intake,unit){
                 localStorage["carbonEmissionUnit"] = 'g/mi'
                 break;                                                                
   }
+  //Also updating CO2 Emission Fields for user to check
+  restore_options();
 }
 
 /**
