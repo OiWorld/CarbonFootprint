@@ -28,7 +28,7 @@ var GL_TO_GML = 0.001,
     GL_TO_GGAL = 3.7854;
 
 /**
-* Usign Calculation table provided in comments
+* Usign Calculation table provided in comments to common JSON object's array
 *@const fuel_info
 *FUEL NAME: fuel_info[i]["name"] = fuel name
 *FUEL CONVERSION CONSTANTS: fuel_info[i]["CO2Emission"]  is in g/L
@@ -128,7 +128,9 @@ function CalcCarbonEmission(index,type,intake,unit){
 
 /**
 * CONVERSION CONTSANTS TABLE for fuel consumption and efficiency
-* Using l/km as the reference unit 
+* Using l/km as the reference unit i.e LKM
+* also l/km = 1000 ml/km i.e  LKM_to_MLKM = 1 / MLKM_TO_LKM
+* also km/ml = 1000 km/l  i.e  KMML_to_KML = 1000 / KML_TO_KMML
 * to avoid redundancy caused by making all combinations
 */
 var LKM_TO_LKM = 1.0,
@@ -138,7 +140,68 @@ var LKM_TO_LKM = 1.0,
 	LKM_TO_MLMI= 1609.34,
 	LKM_TO_GALMI= 0.425144;
 
+//consumptionUnitConvertor takes 4 parameter:
+//type(consumption or efficiency),inputValue,previousUnit,currentUnit
+function unitConvertor(type,input,prev,cur){
+	console.log(type,input,prev,cur);
+	// A general function which can decide division and multiplication factor
+	function factorDecide(index)
+	{
+		switch(index){
+			case '0': return LKM_TO_LKM;
+			case '1': return LKM_TO_MLKM;
+			case '2': return LKM_TO_GALKM;
+			case '3': return LKM_TO_LMI;
+			case '4': return LKM_TO_MLMI;
+			case '5': return LKM_TO_GALMI;
+			default: return LKM_TO_LKM;
+		}
+	}
+	if(type==="cons") {
+		/**
+		* Using l/km as the reference unit i.e LKM
+		* We first convert the previous units to refernce unit l/km
+		* and then convert it to new unit
+		* also l/km = 1000 ml/km i.e  LKM_to_MLKM = 1 / MLKM_TO_LKM
+		* also km/ml = 1000 km/l  i.e  KMML_to_KML = 1000 / KML_TO_KMML
+		* so value = ( input / LKM_TO_prev ) / cur_TO_LKM
+		*/
+		return ( ( parseFloat(input) / factorDecide(prev) ) * factorDecide(cur) );
+	}
+	else if(type=="eff") {
+		/**
+		* Using km/l as the reference unit i.e 1/LKM
+		* We first convert the previous units to refernce unit km/l
+		* and then convert it to new unit
+		* also l/km = 1000 ml/km i.e  LKM_to_MLKM = 1 / MLKM_TO_LKM
+		* also km/ml = 1000 km/l  i.e  KMML_to_KML = 1000 / KML_TO_KMML
+		* so value = ( input * prev_TO_LKM ) / LKM_TO_cur 
+		*/
+		return ( ( parseFloat(input) * factorDecide(prev) ) / factorDecide(cur) );
+	}
+	return 0;
+}
+//Declaring previousConsUnit which is initialised when DOM is loaded
+var previousConsUnit = null;
 
+//function for consumption unit convertor
+function changeConsumptionUnit(){
+	var fuelInput = document.getElementById("fuel-intake");
+	//Convert to new units and set value up to 5 decimal places
+	fuelInput.value = unitConvertor("cons",fuelInput.value,previousConsUnit,this.value).toFixed(5);
+	previousConsUnit = this.value;
+}
+
+//Declaring previousEffUnit which is initialised when DOM is loaded
+var previousEffUnit = null;
+
+//function for efficiency unit convertor
+function changeEfficiencyUnit(){
+	var fuelInput = document.getElementById("fuel-efficiency");
+	//Convert to new units and set value up to 5 decimal places
+	fuelInput.value = unitConvertor("eff",fuelInput.value,previousEffUnit,this.value).toFixed(5);
+	previousEffUnit = this.value;
+}
 
 function S(key) { return localStorage[key]; }
 
@@ -161,6 +224,16 @@ document.addEventListener('DOMContentLoaded', function () {
   {
     $eit[i].addEventListener('click', openEmissionInput, false);
   }
+  
+  //Initalising previousConsUnit
+  previousConsUnit = document.getElementById("fuel-intake-unit").value;
+  //Attaching change event for unit conversion  in fuel consumption
+  document.getElementById("fuel-intake-unit").addEventListener("change", changeConsumptionUnit);
+
+  //Initalising previouEffUnit
+  previousEffUnit = document.getElementById("fuel-efficiency-unit").value;
+  //Attaching change event for unit conversion  in fuel consumption
+  document.getElementById("fuel-efficiency-unit").addEventListener("change", changeEfficiencyUnit);
 });
 
 window.onload = restore_options ;

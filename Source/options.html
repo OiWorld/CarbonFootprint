@@ -25,6 +25,7 @@
         <div id="emission-div">
             To improve the accuracy of the estimation, <br />
             choose amongst one of the following you wish to enter:<br />
+            choose amongst one of the following you wish to enter:<br />
             <div id="emission-type-cont">
                 <div class="emission-input-type" >Fuel Consumption</div>
                 <div class="emission-input-type" >Fuel Efficiency</div>
@@ -34,7 +35,7 @@
                 <div class="emission-input">
                     <label for="fuel-type-in">Fuel Type</label>
                     <select style="text-align:center" id="fuel-type-in" >
-                        <option value="0" selected="">Diesel</option>
+                        <option value="0" selected>Diesel</option>
                         <option value="1">Gasoline</option>
                         <option value="2">LPG</option>
                         <option value="3">e10</option>
@@ -44,10 +45,10 @@
                         <option value="7">Bio-Diesel</option>
                     </select>
                     <label for="fuel-intake">Fuel Intake</label>
-                    <input type="text" size="5" style="text-align:center" id="fuel-intake" value="0"/>
+                    <input type="number" size="5" style="text-align:center" id="fuel-intake" value="0"/>
                     <label for="fuel-intake-unit">Units</label>
                     <select style="text-align:center" id="fuel-intake-unit" >
-                        <option value="0" selected="">L/km</option>
+                        <option value="0" selected>L/km</option>
                         <option value="1">mL/km</option>
                         <option value="2">gal/km</option>
                         <option value="3">L/mi</option>
@@ -60,7 +61,7 @@
                 <div class="emission-input">
                     <label for="fuel-type-eff">Fuel Type</label>
                     <select style="text-align:center" id="fuel-type-eff" >
-                        <option value="0" selected="">Diesel</option>
+                        <option value="0" selected>Diesel</option>
                         <option value="1">Gasoline</option>
                         <option value="2">LPG</option>
                         <option value="3">e10</option>
@@ -69,17 +70,17 @@
                         <option value="6">Ethanol</option>
                         <option value="7">Bio-Diesel</option>
                     </select>
-                    <label for="fuel-efficiency">Fuel Ffficiency</label>
-                    <input type="text" size="5" style="text-align:center" id="fuel-efficiency" value="0"/>
                     <label for="fuel-efficiency-unit">Units</label>
                     <select id="fuel-efficiency-unit" style="text-align:center"  >
-                        <option value="0" selected="">km/L</option>
+                        <option value="0" selected>km/L</option>
                         <option value="1">km/mL</option>
                         <option value="2">km/gal</option>
                         <option value="3">mi/L</option>
                         <option value="4">mi/mL</option>
                         <option value="5">mi/gal</option>
                     </select>
+                    <label for="fuel-efficiency">Fuel Ffficiency</label>
+                    <input type="number" size="5" style="text-align:center" id="fuel-efficiency" value="0"/>
                     <button class="save-button">Save</button> <br /> 
                     <span class="save-message"></span> <br />
                 </div>
