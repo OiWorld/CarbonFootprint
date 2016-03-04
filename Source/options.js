@@ -24,5 +24,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 window.onload = restoreOptions ;
-
 googleAnalytics('UA-1471148-11');
