@@ -24,15 +24,14 @@ function openEmissionInput()
 * GL_GML is Conversion constant from g/L to g/mL using 1000g/L = g/mL
 * GL_GGAL is Conversion constant from g/L to g/gal
 */
-var GL_GML = 0.001,
-    GL_GGAL = 3.7854;
+var GL_TO_GML = 0.001,
+    GL_TO_GGAL = 3.7854;
 
 /**
 * Usign Calculation table provided in comments
 *@const fuel_info
 *FUEL NAME: fuel_info[i]["name"] = fuel name
 *FUEL CONVERSION CONSTANTS: fuel_info[i]["CO2Emission"]  is in g/L
-*FUEL CONVERSION CONSTANTS: fuel_info[i]["CO2Emission"] = ["g/L","g/mL","g/gal","g/L","g/mL","g/gal",]
 */
 var fuel_info = [
   {
@@ -109,23 +108,37 @@ function CalcCarbonEmission(index,type,intake,unit){
      case '0' : localStorage["carbonEmission"] = intake * fuel_info[type]["CO2Emission"];
                 localStorage["carbonEmissionUnit"] = 'g/km'
                 break;
-     case '1' : localStorage["carbonEmission"] = intake * fuel_info[type]["CO2Emission"] * GL_GML;
+     case '1' : localStorage["carbonEmission"] = intake * fuel_info[type]["CO2Emission"] * GL_TO_GML;
                 localStorage["carbonEmissionUnit"] = 'g/km'
                 break;
-     case '2' : localStorage["carbonEmission"] = intake * fuel_info[type]["CO2Emission"] * GL_GGAL;
+     case '2' : localStorage["carbonEmission"] = intake * fuel_info[type]["CO2Emission"] * GL_TO_GGAL;
                 localStorage["carbonEmissionUnit"] = 'g/km'
                 break;
      case '3' : localStorage["carbonEmission"] = intake * fuel_info[type]["CO2Emission"];
                 localStorage["carbonEmissionUnit"] = 'g/mi'
                 break;
-     case '4' : localStorage["carbonEmission"] = intake * fuel_info[type]["CO2Emission"] * GL_GML;
+     case '4' : localStorage["carbonEmission"] = intake * fuel_info[type]["CO2Emission"] * GL_TO_GML;
                 localStorage["carbonEmissionUnit"] = 'g/mi'
                 break;
-     case '5' : localStorage["carbonEmission"] = intake * fuel_info[type]["CO2Emission"] * GL_GGAL;
+     case '5' : localStorage["carbonEmission"] = intake * fuel_info[type]["CO2Emission"] * GL_TO_GGAL;
                 localStorage["carbonEmissionUnit"] = 'g/mi'
                 break;                                                                
   }
 }
+
+/**
+* CONVERSION CONTSANTS TABLE for fuel consumption and efficiency
+* Using l/km as the reference unit 
+* to avoid redundancy caused by making all combinations
+*/
+var LKM_TO_LKM = 1.0,
+	LKM_TO_MLKM= 1000.0,
+	LKM_TO_GALKM= 0.264172,
+	LKM_TO_LMI= 1.60934,
+	LKM_TO_MLMI= 1609.34,
+	LKM_TO_GALMI= 0.425144;
+
+
 
 function S(key) { return localStorage[key]; }
 
