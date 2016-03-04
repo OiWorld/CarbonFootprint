@@ -13,7 +13,7 @@ console.log('Location: ' + href);
 
 if (href.match(/maps/gi)) {
   chrome.extension.sendRequest({carbonEmission: 'Request Carbon Efficiency...'}, function(response) {
-    //alert("got response from background: " + response);
+    // alert("got response from background: " + response);
     carbonEmission = response.carbonEmission;
 
     var observer = new MutationObserver(function(mutations) {
@@ -32,14 +32,13 @@ if (href.match(/maps/gi)) {
 function updateFootprintInGoogleMaps() {
   var routes = [];
 
-  // Get all non-transit driving routes suggested by Google Maps.
-  var r = document.getElementsByClassName('cards-directions-body cards-directions-non-transit cards-directions-animated');
+  // Get all non-transit driving routes suggested by Google Maps. widget-pane-section-directions-trip clearfix
+  var r = document.getElementsByClassName('widget-pane-section-directions-trip clearfix');
   for (var i = r.length - 1; i >= 0; i--) { // Filtering spurious routes.
     if (r[i].childNodes.length > 0) {
       routes.push(r[i]);
     }
   };
-  //console.log(routes);
 
   // For each route, insert footprint
   for (var i = routes.length - 1; i >= 0; i--) {
@@ -92,7 +91,7 @@ function createElement(footprint, trees) {
  */
 function insertElement(route, e) {
   if (route.getElementsByClassName('carbon').length == 0) { // In this case, "e" has not been added yet. We may proceed and add it.
-    route.getElementsByClassName('cards-directions-details cards-directions-distance')[0].appendChild(e);
+    route.getElementsByClassName('widget-pane-section-directions-trip-distance widget-pane-section-directions-trip-secondary-text')[0].appendChild(e);
   }
 }
 
@@ -104,7 +103,7 @@ function insertElement(route, e) {
  *     "drive"; "bike"; "walk"; "fly";
  */
 function getMode(route) {
-  var m = route.getElementsByClassName('cards-directions-travel-mode-icon');
+  var m = route.getElementsByClassName('widget-pane-section-directions-trip-travel-mode-icon');
   for (var i = m.length - 1; i >= 0; i--) {
     var style = m[i].parentElement.style;
     if (style.display != 'none') {
@@ -127,7 +126,7 @@ function isFly(mode)  { return mode == 'fly' ; }
  *   - the string containing the distance of the route.
  */
 function getDistanceString(route) {
-  var distanceString = route.getElementsByClassName('cards-directions-details cards-directions-distance')[0].childNodes[2].innerHTML; // Using innerText instead of innerHTML results in strange errors.
+  var distanceString = route.getElementsByClassName('widget-pane-section-directions-trip-distance widget-pane-section-directions-trip-secondary-text')[0].childNodes[5].innerHTML; // Using innerText instead of innerHTML results in strange errors.
   console.log('distanceString: ' + distanceString);
   return distanceString;
 }
