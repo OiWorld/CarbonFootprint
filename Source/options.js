@@ -21,9 +21,7 @@ function restoreOptions() {
 
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('save-button').addEventListener('click', saveOptions);
-  document.getElementById('language-selector').hide();
 });
 
 window.onload = restoreOptions ;
-
 googleAnalytics('UA-1471148-11');
