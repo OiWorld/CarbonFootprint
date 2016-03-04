@@ -162,7 +162,7 @@ function unitConvertor(type,input,prev,cur){
 		* and then convert it to new unit
 		* also l/km = 1000 ml/km i.e  LKM_to_MLKM = 1 / MLKM_TO_LKM
 		* also km/ml = 1000 km/l  i.e  KMML_to_KML = 1000 / KML_TO_KMML
-		* so value = ( input / LKM_TO_prev ) / cur_TO_LKM
+		* so value = ( input / prev_TO_LKM ) * LKM_TO_cur
 		*/
 		return ( ( parseFloat(input) / factorDecide(prev) ) * factorDecide(cur) );
 	}
@@ -201,6 +201,53 @@ function changeEfficiencyUnit(){
 	previousEffUnit = this.value;
 }
 
+/**
+* CONVERSION TABLE FOR CO2 Emission
+* using reference as g/km
+* @const old_TO_new
+*
+*/
+
+var GKM_TO_GKM = 1.0,
+	GKM_TO_KGKM = 0.001,
+	GKM_TO_LBSKM = 1.002204,
+	GKM_TO_GMI = 1.60934,
+	GKM_TO_KGMI = 0.00161,
+	GKM_TO_LBSMI = 0.00355 ;
+
+//Declaring previousEffUnit which is initialised when DOM is loaded
+var previousEmmiUnit = null;
+
+//function for efficiency unit convertor
+function changeEmissionUnit(){
+	var fuelInput = document.getElementById("emission");
+	function factorDecide(index)
+	{
+		switch(index){
+			case 'g/km': return GKM_TO_GKM;
+			case 'kg/km': return GKM_TO_KGKM;
+			case 'lbs/km': return GKM_TO_LBSKM;
+			case 'g/mi': return GKM_TO_GMI;
+			case 'kg/mi': return GKM_TO_KGMI;
+			case 'lbs/mi': return GKM_TO_LBSMI;
+			default: return GKM_TO_GKM;
+		}
+	}
+	var emissionInput = document.getElementById("emission");
+
+	/**
+		* Using g/km as the reference unit i.e GKM
+		* We first convert the previous units to refernce unit g/km
+		* and then convert it to new unit
+		* prev = previousEmmiUnit , cur = this.value
+		* so value = ( input / prev_TO_GKM ) * GKM_TO_cur
+	*/
+	console.log(parseFloat(emissionInput.value),factorDecide(previousEmmiUnit),factorDecide(this.value))
+	//Convert to new units and set value up to 5 decimal places
+	emissionInput.value = ( ( parseFloat(emissionInput.value) / factorDecide(previousEmmiUnit) ) * factorDecide(this.value) ).toFixed(5);
+	previousEmmiUnit = this.value;
+}
+
 function S(key) { return localStorage[key]; }
 
 function restore_options() {
@@ -232,6 +279,11 @@ document.addEventListener('DOMContentLoaded', function () {
   previousEffUnit = document.getElementById("fuel-efficiency-unit").value;
   //Attaching change event for unit conversion  in fuel consumption
   document.getElementById("fuel-efficiency-unit").addEventListener("change", changeEfficiencyUnit);
+
+  //Initalising previouEffUnit
+  previousEmmiUnit = document.getElementById("CO2Emission-units").value;
+  //Attaching change event for unit conversion  in fuel consumption
+  document.getElementById("CO2Emission-units").addEventListener("change", changeEmissionUnit);
 });
 
 window.onload = restore_options ;
