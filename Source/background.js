@@ -2,6 +2,12 @@ function initializeLocalStorage() {
   if (localStorage['carbonEmission'] == null) {
     localStorage['carbonEmission'] = 217;
   }
+  if (localStorage['vehicleAverage'] == null) {
+    localStorage['vehicleAverage'] = 15;
+  }
+  if (localStorage['vehicleFuelPrice'] == null) {
+    localStorage['vehicleFuelPrice'] = 70;
+  }
 }
 initializeLocalStorage();
 
@@ -12,7 +18,11 @@ function onRequest(request, sender, sendResponse) {
   if (request.carbonEmission) {
     console.log('Show pageAction icon in tab: ' + sender.tab.id);
     chrome.pageAction.show(sender.tab.id); // shows icon
-    sendResponse({carbonEmission: S('carbonEmission')});
+    sendResponse(
+      {carbonEmission: S('carbonEmission'),
+       vehicleAverage: S('vehicleAverage'),
+       vehicleFuelPrice: S('vehicleFuelPrice')
+      });
   }
 };
 
