@@ -44,7 +44,7 @@
             To improve the accuracy of the estimation:<br />
             please fill in below how much CO<sub>2</sub> your car emits (in g/km): <br />
             <div class="input-group">
-                <input id="emission" type="number" style="text-align:center" class="form-control" name="CO2Emission"/>
+                <input id="emission" type="number" style="text-align:center" min="0" class="form-control" name="CO2Emission"/>
                 <span class="input-group-btn">   
                     <button class="btn btn-primary" type="button" id="save-button-emission">Save</button>
                 </span>
@@ -53,28 +53,20 @@
 
         <input type="checkbox" id="display-travel-cost" unchecked> Display fuel cost estimation<br>
 
-<<<<<<< HEAD
         <div id="average-mileage-div" style="visibility: hidden;">
-=======
-        <div id="average-mileage-div"class="margin-top-bottom">
->>>>>>> UI changes:
             please fill in below the mileage of your vehicle (in L/Km): <br />
             <div class="input-group">
-                <input id="average-mileage" type="number" size="5" style="text-align:center" class="form-control" name="average-mileage"/>
+                <input id="average-mileage" type="number" size="5" style="text-align:center" min="0" class="form-control" name="average-mileage"/>
                 <span class="input-group-btn">
                     <button class="btn btn-primary" id="save-button-average-mileage">Save</button> <br /> 
                 </span>
             </div>
         </div>
 
-<<<<<<< HEAD
         <div id="fuel-cost-div" style="visibility: hidden;">
-=======
-        <div id="fuel-cost-div" class="margin-top-bottom">
->>>>>>> UI changes:
             please fill in below the fuel cost per litre (in $/L): <br />
             <div class="input-group">
-                <input id="fuel-cost" type="number" size="5" style="text-align:center" class="form-control" name="fuel-cost"/>
+                <input id="fuel-cost" type="number" size="5" style="text-align:center" min="0" class="form-control" name="fuel-cost"/>
                 <span class="input-group-btn">
                     <button class="btn btn-primary" id="save-button-fuel-cost">Save</button> <br /> 
                 </span>

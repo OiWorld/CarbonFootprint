@@ -54,13 +54,7 @@ function restoreOptions() {
 
   var fuelCost = document.getElementById('fuel-cost');
   fuelCost.setAttribute('value', S('fuelCost'));
-
-
-<<<<<<< HEAD
-=======
-  displayTravelCost();
-
->>>>>>> UI changes:
+  
   var displayTravelCostCheckbox = document.getElementById('display-travel-cost');
   var isTrue = (S('displayTravelCost') === "true");
   
@@ -69,11 +63,8 @@ function restoreOptions() {
 
   if(isTrue){  
     displayTravelCostCheckbox.checked = true;
-<<<<<<< HEAD
     document.getElementById("average-mileage-div").style.visibility = "visible";
     document.getElementById("fuel-cost-div").style.visibility = "visible";
-=======
->>>>>>> UI changes:
   }
   else{
     displayTravelCostCheckbox.checked = false;
