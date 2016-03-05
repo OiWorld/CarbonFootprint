@@ -26,15 +26,15 @@ function saveOptionsFuelCost() {
 }
 
 function displayTravelCost() {
-  var displayTravelCost = document.getElementById("display-travel-cost").checked;
+  
+  var isChecked = document.getElementById("display-travel-cost").checked;
  
-  if (displayTravelCost){
+  if (isChecked){
     localStorage['displayTravelCost'] = true;    
     document.getElementById("average-mileage-div").style.visibility = "visible";
     document.getElementById("fuel-cost-div").style.visibility = "visible";
 
   }
- 
   else{
     localStorage['displayTravelCost'] = false;
     document.getElementById("average-mileage-div").style.visibility = "hidden";
@@ -63,16 +63,20 @@ function restoreOptions() {
   var fuelCost = document.getElementById('fuel-cost');
   fuelCost.setAttribute('value', S('fuelCost'));
 
-  //TODO: change value of checkbox using the localstorage
 
-  var displayTravelCost = document.getElementById('display-travel-cost');
+  var displayTravelCostCheckbox = document.getElementById('display-travel-cost');
   var isTrue = (S('displayTravelCost') === "true");
- 
+  
+  // Checks the value of displayTravelCost flag and changes the visibility
+  // of the checkbox
+
   if(isTrue){  
-    displayTravelCost.checked = true;
+    displayTravelCostCheckbox.checked = true;
+    document.getElementById("average-mileage-div").style.visibility = "visible";
+    document.getElementById("fuel-cost-div").style.visibility = "visible";
   }
   else{
-    displayTravelCost.checked = false;
+    displayTravelCostCheckbox.checked = false;
   }
  
   var averageMileage = document.getElementById('average-mileage');

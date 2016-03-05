@@ -8,7 +8,7 @@ function initializeLocalStorage() {
   }
 
   if (localStorage['displayTravelCost'] == null) {
-    localStorage['displayTravelCost'] = true;
+    localStorage['displayTravelCost'] = false;
   }
 
   if (localStorage['averageMileage'] == null) {
