@@ -16,6 +16,7 @@ function initializeLocalStorage() {
   }
 
 }
+
 initializeLocalStorage();
 
 function S(key) { return localStorage[key]; }

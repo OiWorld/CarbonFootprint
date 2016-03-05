@@ -1,3 +1,7 @@
+function createAutoClosingAlert(selector, delay) {
+  $(selector).fadeTo(delay, 500).slideUp(500, function(){
+  });
+}
 
 function saveOptionsEmissions() {
   var emission = document.getElementById('emission');
@@ -5,24 +9,15 @@ function saveOptionsEmissions() {
   localStorage['carbonEmission'] = carbonEmission;
 
   // Update status to let user know options were saved.
-  var status = document.getElementById('save-message-emission');
-  status.innerHTML = 'Saved!';
-  setTimeout(function() {
-    status.innerHTML = '';
-  }, 750);
+  createAutoClosingAlert("#saved-alert", 1000);
 }
-
 
 function saveOptionsFuelCost() {
   var fuelCost = document.getElementById('fuel-cost');
   localStorage['fuelCost'] = fuelCost.value;
 
   // Update status to let user know options were saved.
-  var status = document.getElementById('save-message-fuel-cost');
-  status.innerHTML = 'Saved!';
-  setTimeout(function() {
-    status.innerHTML = '';
-  }, 750);
+  createAutoClosingAlert("#saved-alert", 2000);
 }
 
 function displayTravelCost() {
@@ -33,7 +28,6 @@ function displayTravelCost() {
     localStorage['displayTravelCost'] = true;    
     document.getElementById("average-mileage-div").style.visibility = "visible";
     document.getElementById("fuel-cost-div").style.visibility = "visible";
-
   }
   else{
     localStorage['displayTravelCost'] = false;
@@ -47,12 +41,10 @@ function saveOptionsAverageMileage() {
   localStorage['averageMileage'] = averageMileage.value;
 
   // Update status to let user know options were saved.
-  var status = document.getElementById('save-message-average-mileage');
-  status.innerHTML = 'Saved!';
-  setTimeout(function() {
-    status.innerHTML = '';
-  }, 750);
+  createAutoClosingAlert("#saved-alert", 2000);
 }
+
+
 
 function S(key) { return localStorage[key]; }
 
@@ -64,6 +56,11 @@ function restoreOptions() {
   fuelCost.setAttribute('value', S('fuelCost'));
 
 
+<<<<<<< HEAD
+=======
+  displayTravelCost();
+
+>>>>>>> UI changes:
   var displayTravelCostCheckbox = document.getElementById('display-travel-cost');
   var isTrue = (S('displayTravelCost') === "true");
   
@@ -72,8 +69,11 @@ function restoreOptions() {
 
   if(isTrue){  
     displayTravelCostCheckbox.checked = true;
+<<<<<<< HEAD
     document.getElementById("average-mileage-div").style.visibility = "visible";
     document.getElementById("fuel-cost-div").style.visibility = "visible";
+=======
+>>>>>>> UI changes:
   }
   else{
     displayTravelCostCheckbox.checked = false;
@@ -91,6 +91,12 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('save-button-average-mileage').addEventListener('click', saveOptionsAverageMileage);
 });
 
-window.onload = restoreOptions ;
+
+//to hide the save alert 
+$(document).ready (function(){
+  // $("#saved-alert").hide();
+ });
+
+window.onload = restoreOptions;
 
 googleAnalytics('UA-1471148-11');
