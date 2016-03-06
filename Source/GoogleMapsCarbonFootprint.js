@@ -15,6 +15,7 @@ if (href.match(/maps/gi)) {
   chrome.extension.sendRequest({carbonEmission: 'Request Carbon Efficiency...'}, function(response) {
     // alert("got response from background: " + response);
     carbonEmission = response.carbonEmission;
+    massFlag = response.massFlag;
 
     var observer = new MutationObserver(function(mutations) {
       updateFootprintInGoogleMaps();
@@ -196,13 +197,23 @@ function computeFootprint(distance) {
  *   - a string with amount of CO2 and unit of measurement.
  */
 function footprintToString(footprint) {
-  var carbonUnit = ' g CO<sub>2</sub>';
-  if (footprint > 1000) {
-    footprint = footprint / 1000;
-    carbonUnit = ' kg CO<sub>2</sub>';
+  if (massFlag==1) {
+    if (footprint > 453.592) {
+      footprint = footprint / 453.592;
+      carbonUnit = ' lb CO<sub>2</sub>';
+    }
+    footprint = Math.round(footprint);
+    return '' + footprint + carbonUnit;
+  }else{
+    var carbonUnit = ' g CO<sub>2</sub>';
+    if (footprint > 1000) {
+      footprint = footprint / 1000;
+      carbonUnit = ' kg CO<sub>2</sub>';
+    }
+    footprint = Math.round(footprint);
+    return '' + footprint + carbonUnit;
+    var carbonUnit = ' g CO<sub>2</sub>';
   }
-  footprint = Math.round(footprint);
-  return '' + footprint + carbonUnit;
 }
 
 /*

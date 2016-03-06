@@ -1,38 +1,141 @@
-<html>
+<!DOCTYPE html>
+<html class="full" lang="en">
+
 <head>
-    <title>Google Maps Carbon Footprint Options</title>
-    <link rel="stylesheet" href="options.css" type="text/css" media="screen" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Google Maps Footprint Options</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="the-big-picture.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
 </head>
-<script src="google-analytics.js"></script>
-<script src="options.js"></script>
 
 <body>
-    
-    <div id="logo-wrapper">
-        <div id="logo">
-            <h1> Carbon Footprint for Google Maps&trade; </h1>
-            <div id="globe"><img src="images/globe-256.png" height="128px"/> </div>   
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Carboon Footprint Calculator</a>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <h1>Carbon Footprint for Google Maps</h1>
+                <p>Whenever you ask Google Maps for driving directions, this browser extension automatically estimates the total CO2 emission for the driving route suggested by Google Maps. The estimation is then shown to the left of the map, next to the route's total distance.</p>
+            </div>
+        </div>
+        <br>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#fuelConsumption" data-toggle="tab" aria-expanded="true">Fuel Consumption</a></li>
+                            <li class=""><a href="#fuelEfficiency" data-toggle="tab" aria-expanded="false">Fuel Efficiency</a></li>
+                            <li class=""><a href="#co2Emission" data-toggle="tab" aria-expanded="false">CO2 Emission</a></li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade active in" id="fuelConsumption">
+                                <div class="form-group col-sm-12">
+                                    <!-- <form class="form-inline"> -->
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" id="fuelConsumptionInput">
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="" id="fuelInput1" class="form-control" required="required">
+                                            <option value="l">litre</option>
+                                            <option value="g">gallon</option>
+                                        </select>
+                                        <span class="label label-default">per</span>
+                                        <select name="" id="distanceInput1" class="form-control" required="required">
+                                            <option value="km">kilometer</option>
+                                            <option value="m">mile</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-default" id="saveButton1">Save</button>
+                                    <span id="saveMessage"></span>
+                                    <!-- </form> -->
+                                </div>
+                            </div>
+                            <div class="tab-pane fade " id="fuelEfficiency">
+                                <div class="form-group col-sm-12">
+                                    <!-- <form class="form-inline"> -->
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" id="fuelEfficiencyInput">
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="" id="distanceFuelInput2" class="form-control" required="required">
+                                            <option value="km/l">km/l</option>
+                                            <option value="km/gl">km/gl</option>
+                                            <option value="m/l">m/l</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-default" id="saveButton2">Save</button>
+                                    <span id="saveMessage2"></span>
+                                    <!-- </form> -->
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="co2Emission">
+                                <div class="form-group col-sm-12">
+                                    <!-- <form class="form-inline"> -->
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" id="co2EmissionInput">
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="" id="fuelInput3" class="form-control" required="required">
+                                            <option value="kg">kilogram</option>
+                                            <option value="p">pound</option>
+                                            <option value="g">gram</option>
+                                        </select>
+                                        <span class="label label-default">per</span>
+                                        <select name="" id="distanceInput3" class="form-control" required="required">
+                                            <option value="km">kilometer</option>
+                                            <option value="m">mile</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-default" id="saveButton3">Save</button>
+                                    <span id="saveMessage3"></span>
+                                    <!-- </form> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div id="content-wrapper">
-        <div id="description">
-            Whenever you ask Google Maps for driving directions, this browser extension automatically 
-            estimates the total CO<sub>2</sub> emission for 
-            the driving route suggested by Google Maps. 
-            The estimation is then shown to the left of the map, 
-            next to the route's total distance.
-        </div>
-        <div id="emission-div">
-            To improve the accuracy of the estimation, <br />
-            please fill in below how much CO<sub>2</sub> your car emits (in g/km): <br />
-            <input id="emission" type="number" min="0" size="5" style="text-align:center" name="CO2Emission"/>
-            <button id="save-button">Save</button> <br /> 
-            <span id="save-message"></span> <br />
-        </div>
-        <div id="offset">
-            <a href="http://goo.gl/MyDst" target="_blank">Offset your carbon emissions now!</a>
-        </div>
-    </div>
+    <!-- /.container -->
+    <!-- jQuery -->
+    <script src="jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="bootstrap.min.js"></script>
+    <script src="google-analytics.js"></script>
+    <script src="options.js"></script>
 </body>
+
 </html>

@@ -1,27 +1,138 @@
+/*CONVERSION CONTSANTS TABLE for fuel consumption and efficiency
+Using l/km as the reference unit i.e LKM
+also l/km = 1000 ml/km i.e  LKM_to_MLKM = 1 / MLKM_TO_LKM
+also km/ml = 1000 km/l  i.e  KMML_to_KML = 1000 / KML_TO_KMML
+to avoid redundancy caused by making all combinations
+*/
+ 
+$('#saveButton1').click(function() {
+    var fuel = document.getElementById('fuelInput1');
+    var fuelValue = fuel.value;
+    var distance = document.getElementById('distanceInput1');
+    var distanceValue = distance.value;
+    var input = document.getElementById('fuelConsumptionInput');
+    var inputValue = input.value;
+    var status = document.getElementById('saveMessage');
+    status.innerHTML = 'Saved!';
+    switch (fuelValue) {
+        case "l":
+            if (distance == "km") {
+                var conversionConstant = 2328;
+                var fuelConsumption = conversionConstant * inputValue;
+                localStorage['carbonEmission'] = fuelConsumption;
+            } else {
+                var conversionConstant = 2328;
+                var fuelConsumption = conversionConstant * inputValue;
+                localStorage['carbonEmission'] = fuelConsumption;
+            }
+            break;
+        case "g":
+            if (distance == "km") {
+                var conversionConstant = 8782.155;
+                var fuelConsumption = conversionConstant * inputValue;
+                localStorage['carbonEmission'] = fuelConsumption;
+            } else {
+                var conversionConstant = 5456.97;
+                var fuelConsumption = 1 / inputValue;
+                fuelConsumption = conversionConstant * fuelConsumption;
+            }
 
-function saveOptions() {
-  var emission = document.getElementById('emission');
-  var carbonEmission = emission.value;
-  localStorage['carbonEmission'] = carbonEmission;
-
-  // Update status to let user know options were saved.
-  var status = document.getElementById('save-message');
-  status.innerHTML = 'Saved!';
-  setTimeout(function() {
-    status.innerHTML = '';
-  }, 750);
-}
-
-function S(key) { return localStorage[key]; }
-
-function restoreOptions() {
-  var emission = document.getElementById('emission');
-  emission.setAttribute('value', S('carbonEmission'));
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('save-button').addEventListener('click', saveOptions);
+            break;
+    }
 });
 
-window.onload = restoreOptions ;
+$('#saveButton2').click(function() {
+    var unit = document.getElementById('distanceFuelInput2');
+    var unitValue = unit.value;
+    var input = document.getElementById('fuelEfficiencyInput');
+    var inputValue = input.value;
+    var status = document.getElementById('saveMessage2');
+    status.innerHTML = 'Saved!';
+    if (unitValue == "km/l") {
+        var conversionConstant = 2328;
+        var fuelEfficiency = 1 / inputValue;
+        fuelEfficiency = conversionConstant * fuelEfficiency;
+        localStorage['carbonEmission'] = fuelEfficiency;
+    } else if (unitValue == "km/gl") {
+        var conversionConstant = 8782.155;
+        var fuelEfficiency = 1 / inputValue;
+        fuelEfficiency = conversionConstant * fuelEfficiency;
+        localStorage['carbonEmission'] = fuelEfficiency;
+    } else {
+        var conversionConstant = 5456.97;
+        var fuelEfficiency = conversionConstant * inputValue;
+        localStorage['carbonEmission'] = fuelEfficiency;
+    }
+});
+
+$('#saveButton3').click(function() {
+
+    var fuel = document.getElementById('fuelInput3');
+    var fuelValue = fuel.value;
+    var distance = document.getElementById('distanceInput3');
+    var distanceValue = distance.value;
+    var input = document.getElementById('co2EmissionInput');
+    var inputValue = input.value;
+    var status = document.getElementById('saveMessage3');
+    status.innerHTML = 'Saved!';
+    switch (fuelValue) {
+        case "g":
+            if (distance == "km") {
+                var co2Emission = inputValue;
+                localStorage['carbonEmission'] = co2Emission;
+            } else {
+                var conversionConstant = 0.621371;
+                var co2Emission = conversionConstant * inputValue;
+                localStorage['carbonEmission'] = co2Emission;
+            }
+            break;
+        case "kg":
+            if (distance == "km") {
+                var conversionConstant = 1000;
+                var co2Emission = conversionConstant * inputValue;
+                localStorage['carbonEmission'] = co2Emission;
+                localStorage['massFlag'] = 2;
+            } else {
+                var conversionConstant = 621.371;
+                var co2Emission = conversionConstant * inputValue;
+                localStorage['carbonEmission'] = co2Emission;
+                localStorage['massFlag'] = 2;
+
+            }
+            break;
+        case "p":
+            if (distance == "km") {
+                var conversionConstant = 453.592;
+                var co2Emission = conversionConstant * inputValue;
+                localStorage['carbonEmission'] = co2Emission;
+                localStorage['massFlag'] = 1;
+
+            } else {
+                var conversionConstant = 281.849;
+                var co2Emission = conversionConstant * inputValue;
+                localStorage['carbonEmission'] = co2Emission;
+                localStorage['massFlag'] = 1;
+            }
+            break;
+    }
+});
+
+
+function S(key) {
+    return localStorage[key]; }
+
+function restoreOptions() {
+
+    var fuelConsumption = document.getElementById('fuelConsumption');
+    fuelConsumption.setAttribute('value', S('carbonEmission'));
+
+    var fuelEfficiency = document.getElementById('fuelEfficiency');
+    fuelEfficiency.setAttribute('value', S('carbonEmission'));
+
+    var co2Emission = document.getElementById('co2Emission');
+    co2Emission.setAttribute('value', S('carbonEmission'));
+
+}
+
+window.onload = restoreOptions;
 googleAnalytics('UA-1471148-11');
