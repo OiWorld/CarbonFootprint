@@ -5,7 +5,7 @@ also km/ml = 1000 km/l  i.e  KMML_to_KML = 1000 / KML_TO_KMML
 to avoid redundancy caused by making all combinations
 */
  
-$('#save-button-1').click(function() {
+$('#saveButton1').click(function() {
     var fuel = document.getElementById('fuelInput1');
     var fuelValue = fuel.value;
     var distance = document.getElementById('distanceInput1');
@@ -38,7 +38,7 @@ $('#save-button-1').click(function() {
     }
 });
 
-$('#save-button-2').click(function() {
+$('#saveButton2').click(function() {
     var unit = document.getElementById('distanceFuelInput2');
     var unitValue = unit.value;
     var input = document.getElementById('fuelEfficiencyInput');
@@ -59,7 +59,7 @@ $('#save-button-2').click(function() {
     }
 });
 
-$('#save-button-3').click(function() {
+$('#saveButton3').click(function() {
 
     var fuel = document.getElementById('fuelInput3');
     var fuelValue = fuel.value;
