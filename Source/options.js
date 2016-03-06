@@ -18,20 +18,24 @@ $('#saveButton1').click(function() {
         case "l":
             if (distance == "km") {
                 console.log("l/km case");
-                var fuelConsumption = 2328 * inputValue;
+                var conversionConstant = 2328;
+                var fuelConsumption = conversionConstant * inputValue;
                 localStorage['carbonEmission'] = fuelConsumption;
             } else {
-                var fuelConsumption = 2328 * inputValue;
+                var conversionConstant = 2328;
+                var fuelConsumption = conversionConstant * inputValue;
                 localStorage['carbonEmission'] = fuelConsumption;
             }
             break;
         case "g":
             if (distance == "km") {
-                var fuelConsumption = 8782.155 * inputValue;
+                var conversionConstant = 8782.155;
+                var fuelConsumption = conversionConstant * inputValue;
                 localStorage['carbonEmission'] = fuelConsumption;
             } else {
+                var conversionConstant = 5456.97;
                 var fuelConsumption = 1 / inputValue;
-                fuelConsumption = 5456.97 * fuelConsumption;
+                fuelConsumption = conversionConstant * fuelConsumption;
             }
 
             break;
@@ -46,15 +50,18 @@ $('#saveButton2').click(function() {
     var status = document.getElementById('save-message-2');
     status.innerHTML = 'Saved!';
     if (unitValue == "km/l") {
+        var conversionConstant = 2328;
         var fuelEfficiency = 1 / inputValue;
-        fuelEfficiency = 2328 * fuelEfficiency;
+        fuelEfficiency = conversionConstant * fuelEfficiency;
         localStorage['carbonEmission'] = fuelEfficiency;
     } else if (unitValue == "km/gl") {
+        var conversionConstant = 8782.155;
         var fuelEfficiency = 1 / inputValue;
-        fuelEfficiency = 8782.155 * fuelEfficiency;
+        fuelEfficiency = conversionConstant * fuelEfficiency;
         localStorage['carbonEmission'] = fuelEfficiency;
     } else {
-        var fuelEfficiency = 5456.97 * inputValue;
+        var conversionConstant = 5456.97;
+        var fuelEfficiency = conversionConstant * inputValue;
         localStorage['carbonEmission'] = fuelEfficiency;
     }
 });
@@ -76,17 +83,20 @@ $('#saveButton3').click(function() {
                 var co2Emission = inputValue;
                 localStorage['carbonEmission'] = co2Emission;
             } else {
-                var co2Emission = 0.621371 * inputValue;
+                var conversionConstant = 0.621371;
+                var co2Emission = conversionConstant * inputValue;
                 localStorage['carbonEmission'] = co2Emission;
             }
             break;
         case "kg":
             if (distance == "km") {
-                var co2Emission = 1000 * inputValue;
+                var conversionConstant = 1000;
+                var co2Emission = conversionConstant * inputValue;
                 localStorage['carbonEmission'] = co2Emission;
                 localStorage['massFlag'] = 2;
             } else {
-                var co2Emission = 621.371 * inputValue;
+                var conversionConstant = 621.371;
+                var co2Emission = conversionConstant * inputValue;
                 localStorage['carbonEmission'] = co2Emission;
                 localStorage['massFlag'] = 2;
 
@@ -94,12 +104,14 @@ $('#saveButton3').click(function() {
             break;
         case "p":
             if (distance == "km") {
-                var co2Emission = 453.592 * inputValue;
+                var conversionConstant = 453.592;
+                var co2Emission = conversionConstant * inputValue;
                 localStorage['carbonEmission'] = co2Emission;
                 localStorage['massFlag'] = 1;
 
             } else {
-                var co2Emission = 281.849 * inputValue;
+                var conversionConstant = 281.849;
+                var co2Emission = conversionConstant * inputValue;
                 localStorage['carbonEmission'] = co2Emission;
                 localStorage['massFlag'] = 1;
             }
