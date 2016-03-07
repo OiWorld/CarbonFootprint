@@ -69,7 +69,7 @@ var fuel_info = [
 ];
 
 // Function to handle all 3 tabs save  click
-function save_options() {
+function saveOptions() {
   switch(index_et)
   {
     case 0: var fuelInType = document.getElementById("fuel-type-in").value,
@@ -94,7 +94,7 @@ function save_options() {
   var status = document.getElementsByClassName("save-message")[index_et];
   status.innerHTML = "Saved!";
   setTimeout(function() {
-    status.innerHTML = "";
+    status.innerHTML = '';
   }, 750);
 }
 
@@ -121,7 +121,7 @@ function CalcCarbonEmission(type,intake,unit){
                 break;                                                                
   }
   //Also updating CO2 Emission Fields for user to check
-  restore_options();
+  restoreOptions();
 }
 
 /**
@@ -250,7 +250,7 @@ function changeEmissionUnit(){
 
 function S(key) { return localStorage[key]; }
 
-function restore_options() {
+function restoreOptions() {
   var emission = document.getElementById("emission");
   emission.setAttribute('value', S("carbonEmission"));
   //Storing Units for CO2 Emission Units for future  output
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function () {
   //assigning click listener to the save for each tabs
   for(var i=0;i< document.getElementsByClassName('save-button').length;++i)
     {
-      document.getElementsByClassName('save-button')[i].addEventListener('click', save_options);
+      document.getElementsByClassName('save-button')[i].addEventListener('click', saveOptions);
     }
   //assigning click listener to the tabs
   for(var  i=0;i<$eit.length;++i)
@@ -286,6 +286,5 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById("CO2Emission-units").addEventListener("change", changeEmissionUnit);
 });
 
-window.onload = restore_options ;
-
-google_analytics('UA-1471148-11');
+window.onload = restoreOptions ;
+googleAnalytics('UA-1471148-11');
