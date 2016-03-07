@@ -7,31 +7,118 @@
 <script src="options.js"></script>
 
 <body>
-    
-    <div id="logo-wrapper">
-        <div id="logo">
-            <h1> Carbon Footprint for Google Maps&trade; </h1>
-            <div id="globe"><img src="images/globe-256.png" height="128px"/> </div>   
+    <div id="header">
+        <img src="images/globe-128.png">
+        <div>
+            Carbon Footprint for Google Maps<sup>TM</sup>
         </div>
     </div>
-
-    <div id="content-wrapper">
+    <div  id="container">
         <div id="description">
-            Whenever you ask Google Maps for driving directions, this browser extension automatically 
-            estimates the total CO<sub>2</sub> emission for 
-            the driving route suggested by Google Maps. 
-            The estimation is then shown to the left of the map, 
-            next to the route's total distance.
+            <p>Whenever you ask Google Maps for driving directions, this browser extension automatically 
+            estimates the total CO<sub>2</sub> emission for the driving route suggested by Google Maps. 
+            The estimation is then shown to the left of the map, next to the route's total distance.</p>
+            <p>To improve the accuracy of the estimation, choose amongst one of the tabs whose value you wish to enter:  </p>
         </div>
-        <div id="emission-div">
-            To improve the accuracy of the estimation, <br />
-            please fill in below how much CO<sub>2</sub> your car emits (in g/km): <br />
-            <input id="emission" type="number" min="0" size="5" style="text-align:center" name="CO2Emission"/>
-            <button id="save-button">Save</button> <br /> 
-            <span id="save-message"></span> <br />
-        </div>
-        <div id="offset">
-            <a href="http://goo.gl/MyDst" target="_blank">Offset your carbon emissions now!</a>
+        <div id="form-cont">
+            <div id="form">
+                <div id="emission-type-cont">
+                    <div class="emission-input-type" >Fuel Consumption</div>
+                    <div class="emission-input-type" >Fuel Efficiency</div>
+                    <div class="emission-input-type selected" >CO<sub>2</sub> Emission</div>
+                </div>
+                <div class="emission-input-cont">
+                    <div class="emission-input">
+                        <div class="form-group">
+                            <label for="fuel-type-in">Fuel Type</label> 
+                            <select style="text-align:center" id="fuel-type-in" >
+                                <option value="0" selected>Diesel</option>
+                                <option value="1">Gasoline</option>
+                                <option value="2">LPG</option>
+                                <option value="3">e10</option>
+                                <option value="4">e25</option>
+                                <option value="5">e85</option>
+                                <option value="6">Ethanol</option>
+                                <option value="7">Bio-Diesel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fuel-intake-unit">Units</label> 
+                            <select style="text-align:center" id="fuel-intake-unit" >
+                                <option value="0" selected>L/km</option>
+                                <option value="1">mL/km</option>
+                                <option value="2">gal/km</option>
+                                <option value="3">L/mi</option>
+                                <option value="4">mL/mi</option>
+                                <option value="5">gal/mi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fuel-intake">Fuel Intake</label> 
+                            <input type="number" size="5" style="text-align:center" id="fuel-intake" value="0"/>
+                        </div>
+                        <div class="form-group">
+                            <button class="save-button">Save</button>  
+                            <span class="save-message"></span> 
+                        </div>
+                    </div>
+                    <div class="emission-input">
+                        <div class="form-group">
+                            <label for="fuel-type-eff">Fuel Type</label> 
+                            <select style="text-align:center" id="fuel-type-eff" >
+                                <option value="0" selected>Diesel</option>
+                                <option value="1">Gasoline</option>
+                                <option value="2">LPG</option>
+                                <option value="3">e10</option>
+                                <option value="4">e25</option>
+                                <option value="5">e85</option>
+                                <option value="6">Ethanol</option>
+                                <option value="7">Bio-Diesel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fuel-efficiency-unit">Units</label> 
+                            <select id="fuel-efficiency-unit" style="text-align:center"  >
+                                <option value="0" selected>km/L</option>
+                                <option value="1">km/mL</option>
+                                <option value="2">km/gal</option>
+                                <option value="3">mi/L</option>
+                                <option value="4">mi/mL</option>
+                                <option value="5">mi/gal</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fuel-efficiency">Fuel Ffficiency</label> 
+                            <input type="number" size="5" style="text-align:center" id="fuel-efficiency" value="0"/>
+                        </div>
+                        <div class="form-group">
+                            <button class="save-button">Save</button>  
+                            <span class="save-message"></span> 
+                        </div>
+                    </div>
+                    <div class="emission-input open">
+                        <div class="form-group">
+                            <label for="emission">CO<sub>2</sub> Emission</label> 
+                            <input id="emission" type="number" size="5" style="text-align:center"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="CO2Emission-units">Units</label> 
+                            <select id="CO2Emission-units" style="text-align:center" >
+                                <option value="g/km" selected>g/km</option>
+                                <option value="kg/km">kg/km</option>
+                                <option value="lbs/km">lbs/km</option>
+                                <option value="g/mi">g/mi</option>
+                                <option value="kg/mi">kg/mi</option>
+                                <option value="lbs/mi">lbs/mi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">    
+                            <button class="save-button">Save</button>  
+                            <span class="save-message"></span> 
+                        </div>    
+                    </div>
+                </div>
+            </div>      
         </div>
     </div>
 </body>
