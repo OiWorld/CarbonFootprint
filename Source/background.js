@@ -4,6 +4,7 @@ function initializeLocalStorage() {
     carbonEmissionUnit = 'g/km';
   } 
 }
+
 initializeLocalStorage();
 
 function S(key) { return localStorage[key]; }
