@@ -14,7 +14,7 @@ console.log('Location: ' + href);
 if (href.match(/maps/gi)) {
   chrome.extension.sendRequest({carbonEmission: 'Request Carbon Efficiency...'}, function(response) {
     // alert("got response from background: " + response);
-    carbonEmission = response.carbonEmission;
+    console.log(response);
 
     var observer = new MutationObserver(function(mutations) {
       updateFootprintInGoogleMaps();

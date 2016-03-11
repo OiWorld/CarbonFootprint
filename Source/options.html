@@ -1,15 +1,15 @@
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Google Maps Carbon Footprint Options</title>
     <link rel="stylesheet" href="options.css" type="text/css" media="screen" />
 </head>
-<script src="google-analytics.js"></script>
-<script src="options.js"></script>
 
 <body>
     <div id="header">
         <img src="images/globe-128.png">
-        <div>
+        <div >
             Carbon Footprint for Google Maps<sup>TM</sup>
         </div>
     </div>
@@ -27,99 +27,122 @@
                     <div class="emission-input-type" >Fuel Efficiency</div>
                     <div class="emission-input-type selected" >CO<sub>2</sub> Emission</div>
                 </div>
-                <div class="emission-input-cont">
-                    <div class="emission-input">
-                        <div class="form-group">
-                            <label for="fuel-type-in">Fuel Type</label> 
-                            <select style="text-align:center" id="fuel-type-in" >
-                                <option value="0" selected>Diesel</option>
-                                <option value="1">Gasoline</option>
-                                <option value="2">LPG</option>
-                                <option value="3">e10</option>
-                                <option value="4">e25</option>
-                                <option value="5">e85</option>
-                                <option value="6">Ethanol</option>
-                                <option value="7">Bio-Diesel</option>
+                <div id="form-fields">
+                    <div class="form-group">
+                        <label for="fuel-type">Fuel Type</label> 
+                        <select style="text-align:center" id="fuel-type" >
+                            <option value="0" selected>Diesel</option>
+                            <option value="1">Gasoline</option>
+                            <option value="2">LPG</option>
+                            <option value="3">e10</option>
+                            <option value="4">e25</option>
+                            <option value="5">e85</option>
+                            <option value="6">Ethanol</option>
+                            <option value="7">Bio-Diesel</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div style="display: inline-block;width: 49%;">
+                        <label for="fuel-cost">Fuel Cost</label> 
+                        <input type="number" size="5" style="text-align:center" id="fuel-cost" value="0" min="0" />
+                        </div>
+                        <div style="display: inline-block;width: 49%;">
+                            <label for="fuel-cost-unit2">in $ per Volume unit</label> 
+                            <select class="selectFUnit" style="text-align:center" id="fuel-cost-unit2" >
+                                <option value="L" selected>L</option>
+                                <option value="gal">gal</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="fuel-intake-unit">Units</label> 
-                            <select style="text-align:center" id="fuel-intake-unit" >
-                                <option value="0" selected>L/km</option>
-                                <option value="1">mL/km</option>
-                                <option value="2">gal/km</option>
-                                <option value="3">L/mi</option>
-                                <option value="4">mL/mi</option>
-                                <option value="5">gal/mi</option>
-                            </select>
+                        <span class="note">'$' denotes a generic currency.</span>
+                    </div>
+                    <div class="emission-input-cont">
+                        <div class="emission-input">
+                            <div class="form-group">
+                                <label for="consumption">Fuel Consumption</label> 
+                                <input type="number" size="5" style="text-align:center" id="consumption" value="0"/>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-head">Fuel Consumption Units</div>
+                                <div class="unit">
+                                    <label for="consumption-unit1">Volume</label> 
+                                    <select class="selectMUnit" style="text-align:center" id="consumption-unit1" >
+                                        <option value="L" selected>L</option>
+                                        <option value="gal">gal</option>
+                                    </select>
+                                </div>
+                                <div class="unitper" >/</div>
+                                <div class="unit">
+                                    <label for="consumption-unit2">Per Distance</label> 
+                                    <select class="selectDUnit" style="text-align:center" id="consumption-unit2" >
+                                        <option value="km" selected>km</option>
+                                        <option value="mi">mi</option>
+                                    </select>
+                                </div>
+                                <span class="note">To get conversions change the units.</span>    
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="fuel-intake">Fuel Intake</label> 
-                            <input type="number" size="5" style="text-align:center" id="fuel-intake" value="0"/>
+                        <div class="emission-input">
+                            <div class="form-group">
+                                <label for="efficiency">Fuel Ffficiency</label> 
+                                <input type="number" size="5" style="text-align:center" id="efficiency" value="0"/>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-head">Fuel Efficiency Units</div>
+                                <div class="unit">
+                                    <label for="efficiency-unit1">Distance</label> 
+                                    <select class="selectMUnit" style="text-align:center" id="efficiency-unit1" >
+                                        <option value="km" selected>km</option>
+                                        <option value="mi">mi</option>
+                                    </select>
+                                </div>    
+                                <div class="unitper">/</div>
+                                <div class="unit">
+                                    <label for="efficiency-unit2">per Volume</label> 
+                                    <select class="selectDUnit" style="text-align:center" id="efficiency-unit2" >
+                                        <option value="L" selected>L</option>
+                                        <option value="gal">gal</option>
+                                    </select>
+                                </div>
+                                <span class="note">To get conversions change the units.</span>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <button class="save-button">Save</button>  
-                            <span class="save-message"></span> 
+                        <div class="emission-input open">
+                            <div class="form-group">
+                                <label for="emission">CO<sub>2</sub> Emission</label> 
+                                <input id="emission" type="number" size="5" value="0" style="text-align:center"/>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-head">CO<sub>2</sub> Emission Units</div>
+                                <div class="unit">
+                                    <label for="emission-unit1">Mass</label> 
+                                    <select class="selectMUnit" style="text-align:center" id="emission-unit1" >
+                                        <option value="g" selected>g</option>
+                                        <option value="kg">kg</option>
+                                        <option value="lbs">lbs</option>
+                                    </select>
+                                </div>    
+                                <div class="unitper">/</div>
+                                <div class="unit">
+                                    <label for="emission-unit2">per Distance</label> 
+                                    <select class="selectDUnit" style="text-align:center" id="emission-unit2" >
+                                        <option value="km" selected>km</option>
+                                        <option value="mi">mi</option>
+                                    </select>
+                                </div>
+                                <span class="note">To get conversions change the units.</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="emission-input">
-                        <div class="form-group">
-                            <label for="fuel-type-eff">Fuel Type</label> 
-                            <select style="text-align:center" id="fuel-type-eff" >
-                                <option value="0" selected>Diesel</option>
-                                <option value="1">Gasoline</option>
-                                <option value="2">LPG</option>
-                                <option value="3">e10</option>
-                                <option value="4">e25</option>
-                                <option value="5">e85</option>
-                                <option value="6">Ethanol</option>
-                                <option value="7">Bio-Diesel</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="fuel-efficiency-unit">Units</label> 
-                            <select id="fuel-efficiency-unit" style="text-align:center"  >
-                                <option value="0" selected>km/L</option>
-                                <option value="1">km/mL</option>
-                                <option value="2">km/gal</option>
-                                <option value="3">mi/L</option>
-                                <option value="4">mi/mL</option>
-                                <option value="5">mi/gal</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="fuel-efficiency">Fuel Ffficiency</label> 
-                            <input type="number" size="5" style="text-align:center" id="fuel-efficiency" value="0"/>
-                        </div>
-                        <div class="form-group">
-                            <button class="save-button">Save</button>  
-                            <span class="save-message"></span> 
-                        </div>
-                    </div>
-                    <div class="emission-input open">
-                        <div class="form-group">
-                            <label for="emission">CO<sub>2</sub> Emission</label> 
-                            <input id="emission" type="number" size="5" style="text-align:center"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="CO2Emission-units">Units</label> 
-                            <select id="CO2Emission-units" style="text-align:center" >
-                                <option value="g/km" selected>g/km</option>
-                                <option value="kg/km">kg/km</option>
-                                <option value="lbs/km">lbs/km</option>
-                                <option value="g/mi">g/mi</option>
-                                <option value="kg/mi">kg/mi</option>
-                                <option value="lbs/mi">lbs/mi</option>
-                            </select>
-                        </div>
-                        <div class="form-group">    
-                            <button class="save-button">Save</button>  
-                            <span class="save-message"></span> 
-                        </div>    
+                    <div class="form-group">
+                        <button id="save-button">Save</button>  
+                        <span id="save-message"></span> 
                     </div>
                 </div>
             </div>      
         </div>
     </div>
+<script src="jquery.min.js"></script>
+<script src="google-analytics.js"></script>
+<script src="options.js"></script>
 </body>
 </html>
