@@ -631,6 +631,16 @@
       "js" : ["GoogleMapsCarbonFootprint.js"],
       "run_at" : "document_end",
       "all_frames" : false
+    },
+
+    {
+        "matches": ["https://www.openstreetmap.org/*",
+                    "http://www.openstreetmap.org/*"
+                    ],
+        "css": ["css.css"],
+        "js" : ["OpenMapsCarbonFootprint.js"],
+        "run_at" : "document_end",
+        "all_frames" : true
     }
   ],
   "icons" : {
