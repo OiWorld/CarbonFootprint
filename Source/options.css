@@ -72,7 +72,7 @@ label,input,select,button {
 }
 
 label {
-    font-size: 1.1em;
+    font-size: 1.05em;
 }
 
 input,select {
@@ -88,6 +88,7 @@ button {
     text-transform: uppercase;
     font-size: 1.05em;
     font-weight: bold;
+    margin-top: 0.5em;
     color: #f0f0f0;
     background: #27ae60;
     border:none;
@@ -125,7 +126,7 @@ div#emission-type-cont > div.emission-input-type.selected {
     border-bottom: 4px solid #2980B9;
 }
 
-div.emission-input-cont {
+div#form-fields {
     padding: 20px;
 }
 
@@ -139,6 +140,27 @@ div.emission-input-cont > div.emission-input.open {
 
 .form-group {
     padding: 0.5em 0;
+}
+.form-head {
+    font-size: 1.05em;
+    margin-bottom: 0.2em;
+}
+.form-group > div.unit {
+    display: inline-block;
+    width: 45%;
+}
+.form-group > div.unitper {
+    display:inline-block;
+    width: 7%;
+    text-align: center;
+}
+.form-group > div.unit2 {
+    float:right;
+    font-size: 0.8em;
+}
+.form-group > span.note {
+    float:right;
+    font-size: 0.8em;
 }
 
 #offset {
