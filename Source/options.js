@@ -291,6 +291,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   //assigning click listener to the tabs
   $('.emission-input-type').on('click',openEmissionInput);
+
+  // Added multiple language support. replaces text with user language
+  for(var i=0;i< $('[data-language]').length;++i) {
+    $($('[data-language]')[i]).html(chrome.i18n.getMessage($($('[data-language]')[i]).data('language'))) 
+  }
 });
 
 window.onload = restoreOptions ;
