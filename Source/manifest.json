@@ -641,6 +641,15 @@
         "js" : ["OpenMapsCarbonFootprint.js"],
         "run_at" : "document_end",
         "all_frames" : true
+    }, 
+    {
+      "matches": [ "http://www.bing.com/mapspreview*", 
+                   "https://www.bing.com/mapspreview*"           
+      ],  
+      "css": ["css.css"],
+      "js" : ["BingMapsCarbonFootprint.js"],
+      "run_at" : "document_end",
+      "all_frames" : false
     }
   ],
   "icons" : {
