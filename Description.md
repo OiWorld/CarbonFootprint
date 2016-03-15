@@ -49,9 +49,9 @@ ToDo
 French (fr)
 -----------
 
-Translated by: 
+Translated by: Ashutosh Saboo | ashutoshsaboo | https://github.com/ashutoshsaboo
 
-(Short: )
+(Short: Added French Language Support)
 
 
 
