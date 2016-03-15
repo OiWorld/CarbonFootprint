@@ -5,7 +5,7 @@
 console.log('Carbon Footprint Script Starting');
 
 var treeGrowthPerYear = 8300; // in g of CO2 captured.
-var carbonEmission = 217; // in grams of CO2 per km
+/*var carbonEmission = 217;*/ // in grams of CO2 per km
 
 var href = location.href;
 
@@ -15,6 +15,7 @@ if (href.match(/maps/gi)) {
   chrome.extension.sendRequest({carbonEmission: 'Request Carbon Efficiency...'}, function(response) {
     // alert("got response from background: " + response);
     console.log(response);
+     window.carbonEmission = response["emissionRate"]["value"];
 
     var observer = new MutationObserver(function(mutations) {
       updateFootprintInGoogleMaps();
