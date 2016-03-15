@@ -649,7 +649,7 @@
       "css": ["css.css"],
       "js" : ["BingMapsCarbonFootprint.js"],
       "run_at" : "document_end",
-      "all_frames" : false
+      "all_frames" : true
     }
   ],
   "icons" : {

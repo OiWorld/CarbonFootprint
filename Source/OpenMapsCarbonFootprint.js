@@ -6,6 +6,8 @@ console.log('Carbon Footprint Script Starting');
 
 var treeGrowthPerYear = 8300; // in g of CO2 captured.
 var carbonEmission = 217; // in grams of CO2 per km
+var travelRate = 0;
+var displayTravelCost = false; 
 
 var href = location.href;
 
@@ -15,6 +17,10 @@ if (href.match(/directions/gi)) {
   chrome.extension.sendRequest({carbonEmission: 'Request Carbon Efficiency...'}, function(response) {
     // alert("got response from background: " + response);
     console.log(response);
+
+    travelRate = response.travelRate.value;
+    displayTravelCost = response.travelRate.displayTravelCost;
+    carbonEmission = response.emissionRate;
 
     var observer = new MutationObserver(function(mutations) {
       updateFootprintInOpenMaps();
@@ -34,6 +40,10 @@ function updateFootprintInOpenMaps() {
     var travelMode = getMode();
     if (isDrive(travelMode)) {
       insertFootprint();
+      
+      if(displayTravelCost){  
+        insertTravelCost();
+      }
     }
 };
 
@@ -44,6 +54,13 @@ function insertFootprint() {
   var trees = computeTrees(footprint);
 
   insertElement(createElement(footprint, trees));
+}
+
+function insertTravelCost(){
+  var distance = convertDistance(getDistanceString());
+  // calculating travel cost 
+  var travelCost = travelRate * distance;
+  insertTravelCostElement(createTravelCostElement(travelCost));
 }
 
 /*
@@ -66,6 +83,22 @@ function createElement(footprint, trees) {
 }
 
 /*
+ * Creates the travel cost element to be inserted in the webpage.
+ *
+ * Arguments:
+ *   - travel cost in $ (fixed to 2 decimal places)
+ */
+
+function createTravelCostElement(travelCost) {
+  var e = document.createElement('div');
+  e.innerHTML = '<a href=http://goo.gl/yxdIs target=_blank class=travelCost id=travelCost> Cost $' +
+                travelCost.toFixed(2).toString(); +
+                '</a>';
+  return e;
+}
+
+
+/*
  * Inserts the footprint element in the webpage.
  * Arguments:
  *   - e: element that should be added
@@ -73,6 +106,21 @@ function createElement(footprint, trees) {
 function insertElement(e) {
   if (document.getElementsByClassName('carbon').length == 0) { // In this case, "e" has not been added yet. We may proceed and add it.
     if(document.getElementById('routing_summary')) {
+      document.getElementById('routing_summary').appendChild(e);
+    }
+  }
+}
+
+/*
+ * Inserts the travel cost element in the webpage.
+ * Arguments:
+ *   - e: element that should be added
+ */
+
+function insertTravelCostElement(e) {
+  //A check to ensure that the display travel cost checkbox is checked 
+  if (document.getElementsByClassName('travelCost').length == 0) { // In this case, "e" has not been added yet. We may proceed and add it.
+    if (document.getElementById('routing_summary')){
       document.getElementById('routing_summary').appendChild(e);
     }
   }
