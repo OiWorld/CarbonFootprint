@@ -72,7 +72,6 @@ function saveOptions() {
     unit2: document.getElementById("fuel-cost-unit2").value,
   });
   localStorage.setObj('emissionUnit','g');
-
   /**
   * TO STORE EVERYTYPE OF INFO IN TERMS OF PRIMITVE VARIABLES-
   * fuelConsumption
@@ -189,16 +188,10 @@ function setTravelRate() {
   else {
     fuelRate = fuelCostObj['value'] * unitConvertor(consumptionObj['value'],consumptionObj['unit1'],fuelCostObj['unit2']);
   }
-
-  //Fetching display travel cost checkbox value
-  var displayTravelCost = document.getElementById("display-travel-cost").checked;
-
-
   localStorage.setObj('travelRate',{
     value: Math.round(fuelRate * 10000) / 10000,
     unit1: fuelCostObj['unit1'],
     unit2: consumptionObj['unit2'],
-    displayTravelCost: displayTravelCost
   });
 }
 
@@ -273,9 +266,6 @@ function restoreOptions() {
     $('#fuel-cost-unit2').val(localStorage.getObj('fuelCost')['unit2']);
     //  Storing input field on type
     $($('.emission-input-type')[localStorage.getObj('savedTab')]).click();
-
-    $('#display-travel-cost').attr('checked', localStorage.getObj('travelRate').displayTravelCost);
-
     switch(localStorage.getObj('savedTab')) {
       case 0 :  $('#consumption').val(localStorage.getObj('fuelConsumption')['value']);
                 $('#consumption-unit1').val(localStorage.getObj('fuelConsumption')['unit1']);
