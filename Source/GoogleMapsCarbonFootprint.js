@@ -18,7 +18,12 @@ if (href.match(/maps/gi)) {
 
     travelRate = response.travelRate.value;
     displayTravelCost = response.travelRate.displayTravelCost;
-    carbonEmission = response.emissionRate.value;
+    
+      window.carbonEmission1 = response["emissionRate"]["value"];
+
+      window.carbonEmission2 = response["emissionRate"]["value1"];
+
+      window.carbonEmission3 = response["emissionRate"]["value2"];
 
     var observer = new MutationObserver(function(mutations) {
       updateFootprintInGoogleMaps();
@@ -66,8 +71,10 @@ function updateFootprintInGoogleMaps() {
  */
 function insertFootprint(route) {
   var distance = convertDistance(getDistanceString(route));
+  var time = convertTime(getRoutetime(route));
+     /*SENDING DISTANCE AND TIME AS ARGUEMENTS*/
 
-  var footprint = computeFootprint(distance);
+  var footprint = computeFootprint(distance, time);
   var trees = computeTrees(footprint);
 
   insertElement(route, createElement(footprint, trees));
@@ -183,6 +190,36 @@ function getDistanceString(route) {
   return distanceString;
 }
 
+
+//This is function to get the time for each route,in google maps each time div has different paths 
+//hence many try catch statements are added 
+
+function getRoutetime(route) {
+
+    try {
+
+        var Timestring = route.getElementsByClassName('widget-pane-section-directions-trip-duration delay-medium')[0].childNodes[1].innerText;
+        console.log(Timestring);
+
+    } catch (error) {
+        try {
+            var Timestring = route.getElementsByClassName('widget-pane-section-directions-trip-duration')[0].childNodes[1].innerText;
+        } catch (error) {
+            try {
+                var Timestring = route.getElementsByClassName('widget-pane-section-directions-trip-duration delay-light')[0].childNodes[1].innerText;
+
+            } catch (error) {
+                return " ";
+            }
+        }
+    }
+
+
+    console.log(Timestring);
+    return Timestring;
+    /*.getElementsByTagName('span')[0].innerText;
+    console.log("timestring:" + r);*/
+}
 /*
  * Converts the distance string into a number.
  *
@@ -233,10 +270,51 @@ function convertDistance(distanceStr) {
  * Return:
  *   - the carbon footprint, in grams.
  */
-function computeFootprint(distance) {
-  var footprint = distance * carbonEmission;
-  console.log('Carbon Footprint for this route is: ' + footprint + ' grams');
-  return footprint;
+
+ /*This function converts the time string to integer Time values */
+function convertTime(timestr) {
+
+    var str_new = timestr.split(" ");
+    console.log(str_new);
+
+    if (str_new[1] == "min") {
+        var time = parseInt(str_new[0]) / 60;
+    } else if (str_new[1] == "h" && str_new[3] != "min") {
+        var time = parseInt(str_new[0]);
+
+    } else if (str_new[1] == "h" && str_new[3] == "min") {
+        var time = parseInt(str_new[0]) + parseInt(str_new[2]) / 60;
+    } else {
+        var time = -1;
+    }
+    console.log("fimnal time is" + time);
+    return time;
+}
+
+
+function computeFootprint(distance, time) {
+
+    /*CALCULATE AVERAGE SPEED AS PER GOOGLE MAPS*/
+    if (time == -1) { averageSpeed = 30; } else {
+        var averageSpeed = distance / time;
+    }
+    console.log("average" + averageSpeed);
+
+    /*User given carbon emmission are taken on the basis on the average speed*/
+    if (averageSpeed >= 0 && averageSpeed < 10) {
+        carbonEmission = carbonEmission1;
+    } else if (averageSpeed >= 10 && averageSpeed < 30) {
+        carbonEmission = carbonEmission1;
+    } else if (averageSpeed >= 30 && averageSpeed <= 60) {
+        carbonEmission = carbonEmission2;
+    } else if (averageSpeed >= 60 && averageSpeed < 90) {
+        carbonEmission = carbonEmission3;
+    } else if (averageSpeed > 90) {
+        carbonEmission = carbonEmission3;
+    }
+    var footprint = distance * carbonEmission;
+    console.log('Carbon Footprint for this route is: ' + footprint + ' grams');
+    return footprint;
 }
 
 /*

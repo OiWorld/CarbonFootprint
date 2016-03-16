@@ -95,20 +95,33 @@ function saveOptions() {
             setEmissionRate('g',$('#efficiency-unit1').val());
             break;
     case 2: 
-            var emission = $('#emission').val(),
-                emissionUnit1 = $('#emission-unit1').val(), 
+           var emission = $('#emission').val(),
+                emission1 = $('#emission1').val(),
+                emission2 = $('#emission2').val(),
+                emissionUnit1 = $('#emission-unit1').val(),
                 emissionUnit2 = $('#emission-unit2').val();
-            // CONVERSION TO GRAMS  
-            emission = unitConvertor(emission,emissionUnit1,'g')
-            // Conversion to fuel efficiency based on fuel type
+
+            console.log(emission);
+            console.log(emission1);
+            console.log(emission2);
+            // CONVERSION TO GRAMS (FOR DIFFERENT SPEEDS)
+            emission = unitConvertor(emission, emissionUnit1, 'g')
+            emission1 = unitConvertor(emission1, emissionUnit1, 'g')
+            emission2 = unitConvertor(emission2, emissionUnit1, 'g')
+                // Conversion to fuel efficiency based on fuel type
             var fuelType = localStorage.getObj('fuelType');
             emission = emission / fuel_info[fuelType]['CO2Emission'];
+            emission1 = emission1 / fuel_info[fuelType]['CO2Emission'];
+            emission2 = emission2 / fuel_info[fuelType]['CO2Emission'];
 
-            localStorage.setObj('fuelConsumption',{
-              value: emission,
-              unit1: 'L', 
-              unit2: emissionUnit2,
-            }); 
+            localStorage.setObj('fuelConsumption', {
+                value: emission,
+                value1: emission1,
+                value2: emission2,
+                unit1: 'L',
+                unit2: emissionUnit2,
+            });
+
             // Set emission rate
             setEmissionRate(emissionUnit1,emissionUnit2);
             break;
@@ -158,21 +171,34 @@ var G_TO_G = 1.0,
 function setEmissionRate(mUnit,dUnit) {
   var fuelType = localStorage.getObj('fuelType');
   var consumptionObj = localStorage.getObj('fuelConsumption');
-  var emissionRate = consumptionObj.value;
-  //CONVERSION TO STANDARD UNIT AS DATA IS AVAILABLE  IN GRAM/LITER
-  // Converts multiplicative unit to Liter
-  emissionRate = unitConvertor(emissionRate,consumptionObj.unit1,'L',consumptionObj.unit2,'km');
-  //NOW CONVERTING THE FUEL EFFICIENCY (NOW IN L/KM) TO CARBON EMISSION (in G/KM) for particular fuel type
-  emissionRate = emissionRate * fuel_info[fuelType]['CO2Emission'];
-  //CONVERSION TO USER PROVIDED UNITS
 
-  //convert to the multiplicative new unit
-  emissionRate = unitConvertor(emissionRate,'g',mUnit,'km',dUnit);
-  localStorage.setObj('emissionRate',{
-    value: Math.round(emissionRate * 10000) / 10000,
-    unit1: mUnit,
-    unit2: dUnit,
-  });
+   //ALL THE THREE EMISSION RATE INPUTTED BY THE USER ARE TAKEN 
+    var emissionRate = consumptionObj.value;
+    var emissionRate1 = consumptionObj.value1;
+    var emissionRate2 = consumptionObj.value2;
+
+    //CONVERSION TO STANDARD UNIT AS DATA IS AVAILABLE  IN GRAM/LITER
+    // Converts multiplicative unit to Liter
+    emissionRate = unitConvertor(emissionRate, consumptionObj.unit1, 'L', consumptionObj.unit2, 'km');
+    emissionRate1 = unitConvertor(emissionRate1, consumptionObj.unit1, 'L', consumptionObj.unit2, 'km');
+    emissionRate2 = unitConvertor(emissionRate2, consumptionObj.unit1, 'L', consumptionObj.unit2, 'km');
+    //NOW CONVERTING THE FUEL EFFICIENCY (NOW IN L/KM) TO CARBON EMISSION (in G/KM) for particular fuel type
+    emissionRate = emissionRate * fuel_info[fuelType]['CO2Emission'];
+    emissionRate1 = emissionRate1 * fuel_info[fuelType]['CO2Emission'];
+    emissionRate2 = emissionRate2 * fuel_info[fuelType]['CO2Emission'];
+    //CONVERSION TO USER PROVIDED UNITS
+
+    //convert to the multiplicative new unit
+    emissionRate = unitConvertor(emissionRate, 'g', mUnit, 'km', dUnit);
+    emissionRate1 = unitConvertor(emissionRate1, 'g', mUnit, 'km', dUnit);
+    emissionRate2 = unitConvertor(emissionRate2, 'g', mUnit, 'km', dUnit);
+    localStorage.setObj('emissionRate', {
+        value: Math.round(emissionRate * 10000) / 10000,
+        value1: Math.round(emissionRate1 * 10000) / 10000,
+        value2: Math.round(emissionRate2 * 10000) / 10000,
+        unit1: mUnit,
+        unit2: dUnit,
+      });
 }
 
 //function to set emission rate
@@ -236,27 +262,39 @@ function getConstant(unit) {
   return  -1;  
 }
 
-// function to update value on  unit change
-(function () {
+// function to update value on  unit change for all speeds
+(function() {
     var previous;
     // console.log('yo',$(".selectMUnit"));
-    $(".selectMUnit,.selectDUnit,.selectFUnit").on('focus', function () {
+    $(".selectMUnit,.selectDUnit,.selectFUnit").on('focus', function() {
         // Store the current value on focus and on change
         previous = this.value;
     }).change(function() {
         // var to store respective input field and changing via generalised function 
         var inputField;
-        if($(this).hasClass('selectMUnit')) {
-          inputField = $($(this).parents('.form-group').siblings()[0]).find('input');
-          inputField.val(unitConvertor(inputField.val(),previous,this.value,'none','none'));
-        }
-        else if($(this).hasClass('selectDUnit')) {
-          inputField = $($(this).parents('.form-group').siblings()[0]).find('input');
-          inputField.val(unitConvertor(inputField.val(),'none','none',previous,this.value));
-        }
-        else if($(this).hasClass('selectFUnit')) {
-          inputField = $(this).parents('.form-group').find('input');
-          inputField.val(unitConvertor(inputField.val(),'none','none',previous,this.value));
+        if ($(this).hasClass('selectMUnit')) {
+            inputField = $($(this).parents('.form-group').siblings()[0]).find('input#emission');
+            inputField.val(unitConvertor(inputField.val(), previous, this.value, 'none', 'none'));
+
+            inputField = $($(this).parents('.form-group').siblings()[0]).find('input#emission1');
+            inputField.val(unitConvertor(inputField.val(), previous, this.value, 'none', 'none'));
+
+            inputField = $($(this).parents('.form-group').siblings()[0]).find('input#emission2');
+            inputField.val(unitConvertor(inputField.val(), previous, this.value, 'none', 'none'));
+
+
+        } else if ($(this).hasClass('selectDUnit')) {
+            inputField = $($(this).parents('.form-group').siblings()[0]).find('input#emission');
+            inputField.val(unitConvertor(inputField.val(), 'none', 'none', previous, this.value));
+
+            inputField = $($(this).parents('.form-group').siblings()[0]).find('input#emission1');
+            inputField.val(unitConvertor(inputField.val(), 'none', 'none', previous, this.value));
+
+            inputField = $($(this).parents('.form-group').siblings()[0]).find('input#emission2');
+            inputField.val(unitConvertor(inputField.val(), 'none', 'none', previous, this.value));
+        } else if ($(this).hasClass('selectFUnit')) {
+            inputField = $(this).parents('.form-group').find('input');
+            inputField.val(unitConvertor(inputField.val(), 'none', 'none', previous, this.value));
         }
         // Make sure the previous value is updated
         previous = this.value;
@@ -287,7 +325,9 @@ function restoreOptions() {
                 $('#efficiency-unit2').val(localStorage.getObj('fuelConsumption')['unit1']);
                 break;
 
-      case 2 :  $('#emission').val(localStorage.getObj('emissionRate')['value']);
+      case 2 :   $('#emission').val(localStorage.getObj('emissionRate')['value']);
+                $('#emission1').val(localStorage.getObj('emissionRate')['value1']);
+                $('#emission2').val(localStorage.getObj('emissionRate')['value2']);
                 $('#emission-unit1').val(localStorage.getObj('emissionRate')['unit1']);
                 $('#emission-unit2').val(localStorage.getObj('emissionRate')['unit2']);
                 break;                            

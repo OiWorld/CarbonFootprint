@@ -8,36 +8,36 @@ Storage.prototype.getObj = function(key) {
 
 //intializing output variable
 function initializeLocalStorage() {
-  if (!localStorage['emissionRate'] || !localStorage['travelRate']) {
-    localStorage.setObj('emissionRate',{
-      value: 217,
-      unit1: 'g',
-      unit2: 'km',
-    });
-    localStorage.setObj('travelRate',{
-      value: 0.4,
-      unit1: '$',
-      unit2: 'km',
-    });
-  } 
+    if (!localStorage['emissionRate'] || !localStorage['travelRate']) {
+        localStorage.setObj('emissionRate', {
+            value: 217,
+            unit1: 'g',
+            unit2: 'km',
+        });
+        localStorage.setObj('travelRate', {
+            value: 0.4,
+            unit1: '$',
+            unit2: 'km',
+        });
+    }
 }
 
 initializeLocalStorage();
 
 function onRequest(request, sender, sendResponse) {
-  console.log('Request Received');
-  if (request.carbonEmission) {
-    console.log('Show pageAction icon in tab: ' + sender.tab.id);
-    chrome.pageAction.show(sender.tab.id); // shows icon
-    //sending JSON
-    sendResponse({emissionRate: localStorage.getObj('emissionRate'),travelRate: localStorage.getObj('travelRate')});
-  }
+    console.log('Request Received');
+    if (request.carbonEmission) {
+        console.log('Show pageAction icon in tab: ' + sender.tab.id);
+        chrome.pageAction.show(sender.tab.id); // shows icon
+        //sending JSON
+        sendResponse({ emissionRate: localStorage.getObj('emissionRate'), travelRate: localStorage.getObj('travelRate') });
+    }
 };
 
 chrome.extension.onRequest.addListener(onRequest);
 
 function pageActionClicked() {
-  chrome.tabs.create({url: chrome.extension.getURL('options.html')});
+    chrome.tabs.create({ url: chrome.extension.getURL('options.html') });
 }
 
 chrome.pageAction.onClicked.addListener(pageActionClicked);
