@@ -192,6 +192,7 @@ function getDistanceString(route) {
  *   - the distance of the route, in kilometers.
  */
 function convertDistance(distanceStr) {
+  distanceStr = distanceStr.replace('&nbsp;', ' ');
   var distanceAndUnit = distanceStr.split(/ /);
   var distance = distanceAndUnit[0];
   var unit = distanceAndUnit[1];
