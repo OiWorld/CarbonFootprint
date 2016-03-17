@@ -67,15 +67,21 @@ html,body {
 }
 
 /*Styling for tabs of Emission, fuel intake , fuel efficiency*/
-label,input,select,button {
-    display: block;margin-bottom: 0.4em;
+input[type="text"],input[type="number"],select,button {
+    display: block;
+    margin-bottom: 0.4em;
+}
+input[type="checkbox"] {
+    margin-bottom: 0.4em;    
 }
 
 label {
+    display: inline-block;
+    margin-bottom: 0.4em;
     font-size: 1.05em;
 }
 
-input,select {
+input[type="text"],input[type="number"],select {
     width: 100%;
     padding: 0.3em;
     font-size: 1.05em;
