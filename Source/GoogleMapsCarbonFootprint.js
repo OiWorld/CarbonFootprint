@@ -198,30 +198,38 @@ function getDistanceString(route) {
 
 function getRoutetime(route) {
 
-    try {
+  try {
 
-        var Timestring = route.getElementsByClassName('widget-pane-section-directions-trip-duration delay-medium')[0].childNodes[1].innerText;
-        console.log(Timestring);
+    var Timestring = route.getElementsByClassName('widget-pane-section-directions-trip-duration delay-medium')[0].childNodes[1].innerText;
+    console.log(Timestring);
 
-    } catch (error) {
-        try {
-            var Timestring = route.getElementsByClassName('widget-pane-section-directions-trip-duration')[0].childNodes[1].innerText;
-        } catch (error) {
-            try {
-                var Timestring = route.getElementsByClassName('widget-pane-section-directions-trip-duration delay-light')[0].childNodes[1].innerText;
+  } 
+  catch (error) 
+    {
+      try
+        {
+          var Timestring = route.getElementsByClassName('widget-pane-section-directions-trip-duration')[0].childNodes[1].innerText;
+        } 
+      catch (error)
+        {
+          try 
+            {
+              var Timestring = route.getElementsByClassName('widget-pane-section-directions-trip-duration delay-light')[0].childNodes[1].innerText;
 
-            } catch (error) {
-                return " ";
+            }
+          catch (error)
+            {
+              return " ";
             }
         }
     }
 
 
-    console.log(Timestring);
-    return Timestring;
-    /*.getElementsByTagName('span')[0].innerText;
-    console.log("timestring:" + r);*/
-}
+  console.log(Timestring);
+  return Timestring;
+  /*.getElementsByTagName('span')[0].innerText;
+  console.log("timestring:" + r);*/
+  }
 /*
  * Converts the distance string into a number.
  *
