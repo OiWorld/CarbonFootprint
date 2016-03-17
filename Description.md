@@ -30,11 +30,21 @@ Spread this extension and help us raise environmental awareness! Let's preserve 
 German (de)
 -----------
 
-Translated by: 
+Translated by: Kolya Opahle | kolpa | https://github.com/kolpa
 
-(Short: ToDo )
+(Kurz: Berechnet den CO2 Ausstoß auf von Google Maps vorgeschlagenen Routen! )
 
-ToDo
+Diese Browsererweiterung berechnet bei jeder Routenplanung mit dem Auto über Google Maps den Erwarteten CO2 Ausstoß und zeigt diesen neben der Gesamtstrecke an.
+
+Um Die Schätzungen zu verbessern können in den Einstellungen Eigenschaften wie Kraftstoffverbrauch und Umweltfreundlichkeit deines Fahrzeuges eingestellt werden.
+
+Sende Kommentare und Frage bitte an MapsCarbonFootprint@gmail.com.
+
+Wenn dir diese Erweiterung gefällt gebe ihr bitte eine gute Bewertung und like sie auf facebook (http://www.facebook.com/pages/Carbon-Footprint-for-Google-Maps/217487891623173) und/oder Google+ (https://plus.google.com/b/112973863308036008385/112973863308036008385/posts).
+
+Teile diese Erweiterung und helfe uns Umweltbewusstsein zu verstärken! Last uns die Umwelt schützen, die Erderwärmung stoppen und unseren Planeten retten!
+
+
 
 Spanish (es)
 ------------
