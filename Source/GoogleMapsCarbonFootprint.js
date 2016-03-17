@@ -322,8 +322,11 @@ function computeFootprint(distance, time) {
   else if (averageSpeed_google > 30 && averageSpeed_google <= 60) {
     carbonEmission = compute_new_emission(averageSpeed_google, carbonEmission_30,carbonEmission_60,30,60);
   }
-  else if (averageSpeed_google > 60 && averageSpeed_google < 90) {
+  else if (averageSpeed_google > 60 && averageSpeed_google <= 90) {
     carbonEmission = compute_new_emission(averageSpeed_google, carbonEmission_60,carbonEmission_90,60,90);
+  }
+  else if(averageSpeed_google >90){
+    carbonEmission = carbonEmission_90;
   }
   var footprint = distance * carbonEmission;
   console.log('Carbon Footprint for this route is: ' + footprint + ' grams');
