@@ -59,6 +59,9 @@
 	"conversionNote"	: {
 		"message"	: "To get conversions change the units."
 	},
+	"travelCostEstimate"	: {
+		"message"	: "Display travel cost estimation"
+	},
 	"save" : {
 		"message" : "SAVE"
 	}
