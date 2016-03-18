@@ -1,65 +1,89 @@
 {
-	"extName" : {
-		"message" : "गूगल मैप्स के लिए कार्बन पदचिह्न ™",
-		"description" : "Hindi title"
-	},
-	"extDesc" : {
-		"message" : "स्वचालित रूप से गूगल मैप्स द्वारा सुझाए गए मार्गों पर ड्राइविंग के लिए सीओ 2 के उत्सर्जन का अनुमान ।",
-		"description" : "Hindi description"
-	},
-	"mainParah" : {
-		"message" : "<p>जब भी आप ड्राइविंग की दिशाओं के लिए गूगल मैप्स को पूछते हैं, यह ब्राउज़र एक्सटेंशन स्वचालित रूप से सुझावीत मार्गों पर ड्राइविंग की वजह से होने वाले कुल CO<sub>2</sub> उत्सर्जन का अनुमान देता हैं। अनुमानित उत्सर्जन को मार्ग की कुल दूरी के बगल में दिखाया गया है। अनुमान की सटीकता में सुधार करने के लिए,, टैब जिसका मूल्य आप में प्रवेश करने की इच्छा हैं उसका चयन करें:</p>",
-		"description" : "The paragraph beside form in Hindi"
-	},
-	"fuelConsumption"	: {
-		"message"	: "ईंधन सेवन"
-	},
-	"fuelConsumptionUnit"	: {
-		"message"	: "ईंधन सेवन इकाई"
-	},
-	"fuelEfficiency"	: {
-		"message"	: "ईंधन क्षमता"
-	},
-	"fuelEfficiencyUnit"	: {
-		"message"	: "ईंधन क्षमता इकाई"
-	},
-	"coEmission"	: {
-		"message"	: "CO<sub>2</sub> उत्सर्जन"
-	},
-	"coEmissionUnit" : {
-		"message"	: "CO<sub>2</sub> उत्सर्जन इकाई"
-	},
-	"fuelType"	: {
-		"message"	: "ईंधन प्रकार"
-	},
-	"fuelCost"	: {
-		"message"	: "ईंधन क़ीमत"
-	},
-	"fuelCostUnit"	: {
-		"message"	: "&#36; में प्रति आद्यतन मात्रा"
-	},
-	"fuelCostNote"	: {
-		"message"	: "'&#36;' एक सामान्य मुद्रा को दर्शाता है।"
-	},
-	"distance"	: {
-		"message"	: "दूरी"
-	},
-	"volume"	: {
-		"message"	: "आद्यतन"
-	},
-	"mass"	: {
-		"message"	: "वजन"
-	},
-	"perVolume"	: {
-		"message"	: "प्रति आद्यतन"
-	},
-	"perDistance"	: {
-		"message"	: "प्रति दूरी"
-	},
-	"conversionNote"	: {
-		"message"	: "रूपांतरण प्राप्त करने के लिए इकाइयों को बदलें।"
-	},
-	"save" : {
-		"message" : "संचित करें"
-	}
+  "extName": {
+    "message": "गूगल मैप्स के लिए कार्बन पदचिह्न ™",
+    "description": "Hindi title"
+  },
+  "extDesc": {
+    "message": "स्वचालित रूप से गूगल मैप्स द्वारा सुझाए गए मार्गों पर ड्राइविंग के लिए सीओ 2 के उत्सर्जन का अनुमान ।",
+    "description": "Hindi description"
+  },
+  "mainParah": {
+    "message": "<p>जब भी आप ड्राइविंग की दिशाओं के लिए गूगल मैप्स को पूछते हैं, यह ब्राउज़र एक्सटेंशन स्वचालित रूप से सुझावीत मार्गों पर ड्राइविंग की वजह से होने वाले कुल CO<sub>2</sub> उत्सर्जन का अनुमान देता हैं। अनुमानित उत्सर्जन को मार्ग की कुल दूरी के बगल में दिखाया गया है। अनुमान की सटीकता में सुधार करने के लिए,, टैब जिसका मूल्य आप में प्रवेश करने की इच्छा हैं उसका चयन करें:</p>",
+    "description": "The paragraph beside form in Hindi"
+  },
+  "fuelConsumption": {
+    "message": "ईंधन सेवन"
+  },
+  "fuelConsumptionUnit": {
+    "message": "ईंधन सेवन इकाई"
+  },
+  "fuelEfficiency": {
+    "message": "ईंधन क्षमता"
+  },
+  "fuelEfficiencyUnit": {
+    "message": "ईंधन क्षमता इकाई"
+  },
+  "coEmission": {
+    "message": "CO<sub>2</sub> उत्सर्जन"
+  },
+  "coEmissionUnit": {
+    "message": "CO<sub>2</sub> उत्सर्जन इकाई"
+  },
+  "fuelType": {
+    "message": "ईंधन प्रकार"
+  },
+  "fuelDiesel": {
+    "message": "Diesel"
+  },
+  "fuelGasoline": {
+    "message": "Gasoline"
+  },
+  "fuelLPG": {
+    "message": "LPG"
+  },
+  "fuelE10": {
+    "message": "E10"
+  },
+  "fuelE25": {
+    "message": "E25"
+  },
+  "fuelE85": {
+    "message": "E85"
+  },
+  "fuelEthanol": {
+    "message": "Ethanol"
+  },
+  "fuelBioDiesel": {
+    "message": "Bio-Diesel"
+  },
+  "fuelCost": {
+    "message": "ईंधन क़ीमत"
+  },
+  "fuelCostUnit": {
+    "message": "&#36; में प्रति आद्यतन मात्रा"
+  },
+  "fuelCostNote": {
+    "message": "'&#36;' एक सामान्य मुद्रा को दर्शाता है।"
+  },
+  "distance": {
+    "message": "दूरी"
+  },
+  "volume": {
+    "message": "आद्यतन"
+  },
+  "mass": {
+    "message": "वजन"
+  },
+  "perVolume": {
+    "message": "प्रति आद्यतन"
+  },
+  "perDistance": {
+    "message": "प्रति दूरी"
+  },
+  "conversionNote": {
+    "message": "रूपांतरण प्राप्त करने के लिए इकाइयों को बदलें।"
+  },
+  "save": {
+    "message": "संचित करें"
+  }
 }
