@@ -51,8 +51,17 @@ French (fr)
 
 Translated by: Ashutosh Saboo | ashutoshsaboo | https://github.com/ashutoshsaboo
 
-(Short: Added French Language Support)
+(Short: Les estimations des émissions de CO2 pour la conduite sur les routes proposées par Google Maps!)
 
+Chaque fois que vous demandez à Google Maps pour obtenir des itinéraires, ce navigateur extension Estimations automatiquement le total des émissions de CO2 causées par la conduite sur les routes suggérées. L'estimation est indiqué à côté de la route's distance totale.
+
+Pour améliorer la précision des estimations, les options vous permettent de configurer plusieurs paramètres liés à la consommation de carburant et le respect de l'environnement de votre voiture.
+
+Si vous avez des commentaires ou des questions, veuillez les envoyer à MapsCarbonFootprint@gmail.com.
+
+Si vous aimez cette extension, veuillez donner une bonne cote de crédit, comme il sur Facebook (http://www.facebook.com/pages/Carbon-Footprint-for-Google-Maps/217487891623173) et +1 IL sur Google+ (https://plus.google.com/b/112973863308036008385/112973863308036008385/posts).
+
+Répandre cette extension et nous aider à sensibiliser aux problèmes de l'environnement! Permettez-'s de préserver l'environnement, arrêter le réchauffement de la planète et sauver notre planète!
 
 
 Italian (it)
