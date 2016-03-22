@@ -329,8 +329,9 @@ carbonFootprintCalc.insertFootPrintElem = function(route, footprint, trees) {
 carbonFootprintCalc.createTravelCostElem = function(travelCost) {
   var travelCostStr = travelCost.toFixed(2).toString();
   var innerHTML = '<a href="http://goo.gl/yxdIs" target="_blank"' +
-      ' class="travelCost"> Cost $' +
+      ' class="travelCost" id="travelCost"> Cost $' +
       travelCostStr + '</a>';
+    this.logMsg(innerHTML);
   return this.createElement(innerHTML);
 };
 
