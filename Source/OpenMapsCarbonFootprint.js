@@ -14,7 +14,7 @@ var href = location.href;
 console.log('Location: ' + href);
 
 if (href.match(/directions/gi)) {
-  chrome.runtime.sendMessage({carbonEmission: 'Request Carbon Efficiency...'}, function(response) {
+  chrome.extension.sendRequest({carbonEmission: 'Request Carbon Efficiency...'}, function(response) {
     // alert("got response from background: " + response);
     console.log(response);
 

@@ -315,7 +315,7 @@ carbonFootprintCalc.insertFootPrintElem = function(route, footprint, trees) {
   if (this.getElems(this.CARBON_CONTAINER_ELEM, route).length == 0) {
     // In this case, element has not been added yet.
     this.getElem(this.DISTANCE_CONTAINER_ELEM, route).appendChild(
-      this.createFootPrintElem(footprint, trees));
+        this.createFootPrintElem(footprint, trees));
   }
 };
 
@@ -343,7 +343,7 @@ carbonFootprintCalc.createTravelCostElem = function(travelCost) {
  * @this {object} app namespace
  */
 carbonFootprintCalc.insertTravelCostElem = function(route, travelCost) {
-  if (this.getElems(this.TRAVEL_COST_CONTAINER_ELEM, route) == 0) {
+  if (this.getElems(this.TRAVEL_COST_CONTAINER_ELEM, route).length == 0) {
     // In this case, element has not been added yet.
     this.getElem(this.DISTANCE_CONTAINER_ELEM, route).appendChild(
       this.createTravelCostElem(travelCost));
@@ -357,8 +357,8 @@ carbonFootprintCalc.insertTravelCostElem = function(route, travelCost) {
  * @this {object} app namespace
  */
 carbonFootprintCalc.insertTravelCost = function(route) {
-  var travelCost = TRAVEL_RATE * this.getDistance(route);
-  this.insertTravelCostElement(route, travelCost);
+  var travelCost = this.TRAVEL_RATE * this.getDistance(route);
+  this.insertTravelCostElem(route, travelCost);
 };
 
 
@@ -471,7 +471,7 @@ carbonFootprintCalc.init = function() {
   this.logMsg('Carbon Footprint Script Starting');
   this.logMsg('Location: ' + this.CURRENT_URL);
   if (this.CURRENT_URL.indexOf('mapspreview') != -1) {
-    chrome.runtime.sendMessage(
+    chrome.extension.sendRequest(
         {carbonEmission: 'Request Carbon Efficiency...'},
         this.backgroundCallBackFunction.bind(this)
     );
