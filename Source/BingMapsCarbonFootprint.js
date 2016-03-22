@@ -1,5 +1,5 @@
 /**
- * Content script for Bing Maps
+ * Content script for Bing Maps.
  *
  * Copyright (c) 2011 Bruno Woltzenlogel Paleo. All rights reserved.
  * @author me@chiragarora.com (Chriag Arora)
@@ -19,7 +19,7 @@ var carbonFootprintCalc = {};
  * @param {string|object} msg
  */
 carbonFootprintCalc.logMsg = function(msg) {
-    console.log('Carbon Calc: ' + JSON.stringify(msg));
+  console.log('Carbon Calc: ' + JSON.stringify(msg));
 };
 
 
@@ -331,7 +331,6 @@ carbonFootprintCalc.createTravelCostElem = function(travelCost) {
   var innerHTML = '<a href="http://goo.gl/yxdIs" target="_blank"' +
       ' class="travelCost" id="travelCost"> Cost $' +
       travelCostStr + '</a>';
-    this.logMsg(innerHTML);
   return this.createElement(innerHTML);
 };
 
