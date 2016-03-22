@@ -14,7 +14,7 @@ var href = location.href;
 console.log('Location: ' + href);
 
 if (href.match(/mapspreview/gi)) {
-  chrome.extension.sendRequest({carbonEmission: 'Request Carbon Efficiency...'}, function(response) {
+  chrome.runtime.sendMessage({carbonEmission: 'Request Carbon Efficiency...'}, function(response) {
     // alert("got response from background: " + response);
   
     travelRate = response.travelRate.value;
