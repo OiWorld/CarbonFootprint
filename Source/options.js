@@ -295,6 +295,12 @@ function restoreOptions() {
   }
 }
 
+$('#consumption,#efficiency,#emission').bind('keypress', function(hyphen) {
+	if(hyphen.which === 45) {
+        hyphen.preventDefault();
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function () {
   //assigning click listener to the save for each tabs
   document.getElementById('save-button').addEventListener('click', saveOptions);
