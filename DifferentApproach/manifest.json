@@ -1,0 +1,66 @@
+{
+  "manifest_version": 2,
+  "name": "Carbon Footprint for Google Maps™",
+  "version": "4.0",
+  "description": "Automatically estimates the CO2 emissions for driving on routes suggested by Google Maps.",
+  "content_security_policy": "media-src 'self'; object-src 'self'; script-src 'self' https://ssl.google-analytics.com;",
+  "page_action" :
+  {
+    "default_icon" : "images/globe-64.png",
+    "default_title" : "Google Maps Carbon Footprint"
+  },
+  "content_scripts" : [
+    {
+      "matches": ["<all_urls>"],
+      "include_globs":  ["*://www.google.*/maps*", "*://maps.google.*/*"],
+      "css": ["css/css.css"],
+      "js" : [
+        "js/CarbonFootprintCore.js",
+        "js/settings/ChromeSettingsProvider.js",
+        "js/maps/GoogleMapsManager.js",
+        "js/init.js"
+      ],
+      "run_at" : "document_end",
+      "all_frames" : false
+    },
+    {
+      "matches": ["https://www.openstreetmap.org/*",
+        "http://www.openstreetmap.org/*"
+      ],
+      "css": ["css/css.css"],
+      "js" : [
+        "js/CarbonFootprintCore.js",
+        "js/settings/ChromeSettingsProvider.js",
+        "js/maps/OpenMapsManager.js",
+        "js/init.js"
+      ],
+      "run_at" : "document_end",
+      "all_frames" : true
+    },
+    {
+      "matches": [ "http://www.bing.com/mapspreview*",
+        "https://www.bing.com/mapspreview*"
+      ],
+      "css": ["css/css.css"],
+      "js" : [
+        "js/CarbonFootprintCore.js",
+        "js/settings/ChromeSettingsProvider.js",
+        "js/maps/BingMapsManager.js",
+        "js/init.js"
+      ],
+      "run_at" : "document_end",
+      "all_frames" : true
+    }
+  ],
+  "icons" : {
+    "32" : "images/globe-32.png",
+    "48" : "images/globe-48.png",
+    "64" : "images/globe-64.png",
+    "128" : "images/globe-128.png",
+    "256" : "images/globe-256.png"
+  },
+  "permissions": [
+    "tabs",
+    "storage"
+  ]
+}
