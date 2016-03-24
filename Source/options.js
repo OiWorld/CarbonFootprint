@@ -295,6 +295,12 @@ function restoreOptions() {
   }
 }
 
+$('#consumption,#emission,#efficiency').bind('keypress',function(evtmin){
+    if(evtmin.which === 45){
+        evtmin.preventDefault();
+    }
+})
+
 document.addEventListener('DOMContentLoaded', function () {
   //assigning click listener to the save for each tabs
   document.getElementById('save-button').addEventListener('click', saveOptions);
