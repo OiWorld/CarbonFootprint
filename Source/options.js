@@ -295,6 +295,9 @@ function restoreOptions() {
   }
 }
 
+/**
+ * Prevents adding Hyphen(-) in the input field.
+ */
 $('#consumption,#emission,#efficiency').bind('keypress',function(evtmin){
     if(evtmin.which === 45){
         evtmin.preventDefault();
