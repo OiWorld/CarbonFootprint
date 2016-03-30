@@ -470,7 +470,7 @@ carbonFootprintCalc.init = function() {
   this.logMsg('Carbon Footprint Script Starting');
   this.logMsg('Location: ' + this.CURRENT_URL);
   if (this.CURRENT_URL.indexOf('mapspreview') != -1) {
-    chrome.extension.sendRequest(
+    chrome.runtime.sendMessage(
         {carbonEmission: 'Request Carbon Efficiency...'},
         this.backgroundCallBackFunction.bind(this)
     );

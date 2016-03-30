@@ -24,7 +24,7 @@ function initializeLocalStorage() {
 
 initializeLocalStorage();
 
-function onRequest(request, sender, sendResponse) {
+function onMessage(request, sender, sendResponse) {
   console.log('Request Received');
   if (request.carbonEmission) {
     console.log('Show pageAction icon in tab: ' + sender.tab.id);
@@ -34,7 +34,7 @@ function onRequest(request, sender, sendResponse) {
   }
 };
 
-chrome.extension.onRequest.addListener(onRequest);
+chrome.runtime.onMessage.addListener(onMessage);
 
 function pageActionClicked() {
   chrome.tabs.create({url: chrome.extension.getURL('options.html')});
