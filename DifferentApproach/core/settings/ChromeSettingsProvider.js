@@ -4,7 +4,7 @@
 var ChromeSettingsProvider = function (cb) {
     var self = this;
 
-    chrome.storage.sync.get(null, function (settings) {
+    chrome.storage.sync.get('calculationObject', function (settings) {
         self.settings = settings;
         cb(self);
     });
