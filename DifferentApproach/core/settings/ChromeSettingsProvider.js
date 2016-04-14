@@ -13,7 +13,7 @@ var ChromeSettingsProvider = function (cb) {
 };
 
 ChromeSettingsProvider.prototype.addUsingDefaultListener = function (listener) {
-    this.usingDefaultListeners.append(listener);
+    this.usingDefaultListeners.push(listener);
 };
 
 ChromeSettingsProvider.prototype.has = function (key) {
@@ -33,7 +33,6 @@ ChromeSettingsProvider.prototype.get = function (key, def) {
 
     return def;
 };
-
 
 ChromeSettingsProvider.prototype.getCarbonEmission = function() {
     return this.get('carbonEmission', 20);

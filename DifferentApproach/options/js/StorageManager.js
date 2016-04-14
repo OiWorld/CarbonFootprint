@@ -6,7 +6,7 @@ var StorageManager = function (key, cb) {
 
     self.storageKey = key;
 
-    chrome.storage.sync.get(self.storageKey, function (restoreValues) {
+    chrome.storage.sync.get(self.storageKey, function (storeValues) {
         self.storeValues = storeValues;
         cb(self);
     });

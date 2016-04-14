@@ -1,0 +1,68 @@
+{
+	"extName" : {
+		"message" : "Huella de Carbono para Google Maps™",
+		"description" : "Spanish title"
+	},
+	"extDesc" : {
+		"message" : "Calcula automáticamente el CO2 que emites al conducir por las rutas de Google Maps.",
+		"description" : "Spanish description"
+	},
+	"mainParah" : {
+		"message" : "<p>Cada vez que le pides indicaciones de ruta a Google Maps,esta extensión calcula automáticamente el total de emisiones de CO<sub>2</sub> generado al conducir por las rutas sugeridas. El cálculo aparece junto la distancia total de la ruta.</p><p>Para mejorar la precisión de los cálculos, selecciona las pestañas cuyos valores deseas ingresar:  </p>",
+		"description" : "The paragraph beside form"
+	},
+	"fuelConsumption"	: {
+		"message"	: "Consumo de Combustible"
+	},
+	"fuelConsumptionUnit"	: {
+		"message"	: "Unidades de Consumo de Combustible"
+	},
+	"fuelEfficiency"	: {
+		"message"	: "Rendimiento del Combustible"
+	},
+	"fuelEfficiencyUnit"	: {
+		"message"	: "Unidades de Rendimiento de Combustible"
+	},
+	"coEmission"	: {
+		"message"	: "Emisión de CO<sub>2</sub>"
+	},
+	"coEmissionUnit" : {
+		"message"	: "Unidades de Emisión de CO<sub>2</sub>"
+	},
+	"fuelType"	: {
+		"message"	: "Tipo de Combustible"
+	},
+	"fuelCost"	: {
+		"message"	: "Costo del Combustible"
+	},
+	"fuelCostUnit"	: {
+		"message"	: "en $ por unidad de Volumen"
+	},
+	"fuelCostNote"	: {
+		"message"	: "'$' denota una moneda genérica."
+	},
+	"distance"	: {
+		"message"	: "Distancia"
+	},
+	"volume"	: {
+		"message"	: "Volumen"
+	},
+	"mass"	: {
+		"message"	: "Masa"
+	},
+	"perVolume"	: {
+		"message"	: "por Volumen"
+	},
+	"perDistance"	: {
+		"message"	: "por Distancia"
+	},
+	"conversionNote"	: {
+		"message"	: "Para obtener conversiones, cambie las unidades."
+	},
+	"travelCostEstimate"	: {
+		"message"	: "Mostrar el costo de viaje estimado"
+	},
+	"save" : {
+		"message" : "GUARDAR"
+	}
+}

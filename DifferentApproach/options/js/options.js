@@ -1,56 +1,54 @@
-/**
- * Created by Kolpa on 23.03.2016.
- */
-$(document).ready(function () {
-    new StorageManager('storeValues', function (restoreManager) {
+var translateProxy = new Proxy({}, {
+    get: function(obj, key) {
+        if (typeof key != "string")
+            return obj[key];
 
-        function restoreOptions() {
-            $('#fuel-type').val(restoreManager.get('fuelType'));
-            $($('.emission-input-type')[restoreManager.get('savedTab')]).click();
+        var value = chrome.i18n.getMessage(key);
 
-            switch(restoreManager.get('savedTab')) {
-                case 0 :  $('#consumption').val(localStorage.getObj('fuelConsumption')['value']);
-                    $('#consumption-unit1').val(localStorage.getObj('fuelConsumption')['unit1']);
-                    $('#consumption-unit2').val(localStorage.getObj('fuelConsumption')['unit2']);
-                    break;
+        if (value == "")
+            return obj[key];
 
-                case 1 :  $('#efficiency').val( 1 / localStorage.getObj('fuelConsumption')['value']);
-                    $('#efficiency-unit1').val(localStorage.getObj('fuelConsumption')['unit2']);
-                    $('#efficiency-unit2').val(localStorage.getObj('fuelConsumption')['unit1']);
-                    break;
+        return value;
+    }
+});
 
-                case 2 :  $('#emission').val(localStorage.getObj('emissionRate')['value']);
-                    $('#emission-unit1').val(localStorage.getObj('emissionRate')['unit1']);
-                    $('#emission-unit2').val(localStorage.getObj('emissionRate')['unit2']);
-                    break;
+new Vue({
+    el: '#tester',
+    data: {
+        translated: translateProxy,
+        fuelTypes: [
+            {
+                name:'Diesel',
+                value: 0
+            },
+            {
+                name:'Gasoline',
+                value: 1
+            },
+            {
+                name:'LPG',
+                value: 2
+            },
+            {
+                name:'E10',
+                value: 3
+            },
+            {
+                name:'E25',
+                value: 4
+            },
+            {
+                name:'E85',
+                value: 5
+            },
+            {
+                name:'Ethanol',
+                value: 6
+            },
+            {
+                name:'Bio-Diesel',
+                value: 7
             }
-        }
-
-        if (restoreManager.has('savedTab'))
-            restoreOptions();
-
-        $('#save-button').click(function () {
-            var currentTab = $('.emission-input.open').index();
-
-            restoreManager.set('savedTab', currentTab);
-            restoreManager.set('fuelType', parseInt($('#fuel-type').value()));
-
-            switch (currentTab) {
-                case 0:
-                    restoreManager.set('fuelConsumption', {
-                        value: parseFloat($('#consumption').val()),
-                        unit1: $('#consumption-unit1').val(),
-                        unit2: $('#consumption-unit2').val()
-                    });
-                    break;
-                case 1:
-                    restoreManager.set('fuelConsumtion', {
-                        value: 1 / $('#efficiency').val(),
-                        unit1: $('#efficiency-unit2').val(),
-                        unit2: $('#efficiency-unit1').val()
-                    });
-                    break;
-            }
-        });
-    });
+        ]
+    }
 });
