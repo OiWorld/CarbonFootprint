@@ -12,7 +12,7 @@ var translateProxy = new Proxy({}, {
     }
 });
 
-new Vue({
+var vue = new Vue({
     el: '#tester',
     data: {
         translated: translateProxy,
@@ -49,6 +49,7 @@ new Vue({
                 name:'Bio-Diesel',
                 value: 7
             }
-        ]
+        ],
+        selected: 'consumption'
     }
 });

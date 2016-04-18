@@ -20,9 +20,15 @@
     <div id="form-cont">
         <div id="form">
             <div id="emission-type-cont">
-                <div class="emission-input-type">{{{translated.fuelConsumption}}}</div>
-                <div class="emission-input-type">{{{translated.fuelEfficiency}}}</div>
-                <div class="emission-input-type selected">{{{translated.coEmission}}}</div>
+                <input type="radio" v-model="selected" id="type-consumption" value="consumption"
+                       class="emission-input-type"/>
+                <label for="type-consumption">{{{translated.fuelConsumption}}}</label>
+                <input type="radio" v-model="selected" id="type-efficiency" value="efficiency"
+                       class="emission-input-type"/>
+                <label for="type-efficiency">{{{translated.fuelEfficiency}}}</label>
+                <input type="radio" v-model="selected" id="type-emission" value="emission"
+                       class="emission-input-type"/>
+                <label for="type-emission">{{{translated.coEmission}}}</label>
             </div>
             <div id="form-fields">
                 <div class="form-group">
@@ -46,82 +52,9 @@
                     <span class="note">{{{translated.fuelCostNote}}}</span>
                 </div>
                 <div class="emission-input-cont">
-                    <div class="emission-input">
-                        <div class="form-group">
-                            <label for="consumption">{{{translated.fuelConsumption}}}</label>
-                            <input type="number" size="5" style="text-align:center" id="consumption" value="0"/>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-head">{{{translated.fuelConsumptionUnit}}}</div>
-                            <div class="unit">
-                                <label for="consumption-unit1">{{{translated.volume}}}</label>
-                                <select class="selectMUnit" style="text-align:center" id="consumption-unit1">
-                                    <option value="L" selected>L</option>
-                                    <option value="gal">gal</option>
-                                </select>
-                            </div>
-                            <div class="unitper">/</div>
-                            <div class="unit">
-                                <label for="consumption-unit2">{{{translated.perDistance}}}</label>
-                                <select class="selectDUnit" style="text-align:center" id="consumption-unit2">
-                                    <option value="km" selected>km</option>
-                                    <option value="mi">mi</option>
-                                </select>
-                            </div>
-                            <span class="note">{{{translated.conversionNote}}}</span>
-                        </div>
-                    </div>
-                    <div class="emission-input">
-                        <div class="form-group">
-                            <label for="efficiency">{{{translated.fuelEfficiency}}}</label>
-                            <input type="number" size="5" style="text-align:center" id="efficiency" value="0"/>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-head">{{{translated.fuelEfficiencyUnit}}}</div>
-                            <div class="unit">
-                                <label for="efficiency-unit1">{{{translated.distance}}}</label>
-                                <select class="selectMUnit" style="text-align:center" id="efficiency-unit1">
-                                    <option value="km" selected>km</option>
-                                    <option value="mi">mi</option>
-                                </select>
-                            </div>
-                            <div class="unitper">/</div>
-                            <div class="unit">
-                                <label for="efficiency-unit2">{{{translated.perVolume}}}</label>
-                                <select class="selectDUnit" style="text-align:center" id="efficiency-unit2">
-                                    <option value="L" selected>L</option>
-                                    <option value="gal">gal</option>
-                                </select>
-                            </div>
-                            <span class="note">{{{translated.conversionNote}}}</span>
-                        </div>
-                    </div>
-                    <div class="emission-input open">
-                        <div class="form-group">
-                            <label for="emission">{{{translated.coEmission}}}</label>
-                            <input id="emission" type="number" size="5" value="0" style="text-align:center"/>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-head">{{{translated.coEmissionUnit}}}</div>
-                            <div class="unit">
-                                <label for="emission-unit1">{{{translated.mass}}}</label>
-                                <select class="selectMUnit" style="text-align:center" id="emission-unit1">
-                                    <option value="g" selected>g</option>
-                                    <option value="kg">kg</option>
-                                    <option value="lbs">lbs</option>
-                                </select>
-                            </div>
-                            <div class="unitper">/</div>
-                            <div class="unit">
-                                <label for="emission-unit2">{{{translated.perDistance}}}</label>
-                                <select class="selectDUnit" style="text-align:center" id="emission-unit2">
-                                    <option value="km" selected>km</option>
-                                    <option value="mi">mi</option>
-                                </select>
-                            </div>
-                            <span class="note">{{{translated.conversionNote}}}</span>
-                        </div>
-                    </div>
+                    <consumption v-show="selected == 'consumption'" :translated="translated"></consumption>
+                    <efficiency v-show="selected == 'efficiency'" :translated="translated"></efficiency>
+                    <emission  v-show="selected == 'emission'" :translated="translated"></emission>
                 </div>
                 <div class="form-group">
                     <input type="checkbox" id="display-travel-cost">
@@ -136,6 +69,7 @@
     </div>
 </div>
 <script src="js/vue.js"></script>
+<script src="js/components.js"></script>
 <script src="js/options.js"></script>
 </body>
 </html>
