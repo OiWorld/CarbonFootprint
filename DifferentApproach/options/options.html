@@ -33,28 +33,28 @@
             <div id="form-fields">
                 <div class="form-group">
                     <label for="fuel-type">{{{translated.fuelType}}}</label>
-                    <select style="text-align:center" id="fuel-type">
-                        <option :value="fuelType.value" v-for="fuelType in fuelTypes">{{translated[ 'fuel' + fuelType.name]}}</option>
+                    <select v-model="selectedFuelType" style="text-align:center" id="fuel-type">
+                        <option :value="fuelType.name" v-for="fuelType in fuelTypes">{{translated[ 'fuel' + fuelType.name]}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <div style="display: inline-block;width: 49%;">
                         <label for="fuel-cost">{{{translated.fuelCost}}}</label>
-                        <input type="number" size="5" style="text-align:center" id="fuel-cost" value="0" min="0"/>
+                        <input v-model="fuelCost" type="number" size="5" style="text-align:center" id="fuel-cost" min="0"/>
                     </div>
                     <div style="display: inline-block;width: 49%;">
                         <label for="fuel-cost-unit2">{{{translated.fuelCostUnit}}}</label>
-                        <select class="selectFUnit" style="text-align:center" id="fuel-cost-unit2">
-                            <option value="L" selected>L</option>
+                        <select v-model="fuelCostUnit" class="selectFUnit" style="text-align:center" id="fuel-cost-unit2">
+                            <option value="L">L</option>
                             <option value="gal">gal</option>
                         </select>
                     </div>
                     <span class="note">{{{translated.fuelCostNote}}}</span>
                 </div>
                 <div class="emission-input-cont">
-                    <consumption v-show="selected == 'consumption'" :translated="translated"></consumption>
-                    <efficiency v-show="selected == 'efficiency'" :translated="translated"></efficiency>
-                    <emission  v-show="selected == 'emission'" :translated="translated"></emission>
+                    <consumption v-show="selected == 'consumption'" :translated="translated" :fuel-types="fuelTypes" :selected-fuel-type="selectedFuelType"></consumption>
+                    <efficiency v-show="selected == 'efficiency'" :translated="translated" :fuel-types="fuelTypes" :selected-fuel-type="selectedFuelType"></efficiency>
+                    <emission  v-show="selected == 'emission'" :translated="translated" :fuel-types="fuelTypes" :selected-fuel-type="selectedFuelType"></emission>
                 </div>
                 <div class="form-group">
                     <input type="checkbox" id="display-travel-cost">
@@ -68,6 +68,7 @@
         </div>
     </div>
 </div>
+<script src="js/utils.js"></script>
 <script src="js/vue.js"></script>
 <script src="js/components.js"></script>
 <script src="js/options.js"></script>

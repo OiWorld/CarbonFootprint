@@ -19,37 +19,45 @@ var vue = new Vue({
         fuelTypes: [
             {
                 name:'Diesel',
-                value: 0
+                CO2Emission: 2614
             },
             {
                 name:'Gasoline',
-                value: 1
+                CO2Emission: 2328
             },
             {
                 name:'LPG',
-                value: 2
+                CO2Emission: 1533
             },
             {
                 name:'E10',
-                value: 3
+                CO2Emission: 2245  // (0.10 * 1503) + (0.90 * 2328) = 2245.5
             },
             {
                 name:'E25',
-                value: 4
+                CO2Emission: 2121  // (0.25 * 1503) + (0.75 * 2328) = 2121.75
             },
             {
                 name:'E85',
-                value: 5
+                CO2Emission: 1626  //  (0.85 * 1503) + (0.15 * 2328) = 1626.75
             },
             {
                 name:'Ethanol',
-                value: 6
+                CO2Emission: 1503
             },
             {
-                name:'Bio-Diesel',
-                value: 7
+                name:'BioDiesel',
+                CO2Emission: 2486
             }
         ],
+        selectedFuelType: 'Diesel',
+        fuelCost: 0,
+        fuelCostUnit: 'L',
         selected: 'consumption'
+    },
+    watch: {
+        'fuelCostUnit': function (nval, oldval) {
+            this.fuelCost = Utils.Converter.convert(this.fuelCost, 'none', 'none', oldval, nval);
+        }
     }
 });
