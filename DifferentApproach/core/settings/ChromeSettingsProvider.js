@@ -7,7 +7,10 @@ var ChromeSettingsProvider = function (cb) {
     self.usingDefaultListeners = [];
 
     chrome.storage.sync.get('calculationObject', function (settings) {
-        self.settings = settings;
+        if (settings['calculationObject'])
+            self.settings = settings['calculationObject'];
+        else
+            self.settings = {};
         cb(self);
     });
 };

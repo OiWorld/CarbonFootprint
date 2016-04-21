@@ -57,17 +57,18 @@
                     <emission  v-show="selected == 'emission'" :translated="translated" :fuel-types="fuelTypes" :selected-fuel-type="selectedFuelType"></emission>
                 </div>
                 <div class="form-group">
-                    <input type="checkbox" id="display-travel-cost">
+                    <input v-model="showTravelCost" type="checkbox" id="display-travel-cost">
                     <label for="display-travel-cost">{{{translated.travelCostEstimate}}}</label>
                 </div>
                 <div class="form-group">
-                    <button id="save-button">{{{translated.save}}}</button>
+                    <button @click="save" id="save-button">{{{translated.save}}}</button>
                     <span id="save-message"></span>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="js/StorageManager.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/vue.js"></script>
 <script src="js/components.js"></script>

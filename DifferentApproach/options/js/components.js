@@ -20,7 +20,7 @@ Vue.component('consumption', {
         `<div class="emission-input">
             <div class="form-group">
                 <label for="consumption">{{{translated.fuelConsumption}}}</label>
-                <input v-model="fuelValue" type="number" size="5" style="text-align:center" id="consumption" value="0"/>
+                <input v-model="fuelValue" type="number" size="5" style="text-align:center" id="consumption"/>
             </div>
             <div class="form-group">
                 <div class="form-head">{{{translated.fuelConsumptionUnit}}}</div>
@@ -58,6 +58,16 @@ Vue.component('consumption', {
             return Math.round(emissionRate * 10000) / 10000;
         }
     },
+    events: {
+        'consumptionEmission': function() {
+            this.$dispatch('emission', this.carbonEmission, this.fuelValue, this.fuelUnit1, this.fuelUnit2, this.fuelValue);
+        },
+        'consumptionLoadValues': function(fuelValue, unit1, unit2) {
+            this.fuelValue = fuelValue;
+            this.fuelUnit1 = unit1;
+            this.fuelUnit2 = unit2;
+        }
+    },
     watch: {
         'fuelUnit1' : function (nval, oldval) {
             this.fuelValue = Utils.Converter.convert(this.fuelValue, oldval, nval, 'none', 'none');
@@ -86,7 +96,7 @@ Vue.component('efficiency', {
         `<div class="emission-input">
             <div class="form-group">
                 <label for="efficiency">{{{translated.fuelEfficiency}}}</label>
-                <input v-model="efficiencyValue" type="number" size="5" style="text-align:center" id="efficiency" value="0"/>
+                <input v-model="efficiencyValue" type="number" size="5" style="text-align:center" id="efficiency"/>
             </div>
             <div class="form-group">
                 <div class="form-head">{{{translated.fuelEfficiencyUnit}}}</div>
@@ -117,11 +127,24 @@ Vue.component('efficiency', {
             }
             return null;
         },
+        consumption: function () {
+            return 1 / this.efficiencyValue;
+        },
         carbonEmission: function () {
-            var emissionRate = Utils.Converter.convert(1 / this.efficiencyValue, this.efficiencyUnit1, 'L', this.efficiencyUnit2, 'km');
+            var emissionRate = Utils.Converter.convert(this.consumption, this.efficiencyUnit1, 'L', this.efficiencyUnit2, 'km');
             emissionRate = emissionRate * this.usedFuelType['CO2Emission'];
             emissionRate = Utils.Converter.convert(emissionRate, 'g', 'g', 'km', this.efficiencyUnit2);
             return Math.round(emissionRate * 10000) / 10000;
+        }
+    },
+    events: {
+        'efficiencyEmission': function() {
+            this.$dispatch('emission', this.carbonEmission, this.efficiencyValue, this.efficiencyUnit1, this.efficiencyUnit2, this.consumption);
+        },
+        'efficiencyLoadValues': function(efficiencyValue, unit1, unit2) {
+            this.efficiencyValue = efficiencyValue;
+            this.efficiencyUnit1 = unit1;
+            this.efficiencyUnit2 = unit2;
         }
     },
     watch: {
@@ -151,7 +174,7 @@ Vue.component('emission', {
         `<div class="emission-input">
             <div class="form-group">
                 <label for="emission">{{{translated.coEmission}}}</label>
-                <input v-model="emissionValue" id="emission" type="number" size="5" value="0" style="text-align:center"/>
+                <input v-model="emissionValue" id="emission" type="number" size="5" style="text-align:center"/>
             </div>
             <div class="form-group">
                 <div class="form-head">{{{translated.coEmissionUnit}}}</div>
@@ -183,14 +206,25 @@ Vue.component('emission', {
             }
             return null;
         },
-        carbonEmission: function () {
+        consumption: function () {
             var emission = Utils.Converter.convert(this.emissionValue, this.emissionUnit1, 'g');
-            emission = emission / this.usedFuelType['CO2Emission'];
-
-            var emissionRate = Utils.Converter.convert(emission, 'L', 'L', this.emissionUnit2, 'km');
+            return emission / this.usedFuelType['CO2Emission'];
+        },
+        carbonEmission: function () {
+            var emissionRate = Utils.Converter.convert(this.consumption, 'L', 'L', this.emissionUnit2, 'km');
             emissionRate = emissionRate * this.usedFuelType['CO2Emission'];
             emissionRate = Utils.Converter.convert(emissionRate, 'g', this.emissionUnit1, 'km', this.emissionUnit2);
             return Math.round(emissionRate * 10000) / 10000;
+        }
+    },
+    events: {
+        'emissionEmission': function() {
+            this.$dispatch('emission', this.carbonEmission, this.emissionValue, this.emissionUnit1, this.emissionUnit2, this.consumption);
+        },
+        'emissionLoadValues': function(emissionValue, unit1, unit2) {
+            this.emissionValue = emissionValue;
+            this.emissionUnit1 = unit1;
+            this.emissionUnit2 = unit2;
         }
     },
     watch: {

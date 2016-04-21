@@ -6,6 +6,7 @@
   "content_security_policy": "media-src 'self'; object-src 'self'; script-src 'self' https://ssl.google-analytics.com;",
   "default_locale" : "en",
   "options_page": "options/options.html",
+  "web_accessible_resources": ["options/options.html"],
   "page_action" :
   {
     "default_icon" : "images/globe-64.png",

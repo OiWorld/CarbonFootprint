@@ -1,7 +1,8 @@
 new SettingsProvider(function (settingsProvider) {
 
     settingsProvider.addUsingDefaultListener(function() {
-        alert("Please Set the plugin options");
+        var optionsUrl = chrome.extension.getURL("options/options.html");
+        window.open(optionsUrl);
     });
 
     var core = new CarbonFootprintCore(settingsProvider);
