@@ -1,0 +1,22 @@
+url: http://kolpa.github.io
+baseurl:
+
+# Site Settings
+title: Timeline
+description: "Timeline is multipurpose, single page Jekyll theme that includes a timeline section."
+keywords: "jekyll, theme"
+google-tracking-id:
+
+# Career Settings
+# Default career thumbnail image.
+career-img: "img/timeline/default.jpg"
+
+exclude: ["Rakefile", "LICENSE", "readme.markdown"]
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
