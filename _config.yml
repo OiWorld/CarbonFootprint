@@ -2,16 +2,17 @@ url: http://kolpa.github.io
 baseurl:
 
 # Site Settings
-title: Timeline
-description: "Timeline is multipurpose, single page Jekyll theme that includes a timeline section."
-keywords: "jekyll, theme"
+title: Carbon Footprint for Maps
+description: "A Google Chrome browser extension that displays carbon footprint information on multiple map services."
+keywords: "chrome, plugin"
 google-tracking-id:
+author: "Chirag, Prtaeek, Kolya"
 
 # Career Settings
 # Default career thumbnail image.
 career-img: "img/timeline/default.jpg"
 
-exclude: ["Rakefile", "LICENSE", "readme.markdown"]
+exclude: ["Rakefile", "LICENSE"]
 
 defaults:
   -
@@ -20,3 +21,8 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
