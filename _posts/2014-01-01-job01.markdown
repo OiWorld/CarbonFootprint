@@ -1,5 +1,4 @@
 ---
-layout: null
 title: June 2014 - Present
 subtitle:
 image: "img/timeline/4.jpg"

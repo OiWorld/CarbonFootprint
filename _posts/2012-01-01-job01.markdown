@@ -1,5 +1,4 @@
 ---
-layout: null
 title: May 2012 - January 2013
 subtitle:
 atid: "1751900"
