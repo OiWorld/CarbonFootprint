@@ -29,6 +29,23 @@ CarbonFootprintCore.prototype.computeTrees = function(carbonFootprint) {
     return trees;
 };
 
+CarbonFootprintCore.prototype.createFootprintElement = function (distance) {
+    var footprint = this.computeFootprint(distance);
+
+    var e = document.createElement('div');
+
+    var treesStr = this.treesToString(this.computeTrees(footprint));
+
+    e.innerHTML = '<a href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
+        treesStr +
+        '\' class=\'carbon\' id=\'carbon\'>' +
+        this.footprintToString(footprint) +
+        '</a> <a class=\'offset-link\' href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
+        treesStr + '\'>offset</a>';
+
+    return e;
+};
+
 CarbonFootprintCore.prototype.treesToString = function(trees) {
     if (trees > 1) {
         return 'You will need ' + Math.round(trees) +
@@ -51,4 +68,10 @@ CarbonFootprintCore.prototype.computeTravelCost = function (distance) {
     var travelCost = this.settingsProvider.getTravelRate() * distance;
     console.log('Travel cost for this route is: ' + travelCost + ' grams');
     return travelCost;
+};
+
+CarbonFootprintCore.prototype.createTravelCostElement = function (distance) {
+    var e = document.createElement('div');
+    e.innerHTML = '<a href=http://goo.gl/yxdIs target=_blank class=travelCost id=travelCost> Cost $' + this.computeTravelCost(distance).toFixed(2).toString() + '</a>';
+    return e;
 };

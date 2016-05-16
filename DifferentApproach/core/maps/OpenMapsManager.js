@@ -69,24 +69,6 @@ OpenMapsManager.prototype.insertFootprintElement = function(e) {
     }
 };
 
-OpenMapsManager.prototype.createFootprintElement = function (footprint, trees) {
-    var e = document.createElement('div');
-    var treesStr = this.footprintCore.treesToString(trees);
-    e.innerHTML = '<a href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
-        treesStr +
-        '\' class=\'carbon\' id=\'carbon\'>' +
-        this.footprintCore.footprintToString(footprint) +
-        '</a> <a class=\'offset-link\' href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
-        treesStr + '\'>offset</a>';
-    return e;
-};
-
-OpenMapsManager.prototype.createTravelCostElement = function (travelCost) {
-    var e = document.createElement('div');
-    e.innerHTML = '<a href=http://goo.gl/yxdIs target=_blank class=travelCost id=travelCost> Cost $' + travelCost.toFixed(2).toString() + '</a>';
-    return e;
-};
-
 OpenMapsManager.prototype.insertTravelCostElement = function(e) {
     //A check to ensure that the display travel cost checkbox is checked
     if (document.getElementsByClassName('travelCost').length == 0) { // In this case, "e" has not been added yet. We may proceed and add it.
@@ -103,14 +85,9 @@ OpenMapsManager.prototype.update = function() {
         var distanceString = this.getDistanceString();
         var distanceInKm = this.convertDistance(distanceString);
 
-        var carbonFootprint = this.footprintCore.computeFootprint(distanceInKm);
-        var travelConst = this.footprintCore.computeTravelCost(distanceInKm);
-        var trees = this.footprintCore.computeTrees(carbonFootprint);
-
-
-        this.insertFootprintElement(this.createFootprintElement(carbonFootprint, trees));
+        this.insertFootprintElement(this.footprintCore.createFootprintElement(distanceInKm));
         if (this.settingsProvider.showTravelCost())
-            this.insertTravelCostElement(this.createTravelCostElement(travelConst))
+            this.insertTravelCostElement(this.footprintCore.createTravelCostElement(distanceInKm));
 
     }
 };

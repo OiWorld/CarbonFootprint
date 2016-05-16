@@ -82,23 +82,6 @@ GoogleMapsManager.prototype.insertFootprintElement = function(route, e) {
     }
 };
 
-GoogleMapsManager.prototype.createFootprintElement = function (footprint, trees) {
-    var e = document.createElement('div');
-    var treesStr = this.footprintCore.treesToString(trees);
-    e.innerHTML = '<a href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
-        treesStr +
-        '\' class=\'carbon\' id=\'carbon\'>' +
-        this.footprintCore.footprintToString(footprint) +
-        '</a> <a class=\'offset-link\' href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
-        treesStr + '\'>offset</a>';
-    return e;
-};
-
-GoogleMapsManager.prototype.createTravelCostElement = function (travelCost) {
-    var e = document.createElement('div');
-    e.innerHTML = '<a href=http://goo.gl/yxdIs target=_blank class=travelCost id=travelCost> Cost $' + travelCost.toFixed(2).toString() + '</a>';
-    return e;
-};
 
 GoogleMapsManager.prototype.insertTravelCostElement = function(route, e) {
     //A check to ensure that the display travel cost checkbox is checked
@@ -114,14 +97,9 @@ GoogleMapsManager.prototype.update = function() {
         var distanceString = this.getDistanceString(routes[i]);
         var distanceInKm = this.convertDistance(distanceString);
 
-        var carbonFootprint = this.footprintCore.computeFootprint(distanceInKm);
-        var travelConst = this.footprintCore.computeTravelCost(distanceInKm);
-        var trees = this.footprintCore.computeTrees(carbonFootprint);
-
-
-        this.insertFootprintElement(routes[i], this.createFootprintElement(carbonFootprint, trees));
+        this.insertFootprintElement(routes[i], this.footprintCore.createFootprintElement(distanceInKm));
         if (this.settingsProvider.showTravelCost())
-            this.insertTravelCostElement(routes[i], this.createTravelCostElement(travelConst))
+            this.insertTravelCostElement(routes[i], this.footprintCore.createTravelCostElement(distanceInKm));
     }
 };
 

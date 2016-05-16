@@ -74,24 +74,6 @@ BingMapsManager.prototype.insertFootprintElement = function(route, e) {
     }
 };
 
-BingMapsManager.prototype.createFootprintElement = function (footprint, trees) {
-    var e = document.createElement('div');
-    var treesStr = this.footprintCore.treesToString(trees);
-    e.innerHTML = '<a href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
-        treesStr +
-        '\' class=\'carbon\' id=\'carbon\'>' +
-        this.footprintCore.footprintToString(footprint) +
-        '</a> <a class=\'offset-link\' href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
-        treesStr + '\'>offset</a>';
-    return e;
-};
-
-BingMapsManager.prototype.createTravelCostElement = function (travelCost) {
-    var e = document.createElement('div');
-    e.innerHTML = '<a href=http://goo.gl/yxdIs target=_blank class=travelCost id=travelCost> Cost $' + travelCost.toFixed(2).toString() + '</a>';
-    return e;
-};
-
 BingMapsManager.prototype.insertTravelCostElement = function(route, e) {
     //A check to ensure that the display travel cost checkbox is checked
     if (route.getElementsByClassName('travelCost').length == 0) { // In this case, "e" has not been added yet. We may proceed and add it.
@@ -106,14 +88,9 @@ BingMapsManager.prototype.update = function() {
         var distanceString = this.getDistanceString(routes[i]);
         var distanceInKm = this.convertDistance(distanceString);
 
-        var carbonFootprint = this.footprintCore.computeFootprint(distanceInKm);
-        var travelConst = this.footprintCore.computeTravelCost(distanceInKm);
-        var trees = this.footprintCore.computeTrees(carbonFootprint);
-
-
-        this.insertFootprintElement(routes[i], this.createFootprintElement(carbonFootprint, trees));
+        this.insertFootprintElement(routes[i], this.footprintCore.createFootprintElement(distanceInKm));
         if (this.settingsProvider.showTravelCost())
-            this.insertTravelCostElement(routes[i], this.createTravelCostElement(travelConst))
+            this.insertTravelCostElement(routes[i], this.footprintCore.createTravelCostElement(distanceInKm));
     }
 };
 
