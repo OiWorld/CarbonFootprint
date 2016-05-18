@@ -69,9 +69,12 @@ CarbonFootprintCore.prototype.computeTravelCost = function (distance) {
     console.log('Travel cost for this route is: ' + travelCost + ' grams');
     return travelCost;
 };
+<<<<<<< HEAD
 
 CarbonFootprintCore.prototype.createTravelCostElement = function (distance) {
     var e = document.createElement('div');
     e.innerHTML = '<a href=http://goo.gl/yxdIs target=_blank class=travelCost id=travelCost> Cost $' + this.computeTravelCost(distance).toFixed(2).toString() + '</a>';
     return e;
 };
+=======
+>>>>>>> refs/remotes/origin/rewrite
