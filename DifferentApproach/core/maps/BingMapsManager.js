@@ -117,15 +117,4 @@ BingMapsManager.prototype.update = function() {
     }
 };
 
-BingMapsManager.prototype.init = function() {
-    var self = this;
-
-    var observer = new MutationObserver(function() {
-        self.update();
-    });
-
-    var target = document.getElementsByTagName('body')[0];
-    observer.observe(target, {attributes: true, childList: true, characterData: true, subtree: true});
-};
-
 var MapManager = BingMapsManager;
