@@ -20,7 +20,7 @@ ChromeSettingsProvider.prototype.addUsingDefaultListener = function (listener) {
 };
 
 ChromeSettingsProvider.prototype.has = function (key) {
-    return !!this.settings[key];
+    return key in this.settings;
 };
 
 ChromeSettingsProvider.prototype.get = function (key, def) {
@@ -46,7 +46,7 @@ ChromeSettingsProvider.prototype.getTravelRate = function () {
 };
 
 ChromeSettingsProvider.prototype.showTravelCost = function () {
-    return this.get('showTravelCost', true);
+    return this.get('showTravelCost', false);
 };
 
 var SettingsProvider = ChromeSettingsProvider;

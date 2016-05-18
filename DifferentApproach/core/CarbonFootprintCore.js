@@ -29,23 +29,6 @@ CarbonFootprintCore.prototype.computeTrees = function(carbonFootprint) {
     return trees;
 };
 
-CarbonFootprintCore.prototype.createFootprintElement = function (distance) {
-    var footprint = this.computeFootprint(distance);
-
-    var e = document.createElement('div');
-
-    var treesStr = this.treesToString(this.computeTrees(footprint));
-
-    e.innerHTML = '<a href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
-        treesStr +
-        '\' class=\'carbon\' id=\'carbon\'>' +
-        this.footprintToString(footprint) +
-        '</a> <a class=\'offset-link\' href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
-        treesStr + '\'>offset</a>';
-
-    return e;
-};
-
 CarbonFootprintCore.prototype.treesToString = function(trees) {
     if (trees > 1) {
         return 'You will need ' + Math.round(trees) +
@@ -64,17 +47,62 @@ CarbonFootprintCore.prototype.treesToString = function(trees) {
     }
 };
 
+CarbonFootprintCore.prototype.createFootprintElement = function (distance) {
+    var footprint = this.computeFootprint(distance);
+
+    var e = document.createElement('div');
+
+    var treesStr = this.treesToString(this.computeTrees(footprint));
+
+    e.innerHTML = '<a href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
+        treesStr +
+        '\' class=\'carbon\' id=\'carbon\'>' +
+        this.footprintToString(footprint) +
+        '</a> <a class=\'offset-link\' href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
+        treesStr + '\'>offset</a>';
+
+    return e;
+};
+
 CarbonFootprintCore.prototype.computeTravelCost = function (distance) {
     var travelCost = this.settingsProvider.getTravelRate() * distance;
     console.log('Travel cost for this route is: ' + travelCost + ' grams');
     return travelCost;
 };
-<<<<<<< HEAD
 
 CarbonFootprintCore.prototype.createTravelCostElement = function (distance) {
     var e = document.createElement('div');
     e.innerHTML = '<a href=http://goo.gl/yxdIs target=_blank class=travelCost id=travelCost> Cost $' + this.computeTravelCost(distance).toFixed(2).toString() + '</a>';
     return e;
 };
-=======
->>>>>>> refs/remotes/origin/rewrite
+
+CarbonFootprintCore.prototype.getDistanceFromStrings = function(distance, unit) {
+    var splitDistance = distance.split(/[.,]/);
+    distance = '';
+    var i = 0;
+    if (splitDistance.length == 1) {
+        distance = splitDistance[0];
+    } else {
+        if (splitDistance[splitDistance.length - 1].length == 1) { // contains a decimal digit
+            for (i = 0; i < splitDistance.length - 1; i = i + 1) {
+                distance = '' + distance + splitDistance[i];
+            }
+            distance = distance + '.' + splitDistance[splitDistance.length - 1];
+        } else {
+            for (i = 0; i < splitDistance.length; i = i + 1) {
+                distance = '' + distance + splitDistance[i];
+            }
+        }
+    }
+
+    if (unit.match(/\bm\b/)  || unit.match(/\s\u043C,/)) { // Distance given in meters.
+        distance = distance / 1000;
+    } else if (unit.match(/\bmi\b/) || unit.match(/\bMeile\/n\b/) || unit.match(/\u043C\u0438\u043B/)) { // Distance given in miles.
+        distance = distance * 1.609344;
+    } else if (unit.match(/\bft\b/) || unit.match(/\bp\u00E9s\b/) || unit.match(/\u0444\u0443\u0442/)) { // Distance given in feet.
+        distance = distance * 0.0003048;
+    }
+
+    console.log('The distance is: ' + distance + ' kilometers');
+    return distance;
+};
