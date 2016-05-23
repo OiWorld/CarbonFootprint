@@ -114,23 +114,19 @@ div#emission-type-cont {
     text-align: center;
 }
 
-div#emission-type-cont > input.emission-input-type {
-    display: none;
-}
-
-div#emission-type-cont > input.emission-input-type + label {
+div#emission-type-cont > div.emission-input-type {
     display: inline-block;
     cursor: pointer;
     width: 32%;
     background: #eee;
     padding: 8px 0;
-    color: #222;
+    color:#222;
     opacity: 0.9;
     position: relative;
     font-weight: bold;
 }
 
-div#emission-type-cont > input.emission-input-type:checked + label {
+div#emission-type-cont > div.emission-input-type.selected {
     background: #f0f0f0;
     opacity: 1;
     border-bottom: 4px solid #2980B9;
@@ -138,6 +134,14 @@ div#emission-type-cont > input.emission-input-type:checked + label {
 
 div#form-fields {
     padding: 20px;
+}
+
+div.emission-input-cont > div.emission-input {
+    display: none;
+}
+
+div.emission-input-cont > div.emission-input.open {
+    display: block;
 }
 
 .form-group {

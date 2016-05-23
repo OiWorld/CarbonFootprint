@@ -24,6 +24,7 @@ StorageManager.prototype.update = function() {
 };
 
 StorageManager.prototype.set = function(key, value) {
+    console.log(key,value);
     this.storeValues[key] = value;
 };
 

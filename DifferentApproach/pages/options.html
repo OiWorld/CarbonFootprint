@@ -1,77 +1,154 @@
-<html id="tester">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{{translated.extName}}}</title>
-    <link rel="stylesheet" href="css/options.css" type="text/css" media="screen"/>
+    <title data-language="extName" >Google Maps Carbon Footprint Options</title>
+    <link rel="stylesheet" href="css/options.css" type="text/css" media="screen" />
 </head>
 
 <body>
-<div id="header">
-    <img src="../images/globe-128.png">
-    <div>
-        {{{translated.extName}}}
-    </div>
-</div>
-<div id="container">
-    <div id="description">
-        {{{translated.mainParah}}}
-    </div>
-    <div id="form-cont">
-        <div id="form">
-            <div id="emission-type-cont">
-                <input type="radio" v-model="selected" id="type-consumption" value="consumption"
-                       class="emission-input-type"/>
-                <label for="type-consumption">{{{translated.fuelConsumption}}}</label>
-                <input type="radio" v-model="selected" id="type-efficiency" value="efficiency"
-                       class="emission-input-type"/>
-                <label for="type-efficiency">{{{translated.fuelEfficiency}}}</label>
-                <input type="radio" v-model="selected" id="type-emission" value="emission"
-                       class="emission-input-type"/>
-                <label for="type-emission">{{{translated.coEmission}}}</label>
-            </div>
-            <div id="form-fields">
-                <div class="form-group">
-                    <label for="fuel-type">{{{translated.fuelType}}}</label>
-                    <select v-model="selectedFuelType" style="text-align:center" id="fuel-type">
-                        <option :value="fuelType.name" v-for="fuelType in fuelTypes">{{translated[ 'fuel' + fuelType.name]}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <div style="display: inline-block;width: 49%;">
-                        <label for="fuel-cost">{{{translated.fuelCost}}}</label>
-                        <input v-model="fuelCost" type="number" size="5" style="text-align:center" id="fuel-cost" min="0"/>
-                    </div>
-                    <div style="display: inline-block;width: 49%;">
-                        <label for="fuel-cost-unit2">{{{translated.fuelCostUnit}}}</label>
-                        <select v-model="fuelCostUnit" class="selectFUnit" style="text-align:center" id="fuel-cost-unit2">
-                            <option value="L">L</option>
-                            <option value="gal">gal</option>
-                        </select>
-                    </div>
-                    <span class="note">{{{translated.fuelCostNote}}}</span>
-                </div>
-                <div class="emission-input-cont">
-                    <consumption v-show="selected == 'consumption'" :translated="translated" :fuel-types="fuelTypes" :selected-fuel-type="selectedFuelType"></consumption>
-                    <efficiency v-show="selected == 'efficiency'" :translated="translated" :fuel-types="fuelTypes" :selected-fuel-type="selectedFuelType"></efficiency>
-                    <emission  v-show="selected == 'emission'" :translated="translated" :fuel-types="fuelTypes" :selected-fuel-type="selectedFuelType"></emission>
-                </div>
-                <div class="form-group">
-                    <input v-model="showTravelCost" type="checkbox" id="display-travel-cost">
-                    <label for="display-travel-cost">{{{translated.travelCostEstimate}}}</label>
-                </div>
-                <div class="form-group">
-                    <button @click="save" id="save-button">{{{translated.save}}}</button>
-                    <span id="save-message"></span>
-                </div>
-            </div>
+    <div id="header">
+        <img src="../images/globe-128.png">
+        <div data-language="extName" >
+            Carbon Footprint for Google Maps<sup>TM</sup>
         </div>
     </div>
-</div>
+    <div  id="container">
+        <div id="description" data-language="mainParah" >
+            <p>Whenever you ask Google Maps for driving directions, this browser extension automatically 
+            estimates the total CO<sub>2</sub> emission for the driving route suggested by Google Maps. 
+            The estimation is then shown to the left of the map, next to the route's total distance.</p>
+            <p>To improve the accuracy of the estimation, choose amongst one of the tabs whose value you wish to enter:  </p>
+        </div>
+        <div id="form-cont">
+            <div id="form">
+                <div id="emission-type-cont">
+                    <div class="emission-input-type" data-language="fuelConsumption" >Fuel Consumption</div>
+                    <div class="emission-input-type" data-language="fuelEfficiency" >Fuel Efficiency</div>
+                    <div class="emission-input-type selected" data-language="coEmission" >CO<sub>2</sub> Emission</div>
+                </div>
+                <div id="form-fields">
+                    <div class="form-group">
+                        <label for="fuel-type" data-language="fuelType" >Fuel Type</label> 
+                        <select style="text-align:center" id="fuel-type" >
+                            <option value="0" data-language="fuelDiesel" selected>Diesel</option>
+                            <option value="1" data-language="fuelGasoline">Gasoline</option>
+                            <option value="2" data-language="fuelLPG">LPG</option>
+                            <option value="3" data-language="fuelE10">E10</option>
+                            <option value="4" data-language="fuelE25">E25</option>
+                            <option value="5" data-language="fuelE85">E85</option>
+                            <option value="6" data-language="fuelEthanol">Ethanol</option>
+                            <option value="7" data-language="fuelBioDiesel">Bio-Diesel</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div style="display: inline-block;width: 49%;">
+                        <label for="fuel-cost" data-language="fuelCost" >Fuel Cost</label> 
+                        <input type="number" size="5" style="text-align:center" id="fuel-cost" value="0" min="0" />
+                        </div>
+                        <div style="display: inline-block;width: 49%;">
+                            <label for="fuel-cost-unit2" data-language="fuelCostUnit" >in $ per Volume unit</label> 
+                            <select class="selectFUnit" style="text-align:center" id="fuel-cost-unit2" >
+                                <option value="L" selected>L</option>
+                                <option value="gal">gal</option>
+                            </select>
+                        </div>
+                        <span class="note" data-language="fuelCostNote" >'$' denotes a generic currency.</span>
+                    </div>
+                    <div class="emission-input-cont">
+                        <div class="emission-input">
+                            <div class="form-group">
+                                <label for="consumption" data-language="fuelConsumption" >Fuel Consumption</label> 
+                                <input type="number" size="5" style="text-align:center" id="consumption" value="0" min="0"/>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-head" data-language="fuelConsumptionUnit" >Fuel Consumption Units</div>
+                                <div class="unit">
+                                    <label for="consumption-unit1" data-language="volume" >Volume</label> 
+                                    <select class="selectMUnit" style="text-align:center" id="consumption-unit1" >
+                                        <option value="L" selected>L</option>
+                                        <option value="gal">gal</option>
+                                    </select>
+                                </div>
+                                <div class="unitper" >/</div>
+                                <div class="unit">
+                                    <label for="consumption-unit2" data-language="perDistance" >Per Distance</label> 
+                                    <select class="selectDUnit" style="text-align:center" id="consumption-unit2" >
+                                        <option value="km" selected>km</option>
+                                        <option value="mi">mi</option>
+                                    </select>
+                                </div>
+                                <span class="note" data-language="conversionNote" >To get conversions change the units.</span>    
+                            </div>
+                        </div>
+                        <div class="emission-input">
+                            <div class="form-group">
+                                <label for="efficiency" data-language="fuelEfficiency" >Fuel Ffficiency</label> 
+                                <input type="number" size="5" style="text-align:center" id="efficiency" value="0" min="0"/>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-head" data-language="fuelEfficiencyUnit" >Fuel Efficiency Units</div>
+                                <div class="unit">
+                                    <label for="efficiency-unit1" data-language="distance" >Distance</label> 
+                                    <select class="selectMUnit" style="text-align:center" id="efficiency-unit1" >
+                                        <option value="km" selected>km</option>
+                                        <option value="mi">mi</option>
+                                    </select>
+                                </div>    
+                                <div class="unitper">/</div>
+                                <div class="unit">
+                                    <label for="efficiency-unit2" data-language="perVolume" >per Volume</label> 
+                                    <select class="selectDUnit" style="text-align:center" id="efficiency-unit2" >
+                                        <option value="L" selected>L</option>
+                                        <option value="gal">gal</option>
+                                    </select>
+                                </div>
+                                <span class="note" data-language="conversionNote" >To get conversions change the units.</span>
+                            </div>
+                        </div>
+                        <div class="emission-input open">
+                            <div class="form-group">
+                                <label for="emission" data-language="coEmission" >CO<sub>2</sub> Emission</label> 
+                                <input id="emission" type="number" size="5" value="0" style="text-align:center" min="0"/>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-head" data-language="coEmissionUnit" >CO<sub>2</sub> Emission Units</div>
+                                <div class="unit">
+                                    <label for="emission-unit1" data-language="mass" >Mass</label> 
+                                    <select class="selectMUnit" style="text-align:center" id="emission-unit1" >
+                                        <option value="g" selected>g</option>
+                                        <option value="kg">kg</option>
+                                        <option value="lbs">lbs</option>
+                                    </select>
+                                </div>    
+                                <div class="unitper">/</div>
+                                <div class="unit">
+                                    <label for="emission-unit2" data-language="perDistance" >per Distance</label> 
+                                    <select class="selectDUnit" style="text-align:center" id="emission-unit2" >
+                                        <option value="km" selected>km</option>
+                                        <option value="mi">mi</option>
+                                    </select>
+                                </div>
+                                <span class="note" data-language="conversionNote" >To get conversions change the units.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="display-travel-cost" unchecked>  
+                        <label for="display-travel-cost" data-language="travelCostEstimate">Display travel cost estimation</label>
+                    </div>
+                    <div class="form-group">
+                        <button id="save-button" data-language="save" >Save</button>  
+                        <span id="save-message"></span> 
+                    </div>
+                </div>
+            </div>      
+        </div>
+    </div>
+<script src="js/jquery.min.js"></script>
+<script src="../background/google-analytics.js"></script>
 <script src="js/StorageManager.js"></script>
 <script src="js/utils.js"></script>
-<script src="js/vue.js"></script>
-<script src="js/components.js"></script>
 <script src="js/options.js"></script>
 </body>
 </html>
