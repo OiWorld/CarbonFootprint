@@ -22,6 +22,13 @@
         </li>
         {% endif %}
     </ul>
+    <br>
+    <br>
+    <ul class="list-inline social-buttons">
+    {% if page.commitid %}
+        <li><a href="https://github.com/Kolpa/CarbonFootprintGoogleMaps/commit/{{ page.commitid }}"><i class="fa fa-github fa-fw"></i></a></li>
+    {% endif %}
+    </ul>
 </section>
 </body>
 </html>
