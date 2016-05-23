@@ -1,36 +1,4 @@
-var optionsData = new StorageManager('calculationObject',function(calcObj){
-    //restore only if options html was saved once
-    console.log(calcObj);
-    if(calcObj.has('savedTab')) {
-        // Fuel type restore
-        $('#fuel-type').val(calcObj.get('fuelType'));
-        // Fuel Cost restore
-        $('#fuel-cost').val(calcObj.get('fuelCost')['value']);
-        $('#fuel-cost-unit2').val(calcObj.get('fuelCost')['unit2']);
-        //  Storing input field on type
-        $($('.emission-input-type')[calcObj.get('savedTab')]).click();
-
-        $('#display-travel-cost').attr('checked', calcObj.get('travelRate').displayTravelCost);
-
-        switch(calcObj.get('savedTab')) {
-          case 0 :  $('#consumption').val(calcObj.get('fuelConsumption')['value']);
-                    $('#consumption-unit1').val(calcObj.get('fuelConsumption')['unit1']);
-                    $('#consumption-unit2').val(calcObj.get('fuelConsumption')['unit2']);
-                    break;
-
-          case 1 :  $('#efficiency').val( 1 / calcObj.get('fuelConsumption')['value']);
-                    $('#efficiency-unit1').val(calcObj.get('fuelConsumption')['unit2']);
-                    $('#efficiency-unit2').val(calcObj.get('fuelConsumption')['unit1']);
-                    console.log( 1/calcObj.get('fuelConsumption')['value'] ); 
-                    break;
-
-          case 2 :  $('#emission').val(calcObj.get('emissionRate')['value']);
-                    $('#emission-unit1').val(calcObj.get('emissionRate')['unit1']);
-                    $('#emission-unit2').val(calcObj.get('emissionRate')['unit2']);
-                    break;                            
-        }
-    }
-});
+var optionsData;
 
 //function to switch between tabs and open respective inputs
 function openEmissionInput()
@@ -106,7 +74,7 @@ function saveOptions() {
   }
   //function call to calculate travel rate
   setTravelRate();
-  optionsData.update();
+  optionsData.store();
   // Update status to let user know options were saved.
   var status = $('#save-message');
   status.html('Saved!');
@@ -131,16 +99,18 @@ function setEmissionRate(mUnit,dUnit) {
 
   //convert to the multiplicative new unit
   emissionRate = Utils.Converter.convert(emissionRate,'g',mUnit,'km',dUnit);
-  tp = {
+  var tp = {
     'value': Math.round(emissionRate * 10000) / 10000,
     'unit1': mUnit,
-    'unit2': dUnit,
-  }
+    'unit2': dUnit
+  };
+
   console.log(tp);
+
   optionsData.set('emissionRate',{
     'value': Math.round(emissionRate * 10000) / 10000,
     'unit1': mUnit,
-    'unit2': dUnit,
+    'unit2': dUnit
   });
 }
 
@@ -170,7 +140,7 @@ function setTravelRate() {
 }
 
 
-// function to update value on unit change
+// function to store value on unit change
 (function () {
     var previous;
     // console.log('yo',$(".selectMUnit"));
@@ -197,27 +167,66 @@ function setTravelRate() {
     });
 })();
 
+function loadOldData() {
+    console.log(optionsData);
+    //restore only if options html was saved once
+    if(optionsData.has('savedTab')) {
+        // Fuel type restore
+        $('#fuel-type').val(optionsData.get('fuelType'));
+        // Fuel Cost restore
+        $('#fuel-cost').val(optionsData.get('fuelCost')['value']);
+        $('#fuel-cost-unit2').val(optionsData.get('fuelCost')['unit2']);
+        //  Storing input field on type
+        $($('.emission-input-type')[optionsData.get('savedTab')]).click();
+
+        $('#display-travel-cost').attr('checked', optionsData.get('travelRate').displayTravelCost);
+
+        switch(optionsData.get('savedTab')) {
+            case 0 :  $('#consumption').val(optionsData.get('fuelConsumption')['value']);
+                $('#consumption-unit1').val(optionsData.get('fuelConsumption')['unit1']);
+                $('#consumption-unit2').val(optionsData.get('fuelConsumption')['unit2']);
+                break;
+
+            case 1 :  $('#efficiency').val( 1 / optionsData.get('fuelConsumption')['value']);
+                $('#efficiency-unit1').val(optionsData.get('fuelConsumption')['unit2']);
+                $('#efficiency-unit2').val(optionsData.get('fuelConsumption')['unit1']);
+                console.log( 1/optionsData.get('fuelConsumption')['value'] );
+                break;
+
+            case 2 :  $('#emission').val(optionsData.get('emissionRate')['value']);
+                $('#emission-unit1').val(optionsData.get('emissionRate')['unit1']);
+                $('#emission-unit2').val(optionsData.get('emissionRate')['unit2']);
+                break;
+        }
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', function () {
-    //assigning click listener to the save for each tabs
-    document.getElementById('save-button').addEventListener('click', saveOptions);
+    optionsData = new StorageManager('calculationObject', function() {
 
-    //assigning click listener to the tabs
-    $('.emission-input-type').on('click',openEmissionInput);
+        //assigning click listener to the save for each tabs
+        document.getElementById('save-button').addEventListener('click', saveOptions);
 
-    /**
-     * Prevents adding Hyphen(-) in the input field.
-     */
-    $('#consumption,#emission,#efficiency').bind('keypress',function(evtmin){
-        if(evtmin.which === 45){
-            evtmin.preventDefault();
+        //assigning click listener to the tabs
+        $('.emission-input-type').on('click',openEmissionInput);
+
+        /**
+         * Prevents adding Hyphen(-) in the input field.
+         */
+        $('#consumption,#emission,#efficiency').bind('keypress',function(evtmin){
+            if(evtmin.which === 45){
+                evtmin.preventDefault();
+            }
+        });
+
+        // Added multiple language support. replaces text with user language
+        for(var i=0;i< $('[data-language]').length;++i) {
+            $($('[data-language]')[i]).html(chrome.i18n.getMessage($($('[data-language]')[i]).data('language')))
         }
-    });
 
-    // Added multiple language support. replaces text with user language
-    for(var i=0;i< $('[data-language]').length;++i) {
-        $($('[data-language]')[i]).html(chrome.i18n.getMessage($($('[data-language]')[i]).data('language'))) 
-    }
+        loadOldData();
+    });
 });
 
 googleAnalytics('UA-1471148-11');

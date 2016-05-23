@@ -12,11 +12,11 @@ var StorageManager = function (key, cb) {
         else
             self.storeValues = {};
 
-        cb(self);
+        cb();
     });
 };
 
-StorageManager.prototype.update = function() {
+StorageManager.prototype.store = function() {
     var storeObject = {};
     storeObject[this.storageKey] = this.storeValues;
 
