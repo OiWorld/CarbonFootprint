@@ -1,0 +1,92 @@
+{
+  "extName": {
+    "message": "CO₂ Fußabdruck für Google Maps™",
+    "description": "German title"
+  },
+  "extDesc": {
+    "message": "Automatische Berechnung von CO₂ Ausstoß auf von Google Maps vorgeschlagenen Fahrtstrecken.",
+    "description": "German description"
+  },
+  "mainParah": {
+    "message": "<p>Diese Browsererweiterung berechnet bei jeder Routenplanung mit dem Auto über Google Maps den Erwarteten CO<sub>2</sub> Ausstoß und zeigt diesen auf der linken Seite der Karte neben der Gesamtstrecke an.</p><p>Fülle einen der Tabs mit den korrekten Informationen aus um die Schätzung zu verbessern: </p>",
+    "description": "The paragraph beside form"
+  },
+  "fuelConsumption": {
+    "message": "Kraftstoffverbrauch"
+  },
+  "fuelConsumptionUnit": {
+    "message": "Kraftstoffverbrauchseinheit"
+  },
+  "fuelEfficiency": {
+    "message": "Effizienz"
+  },
+  "fuelEfficiencyUnit": {
+    "message": "Effizienzeinheit"
+  },
+  "coEmission": {
+    "message": "CO<sub>2</sub> Ausstoß"
+  },
+  "coEmissionUnit": {
+    "message": "CO<sub>2</sub> Ausstoßeinheit"
+  },
+  "fuelType": {
+    "message": "Kraftstofftyp"
+  },
+  "fuelDiesel": {
+    "message": "Diesel"
+  },
+  "fuelGasoline": {
+    "message": "Benzin"
+  },
+  "fuelLPG": {
+    "message": "Autogas"
+  },
+  "fuelE10": {
+    "message": "E10"
+  },
+  "fuelE25": {
+    "message": "E25"
+  },
+  "fuelE85": {
+    "message": "E85"
+  },
+  "fuelEthanol": {
+    "message": "Bioethanol"
+  },
+  "fuelBioDiesel": {
+    "message": "Biodiesel"
+  },
+  "fuelCost": {
+    "message": "Kraftstoffpreis"
+  },
+  "fuelCostUnit": {
+    "message": "$ Pro Einheit"
+  },
+  "fuelCostNote": {
+    "message": "'$' Ist eine Beispielwährung."
+  },
+  "distance": {
+    "message": "Enfernung"
+  },
+  "volume": {
+    "message": "Einheit"
+  },
+  "mass": {
+    "message": "Masse"
+  },
+  "perVolume": {
+    "message": "Pro Volumen"
+  },
+  "perDistance": {
+    "message": "Pro Strecke"
+  },
+  "conversionNote": {
+    "message": "Verändere die Einheiten um Umzurechnen."
+  },
+  "travelCostEstimate": {
+    "message": "Reisekostenschätzung anzeigen"
+  },
+  "save": {
+    "message": "SPEICHERN"
+  }
+}

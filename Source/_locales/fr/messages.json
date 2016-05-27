@@ -1,0 +1,65 @@
+{
+	"extName" : {
+		"message" : "Empreinte carbone pour Google Maps ™",
+		"description" : "French title"
+	},
+	"extDesc" : {
+		"message" : "Estime automatiquement les émissions de CO2 pour la conduite sur les routes proposées par Google Maps.",
+		"description" : "French description"
+	},
+	"mainParah" : {
+		"message" : "<p>Chaque fois que vous demandez à Google Maps pour obtenir les directions, cette extension de navigateur estime automatiquement le totale CO<sub>2</sub> émission pour la voie de conduite suggérée par Google Maps. L'estimation est ensuite affichée à gauche de la carte, à côté de la distance totale de l'itinéraire </ p> <p> Pour améliorer la précision de l'estimation, choisissez parmi l'un des onglets dont la valeur que vous souhaitez entrer:. </p>",
+		"description" : "The paragraph beside form in French"
+	},
+	"fuelConsumption"	: {
+		"message"	: "Consommation de carburant"
+	},
+	"fuelConsumptionUnit"	: {
+		"message"	: "Unités de consommation de carburant"
+	},
+	"fuelEfficiency"	: {
+		"message"	: "La consommation de carburant"
+	},
+	"fuelEfficiencyUnit"	: {
+		"message"	: "Unités de consommation de carburant"
+	},
+	"coEmission"	: {
+		"message"	: "CO<sub>2</sub> Émission"
+	},
+	"coEmissionUnit" : {
+		"message"	: "CO<sub>2</sub> Unités d'émission"
+	},
+	"fuelType"	: {
+		"message"	: "Type de carburant"
+	},
+	"fuelCost"	: {
+		"message"	: "Coût de l'essence"
+	},
+	"fuelCostUnit"	: {
+		"message"	: "en $ par unité de volume"
+	},
+	"fuelCostNote"	: {
+		"message"	: "'$' Désigne une monnaie générique."
+	},
+	"distance"	: {
+		"message"	: "Distance"
+	},
+	"volume"	: {
+		"message"	: "Le volume"
+	},
+	"mass"	: {
+		"message"	: "Poids"
+	},
+	"perVolume"	: {
+		"message"	: "par Volume"
+	},
+	"perDistance"	: {
+		"message"	: "par Distance"
+	},
+	"conversionNote"	: {
+		"message"	: "Pour obtenir des conversions changent les unités."
+	},
+	"save" : {
+		"message" : "ENREGISTRER"
+	}
+}
