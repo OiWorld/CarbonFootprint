@@ -1,5 +1,6 @@
 /**
  * Created by Kolpa on 22.03.2016.
+ * Contributed by PrateekGupta1509
  */
 var ChromeSettingsProvider = function (cb) {
     var self = this;
@@ -11,6 +12,7 @@ var ChromeSettingsProvider = function (cb) {
             self.settings = settings['calculationObject'];
         else
             self.settings = {};
+        console.log(self.settings);
         cb(self);
     });
 };
@@ -38,7 +40,11 @@ ChromeSettingsProvider.prototype.get = function (key, def) {
 };
 
 ChromeSettingsProvider.prototype.getCarbonEmission = function() {
-    return this.get('carbonEmission', 20);
+    return this.get('emissionRate', 20);
+};
+
+ChromeSettingsProvider.prototype.getCarbonEmissionUnit = function() {
+    return this.get('emissionDisplayUnit','g');
 };
 
 ChromeSettingsProvider.prototype.getTravelRate = function () {

@@ -1,5 +1,6 @@
 /**
  * Created by Kolpa on 22.03.2016.
+ * Contributed by PrateekGupta1509
  */
 
 var CarbonFootprintCore = function(settingsProvider) {
@@ -9,22 +10,26 @@ var CarbonFootprintCore = function(settingsProvider) {
 
 CarbonFootprintCore.prototype.computeFootprint = function(distance) {
     var footprint = distance * this.settingsProvider.getCarbonEmission();
-    console.log('Carbon Footprint for this route is: ' + footprint + ' grams');
     return footprint;
 };
 
 CarbonFootprintCore.prototype.footprintToString = function(footprint) {
-    var carbonUnit = ' g CO<sub>2</sub>';
-    if (footprint > 1000) {
+    var carbonUnit = this.settingsProvider.getCarbonEmissionUnit();
+    if (footprint > 1000 && carbonUnit =='g') {
         footprint = footprint / 1000;
-        carbonUnit = ' kg CO<sub>2</sub>';
+        carbonUnit = 'kg';
+    }
+    else if (carbonUnit == 'lbs') {
+        footprint = footprint * 0.00220462;  
     }
     footprint = Math.round(footprint);
-    return '' + footprint + carbonUnit;
+    console.log('Carbon Footprint for this route is: ' + footprint + carbonUnit + ' CO<sub>2</sub>');
+    return '' + footprint + carbonUnit + ' CO<sub>2</sub>';
 };
 
 CarbonFootprintCore.prototype.computeTrees = function(carbonFootprint) {
     var trees = carbonFootprint / this.treeGrowthPerYear;
+    trees = Math.round(trees);
     console.log('Trees: ' + trees);
     return trees;
 };
@@ -66,7 +71,7 @@ CarbonFootprintCore.prototype.createFootprintElement = function (distance) {
 
 CarbonFootprintCore.prototype.computeTravelCost = function (distance) {
     var travelCost = this.settingsProvider.getTravelRate() * distance;
-    console.log('Travel cost for this route is: ' + travelCost + ' grams');
+    console.log('Travel cost for this route is: ' + travelCost );
     return travelCost;
 };
 

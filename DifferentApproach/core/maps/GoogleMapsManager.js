@@ -1,10 +1,12 @@
 /**
  * Created by Kolpa on 22.03.2016.
+ * Contributed by PrateekGupta1509
  */
 
 var GoogleMapsManager = function(footprintCore, settingsProvider) {
     this.footprintCore = footprintCore;
     this.settingsProvider = settingsProvider;
+    this.update();
 };
 
 GoogleMapsManager.prototype.getMode = function (route) {

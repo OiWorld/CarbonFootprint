@@ -26,8 +26,6 @@ function saveOptions() {
     unit1: '$',
     unit2: document.getElementById("fuel-cost-unit2").value,
   });
-  optionsData.set('emissionUnit','g');
-
   /**
   * TO STORE EVERYTYPE OF INFO IN TERMS OF PRIMITVE VARIABLES-
   * fuelConsumption
@@ -89,29 +87,17 @@ function setEmissionRate(mUnit,dUnit) {
   var fuelType = optionsData.get('fuelType');
   var consumptionObj = optionsData.get('fuelConsumption');
   var emissionRate = consumptionObj.value;
+
   //CONVERSION TO STANDARD UNIT AS DATA IS AVAILABLE  IN GRAM/LITER
   // Converts multiplicative unit to Liter
-  emissionRate = Utils.Converter.convert(emissionRate,consumptionObj.unit1,'L',consumptionObj.unit2,'km');
   //NOW CONVERTING THE FUEL EFFICIENCY (NOW IN L/KM) TO CARBON EMISSION (in G/KM) for particular fuel type
-  console.log(emissionRate,Utils.fuelInfo[fuelType]['CO2Emission']);
-  emissionRate = emissionRate * Utils.fuelInfo[fuelType]['CO2Emission'];
-  //CONVERSION TO USER PROVIDED UNITS
+  emissionRate = Utils.fuelInfo[fuelType]['CO2Emission'] * Utils.Converter.convert(emissionRate,consumptionObj.unit1,'L',consumptionObj.unit2,'km');
 
-  //convert to the multiplicative new unit
-  emissionRate = Utils.Converter.convert(emissionRate,'g',mUnit,'km',dUnit);
-  var tp = {
-    'value': Math.round(emissionRate * 10000) / 10000,
-    'unit1': mUnit,
-    'unit2': dUnit
-  };
+  //save the unit for output
+  optionsData.set('emissionDisplayUnit',mUnit);
 
-  console.log(tp);
-
-  optionsData.set('emissionRate',{
-    'value': Math.round(emissionRate * 10000) / 10000,
-    'unit1': mUnit,
-    'unit2': dUnit
-  });
+  //save rate in g/km
+  optionsData.set('emissionRate', Math.round(emissionRate * 10000) / 10000);
 }
 
 //function to set emission rate
@@ -119,24 +105,15 @@ function setTravelRate() {
   var fuelCostObj = optionsData.get('fuelCost');
   var consumptionObj = optionsData.get('fuelConsumption');
   var fuelRate = null;
+
   //cost($/volume) and consumption (volume/distance)
-  //if both volume unit are same
-  if(fuelCostObj['unit2'] === consumptionObj['unit1']) {
-    fuelRate =  fuelCostObj['value'] * consumptionObj['value'];
-  }
-  //if volume units are different
-  else {
-    fuelRate = fuelCostObj['value'] * Utils.Converter.convert(consumptionObj['value'],consumptionObj['unit1'],fuelCostObj['unit2']);
-  }
+  fuelRate = fuelCostObj['value'] * Utils.Converter.convert(consumptionObj['value'],consumptionObj['unit1'],fuelCostObj['unit2'],consumptionObj['unit2'],'km');
 
   //Fetching display travel cost checkbox value
   var displayTravelCost = document.getElementById("display-travel-cost").checked;
-  optionsData.set('travelRate',{
-    'value': Math.round(fuelRate * 10000) / 10000,
-    'unit1': fuelCostObj['unit1'],
-    'unit2': consumptionObj['unit2'],
-    "displayTravelCost": displayTravelCost
-  });
+
+  optionsData.set('travelRate', Math.round(fuelRate * 10000) / 10000 );
+  optionsData.set('showTravelCost', displayTravelCost);
 }
 
 
@@ -168,7 +145,6 @@ function setTravelRate() {
 })();
 
 function loadOldData() {
-    console.log(optionsData);
     //restore only if options html was saved once
     if(optionsData.has('savedTab')) {
         // Fuel type restore
@@ -179,24 +155,24 @@ function loadOldData() {
         //  Storing input field on type
         $($('.emission-input-type')[optionsData.get('savedTab')]).click();
 
-        $('#display-travel-cost').attr('checked', optionsData.get('travelRate').displayTravelCost);
+        $('#display-travel-cost').attr('checked', optionsData.get('showTravelCost'));
 
         switch(optionsData.get('savedTab')) {
-            case 0 :  $('#consumption').val(optionsData.get('fuelConsumption')['value']);
-                $('#consumption-unit1').val(optionsData.get('fuelConsumption')['unit1']);
-                $('#consumption-unit2').val(optionsData.get('fuelConsumption')['unit2']);
-                break;
+          case 0 :  $('#consumption').val(optionsData.get('fuelConsumption')['value']);
+                    $('#consumption-unit1').val(optionsData.get('fuelConsumption')['unit1']);
+                    $('#consumption-unit2').val(optionsData.get('fuelConsumption')['unit2']);
+                    break;
 
-            case 1 :  $('#efficiency').val( 1 / optionsData.get('fuelConsumption')['value']);
-                $('#efficiency-unit1').val(optionsData.get('fuelConsumption')['unit2']);
-                $('#efficiency-unit2').val(optionsData.get('fuelConsumption')['unit1']);
-                console.log( 1/optionsData.get('fuelConsumption')['value'] );
-                break;
+          case 1 :  $('#efficiency').val( 1 / optionsData.get('fuelConsumption')['value']);
+                    $('#efficiency-unit1').val(optionsData.get('fuelConsumption')['unit2']);
+                    $('#efficiency-unit2').val(optionsData.get('fuelConsumption')['unit1']);
+                    break;
 
-            case 2 :  $('#emission').val(optionsData.get('emissionRate')['value']);
-                $('#emission-unit1').val(optionsData.get('emissionRate')['unit1']);
-                $('#emission-unit2').val(optionsData.get('emissionRate')['unit2']);
-                break;
+          case 2 :  var emissionVal = Utils.Converter.convert(optionsData.get('emissionRate'),'g',optionsData.get('emissionDisplayUnit'),'km',optionsData.get('fuelConsumption')['unit2']);
+                    $('#emission').val(Math.round(emissionVal*100)/100);
+                    $('#emission-unit1').val(optionsData.get('emissionDisplayUnit'));
+                    $('#emission-unit2').val(optionsData.get('fuelConsumption')['unit2']);
+                    break;                            
         }
     }
 }

@@ -5,6 +5,7 @@
 var OpenMapsManager = function(footprintCore, settingsProvider) {
     this.footprintCore = footprintCore;
     this.settingsProvider = settingsProvider;
+    this.update();
 };
 
 OpenMapsManager.prototype.isDriving = function () {

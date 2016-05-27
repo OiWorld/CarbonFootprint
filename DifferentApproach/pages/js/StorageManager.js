@@ -33,5 +33,5 @@ StorageManager.prototype.get = function (key) {
 };
 
 StorageManager.prototype.has = function (key) {
-    return !!this.storeValues[key];
+    return key in this.storeValues;
 };

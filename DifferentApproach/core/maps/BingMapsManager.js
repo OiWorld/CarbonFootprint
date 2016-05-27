@@ -5,6 +5,7 @@
 var BingMapsManager = function(footprintCore, settingsProvider) {
     this.footprintCore = footprintCore;
     this.settingsProvider = settingsProvider;
+    this.update();
 };
 
 BingMapsManager.prototype.isDriving = function () {
