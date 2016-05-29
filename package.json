@@ -1,0 +1,12 @@
+{
+  "name": "carbon-footprint-for-maps",
+  "version": "1.0.0",
+  "description": "Carbon Footprint for Google Maps",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jasmine": "^1.0.3"
+  }
+}
