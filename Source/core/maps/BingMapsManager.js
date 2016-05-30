@@ -45,14 +45,14 @@ BingMapsManager.prototype.convertDistance = function(distanceStr) {
 };
 
 BingMapsManager.prototype.insertFootprintElement = function(route, e) {
-    if (route.getElementsByClassName('carbon').length == 0) { // In this case, "e" has not been added yet. We may proceed and add it.
+    if (route.getElementsByClassName('carbon').length === 0) { // In this case, "e" has not been added yet. We may proceed and add it.
         route.getElementsByClassName('drTitleRight')[0].appendChild(e);
     }
 };
 
 BingMapsManager.prototype.insertTravelCostElement = function(route, e) {
     //A check to ensure that the display travel cost checkbox is checked
-    if (route.getElementsByClassName('travelCost').length == 0) { // In this case, "e" has not been added yet. We may proceed and add it.
+    if (route.getElementsByClassName('travelCost').length === 0) { // In this case, "e" has not been added yet. We may proceed and add it.
         route.getElementsByClassName('drTitleRight')[0].appendChild(e);
     }
 };
