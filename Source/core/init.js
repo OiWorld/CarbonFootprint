@@ -14,7 +14,7 @@ new SettingsProvider(function (settingsProvider) {
         });
 
         var target = document.getElementsByTagName('body')[0];
-        observer.observe(target, {attributes: true, childList: true, characterData: true, subtree: true});
+        observer.observe(target, {attributes: true, childList: true, characterData: true, subtree: false});
     });
     
 });
