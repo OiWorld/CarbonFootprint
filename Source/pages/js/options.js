@@ -21,17 +21,6 @@ function switchtab(){
   
 }
 
-function toggleCostField(){
-  if(document.getElementById("fuel-cost").disabled==true){
-    $('#fuel-cost').prop('disabled',false);
-    $('#fuel-cost-units').prop('disabled',false);
-  }
-  else{
-    $('#fuel-cost').prop('disabled',true);
-    $('#fuel-cost-units').prop('disabled',true);
-  }
-}
-
 // Function to handle all 3 tabs save  click
 function saveOptions() {
   //Saving input type
@@ -198,31 +187,60 @@ function loadOldData() {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    optionsData = new StorageManager('calculationObject', function() {
-
-        //assigning click listener to the save for each tabs
-        document.getElementById('save-button').addEventListener('click', saveOptions);
-
-        //assigning click listener to the tabs
-        $('.tab-button').on('click',switchtab);
-		
-		  $('#display-travel-cost').change(toggleCostField);
-        /**
-         * Prevents adding Hyphen(-) in the input field.
-         */
-        $('#consumption,#emission,#efficiency').bind('keypress',function(evtmin){
-            if(evtmin.which === 45){
-                evtmin.preventDefault();
-            }
-        });
-
-        // Added multiple language support. replaces text with user language
-        for(var i=0;i< $('[data-language]').length;++i) {
-            $($('[data-language]')[i]).html(chrome.i18n.getMessage($($('[data-language]')[i]).data('language')))
-        }
-
-        loadOldData();
+  optionsData = new StorageManager('calculationObject', function() {
+    
+    //assigning click listener to the save for each tabs
+    document.getElementById('save-button').addEventListener('click', saveOptions);
+    
+    //assigning click listener to the tabs
+    $('.tab-button').on('click',switchtab);
+		$('#by-fuel-consumption').on('click', function(){
+      if($(this).prop('checked')){
+        $('#direct-co-emission').prop('checked',false);
+        $('.by-fuel input,.by-fuel select').prop('disabled',false);
+        $('.by-co input,.by-co select').prop('disabled',true);
+      }
+      else{
+        $(this).prop('checked',true);
+      }
     });
+
+		$('#direct-co-emission').on('click', function(){
+      if($(this).prop('checked')){
+        $('#by-fuel-consumption').prop('checked',false);
+        $('.by-fuel input,.by-fuel select').prop('disabled',true);
+        $('.by-co input,.by-co select').prop('disabled',false);
+      }
+      else{
+        $(this).prop('checked',true);
+      }
+    });
+    $('#display-travel-cost').on('click', function(){
+      if(document.getElementById("display-travel-cost").checked){
+        $('#fuel-cost').prop('disabled',false);
+        $('#fuel-cost-units').prop('disabled',false);
+      }
+      else{
+        $('#fuel-cost').prop('disabled',true);
+        $('#fuel-cost-units').prop('disabled',true);
+      }
+    });
+    /**
+     * Prevents adding Hyphen(-) in the input field.
+     */
+    $('#consumption,#emission,#efficiency').bind('keypress',function(evtmin){
+      if(evtmin.which === 45){
+        evtmin.preventDefault();
+      }
+    });
+    
+    // Added multiple language support. replaces text with user language
+    for(var i=0;i< $('[data-language]').length;++i) {
+      $($('[data-language]')[i]).html(chrome.i18n.getMessage($($('[data-language]')[i]).data('language')))
+    }
+    
+    loadOldData();
+  });
 });
 
 googleAnalytics('UA-1471148-11');

@@ -32,70 +32,77 @@
                 </div>
                 <div id="form-fields">
                     <div class="tab open">
-                        <div class="emission-input-cont">
-                            <div class="form-group">
-						                    <label for="fuel-type" data-language="fuelType" >Fuel Type</label> 
-						                    <select style="text-align:center" id="fuel-type" >
-							                      <option value="0" data-language="fuelDiesel" selected>Diesel</option>
-							                      <option value="1" data-language="fuelGasoline">Gasoline</option>
-							                      <option value="2" data-language="fuelLPG">LPG</option>
-							                      <option value="3" data-language="fuelE10">E10</option>
-							                      <option value="4" data-language="fuelE25">E25</option>
-							                      <option value="5" data-language="fuelE85">E85</option>
-							                      <option value="6" data-language="fuelEthanol">Ethanol</option>
-							                      <option value="7" data-language="fuelBioDiesel">Bio-Diesel</option>
-						                    </select>
-                                <div class="emission-input">
-                                    <label for="consumption" data-language="fuelConsumed">Fuel Consumed</label>
-                                    <div class="form-data">
-                                        <input type="number" size="1" style="text-align:center" id="consumption" value="0" min="0"/>
-                                        <select class="selectMUnit" style="text-align:center" id="consumption-unit1" >
-                                            <option value="L" selected>L</option>
-                                            <option value="gal">gal</option>
-                                        </select>
-                                    </div>
-                                    <label for="consumption" data-language="distanceTravelled">Distance Travelled</label> 
-                                    <div class="form-data">
-                                        <input type="number" size="1" style="text-align:center" id="consumption" value="0" min="0"/>
-                                        <select class="selectDUnit" style="text-align:center" id="consumption-unit2" >
-                                            <option value="km" selected>km</option>
-                                            <option value="mi">mi</option>
-                                        </select>
-                                    </div>
+                        <div class="form-group">
+                            <input type="checkbox" id="by-fuel-consumption" checked>  
+                            <label for="display-travel-cost" data-language="byFuelConsumption">Know your vehicle's average fuel consumption?</label>
+                        </div>
+                        <div class="emission-input-cont by-fuel">
+                            <div class="form-group minor">
+                                <div class="form-data">
+                                    <label for="fuel-type" data-language="fuelType" >Fuel Type</label>
+						                        <select style="width:10em;margin-left:3em;" id="fuel-type" >
+							                          <option value="0" data-language="fuelDiesel" selected>Diesel</option>
+							                          <option value="1" data-language="fuelGasoline">Gasoline</option>
+							                          <option value="2" data-language="fuelLPG">LPG</option>
+							                          <option value="3" data-language="fuelE10">E10</option>
+							                          <option value="4" data-language="fuelE25">E25</option>
+							                          <option value="5" data-language="fuelE85">E85</option>
+							                          <option value="6" data-language="fuelEthanol">Ethanol</option>
+							                          <option value="7" data-language="fuelBioDiesel">Bio-Diesel</option>
+						                        </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="emission" data-language="coEmission" >CO<sub>2</sub> Emission</label> 
-                                <input id="emission" type="number" size="5" value="0" style="text-align:center" min="0"/>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-head" data-language="coEmissionUnit">CO<sub>2</sub> Emission Units</div>
-                                <div class="unit">
-                                    <label for="emission-units" data-language="mass" >Mass</label> 
-                                    <select class="selectMUnit" style="text-align:center" id="emission-units" >
-                                        <option value="g" selected>g</option>
-                                        <option value="kg">kg</option>
-                                        <option value="lbs">lbs</option>
+                            <div class="form-group minor">
+                                <div class="form-data">
+                                    <label for="consumption" data-language="fuelConsumed">Fuel Consumed</label>
+                                    
+                                    <input type="number" size="1" style="text-align:center" id="consumption" value="0" min="0"/>
+                                    <select class="selectMUnit" style="text-align:center" id="consumption-unit1" >
+                                        <option value="L" selected>L</option>
+                                        <option value="gal">gal</option>
                                     </select>
-                                </div>    
-                                <div class="unitper">/</div>
-                                <div class="unit">
-                                    <label for="emission-unit2" data-language="perDistance" >per Distance</label> 
-                                    <select class="selectDUnit" style="text-align:center" id="emission-unit2" >
+                                </div>
+                            </div>
+                            <div class="form-group minor">
+                                <div class="form-data">
+                                    <label for="consumption" data-language="distanceTravelled">Distance Travelled</label> 
+                                    <input type="number" size="1" style="text-align:center" id="consumption" value="0" min="0"/>
+                                    <select class="selectDUnit" style="text-align:center" id="consumption-units" >
                                         <option value="km" selected>km</option>
                                         <option value="mi">mi</option>
                                     </select>
                                 </div>
-                                <span class="note" data-language="conversionNote" >To get conversions change the units.</span>
+                            </div>
+                        </div>
+                        <div class="form-group major">
+                            <input type="checkbox" id="direct-co-emission" unchecked>  
+                            <label for="display-travel-cost" data-language="directCOEmission">Know your vehicle's average CO2 emission?</label>
+                        </div>
+                        <div class="emission-input-cont by-co">
+                            <div class="form-group minor">
+                                <div class="form-data">
+                                    <label for="emission" data-language="coEmission" >CO<sub>2</sub> Emission</label>
+                                    <input id="emission" type="number" size="5" value="0" style="text-align:center" min="0" disabled>
+                                    <select class="selectMUnit" style="text-align:center" id="emission-units" disabled>
+                                        <option value="g" selected>g</option>
+                                        <option value="kg">kg</option>
+                                        <option value="lbs">lbs</option>
+                                    </select>
+                                    <div class="unitper">/</div>
+                                    <select class="selectDUnit" style="margin-left:0;" id="emission-unit2" disabled>
+                                        <option value="km" selected>km</option>
+                                        <option value="mi">mi</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="tab">
-                        <div class="form-group">
+                        <div class="form-group major">
                             <input type="checkbox" id="display-travel-cost" unchecked>  
                             <label for="display-travel-cost" data-language="travelCostEstimate">Display travel cost estimation</label>
                         </div>
-                        <div class="form-group cost">
+                        <div class="form-group cost minor">
                             <div style="display: inline-block;width: 49%;">
                                 <label for="fuel-cost" data-language="fuelCost" >Fuel Cost</label> 
                                 <input type="number" size="5" style="text-align:center" id="fuel-cost" value="0" min="0" disabled />

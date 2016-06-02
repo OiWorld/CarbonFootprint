@@ -153,7 +153,8 @@ div.emission-input-cont > div.emission-input.open {
 }
 
 .form-group {
-    padding: 0.5em 0;
+    padding: 0.7em 0;
+    padding-right:0;
 }
 .form-head {
     font-size: 1.05em;
@@ -163,11 +164,31 @@ div.emission-input-cont > div.emission-input.open {
     display: inline-block;
     width: 45%;
 }
-.form-group > div.unitper {
-    display:inline-block;
-    width: 7%;
+.unitper {
+    padding-left:0.3em;
+    padding-right:0.5em;
+    width: 1em;
+    font-size:2em;
     text-align: center;
 }
+
+.minor input,select {
+    text-align:center;
+    height:2em;
+    border-radius:4px;
+    border:none;
+}
+
+.minor input {
+    margin-left:3em;
+    width:10em;
+}
+
+.minor select {
+    width:4em;
+    margin-left:1em;
+}
+
 .form-group > div.unit2 {
     float:right;
     font-size: 0.8em;
@@ -178,7 +199,17 @@ div.emission-input-cont > div.emission-input.open {
 }
 .form-data {
     display: flex;
+    align-items:center;
 }
+
+.major input {
+    margin-left:0;
+}
+
+.minor {
+    padding-left:2em;
+}
+
 #offset {
     text-align: center;
     font-size: 1.1em;
