@@ -11,8 +11,11 @@
     "message": "<p>Whenever you ask Google Maps for driving directions, this browser extension automatically estimates the total CO<sub>2</sub> emission for the driving route suggested by Google Maps. The estimation is then shown to the left of the map, next to the route's total distance.</p><p>To improve the accuracy of the estimation, choose amongst one of the tabs whose value you wish to enter:  </p>",
     "description": "The paragraph beside form"
   },
-  "fuelConsumption": {
-    "message": "Fuel Consumption"
+  "distanceTravelled": {
+    "message": "Distance Travelled"
+  },
+  "fuelConsumed": {
+    "message": "Fuel Consumed"
   },
   "fuelConsumptionUnit": {
     "message": "Fuel Consumption Units"
@@ -24,7 +27,10 @@
     "message": "Fuel Efficiency Units"
   },
   "coEmission": {
-    "message": "CO<sub>2</sub> Emission"
+    "message": "CO<sub>2</sub> Emissions"
+  },
+  "costCalculator": {
+    "message": "Cost Calculator"
   },
   "coEmissionUnit": {
     "message": "CO<sub>2</sub> Emission Units"

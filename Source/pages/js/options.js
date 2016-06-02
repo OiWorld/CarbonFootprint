@@ -1,18 +1,36 @@
 var optionsData;
 
 //function to switch between tabs and open respective inputs
-function openEmissionInput()
+/*function openEmissionInput()
 {
   //adding selected class to the clicked tab
   $('.emission-input-type.selected').removeClass('selected');
   $(this).addClass(' selected');
-  //opening input to the corresponding tab
+ //opening input to the corresponding tab
   var index = $('.emission-input-type.selected').index();
   $('.emission-input.open').removeClass('open');
   $('.emission-input:nth-child('+(index+1)+')').addClass('open');
+ }*/
+
+function switchtab(){
+  $('.tab-button.selected').removeClass('selected');
+  $(this).addClass(' selected');  
+  var index = $('.tab-button.selected').index();
+  $('.tab.open').removeClass('open');
+  $('.tab:nth-child('+(index+1)+')').addClass('open');
+  
 }
 
-
+function toggleCostField(){
+  if(document.getElementById("fuel-cost").disabled==true){
+    $('#fuel-cost').prop('disabled',false);
+    $('#fuel-cost-units').prop('disabled',false);
+  }
+  else{
+    $('#fuel-cost').prop('disabled',true);
+    $('#fuel-cost-units').prop('disabled',true);
+  }
+}
 
 // Function to handle all 3 tabs save  click
 function saveOptions() {
@@ -21,6 +39,7 @@ function saveOptions() {
   // Saving PRIMITVE VARIABLES- fuelType
   optionsData.set('fuelType',parseInt(document.getElementById("fuel-type").value));
   // Saving PRIMITVE VARIABLES- fuelCost
+
   optionsData.set('fuelCost',{
     value: parseFloat(document.getElementById("fuel-cost").value),
     unit1: '$',
@@ -185,8 +204,9 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('save-button').addEventListener('click', saveOptions);
 
         //assigning click listener to the tabs
-        $('.emission-input-type').on('click',openEmissionInput);
-
+        $('.tab-button').on('click',switchtab);
+		
+		  $('#display-travel-cost').change(toggleCostField);
         /**
          * Prevents adding Hyphen(-) in the input field.
          */

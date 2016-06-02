@@ -114,7 +114,7 @@ div#emission-type-cont {
     text-align: center;
 }
 
-div#emission-type-cont > div.emission-input-type {
+div#emission-type-cont > div.tab-button {
     display: inline-block;
     cursor: pointer;
     width: 32%;
@@ -126,7 +126,7 @@ div#emission-type-cont > div.emission-input-type {
     font-weight: bold;
 }
 
-div#emission-type-cont > div.emission-input-type.selected {
+div#emission-type-cont > div.tab-button.selected {
     background: #f0f0f0;
     opacity: 1;
     border-bottom: 4px solid #2980B9;
@@ -141,6 +141,14 @@ div.emission-input-cont > div.emission-input {
 }
 
 div.emission-input-cont > div.emission-input.open {
+    display: block;
+}
+
+#form .tab {
+    display: none;
+}
+
+#form .open {
     display: block;
 }
 
@@ -168,7 +176,9 @@ div.emission-input-cont > div.emission-input.open {
     float:right;
     font-size: 0.8em;
 }
-
+.form-data {
+    display: flex;
+}
 #offset {
     text-align: center;
     font-size: 1.1em;
@@ -205,4 +215,12 @@ a:link,a:visited,a:hover,a:active {
     #description {
         font-size: 1.1em;
     }
+}
+
+input:disabled {
+    background: #dddddd;
+}
+
+select:disabled {
+    background: #dddddd;
 }
