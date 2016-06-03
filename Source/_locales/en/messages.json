@@ -69,7 +69,7 @@
     "message": "Bio-Diesel"
   },
   "fuelCost": {
-    "message": "Fuel Cost"
+    "message": "Fuel Cost:"
   },
   "fuelCostUnit": {
     "message": "in $ per Volume unit"
@@ -100,5 +100,23 @@
   },
   "save": {
     "message": "SAVE"
+  },
+  "byFuelEfficiency": {
+    "message": "Fuel Efficiency"
+  },
+  "byFuelConsumptionPer": {
+    "message": "Fuel Consumption"
+  },
+  "byCustomValues": {
+    "message": "Custom Values"
+  },
+  "feMessage": {
+    "message": "enter <i>Distance Travelled</i> in 1 unit of <i>Fuel Consumed</i>"
+  },
+  "fcpMessage": {
+    "message": "enter <i>Fuel Consumed</i> per 100 units of <i>Distance Travelled</i>"
+  },
+  "cvMessage": {
+   "message": "enter total <i>Distance Travelled</i> for total <i>Fuel Consumed</i>"
   }
 }

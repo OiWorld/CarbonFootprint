@@ -187,8 +187,78 @@ function loadOldData() {
     }
 }
 
+function toggleInputSource(){
+  if($(this).prop('id')==="by-fuel-consumption"){
+    if($(this).prop('checked')){
+      $('#direct-co-emission').prop('checked',false);
+      $('.by-fuel input,.by-fuel select').prop('disabled',false);
+      $('.by-co input,.by-co select').prop('disabled',true);
+    }
+    else{
+      $(this).prop('checked',true);
+    }
+  }
+  if($(this).prop('id')==="direct-co-emission"){
+    if($(this).prop('checked')){
+      $('#by-fuel-consumption').prop('checked',false);
+      $('.by-fuel input,.by-fuel select').prop('disabled',true);
+      $('.by-co input,.by-co select').prop('disabled',false);
+    }
+    else{
+      $(this).prop('checked',true);
+    }
+  }
+}
 
-document.addEventListener('DOMContentLoaded', function () {
+function toggleInputType(){
+  if($(this).prop('id')==="fuel-efficiency"){
+    if($(this).prop('checked')){
+      $('#fuel-value').val(1).prop('disabled',true);
+      $('#distance-value').prop('disabled',false);
+      $('#fuel-consumed-per').prop('checked',false);
+      $('#custom-values').prop('checked',false);
+      $('#usage-message').html(chrome.i18n.getMessage("feMessage"));
+    }
+    else{
+      $('#fuel-value').prop('disabled',false);
+    }
+  }
+  else if($(this).prop('id')==="fuel-consumed-per"){
+    if($(this).prop('checked')){
+      $('#distance-value').val(100).prop('disabled',true);
+      $('#fuel-value').prop('disabled',false);
+      $('#fuel-efficiency').prop('checked',false);
+      $('#custom-values').prop('checked',false);
+      $('#usage-message').html(chrome.i18n.getMessage("fcpMessage"));
+    }
+    else{
+      $('#distance-value').prop('disabled',false);
+    }
+  }
+  else{
+    if($(this).prop('checked')){
+      $('#distance-value').prop('disabled',false);
+      $('#fuel-value').prop('disabled',false);
+      $('#fuel-consumed-per').prop('checked',false);
+      $('#fuel-efficiency').prop('checked',false);
+      $('#usage-message').html(chrome.i18n.getMessage("cvMessage"));
+    }
+    else{
+      $('#distance-value').prop('disabled',false);
+    }
+  }
+}
+
+function toggleTravelCost(){
+  if($(this).prop('checked')){
+    $('#fuel-cost,#fuel-cost-units,#currency-codes').prop('disabled',false);
+  }
+  else{
+    $('#fuel-cost,#fuel-cost-units,#currency-codes').prop('disabled',true);
+  }
+}
+
+$(document).bind('DOMContentLoaded', function () {
   optionsData = new StorageManager('calculationObject', function() {
     
     //assigning click listener to the save for each tabs
@@ -196,37 +266,12 @@ document.addEventListener('DOMContentLoaded', function () {
     
     //assigning click listener to the tabs
     $('.tab-button').on('click',switchtab);
-		$('#by-fuel-consumption').on('click', function(){
-      if($(this).prop('checked')){
-        $('#direct-co-emission').prop('checked',false);
-        $('.by-fuel input,.by-fuel select').prop('disabled',false);
-        $('.by-co input,.by-co select').prop('disabled',true);
-      }
-      else{
-        $(this).prop('checked',true);
-      }
-    });
 
-		$('#direct-co-emission').on('click', function(){
-      if($(this).prop('checked')){
-        $('#by-fuel-consumption').prop('checked',false);
-        $('.by-fuel input,.by-fuel select').prop('disabled',true);
-        $('.by-co input,.by-co select').prop('disabled',false);
-      }
-      else{
-        $(this).prop('checked',true);
-      }
-    });
-    $('#display-travel-cost').on('click', function(){
-      if(document.getElementById("display-travel-cost").checked){
-        $('#fuel-cost').prop('disabled',false);
-        $('#fuel-cost-units').prop('disabled',false);
-      }
-      else{
-        $('#fuel-cost').prop('disabled',true);
-        $('#fuel-cost-units').prop('disabled',true);
-      }
-    });
+		$('#by-fuel-consumption,#direct-co-emission').on('click',toggleInputSource);
+
+    $('#fuel-efficiency,#fuel-consumed-per,#custom-values').on('click',toggleInputType);
+
+    $('#display-travel-cost').on('click',toggleTravelCost);
     /**
      * Prevents adding Hyphen(-) in the input field.
      */
@@ -235,14 +280,15 @@ document.addEventListener('DOMContentLoaded', function () {
         evtmin.preventDefault();
       }
     });
-    
-    for(var i = 0; i < currencyCodes.length; i++) {
+
+    for(var i=0;i<currencyCodes.length;i++) {
       $('#currency-codes')
         .append($('<option></option>')
                 .html(currencyCodes[i])
                 .val(i)
                )
     }
+    
     // Added multiple language support. replaces text with user language
     for(var i=0;i< $('[data-language]').length;++i) {
       $($('[data-language]')[i]).html(chrome.i18n.getMessage($($('[data-language]')[i]).data('language')))
@@ -250,6 +296,12 @@ document.addEventListener('DOMContentLoaded', function () {
     
     loadOldData();
   });
+/*
+  $(document).on('data-attribute-changed', function() {
+    var data = $('#contains-data').data('mydata');
+    alert('Data changed to: ' + data);
+  });*/
+
 });
 
 googleAnalytics('UA-1471148-11');

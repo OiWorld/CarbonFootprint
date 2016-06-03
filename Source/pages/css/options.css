@@ -88,13 +88,18 @@ input[type="text"],input[type="number"],select {
     background: #fff;
 }
 
+#usage-message {
+    font-style:italics;
+    font-size:0.9em;
+}
+
 button {
     width: 120px;
     padding: 0.5em 1em;
     text-transform: uppercase;
     font-size: 1.05em;
     font-weight: bold;
-    margin-top: 0.5em;
+    margin-top: 1em;
     color: #f0f0f0;
     background: #27ae60;
     border:none;
@@ -172,19 +177,24 @@ div.emission-input-cont > div.emission-input.open {
     text-align: center;
 }
 
-.minor input,select {
+.emission-input-cont input,select {
     text-align:center;
     height:2em;
     border-radius:4px;
     border:none;
+    text-align:center;
 }
 
-.minor input {
-    margin-left:3em;
+.emission-input-cont input {
+    margin-left:2em;
     width:10em;
 }
 
-.minor select {
+.emission-input-cont input[type='checkbox'] {
+    width:auto;
+}
+
+.emission-input-cont select {
     width:4em;
     margin-left:1em;
 }
@@ -206,7 +216,7 @@ div.emission-input-cont > div.emission-input.open {
     margin-left:0;
 }
 
-.minor {
+.emission-input-cont {
     padding-left:2em;
 }
 
