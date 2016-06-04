@@ -93,6 +93,8 @@ input[type="text"],input[type="number"],select {
     font-size:0.9em;
 }
 
+
+
 button {
     width: 120px;
     padding: 0.5em 1em;
@@ -139,6 +141,7 @@ div#emission-type-cont > div.tab-button.selected {
 
 div#form-fields {
     padding: 20px;
+    padding-bottom: 0px;
 }
 
 div.emission-input-cont > div.emission-input {
@@ -195,8 +198,9 @@ div.emission-input-cont > div.emission-input.open {
 }
 
 .emission-input-cont select {
-    width:4em;
+    width:3em;
     margin-left:1em;
+    -webkit-appearance: none;
 }
 
 .form-group > div.unit2 {
@@ -256,6 +260,15 @@ a:link,a:visited,a:hover,a:active {
     #description {
         font-size: 1.1em;
     }
+}
+
+#message {
+    padding:0.4em;
+    text-align:center;
+    margin:0 auto;
+    border-radius:3px;
+    margin-top:1em;
+    display:none;
 }
 
 input:disabled {

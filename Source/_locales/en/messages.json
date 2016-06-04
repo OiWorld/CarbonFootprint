@@ -118,5 +118,17 @@
   },
   "cvMessage": {
    "message": "enter total <i>Distance Travelled</i> for total <i>Fuel Consumed</i>"
+  },
+  "useMetric": {
+    "message": "Metric"
+  },
+  "useUSCustomary": {
+    "message": "US Customary"
+  },
+  "saved": {
+    "message": "Saved Successfully"
+  },
+  "error": {
+    "message": "Please enter a valid input"
   }
 }
