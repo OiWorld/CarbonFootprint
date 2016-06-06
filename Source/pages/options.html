@@ -33,25 +33,25 @@
                 <div id="form-fields">
                     <div class="tab open">
                         <div class="form-group">
+                            <div class="form-data">
+                                <label for="fuel-type" data-language="fuelType" >Fuel Type</label>
+						                    <select style="width:10em;margin-left:2em;" id="fuel-type" >
+							                      <option value="0" data-language="fuelDiesel" selected>Diesel</option>
+							                      <option value="1" data-language="fuelGasoline">Gasoline</option>
+							                      <option value="2" data-language="fuelLPG">LPG</option>
+							                      <option value="3" data-language="fuelE10">E10</option>
+							                      <option value="4" data-language="fuelE25">E25</option>
+							                      <option value="5" data-language="fuelE85">E85</option>
+							                      <option value="6" data-language="fuelEthanol">Ethanol</option>
+							                      <option value="7" data-language="fuelBioDiesel">Bio-Diesel</option>
+						                    </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <input type="checkbox" id="by-fuel-consumption" checked>
                             <label data-language="byFuelConsumption">Know your vehicle's average fuel consumption?</label>
                         </div>
                         <div class="emission-input-cont by-fuel">
-                            <div class="form-group">
-                                <div class="form-data">
-                                    <label for="fuel-type" data-language="fuelType" >Fuel Type</label>
-						                        <select style="width:10em;margin-left:2em;" id="fuel-type" >
-							                          <option value="0" data-language="fuelDiesel" selected>Diesel</option>
-							                          <option value="1" data-language="fuelGasoline">Gasoline</option>
-							                          <option value="2" data-language="fuelLPG">LPG</option>
-							                          <option value="3" data-language="fuelE10">E10</option>
-							                          <option value="4" data-language="fuelE25">E25</option>
-							                          <option value="5" data-language="fuelE85">E85</option>
-							                          <option value="6" data-language="fuelEthanol">Ethanol</option>
-							                          <option value="7" data-language="fuelBioDiesel">Bio-Diesel</option>
-						                        </select>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <div class="form-data inputType">
                                     <input type="checkbox" style="margin-left:0;" id="fuel-efficiency" checked>  

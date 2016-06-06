@@ -12,7 +12,7 @@ function switchtab(){
 function saveOptions() {
   var distance=parseFloat($('#distance-value').val());
   var fuel=parseFloat($('#fuel-value').val());
-  var consumption=fuel/distance;
+  
   optionsData.set('distance',distance);
   optionsData.set('fuel',fuel);
   var ftype=$('#fuel-type').val();
@@ -23,7 +23,7 @@ function saveOptions() {
   var USgalToL=3.785411784;
   //var miTokm=1.609344;
   var kgTolbs=2.204622621848775;
-
+  var consumption;
   optionsData.set('fuelType',parseInt(ftype));
   // Saving PRIMITVE VARIABLES- fuelCost
   
@@ -65,6 +65,7 @@ function saveOptions() {
       showMessage("error","error");
       return;
     }
+    consumption=fuel/distance;
     if(optionsData.get('unitSystem')=="metric"){
       //co in kg/km
       co = consumption*Utils.fuelInfo[ftype]['CO2Emission']/1000;
@@ -79,6 +80,14 @@ function saveOptions() {
     if(co<=0){
       showMessage("error","error");
       return;
+    }
+    if(optionsData.get('unitSystem')=="metric"){
+      //co in kg/km
+      consumption = co/Utils.fuelInfo[ftype]['CO2Emission']*1000;
+    }
+    else{
+      //co in lbs/mi
+      consumption = co/Utils.fuelInfo[ftype]['CO2Emission']*1000/USgalToL/kgTolbs;
     }
     optionsData.set('emissionRate',co);
     break;
