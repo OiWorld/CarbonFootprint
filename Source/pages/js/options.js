@@ -46,6 +46,10 @@ function saveOptions() {
     });
   }
 
+  optionsData.set('fuelCost',{
+    value: cost,
+    curr: curr
+  });
 
   optionsData.set('inputSource',$('.tab>>:checkbox:checked').attr('id'));
 
@@ -90,10 +94,6 @@ function saveOptions() {
       return;
     }
     else{
-      optionsData.set('fuelCost',{
-        value: cost,
-        curr: curr
-      });
       optionsData.set('travelRate',consumption*cost);
     }
   }
