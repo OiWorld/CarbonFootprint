@@ -14,11 +14,14 @@ function saveOptions() {
   var distance=parseFloat($('#distance-value').val());
   var fuel=parseFloat($('#fuel-value').val());
   var consumption=fuel/distance;
-  optionsData.set('consumption',consumption);
+  optionsData.set('distance',distance);
+  optionsData.set('fuel',fuel);
+  //optionsData.set('consumption',consumption);
   var ftype=$('#fuel-type').val();
   var co=parseFloat($('#emission').val());
+  optionsData.set('co',co);
   var cost=parseFloat($('#fuel-cost').val());
-  var curr=$('#currency-codes').val();
+  var curr=parseFloat($('#currency-codes').val());
   var USgalToL=3.785411784;
   //var miTokm=1.609344;
   var kgTolbs=2.204622621848775;
@@ -36,7 +39,9 @@ function saveOptions() {
   });
   
   optionsData.set('unitSystem',$('.save>:checkbox:checked').attr('id'));
-  
+
+  optionsData.set('inputType',$('.inputType>:checkbox:checked').attr('id'));
+
   if(optionsData.get('unitSystem')=="metric"){
     optionsData.set('units',{
       m: 'kg',
@@ -69,7 +74,7 @@ function saveOptions() {
     }
     if(optionsData.get('unitSystem')=="metric"){
       //co in kg/km
-      co = consumption*Utils.fuelInfo[ftype]['CO2Emission']/1000
+      co = consumption*Utils.fuelInfo[ftype]['CO2Emission']/1000;
     }
     else{
       //co in lbs/mi
@@ -86,17 +91,16 @@ function saveOptions() {
     break;
   }
   //set travel rate
-  optionsData.set('showTravelCost',$('#display-travel-cost:checkbox:checked').length);
+  optionsData.set('showTravelCost',document.getElementById('display-travel-cost').checked);
   if(optionsData.get('showTravelCost')){
     optionsData.set('travelRate',consumption*cost);
   }
-
   optionsData.store();
   // Update status to let user know options were saved.
   showMessage("saved","good");
 }
 
-function showMessage(msgcode,type){
+var showMessage = function(msgcode,type){
   var status =  $('#message');
   switch(type){
   case "error":
@@ -110,87 +114,60 @@ function showMessage(msgcode,type){
       .html(chrome.i18n.getMessage(msgcode))
       .css('display','table')
       .css('background-color','#a6ff4d');
+    optionsData.set('init',true);
     setTimeout(function() {
       status.css('display','none');
     }, 1200);
     break;
   }
 }
-//function to set emission rate
-/*
-function setTravelRate() {
-  var fuelCostObj = optionsData.get('fuelCost');
-  var consumptionObj = optionsData.get('fuelConsumption');
-  var fuelRate = null;
-  //cost($/volume) and consumption (volume/distance)
-  fuelRate = fuelCostObj['value'] * Utils.Converter.convert(consumptionObj['value'],consumptionObj['unit1'],fuelCostObj['unit2'],consumptionObj['unit2'],'km');
-  
-  //Fetching display travel cost checkbox value
-  var displayTravelCost = document.getElementById("display-travel-cost").checked;
-  
-  optionsData.set('travelRate', Math.round(fuelRate * 10000) / 10000 );
-  optionsData.set('showTravelCost', displayTravelCost);
-}*/
 
-function loadOldData() {
+var loadOldData = function() {
   //restore only if options html was saved once
-  if(optionsData.has('savedTab')) {
-    // Fuel type restore
+  if(optionsData.has('init')) {
     $('#fuel-type').val(optionsData.get('fuelType'));
-    // Fuel Cost restore
     $('#fuel-cost').val(optionsData.get('fuelCost')['value']);
-    $('#fuel-cost-unit2').val(optionsData.get('fuelCost')['unit2']);
-    //  Storing input field on type
-    $($('.emission-input-type')[optionsData.get('savedTab')]).click();
-    
-    $('#display-travel-cost').attr('checked', optionsData.get('showTravelCost'));
-    
-    switch(optionsData.get('savedTab')) {
-    case 0 :  $('#consumption').val(optionsData.get('fuelConsumption')['value']);
-      $('#consumption-unit1').val(optionsData.get('fuelConsumption')['unit1']);
-      $('#consumption-unit2').val(optionsData.get('fuelConsumption')['unit2']);
-      break;
-      
-    case 1 :  $('#efficiency').val( 1 / optionsData.get('fuelConsumption')['value']);
-      $('#efficiency-unit1').val(optionsData.get('fuelConsumption')['unit2']);
-      $('#efficiency-unit2').val(optionsData.get('fuelConsumption')['unit1']);
-      break;
-      
-    case 2 :  var emissionVal = Utils.Converter.convert(optionsData.get('emissionRate'),'g',optionsData.get('emissionDisplayUnit'),'km',optionsData.get('fuelConsumption')['unit2']);
-      $('#emission').val(Math.round(emissionVal*100)/100);
-      $('#emission-unit1').val(optionsData.get('emissionDisplayUnit'));
-      $('#emission-unit2').val(optionsData.get('fuelConsumption')['unit2']);
-      break;                            
+    $('#currency-codes').val(optionsData.get('fuelCost')['curr']);
+    $('#distance-value').val(optionsData.get('distance'));    
+    $('#fuel-value').val(optionsData.get('fuel'));
+    $('#emission').val(optionsData.get('co'));
+    if(optionsData.get('showTravelCost')){
+      $('#display-travel-cost').attr('checked', true);
+      toggleTravelCost($('#display-travel-cost'));
     }
+    $('#'+optionsData.get('inputSource')).attr('checked', true);
+    toggleInputSource($('#'+optionsData.get('inputSource')));
   }
 }
 
-function toggleInputSource(){
-  if($(this).prop('id')==="by-fuel-consumption"){
-    if($(this).prop('checked')){
+function toggleInputSource(elem){
+  if(elem.prop('id')==="by-fuel-consumption"){
+    if(elem.prop('checked')){
       $('#direct-co-emission').prop('checked',false);
       $('.by-fuel input,.by-fuel select').prop('disabled',false);
       $('.by-co input,.by-co select').prop('disabled',true);
+      $('#'+optionsData.get('inputType')).prop('checked',true);
+      toggleInputType($('#'+optionsData.get('inputType')));;
     }
     else{
-      $(this).prop('checked',true);
+      $elem.prop('checked',true);
     }
   }
-  if($(this).prop('id')==="direct-co-emission"){
-    if($(this).prop('checked')){
+  if(elem.prop('id')==="direct-co-emission"){
+    if(elem.prop('checked')){
       $('#by-fuel-consumption').prop('checked',false);
       $('.by-fuel input,.by-fuel select').prop('disabled',true);
       $('.by-co input,.by-co select').prop('disabled',false);
     }
     else{
-      $(this).prop('checked',true);
+      elem.prop('checked',true);
     }
   }
 }
 
-function toggleInputType(){
-  if($(this).prop('id')==="fuel-efficiency"){
-    if($(this).prop('checked')){
+function toggleInputType(elem){
+  if(elem.prop('id')==="fuel-efficiency"){
+    if(elem.prop('checked')){
       $('#fuel-value').val(1).prop('disabled',true);
       $('#distance-value').prop('disabled',false);
       $('#fuel-consumed-per').prop('checked',false);
@@ -201,8 +178,8 @@ function toggleInputType(){
       $('#fuel-value').prop('disabled',false);
     }
   }
-  else if($(this).prop('id')==="fuel-consumed-per"){
-    if($(this).prop('checked')){
+  else if(elem.prop('id')==="fuel-consumed-per"){
+    if(elem.prop('checked')){
       $('#distance-value').val(100).prop('disabled',true);
       $('#fuel-value').prop('disabled',false);
       $('#fuel-efficiency').prop('checked',false);
@@ -214,7 +191,7 @@ function toggleInputType(){
     }
   }
   else{
-    if($(this).prop('checked')){
+    if(elem.prop('checked')){
       $('#distance-value').prop('disabled',false);
       $('#fuel-value').prop('disabled',false);
       $('#fuel-consumed-per').prop('checked',false);
@@ -227,8 +204,8 @@ function toggleInputType(){
   }
 }
 
-function toggleTravelCost(){
-  if($(this).prop('checked')){
+function toggleTravelCost(elem){
+  if(elem.prop('checked')){
     $('#fuel-cost,#fuel-cost-volume,#currency-codes').prop('disabled',false);
   }
   else{
@@ -236,9 +213,9 @@ function toggleTravelCost(){
   }
 }
 
-function toggleUnits(){
-  if($(this).prop('id')==="metric"){
-    if($(this).prop('checked')){
+function toggleUnits(elem){
+  if(elem.prop('id')==="metric"){
+    if(elem.prop('checked')){
       $('#distance-unit option,#emission-unit-distance option')
         .val("km")
         .html("km");
@@ -247,11 +224,11 @@ function toggleUnits(){
       $('#uscustomary').prop('checked',false);
     }
     else{
-      $(this).prop('checked',true);
+      elem.prop('checked',true);
     }
   }
   else{
-    if($(this).prop('checked')){
+    if(elem.prop('checked')){
       $('#fuel-cost-volume option,#fuel-unit option').val("gal").html("gal");
       $('#emission-unit-mass option').val("lbs").html("lbs");
       $('#distance-unit option,#emission-unit-distance option')
@@ -260,7 +237,7 @@ function toggleUnits(){
       $('#metric').prop('checked',false);
     }
     else{
-      $(this).prop('checked',true);
+      elem.prop('checked',true);
     } 
   }
 }
@@ -270,17 +247,23 @@ $(document).bind('DOMContentLoaded', function () {
   optionsData = new StorageManager('calculationObject', function() {
     
     //assigning click listener to the save for each tabs
-    document.getElementById('save-button').addEventListener('click', saveOptions);
+    $('#save-button').on('click', saveOptions);
     
     //assigning click listener to the tabs
     $('.tab-button').on('click',switchtab);
 
-		$('#by-fuel-consumption,#direct-co-emission').on('click',toggleInputSource);
+		$('#by-fuel-consumption,#direct-co-emission').on('click',function(){
+      toggleInputSource(jQuery(this));
+    });
+    
+    $('#fuel-efficiency,#fuel-consumed-per,#custom-values').on('click',function(){
+      toggleInputType(jQuery(this));
+    });
 
-    $('#fuel-efficiency,#fuel-consumed-per,#custom-values').on('click',toggleInputType);
-
-    $('#display-travel-cost').on('click',toggleTravelCost);
-
+    $('#display-travel-cost').on('click',function(){
+      toggleTravelCost(jQuery(this));
+    });
+    
     $('#metric,#uscustomary').on('click',toggleUnits);
     /**
      * Prevents adding Hyphen(-) in the input field.
@@ -295,13 +278,17 @@ $(document).bind('DOMContentLoaded', function () {
       $('#currency-codes')
         .append($('<option></option>')
                 .html(currencyCodes[i])
-                .val(currencyCodes[i])
-               )
+                .val(i)
+               );
     }
-    
+ 
     // Added multiple language support. replaces text with user language
-    for(var i=0;i< $('[data-language]').length;++i) {
-      $($('[data-language]')[i]).html(chrome.i18n.getMessage($($('[data-language]')[i]).data('language')))
+    for(var i=0;i<$('[data-language]').length;i++) {
+      $($('[data-language]')[i])
+        .html(chrome.i18n.getMessage($($('[data-language]')[i])
+                                     .data('language')
+                                    )
+             );
     }
     
     loadOldData();
