@@ -9,14 +9,12 @@ function switchtab(){
   $('.tab:nth-child('+($('.tab-button.selected').index()+1)+')').addClass('open');
 }
 
-// Function to handle all 3 tabs save  click
 function saveOptions() {
   var distance=parseFloat($('#distance-value').val());
   var fuel=parseFloat($('#fuel-value').val());
   var consumption=fuel/distance;
   optionsData.set('distance',distance);
   optionsData.set('fuel',fuel);
-  //optionsData.set('consumption',consumption);
   var ftype=$('#fuel-type').val();
   var co=parseFloat($('#emission').val());
   optionsData.set('co',co);
@@ -25,18 +23,9 @@ function saveOptions() {
   var USgalToL=3.785411784;
   //var miTokm=1.609344;
   var kgTolbs=2.204622621848775;
-  //console.log(co,mass,cost,curr,ftype,funit,dunit,fuel,distance);
-  //Saving input type
-  //optionsData.set('savedTab',$('.emission-input.open').index());
-  // Saving PRIMITVE VARIABLES- fuelType
 
   optionsData.set('fuelType',parseInt(ftype));
   // Saving PRIMITVE VARIABLES- fuelCost
-  
-  optionsData.set('fuelCost',{
-    value: parseFloat(cost),
-    curr: curr
-  });
   
   optionsData.set('unitSystem',$('.save>:checkbox:checked').attr('id'));
 
@@ -90,12 +79,24 @@ function saveOptions() {
     optionsData.set('emissionRate',co);
     break;
   }
+
   //set travel rate
-  optionsData.set('showTravelCost',document.getElementById('display-travel-cost').checked);
+  optionsData.set('showTravelCost',
+                  document.getElementById('display-travel-cost').checked
+                 );
   if(optionsData.get('showTravelCost')){
-    optionsData.set('travelRate',consumption*cost);
+    if(cost<=0){
+      showMessage("error","error");
+      return;
+    }
+    else{
+      optionsData.set('fuelCost',{
+        value: cost,
+        curr: curr
+      });
+      optionsData.set('travelRate',consumption*cost);
+    }
   }
-  optionsData.store();
   // Update status to let user know options were saved.
   showMessage("saved","good");
 }
@@ -115,6 +116,7 @@ var showMessage = function(msgcode,type){
       .css('display','table')
       .css('background-color','#a6ff4d');
     optionsData.set('init',true);
+    optionsData.store();
     setTimeout(function() {
       status.css('display','none');
     }, 1200);
@@ -122,7 +124,7 @@ var showMessage = function(msgcode,type){
   }
 }
 
-var loadSavedData = function() {
+function loadSavedData() {
   //restore only if options html was saved once
   if(optionsData.has('init')) {
     $('#fuel-type').val(optionsData.get('fuelType'));
@@ -148,8 +150,12 @@ function toggleInputSource(elem){
       $('#direct-co-emission').prop('checked',false);
       $('.by-fuel input,.by-fuel select').prop('disabled',false);
       $('.by-co input,.by-co select').prop('disabled',true);
-      $('#'+optionsData.get('inputType')).prop('checked',true);
-      toggleInputType($('#'+optionsData.get('inputType')));;
+      if(optionsData.has('init')){
+        $('#'+optionsData.get('inputType')).prop('checked',true);
+        toggleInputType($('#'+optionsData.get('inputType')));
+      }else{
+        toggleInputType($('.inputType>:checkbox:checked'));
+      }
     }
     else{
       $elem.prop('checked',true);
@@ -272,11 +278,12 @@ $(document).bind('DOMContentLoaded', function () {
     /**
      * Prevents adding Hyphen(-) in the input field.
      */
-    $('#consumption,#emission,#efficiency').bind('keypress',function(evtmin){
-      if(evtmin.which === 45){
-        evtmin.preventDefault();
-      }
-    });
+    /*$('#distance-value,#emission,#fuel-value,#fuel-cost')
+      .bind('keypress',function(evtmin){
+        if(evtmin.which === 45){
+          evtmin.preventDefault();
+        }
+      });*/
 
     for(var i=0;i<currencyCodes.length;i++) {
       $('#currency-codes')
