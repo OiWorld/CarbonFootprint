@@ -88,5 +88,11 @@
   },
   "save": {
     "message": "SAVE"
+  },
+  "notificationTitle": {
+    "message": "You should checkup your car"
+  },
+  "notificationMessage": {
+    "message": "The time you set for the car inspection has passed"
   }
 }
