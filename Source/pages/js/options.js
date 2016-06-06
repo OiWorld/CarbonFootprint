@@ -122,7 +122,7 @@ var showMessage = function(msgcode,type){
   }
 }
 
-var loadOldData = function() {
+var loadSavedData = function() {
   //restore only if options html was saved once
   if(optionsData.has('init')) {
     $('#fuel-type').val(optionsData.get('fuelType'));
@@ -136,7 +136,9 @@ var loadOldData = function() {
       toggleTravelCost($('#display-travel-cost'));
     }
     $('#'+optionsData.get('inputSource')).attr('checked', true);
-    toggleInputSource($('#'+optionsData.get('inputSource')));
+    toggleInputSource($('#'+optionsData.get('inputSource')));    
+    $('#'+optionsData.get('unitSystem')).attr('checked', true);
+    toggleUnits($('#'+optionsData.get('unitSystem')));
   }
 }
 
@@ -264,7 +266,9 @@ $(document).bind('DOMContentLoaded', function () {
       toggleTravelCost(jQuery(this));
     });
     
-    $('#metric,#uscustomary').on('click',toggleUnits);
+    $('#metric,#uscustomary').on('click',function(){
+      toggleUnits(jQuery(this));
+    });
     /**
      * Prevents adding Hyphen(-) in the input field.
      */
@@ -291,7 +295,7 @@ $(document).bind('DOMContentLoaded', function () {
              );
     }
     
-    loadOldData();
+    loadSavedData();
   });
 
 });
