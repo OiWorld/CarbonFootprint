@@ -5,7 +5,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="{{site.url}}#page-top">
+                <a class="navbar-brand page-scroll" href="{{site.url}}{{site.baseurl}}#page-top">
                     <i class="fa fa-play-circle"></i>  {{ site.title }}
                 </a>
             </div>
@@ -15,13 +15,13 @@
                 <ul class="nav navbar-nav">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
-                        <a href="{{site.url}}#page-top"></a>
+                        <a href="{{site.url}}{{site.baseurl}}#page-top"></a>
                     </li>
                     {% assign sorted = site.pages | sort: "order" %}
                     {% for page in sorted %}
                     {% unless page.url == "/" %}
                     <li>
-                        <a href="{{site.url}}#{{ page.title }}">{{ page.title }}</a>
+                        <a href="{{site.url}}{{site.baseurl}}#{{ page.title }}">{{ page.title }}</a>
                     </li>
                     {% endunless %}
                     {% endfor %}
