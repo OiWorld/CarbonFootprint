@@ -203,3 +203,7 @@
     height: 90px;
     margin-bottom: 50px;
 }
+
+.highlighter-rouge {
+    text-align: left;
+}
