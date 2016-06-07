@@ -133,6 +133,31 @@ var showMessage = function(msgcode,type){
   }
 }
 
+var saveLocation = function(){
+  var geoData={},
+      city="locality,political",
+      country="country,political",
+      state="administrative_area_level_1,political",
+      gc=new google.maps.Geocoder();
+  navigator.geolocation.getCurrentPosition(function(position) {
+    var lat = position.coords.latitude,
+        lng = position.coords.longitude,
+        latlng=new google.maps.LatLng(lat,lng);
+    gc.geocode({'latLng': latlng}, function (results, status) {
+      var addComps = results[0].address_components;
+      for (var i=0;i<addComps.length;i++) {
+        if(addComps[i].types==city||
+           addComps[i].types==country||
+           addComps[i].types==state){
+          geoData[addComps[i].types[0]] = addComps[i].long_name;
+        }
+      }
+      optionsData.set('geoData',geoData);
+      optionsData.store();
+    });
+  });
+}
+
 function loadSavedData() {
   //restore only if options html was saved once
   if(optionsData.has('init')) {
@@ -150,6 +175,12 @@ function loadSavedData() {
     toggleInputSource($('#'+optionsData.get('inputSource')));    
     $('#'+optionsData.get('unitSystem')).attr('checked', true);
     toggleUnits($('#'+optionsData.get('unitSystem')));
+  }
+  if(!optionsData.has('geoData')){
+    saveLocation();
+  }
+  else{
+    console.log(optionsData.get('geoData'));
   }
 }
 
@@ -313,7 +344,6 @@ $(document).bind('DOMContentLoaded', function () {
     
     loadSavedData();
   });
-
 });
 
 googleAnalytics('UA-1471148-11');
