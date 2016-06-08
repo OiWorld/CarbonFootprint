@@ -11,8 +11,11 @@
     "message": "<p>Whenever you ask Google Maps for driving directions, this browser extension automatically estimates the total CO<sub>2</sub> emission for the driving route suggested by Google Maps. The estimation is then shown to the left of the map, next to the route's total distance.</p><p>To improve the accuracy of the estimation, choose amongst one of the tabs whose value you wish to enter:  </p>",
     "description": "The paragraph beside form"
   },
-  "fuelConsumption": {
-    "message": "Fuel Consumption"
+  "distanceTravelled": {
+    "message": "Distance Travelled:"
+  },
+  "fuelConsumed": {
+    "message": "Fuel Consumed:"
   },
   "fuelConsumptionUnit": {
     "message": "Fuel Consumption Units"
@@ -24,13 +27,22 @@
     "message": "Fuel Efficiency Units"
   },
   "coEmission": {
-    "message": "CO<sub>2</sub> Emission"
+    "message": "CO<sub>2</sub> Emissions:"
+  },
+  "directCOEmission": {
+    "message": "Know your vehicle's average CO<sub>2</sub> emission?"
+  },
+  "byFuelConsumption": {
+    "message": "Know your vehicle's average fuel consumption?"
+  },
+  "costCalculator": {
+    "message": "Cost Calculator"
   },
   "coEmissionUnit": {
     "message": "CO<sub>2</sub> Emission Units"
   },
   "fuelType": {
-    "message": "Fuel Type"
+    "message": "Fuel Type:"
   },
   "fuelDiesel": {
     "message": "Diesel"
@@ -57,7 +69,7 @@
     "message": "Bio-Diesel"
   },
   "fuelCost": {
-    "message": "Fuel Cost"
+    "message": "Fuel Cost:"
   },
   "fuelCostUnit": {
     "message": "in $ per Volume unit"
@@ -94,5 +106,35 @@
   },
   "notificationMessage": {
     "message": "The time you set for the car inspection has passed"
+  },
+  "byFuelEfficiency": {
+    "message": "Fuel Efficiency"
+  },
+  "byFuelConsumptionPer": {
+    "message": "Fuel Consumption"
+  },
+  "byCustomValues": {
+    "message": "Custom Values"
+  },
+  "feMessage": {
+    "message": "enter <i>Distance Travelled</i> in 1 unit of <i>Fuel Consumed</i>"
+  },
+  "fcpMessage": {
+    "message": "enter <i>Fuel Consumed</i> per 100 units of <i>Distance Travelled</i>"
+  },
+  "cvMessage": {
+   "message": "enter total <i>Distance Travelled</i> for total <i>Fuel Consumed</i>"
+  },
+  "useMetric": {
+    "message": "Metric"
+  },
+  "useUSCustomary": {
+    "message": "US Customary"
+  },
+  "saved": {
+    "message": "Saved Successfully"
+  },
+  "error": {
+    "message": "Please enter a valid input"
   }
 }

@@ -69,7 +69,6 @@ GoogleMapsManager.prototype.insertTravelCostElement = function(route, e) {
 
 GoogleMapsManager.prototype.update = function() {
     var routes = this.getAllDrivingRoutes();
-
     for(var i=0; i < routes.length; i++) {
         var distanceString = this.getDistanceString(routes[i]);
         var distanceInKm = this.convertDistance(distanceString);
