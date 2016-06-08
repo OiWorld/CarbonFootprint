@@ -68,11 +68,11 @@ function saveOptions() {
     consumption=fuel/distance;
     if(optionsData.get('unitSystem')=="metric"){
       //co in kg/km
-      co = consumption*Utils.fuelInfo[ftype]['CO2Emission']/1000;
+      co = consumption*Utils.fuelInfo[ftype].CO2Emission/1000;
     }
     else{
       //co in lbs/mi
-      co = consumption*Utils.fuelInfo[ftype]['CO2Emission']/1000*USgalToL*kgTolbs;
+      co = consumption*Utils.fuelInfo[ftype].CO2Emission/1000*USgalToL*kgTolbs;
     }
     optionsData.set('emissionRate',co);
     break;
@@ -83,11 +83,11 @@ function saveOptions() {
     }
     if(optionsData.get('unitSystem')=="metric"){
       //co in kg/km
-      consumption = co/Utils.fuelInfo[ftype]['CO2Emission']*1000;
+      consumption = co/Utils.fuelInfo[ftype].CO2Emission*1000;
     }
     else{
       //co in lbs/mi
-      consumption = co/Utils.fuelInfo[ftype]['CO2Emission']*1000/USgalToL/kgTolbs;
+      consumption = co/Utils.fuelInfo[ftype].CO2Emission*1000/USgalToL/kgTolbs;
     }
     optionsData.set('emissionRate',co);
     break;
@@ -110,7 +110,7 @@ function saveOptions() {
   showMessage("saved","good");
 }
 
-var showMessage = function(msgcode,type){
+function showMessage(msgcode,type) {
   var status =  $('#message');
   switch(type){
   case "error":
@@ -137,8 +137,8 @@ function loadSavedData() {
   //restore only if options html was saved once
   if(optionsData.has('init')) {
     $('#fuel-type').val(optionsData.get('fuelType'));
-    $('#fuel-cost').val(optionsData.get('fuelCost')['value']);
-    $('#currency-codes').val(optionsData.get('fuelCost')['curr']);
+    $('#fuel-cost').val(optionsData.get('fuelCost').value);
+    $('#currency-codes').val(optionsData.get('fuelCost').curr);
     $('#distance-value').val(optionsData.get('distance'));    
     $('#fuel-value').val(optionsData.get('fuel'));
     $('#emission').val(optionsData.get('co'));
@@ -303,7 +303,7 @@ $(document).bind('DOMContentLoaded', function () {
     }
  
     // Added multiple language support. replaces text with user language
-    for(var i=0;i<$('[data-language]').length;i++) {
+    for(i=0;i<$('[data-language]').length;i++) {
       $($('[data-language]')[i])
         .html(chrome.i18n.getMessage($($('[data-language]')[i])
                                      .data('language')
