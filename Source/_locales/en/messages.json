@@ -27,7 +27,7 @@
     "message": "Fuel Efficiency Units"
   },
   "coEmission": {
-    "message": "CO<sub>2</sub> Emissions:"
+    "message": "CO<sub>2</sub> Emissions"
   },
   "directCOEmission": {
     "message": "Know your vehicle's average CO<sub>2</sub> emission?"
@@ -100,6 +100,18 @@
   },
   "save": {
     "message": "SAVE"
+  },
+  "notificationMenu": {
+    "message": "Vehicle Checkup"
+  },
+  "notificationDisplayLabel": {
+    "message": "Display vehicle checkup notification"
+  },
+  "notificationLastChekup": {
+    "message": "Last checkup Date:"
+  },
+  "notificationNextChekup": {
+    "message": "Next Checkup Months Years:"
   },
   "notificationTitle": {
     "message": "You should checkup your car"

@@ -29,6 +29,7 @@
                 <div id="emission-type-cont">
                     <div class="tab-button selected" data-language="coEmission">Fuel Consumption</div>
                     <div class="tab-button" data-language="costCalculator" >CO<sub>2</sub> Emission</div>
+                    <div class="tab-button" data-language="notificationMenu" >Vehicle Checkup</div>
                 </div>
                 <div id="form-fields">
                     <div class="tab open">
@@ -118,6 +119,29 @@
                                     <select class="selectFUnit" style="margin-left:0;" id="fuel-cost-volume" disabled>
                                         <option value="L" selected>L</option>
                                     </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <div class="form-group">
+                            <input type="checkbox" id="display-checkup-notify" unchecked>
+                            <label for="display-checkup-notify" data-language="notificationDisplayLabel">Display vehicle checkup notification</label>
+                        </div>
+                        <div class="emission-input-cont">
+                            <div class="form-group">
+                                <div class="form-data">
+                                    <label for="last-checkup" data-language="notificationLastChekup" >Last checkup Date:</label>
+                                    <input type="date" id="last-checkup" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-data">
+                                    <label for="next-checkup" data-language="notificationNextChekup" >Next Checkup Months-Years:</label>
+                                    <div id="next-checkup">
+                                        <input class="checkup-number" type="number" id="next-checkup-month" value="0" min="0" step="1" disabled>
+                                        <input class="checkup-number" type="number" id="next-checkup-year" value="0" min="0" step="1" disabled>
+                                    </div>
                                 </div>
                             </div>
                         </div>

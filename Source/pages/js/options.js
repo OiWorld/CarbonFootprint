@@ -106,6 +106,25 @@ function saveOptions() {
       optionsData.set('travelRate',consumption*cost);
     }
   }
+
+  //set vehicle checkup
+  var lastCheckup = $('#last-checkup').val();
+  var nextCheckupMonth = $('#next-checkup-month').val();
+  var nextCheckupÝear = $('#next-checkup-year').val();
+
+  optionsData.set('showVehicleCheckupNotification',
+                  document.getElementById('display-checkup-notify').checked
+                  );
+
+  if (optionsData.get('showVehicleCheckupNotification')) {
+    if (nextCheckupMonth <= 0 && nextCheckupÝear <= 0) {
+      showMessage("error", "error");
+      return;
+    }
+    optionsData.set('lastCheckup', lastCheckup);
+    optionsData.set('nextCheckupMonth', nextCheckupMonth);
+    optionsData.set('nextCheckupÝear', nextCheckupÝear);
+  }
   // Update status to let user know options were saved.
   showMessage("saved","good");
 }
@@ -142,9 +161,16 @@ function loadSavedData() {
     $('#distance-value').val(optionsData.get('distance'));    
     $('#fuel-value').val(optionsData.get('fuel'));
     $('#emission').val(optionsData.get('co'));
+    $('#last-checkup').val(optionsData.get('lastCheckup'));
+    $('#next-checkup-month').val(optionsData.get('nextCheckupMonth'));
+    $('#next-checkup-year').val(optionsData.get('nextCheckupÝear'));
     if(optionsData.get('showTravelCost')){
       $('#display-travel-cost').attr('checked', true);
       toggleTravelCost($('#display-travel-cost'));
+    }
+    if(optionsData.get('showVehicleCheckupNotification')) {
+        $('#display-checkup-notify').attr('checked', true);
+        toggleVehicleCheckup($('#display-checkup-notify'));
     }
     $('#'+optionsData.get('inputSource')).attr('checked', true);
     toggleInputSource($('#'+optionsData.get('inputSource')));    
@@ -221,6 +247,14 @@ function toggleInputType(elem){
   }
 }
 
+function toggleVehicleCheckup(elm) {
+  if (elm.prop('checked')) {
+    $('#last-checkup,#next-checkup-month,#next-checkup-year').prop('disabled',false);
+  } else {
+    $('#last-checkup,#next-checkup-month,#next-checkup-year').prop('disabled',true);
+  }
+}
+
 function toggleTravelCost(elem){
   if(elem.prop('checked')){
     $('#fuel-cost,#fuel-cost-volume,#currency-codes').prop('disabled',false);
@@ -279,6 +313,10 @@ $(document).bind('DOMContentLoaded', function () {
 
     $('#display-travel-cost').on('click',function(){
       toggleTravelCost(jQuery(this));
+    });
+
+    $('#display-checkup-notify').on('click',function(){
+      toggleVehicleCheckup(jQuery(this));
     });
     
     $('#metric,#uscustomary').on('click',function(){

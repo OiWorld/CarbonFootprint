@@ -224,6 +224,11 @@ div.emission-input-cont > div.emission-input.open {
     padding-left:2em;
 }
 
+.emission-input-cont .checkup-number {
+    width: 4em;
+    display: inline-block;
+}
+
 #offset {
     text-align: center;
     font-size: 1.1em;
