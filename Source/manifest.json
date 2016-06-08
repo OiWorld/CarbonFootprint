@@ -210,6 +210,34 @@
       ],
       "run_at" : "document_end",
       "all_frames" : true
+    },
+    {
+      "matches": [ "http://maps.here.com/*",
+        "https://maps.here.com/*"
+      ],
+      "css": ["core/css/main.css"],
+      "js" : [
+        "core/CarbonFootprintCore.js",
+        "core/settings/ChromeSettingsProvider.js",
+        "core/maps/HereMapsManager.js",
+        "core/init.js"
+      ],
+      "run_at" : "document_end",
+      "all_frames" : true
+    },
+    {
+      "matches": [ "http://www.mapquest.com/directions*",
+        "https://www.mapquest.com/directions*"
+      ],
+      "css": ["core/css/main.css"],
+      "js" : [
+        "core/CarbonFootprintCore.js",
+        "core/settings/ChromeSettingsProvider.js",
+        "core/maps/MapQuestMapsManager.js",
+        "core/init.js"
+      ],
+      "run_at" : "document_end",
+      "all_frames" : true
     }
   ],
   "icons" : {
@@ -221,6 +249,8 @@
   },
   "permissions": [
     "tabs",
-    "storage"
+    "storage",
+    "debugger",
+    "idle"
   ]
 }

@@ -88,13 +88,20 @@ input[type="text"],input[type="number"],select {
     background: #fff;
 }
 
+#usage-message {
+    font-style:italics;
+    font-size:0.9em;
+}
+
+
+
 button {
     width: 120px;
     padding: 0.5em 1em;
     text-transform: uppercase;
     font-size: 1.05em;
     font-weight: bold;
-    margin-top: 0.5em;
+    margin-top: 1em;
     color: #f0f0f0;
     background: #27ae60;
     border:none;
@@ -114,7 +121,7 @@ div#emission-type-cont {
     text-align: center;
 }
 
-div#emission-type-cont > div.emission-input-type {
+div#emission-type-cont > div.tab-button {
     display: inline-block;
     cursor: pointer;
     width: 32%;
@@ -126,7 +133,7 @@ div#emission-type-cont > div.emission-input-type {
     font-weight: bold;
 }
 
-div#emission-type-cont > div.emission-input-type.selected {
+div#emission-type-cont > div.tab-button.selected {
     background: #f0f0f0;
     opacity: 1;
     border-bottom: 4px solid #2980B9;
@@ -134,6 +141,7 @@ div#emission-type-cont > div.emission-input-type.selected {
 
 div#form-fields {
     padding: 20px;
+    padding-bottom: 0px;
 }
 
 div.emission-input-cont > div.emission-input {
@@ -144,8 +152,17 @@ div.emission-input-cont > div.emission-input.open {
     display: block;
 }
 
+#form .tab {
+    display: none;
+}
+
+#form .open {
+    display: block;
+}
+
 .form-group {
-    padding: 0.5em 0;
+    padding: 0.7em 0;
+    padding-right:0;
 }
 .form-head {
     font-size: 1.05em;
@@ -155,11 +172,37 @@ div.emission-input-cont > div.emission-input.open {
     display: inline-block;
     width: 45%;
 }
-.form-group > div.unitper {
-    display:inline-block;
-    width: 7%;
+.unitper {
+    padding-left:0.3em;
+    padding-right:0.5em;
+    width: 1em;
+    font-size:2em;
     text-align: center;
 }
+
+.emission-input-cont input,select {
+    text-align:center;
+    height:2em;
+    border-radius:4px;
+    border:none;
+    text-align:center;
+}
+
+.emission-input-cont input {
+    margin-left:2em;
+    width:10em;
+}
+
+.emission-input-cont input[type='checkbox'] {
+    width:auto;
+}
+
+.emission-input-cont select {
+    width:3em;
+    margin-left:1em;
+    -webkit-appearance: none;
+}
+
 .form-group > div.unit2 {
     float:right;
     font-size: 0.8em;
@@ -167,6 +210,18 @@ div.emission-input-cont > div.emission-input.open {
 .form-group > span.note {
     float:right;
     font-size: 0.8em;
+}
+.form-data {
+    display: flex;
+    align-items:center;
+}
+
+.major input {
+    margin-left:0;
+}
+
+.emission-input-cont {
+    padding-left:2em;
 }
 
 #offset {
@@ -205,4 +260,21 @@ a:link,a:visited,a:hover,a:active {
     #description {
         font-size: 1.1em;
     }
+}
+
+#message {
+    padding:0.4em;
+    text-align:center;
+    margin:0 auto;
+    border-radius:3px;
+    margin-top:1em;
+    display:none;
+}
+
+input:disabled {
+    background: #dddddd;
+}
+
+select:disabled {
+    background: #dddddd;
 }
