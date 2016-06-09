@@ -1,0 +1,54 @@
+{
+  "fuels": [
+    {
+      "fuel": "Diesel", 
+      "langKey": "fuelDiesel",
+      "measuredBy": "volume"
+    },
+    {
+      "fuel": "Gasoline",
+      "langKey": "fuelGasoline",
+      "measuredBy": "volume"
+    },
+    {
+      "fuel": "E10",
+      "langKey": "fuelE10",
+      "measuredBy": "volume"
+    },
+    {
+      "fuel": "E25",
+      "langKey": "fuelE25",
+      "measuredBy": "volume"
+    },
+    {
+      "fuel": "E85",
+      "langKey": "fuelE85",
+      "measuredBy": "volume"
+    },
+    {
+      "fuel": "Ethanol",
+      "langKey": "fuelEthanol",
+      "measuredBy": "volume"
+    },
+    {
+      "fuel": "Bio-Diesel",
+      "langKey": "fuelBioDiesel",
+      "measuredBy": "volume"
+    },
+    {
+      "fuel": "LPG",
+      "langKey": "fuelLPG",
+      "measuredBy": "weight"
+    },
+    {
+      "fuel": "CNG",
+      "langKey": "fuelCNG",
+      "measuredBy": "weight"
+    },
+    {
+      "fuel": "Electricity",
+      "langKey": "fuelElectricity",
+      "measuredBy": "energy"
+    }
+  ]
+}

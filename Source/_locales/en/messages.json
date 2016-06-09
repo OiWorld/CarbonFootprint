@@ -68,6 +68,12 @@
   "fuelBioDiesel": {
     "message": "Bio-Diesel"
   },
+  "fuelCNG": {
+    "message": "CNG"
+  },
+  "fuelElectricity":{
+    "message": "Electricity"
+  },
   "fuelCost": {
     "message": "Fuel Cost:"
   },

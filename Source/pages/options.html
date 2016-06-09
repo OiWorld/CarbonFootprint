@@ -33,18 +33,22 @@
                 <div id="form-fields">
                     <div class="tab open">
                         <div class="form-group">
-                            <div class="form-data">
-                                <label for="fuel-type" data-language="fuelType" >Fuel Type</label>
-						                    <select style="width:10em;margin-left:2em;" id="fuel-type" >
-							                      <option value="0" data-language="fuelDiesel" selected>Diesel</option>
-							                      <option value="1" data-language="fuelGasoline">Gasoline</option>
-							                      <option value="2" data-language="fuelLPG">LPG</option>
-							                      <option value="3" data-language="fuelE10">E10</option>
-							                      <option value="4" data-language="fuelE25">E25</option>
-							                      <option value="5" data-language="fuelE85">E85</option>
-							                      <option value="6" data-language="fuelEthanol">Ethanol</option>
-							                      <option value="7" data-language="fuelBioDiesel">Bio-Diesel</option>
-						                    </select>
+                            <input type="checkbox" id="direct-co-emission" unchecked>  
+                            <label data-language="directCOEmission">Know your vehicle's average CO2 emission?</label>
+                        </div>
+                        <div class="emission-input-cont by-co">
+                            <div class="form-group">
+                                <div class="form-data">
+                                    <label for="emission" data-language="coEmission" >CO<sub>2</sub> Emission</label>
+                                    <input id="emission" type="number" size="5" value="0" style="text-align:center" min="0" disabled>
+                                    <select class="selectMUnit" style="text-align:center" id="emission-unit-mass" disabled>
+                                        <option value="kg">kg</option>
+                                    </select>
+                                    <div class="unitper">/</div>
+                                    <select class="selectDUnit" style="margin-left:0;" id="emission-unit-distance" disabled>
+                                        <option value="km" selected>km</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -52,6 +56,13 @@
                             <label data-language="byFuelConsumption">Know your vehicle's average fuel consumption?</label>
                         </div>
                         <div class="emission-input-cont by-fuel">
+                            <div class="form-group">
+                                <div class="form-data">
+                                    <label for="fuel-type" data-language="fuelType" >Fuel Type</label>
+						                        <select style="width:10em;margin-left:2em;" id="fuel-type" >
+						                        </select>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <div class="form-data inputType">
                                     <input type="checkbox" style="margin-left:0;" id="fuel-efficiency" checked>  
@@ -82,32 +93,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <input type="checkbox" id="direct-co-emission" unchecked>  
-                            <label data-language="directCOEmission">Know your vehicle's average CO2 emission?</label>
-                        </div>
-                        <div class="emission-input-cont by-co">
-                            <div class="form-group">
-                                <div class="form-data">
-                                    <label for="emission" data-language="coEmission" >CO<sub>2</sub> Emission</label>
-                                    <input id="emission" type="number" size="5" value="0" style="text-align:center" min="0" disabled>
-                                    <select class="selectMUnit" style="text-align:center" id="emission-unit-mass" disabled>
-                                        <option value="kg">kg</option>
-                                    </select>
-                                    <div class="unitper">/</div>
-                                    <select class="selectDUnit" style="margin-left:0;" id="emission-unit-distance" disabled>
-                                        <option value="km" selected>km</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="tab">
                         <div class="form-group">
                             <input type="checkbox" id="display-travel-cost" unchecked>
                             <label for="display-travel-cost" data-language="travelCostEstimate">Display travel cost estimation</label>
                         </div>
-                        <div class="emission-input-cont">
+                        <div class="emission-input-cont cost-fields">
+                            <div class="form-group">
+                                <div class="form-data">
+                                    <label for="fuel-type" data-language="fuelType" >Fuel Type</label>
+						                        <select style="width:10em;margin-left:2em;" id="fuel-type" disabled>
+						                        </select>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <div class="form-data">
                                     <label for="fuel-cost" data-language="fuelCost" >Fuel Cost</label>
