@@ -136,5 +136,8 @@
   },
   "error": {
     "message": "Please enter a valid input"
+  },
+  "imperial": {
+    "message": "Imperial"
   }
 }

@@ -1,0 +1,466 @@
+{
+	"countries": {
+		"Afghanistan": {
+			"RenewablePer": "80.32"
+		},
+		"Albania": {
+			"RenewablePer": "99.98"
+		},
+		"Algeria": {
+			"RenewablePer": "1.14"
+		},
+		"Angola": {
+			"RenewablePer": "71.96"
+		},
+		"Argentina": {
+			"RenewablePer": "31.1"
+		},
+		"Armenia": {
+			"RenewablePer": "30.22"
+		},
+		"Australia": {
+			"RenewablePer": "13.47"
+		},
+		"Austria": {
+			"RenewablePer": "78.39"
+		},
+		"Azerbaijan": {
+			"RenewablePer": "8.31"
+		},
+		"Bangladesh": {
+			"RenewablePer": "4.11"
+		},
+		"Belarus": {
+			"RenewablePer": "0.69"
+		},
+		"Belgium": {
+			"RenewablePer": "13.76"
+		},
+		"Belize": {
+			"RenewablePer": "96.69"
+		},
+		"Benin": {
+			"RenewablePer": "1.3"
+		},
+		"Bhutan": {
+			"RenewablePer": "99.99"
+		},
+		"Bolivia": {
+			"RenewablePer": "34.94"
+		},
+		"BosniaandHerzegovina": {
+			"RenewablePer": "31.03"
+		},
+		"Brazil": {
+			"RenewablePer": "83.98"
+		},
+		"Bulgaria": {
+			"RenewablePer": "12.11"
+		},
+		"BurkinaFaso": {
+			"RenewablePer": "18.58"
+		},
+		"Burma": {
+			"RenewablePer": "73.39"
+		},
+		"Burundi": {
+			"RenewablePer": "99.01"
+		},
+		"Cambodia": {
+			"RenewablePer": "38.91"
+		},
+		"Cameroon": {
+			"RenewablePer": "74.05"
+		},
+		"Canada": {
+			"RenewablePer": "64.48"
+		},
+		"CapeVerde": {
+			"RenewablePer": "2.28"
+		},
+		"CentralAfricanRepublic": {
+			"RenewablePer": "85.64"
+		},
+		"Chile": {
+			"RenewablePer": "37.7"
+		},
+		"China": {
+			"RenewablePer": "21.05"
+		},
+		"Colombia": {
+			"RenewablePer": "82.44"
+		},
+		"Comoros": {
+			"RenewablePer": "6.98"
+		},
+		"RepublicoftheCongo": {
+			"RenewablePer": "62.39"
+		},
+		"CostaRica": {
+			"RenewablePer": "92.24"
+		},
+		"Croatia": {
+			"RenewablePer": "50.27"
+		},
+		"Cuba": {
+			"RenewablePer": "3.96"
+		},
+		"Cyprus": {
+			"RenewablePer": "5.8"
+		},
+		"CzechRepublic": {
+			"RenewablePer": "9.79"
+		},
+		"DemocraticRepublicoftheCongo": {
+			"RenewablePer": "99.58"
+		},
+		"Denmark": {
+			"RenewablePer": "50.73"
+		},
+		"Dominica": {
+			"RenewablePer": "27.08"
+		},
+		"DominicanRepublic": {
+			"RenewablePer": "13.77"
+		},
+		"Ecuador": {
+			"RenewablePer": "56.16"
+		},
+		"Egypt": {
+			"RenewablePer": "9.48"
+		},
+		"ElSalvador": {
+			"RenewablePer": "60.71"
+		},
+		"EquatorialGuinea": {
+			"RenewablePer": "7"
+		},
+		"Eritrea": {
+			"RenewablePer": "0.59"
+		},
+		"Estonia": {
+			"RenewablePer": "13.03"
+		},
+		"Ethiopia": {
+			"RenewablePer": "99.43"
+		},
+		"FaroeIslands": {
+			"RenewablePer": "39.5"
+		},
+		"Fiji": {
+			"RenewablePer": "67.58"
+		},
+		"Finland": {
+			"RenewablePer": "41.82"
+		},
+		"France": {
+			"RenewablePer": "17.42"
+		},
+		"Gabon": {
+			"RenewablePer": "43.01"
+		},
+		"Georgia": {
+			"RenewablePer": "75.47"
+		},
+		"Germany": {
+			"RenewablePer": "32.7"
+		},
+		"Ghana": {
+			"RenewablePer": "68.26"
+		},
+		"Greece": {
+			"RenewablePer": "17.56"
+		},
+		"Guatemala": {
+			"RenewablePer": "68.08"
+		},
+		"Guinea": {
+			"RenewablePer": "56.64"
+		},
+		"Haiti": {
+			"RenewablePer": "14.51"
+		},
+		"Honduras": {
+			"RenewablePer": "45.05"
+		},
+		"Hungary": {
+			"RenewablePer": "8.14"
+		},
+		"Iceland": {
+			"RenewablePer": "99.98"
+		},
+		"India": {
+			"RenewablePer": "15.2"
+		},
+		"Indonesia": {
+			"RenewablePer": "12.01"
+		},
+		"Iran": {
+			"RenewablePer": "5.25"
+		},
+		"Iraq": {
+			"RenewablePer": "9.22"
+		},
+		"Ireland": {
+			"RenewablePer": "20.23"
+		},
+		"Israel": {
+			"RenewablePer": "0.8"
+		},
+		"Italy": {
+			"RenewablePer": "32.67"
+		},
+		"IvoryCoast": {
+			"RenewablePer": "27.47"
+		},
+		"Jamaica": {
+			"RenewablePer": "9.26"
+		},
+		"Japan": {
+			"RenewablePer": "12.66"
+		},
+		"Jordan": {
+			"RenewablePer": "0.44"
+		},
+		"Kazakhstan": {
+			"RenewablePer": "8.78"
+		},
+		"Kenya": {
+			"RenewablePer": "76.17"
+		},
+		"Kyrgyzstan": {
+			"RenewablePer": "93.79"
+		},
+		"Laos": {
+			"RenewablePer": "92.04"
+		},
+		"Latvia": {
+			"RenewablePer": "67.79"
+		},
+		"Lebanon": {
+			"RenewablePer": "7.13"
+		},
+		"Lesotho": {
+			"RenewablePer": "100"
+		},
+		"Lithuania": {
+			"RenewablePer": "30.02"
+		},
+		"Luxembourg": {
+			"RenewablePer": "15.43"
+		},
+		"RepublicofMacedonia": {
+			"RenewablePer": "17.41"
+		},
+		"Madagascar": {
+			"RenewablePer": "65.93"
+		},
+		"Malawi": {
+			"RenewablePer": "87.16"
+		},
+		"Malaysia": {
+			"RenewablePer": "7.75"
+		},
+		"Mali": {
+			"RenewablePer": "76.29"
+		},
+		"Malta": {
+			"RenewablePer": "0.75"
+		},
+		"Mauritania": {
+			"RenewablePer": "13.04"
+		},
+		"Mauritius": {
+			"RenewablePer": "21.7"
+		},
+		"Mexico": {
+			"RenewablePer": "15.73"
+		},
+		"Moldova": {
+			"RenewablePer": "4.87"
+		},
+		"Montenegro": {
+			"RenewablePer": "53.22"
+		},
+		"Morocco": {
+			"RenewablePer": "9.24"
+		},
+		"Mozambique": {
+			"RenewablePer": "99.87"
+		},
+		"Namibia": {
+			"RenewablePer": "88.59"
+		},
+		"Nepal": {
+			"RenewablePer": "99.49"
+		},
+		"Netherlands": {
+			"RenewablePer": "12.72"
+		},
+		"NewCaledonia": {
+			"RenewablePer": "14.73"
+		},
+		"NewZealand": {
+			"RenewablePer": "72.93"
+		},
+		"Nicaragua": {
+			"RenewablePer": "41.14"
+		},
+		"Nigeria": {
+			"RenewablePer": "20.55"
+		},
+		"NorthKorea": {
+			"RenewablePer": "71.25"
+		},
+		"Norway": {
+			"RenewablePer": "98.47"
+		},
+		"Pakistan": {
+			"RenewablePer": "31.85"
+		},
+		"Panama": {
+			"RenewablePer": "64.14"
+		},
+		"PapuaNewGuinea": {
+			"RenewablePer": "32.84"
+		},
+		"Paraguay": {
+			"RenewablePer": "99.99"
+		},
+		"Peru": {
+			"RenewablePer": "57.63"
+		},
+		"Philippines": {
+			"RenewablePer": "29.62"
+		},
+		"Poland": {
+			"RenewablePer": "11.04"
+		},
+		"Portugal": {
+			"RenewablePer": "44.49"
+		},
+		"PuertoRico": {
+			"RenewablePer": "0.74"
+		},
+		"Réunion": {
+			"RenewablePer": "32.5"
+		},
+		"Romania": {
+			"RenewablePer": "26.43"
+		},
+		"Russia": {
+			"RenewablePer": "16.59"
+		},
+		"Rwanda": {
+			"RenewablePer": "43.55"
+		},
+		"SaintVincentandtheGrenadines": {
+			"RenewablePer": "18.25"
+		},
+		"Samoa": {
+			"RenewablePer": "38.14"
+		},
+		"SaoTomeandPrincipe": {
+			"RenewablePer": "15.38"
+		},
+		"Senegal": {
+			"RenewablePer": "10.67"
+		},
+		"Serbia": {
+			"RenewablePer": "28.96"
+		},
+		"SierraLeone": {
+			"RenewablePer": "68.97"
+		},
+		"Slovakia": {
+			"RenewablePer": "20.35"
+		},
+		"Slovenia": {
+			"RenewablePer": "28.92"
+		},
+		"SouthAfrica": {
+			"RenewablePer": "1.01"
+		},
+		"SouthKorea": {
+			"RenewablePer": "1.43"
+		},
+		"Spain": {
+			"RenewablePer": "30.99"
+		},
+		"SriLanka": {
+			"RenewablePer": "30.32"
+		},
+		"Sudan": {
+			"RenewablePer": "72.73"
+		},
+		"Suriname": {
+			"RenewablePer": "34.29"
+		},
+		"Swaziland": {
+			"RenewablePer": "29.41"
+		},
+		"Sweden": {
+			"RenewablePer": "60.21"
+		},
+		"Switzerland": {
+			"RenewablePer": "61.96"
+		},
+		"Syria": {
+			"RenewablePer": "10.87"
+		},
+		"Tajikistan": {
+			"RenewablePer": "95.45"
+		},
+		"Tanzania": {
+			"RenewablePer": "30.22"
+		},
+		"Thailand": {
+			"RenewablePer": "8.75"
+		},
+		"Togo": {
+			"RenewablePer": "85.32"
+		},
+		"TrinidadandTobago": {
+			"RenewablePer": "0.23"
+		},
+		"Tunisia": {
+			"RenewablePer": "1.93"
+		},
+		"Turkey": {
+			"RenewablePer": "28.31"
+		},
+		"Turkmenistan": {
+			"RenewablePer": "0.02"
+		},
+		"Uganda": {
+			"RenewablePer": "82.92"
+		},
+		"Ukraine": {
+			"RenewablePer": "5.95"
+		},
+		"UnitedKingdom": {
+			"RenewablePer": "11.99"
+		},
+		"UnitedStates": {
+			"RenewablePer": "12.56"
+		},
+		"Uruguay": {
+			"RenewablePer": "62.98"
+		},
+		"Uzbekistan": {
+			"RenewablePer": "22.24"
+		},
+		"Venezuela": {
+			"RenewablePer": "65.99"
+		},
+		"Vietnam": {
+			"RenewablePer": "44.85"
+		},
+		"Zambia": {
+			"RenewablePer": "99.71"
+		},
+		"Zimbabwe": {
+			"RenewablePer": "69.75"
+		}
+	}
+}	
