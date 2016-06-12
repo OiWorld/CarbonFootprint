@@ -32,7 +32,7 @@ function saveOptions() {
   var co=parseFloat($('#emission').val());
   optionsData.set('co',co);
   var cost=parseFloat($('#fuel-cost').val());
-  var curr=parseFloat($('#currency-codes').val());
+  var curr=$('#currency-codes').val();
   var USgalToL=3.785411784;
   var ImpgalToL=4.54609;
   //var miTokm=1.609344;
@@ -144,8 +144,8 @@ var saveLocation = function(){
       state="administrative_area_level_1,political",
       gc=new google.maps.Geocoder();
   navigator.geolocation.getCurrentPosition(function(position) {
-    var lat = 25.174308,//position.coords.latitude,
-        lng = 55.238101;//position.coords.longitude,
+    var lat = position.coords.latitude,
+        lng = position.coords.longitude,
         latlng=new google.maps.LatLng(lat,lng);
     gc.geocode({'latLng': latlng}, function (results, status) {
       var addComps = results[0].address_components;
@@ -160,12 +160,13 @@ var saveLocation = function(){
       $('#reLocation').show();
       optionsData.set('geoData',geoData);
       optionsData.set('renPer',
-                      {"wiki": countries[ optionsData
+                      {"wiki": countries[optionsData
                                  .get('geoData')
-                                 .country.replace(/\s/g,"")]
+                                 .country_short]
                        .RenewablePer});
       $('#green-electricity input').val(optionsData.get('renPer').wiki);
-      $('#location').html((optionsData.get('geoData').locality+', '+optionsData.get('geoData').administrative_area_level_1+', '+optionsData.get('geoData').country).replace(/ undefined,/g,""));      
+      $('#location').html((optionsData.get('geoData').locality+', '+optionsData.get('geoData').administrative_area_level_1+', '+optionsData.get('geoData').country).replace(/ undefined,/g,""));
+      $('#currency-codes').val(countries[optionsData.get('geoData').country_short].currency);
       optionsData.store();
     });
   });
@@ -306,23 +307,20 @@ function toggleUnits(elem){
     }
     else{
       elem.prop('checked',true);
-    } 
+    }
   }
   $('#distance-unit option,#emission-unit-distance option')
     .val(units.d)
     .html(units.d);
   $('#emission-unit-mass option').val(units.m).html(units.m);
-  if(ftype<7){
-    $('#fuel-unit option').val(units.v).html(units.v);
-    $('#green-electricity').hide();
-  }
-  else if(ftype>=7&&ftype<9){
-    $('#fuel-unit option').val(units.m).html(units.m);
-    $('#green-electricity').hide();
+  $('#fuel-unit option')
+    .val(units[fuels[ftype].measuredBy])
+    .html(units[fuels[ftype].measuredBy]);
+  if(fuels[ftype].measuredBy=="e"){
+    $('#green-electricity').show();
   }
   else{
-    $('#fuel-unit option').val(units.e).html(units.e);
-    $('#green-electricity').show();
+    $('#green-electricity').hide();
   }
 }
 
@@ -377,47 +375,23 @@ $(document).bind('DOMContentLoaded', function () {
       $('#currency-codes')
         .append($('<option></option>')
                 .html(currencyCodes[i])
-                .val(i)
+                .val(currencyCodes[i])
                );
     }
 
     $.getJSON("/core/resources/countries.json",function(resp){
-      countries=resp.countries;
-      //console.log(JSON.stringify(countries));
+      countries=resp;
+      console.log(countries);
     });
-
-    /*var curren;
-    $.getJSON("/core/resources/curr.json",function(resp){
-      curren=resp;
-      //console.log(JSON.stringify(countries));
-    });
-
-    $.getJSON("/core/resources/country.json",function(resp){
-      var coun={};
-      var index = [];
-      for(var x in resp){
-        index.push(x);
-      }
-      for(i=0;i<250;i++){
-        coun[index[i]]={};
-        coun[index[i]].name=resp[index[i]];
-        if(countries[coun[index[i]].name.replace(/\s/g,"")]){
-          coun[index[i]].RenewablePer=countries[coun[index[i]].name.replace(/\s/g,"")].RenewablePer;
-        }
-        coun[index[i]].currency = curren[index[i]];
-      }
-      console.log(JSON.stringify(coun));
-    });*/
     
     $.getJSON("/core/resources/fuels.json",function(response){
-      fuels=response.fuels;
-      //console.log(fuels);
+      fuels=response;
+      console.log(fuels);
     });
 
-    for(i=0;i<fuels.length;i++) {
+    for(i in fuels) {
       $('[id="fuel-type"]')
         .append($('<option></option>')
-                .html(fuels[i].fuel)
                 .val(i)
                 .attr('data-language',fuels[i].langKey)
                );

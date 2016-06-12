@@ -1,54 +1,58 @@
-{
-  "fuels": [
-    {
-      "fuel": "Diesel", 
-      "langKey": "fuelDiesel",
-      "measuredBy": "volume"
-    },
-    {
-      "fuel": "Gasoline",
-      "langKey": "fuelGasoline",
-      "measuredBy": "volume"
-    },
-    {
-      "fuel": "E10",
-      "langKey": "fuelE10",
-      "measuredBy": "volume"
-    },
-    {
-      "fuel": "E25",
-      "langKey": "fuelE25",
-      "measuredBy": "volume"
-    },
-    {
-      "fuel": "E85",
-      "langKey": "fuelE85",
-      "measuredBy": "volume"
-    },
-    {
-      "fuel": "Ethanol",
-      "langKey": "fuelEthanol",
-      "measuredBy": "volume"
-    },
-    {
-      "fuel": "Bio-Diesel",
-      "langKey": "fuelBioDiesel",
-      "measuredBy": "volume"
-    },
-    {
-      "fuel": "LPG",
-      "langKey": "fuelLPG",
-      "measuredBy": "weight"
-    },
-    {
-      "fuel": "CNG",
-      "langKey": "fuelCNG",
-      "measuredBy": "weight"
-    },
-    {
-      "fuel": "Electricity",
-      "langKey": "fuelElectricity",
-      "measuredBy": "energy"
-    }
-  ]
+{  
+  "Diesel":{  
+    "langKey":"fuelDiesel",
+    "measuredBy":"v",
+    "CO2Emission":"2614"
+  },
+  "Gasoline":{  
+    "langKey":"fuelGasoline",
+    "measuredBy":"v",
+    "CO2Emission":"2328"
+  },
+  "E10":{  
+    "langKey":"fuelE10",
+    "measuredBy":"v",
+    "CO2Emission":"2245"
+  },
+  "E25":{  
+    "fuel":"E25",
+    "langKey":"fuelE25",
+    "measuredBy":"v",
+    "CO2Emission":"2121"
+  },
+  "E85":{  
+    "langKey":"fuelE85",
+    "measuredBy":"v",
+    "CO2Emission":"1626"
+  },
+  "Ethanol":{  
+    "langKey":"fuelEthanol",
+    "measuredBy":"v",
+    "CO2Emission":"1503"
+  },
+  "Bio-Diesel":{  
+    "langKey":"fuelBioDiesel",
+    "measuredBy":"v",
+    "CO2Emission":"2486"
+  },
+  "B20":{  
+    "langKey":"fuelB20",
+    "measuredBy":"v",
+    "CO2Emission":"2588"
+  },
+  "LPG":{  
+    "langKey":"fuelLPG",
+    "measuredBy":"m",
+    "CO2Emission":"1533"
+  },
+  "CNG":{  
+    "langKey":"fuelCNG",
+    "measuredBy":"m",
+    "CO2Emission":"2614"
+  },
+  "Electricity":{  
+    "langKey":"fuelElectricity",
+    "measuredBy":"e",
+    "CO2Emission":"2614"
+  }
 }

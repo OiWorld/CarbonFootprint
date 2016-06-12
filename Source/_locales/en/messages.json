@@ -142,5 +142,8 @@
   },
   "greenElectricity": {
     "message": "Green Electricity:"
+  },
+  "fuelB20": {
+    "message": "B20"
   }
 }
