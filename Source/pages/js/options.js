@@ -120,13 +120,13 @@ var showMessage = function(msgcode,type){
   case "error":
     status
       .html(chrome.i18n.getMessage(msgcode))
-      .css('display','table')
+      .css('display','block')
       .css('background-color','#fb5151');
     break;
   case "good":
     status
       .html(chrome.i18n.getMessage(msgcode))
-      .css('display','table')
+      .css('display','block')
       .css('background-color','#a6ff4d');
     optionsData.set('init',true);
     optionsData.store();
@@ -156,12 +156,15 @@ var saveLocation = function(){
           geoData[addComps[i].types[0]] = addComps[i].long_name;
         }
       }
+      $('#reLocation').show();
       optionsData.set('geoData',geoData);
       optionsData.set('renPer',
                       {"wiki": countries[ optionsData
                                  .get('geoData')
                                  .country.replace(/\s/g,"")]
                        .RenewablePer});
+      $('#green-electricity input').val(optionsData.get('renPer').wiki);
+      $('#location').html((optionsData.get('geoData').locality+', '+optionsData.get('geoData').administrative_area_level_1+', '+optionsData.get('geoData').country).replace(/ undefined,/g,""));      
       optionsData.store();
     });
   });
@@ -176,6 +179,7 @@ function loadSavedData() {
     $('#distance-value').val(optionsData.get('distance'));    
     $('#fuel-value').val(optionsData.get('fuel'));
     $('#emission').val(optionsData.get('co'));
+    ftype = $('#fuel-type').val();
     if(optionsData.get('showTravelCost')){
       $('#display-travel-cost').attr('checked', true);
       toggleTravelCost($('#display-travel-cost'));
@@ -187,6 +191,10 @@ function loadSavedData() {
   }
   if(!optionsData.has('geoData')){
     saveLocation();
+  }else{
+    $('#green-electricity input').val(optionsData.get('renPer').wiki);
+    $('#location').html((optionsData.get('geoData').locality+', '+optionsData.get('geoData').administrative_area_level_1+', '+optionsData.get('geoData').country).replace(/ undefined,/g,""));
+    $('#reLocation').show();
   }
   ftype = $('#fuel-type').val();
 }
@@ -305,12 +313,15 @@ function toggleUnits(elem){
   $('#emission-unit-mass option').val(units.m).html(units.m);
   if(ftype<7){
     $('#fuel-unit option').val(units.v).html(units.v);
+    $('#green-electricity').hide();
   }
   else if(ftype>=7&&ftype<9){
     $('#fuel-unit option').val(units.m).html(units.m);
+    $('#green-electricity').hide();
   }
   else{
     $('#fuel-unit option').val(units.e).html(units.e);
+    $('#green-electricity').show();
   }
 }
 
@@ -341,6 +352,10 @@ $(document).bind('DOMContentLoaded', function () {
     
     $('#metric,#uscustomary,#imperial').on('click',function(){
       toggleUnits($(this));
+    });
+
+    $('#reLocation').on('click',function(){
+      saveLocation();
     });
 
     $('[id="fuel-type"]').on('change',function(){

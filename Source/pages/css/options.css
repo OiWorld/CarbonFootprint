@@ -265,9 +265,8 @@ a:link,a:visited,a:hover,a:active {
 #message {
     padding:0.4em;
     text-align:center;
-    margin:0 auto;
     border-radius:3px;
-    margin-top:1em;
+    margin-top:2em;
     display:none;
 }
 

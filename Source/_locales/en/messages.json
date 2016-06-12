@@ -139,5 +139,8 @@
   },
   "imperial": {
     "message": "Imperial"
+  },
+  "greenElectricity": {
+    "message": "Green Electricity:"
   }
 }
