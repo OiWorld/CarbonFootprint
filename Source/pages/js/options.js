@@ -144,16 +144,17 @@ var saveLocation = function(){
       state="administrative_area_level_1,political",
       gc=new google.maps.Geocoder();
   navigator.geolocation.getCurrentPosition(function(position) {
-    var lat = position.coords.latitude,
-        lng = position.coords.longitude,
+    var lat = 25.174308,//position.coords.latitude,
+        lng = 55.238101;//position.coords.longitude,
         latlng=new google.maps.LatLng(lat,lng);
     gc.geocode({'latLng': latlng}, function (results, status) {
       var addComps = results[0].address_components;
       for (var i=0;i<addComps.length;i++) {
         if(addComps[i].types==city||
-           addComps[i].types==country||
-           addComps[i].types==state){
+           addComps[i].types==state||
+           addComps[i].types==country){
           geoData[addComps[i].types[0]] = addComps[i].long_name;
+          geoData[addComps[i].types[0]+'_short'] = addComps[i].short_name;
         }
       }
       $('#reLocation').show();
@@ -382,12 +383,35 @@ $(document).bind('DOMContentLoaded', function () {
 
     $.getJSON("/core/resources/countries.json",function(resp){
       countries=resp.countries;
-      console.log(countries);
+      //console.log(JSON.stringify(countries));
     });
 
+    /*var curren;
+    $.getJSON("/core/resources/curr.json",function(resp){
+      curren=resp;
+      //console.log(JSON.stringify(countries));
+    });
+
+    $.getJSON("/core/resources/country.json",function(resp){
+      var coun={};
+      var index = [];
+      for(var x in resp){
+        index.push(x);
+      }
+      for(i=0;i<250;i++){
+        coun[index[i]]={};
+        coun[index[i]].name=resp[index[i]];
+        if(countries[coun[index[i]].name.replace(/\s/g,"")]){
+          coun[index[i]].RenewablePer=countries[coun[index[i]].name.replace(/\s/g,"")].RenewablePer;
+        }
+        coun[index[i]].currency = curren[index[i]];
+      }
+      console.log(JSON.stringify(coun));
+    });*/
+    
     $.getJSON("/core/resources/fuels.json",function(response){
       fuels=response.fuels;
-      console.log(fuels);
+      //console.log(fuels);
     });
 
     for(i=0;i<fuels.length;i++) {
