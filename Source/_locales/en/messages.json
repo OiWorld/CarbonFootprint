@@ -29,7 +29,7 @@
   "coEmission": {
     "message": "CO<sub>2</sub> Emissions?:"
   },
-  "directCOEmission": {
+  "emissionQues": {
     "message": "Know your vehicle's average:"
   },
   "byFuelConsumption": {
