@@ -27,18 +27,18 @@
         <div id="form-cont">
             <div id="form">
                 <div id="emission-type-cont">
-                    <div class="tab-button selected" data-language="coEmission">Fuel Consumption</div>
-                    <div class="tab-button" data-language="costCalculator" >CO<sub>2</sub> Emission</div>
+                    <div class="tab-button selected" data-language="footprints"></div>
+                    <div class="tab-button" data-language="costCalculator" ></div>
                 </div>
                 <div id="form-fields">
-                    <div class="tab open">
-                        <div class="form-group">
-                            <input type="checkbox" id="direct-co-emission" checked>  
+                    <div class="tab open footprints">
+                        <div class="form-group">  
                             <label data-language="directCOEmission">Know your vehicle's average CO2 emission?</label>
                         </div>
-                        <div class="emission-input-cont by-co">
-                            <div class="form-group">
-                                <div class="form-data">
+                        <div class="form-group">
+                            <input type="checkbox" style="" id="direct-co-emission" checked>
+                            <div class="emission-input-cont">
+                                <div class="form-data by-co">
                                     <label for="emission" data-language="coEmission" >CO<sub>2</sub> Emission</label>
                                     <input id="emission" type="number" size="5" value="0" style="text-align:center" min="0">
                                     <select class="selectMUnit" style="text-align:center" id="emission-unit-mass">
@@ -53,48 +53,50 @@
                         </div>
                         <div class="form-group">
                             <input type="checkbox" id="by-fuel-consumption">
-                            <label data-language="byFuelConsumption">Know your vehicle's average fuel consumption?</label>
-                        </div>
-                        <div class="emission-input-cont by-fuel">
-                            <div class="form-group">
-                                <div class="form-data">
-                                    <label for="fuel-type" data-language="fuelType" >Fuel Type</label>
-						                        <select style="width:8em;margin-left:1em;" id="fuel-type" disabled>
-						                        </select>
-                                    <div id="green-electricity" style="display:none;margin-left:2em;margin-bottom:0.4em;">
-                                        <label data-language="greenElectricity">Green Electricity:</label>
-                                        <input style="width:5em;margin-left:1em;height:2em;" min="0" max="100" disabled>
-                                        <span style="font-weight:bold;font-size:1.2em;">%</span>
+                            <div class="emission-input-cont by-fuel">
+                                <div class="form-group" style="padding-top:0.4em;">
+                                    <label for="emission" data-language="byFuelConsumption" ></label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-data">
+                                        <label for="fuel-type" data-language="fuelType" >Fuel Type</label>
+						                            <select style="width:8em;margin-left:1em;" id="fuel-type" disabled>
+						                            </select>
+                                        <div id="green-electricity" style="display:none;margin-left:2em;margin-bottom:0.4em;">
+                                            <label data-language="greenElectricity">Green Electricity:</label>
+                                            <input style="width:5em;margin-left:1em;height:2em;" min="0" max="100" disabled>
+                                            <span style="font-weight:bold;font-size:1.2em;">%</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-data inputType">
-                                    <input type="checkbox" style="margin-left:0;" id="fuel-efficiency" checked disabled>  
-                                    <label data-language="byFuelEfficiency"></label>
-                                    <input type="checkbox" id="fuel-consumed-per" disabled>  
-                                    <label data-language="byFuelConsumptionPer"></label>
-                                    <input type="checkbox" id="custom-values" disabled>   
-                                    <label data-language="byCustomValues"></label>
+                                <div class="form-group">
+                                    <div class="form-data inputType">
+                                        <input type="checkbox" style="margin-left:0;" id="fuel-efficiency" checked disabled>  
+                                        <label data-language="byFuelEfficiency"></label>
+                                        <input type="checkbox" id="fuel-consumed-per" disabled>  
+                                        <label data-language="byFuelConsumptionPer"></label>
+                                        <input type="checkbox" id="custom-values" disabled>   
+                                        <label data-language="byCustomValues"></label>
+                                    </div>
+                                    <div data-language="feMessage" id="usage-message"></div>
                                 </div>
-                                <span data-language="feMessage" id="usage-message"></span>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-data">
-                                    <label for="consumption" data-language="distanceTravelled">Distance Travelled</label> 
-                                    <input type="number" size="1" style="text-align:center" id="distance-value" value="0" min="0" disabled>
-                                    <select class="selectDUnit" style="text-align:center" id="distance-unit" disabled>
-                                        <option value="km" selected>km</option>
-                                    </select>
+                                <div class="form-group">
+                                    <div class="form-data">
+                                        <label for="consumption" data-language="distanceTravelled">Distance Travelled</label> 
+                                        <input type="number" size="1" style="text-align:center" id="distance-value" value="0" min="0" disabled>
+                                        <select class="selectDUnit" style="text-align:center" id="distance-unit" disabled>
+                                            <option value="km" selected>km</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-data">
-                                    <label for="consumption" data-language="fuelConsumed">Fuel Consumed</label>
-                                    <input type="number" size="1" style="text-align:center" id="fuel-value" value="1" min="0" disabled>
-                                    <select class="selectMUnit" style="text-align:center" id="fuel-unit" disabled>
-                                        <option value="L" selected>L</option>
-                                    </select>
+                                <div class="form-group">
+                                    <div class="form-data">
+                                        <label for="consumption" data-language="fuelConsumed">Fuel Consumed</label>
+                                        <input type="number" size="1" style="text-align:center" id="fuel-value" value="1" min="0" disabled>
+                                        <select class="selectMUnit" style="text-align:center" id="fuel-unit" disabled>
+                                            <option value="L" selected>L</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +110,7 @@
                             <div class="form-group">
                                 <div class="form-data">
                                     <label for="fuel-type" data-language="fuelType" >Fuel Type</label>
-						                        <select style="width:10em;margin-left:2em;" id="fuel-type" disabled>
+						                        <select style="width:10em;" id="fuel-type" disabled>
 						                        </select>
                                 </div>
                             </div>
@@ -126,7 +128,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group" style="margin-top:0.5em;margin-bottom:1em;">
+                    <div style="margin-top:0.5em;margin-bottom:1em;">
                         <div class="form-data save" >
                             <button id="save-button" data-language="save">save</button>
                             <input style="margin-left:7em;margin-top:1em" type="checkbox" id="metric" checked>
@@ -136,7 +138,7 @@
                             <input style="margin-left:1em;margin-top:1em"  type="checkbox" id="imperial">  
                             <label style="margin-top:1em" data-language="imperial"></label>
                         </div>
-                        <div class="form-data" style="text-align:-webkit-right;padding-right:2em;">
+                        <div class="form-data" style="width:100%;text-align:-webkit-right;padding-right:2em;">
                             <span id="location" style="display:table;"></span>
                             <img id="reLocation" src="../images/re.png" style="height:1.5em;cursor:pointer;margin-left:0.5em;display:none;">
                         </div>
