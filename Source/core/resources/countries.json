@@ -1,0 +1,2058 @@
+{  
+  "BD":{  
+    "name":"Bangladesh",
+    "RenewablePer":"4.11",
+    "currency":"BDT",
+    "cities":{  
+
+    }
+  },
+  "BE":{  
+    "name":"Belgium",
+    "RenewablePer":"13.76",
+    "currency":"EUR",
+    "cities":{  
+      "Brussels":{  
+        "avgCostPT":"2.2"
+      }
+    }
+  },
+  "BF":{  
+    "name":"Burkina Faso",
+    "RenewablePer":"18.58",
+    "currency":"XOF",
+    "cities":{
+
+    }
+  },
+  "BG":{  
+    "name":"Bulgaria",
+    "RenewablePer":"12.11",
+    "currency":"BGN",
+    "cities":{  
+      "Sofia":{  
+        "avgCostPT":"0.6"
+      }
+    }
+  },
+  "BA":{  
+    "name":"Bosnia and Herzegovina",
+    "RenewablePer":"31.03",
+    "currency":"BAM",
+    "cities":{  
+
+    }
+  },
+  "BB":{  
+    "name":"Barbados",
+    "currency":"BBD",
+    "cities":{  
+
+    }
+  },
+  "WF":{  
+    "name":"Wallis and Futuna",
+    "currency":"XPF",
+    "cities":{  
+
+    }
+  },
+  "BL":{  
+    "name":"Saint Barthelemy",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "BM":{  
+    "name":"Bermuda",
+    "currency":"BMD",
+    "cities":{  
+
+    }
+  },
+  "BN":{  
+    "name":"Brunei",
+    "currency":"BND",
+    "cities":{  
+
+    }
+  },
+  "BO":{  
+    "name":"Bolivia",
+    "RenewablePer":"34.94",
+    "currency":"BOB",
+    "cities":{  
+
+    }
+  },
+  "BH":{  
+    "name":"Bahrain",
+    "currency":"BHD",
+    "cities":{  
+      "Manama":{  
+        "avgCostPT":"0.8"
+      }
+    }
+  },
+  "BI":{  
+    "name":"Burundi",
+    "RenewablePer":"99.01",
+    "currency":"BIF",
+    "cities":{  
+
+    }
+  },
+  "BJ":{  
+    "name":"Benin",
+    "RenewablePer":"1.3",
+    "currency":"XOF",
+    "cities":{  
+
+    }
+  },
+  "BT":{  
+    "name":"Bhutan",
+    "RenewablePer":"99.99",
+    "currency":"BTN",
+    "cities":{  
+
+    }
+  },
+  "JM":{  
+    "name":"Jamaica",
+    "RenewablePer":"9.26",
+    "currency":"JMD",
+    "cities":{  
+
+    }
+  },
+  "BV":{  
+    "name":"Bouvet Island",
+    "currency":"NOK",
+    "cities":{  
+
+    }
+  },
+  "BW":{  
+    "name":"Botswana",
+    "currency":"BWP",
+    "cities":{  
+
+    }
+  },
+  "WS":{  
+    "name":"Samoa",
+    "RenewablePer":"38.14",
+    "currency":"WST",
+    "cities":{  
+
+    }
+  },
+  "BQ":{  
+    "name":"Bonaire, Saint Eustatius and Saba",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "BR":{  
+    "name":"Brazil",
+    "RenewablePer":"83.98",
+    "currency":"BRL",
+    "cities":{  
+      "Rio de Janeiro":{  
+        "avgCostPT":"1.2"
+      },
+      "Sao Paulo":{  
+        "avgCostPT":"1.1"
+      }
+    }
+  },
+  "BS":{  
+    "name":"Bahamas",
+    "currency":"BSD",
+    "cities":{  
+
+    }
+  },
+  "JE":{  
+    "name":"Jersey",
+    "currency":"GBP",
+    "cities":{  
+
+    }
+  },
+  "BY":{  
+    "name":"Belarus",
+    "RenewablePer":"0.69",
+    "currency":"BYR",
+    "cities":{  
+
+    }
+  },
+  "BZ":{  
+    "name":"Belize",
+    "RenewablePer":"96.69",
+    "currency":"BZD",
+    "cities":{  
+
+    }
+  },
+  "RU":{  
+    "name":"Russia",
+    "RenewablePer":"16.59",
+    "currency":"RUB",
+    "cities":{  
+      "Moscow":{  
+        "avgCostPT":"0.9"
+      }
+    }
+  },
+  "RW":{  
+    "name":"Rwanda",
+    "RenewablePer":"43.55",
+    "currency":"RWF",
+    "cities":{  
+
+    }
+  },
+  "RS":{  
+    "name":"Serbia",
+    "RenewablePer":"28.96",
+    "currency":"RSD",
+    "cities":{  
+
+    }
+  },
+  "TL":{  
+    "name":"East Timor",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "RE":{  
+    "name":"Reunion",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "TM":{  
+    "name":"Turkmenistan",
+    "RenewablePer":"0.02",
+    "currency":"TMT",
+    "cities":{  
+
+    }
+  },
+  "TJ":{  
+    "name":"Tajikistan",
+    "RenewablePer":"95.45",
+    "currency":"TJS",
+    "cities":{  
+
+    }
+  },
+  "RO":{  
+    "name":"Romania",
+    "RenewablePer":"26.43",
+    "currency":"RON",
+    "cities":{  
+      "Bucharest":{  
+        "avgCostPT":"0.5"
+      }
+    }
+  },
+  "TK":{  
+    "name":"Tokelau",
+    "currency":"NZD",
+    "cities":{  
+
+    }
+  },
+  "GW":{  
+    "name":"Guinea-Bissau",
+    "currency":"XOF",
+    "cities":{  
+
+    }
+  },
+  "GU":{  
+    "name":"Guam",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "GT":{  
+    "name":"Guatemala",
+    "RenewablePer":"68.08",
+    "currency":"GTQ",
+    "cities":{  
+
+    }
+  },
+  "GS":{  
+    "name":"South Georgia and the South Sandwich Islands",
+    "currency":"GBP",
+    "cities":{  
+
+    }
+  },
+  "GR":{  
+    "name":"Greece",
+    "RenewablePer":"17.56",
+    "currency":"EUR",
+    "cities":{  
+      "Athens":{  
+        "avgCostPT":"1.4"
+      }
+    }
+  },
+  "GQ":{  
+    "name":"Equatorial Guinea",
+    "RenewablePer":"7",
+    "currency":"XAF",
+    "cities":{  
+
+    }
+  },
+  "GP":{  
+    "name":"Guadeloupe",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "JP":{  
+    "name":"Japan",
+    "RenewablePer":"12.66",
+    "currency":"JPY",
+    "cities":{  
+      "Tokyo":{  
+        "avgCostPT":"1.5"
+      }
+    }
+  },
+  "GY":{  
+    "name":"Guyana",
+    "currency":"GYD",
+    "cities":{  
+
+    }
+  },
+  "GG":{  
+    "name":"Guernsey",
+    "currency":"GBP",
+    "cities":{  
+
+    }
+  },
+  "GF":{  
+    "name":"French Guiana",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "GE":{  
+    "name":"Georgia",
+    "RenewablePer":"75.47",
+    "currency":"GEL",
+    "cities":{  
+
+    }
+  },
+  "GD":{  
+    "name":"Grenada",
+    "currency":"XCD",
+    "cities":{  
+
+    }
+  },
+  "GB":{  
+    "name":"United Kingdom",
+    "RenewablePer":"11.99",
+    "currency":"GBP",
+    "cities":{  
+      "London":{  
+        "avgCostPT":"4"
+      }
+    }
+  },
+  "GA":{  
+    "name":"Gabon",
+    "RenewablePer":"43.01",
+    "currency":"XAF",
+    "cities":{  
+
+    }
+  },
+  "SV":{  
+    "name":"El Salvador",
+    "RenewablePer":"60.71",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "GN":{  
+    "name":"Guinea",
+    "RenewablePer":"56.64",
+    "currency":"GNF",
+    "cities":{  
+
+    }
+  },
+  "GM":{  
+    "name":"Gambia",
+    "currency":"GMD",
+    "cities":{  
+
+    }
+  },
+  "GL":{  
+    "name":"Greenland",
+    "currency":"DKK",
+    "cities":{  
+
+    }
+  },
+  "GI":{  
+    "name":"Gibraltar",
+    "currency":"GIP",
+    "cities":{  
+
+    }
+  },
+  "GH":{  
+    "name":"Ghana",
+    "RenewablePer":"68.26",
+    "currency":"GHS",
+    "cities":{  
+
+    }
+  },
+  "OM":{  
+    "name":"Oman",
+    "currency":"OMR",
+    "cities":{  
+
+    }
+  },
+  "TN":{  
+    "name":"Tunisia",
+    "RenewablePer":"1.93",
+    "currency":"TND",
+    "cities":{  
+
+    }
+  },
+  "JO":{  
+    "name":"Jordan",
+    "RenewablePer":"0.44",
+    "currency":"JOD",
+    "cities":{  
+
+    }
+  },
+  "HR":{  
+    "name":"Croatia",
+    "RenewablePer":"50.27",
+    "currency":"HRK",
+    "cities":{  
+
+    }
+  },
+  "HT":{  
+    "name":"Haiti",
+    "RenewablePer":"14.51",
+    "currency":"HTG",
+    "cities":{  
+
+    }
+  },
+  "HU":{  
+    "name":"Hungary",
+    "RenewablePer":"8.14",
+    "currency":"HUF",
+    "cities":{  
+      "Budapest":{  
+        "avgCostPT":"1.3"
+      }
+    }
+  },
+  "HK":{  
+    "name":"Hong Kong",
+    "currency":"HKD",
+    "cities":{  
+      "Hong Kong":{  
+        "avgCostPT":"1.3"
+      }
+    }
+  },
+  "HN":{  
+    "name":"Honduras",
+    "RenewablePer":"45.05",
+    "currency":"HNL",
+    "cities":{  
+
+    }
+  },
+  "HM":{  
+    "name":"Heard Island and McDonald Islands",
+    "currency":"AUD",
+    "cities":{  
+
+    }
+  },
+  "VE":{  
+    "name":"Venezuela",
+    "RenewablePer":"65.99",
+    "currency":"VEF",
+    "cities":{  
+
+    }
+  },
+  "PR":{  
+    "name":"Puerto Rico",
+    "RenewablePer":"0.74",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "PS":{  
+    "name":"Palestinian Territory",
+    "currency":"ILS",
+    "cities":{  
+
+    }
+  },
+  "PW":{  
+    "name":"Palau",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "PT":{  
+    "name":"Portugal",
+    "RenewablePer":"44.49",
+    "currency":"EUR",
+    "cities":{  
+      "Lisbon":{  
+        "avgCostPT":"1.8"
+      }
+    }
+  },
+  "SJ":{  
+    "name":"Svalbard and Jan Mayen",
+    "currency":"NOK",
+    "cities":{  
+
+    }
+  },
+  "PY":{  
+    "name":"Paraguay",
+    "RenewablePer":"99.99",
+    "currency":"PYG",
+    "cities":{  
+
+    }
+  },
+  "IQ":{  
+    "name":"Iraq",
+    "RenewablePer":"9.22",
+    "currency":"IQD",
+    "cities":{  
+
+    }
+  },
+  "PA":{  
+    "name":"Panama",
+    "RenewablePer":"64.14",
+    "currency":"PAB",
+    "cities":{  
+
+    }
+  },
+  "PF":{  
+    "name":"French Polynesia",
+    "currency":"XPF",
+    "cities":{  
+
+    }
+  },
+  "PG":{  
+    "name":"Papua New Guinea",
+    "RenewablePer":"32.84",
+    "currency":"PGK",
+    "cities":{  
+
+    }
+  },
+  "PE":{  
+    "name":"Peru",
+    "RenewablePer":"57.63",
+    "currency":"PEN",
+    "cities":{  
+      "Lima":{  
+        "avgCostPT":"0.7"
+      }
+    }
+  },
+  "PK":{  
+    "name":"Pakistan",
+    "RenewablePer":"31.85",
+    "currency":"PKR",
+    "cities":{  
+
+    }
+  },
+  "PH":{  
+    "name":"Philippines",
+    "RenewablePer":"29.62",
+    "currency":"PHP",
+    "cities":{  
+      "Manila":{  
+        "avgCostPT":"0.5"
+      }
+    }
+  },
+  "PN":{  
+    "name":"Pitcairn",
+    "currency":"NZD",
+    "cities":{  
+
+    }
+  },
+  "PL":{  
+    "name":"Poland",
+    "RenewablePer":"11.04",
+    "currency":"PLN",
+    "cities":{  
+      "Warsaw":{  
+        "avgCostPT":"0.9"
+      }
+    }
+  },
+  "PM":{  
+    "name":"Saint Pierre and Miquelon",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "ZM":{  
+    "name":"Zambia",
+    "RenewablePer":"99.71",
+    "currency":"ZMK",
+    "cities":{  
+
+    }
+  },
+  "EH":{  
+    "name":"Western Sahara",
+    "currency":"MAD",
+    "cities":{  
+
+    }
+  },
+  "EE":{  
+    "name":"Estonia",
+    "RenewablePer":"13.03",
+    "currency":"EUR",
+    "cities":{  
+      "Tallinn":{  
+        "avgCostPT":"1.7"
+      }
+    }
+  },
+  "EG":{  
+    "name":"Egypt",
+    "RenewablePer":"9.48",
+    "currency":"EGP",
+    "cities":{  
+      "Cairo":{  
+        "avgCostPT":"0.2"
+      }
+    }
+  },
+  "ZA":{  
+    "name":"South Africa",
+    "RenewablePer":"1.01",
+    "currency":"ZAR",
+    "cities":{  
+      "Johannesburg":{  
+        "avgCostPT":"0.8"
+      }
+    }
+  },
+  "EC":{  
+    "name":"Ecuador",
+    "RenewablePer":"56.16",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "IT":{  
+    "name":"Italy",
+    "RenewablePer":"32.67",
+    "currency":"EUR",
+    "cities":{  
+      "Milan":{  
+        "avgCostPT":"1.6"
+      },
+      "Rome":{  
+        "avgCostPT":"1.6"
+      }
+    }
+  },
+  "VN":{  
+    "name":"Vietnam",
+    "RenewablePer":"44.85",
+    "currency":"VND",
+    "cities":{  
+
+    }
+  },
+  "SB":{  
+    "name":"Solomon Islands",
+    "currency":"SBD",
+    "cities":{  
+
+    }
+  },
+  "ET":{  
+    "name":"Ethiopia",
+    "RenewablePer":"99.43",
+    "currency":"ETB",
+    "cities":{  
+
+    }
+  },
+  "SO":{  
+    "name":"Somalia",
+    "currency":"SOS",
+    "cities":{  
+
+    }
+  },
+  "ZW":{  
+    "name":"Zimbabwe",
+    "RenewablePer":"69.75",
+    "currency":"ZWL",
+    "cities":{  
+
+    }
+  },
+  "SA":{  
+    "name":"Saudi Arabia",
+    "currency":"SAR",
+    "cities":{  
+
+    }
+  },
+  "ES":{  
+    "name":"Spain",
+    "RenewablePer":"30.99",
+    "currency":"EUR",
+    "cities":{  
+      "Barcelona":{  
+        "avgCostPT":"2.3"
+      },
+      "Madrid":{  
+        "avgCostPT":"2"
+      }
+    }
+  },
+  "ER":{  
+    "name":"Eritrea",
+    "RenewablePer":"0.59",
+    "currency":"ERN",
+    "cities":{  
+
+    }
+  },
+  "ME":{  
+    "name":"Montenegro",
+    "RenewablePer":"53.22",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "MD":{  
+    "name":"Moldova",
+    "RenewablePer":"4.87",
+    "currency":"MDL",
+    "cities":{  
+
+    }
+  },
+  "MG":{  
+    "name":"Madagascar",
+    "RenewablePer":"65.93",
+    "currency":"MGA",
+    "cities":{  
+
+    }
+  },
+  "MF":{  
+    "name":"Saint Martin",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "MA":{  
+    "name":"Morocco",
+    "RenewablePer":"9.24",
+    "currency":"MAD",
+    "cities":{  
+
+    }
+  },
+  "MC":{  
+    "name":"Monaco",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "UZ":{  
+    "name":"Uzbekistan",
+    "RenewablePer":"22.24",
+    "currency":"UZS",
+    "cities":{  
+
+    }
+  },
+  "MM":{  
+    "name":"Myanmar",
+    "currency":"MMK",
+    "cities":{  
+
+    }
+  },
+  "ML":{  
+    "name":"Mali",
+    "RenewablePer":"76.29",
+    "currency":"XOF",
+    "cities":{  
+
+    }
+  },
+  "MO":{  
+    "name":"Macao",
+    "currency":"MOP",
+    "cities":{  
+
+    }
+  },
+  "MN":{  
+    "name":"Mongolia",
+    "currency":"MNT",
+    "cities":{  
+
+    }
+  },
+  "MH":{  
+    "name":"Marshall Islands",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "MK":{  
+    "name":"Macedonia",
+    "currency":"MKD",
+    "cities":{  
+
+    }
+  },
+  "MU":{  
+    "name":"Mauritius",
+    "RenewablePer":"21.7",
+    "currency":"MUR",
+    "cities":{  
+
+    }
+  },
+  "MT":{  
+    "name":"Malta",
+    "RenewablePer":"0.75",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "MW":{  
+    "name":"Malawi",
+    "RenewablePer":"87.16",
+    "currency":"MWK",
+    "cities":{  
+
+    }
+  },
+  "MV":{  
+    "name":"Maldives",
+    "currency":"MVR",
+    "cities":{  
+
+    }
+  },
+  "MQ":{  
+    "name":"Martinique",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "MP":{  
+    "name":"Northern Mariana Islands",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "MS":{  
+    "name":"Montserrat",
+    "currency":"XCD",
+    "cities":{  
+
+    }
+  },
+  "MR":{  
+    "name":"Mauritania",
+    "RenewablePer":"13.04",
+    "currency":"MRO",
+    "cities":{  
+
+    }
+  },
+  "IM":{  
+    "name":"Isle of Man",
+    "currency":"GBP",
+    "cities":{  
+
+    }
+  },
+  "UG":{  
+    "name":"Uganda",
+    "RenewablePer":"82.92",
+    "currency":"UGX",
+    "cities":{  
+
+    }
+  },
+  "TZ":{  
+    "name":"Tanzania",
+    "RenewablePer":"30.22",
+    "currency":"TZS",
+    "cities":{  
+
+    }
+  },
+  "MY":{  
+    "name":"Malaysia",
+    "RenewablePer":"7.75",
+    "currency":"MYR",
+    "cities":{  
+      "Kuala Lumpur":{  
+        "avgCostPT":"0.4"
+      }
+    }
+  },
+  "MX":{  
+    "name":"Mexico",
+    "RenewablePer":"15.73",
+    "currency":"MXN",
+    "cities":{  
+      "Mexico City":{  
+        "avgCostPT":"0.3"
+      }
+    }
+  },
+  "IL":{  
+    "name":"Israel",
+    "RenewablePer":"0.8",
+    "currency":"ILS",
+    "cities":{  
+      "Tel Aviv":{  
+        "avgCostPT":"1.8"
+      }
+    }
+  },
+  "FR":{  
+    "name":"France",
+    "RenewablePer":"17.42",
+    "currency":"EUR",
+    "cities":{  
+      "Paris":{  
+        "avgCostPT":"2"
+      },
+      "Lyon":{  
+        "avgCostPT":"2"
+      }
+    }
+  },
+  "IO":{  
+    "name":"British Indian Ocean Territory",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "SH":{  
+    "name":"Saint Helena",
+    "currency":"SHP",
+    "cities":{  
+
+    }
+  },
+  "FI":{  
+    "name":"Finland",
+    "RenewablePer":"41.82",
+    "currency":"EUR",
+    "cities":{  
+      "Helsinki":{  
+        "avgCostPT":"2.9"
+      }
+    }
+  },
+  "FJ":{  
+    "name":"Fiji",
+    "RenewablePer":"67.58",
+    "currency":"FJD",
+    "cities":{  
+
+    }
+  },
+  "FK":{  
+    "name":"Falkland Islands",
+    "currency":"FKP",
+    "cities":{  
+
+    }
+  },
+  "FM":{  
+    "name":"Micronesia",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "FO":{  
+    "name":"Faroe Islands",
+    "RenewablePer":"39.5",
+    "currency":"DKK",
+    "cities":{  
+
+    }
+  },
+  "NI":{  
+    "name":"Nicaragua",
+    "RenewablePer":"41.14",
+    "currency":"NIO",
+    "cities":{  
+
+    }
+  },
+  "NL":{  
+    "name":"Netherlands",
+    "RenewablePer":"12.72",
+    "currency":"EUR",
+    "cities":{  
+      "Amsterdam":{  
+        "avgCostPT":"2.7"
+      }
+    }
+  },
+  "NO":{  
+    "name":"Norway",
+    "RenewablePer":"98.47",
+    "currency":"NOK",
+    "cities":{  
+      "Oslo":{  
+        "avgCostPT":"3.8"
+      }
+    }
+  },
+  "NA":{  
+    "name":"Namibia",
+    "RenewablePer":"88.59",
+    "currency":"NAD",
+    "cities":{  
+
+    }
+  },
+  "VU":{  
+    "name":"Vanuatu",
+    "currency":"VUV",
+    "cities":{  
+
+    }
+  },
+  "NC":{  
+    "name":"New Caledonia",
+    "RenewablePer":"14.73",
+    "currency":"XPF",
+    "cities":{  
+
+    }
+  },
+  "NE":{  
+    "name":"Niger",
+    "currency":"XOF",
+    "cities":{  
+
+    }
+  },
+  "NF":{  
+    "name":"Norfolk Island",
+    "currency":"AUD",
+    "cities":{  
+
+    }
+  },
+  "NG":{  
+    "name":"Nigeria",
+    "RenewablePer":"20.55",
+    "currency":"NGN",
+    "cities":{  
+
+    }
+  },
+  "NZ":{  
+    "name":"New Zealand",
+    "RenewablePer":"72.93",
+    "currency":"NZD",
+    "cities":{  
+      "Auckland":{  
+        "avgCostPT":"3.2"
+      }
+    }
+  },
+  "NP":{  
+    "name":"Nepal",
+    "RenewablePer":"99.49",
+    "currency":"NPR",
+    "cities":{  
+
+    }
+  },
+  "NR":{  
+    "name":"Nauru",
+    "currency":"AUD",
+    "cities":{  
+
+    }
+  },
+  "NU":{  
+    "name":"Niue",
+    "currency":"NZD",
+    "cities":{  
+
+    }
+  },
+  "CK":{  
+    "name":"Cook Islands",
+    "currency":"NZD",
+    "cities":{  
+
+    }
+  },
+  "XK":{  
+    "name":"Kosovo",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "CI":{  
+    "name":"Ivory Coast",
+    "RenewablePer":"27.47",
+    "currency":"XOF",
+    "cities":{  
+
+    }
+  },
+  "CH":{  
+    "name":"Switzerland",
+    "RenewablePer":"61.96",
+    "currency":"CHF",
+    "cities":{  
+      "Zurich":{  
+        "avgCostPT":"3.8"
+      },
+      "Geneva":{  
+        "avgCostPT":"3.1"
+      }
+    }
+  },
+  "CO":{  
+    "name":"Colombia",
+    "RenewablePer":"82.44",
+    "currency":"COP",
+    "cities":{  
+      "Bogota":{  
+        "avgCostPT":"0.7"
+      }
+    }
+  },
+  "CN":{  
+    "name":"China",
+    "RenewablePer":"21.05",
+    "currency":"CNY",
+    "cities":{  
+      "Beijing":{  
+        "avgCostPT":"0.5"
+      },
+      "Shanghai":{  
+        "avgCostPT":"0.4"
+      }
+    }
+  },
+  "CM":{  
+    "name":"Cameroon",
+    "RenewablePer":"74.05",
+    "currency":"XAF",
+    "cities":{  
+
+    }
+  },
+  "CL":{  
+    "name":"Chile",
+    "RenewablePer":"37.7",
+    "currency":"CLP",
+    "cities":{  
+      "Santiago":{  
+        "avgCostPT":"1.1"
+      }
+    }
+  },
+  "CC":{  
+    "name":"Cocos Islands",
+    "currency":"AUD",
+    "cities":{  
+
+    }
+  },
+  "CA":{  
+    "name":"Canada",
+    "RenewablePer":"64.48",
+    "currency":"CAD",
+    "cities":{  
+      "Montreal":{  
+        "avgCostPT":"2.6"
+      },
+      "Toronto":{  
+        "avgCostPT":"2.4"
+      }
+    }
+  },
+  "CG":{  
+    "name":"Republic of the Congo",
+    "RenewablePer":"62.39",
+    "currency":"XAF",
+    "cities":{  
+
+    }
+  },
+  "CF":{  
+    "name":"Central African Republic",
+    "RenewablePer":"85.64",
+    "currency":"XAF",
+    "cities":{  
+
+    }
+  },
+  "CD":{  
+    "name":"Democratic Republic of the Congo",
+    "RenewablePer":"99.58",
+    "currency":"CDF",
+    "cities":{  
+
+    }
+  },
+  "CZ":{  
+    "name":"Czech Republic",
+    "RenewablePer":"9.79",
+    "currency":"CZK",
+    "cities":{  
+      "Prague":{  
+        "avgCostPT":"1.2"
+      }
+    }
+  },
+  "CY":{  
+    "name":"Cyprus",
+    "RenewablePer":"5.8",
+    "currency":"EUR",
+    "cities":{  
+      "Nicosia":{  
+        "avgCostPT":"1.6"
+      }
+    }
+  },
+  "CX":{  
+    "name":"Christmas Island",
+    "currency":"AUD",
+    "cities":{  
+
+    }
+  },
+  "CR":{  
+    "name":"Costa Rica",
+    "RenewablePer":"92.24",
+    "currency":"CRC",
+    "cities":{  
+
+    }
+  },
+  "CW":{  
+    "name":"Curacao",
+    "currency":"ANG",
+    "cities":{  
+
+    }
+  },
+  "CV":{  
+    "name":"Cape Verde",
+    "RenewablePer":"2.28",
+    "currency":"CVE",
+    "cities":{  
+
+    }
+  },
+  "CU":{  
+    "name":"Cuba",
+    "RenewablePer":"3.96",
+    "currency":"CUP",
+    "cities":{  
+
+    }
+  },
+  "SZ":{  
+    "name":"Swaziland",
+    "RenewablePer":"29.41",
+    "currency":"SZL",
+    "cities":{  
+
+    }
+  },
+  "SY":{  
+    "name":"Syria",
+    "RenewablePer":"10.87",
+    "currency":"SYP",
+    "cities":{  
+
+    }
+  },
+  "SX":{  
+    "name":"Sint Maarten",
+    "currency":"ANG",
+    "cities":{  
+
+    }
+  },
+  "KG":{  
+    "name":"Kyrgyzstan",
+    "RenewablePer":"93.79",
+    "currency":"KGS",
+    "cities":{  
+
+    }
+  },
+  "KE":{  
+    "name":"Kenya",
+    "RenewablePer":"76.17",
+    "currency":"KES",
+    "cities":{  
+      "Nairobi":{  
+        "avgCostPT":"0.6"
+      }
+    }
+  },
+  "SS":{  
+    "name":"South Sudan",
+    "currency":"SSP",
+    "cities":{  
+
+    }
+  },
+  "SR":{  
+    "name":"Suriname",
+    "RenewablePer":"34.29",
+    "currency":"SRD",
+    "cities":{  
+
+    }
+  },
+  "KI":{  
+    "name":"Kiribati",
+    "currency":"AUD",
+    "cities":{  
+
+    }
+  },
+  "KH":{  
+    "name":"Cambodia",
+    "RenewablePer":"38.91",
+    "currency":"KHR",
+    "cities":{  
+
+    }
+  },
+  "KN":{  
+    "name":"Saint Kitts and Nevis",
+    "currency":"XCD",
+    "cities":{  
+
+    }
+  },
+  "KM":{  
+    "name":"Comoros",
+    "RenewablePer":"6.98",
+    "currency":"KMF",
+    "cities":{  
+
+    }
+  },
+  "ST":{  
+    "name":"Sao Tome and Principe",
+    "RenewablePer":"15.38",
+    "currency":"STD",
+    "cities":{  
+
+    }
+  },
+  "SK":{  
+    "name":"Slovakia",
+    "RenewablePer":"20.35",
+    "currency":"EUR",
+    "cities":{  
+      "Bratislava":{  
+        "avgCostPT":"0.9"
+      }
+    }
+  },
+  "KR":{  
+    "name":"South Korea",
+    "RenewablePer":"1.43",
+    "currency":"KRW",
+    "cities":{  
+      "Seoul":{  
+        "avgCostPT":"1.1"
+      }
+    }
+  },
+  "SI":{  
+    "name":"Slovenia",
+    "RenewablePer":"28.92",
+    "currency":"EUR",
+    "cities":{  
+      "Ljubljana":{  
+        "avgCostPT":"1.5"
+      }
+    }
+  },
+  "KP":{  
+    "name":"North Korea",
+    "RenewablePer":"71.25",
+    "currency":"KPW",
+    "cities":{  
+
+    }
+  },
+  "KW":{  
+    "name":"Kuwait",
+    "currency":"KWD",
+    "cities":{  
+
+    }
+  },
+  "SN":{  
+    "name":"Senegal",
+    "RenewablePer":"10.67",
+    "currency":"XOF",
+    "cities":{  
+
+    }
+  },
+  "SM":{  
+    "name":"San Marino",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "SL":{  
+    "name":"Sierra Leone",
+    "RenewablePer":"68.97",
+    "currency":"SLL",
+    "cities":{  
+
+    }
+  },
+  "SC":{  
+    "name":"Seychelles",
+    "currency":"SCR",
+    "cities":{  
+
+    }
+  },
+  "KZ":{  
+    "name":"Kazakhstan",
+    "RenewablePer":"8.78",
+    "currency":"KZT",
+    "cities":{  
+
+    }
+  },
+  "KY":{  
+    "name":"Cayman Islands",
+    "currency":"KYD",
+    "cities":{  
+
+    }
+  },
+  "SG":{  
+    "name":"Singapore",
+    "currency":"SGD",
+    "cities":{  
+
+    }
+  },
+  "SE":{  
+    "name":"Sweden",
+    "RenewablePer":"60.21",
+    "currency":"SEK",
+    "cities":{  
+      "Stockholm":{  
+        "avgCostPT":"4.2"
+      }
+    }
+  },
+  "SD":{  
+    "name":"Sudan",
+    "RenewablePer":"72.73",
+    "currency":"SDG",
+    "cities":{  
+
+    }
+  },
+  "DO":{  
+    "name":"Dominican Republic",
+    "RenewablePer":"13.77",
+    "currency":"DOP",
+    "cities":{  
+
+    }
+  },
+  "DM":{  
+    "name":"Dominica",
+    "RenewablePer":"27.08",
+    "currency":"XCD",
+    "cities":{  
+
+    }
+  },
+  "DJ":{  
+    "name":"Djibouti",
+    "currency":"DJF",
+    "cities":{  
+
+    }
+  },
+  "DK":{  
+    "name":"Denmark",
+    "RenewablePer":"50.73",
+    "currency":"DKK",
+    "cities":{  
+      "Copenhagen":{  
+        "avgCostPT":"4.6"
+      }
+    }
+  },
+  "VG":{  
+    "name":"British Virgin Islands",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "DE":{  
+    "name":"Germany",
+    "RenewablePer":"32.7",
+    "currency":"EUR",
+    "cities":{  
+      "Frankfurt":{  
+        "avgCostPT":"3"
+      },
+      "Berlin":{  
+        "avgCostPT":"2.9"
+      },
+      "Munich":{  
+        "avgCostPT":"2.9"
+      }
+    }
+  },
+  "YE":{  
+    "name":"Yemen",
+    "currency":"YER",
+    "cities":{  
+
+    }
+  },
+  "DZ":{  
+    "name":"Algeria",
+    "RenewablePer":"1.14",
+    "currency":"DZD",
+    "cities":{  
+
+    }
+  },
+  "US":{  
+    "name":"United States",
+    "RenewablePer":"12.56",
+    "currency":"USD",
+    "cities":{  
+      "New York":{  
+        "avgCostPT":"2.8"
+      },
+      "Miami":{  
+        "avgCostPT":"2.3"
+      },
+      "Chicago":{  
+        "avgCostPT":"1.9"
+      },
+      "Los Angeles":{  
+        "avgCostPT":"1.5"
+      }
+    }
+  },
+  "UY":{  
+    "name":"Uruguay",
+    "RenewablePer":"62.98",
+    "currency":"UYU",
+    "cities":{  
+
+    }
+  },
+  "YT":{  
+    "name":"Mayotte",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "UM":{  
+    "name":"United States Minor Outlying Islands",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "LB":{  
+    "name":"Lebanon",
+    "RenewablePer":"7.13",
+    "currency":"LBP",
+    "cities":{  
+
+    }
+  },
+  "LC":{  
+    "name":"Saint Lucia",
+    "currency":"XCD",
+    "cities":{  
+
+    }
+  },
+  "LA":{  
+    "name":"Laos",
+    "RenewablePer":"92.04",
+    "currency":"LAK",
+    "cities":{  
+
+    }
+  },
+  "TV":{  
+    "name":"Tuvalu",
+    "currency":"AUD",
+    "cities":{  
+
+    }
+  },
+  "TW":{  
+    "name":"Taiwan",
+    "currency":"TWD",
+    "cities":{  
+      "Taipei":{  
+        "avgCostPT":"0.5"
+      }
+    }
+  },
+  "TT":{  
+    "name":"Trinidad and Tobago",
+    "RenewablePer":"0.23",
+    "currency":"TTD",
+    "cities":{  
+
+    }
+  },
+  "TR":{  
+    "name":"Turkey",
+    "RenewablePer":"28.31",
+    "currency":"TRY",
+    "cities":{  
+      "Istanbul":{  
+        "avgCostPT":"0.7"
+      }
+    }
+  },
+  "LK":{  
+    "name":"Sri Lanka",
+    "RenewablePer":"30.32",
+    "currency":"LKR",
+    "cities":{  
+
+    }
+  },
+  "LI":{  
+    "name":"Liechtenstein",
+    "currency":"CHF",
+    "cities":{  
+
+    }
+  },
+  "LV":{  
+    "name":"Latvia",
+    "RenewablePer":"67.79",
+    "currency":"EUR",
+    "cities":{  
+      "Riga":{  
+        "avgCostPT":"1.3"
+      }
+    }
+  },
+  "TO":{  
+    "name":"Tonga",
+    "currency":"TOP",
+    "cities":{  
+
+    }
+  },
+  "LT":{  
+    "name":"Lithuania",
+    "RenewablePer":"30.02",
+    "currency":"LTL",
+    "cities":{  
+      "Vilnius":{  
+        "avgCostPT":"0.9"
+      }
+    }
+  },
+  "LU":{  
+    "name":"Luxembourg",
+    "RenewablePer":"15.43",
+    "currency":"EUR",
+    "cities":{  
+      "Luxembourg":{  
+        "avgCostPT":"2.2"
+      }
+    }
+  },
+  "LR":{  
+    "name":"Liberia",
+    "currency":"LRD",
+    "cities":{  
+
+    }
+  },
+  "LS":{  
+    "name":"Lesotho",
+    "RenewablePer":"100",
+    "currency":"LSL",
+    "cities":{  
+
+    }
+  },
+  "TH":{  
+    "name":"Thailand",
+    "RenewablePer":"8.75",
+    "currency":"THB",
+    "cities":{  
+      "Bangkok":{  
+        "avgCostPT":"0.7"
+      }
+    }
+  },
+  "TF":{  
+    "name":"French Southern Territories",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "TG":{  
+    "name":"Togo",
+    "RenewablePer":"85.32",
+    "currency":"XOF",
+    "cities":{  
+
+    }
+  },
+  "TD":{  
+    "name":"Chad",
+    "currency":"XAF",
+    "cities":{  
+
+    }
+  },
+  "TC":{  
+    "name":"Turks and Caicos Islands",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "LY":{  
+    "name":"Libya",
+    "currency":"LYD",
+    "cities":{  
+
+    }
+  },
+  "VA":{  
+    "name":"Vatican",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "VC":{  
+    "name":"Saint Vincent and the Grenadines",
+    "RenewablePer":"18.25",
+    "currency":"XCD",
+    "cities":{  
+
+    }
+  },
+  "AE":{  
+    "name":"United Arab Emirates",
+    "currency":"AED",
+    "cities":{  
+      "Dubai":{  
+        "avgCostPT":"1.1"
+      }
+    }
+  },
+  "AD":{  
+    "name":"Andorra",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "AG":{  
+    "name":"Antigua and Barbuda",
+    "currency":"XCD",
+    "cities":{  
+
+    }
+  },
+  "AF":{  
+    "name":"Afghanistan",
+    "RenewablePer":"80.32",
+    "currency":"AFN",
+    "cities":{  
+
+    }
+  },
+  "AI":{  
+    "name":"Anguilla",
+    "currency":"XCD",
+    "cities":{  
+
+    }
+  },
+  "VI":{  
+    "name":"U.S. Virgin Islands",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "IS":{  
+    "name":"Iceland",
+    "RenewablePer":"99.98",
+    "currency":"ISK",
+    "cities":{  
+
+    }
+  },
+  "IR":{  
+    "name":"Iran",
+    "RenewablePer":"5.25",
+    "currency":"IRR",
+    "cities":{  
+
+    }
+  },
+  "AM":{  
+    "name":"Armenia",
+    "RenewablePer":"30.22",
+    "currency":"AMD",
+    "cities":{  
+
+    }
+  },
+  "AL":{  
+    "name":"Albania",
+    "RenewablePer":"99.98",
+    "currency":"ALL",
+    "cities":{  
+
+    }
+  },
+  "AO":{  
+    "name":"Angola",
+    "RenewablePer":"71.96",
+    "currency":"AOA",
+    "cities":{  
+
+    }
+  },
+  "AQ":{  
+    "name":"Antarctica",
+    "currency":"",
+    "cities":{  
+
+    }
+  },
+  "AS":{  
+    "name":"American Samoa",
+    "currency":"USD",
+    "cities":{  
+
+    }
+  },
+  "AR":{  
+    "name":"Argentina",
+    "RenewablePer":"31.1",
+    "currency":"ARS",
+    "cities":{  
+      "Buenos Aires":{  
+        "avgCostPT":"0.5"
+      }
+    }
+  },
+  "AU":{  
+    "name":"Australia",
+    "RenewablePer":"13.47",
+    "currency":"AUD",
+    "cities":{  
+      "Sydney":{  
+        "avgCostPT":"2.6"
+      }
+    }
+  },
+  "AT":{  
+    "name":"Austria",
+    "RenewablePer":"78.39",
+    "currency":"EUR",
+    "cities":{  
+      "Vienna":{  
+        "avgCostPT":"2.3"
+      }
+    }
+  },
+  "AW":{  
+    "name":"Aruba",
+    "currency":"AWG",
+    "cities":{  
+
+    }
+  },
+  "IN":{  
+    "name":"India",
+    "RenewablePer":"15.2",
+    "currency":"INR",
+    "cities":{  
+      "Mumbai":{  
+        "avgCostPT":"0.7"
+      },
+      "New Delhi":{  
+        "avgCostPT":"0.4"
+      }
+    }
+  },
+  "AX":{  
+    "name":"Aland Islands",
+    "currency":"EUR",
+    "cities":{  
+
+    }
+  },
+  "AZ":{  
+    "name":"Azerbaijan",
+    "RenewablePer":"8.31",
+    "currency":"AZN",
+    "cities":{  
+
+    }
+  },
+  "IE":{  
+    "name":"Ireland",
+    "RenewablePer":"20.23",
+    "currency":"EUR",
+    "cities":{  
+      "Dublin":{  
+        "avgCostPT":"3.2"
+      }
+    }
+  },
+  "ID":{  
+    "name":"Indonesia",
+    "RenewablePer":"12.01",
+    "currency":"IDR",
+    "cities":{  
+      "Jakarta":{  
+        "avgCostPT":"0.3"
+      }
+    }
+  },
+  "UA":{  
+    "name":"Ukraine",
+    "RenewablePer":"5.95",
+    "currency":"UAH",
+    "cities":{  
+      "Kiev":{  
+        "avgCostPT":"0.2"
+      }
+    }
+  },
+  "QA":{  
+    "name":"Qatar",
+    "currency":"QAR",
+    "cities":{  
+      "Doha":{  
+        "avgCostPT":"0.9"
+      }
+    }
+  },
+  "MZ":{  
+    "name":"Mozambique",
+    "RenewablePer":"99.87",
+    "currency":"MZN",
+    "cities":{  
+
+    }
+  }
+}

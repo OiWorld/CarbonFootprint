@@ -1,6 +1,19 @@
-var optionsData;
+var optionsData,fuels,countries;
+var ftype;
+var units={
+  m: 'kg',
+  v: 'L',
+  d: 'km',
+  e: 'kWh'
+};
+
+$.ajaxSetup({
+  async: false
+});
 
 var currencyCodes = ["AED","AFN","ALL","AMD","ANG","AOA","ARS","AUD","AWG","AZN","BAM","BBD","BDT","BGN","BHD","BIF","BMD","BND","BOB","BOV","BRL","BSD","BTN","BWP","BYR","BZD","CAD","CDF","CHE","CHF","CHW","CLF","CLP","CNY","COP","COU","CRC","CUP","CVE","CYP","CZK","DJF","DKK","DOP","DZD","EEK","EGP","ERN","ETB","EUR","FJD","FKP","GBP","GEL","GHS","GIP","GMD","GNF","GTQ","GYD","HKD","HNL","HRK","HTG","HUF","IDR","ILS","INR","IQD","IRR","ISK","JMD","JOD","JPY","KES","KGS","KHR","KMF","KPW","KRW","KWD","KYD","KZT","LAK","LBP","LKR","LRD","LSL","LTL","LVL","LYD","MAD","MDL","MGA","MKD","MMK","MNT","MOP","MRO","MTL","MUR","MVR","MWK","MXN","MXV","MYR","MZN","NAD","NGN","NIO","NOK","NPR","NZD","OMR","PAB","PEN","PGK","PHP","PKR","PLN","PYG","QAR","RON","RSD","RUB","RWF","SAR","SBD","SCR","SDG","SEK","SGD","SHP","SKK","SLL","SOS","SRD","STD","SYP","SZL","THB","TJS","TMM","TND","TOP","TRY","TTD","TWD","TZS","UAH","UGX","USD","USN","USS","UYU","UZS","VEB","VND","VUV","WST","XAF","XAG","XAU","XBA","XBB","XBC","XBD","XCD","XDR","XFO","XFU","XOF","XPD","XPF","XPT","XTS","XXX","YER","ZAR","ZMK","ZWD"];
+
+
 
 function switchtab(){
   $('.tab-button.selected').removeClass('selected');
@@ -12,39 +25,27 @@ function switchtab(){
 function saveOptions() {
   var distance=parseFloat($('#distance-value').val());
   var fuel=parseFloat($('#fuel-value').val());
-  
+  var funit=$('#fuel-unit').val();
   optionsData.set('distance',distance);
+  optionsData.set('fuelUnit',funit);
   optionsData.set('fuel',fuel);
-  var ftype=$('#fuel-type').val();
   var co=parseFloat($('#emission').val());
   optionsData.set('co',co);
   var cost=parseFloat($('#fuel-cost').val());
-  var curr=parseFloat($('#currency-codes').val());
+  var curr=$('#currency-codes').val();
   var USgalToL=3.785411784;
+  var ImpgalToL=4.54609;
   //var miTokm=1.609344;
   var kgTolbs=2.204622621848775;
   var consumption;
-  optionsData.set('fuelType',parseInt(ftype));
+  optionsData.set('fuelType',ftype);
   // Saving PRIMITVE VARIABLES- fuelCost
   
   optionsData.set('unitSystem',$('.save>:checkbox:checked').attr('id'));
 
   optionsData.set('inputType',$('.inputType>:checkbox:checked').attr('id'));
 
-  if(optionsData.get('unitSystem')=="metric"){
-    optionsData.set('units',{
-      m: 'kg',
-      v: 'L',
-      d: 'km'
-    });
-  }
-  else{
-    optionsData.set('units',{
-      m: 'lbs',
-      v: 'gal',
-      d: 'mi'
-    });
-  }
+  optionsData.set('units',units);
 
   optionsData.set('fuelCost',{
     value: cost,
@@ -68,11 +69,14 @@ function saveOptions() {
     consumption=fuel/distance;
     if(optionsData.get('unitSystem')=="metric"){
       //co in kg/km
-      co = consumption*Utils.fuelInfo[ftype].CO2Emission/1000;
+      co = consumption*fuels[ftype].CO2Emission/1000;
+    }
+    else if(optionsData.get('unitSystem')=="uscustomary"){
+      //co in lbs/mi
+      co = consumption*fuels[ftype].CO2Emission/1000*USgalToL*kgTolbs;
     }
     else{
-      //co in lbs/mi
-      co = consumption*Utils.fuelInfo[ftype].CO2Emission/1000*USgalToL*kgTolbs;
+      co = consumption*fuels[ftype].CO2Emission/1000*ImpgalToL*kgTolbs;
     }
     optionsData.set('emissionRate',co);
     break;
@@ -83,11 +87,11 @@ function saveOptions() {
     }
     if(optionsData.get('unitSystem')=="metric"){
       //co in kg/km
-      consumption = co/Utils.fuelInfo[ftype].CO2Emission*1000;
+      consumption = co/fuels[ftype].CO2Emission*1000;
     }
     else{
       //co in lbs/mi
-      consumption = co/Utils.fuelInfo[ftype].CO2Emission*1000/USgalToL/kgTolbs;
+      consumption = co/fuels[ftype].CO2Emission*1000/USgalToL/kgTolbs;
     }
     optionsData.set('emissionRate',co);
     break;
@@ -135,13 +139,13 @@ function showMessage(msgcode,type) {
   case "error":
     status
       .html(chrome.i18n.getMessage(msgcode))
-      .css('display','table')
+      .css('display','block')
       .css('background-color','#fb5151');
     break;
   case "good":
     status
       .html(chrome.i18n.getMessage(msgcode))
-      .css('display','table')
+      .css('display','block')
       .css('background-color','#a6ff4d');
     optionsData.set('init',true);
     optionsData.store();
@@ -150,12 +154,58 @@ function showMessage(msgcode,type) {
     }, 1200);
     break;
   }
-}
+};
+
+var saveLocation = function(){
+  var geoData={},
+      city="locality,political",
+      country="country,political",
+      state="administrative_area_level_1,political",
+      gc=new google.maps.Geocoder();
+  navigator.geolocation.getCurrentPosition(function(position) {
+    var lat = position.coords.latitude,
+        lng = position.coords.longitude,
+        latlng=new google.maps.LatLng(lat,lng);
+    gc.geocode({'latLng': latlng}, function (results, status) {
+      var addComps = results[0].address_components;
+      for (var i=0;i<addComps.length;i++) {
+        if(addComps[i].types==city||
+           addComps[i].types==state||
+           addComps[i].types==country){
+          geoData[addComps[i].types[0]] = addComps[i].long_name;
+          geoData[addComps[i].types[0]+'_short'] = addComps[i].short_name;
+        }
+      }
+      $('#reLocation').show();
+      optionsData.set('geoData',geoData);
+      optionsData.set('renPer',
+                      {"wiki": countries[optionsData
+                                 .get('geoData')
+                                 .country_short]
+                       .RenewablePer});
+      $('#green-electricity input').val(optionsData.get('renPer').wiki);
+      $('#location').html((optionsData.get('geoData').locality+', '+optionsData.get('geoData').administrative_area_level_1+', '+optionsData.get('geoData').country).replace(/ undefined,/g,""));
+      $('#currency-codes').val(countries[optionsData.get('geoData').country_short].currency);
+      optionsData.store();
+    });
+  });
+};
 
 function loadSavedData() {
+ //if not saved once
+  if(!optionsData.has('geoData')){
+    saveLocation();
+  }else{
+    $('#green-electricity input').val(optionsData.get('renPer').wiki);
+    $('#location').html((optionsData.get('geoData').locality+', '+optionsData.get('geoData').administrative_area_level_1+', '+optionsData.get('geoData').country).replace(/ undefined,/g,""));
+    $('#reLocation').show();
+    $('#currency-codes').val(countries[optionsData.get('geoData').country_short].currency);
+  }
+  ftype = $('#fuel-type').val();
   //restore only if options html was saved once
   if(optionsData.has('init')) {
-    $('#fuel-type').val(optionsData.get('fuelType'));
+    $('[id="fuel-type"]').val(optionsData.get('fuelType'));
+    ftype = $('#fuel-type').val();
     $('#fuel-cost').val(optionsData.get('fuelCost').value);
     $('#currency-codes').val(optionsData.get('fuelCost').curr);
     $('#distance-value').val(optionsData.get('distance'));    
@@ -164,6 +214,7 @@ function loadSavedData() {
     $('#last-checkup').val(optionsData.get('lastCheckup'));
     $('#next-checkup-month').val(optionsData.get('nextCheckupMonth'));
     $('#next-checkup-year').val(optionsData.get('nextCheckupÝear'));
+    ftype = $('#fuel-type').val(); // are you doing this this often on purpose?
     if(optionsData.get('showTravelCost')){
       $('#display-travel-cost').attr('checked', true);
       toggleTravelCost($('#display-travel-cost'));
@@ -191,9 +242,10 @@ function toggleInputSource(elem){
       }else{
         toggleInputType($('.inputType>:checkbox:checked'));
       }
+      $('.cost-fields :eq(0)').hide();
     }
     else{
-      $elem.prop('checked',true);
+      elem.prop('checked',true);
     }
   }
   if(elem.prop('id')==="direct-co-emission"){
@@ -201,6 +253,7 @@ function toggleInputSource(elem){
       $('#by-fuel-consumption').prop('checked',false);
       $('.by-fuel input,.by-fuel select').prop('disabled',true);
       $('.by-co input,.by-co select').prop('disabled',false);
+      $('.cost-fields :eq(0)').show();
     }
     else{
       elem.prop('checked',true);
@@ -257,22 +310,20 @@ function toggleVehicleCheckup(elm) {
 
 function toggleTravelCost(elem){
   if(elem.prop('checked')){
-    $('#fuel-cost,#fuel-cost-volume,#currency-codes').prop('disabled',false);
+    $('.cost-fields select,.cost-fields input').prop('disabled',false);
   }
   else{
-    $('#fuel-cost,#fuel-cost-volume,#currency-codes').prop('disabled',true);
+    $('.cost-fields select,.cost-fields input').prop('disabled',true);
   }
 }
 
 function toggleUnits(elem){
   if(elem.prop('id')==="metric"){
+    units.m='kg';
+    units.v='L';
+    units.d='km';
     if(elem.prop('checked')){
-      $('#distance-unit option,#emission-unit-distance option')
-        .val("km")
-        .html("km");
-      $('#fuel-cost-volume option,#fuel-unit option').val("L").html("L");
-      $('#emission-unit-mass option').val("kg").html("kg");
-      $('#uscustomary').prop('checked',false);
+      $('#uscustomary,#imperial').prop('checked',false);
     }
     else{
       elem.prop('checked',true);
@@ -280,66 +331,113 @@ function toggleUnits(elem){
   }
   else{
     if(elem.prop('checked')){
-      $('#fuel-cost-volume option,#fuel-unit option').val("gal").html("gal");
-      $('#emission-unit-mass option').val("lbs").html("lbs");
-      $('#distance-unit option,#emission-unit-distance option')
-        .val("mi")
-        .html("mi");
+      units.m='lbs';
+      units.v='gal';
+      units.d='mi';
       $('#metric').prop('checked',false);
+      if(elem.prop('id')==="uscustomary"){
+        $('#imperial').prop('checked',false);
+      }
+      else{
+        $('#uscustomary').prop('checked',false);
+      }
     }
     else{
       elem.prop('checked',true);
-    } 
+    }
+  }
+  $('#distance-unit option,#emission-unit-distance option')
+    .val(units.d)
+    .html(units.d);
+  $('#emission-unit-mass option').val(units.m).html(units.m);
+  $('#fuel-unit option')
+    .val(units[fuels[ftype].measuredBy])
+    .html(units[fuels[ftype].measuredBy]);
+  if(fuels[ftype].measuredBy=="e"){
+    $('#green-electricity').show();
+  }
+  else{
+    $('#green-electricity').hide();
   }
 }
 
+function mirrorFuelValues(elem){
+  ftype=elem.prop('value');
+  $('[id="fuel-type"]').val(ftype);
+  toggleUnits($('.save>:checkbox:checked'));
+}
 
 $(document).bind('DOMContentLoaded', function () {
   optionsData = new StorageManager('calculationObject', function() {
-    
     //assigning click listener to the save for each tabs
     $('#save-button').on('click', saveOptions);
-    
     //assigning click listener to the tabs
     $('.tab-button').on('click',switchtab);
 
 		$('#by-fuel-consumption,#direct-co-emission').on('click',function(){
-      toggleInputSource(jQuery(this));
+      toggleInputSource($(this));
     });
     
     $('#fuel-efficiency,#fuel-consumed-per,#custom-values').on('click',function(){
-      toggleInputType(jQuery(this));
+      toggleInputType($(this));
     });
 
     $('#display-travel-cost').on('click',function(){
-      toggleTravelCost(jQuery(this));
+      toggleTravelCost($(this));
     });
 
     $('#display-checkup-notify').on('click',function(){
       toggleVehicleCheckup(jQuery(this));
     });
     
-    $('#metric,#uscustomary').on('click',function(){
-      toggleUnits(jQuery(this));
+    $('#metric,#uscustomary,#imperial').on('click',function(){
+      toggleUnits($(this));
     });
+
+    $('#reLocation').on('click',function(){
+      saveLocation();
+    });
+
+    $('[id="fuel-type"]').on('change',function(){
+      mirrorFuelValues($(this));
+    });
+
     /**
      * Prevents adding Hyphen(-) in the input field.
      */
-    /*$('#distance-value,#emission,#fuel-value,#fuel-cost')
+    $('#distance-value,#emission,#fuel-value,#fuel-cost')
       .bind('keypress',function(evtmin){
         if(evtmin.which === 45){
           evtmin.preventDefault();
         }
-      });*/
-
-    for(var i=0;i<currencyCodes.length;i++) {
+      });
+    var i;
+    for(i=0;i<currencyCodes.length;i++) {
       $('#currency-codes')
         .append($('<option></option>')
                 .html(currencyCodes[i])
-                .val(i)
+                .val(currencyCodes[i])
                );
     }
- 
+
+    $.getJSON("/core/resources/countries.json",function(resp){
+      countries=resp;
+      console.log(countries);
+    });
+    
+    $.getJSON("/core/resources/fuels.json",function(response){
+      fuels=response;
+      console.log(fuels);
+    });
+
+    for(i in fuels) {
+      $('[id="fuel-type"]')
+        .append($('<option></option>')
+                .val(i)
+                .attr('data-language',fuels[i].langKey)
+               );
+    }
+    
     // Added multiple language support. replaces text with user language
     for(i=0;i<$('[data-language]').length;i++) {
       $($('[data-language]')[i])
@@ -348,10 +446,8 @@ $(document).bind('DOMContentLoaded', function () {
                                     )
              );
     }
-    
     loadSavedData();
   });
-
 });
 
 googleAnalytics('UA-1471148-11');

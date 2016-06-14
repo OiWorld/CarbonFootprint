@@ -27,13 +27,13 @@
     "message": "Fuel Efficiency Units"
   },
   "coEmission": {
-    "message": "CO<sub>2</sub> Emissions"
+    "message": "CO<sub>2</sub> Emissions?:"
   },
-  "directCOEmission": {
-    "message": "Know your vehicle's average CO<sub>2</sub> emission?"
+  "emissionQues": {
+    "message": "Know your vehicle's average:"
   },
   "byFuelConsumption": {
-    "message": "Know your vehicle's average fuel consumption?"
+    "message": "Fuel Consumption?:"
   },
   "costCalculator": {
     "message": "Cost Calculator"
@@ -67,6 +67,12 @@
   },
   "fuelBioDiesel": {
     "message": "Bio-Diesel"
+  },
+  "fuelCNG": {
+    "message": "CNG"
+  },
+  "fuelElectricity":{
+    "message": "Electricity"
   },
   "fuelCost": {
     "message": "Fuel Cost:"
@@ -148,5 +154,17 @@
   },
   "error": {
     "message": "Please enter a valid input"
+  },
+  "imperial": {
+    "message": "Imperial"
+  },
+  "greenElectricity": {
+    "message": "Green Electricity:"
+  },
+  "fuelB20": {
+    "message": "B20"
+  },
+  "footprints": {
+    "message": "Carbon Footprints"
   }
 }
