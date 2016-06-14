@@ -1,7 +1,9 @@
 var gulp = require('gulp');
-var jshint = require('gulp-jshint');
+var gjslint = require('gulp-gjslint');
 var Server = require('karma').Server;
+var stylish = require('jshint-stylish').reporter;
 
+var lintFiles = ['Source/**/*.js', '!Source/**/*.min.js'];
 
 gulp.task('karma', function (done) {
 	new Server({
@@ -10,13 +12,16 @@ gulp.task('karma', function (done) {
 	}, done).start();
 });
 
-gulp.task('lint', function (done) {
-	return gulp.src([
-		'Source/**/*.js',
-		'!Source/**/*.min.js'
-	])
+gulp.task('jslint', function () {
+	return gulp.src(lintFiles)
 	.pipe(jshint())
-	.pipe(jshint.reporter('jshint-stylish'));
+	.pipe(jshint.reporter(stylish));
 });
 
-gulp.task('test', ['lint', 'karma']);
+gulp.task('gjslint', function() {
+	return gulp.src(lintFiles)
+	.pipe(gjslint())
+	.pipe(gjslint.reporter('jshint', stylish))
+});
+
+gulp.task('test', ['gjslint', 'karma']);
