@@ -1,415 +1,519 @@
-var optionsData,fuels,countries;
-var ftype;
-var units={
+$.ajaxSetup({
+  async: false
+});
+
+var options = {};
+
+/**
+ * defines initial unit system
+ */
+
+options.units = {
   m: 'kg',
   v: 'L',
   d: 'km',
   e: 'kWh'
 };
 
-$.ajaxSetup({
-  async: false
-});
+/**
+ * switches tabs in main view
+ * @this tab-button
+ */
 
-var currencyCodes = ["AED","AFN","ALL","AMD","ANG","AOA","ARS","AUD","AWG","AZN","BAM","BBD","BDT","BGN","BHD","BIF","BMD","BND","BOB","BOV","BRL","BSD","BTN","BWP","BYR","BZD","CAD","CDF","CHE","CHF","CHW","CLF","CLP","CNY","COP","COU","CRC","CUP","CVE","CYP","CZK","DJF","DKK","DOP","DZD","EEK","EGP","ERN","ETB","EUR","FJD","FKP","GBP","GEL","GHS","GIP","GMD","GNF","GTQ","GYD","HKD","HNL","HRK","HTG","HUF","IDR","ILS","INR","IQD","IRR","ISK","JMD","JOD","JPY","KES","KGS","KHR","KMF","KPW","KRW","KWD","KYD","KZT","LAK","LBP","LKR","LRD","LSL","LTL","LVL","LYD","MAD","MDL","MGA","MKD","MMK","MNT","MOP","MRO","MTL","MUR","MVR","MWK","MXN","MXV","MYR","MZN","NAD","NGN","NIO","NOK","NPR","NZD","OMR","PAB","PEN","PGK","PHP","PKR","PLN","PYG","QAR","RON","RSD","RUB","RWF","SAR","SBD","SCR","SDG","SEK","SGD","SHP","SKK","SLL","SOS","SRD","STD","SYP","SZL","THB","TJS","TMM","TND","TOP","TRY","TTD","TWD","TZS","UAH","UGX","USD","USN","USS","UYU","UZS","VEB","VND","VUV","WST","XAF","XAG","XAU","XBA","XBB","XBC","XBD","XCD","XDR","XFO","XFU","XOF","XPD","XPF","XPT","XTS","XXX","YER","ZAR","ZMK","ZWD"];
-
-
-
-function switchtab(){
+options.switchTab = function() {
   $('.tab-button.selected').removeClass('selected');
   $(this).addClass(' selected');
   $('.tab.open').removeClass('open');
-  $('.tab:nth-child('+($('.tab-button.selected').index()+1)+')').addClass('open');
-}
+  $('.tab:nth-child(' + ($('.tab-button.selected').index() + 1) + ')')
+    .addClass('open');
+};
 
-function saveOptions() {
-  var distance=parseFloat($('#distance-value').val());
-  var fuel=parseFloat($('#fuel-value').val());
-  var funit=$('#fuel-unit').val();
-  optionsData.set('distance',distance);
-  optionsData.set('fuelUnit',funit);
-  optionsData.set('fuel',fuel);
-  var co=parseFloat($('#emission').val());
-  optionsData.set('co',co);
-  var cost=parseFloat($('#fuel-cost').val());
-  var curr=$('#currency-codes').val();
-  var USgalToL=3.785411784;
-  var ImpgalToL=4.54609;
-  //var miTokm=1.609344;
-  var kgTolbs=2.204622621848775;
+/**
+ * 1 Imperial Gallon to Litres
+ * @const
+ */
+
+options.IMPGAL_TO_L = 4.54609;
+
+/**
+ * 1 US Gallon to Litres
+ * @const
+ */
+
+options.USGAL_TO_L = 3.785411784;
+
+/**
+ * 1 Mile to Kilometers
+ * @const
+ */
+
+options.MI_TO_KM = 1.609344;
+
+/**
+ * 1 Kilogram to Pounds
+ * @const
+ */
+
+options.KG_TO_LBS = 2.204622621848775;
+
+/**
+ * Validates and Saves data provided by user
+ */
+
+options.saveOptions = function() {
+  var distance = parseFloat($('#distance-value').val());
+  var fuel = parseFloat($('#fuel-value').val());
+  var funit = $('#fuel-unit').val();
+  var co = parseFloat($('#emission').val());
+  var cost = parseFloat($('#fuel-cost').val());
+  var curr = $('#currency-codes').val();
   var consumption;
-  optionsData.set('fuelType',ftype);
-  // Saving PRIMITVE VARIABLES- fuelCost
-  
-  optionsData.set('unitSystem',$('.save>:checkbox:checked').attr('id'));
-
-  optionsData.set('inputType',$('.inputType>:checkbox:checked').attr('id'));
-
-  optionsData.set('units',units);
-
-  optionsData.set('fuelCost',{
+  options.data.set('co', co);
+  options.data.set('distance', distance);
+  options.data.set('fuelUnit', funit);
+  options.data.set('fuel', fuel);
+  options.data.set('fuelType', options.fType);
+  options.data.set('unitSystem', $('.save>:checkbox:checked').attr('id'));
+  options.data.set('inputType', $('.inputType>:checkbox:checked').attr('id'));
+  options.data.set('units', options.units);
+  options.data.set('inputSource', $('.tab>>:checkbox:checked').attr('id'));
+  options.data.set('fuelCost', {
     value: cost,
     curr: curr
   });
-
-  optionsData.set('inputSource',$('.tab>>:checkbox:checked').attr('id'));
-
-  //console.log(optionsData.get('inputSource'));
-  //console.log(optionsData.get());
-  /**
-   * TO STORE EVERYTYPE OF INFO IN TERMS OF PRIMITVE VARIABLES-
-   * fuelConsumption
-   */
-  switch(optionsData.get('inputSource')) {
-  case "by-fuel-consumption":
-    if(distance<=0||fuel<=0){
-      showMessage("error","error");
+  switch (options.data.get('inputSource')) {
+  case 'by-fuel-consumption':
+    if (distance <= 0 || fuel <= 0) {
+      options.showMessage('error', 'error');
       return;
     }
-    consumption=fuel/distance;
-    if(optionsData.get('unitSystem')=="metric"){
-      //co in kg/km
-      co = consumption*fuels[ftype].CO2Emission/1000;
+    consumption = fuel / distance;
+    if (options.data.get('unitSystem') == 'metric') {
+      co = consumption * options.fuels[options.fType].CO2Emission / 1000;
     }
-    else if(optionsData.get('unitSystem')=="uscustomary"){
-      //co in lbs/mi
-      co = consumption*fuels[ftype].CO2Emission/1000*USgalToL*kgTolbs;
+    else if (options.data.get('unitSystem') == 'uscustomary') {
+      co = consumption * options.fuels[options.fType]
+        .CO2Emission / 1000 * options.USGAL_TO_L * options.KG_TO_LBS;
     }
-    else{
-      co = consumption*fuels[ftype].CO2Emission/1000*ImpgalToL*kgTolbs;
+    else {
+      co = consumption * options.fuels[options.fType]
+        .CO2Emission / 1000 * options.IMPGAL_TO_L * options.KG_TO_LBS;
     }
-    optionsData.set('emissionRate',co);
+    options.data.set('emissionRate', co);
     break;
-  case "direct-co-emission":
-    if(co<=0){
-      showMessage("error","error");
+  case 'direct-co-emission':
+    if (co <= 0) {
+      options.showMessage('error', 'error');
       return;
     }
-    if(optionsData.get('unitSystem')=="metric"){
-      //co in kg/km
-      consumption = co/fuels[ftype].CO2Emission*1000;
+    if (options.data.get('unitSystem') == 'metric') {
+      consumption = co / fuels[options.fType].CO2Emission * 1000;
     }
-    else{
-      //co in lbs/mi
-      consumption = co/fuels[ftype].CO2Emission*1000/USgalToL/kgTolbs;
+    else {
+      consumption = co / fuels[options.fType]
+        .CO2Emission * 1000 / options.USGAL_TO_L / options.KG_TO_LBS;
     }
-    optionsData.set('emissionRate',co);
+    options.data.set('emissionRate', co);
     break;
   }
 
-  //set travel rate
-  optionsData.set('showTravelCost',
+  options.data.set('showTravelCost',
                   document.getElementById('display-travel-cost').checked
                  );
-  if(optionsData.get('showTravelCost')){
-    if(cost<=0){
-      showMessage("error","error");
+  if (options.data.get('showTravelCost')) {
+    if (cost <= 0) {
+      options.showMessage('error', 'error');
       return;
     }
-    else{
-      optionsData.set('travelRate',consumption*cost);
+    else {
+      options.data.set('travelRate', consumption * cost);
     }
   }
-  // Update status to let user know options were saved.
-  showMessage("saved","good");
-}
 
-var showMessage = function(msgcode,type){
-  var status =  $('#message');
-  switch(type){
-  case "error":
+  options.showMessage('saved', 'good');
+  options.storeData();
+};
+
+/**
+ * Shows status in #message
+ * @param {string} msgcode
+ * @param {string} type
+ */
+
+options.showMessage = function(msgcode, type) {
+  var status = $('#message');
+  switch (type) {
+  case 'error':
     status
       .html(chrome.i18n.getMessage(msgcode))
-      .css('display','block')
-      .css('background-color','#fb5151');
+      .css('display', 'block')
+      .css('background-color', '#fb5151');
     break;
-  case "good":
+  case 'good':
     status
       .html(chrome.i18n.getMessage(msgcode))
-      .css('display','block')
-      .css('background-color','#a6ff4d');
-    optionsData.set('init',true);
-    optionsData.store();
+      .css('display', 'block')
+      .css('background-color', '#a6ff4d');
     setTimeout(function() {
-      status.css('display','none');
+      status.css('display', 'none');
     }, 1200);
     break;
   }
 };
 
-var saveLocation = function(){
-  var geoData={},
-      city="locality,political",
-      country="country,political",
-      state="administrative_area_level_1,political",
-      gc=new google.maps.Geocoder();
+/**
+ * Stores data if data validates
+ */
+
+options.storeData = function() {
+  options.data.set('init', true);
+  options.data.store();
+};
+
+/**
+ * Saves user location based on coordinates
+ * provided by navigator.geolocation
+ */
+
+options.saveLocation = function() {
+  var geoData = {},
+      city = 'locality,political',
+      country = 'country,political',
+      state = 'administrative_area_level_1,political',
+      gc = new google.maps.Geocoder();
   navigator.geolocation.getCurrentPosition(function(position) {
     var lat = position.coords.latitude,
         lng = position.coords.longitude,
-        latlng=new google.maps.LatLng(lat,lng);
-    gc.geocode({'latLng': latlng}, function (results, status) {
+        latlng = new google.maps.LatLng(lat, lng);
+    gc.geocode({'latLng': latlng}, function(results, status) {
       var addComps = results[0].address_components;
-      for (var i=0;i<addComps.length;i++) {
-        if(addComps[i].types==city||
-           addComps[i].types==state||
-           addComps[i].types==country){
+      for (var i = 0; i < addComps.length; i++) {
+        if (addComps[i].types == city ||
+           addComps[i].types == state ||
+           addComps[i].types == country) {
           geoData[addComps[i].types[0]] = addComps[i].long_name;
-          geoData[addComps[i].types[0]+'_short'] = addComps[i].short_name;
+          geoData[addComps[i].types[0] + '_short'] = addComps[i].short_name;
         }
       }
       $('#reLocation').show();
-      optionsData.set('geoData',geoData);
-      optionsData.set('renPer',
-                      {"wiki": countries[optionsData
+      options.data.set('geoData', geoData);
+      options.data.set('renPer',
+                      {'wiki': countries[options.data
                                  .get('geoData')
                                  .country_short]
                        .RenewablePer});
-      $('#green-electricity input').val(optionsData.get('renPer').wiki);
-      $('#location').html((optionsData.get('geoData').locality+', '+optionsData.get('geoData').administrative_area_level_1+', '+optionsData.get('geoData').country).replace(/ undefined,/g,""));
-      $('#currency-codes').val(countries[optionsData.get('geoData').country_short].currency);
-      optionsData.store();
+      $('#green-electricity input').val(options.data.get('renPer').wiki);
+      $('#location')
+        .html((options.data.get('geoData')
+               .locality + ', ' + options.data.get('geoData')
+               .administrative_area_level_1 + ', ' + options.data.get('geoData')
+               .country).replace(/ undefined,/g, ''));
+      $('#currency-codes')
+        .val(countries[options.data.get('geoData').country_short].currency);
+      options.data.store();
     });
   });
 };
 
-function loadSavedData() {
- //if not saved once
-  if(!optionsData.has('geoData')){
-    saveLocation();
-  }else{
-    $('#green-electricity input').val(optionsData.get('renPer').wiki);
-    $('#location').html((optionsData.get('geoData').locality+', '+optionsData.get('geoData').administrative_area_level_1+', '+optionsData.get('geoData').country).replace(/ undefined,/g,""));
-    $('#reLocation').show();
-    $('#currency-codes').val(countries[optionsData.get('geoData').country_short].currency);
-  }
-  ftype = $('#fuel-type').val();
-  //restore only if options html was saved once
-  if(optionsData.has('init')) {
-    $('[id="fuel-type"]').val(optionsData.get('fuelType'));
-    ftype = $('#fuel-type').val();
-    $('#fuel-cost').val(optionsData.get('fuelCost').value);
-    $('#currency-codes').val(optionsData.get('fuelCost').curr);
-    $('#distance-value').val(optionsData.get('distance'));    
-    $('#fuel-value').val(optionsData.get('fuel'));
-    $('#emission').val(optionsData.get('co'));
-    ftype = $('#fuel-type').val();
-    if(optionsData.get('showTravelCost')){
-      $('#display-travel-cost').attr('checked', true);
-      toggleTravelCost($('#display-travel-cost'));
-    }
-    $('#'+optionsData.get('inputSource')).attr('checked', true);
-    toggleInputSource($('#'+optionsData.get('inputSource')));    
-    $('#'+optionsData.get('unitSystem')).attr('checked', true);
-    toggleUnits($('#'+optionsData.get('unitSystem')));
-  }
-}
+/**
+ * Loads data that is already been saved by user
+ */
 
-function toggleInputSource(elem){
-  if(elem.prop('id')==="by-fuel-consumption"){
-    if(elem.prop('checked')){
-      $('#direct-co-emission').prop('checked',false);
-      $('.by-fuel input,.by-fuel select').prop('disabled',false);
-      $('.by-co input,.by-co select').prop('disabled',true);
-      if(optionsData.has('init')){
-        $('#'+optionsData.get('inputType')).prop('checked',true);
-        toggleInputType($('#'+optionsData.get('inputType')));
-      }else{
-        toggleInputType($('.inputType>:checkbox:checked'));
+options.loadSavedData = function() {
+ //if not saved once
+  if (!options.data.has('geoData')) {
+    options.saveLocation();
+  }else {
+    $('#green-electricity input').val(options.data.get('renPer').wiki);
+    $('#location').html((options.data.get('geoData')
+                         .locality + ', ' + options.data.get('geoData')
+                         .administrative_area_level_1 + ', ' + options.data
+                         .get('geoData').country).replace(/ undefined,/g, ''));
+    $('#reLocation').show();
+    $('#currency-codes')
+      .val(options
+           .countries[options.data.get('geoData').country_short].currency);
+  }
+  options.fType = $('#fuel-type').val();
+  //restore only if options html was saved once
+  if (options.data.has('init')) {
+    $('[id="fuel-type"]').val(options.data.get('fuelType'));
+    options.fType = $('#fuel-type').val();
+    $('#fuel-cost').val(options.data.get('fuelCost').value);
+    $('#currency-codes').val(options.data.get('fuelCost').curr);
+    $('#distance-value').val(options.data.get('distance'));
+    $('#fuel-value').val(options.data.get('fuel'));
+    $('#emission').val(options.data.get('co'));
+    options.fType = $('#fuel-type').val();
+    if (options.data.get('showTravelCost')) {
+      $('#display-travel-cost').attr('checked', true);
+      options.toggleTravelCost($('#display-travel-cost'));
+    }
+    $('#' + options.data.get('inputSource')).attr('checked', true);
+    options.toggleInputSource($('#' + options.data.get('inputSource')));
+    $('#' + options.data.get('unitSystem')).attr('checked', true);
+    options.toggleUnits($('#' + options.data.get('unitSystem')));
+  }
+};
+
+/**
+ * Toggles the input source (co2 emission/fuel consumption)
+ * @param {Element} elem
+ */
+
+options.toggleInputSource = function(elem) {
+  if (elem.prop('id') === 'by-fuel-consumption') {
+    if (elem.prop('checked')) {
+      $('#direct-co-emission').prop('checked', false);
+      $('.by-fuel input,.by-fuel select').prop('disabled', false);
+      $('.by-co input,.by-co select').prop('disabled', true);
+      if (options.data.has('init')) {
+        $('#' + options.data.get('inputType')).prop('checked', true);
+        options.toggleInputType($('#' + options.data.get('inputType')));
+      }else {
+        options.toggleInputType($('.inputType>:checkbox:checked'));
       }
       $('.cost-fields :eq(0)').hide();
     }
-    else{
-      elem.prop('checked',true);
+    else {
+      elem.prop('checked', true);
     }
   }
-  if(elem.prop('id')==="direct-co-emission"){
-    if(elem.prop('checked')){
-      $('#by-fuel-consumption').prop('checked',false);
-      $('.by-fuel input,.by-fuel select').prop('disabled',true);
-      $('.by-co input,.by-co select').prop('disabled',false);
+  if (elem.prop('id') === 'direct-co-emission') {
+    if (elem.prop('checked')) {
+      $('#by-fuel-consumption').prop('checked', false);
+      $('.by-fuel input,.by-fuel select').prop('disabled', true);
+      $('.by-co input,.by-co select').prop('disabled', false);
       $('.cost-fields :eq(0)').show();
     }
-    else{
-      elem.prop('checked',true);
+    else {
+      elem.prop('checked', true);
     }
   }
-}
+};
 
-function toggleInputType(elem){
-  if(elem.prop('id')==="fuel-efficiency"){
-    if(elem.prop('checked')){
-      $('#fuel-value').val(1).prop('disabled',true);
-      $('#distance-value').prop('disabled',false);
-      $('#fuel-consumed-per').prop('checked',false);
-      $('#custom-values').prop('checked',false);
-      $('#usage-message').html(chrome.i18n.getMessage("feMessage"));
-    }
-    else{
-      $('#fuel-value').prop('disabled',false);
-    }
-  }
-  else if(elem.prop('id')==="fuel-consumed-per"){
-    if(elem.prop('checked')){
-      $('#distance-value').val(100).prop('disabled',true);
-      $('#fuel-value').prop('disabled',false);
-      $('#fuel-efficiency').prop('checked',false);
-      $('#custom-values').prop('checked',false);
-      $('#usage-message').html(chrome.i18n.getMessage("fcpMessage"));
-    }
-    else{
-      $('#distance-value').prop('disabled',false);
-    }
-  }
-  else{
-    if(elem.prop('checked')){
-      $('#distance-value').prop('disabled',false);
-      $('#fuel-value').prop('disabled',false);
-      $('#fuel-consumed-per').prop('checked',false);
-      $('#fuel-efficiency').prop('checked',false);
-      $('#usage-message').html(chrome.i18n.getMessage("cvMessage"));
-    }
-    else{
-      $('#distance-value').prop('disabled',false);
-    }
-  }
-}
+/**
+ * Toggles the input type (efficiency/consumption/custom)
+ * @param {Element} elem
+ */
 
-function toggleTravelCost(elem){
-  if(elem.prop('checked')){
-    $('.cost-fields select,.cost-fields input').prop('disabled',false);
+options.toggleInputType = function(elem) {
+  if (elem.prop('id') === 'fuel-efficiency') {
+    if (elem.prop('checked')) {
+      $('#fuel-value').val(1).prop('disabled', true);
+      $('#distance-value').prop('disabled', false);
+      $('#fuel-consumed-per').prop('checked', false);
+      $('#custom-values').prop('checked', false);
+      $('#usage-message').html(chrome.i18n.getMessage('feMessage'));
+    }
+    else {
+      elem.prop('checked', true);
+    }
   }
-  else{
-    $('.cost-fields select,.cost-fields input').prop('disabled',true);
+  else if (elem.prop('id') === 'fuel-consumed-per') {
+    if (elem.prop('checked')) {
+      $('#distance-value').val(100).prop('disabled', true);
+      $('#fuel-value').prop('disabled', false);
+      $('#fuel-efficiency').prop('checked', false);
+      $('#custom-values').prop('checked', false);
+      $('#usage-message').html(chrome.i18n.getMessage('fcpMessage'));
+    }
+    else {
+      elem.prop('checked', true);
+    }
   }
-}
+  else {
+    if (elem.prop('checked')) {
+      $('#distance-value').prop('disabled', false);
+      $('#fuel-value').prop('disabled', false);
+      $('#fuel-consumed-per').prop('checked', false);
+      $('#fuel-efficiency').prop('checked', false);
+      $('#usage-message').html(chrome.i18n.getMessage('cvMessage'));
+    }
+    else {
+      elem.prop('checked', true);
+    }
+  }
+};
 
-function toggleUnits(elem){
-  if(elem.prop('id')==="metric"){
-    units.m='kg';
-    units.v='L';
-    units.d='km';
-    if(elem.prop('checked')){
-      $('#uscustomary,#imperial').prop('checked',false);
+/**
+ * Toggles travel cost calculation
+ * @param {Element} elem
+ */
+
+options.toggleTravelCost = function(elem) {
+  if (elem.prop('checked')) {
+    $('.cost-fields select,.cost-fields input').prop('disabled', false);
+  }
+  else {
+    $('.cost-fields select,.cost-fields input').prop('disabled', true);
+  }
+};
+
+/**
+ * Toggles unit system (metric/us customary/imperial)
+ * @param {Element} elem
+ */
+
+options.toggleUnits = function(elem) {
+  if (elem.prop('id') === 'metric') {
+    options.units.m = 'kg';
+    options.units.v = 'L';
+    options.units.d = 'km';
+    if (elem.prop('checked')) {
+      $('#uscustomary,#imperial').prop('checked', false);
     }
-    else{
-      elem.prop('checked',true);
+    else {
+      elem.prop('checked', true);
     }
   }
-  else{
-    if(elem.prop('checked')){
-      units.m='lbs';
-      units.v='gal';
-      units.d='mi';
-      $('#metric').prop('checked',false);
-      if(elem.prop('id')==="uscustomary"){
-        $('#imperial').prop('checked',false);
+  else {
+    if (elem.prop('checked')) {
+      options.units.m = 'lbs';
+      options.units.v = 'gal';
+      options.units.d = 'mi';
+      $('#metric').prop('checked', false);
+      if (elem.prop('id') === 'uscustomary') {
+        $('#imperial').prop('checked', false);
       }
-      else{
-        $('#uscustomary').prop('checked',false);
+      else {
+        $('#uscustomary').prop('checked', false);
       }
     }
-    else{
-      elem.prop('checked',true);
+    else {
+      elem.prop('checked', true);
     }
   }
   $('#distance-unit option,#emission-unit-distance option')
-    .val(units.d)
-    .html(units.d);
-  $('#emission-unit-mass option').val(units.m).html(units.m);
+    .val(options.units.d)
+    .html(options.units.d);
+  $('#emission-unit-mass option').val(options.units.m).html(options.units.m);
   $('#fuel-unit option')
-    .val(units[fuels[ftype].measuredBy])
-    .html(units[fuels[ftype].measuredBy]);
-  if(fuels[ftype].measuredBy=="e"){
+    .val(options.units[options.fuels[options.fType].measuredBy])
+    .html(options.units[options.fuels[options.fType].measuredBy]);
+  if (options.fuels[options.fType].measuredBy == 'e') {
     $('#green-electricity').show();
   }
-  else{
+  else {
     $('#green-electricity').hide();
   }
-}
+};
 
-function mirrorFuelValues(elem){
-  ftype=elem.prop('value');
-  $('[id="fuel-type"]').val(ftype);
-  toggleUnits($('.save>:checkbox:checked'));
-}
+/**
+ * makes change in fuel type reflect in both drop-downs
+ * @param {Element} elem
+ */
 
-$(document).bind('DOMContentLoaded', function () {
-  optionsData = new StorageManager('calculationObject', function() {
-    //assigning click listener to the save for each tabs
-    $('#save-button').on('click', saveOptions);
-    //assigning click listener to the tabs
-    $('.tab-button').on('click',switchtab);
+options.mirrorFuelValues = function(elem) {
+  options.fType = elem.prop('value');
+  $('[id="fuel-type"]').val(options.fType);
+  options.toggleUnits($('.save>:checkbox:checked'));
+};
 
-		$('#by-fuel-consumption,#direct-co-emission').on('click',function(){
-      toggleInputSource($(this));
-    });
-    
-    $('#fuel-efficiency,#fuel-consumed-per,#custom-values').on('click',function(){
-      toggleInputType($(this));
-    });
+/**
+ * Loads data from external resources
+ */
 
-    $('#display-travel-cost').on('click',function(){
-      toggleTravelCost($(this));
-    });
-    
-    $('#metric,#uscustomary,#imperial').on('click',function(){
-      toggleUnits($(this));
-    });
-
-    $('#reLocation').on('click',function(){
-      saveLocation();
-    });
-
-    $('[id="fuel-type"]').on('change',function(){
-      mirrorFuelValues($(this));
-    });
-
-    /**
-     * Prevents adding Hyphen(-) in the input field.
-     */
-    $('#distance-value,#emission,#fuel-value,#fuel-cost')
-      .bind('keypress',function(evtmin){
-        if(evtmin.which === 45){
-          evtmin.preventDefault();
-        }
-      });
-    var i;
-    for(i=0;i<currencyCodes.length;i++) {
-      $('#currency-codes')
-        .append($('<option></option>')
-                .html(currencyCodes[i])
-                .val(currencyCodes[i])
-               );
-    }
-
-    $.getJSON("/core/resources/countries.json",function(resp){
-      countries=resp;
-      console.log(countries);
-    });
-    
-    $.getJSON("/core/resources/fuels.json",function(response){
-      fuels=response;
-      console.log(fuels);
-    });
-
-    for(i in fuels) {
-      $('[id="fuel-type"]')
-        .append($('<option></option>')
-                .val(i)
-                .attr('data-language',fuels[i].langKey)
-               );
-    }
-    
-    // Added multiple language support. replaces text with user language
-    for(i=0;i<$('[data-language]').length;i++) {
-      $($('[data-language]')[i])
-        .html(chrome.i18n.getMessage($($('[data-language]')[i])
-                                     .data('language')
-                                    )
-             );
-    }
-    loadSavedData();
+options.loadResources = function() {
+  $.getJSON('/core/resources/fuels.json', function(response) {
+    options.fuels = response;
   });
+  $.getJSON('/core/resources/currencyCodes.json', function(response) {
+    options.currencyCodes = response.currencyCodes;
+  });
+  $.getJSON('/core/resources/countries.json', function(response) {
+    options.countries = response;
+  });
+  options.populateMenus();
+};
+
+
+/**
+ * Event listeners for the page
+ */
+
+options.listeners = function() {
+  $('#save-button').on('click', options.saveOptions);
+  $('.tab-button').on('click', options.switchTab);
+  $('#by-fuel-consumption,#direct-co-emission').on('click', function() {
+    options.toggleInputSource($(this));
+  });
+  $('#fuel-efficiency,#fuel-consumed-per,#custom-values')
+    .on('click', function() {
+      options.toggleInputType($(this));
+    });
+  $('#display-travel-cost').on('click', function() {
+    options.toggleTravelCost($(this));
+  });
+  $('#metric,#uscustomary,#imperial').on('click', function() {
+    options.toggleUnits($(this));
+  });
+  $('#reLocation').on('click', function() {
+    options.saveLocation();
+  });
+  $('[id="fuel-type"]').on('change', function() {
+    options.mirrorFuelValues($(this));
+  });
+  //Prevents adding Hyphen(-) in the input field.
+  $('#distance-value,#emission,#fuel-value,#fuel-cost')
+    .on('keypress', function(evtmin) {
+      if (evtmin.which === 45) {
+        evtmin.preventDefault();
+      }
+    });
+};
+
+
+/**
+ * Initialises the StorageManager
+ */
+
+options.initStorageManager = function() {
+  options.data = new StorageManager('calculationObject', function() {
+    options.loadSavedData();
+  });
+};
+
+/**
+ * Populates the drop-down menus from data loaded from external sources
+ */
+
+options.populateMenus = function() {
+  var i;
+  for (i in options.fuels) {
+    $('[id="fuel-type"]')
+      .append($('<option></option>')
+              .val(i)
+              .attr('data-language', options.fuels[i].langKey)
+             );
+  }
+  for (i = 0; i < options.currencyCodes.length; i++) {
+    $('#currency-codes')
+      .append($('<option></option>')
+              .html(options.currencyCodes[i])
+              .val(options.currencyCodes[i])
+             );
+  }
+  options.loadMessages();
+};
+
+/**
+ * Loads messages for the language specified
+ */
+
+options.loadMessages = function() {
+  var i;
+  for (i = 0; i < $('[data-language]').length; i++) {
+    $($('[data-language]')[i])
+      .html(chrome.i18n.getMessage($($('[data-language]')[i])
+                                   .data('language')));
+  }
+};
+
+$(document).on('DOMContentLoaded', function() {
+  options.listeners();
+  options.loadResources();
+  options.initStorageManager();
 });
 
 googleAnalytics('UA-1471148-11');
