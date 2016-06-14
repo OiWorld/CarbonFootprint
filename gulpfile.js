@@ -3,7 +3,7 @@ var gjslint = require('gulp-gjslint');
 var Server = require('karma').Server;
 var stylish = require('jshint-stylish').reporter;
 
-var lintFiles = ['Source/**/*.js', '!Source/**/*.min.js'];
+var lintFiles = ['Source/**/*.js', '!Source/**/*.min.js', '!Source/background/google-maps-api.js'];
 
 gulp.task('karma', function (done) {
 	new Server({
