@@ -20,19 +20,12 @@ Utils.Converter.constants = {
 Utils.Converter.getConstant = function (unit) {
     switch(unit) {
         case 'g'  : return this.constants.G_TO_G;
-            break;
         case 'kg' : return this.constants.G_TO_KG;
-            break;
         case 'lbs': return this.constants.G_TO_LBS;
-            break;
         case 'km' : return this.constants.KM_TO_KM;
-            break;
         case 'mi' : return this.constants.KM_TO_MI;
-            break;
         case 'L'  : return this.constants.L_TO_L;
-            break;
         case 'gal': return this.constants.L_TO_GAL;
-            break;
         default :  return  -1;
     }
 };

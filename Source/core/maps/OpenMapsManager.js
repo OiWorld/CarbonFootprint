@@ -17,10 +17,11 @@ OpenMapsManager.prototype.isDriving = function () {
 };
 
 OpenMapsManager.prototype.getDistanceString = function () {
+    var distanceString;
     var routingSummary = document.getElementById('routing_summary');
     if(routingSummary) {
-        var distanceString = routingSummary.innerHTML.split(":")[1].split(" ")[1]; // Using innerText instead of innerHTML results in strange errors.
-        distanceString = distanceString.substring(0, distanceString.length - 1)
+        distanceString = routingSummary.innerHTML.split(":")[1].split(" ")[1]; // Using innerText instead of innerHTML results in strange errors.
+        distanceString = distanceString.substring(0, distanceString.length - 1);
     }
     console.log('distanceString: ' + distanceString);
     return distanceString;
@@ -36,7 +37,7 @@ OpenMapsManager.prototype.convertDistance = function(distanceStr) {
 };
 
 OpenMapsManager.prototype.insertFootprintElement = function(e) {
-    if (document.getElementsByClassName('carbon').length == 0) { // In this case, "e" has not been added yet. We may proceed and add it.
+    if (document.getElementsByClassName('carbon').length === 0) { // In this case, "e" has not been added yet. We may proceed and add it.
         if(document.getElementById('routing_summary')) {
             document.getElementById('routing_summary').appendChild(e);
         }
@@ -45,7 +46,7 @@ OpenMapsManager.prototype.insertFootprintElement = function(e) {
 
 OpenMapsManager.prototype.insertTravelCostElement = function(e) {
     //A check to ensure that the display travel cost checkbox is checked
-    if (document.getElementsByClassName('travelCost').length == 0) { // In this case, "e" has not been added yet. We may proceed and add it.
+    if (document.getElementsByClassName('travelCost').length === 0) { // In this case, "e" has not been added yet. We may proceed and add it.
         if (document.getElementById('routing_summary')){
             document.getElementById('routing_summary').appendChild(e);
         }
