@@ -56,38 +56,3 @@ Utils.Converter.convert = function (value,prevN,curN,prevD,curD) {
 *FUEL NAME: fuel_info[i]["name"] = fuel name
 *FUEL CONVERSION CONSTANTS: fuel_info[i]["CO2Emission"]  is in g/L
 */
-
-Utils.fuelInfo = [
-  {
-    name:'diesel',
-    CO2Emission: 2614,
-  },
-  {
-    name:'gasoline',
-    CO2Emission: 2328,
-  },
-  {
-    name:'lpg',
-    CO2Emission: 1533,
-  },
-  {
-    name:'e10',
-    CO2Emission: 2245,  // (0.10 * 1503) + (0.90 * 2328) = 2245.5
-  },
-  {
-    name:'e25',
-    CO2Emission: 2121,  // (0.25 * 1503) + (0.75 * 2328) = 2121.75
-  },
-  {
-    name:'e85',
-    CO2Emission: 1626,  //  (0.85 * 1503) + (0.15 * 2328) = 1626.75  
-  },
-  {
-    name:'ethanol',
-    CO2Emission: 1503,
-  },
-  {
-    name:'biodiesel',
-    CO2Emission: 2486,
-  }
-];
