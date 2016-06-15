@@ -1,7 +1,3 @@
-$.ajaxSetup({
-  async: false
-});
-
 var options = {};
 
 /**
@@ -13,19 +9,6 @@ options.units = {
   v: 'L',
   d: 'km',
   e: 'kWh'
-};
-
-/**
- * switches tabs in main view
- * @this tab-button
- */
-
-options.switchTab = function() {
-  $('.tab-button.selected').removeClass('selected');
-  $(this).addClass(' selected');
-  $('.tab.open').removeClass('open');
-  $('.tab:nth-child(' + ($('.tab-button.selected').index() + 1) + ')')
-    .addClass('open');
 };
 
 /**
@@ -63,14 +46,14 @@ options.KG_TO_LBS = 2.204622621848775;
 options.saveOptions = function() {
   var distance = parseFloat($('#distance-value').val());
   var fuel = parseFloat($('#fuel-value').val());
-  var funit = $('#fuel-unit').val();
+  //var funit = $('#fuel-unit').val();
   var co = parseFloat($('#emission').val());
   var cost = parseFloat($('#fuel-cost').val());
   var curr = $('#currency-codes').val();
   var consumption;
   options.data.set('co', co);
   options.data.set('distance', distance);
-  options.data.set('fuelUnit', funit);
+  //options.data.set('fuelUnit', funit);
   options.data.set('fuel', fuel);
   options.data.set('fuelType', options.fType);
   options.data.set('unitSystem', $('.save>:checkbox:checked').attr('id'));
@@ -257,6 +240,19 @@ options.loadSavedData = function() {
 };
 
 /**
+ * switches tabs in main view
+ * @param {Element} elem
+ */
+
+options.switchTab = function(elem) {
+  $('.tab-button.selected').removeClass('selected');
+  elem.addClass(' selected');
+  $('.tab.open').removeClass('open');
+  $('.tab:nth-child(' + ($('.tab-button.selected').index() + 1) + ')')
+    .addClass('open');
+};
+
+/**
  * Toggles the input source (co2 emission/fuel consumption)
  * @param {Element} elem
  */
@@ -384,11 +380,11 @@ options.toggleUnits = function(elem) {
       elem.prop('checked', true);
     }
   }
-  $('#distance-unit option,#emission-unit-distance option')
+  $('[id="distance-unit"]')
     .val(options.units.d)
     .html(options.units.d);
-  $('#emission-unit-mass option').val(options.units.m).html(options.units.m);
-  $('#fuel-unit option')
+  $('#mass-unit').val(options.units.m).html(options.units.m);
+  $('[id="fuel-unit"]')
     .val(options.units[options.fuels[options.fType].measuredBy])
     .html(options.units[options.fuels[options.fType].measuredBy]);
   if (options.fuels[options.fType].measuredBy == 'e') {
@@ -424,7 +420,6 @@ options.loadResources = function() {
   $.getJSON('/core/resources/countries.json', function(response) {
     options.countries = response;
   });
-  options.populateMenus();
 };
 
 
@@ -434,7 +429,9 @@ options.loadResources = function() {
 
 options.listeners = function() {
   $('#save-button').on('click', options.saveOptions);
-  $('.tab-button').on('click', options.switchTab);
+  $('.tab-button').on('click', function() {
+    options.switchTab($(this));
+  });
   $('#by-fuel-consumption,#direct-co-emission').on('click', function() {
     options.toggleInputSource($(this));
   });
@@ -470,7 +467,7 @@ options.listeners = function() {
 
 options.initStorageManager = function() {
   options.data = new StorageManager('calculationObject', function() {
-    options.loadSavedData();
+    console.log('StorageManager Initialised');
   });
 };
 
@@ -494,7 +491,6 @@ options.populateMenus = function() {
               .val(options.currencyCodes[i])
              );
   }
-  options.loadMessages();
 };
 
 /**
@@ -512,8 +508,23 @@ options.loadMessages = function() {
 
 $(document).on('DOMContentLoaded', function() {
   options.listeners();
-  options.loadResources();
-  options.initStorageManager();
 });
+
+$(document).ajaxComplete(function(event, xhr, settings) {
+  options[(/\/(\w*)\./).exec(settings.url)[1] + 'init'] = true;
+  if (options.fuelsinit === true &&
+     options.currencyCodesinit === true &&
+     !options.populated) {
+    options.populated = true;
+    options.populateMenus();
+    options.loadMessages();
+  }
+  if (options.countriesinit === true) {
+    options.loadSavedData();
+  }
+});
+
+options.initStorageManager();
+options.loadResources();
 
 googleAnalytics('UA-1471148-11');
