@@ -46,14 +46,12 @@ options.KG_TO_LBS = 2.204622621848775;
 options.saveOptions = function() {
   var distance = parseFloat($('#distance-value').val());
   var fuel = parseFloat($('#fuel-value').val());
-  //var funit = $('#fuel-unit').val();
   var co = parseFloat($('#emission').val());
   var cost = parseFloat($('#fuel-cost').val());
   var curr = $('#currency-codes').val();
   var consumption;
   options.data.set('co', co);
   options.data.set('distance', distance);
-  //options.data.set('fuelUnit', funit);
   options.data.set('fuel', fuel);
   options.data.set('fuelType', options.fType);
   options.data.set('unitSystem', $('.save>:checkbox:checked').attr('id'));
@@ -90,10 +88,10 @@ options.saveOptions = function() {
       return;
     }
     if (options.data.get('unitSystem') == 'metric') {
-      consumption = co / fuels[options.fType].CO2Emission * 1000;
+      consumption = co / options.fuels[options.fType].CO2Emission * 1000;
     }
     else {
-      consumption = co / fuels[options.fType]
+      consumption = co / options.fuels[options.fType]
         .CO2Emission * 1000 / options.USGAL_TO_L / options.KG_TO_LBS;
     }
     options.data.set('emissionRate', co);
@@ -181,7 +179,7 @@ options.saveLocation = function() {
       $('#reLocation').show();
       options.data.set('geoData', geoData);
       options.data.set('renPer',
-                      {'wiki': countries[options.data
+                      {'wiki': options.countries[options.data
                                  .get('geoData')
                                  .country_short]
                        .RenewablePer});
@@ -192,7 +190,7 @@ options.saveLocation = function() {
                .administrative_area_level_1 + ', ' + options.data.get('geoData')
                .country).replace(/ undefined,/g, ''));
       $('#currency-codes')
-        .val(countries[options.data.get('geoData').country_short].currency);
+        .val(options.countries[options.data.get('geoData').country_short].currency);
       options.data.store();
     });
   });
@@ -218,7 +216,7 @@ options.loadSavedData = function() {
            .countries[options.data.get('geoData').country_short].currency);
   }
   options.fType = $('#fuel-type').val();
-  //restore only if options html was saved once
+  //restore only if values were saved once
   if (options.data.has('init')) {
     $('[id="fuel-type"]').val(options.data.get('fuelType'));
     options.fType = $('#fuel-type').val();
