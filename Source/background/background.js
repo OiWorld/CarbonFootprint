@@ -11,14 +11,14 @@ chrome.runtime.onMessage.addListener(
 );
 
 chrome.alarms.onAlarm.addListener(
-    function () {
+    function (alarm) {
         if (alarm.name === 'CarCheckupAlarm') {
             chrome.notifications.create('CarCheckupNotification', {
                 type: 'basic',
                 iconUrl: 'images/globe-256.png',
                 title: chrome.i18n.getMessage('notificationTitle'),
                 message: chrome.i18n.getMessage('notificationMessage'),
-                eventTime: Date.now()
+                eventTime: alarm.scheduledTime
             });
         }
     }
