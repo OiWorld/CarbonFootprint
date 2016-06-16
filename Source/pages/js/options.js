@@ -136,11 +136,16 @@ options.saveOptions = function() {
   options.storeData();
 };
 
+/**
+ * Set the CarCheckupAlarm to a given Interval
+ * @param {date} time
+ */
+
 options.setAlarm = function(time) {
   //milliseconds between now and the next check
   var diffMillis = Math.abs(new Date() - time);
   //minutes between now and the next checkup
-  var diffMinutes = Math.floor( (diffMillis/1000) / 60);
+  var diffMinutes = Math.floor((diffMillis / 1000) / 60);
 
   chrome.alarms.create('CarCheckupAlarm', {
     delayInMinutes: diffMinutes,
@@ -223,7 +228,9 @@ options.saveLocation = function() {
                .administrative_area_level_1 + ', ' + options.data.get('geoData')
                .country).replace(/ undefined,/g, ''));
       $('#currency-codes')
-        .val(options.countries[options.data.get('geoData').country_short].currency);
+        .val(
+          options.countries[options.data.get('geoData').country_short].currency
+        );
       options.data.store();
     });
   });
