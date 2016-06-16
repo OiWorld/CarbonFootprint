@@ -43,11 +43,11 @@
                                     <label for="emission" data-language="coEmission" >CO<sub>2</sub> Emission</label>
                                     <input id="emission" type="number" size="5" value="0" style="text-align:center" min="0">
                                     <select class="selectMUnit" style="text-align:center" id="emission-unit-mass">
-                                        <option value="kg">kg</option>
+                                        <option value="kg" id="mass-unit">kg</option>
                                     </select>
                                     <div class="unitper">/</div>
-                                    <select class="selectDUnit" style="margin-left:0;" id="emission-unit-distance">
-                                        <option value="km" selected>km</option>
+                                    <select class="selectDUnit" style="margin-left:0;">
+                                        <option value="km" id="distance-unit" selected>km</option>
                                     </select>
                                 </div>
                             </div>
@@ -85,8 +85,8 @@
                                     <div class="form-data">
                                         <label for="consumption" data-language="distanceTravelled">Distance Travelled</label> 
                                         <input type="number" size="1" style="text-align:center" id="distance-value" value="0" min="0" disabled>
-                                        <select class="selectDUnit" style="text-align:center" id="distance-unit" disabled>
-                                            <option value="km" selected>km</option>
+                                        <select class="selectDUnit" style="text-align:center" disabled>
+                                            <option value="km" id="distance-unit" selected>km</option>
                                         </select>
                                     </div>
                                 </div>
@@ -94,8 +94,8 @@
                                     <div class="form-data">
                                         <label for="consumption" data-language="fuelConsumed">Fuel Consumed</label>
                                         <input type="number" size="1" style="text-align:center" id="fuel-value" value="1" min="0" disabled>
-                                        <select class="selectMUnit" style="text-align:center" id="fuel-unit" disabled>
-                                            <option value="L" selected>L</option>
+                                        <select class="selectMUnit" style="text-align:center" disabled>
+                                            <option value="L" id="fuel-unit" selected>L</option>
                                         </select>
                                     </div>
                                 </div>
@@ -122,8 +122,8 @@
                                     <select id="currency-codes" disabled>
                                     </select>
                                     <div class="unitper">/</div>
-                                    <select class="selectFUnit" style="margin-left:0;" id="fuel-cost-volume" disabled>
-                                        <option value="L" selected>L</option>
+                                    <select class="selectFUnit" style="margin-left:0;" disabled>
+                                        <option value="L" id="fuel-unit" selected>L</option>
                                     </select>
                                 </div>
                             </div>
