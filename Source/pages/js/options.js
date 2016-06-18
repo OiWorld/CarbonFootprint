@@ -1,3 +1,10 @@
+/**
+ * script for options page
+ * @author Kolpa (Kolya Opahle)
+ * @author PrateekGupta1509 (Prateek Gupta)
+ * @author heychirag (Chirag Arora)
+ */
+
 var options = {};
 
 /**
