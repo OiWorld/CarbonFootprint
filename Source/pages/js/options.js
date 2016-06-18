@@ -49,6 +49,9 @@ options.saveOptions = function() {
   var co = parseFloat($('#emission').val());
   var cost = parseFloat($('#fuel-cost').val());
   var curr = $('#currency-codes').val();
+  var lastCheckup = $('#last-checkup').val();
+  var nextCheckupYear = parseInt($('#next-checkup-year').val());
+  var nextCheckupMonth = parseInt($('#next-checkup-month').val());
   var consumption;
   options.data.set('co', co);
   options.data.set('distance', distance);
@@ -100,7 +103,7 @@ options.saveOptions = function() {
 
   options.data.set('showTravelCost',
                   document.getElementById('display-travel-cost').checked
-                 );
+                  );
   if (options.data.get('showTravelCost')) {
     if (cost <= 0) {
       options.showMessage('error', 'error');
@@ -111,8 +114,43 @@ options.saveOptions = function() {
     }
   }
 
+  options.data.set('showCheckupNotification',
+                  document.getElementById('display-checkup-notify').checked
+                  );
+  if (options.data.get('showCheckupNotification')) {
+    var lastCheckupDate = new Date(lastCheckup);
+
+    var nextCheckupDate = lastCheckupDate.addMonths(nextCheckupMonth);
+    nextCheckupDate = lastCheckupDate.addYears(nextCheckupYear);
+
+    options.data.set('lastCheckup', lastCheckup);
+    options.data.set('nextCheckupMonth', nextCheckupMonth);
+    options.data.set('nextCheckupYear', nextCheckupYear);
+
+    options.setAlarm(nextCheckupDate);
+  } else {
+    chrome.alarms.clear('CarCheckupAlarm');
+  }
+
   options.showMessage('saved', 'good');
   options.storeData();
+};
+
+/**
+ * Set the CarCheckupAlarm to a given Interval
+ * @param {date} time
+ */
+
+options.setAlarm = function(time) {
+  //milliseconds between now and the next check
+  var diffMillis = Math.abs(new Date() - time);
+  //minutes between now and the next checkup
+  var diffMinutes = Math.floor((diffMillis / 1000) / 60);
+
+  chrome.alarms.create('CarCheckupAlarm', {
+    delayInMinutes: diffMinutes,
+    periodInMinutes: diffMinutes
+  });
 };
 
 /**
@@ -190,7 +228,9 @@ options.saveLocation = function() {
                .administrative_area_level_1 + ', ' + options.data.get('geoData')
                .country).replace(/ undefined,/g, ''));
       $('#currency-codes')
-        .val(options.countries[options.data.get('geoData').country_short].currency);
+        .val(
+          options.countries[options.data.get('geoData').country_short].currency
+        );
       options.data.store();
     });
   });
@@ -225,10 +265,17 @@ options.loadSavedData = function() {
     $('#distance-value').val(options.data.get('distance'));
     $('#fuel-value').val(options.data.get('fuel'));
     $('#emission').val(options.data.get('co'));
+    $('#last-checkup').val(options.data.get('lastCheckup'));
+    $('#next-checkup-month').val(options.data.get('nextCheckupMonth'));
+    $('#next-checkup-year').val(options.data.get('nextCheckupYear'));
     options.fType = $('#fuel-type').val();
     if (options.data.get('showTravelCost')) {
       $('#display-travel-cost').attr('checked', true);
       options.toggleTravelCost($('#display-travel-cost'));
+    }
+    if (options.data.get('showCheckupNotification')) {
+      $('#display-checkup-notify').attr('checked', true);
+      options.toggleCheckupNotification($('#display-checkup-notify'));
     }
     $('#' + options.data.get('inputSource')).attr('checked', true);
     options.toggleInputSource($('#' + options.data.get('inputSource')));
@@ -345,6 +392,20 @@ options.toggleTravelCost = function(elem) {
 };
 
 /**
+ * Toggles checkup notification
+ * @param {Element} elem
+ */
+
+options.toggleCheckupNotification = function(elem) {
+  if (elem.prop('checked')) {
+    $('#last-checkup,#next-checkup input').prop('disabled', false);
+  }
+  else {
+    $('#last-checkup,#next-checkup input').prop('disabled', true);
+  }
+};
+
+/**
  * Toggles unit system (metric/us customary/imperial)
  * @param {Element} elem
  */
@@ -439,6 +500,9 @@ options.listeners = function() {
     });
   $('#display-travel-cost').on('click', function() {
     options.toggleTravelCost($(this));
+  });
+  $('#display-checkup-notify').on('click', function() {
+    options.toggleCheckupNotification($(this));
   });
   $('#metric,#uscustomary,#imperial').on('click', function() {
     options.toggleUnits($(this));

@@ -55,7 +55,7 @@ HereMapsManager.prototype.convertDistance = function(distanceStr) {
 };
 
 HereMapsManager.prototype.insertFootprintElement = function(route, e) {
-    if (route.getElementsByClassName('carbon').length == 0) { // In this case, "e" has not been added yet. We may proceed and add it.
+    if (route.getElementsByClassName('carbon').length === 0) { // In this case, "e" has not been added yet. We may proceed and add it.
         e.setAttribute("style","padding-right:15px;display:inline-block;position:relative;top:-15px;");
         route.getElementsByClassName('route_card_footer_container')[0].appendChild(e);
     }
@@ -64,7 +64,7 @@ HereMapsManager.prototype.insertFootprintElement = function(route, e) {
 
 HereMapsManager.prototype.insertTravelCostElement = function(route, e) {
     //A check to ensure that the display travel cost checkbox is checked
-    if (route.getElementsByClassName('travelCost').length == 0) { // In this case, "e" has not been added yet. We may proceed and add it.
+    if (route.getElementsByClassName('travelCost').length === 0) { // In this case, "e" has not been added yet. We may proceed and add it.
         e.setAttribute("style","padding-right:15px;display:inline-block;position:relative;top:-15px;");
         route.getElementsByClassName('route_card_footer_container')[0].appendChild(e);
     }
