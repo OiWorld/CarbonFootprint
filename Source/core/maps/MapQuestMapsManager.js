@@ -47,9 +47,9 @@ MapQuestMapsManager.prototype.isDriving = function() {
  * @return {string} distanceString
  */
 
-MapQuestMapsManager.prototype.getDistanceString = function () {
+MapQuestMapsManager.prototype.getDistanceString = function() {
     var routingSummary = document.querySelector('.route-selection .distance');
-    if(routingSummary) {
+    if (routingSummary) {
         var distanceString = routingSummary.innerText;
         console.log('distanceString: ' + distanceString);
         return distanceString;
