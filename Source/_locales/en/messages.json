@@ -107,6 +107,24 @@
   "save": {
     "message": "SAVE"
   },
+  "notificationMenu": {
+    "message": "Vehicle Checkup"
+  },
+  "notificationDisplayLabel": {
+    "message": "Display vehicle checkup notification"
+  },
+  "notificationLastChekup": {
+    "message": "Last checkup Date:"
+  },
+  "notificationNextChekup": {
+    "message": "Next Checkup Months Years:"
+  },
+  "notificationTitle": {
+    "message": "You should checkup your car"
+  },
+  "notificationMessage": {
+    "message": "The time you set for the car inspection has passed"
+  },
   "byFuelEfficiency": {
     "message": "Fuel Efficiency"
   },

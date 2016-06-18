@@ -253,6 +253,8 @@
   "permissions": [
     "tabs",
     "storage",
+    "alarms",
+    "notifications",
     "debugger",
     "idle",
     "geolocation",

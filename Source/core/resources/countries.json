@@ -1,4 +1,10 @@
-{  
+{
+  "_comments":{
+    "iso2 names and currency":"http://country.io/data/",
+    "Renewble sources percentage":"https://en.wikipedia.org/wiki/List_of_countries_by_electricity_production_from_renewable_sources",
+    "individual city average":"http://www.worldatlas.com/articles/cost-of-public-transportation-around-the-world.html http://www.priceoftravel.com/595/public-transportation-prices-in-80-worldwide-cities/",
+    "country average":"http://www.goeuro.com/transportation-price-index"
+  },
   "BD":{  
     "name":"Bangladesh",
     "RenewablePer":"4.11",

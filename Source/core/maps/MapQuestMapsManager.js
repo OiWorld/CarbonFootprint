@@ -47,14 +47,15 @@ MapQuestMapsManager.prototype.isDriving = function() {
  * @return {string} distanceString
  */
 
-MapQuestMapsManager.prototype.getDistanceString = function() {
-  var routingSummary = document.querySelector('.route-selection .distance'),
-      distanceString;
-  if (routingSummary) {
-    distanceString = routingSummary.innerText;
-  }
-  console.log('distanceString: ' + distanceString);
-  return distanceString;
+MapQuestMapsManager.prototype.getDistanceString = function () {
+    var routingSummary = document.querySelector('.route-selection .distance');
+    if(routingSummary) {
+        var distanceString = routingSummary.innerText;
+        console.log('distanceString: ' + distanceString);
+        return distanceString;
+    }
+    console.error('no routingSummary found distanceString is 0');
+    return 0;
 };
 
 /**

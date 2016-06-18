@@ -88,5 +88,11 @@
   },
   "save": {
     "message": "SPEICHERN"
+  },
+  "notificationTitle": {
+    "message": "Bitte lasse dein Auto inspizieren"
+  },
+  "notificationMessage": {
+    "message": "Die von dir für eine Inspektion gesetzte Zeit wurde erreicht."
   }
 }
