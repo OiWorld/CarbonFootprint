@@ -1,3 +1,10 @@
+/**
+ * script for options page
+ * @author Kolpa (Kolya Opahle)
+ * @author PrateekGupta1509 (Prateek Gupta)
+ * @author heychirag (Chirag Arora)
+ */
+
 var options = {};
 
 /**
@@ -190,7 +197,9 @@ options.saveLocation = function() {
                .administrative_area_level_1 + ', ' + options.data.get('geoData')
                .country).replace(/ undefined,/g, ''));
       $('#currency-codes')
-        .val(options.countries[options.data.get('geoData').country_short].currency);
+        .val(
+          options.countries[options.data.get('geoData').country_short].currency
+        );
       options.data.store();
     });
   });

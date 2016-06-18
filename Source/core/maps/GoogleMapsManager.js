@@ -57,14 +57,24 @@ GoogleMapsManager.prototype.getAllDrivingRoutes = function() {
 };
 
 /**
+ * Classes that contain distance and where results are displayed
+ */
+
+GoogleMapsManager.infoClasses = [
+  'widget-pane-section-directions-trip-distance',
+  'widget-pane-section-directions-trip-secondary-text'
+];
+
+/**
  * Gets distance for a route.
  * @param {object} route
  * @return {string} distanceString
  */
 
 GoogleMapsManager.prototype.getDistanceString = function(route) {
-  var distanceString = route.getElementsByClassName(
-    'widget-pane-section-directions-trip-distance widget-pane-section-directions-trip-secondary-text')[0]
+  var distanceString = route
+        .getElementsByClassName(this.infoClasses[0] + ' ' +
+                                this.infoClasses[1])[0]
         .childNodes[5]
         .innerHTML;
   console.log('distanceString: ' + distanceString);
@@ -88,30 +98,56 @@ GoogleMapsManager.prototype.convertDistance = function(distanceStr) {
     }
 };
 
+/**
+ * Inserts element where footprints will be displayed if not present
+ * @param {object} route
+ * @param {element} e
+ */
+
 GoogleMapsManager.prototype.insertFootprintElement = function(route, e) {
-    if (route.getElementsByClassName('carbon').length === 0) { // In this case, "e" has not been added yet. We may proceed and add it.
-        route.getElementsByClassName('widget-pane-section-directions-trip-distance widget-pane-section-directions-trip-secondary-text')[0].appendChild(e);
-    }
+  if (route.getElementsByClassName('carbon').length === 0) {
+    route
+      .getElementsByClassName(this.infoClasses[0] + ' ' +
+                              this.infoClasses[1])[0]
+      .appendChild(e);
+  }
 };
 
+/**
+ * Inserts element where travel cost will be displayed if not present
+ * @param {object} route
+ * @param {element} e
+ */
 
 GoogleMapsManager.prototype.insertTravelCostElement = function(route, e) {
-    //A check to ensure that the display travel cost checkbox is checked
-    if (route.getElementsByClassName('travelCost').length === 0) { // In this case, "e" has not been added yet. We may proceed and add it.
-        route.getElementsByClassName('widget-pane-section-directions-trip-distance widget-pane-section-directions-trip-secondary-text')[0].appendChild(e);
-    }
+  if (route.getElementsByClassName('travelCost').length === 0) {
+    route
+      .getElementsByClassName(this.infoClasses[0] + ' ' +
+                              this.infoClasses[1])[0]
+      .appendChild(e);
+  }
 };
 
-GoogleMapsManager.prototype.update = function() {
-    var routes = this.getAllDrivingRoutes();
-    for (var i = 0; i < routes.length; i++) {
-        var distanceString = this.getDistanceString(routes[i]);
-        var distanceInKm = this.convertDistance(distanceString);
+/**
+ * called by MutationObeserver to update footprints
+ */
 
-        this.insertFootprintElement(routes[i], this.footprintCore.createFootprintElement(distanceInKm));
-        if (this.settingsProvider.showTravelCost())
-            this.insertTravelCostElement(routes[i], this.footprintCore.createTravelCostElement(distanceInKm));
+GoogleMapsManager.prototype.update = function() {
+  var routes = this.getAllDrivingRoutes();
+  for (var i = 0; i < routes.length; i++) {
+    var distanceString = this.getDistanceString(routes[i]);
+    var distanceInKm = this.convertDistance(distanceString);
+    this.insertFootprintElement(
+      routes[i],
+      this.footprintCore.createFootprintElement(distanceInKm)
+    );
+    if (this.settingsProvider.showTravelCost()) {
+      this.insertTravelCostElement(
+        routes[i],
+        this.footprintCore.createTravelCostElement(distanceInKm)
+      );
     }
+  }
 };
 
 var MapManager = GoogleMapsManager;
