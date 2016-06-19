@@ -17,8 +17,9 @@ chrome.alarms.onAlarm.addListener(
                 type: 'basic',
                 iconUrl: 'images/globe-256.png',
                 title: chrome.i18n.getMessage('notificationTitle'),
-                message: chrome.i18n.getMessage('notificationMessage'),
-                eventTime: alarm.scheduledTime
+                message: chrome.i18n.getMessage('notificationMessage') + ' ' + chrome.i18n.getMessage('notificationInfoText'),
+                eventTime: alarm.scheduledTime,
+                requireInteraction: true
             });
         }
     }

@@ -291,3 +291,9 @@ input:disabled {
 select:disabled {
     background: #dddddd;
 }
+
+#car-checkup-info {
+    font-size: 0.9em;
+    text-align: center;
+    color: grey;
+}
