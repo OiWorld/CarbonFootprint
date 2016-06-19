@@ -258,11 +258,7 @@
     "notifications",
     "debugger",
     "idle",
-<<<<<<< HEAD
-    "geolocation"
-=======
     "geolocation",
     "*://en.wikipedia.org/*"
->>>>>>> d3a2ba3875e02ffca704b1b4ab4113dca85be450
   ]
 }

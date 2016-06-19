@@ -161,17 +161,17 @@ section h3.section-subheading {
     margin: 15px 0;
     text-transform: none
 }
-#portfolio .portfolio-item {
+#tile .tile-item {
     margin: 0 0 15px;
     right: 0
 }
-#portfolio .portfolio-item .portfolio-link {
+#tile .tile-item .tile-link {
     display: block;
     position: relative;
     max-width: 400px;
     margin: 0 auto
 }
-#portfolio .portfolio-item .portfolio-link .portfolio-hover {
+#tile .tile-item .tile-link .tile-hover {
     background: rgba(128, 128, 128, .5);
     position: absolute;
     width: 100%;
@@ -181,10 +181,10 @@ section h3.section-subheading {
     -webkit-transition: all ease .5s;
     -moz-transition: all ease .5s
 }
-#portfolio .portfolio-item .portfolio-link .portfolio-hover:hover {
+#tile .tile-item .tile-link .tile-hover:hover {
     opacity: 1
 }
-#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
+#tile .tile-item .tile-link .tile-hover .tile-hover-content {
     position: absolute;
     width: 100%;
     height: 20px;
@@ -194,35 +194,35 @@ section h3.section-subheading {
     margin-top: -12px;
     color: #fff
 }
-#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content i {
+#tile .tile-item .tile-link .tile-hover .tile-hover-content i {
     margin-top: -12px
 }
-#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h3,
-#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h4 {
+#tile .tile-item .tile-link .tile-hover .tile-hover-content h3,
+#tile .tile-item .tile-link .tile-hover .tile-hover-content h4 {
     margin: 0
 }
-#portfolio .portfolio-item .portfolio-caption {
+#tile .tile-item .tile-caption {
     max-width: 400px;
     margin: 0 auto;
     background-color: #fff;
     text-align: center;
     padding: 25px
 }
-#portfolio .portfolio-item .portfolio-caption h4 {
+#tile .tile-item .tile-caption h4 {
     text-transform: none;
     margin: 0
 }
-#portfolio .portfolio-item .portfolio-caption p {
+#tile .tile-item .tile-caption p {
     font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: italic;
     font-size: 16px;
     margin: 0
 }
-#portfolio * {
+#tile * {
     z-index: 2
 }
 @media (min-width: 767px) {
-    #portfolio .portfolio-item {
+    #tile .tile-item {
         margin: 0 0 30px
     }
 }
@@ -232,10 +232,10 @@ section h3.section-subheading {
 .btn:active:focus {
     outline: 0
 }
-.portfolio-modal {
+.tile-modal {
     padding: 0 !important;
 }
-.portfolio-modal .modal-content {
+.tile-modal .modal-content {
     border-radius: 0;
     background-clip: border-box;
     -webkit-box-shadow: none;
@@ -245,27 +245,27 @@ section h3.section-subheading {
     padding: 30px 0;
     text-align: center;
 }
-.portfolio-modal .modal-content h2 {
+.tile-modal .modal-content h2 {
     margin-bottom: 15px;
     font-size: 3em
 }
-.portfolio-modal .modal-content p {
+.tile-modal .modal-content p {
     margin-bottom: 30px
 }
-.portfolio-modal .modal-content p.item-intro {
+.tile-modal .modal-content p.item-intro {
     margin: 20px 0 30px;
     font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: italic;
     font-size: 16px
 }
-.portfolio-modal .modal-content ul.list-inline {
+.tile-modal .modal-content ul.list-inline {
     margin-bottom: 30px;
     margin-top: 0
 }
-.portfolio-modal .modal-content img {
+.tile-modal .modal-content img {
     margin-bottom: 30px
 }
-.portfolio-modal .close-modal {
+.tile-modal .close-modal {
     position: absolute;
     width: 50px;
     height: 50px;
@@ -275,10 +275,10 @@ section h3.section-subheading {
     cursor: pointer;
     z-index: 2;
 }
-.portfolio-modal .close-modal:hover {
+.tile-modal .close-modal:hover {
     opacity: .3
 }
-.portfolio-modal .close-modal .lr {
+.tile-modal .close-modal .lr {
     height: 50px;
     width: 1px;
     margin-left: 25px;
@@ -288,7 +288,7 @@ section h3.section-subheading {
     -webkit-transform: rotate(45deg);
     z-index: 1051
 }
-.portfolio-modal .close-modal .lr .rl {
+.tile-modal .close-modal .lr .rl {
     height: 50px;
     width: 1px;
     background-color: #222;
@@ -297,7 +297,7 @@ section h3.section-subheading {
     -webkit-transform: rotate(90deg);
     z-index: 1052
 }
-.portfolio-modal .modal-backdrop {
+.tile-modal .modal-backdrop {
     opacity: 0;
     display: none
 }
