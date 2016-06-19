@@ -60,7 +60,7 @@ GoogleMapsManager.prototype.getAllDrivingRoutes = function() {
  * Classes that contain distance and where results are displayed
  */
 
-GoogleMapsManager.infoClasses = [
+GoogleMapsManager.prototype.infoClasses = [
   'widget-pane-section-directions-trip-distance',
   'widget-pane-section-directions-trip-secondary-text'
 ];
