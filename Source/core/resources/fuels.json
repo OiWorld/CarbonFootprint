@@ -1,0 +1,62 @@
+{  
+  "Diesel":{  
+    "langKey":"fuelDiesel",
+    "measuredBy":"v",
+    "CO2Emission":"2614"
+  },
+  "Gasoline":{  
+    "langKey":"fuelGasoline",
+    "measuredBy":"v",
+    "CO2Emission":"2328"
+  },
+  "E10":{  
+    "langKey":"fuelE10",
+    "measuredBy":"v",
+    "CO2Emission":"2245.5",
+    "_comments":"(0.10 * 1503) + (0.90 * 2328) = 2245.5"
+  },
+  "E25":{  
+    "fuel":"E25",
+    "langKey":"fuelE25",
+    "measuredBy":"v",
+    "CO2Emission":"2121.75",
+    "_comments":"(0.25 * 1503) + (0.75 * 2328) = 2121.75"
+  },
+  "E85":{  
+    "langKey":"fuelE85",
+    "measuredBy":"v",
+    "CO2Emission":"1626.75",
+    "_comments":"(0.85 * 1503) + (0.15 * 2328) = 1626.75"
+  },
+  "Ethanol":{  
+    "langKey":"fuelEthanol",
+    "measuredBy":"v",
+    "CO2Emission":"1503"
+  },
+  "Bio-Diesel":{  
+    "langKey":"fuelBioDiesel",
+    "measuredBy":"v",
+    "CO2Emission":"2486"
+  },
+  "B20":{  
+    "langKey":"fuelB20",
+    "measuredBy":"v",
+    "CO2Emission":"2588.4",
+     "_comments":"(0.8 * 2614) + (0.20 * 2486) = 2588.4"
+  },
+  "LPG":{  
+    "langKey":"fuelLPG",
+    "measuredBy":"m",
+    "CO2Emission":"1533"
+  },
+  "CNG":{  
+    "langKey":"fuelCNG",
+    "measuredBy":"m",
+    "CO2Emission":"2758"
+  },
+  "Electricity":{  
+    "langKey":"fuelElectricity",
+    "measuredBy":"e",
+    "CO2Emission":"527"
+  }
+}

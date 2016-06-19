@@ -8,8 +8,8 @@ var ChromeSettingsProvider = function (cb) {
     self.usingDefaultListeners = [];
 
     chrome.storage.sync.get('calculationObject', function (settings) {
-        if (settings['calculationObject'])
-            self.settings = settings['calculationObject'];
+        if (settings.calculationObject)
+            self.settings = settings.calculationObject;
         else
             self.settings = {};
         console.log(self.settings);

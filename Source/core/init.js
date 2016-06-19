@@ -8,12 +8,12 @@ new SettingsProvider(function (settingsProvider) {
   var core = new CarbonFootprintCore(settingsProvider);
   var mapsManager = new MapManager(core, settingsProvider);
   
-  chrome.runtime.sendMessage({ showPageAction : 'True'},function(){
-    var observer = new MutationObserver(function() {
+  chrome.runtime.sendMessage({showPageAction : 'True'},function(){
+    var target = document.getElementsByTagName('body')[0],
+        observer = new MutationObserver(function() {
       mapsManager.update();
-      console.log("working!");
+      console.log("observing!");
     });
-    var target = document.getElementsByTagName('body')[0];
     observer.observe(target, {
       attributes: true,
       childList: true,

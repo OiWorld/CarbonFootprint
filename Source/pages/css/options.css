@@ -189,7 +189,7 @@ div.emission-input-cont > div.emission-input.open {
 }
 
 .emission-input-cont input {
-    margin-left:2em;
+    margin-left:1em;
     width:10em;
 }
 
@@ -212,7 +212,7 @@ div.emission-input-cont > div.emission-input.open {
     font-size: 0.8em;
 }
 .form-data {
-    display: flex;
+    display: inline-flex;
     align-items:center;
 }
 
@@ -220,13 +220,27 @@ div.emission-input-cont > div.emission-input.open {
     margin-left:0;
 }
 
+.footprints .emission-input-cont {
+    padding-left:4em;
+    margin-top:-1.85em;
+}
+
 .emission-input-cont {
     padding-left:2em;
+}
+
+.emission-input-cont .checkup-number {
+    width: 4em;
+    display: inline-block;
 }
 
 #offset {
     text-align: center;
     font-size: 1.1em;
+}
+
+.footprints .form-group > input {
+    margin-left:2em;
 }
 
 a:link,a:visited,a:hover,a:active {
@@ -265,9 +279,8 @@ a:link,a:visited,a:hover,a:active {
 #message {
     padding:0.4em;
     text-align:center;
-    margin:0 auto;
     border-radius:3px;
-    margin-top:1em;
+    margin-top:2em;
     display:none;
 }
 
