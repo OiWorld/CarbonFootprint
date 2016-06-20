@@ -12,7 +12,7 @@
     "description": "The paragraph beside form"
   },
   "distanceTravelled": {
-    "message": "Distance Travelled:"
+    "message": "Distance Traveled:"
   },
   "fuelConsumed": {
     "message": "Fuel Consumed:"
@@ -123,7 +123,10 @@
     "message": "You should checkup your car"
   },
   "notificationMessage": {
-    "message": "The time you set for the car inspection has passed"
+    "message": "The time you set for the car inspection has passed."
+  },
+  "notificationInfoText": {
+    "message": "Keeping up with your car checkups ensures that your car is well maintained and guarantees that it always outputs the smallest possible amount of co₂."
   },
   "byFuelEfficiency": {
     "message": "Fuel Efficiency"
@@ -135,13 +138,13 @@
     "message": "Custom Values"
   },
   "feMessage": {
-    "message": "enter <i>Distance Travelled</i> in 1 unit of <i>Fuel Consumed</i>"
+    "message": "enter <i>Distance Traveled</i> in 1 unit of <i>Fuel Consumed</i>"
   },
   "fcpMessage": {
-    "message": "enter <i>Fuel Consumed</i> per 100 units of <i>Distance Travelled</i>"
+    "message": "enter <i>Fuel Consumed</i> per 100 units of <i>Distance Traveled</i>"
   },
   "cvMessage": {
-   "message": "enter total <i>Distance Travelled</i> for total <i>Fuel Consumed</i>"
+   "message": "enter total <i>Distance Traveled</i> for total <i>Fuel Consumed</i>"
   },
   "useMetric": {
     "message": "Metric"
