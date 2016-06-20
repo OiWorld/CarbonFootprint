@@ -12,7 +12,7 @@ var options = {};
  */
 
 options.units = {
-  m: 'kg',
+  m: 'g',
   v: 'L',
   d: 'km',
   e: 'kWh'
@@ -72,6 +72,7 @@ options.saveOptions = function() {
     value: cost,
     curr: curr
   });
+  options.data.set('emissionDisplayUnit', $('#emission-unit-mass').val());
   switch (options.data.get('inputSource')) {
   case 'by-fuel-consumption':
     if (distance <= 0 || fuel <= 0) {
@@ -419,7 +420,7 @@ options.toggleCheckupNotification = function(elem) {
 
 options.toggleUnits = function(elem) {
   if (elem.prop('id') === 'metric') {
-    options.units.m = 'kg';
+    options.units.m = 'g';
     options.units.v = 'L';
     options.units.d = 'km';
     if (elem.prop('checked')) {
