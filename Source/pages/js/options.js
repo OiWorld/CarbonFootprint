@@ -249,10 +249,8 @@ options.saveLocation = function() {
  */
 
 options.loadSavedData = function() {
- //if not saved once
-  if (!options.data.has('geoData')) {
-    options.saveLocation();
-  }else {
+  //if not saved once
+  if (options.data.has('geoData')) {
     $('#green-electricity input').val(options.data.get('renPer').wiki);
     $('#location').html((options.data.get('geoData')
                          .locality + ', ' + options.data.get('geoData')
@@ -487,6 +485,12 @@ options.loadResources = function() {
   $.getJSON('/core/resources/countries.json', function(response) {
     options.countries = response;
   });
+  $.getScript('https://maps.googleapis.com/maps/api/js')
+    .done(function(){
+      if (!options.data.has('geoData')) {
+        options.saveLocation();
+      }
+    });
 };
 
 
