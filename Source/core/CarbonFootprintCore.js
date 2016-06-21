@@ -15,14 +15,15 @@ CarbonFootprintCore.prototype.computeFootprint = function(distance) {
 
 CarbonFootprintCore.prototype.footprintToString = function(footprint) {
     var carbonUnit = this.settingsProvider.getCarbonEmissionUnit();
-    if (footprint > 1000 && carbonUnit =='g') {
-        footprint = footprint / 1000;
-        carbonUnit = 'kg';
-    }
-    else if (carbonUnit == 'lbs') {
-        footprint = footprint * 0.00220462;  
-    }
-    footprint = Math.round(footprint);
+  if (footprint < 1 && carbonUnit == 'kg') {
+    footprint = footprint * 1000;
+    carbonUnit = 'g';
+  }
+  else if (footprint < 1 && carbonUnit == 'lbs') {
+    footprint = footprint * 16;
+    carbonUnit = 'oz';
+  }
+    footprint = Math.round(footprint*100)/100;
     console.log('Carbon Footprint for this route is: ' + footprint + carbonUnit + ' CO<sub>2</sub>');
     return '' + footprint + carbonUnit + ' CO<sub>2</sub>';
 };

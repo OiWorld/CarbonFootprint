@@ -12,7 +12,7 @@ var options = {};
  */
 
 options.units = {
-  m: 'g',
+  m: 'kg',
   v: 'L',
   d: 'km',
   e: 'kWh'
@@ -418,7 +418,7 @@ options.toggleCheckupNotification = function(elem) {
 
 options.toggleUnits = function(elem) {
   if (elem.prop('id') === 'metric') {
-    options.units.m = 'g';
+    options.units.m = 'kg';
     options.units.v = 'L';
     options.units.d = 'km';
     if (elem.prop('checked')) {

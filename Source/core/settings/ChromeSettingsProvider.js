@@ -44,7 +44,7 @@ ChromeSettingsProvider.prototype.getCarbonEmission = function() {
 };
 
 ChromeSettingsProvider.prototype.getCarbonEmissionUnit = function() {
-    return this.get('emissionDisplayUnit','g');
+  return this.get('units',{m: 'kg'}).m;
 };
 
 ChromeSettingsProvider.prototype.getTravelRate = function () {
