@@ -97,13 +97,11 @@ CarbonFootprintCore.prototype.createFootprintElement = function(distance) {
   var footprint = this.computeFootprint(distance);
   var e = document.createElement('div');
   var treesStr = this.treesToString(this.computeTrees(footprint));
-  e.innerHTML = '<a href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
-    treesStr +
-    '\' class=\'carbon\' id=\'carbon\'>' +
-    this.footprintToString(footprint) +
-    '</a> <a class=\'offset-link\'' + ' ' +
-    'href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
-    treesStr + '\'>offset</a>';
+  var knowMoreUrl = chrome.extension.getURL("pages/knowMore.html");
+  e.innerHTML = '<a href=' + knowMoreUrl + ' target=\'_blank\' title=\'' + treesStr +
+    '\' class=\'carbon\' id=\'carbon\'>' + this.footprintToString(footprint) +
+    '</a> <a class=\'know-more-link\' href=' + knowMoreUrl + ' target=\'_blank\' title=\'' +
+    treesStr + '\'>Know More</a>';
   return e;
 };
 
@@ -127,6 +125,7 @@ CarbonFootprintCore.prototype.computeTravelCost = function(distance) {
 
 CarbonFootprintCore.prototype.createTravelCostElement = function(distance) {
   var e = document.createElement('div');
+  var knowMoreUrl = chrome.extension.getURL("pages/knowMore.html");
   e.innerHTML = '<a href=http://goo.gl/yxdIs target=_blank' + ' ' +
     'class=travelCost id=travelCost> Cost $' +
     this.computeTravelCost(distance).toFixed(2).toString() + '</a>';
@@ -142,36 +141,36 @@ CarbonFootprintCore.prototype.createTravelCostElement = function(distance) {
 
 CarbonFootprintCore.prototype.getDistanceFromStrings =
   function(distance, unit) {
-  var splitDistance = distance.split(/[.,]/);
-  distance = '';
-  var i = 0;
-  if (splitDistance.length == 1) {
-    distance = splitDistance[0];
-  } else {
-    // contains a decimal digit
-    if (splitDistance[splitDistance.length - 1].length == 1) {
-      for (i = 0; i < splitDistance.length - 1; i = i + 1) {
-        distance = '' + distance + splitDistance[i];
-      }
-      distance = distance + '.' + splitDistance[splitDistance.length - 1];
+    var splitDistance = distance.split(/[.,]/);
+    distance = '';
+    var i = 0;
+    if (splitDistance.length == 1) {
+      distance = splitDistance[0];
     } else {
-      for (i = 0; i < splitDistance.length; i = i + 1) {
-        distance = '' + distance + splitDistance[i];
+      // contains a decimal digit
+      if (splitDistance[splitDistance.length - 1].length == 1) {
+        for (i = 0; i < splitDistance.length - 1; i = i + 1) {
+          distance = '' + distance + splitDistance[i];
+        }
+        distance = distance + '.' + splitDistance[splitDistance.length - 1];
+      } else {
+        for (i = 0; i < splitDistance.length; i = i + 1) {
+          distance = '' + distance + splitDistance[i];
+        }
       }
     }
-  }
     // Distance given in meters.
-  if (unit.match(/\bm\b/) || unit.match(/\s\u043C,/)) {
-    distance = distance / 1000;
-  } else if (unit.match(/\bmi\b/) || // Distance given in miles.
-             unit.match(/\bMeile\/n\b/) ||
-             unit.match(/\u043C\u0438\u043B/)) {
-    distance = distance * 1.609344;
-  } else if (unit.match(/\bft\b/) ||
-             unit.match(/\bp\u00E9s\b/) ||
-             unit.match(/\u0444\u0443\u0442/)) { // Distance given in feet.
-    distance = distance * 0.0003048;
-  }
-  console.log('The distance is: ' + ' kilometers');
-  return distance;
-};
+    if (unit.match(/\bm\b/) || unit.match(/\s\u043C,/)) {
+      distance = distance / 1000;
+    } else if (unit.match(/\bmi\b/) || // Distance given in miles.
+               unit.match(/\bMeile\/n\b/) ||
+               unit.match(/\u043C\u0438\u043B/)) {
+      distance = distance * 1.609344;
+    } else if (unit.match(/\bft\b/) ||
+               unit.match(/\bp\u00E9s\b/) ||
+               unit.match(/\u0444\u0443\u0442/)) { // Distance given in feet.
+      distance = distance * 0.0003048;
+    }
+    console.log('The distance is: ' + ' kilometers');
+    return distance;
+  };
