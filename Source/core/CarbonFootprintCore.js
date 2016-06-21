@@ -58,13 +58,14 @@ CarbonFootprintCore.prototype.createFootprintElement = function (distance) {
     var e = document.createElement('div');
 
     var treesStr = this.treesToString(this.computeTrees(footprint));
+    var knowMoreUrl = chrome.extension.getURL("pages/knowMore.html");
 
-    e.innerHTML = '<a href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
+    e.innerHTML = '<a href=' + knowMoreUrl + ' target=\'_blank\' title=\'' +
         treesStr +
         '\' class=\'carbon\' id=\'carbon\'>' +
         this.footprintToString(footprint) +
-        '</a> <a class=\'offset-link\' href=\'http://goo.gl/yxdIs\' target=\'_blank\' title=\'' +
-        treesStr + '\'>offset</a>';
+        '</a> <a class=\'know-more-link\' href=' + knowMoreUrl + ' target=\'_blank\' title=\'' +
+        treesStr + '\'>Know More</a>';
 
     return e;
 };
@@ -77,7 +78,9 @@ CarbonFootprintCore.prototype.computeTravelCost = function (distance) {
 
 CarbonFootprintCore.prototype.createTravelCostElement = function (distance) {
     var e = document.createElement('div');
-    e.innerHTML = '<a href=http://goo.gl/yxdIs target=_blank class=travelCost id=travelCost> Cost $' + this.computeTravelCost(distance).toFixed(2).toString() + '</a>';
+    var knowMoreUrl = chrome.extension.getURL("pages/knowMore.html");
+
+    e.innerHTML = '<a href=' + knowMoreUrl + ' target=_blank class=travelCost id=travelCost> Cost $' + this.computeTravelCost(distance).toFixed(2).toString() + '</a>';
     return e;
 };
 
