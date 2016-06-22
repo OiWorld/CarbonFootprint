@@ -74,41 +74,49 @@ options.saveOptions = function() {
   });
   options.data.set('emissionDisplayUnit', $('#emission-unit-mass').val());
   switch (options.data.get('inputSource')) {
+    // co in kg/km always
+    // consumption in (L/kg/kWh)/km always
   case 'by-fuel-consumption':
     if (distance <= 0 || fuel <= 0) {
       options.showMessage('error', 'error');
       return;
     }
     consumption = fuel / distance;
-    if (options.data.get('unitSystem') == 'metric') {
-      co = consumption * options.fuels[options.fType].CO2Emission / 1000;
+    //normalising consumption to (L/kg/kWh)/km for all cases
+    if(options.data.get('unitSystem') == 'uscustomary' ||
+       options.data.get('unitSystem') == 'imperial'){
+      if(options.fuels[options.fType].measuredBy=='v'){
+        if (options.data.get('unitSystem') == 'uscustomary') {
+          consumption *= options.USGAL_TO_L / options.MI_TO_KM;
+        }
+        else {
+          consumption *= options.IMPGAL_TO_L / options.MI_TO_KM;
+        }
+      }
+      else if(options.fuels[options.fType].measuredBy=='m'){
+        consumption /= (options.MI_TO_KM * options.KG_TO_LBS);
+      }
+      else if(options.fuels[options.fType].measuredBy=='e'){
+        consumption /= options.MI_TO_KM;
+      }
     }
-    else if (options.data.get('unitSystem') == 'uscustomary') {
-      co = consumption * options.fuels[options.fType]
-        .CO2Emission / 1000 * options.USGAL_TO_L * options.KG_TO_LBS;
-    }
-    else {
-      co = consumption * options.fuels[options.fType]
-        .CO2Emission / 1000 * options.IMPGAL_TO_L * options.KG_TO_LBS;
-    }
-    options.data.set('emissionRate', co);
+    co = consumption * options.fuels[options.fType].CO2Emission;
     break;
   case 'direct-co-emission':
     if (co <= 0) {
       options.showMessage('error', 'error');
       return;
     }
-    if (options.data.get('unitSystem') == 'metric') {
-      consumption = co / options.fuels[options.fType].CO2Emission * 1000;
+    //normalising co to kg/km for all cases
+    if(options.data.get('unitSystem') == 'uscustomary' ||
+       options.data.get('unitSystem') == 'imperial'){
+      co /= (options.KG_TO_LBS * options.MI_TO_KM);
     }
-    else {
-      consumption = co / options.fuels[options.fType]
-        .CO2Emission * 1000 / options.USGAL_TO_L / options.KG_TO_LBS;
-    }
-    options.data.set('emissionRate', co);
+    consumption = co / options.fuels[options.fType].CO2Emission;
     break;
   }
-
+  options.data.set('emissionRate', co);
+  options.data.set('consumptionRate', consumption);
   options.data.set('showTravelCost',
                   document.getElementById('display-travel-cost').checked
                   );
