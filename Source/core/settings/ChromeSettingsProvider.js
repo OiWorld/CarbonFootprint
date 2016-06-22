@@ -69,7 +69,7 @@ ChromeSettingsProvider.prototype.get = function(key, def) {
  */
 
 ChromeSettingsProvider.prototype.getCarbonEmission = function() {
-  return this.get('emissionRate', 0.217);
+  return this.get('emissionRate', 0.255384);
 };
 
 /**

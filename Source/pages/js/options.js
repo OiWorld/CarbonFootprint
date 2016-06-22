@@ -83,9 +83,9 @@ options.saveOptions = function() {
     }
     consumption = fuel / distance;
     //normalising consumption to (L/kg/kWh)/km for all cases
-    if(options.data.get('unitSystem') == 'uscustomary' ||
-       options.data.get('unitSystem') == 'imperial'){
-      if(options.fuels[options.fType].measuredBy=='v'){
+    if (options.data.get('unitSystem') == 'uscustomary' ||
+       options.data.get('unitSystem') == 'imperial') {
+      if (options.fuels[options.fType].measuredBy == 'v') {
         if (options.data.get('unitSystem') == 'uscustomary') {
           consumption *= options.USGAL_TO_L / options.MI_TO_KM;
         }
@@ -93,10 +93,10 @@ options.saveOptions = function() {
           consumption *= options.IMPGAL_TO_L / options.MI_TO_KM;
         }
       }
-      else if(options.fuels[options.fType].measuredBy=='m'){
+      else if (options.fuels[options.fType].measuredBy == 'm') {
         consumption /= (options.MI_TO_KM * options.KG_TO_LBS);
       }
-      else if(options.fuels[options.fType].measuredBy=='e'){
+      else if (options.fuels[options.fType].measuredBy == 'e') {
         consumption /= options.MI_TO_KM;
       }
     }
@@ -108,8 +108,8 @@ options.saveOptions = function() {
       return;
     }
     //normalising co to kg/km for all cases
-    if(options.data.get('unitSystem') == 'uscustomary' ||
-       options.data.get('unitSystem') == 'imperial'){
+    if (options.data.get('unitSystem') == 'uscustomary' ||
+       options.data.get('unitSystem') == 'imperial') {
       co /= (options.KG_TO_LBS * options.MI_TO_KM);
     }
     consumption = co / options.fuels[options.fType].CO2Emission;
@@ -494,7 +494,7 @@ options.loadResources = function() {
     options.countries = response;
   });
   $.getScript('https://maps.googleapis.com/maps/api/js')
-    .done(function(){
+    .done(function() {
       if (!options.data.has('geoData')) {
         options.saveLocation();
       }
