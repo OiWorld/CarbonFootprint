@@ -69,7 +69,7 @@ ChromeSettingsProvider.prototype.get = function(key, def) {
  */
 
 ChromeSettingsProvider.prototype.getCarbonEmission = function() {
-  return this.get('emissionRate', 217);
+  return this.get('emissionRate', 0.255384);
 };
 
 /**
@@ -78,7 +78,7 @@ ChromeSettingsProvider.prototype.getCarbonEmission = function() {
  */
 
 ChromeSettingsProvider.prototype.getCarbonEmissionUnit = function() {
-  return this.get('emissionDisplayUnit', 'g');
+  return this.get('units',{m: 'kg'}).m;
 };
 
 /**
