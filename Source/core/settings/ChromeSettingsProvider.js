@@ -65,6 +65,8 @@ ChromeSettingsProvider.prototype.get = function(key, def) {
 
 /**
  * returns carbon emission rate
+ * default emission rate provided by:
+ * https://www.epa.gov/sites/production/files/2016-02/documents/420f14040a.pdf
  * @return {number}
  */
 
