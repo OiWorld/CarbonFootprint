@@ -96,7 +96,24 @@
                             <p>
                                 <div id='map' style='height:380px;' ></div>
                             </p>
-                            <p class="pull-right"><i>Source: </i><a href="http://aqicn.org/">http://aqicn.org/</a></p>
+                            <p>
+                                <form class="form-inline pull-left">
+                                    <div class="form-group">
+                                        <label for="map-type">Marker Type: </label>
+                                        <select class="form-control" id="map-type">
+                                            <option value="usepa-aqi" selected>Air Quality Index</option>
+                                            <option value="usepa-pm25">PM<sub>2.5</sub></option>
+                                            <option value="usepa-10">PM<sub>10</sub></option>
+                                            <option value="usepa-o3">Ozone</option>
+                                            <option value="usepa-no2">NO<sub>2</sub></option>
+                                            <option value="usepa-so2">SO<sub>2</sub></option>
+                                            <option value="usepa-co">CO</option>
+                                            <option value="asean-pm10">Asean PM<sub>10</sub></option>
+                                        </select>
+                                    </div>
+                                </form>
+                                <span class="pull-right"><i>Source: </i><a href="http://aqicn.org/">http://aqicn.org/</a></span>
+                            </p>
                         </div>
                     </div>
                 </div>
