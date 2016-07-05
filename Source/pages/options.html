@@ -128,6 +128,19 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <input type="checkbox" id="display-pt-cost" unchecked>
+                            <label for="display-pt-cost" data-language="PTCostEstimate">Display public transport cost estimation</label>
+                        </div>
+                        <div class="emission-input-cont pt-cost-fields">
+                            <div class="form-group">
+                                <div class="form-data">
+                                    <label data-language="city"></label>
+						                        <select style="width:10em;" id="cities" disabled>
+						                        </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab">
                         <div class="form-group">
@@ -174,10 +187,11 @@
                     </div>
                 </div>
             </div>
-        </div>      
-    </div>
+            </div>
+        </div>
     </div>
     <script src="js/datePatch.js"></script>
+    <script src="/core/settings/ChromeSettingsProvider.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="../background/google-analytics.js"></script>
     <script src="js/StorageManager.js"></script>

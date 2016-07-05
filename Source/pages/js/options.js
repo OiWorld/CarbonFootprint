@@ -51,15 +51,16 @@ options.KG_TO_LBS = 2.204622621848775;
  */
 
 options.saveOptions = function() {
-  var distance = parseFloat($('#distance-value').val());
-  var fuel = parseFloat($('#fuel-value').val());
-  var co = parseFloat($('#emission').val());
-  var cost = parseFloat($('#fuel-cost').val());
-  var curr = $('#currency-codes').val();
-  var lastCheckup = $('#last-checkup').val();
-  var nextCheckupYear = parseInt($('#next-checkup-year').val());
-  var nextCheckupMonth = parseInt($('#next-checkup-month').val());
-  var consumption;
+  var distance = parseFloat($('#distance-value').val()),
+      fuel = parseFloat($('#fuel-value').val()),
+      co = parseFloat($('#emission').val()),
+      cost = parseFloat($('#fuel-cost').val()),
+      curr = $('[id="currency-codes"]').val(),
+      lastCheckup = $('#last-checkup').val(),
+      nextCheckupYear = parseInt($('#next-checkup-year').val()),
+      nextCheckupMonth = parseInt($('#next-checkup-month').val()),
+      PTCost = parseFloat($('#cities').val()),
+      consumption;
   options.data.set('co', co);
   options.data.set('distance', distance);
   options.data.set('fuel', fuel);
@@ -120,6 +121,9 @@ options.saveOptions = function() {
   options.data.set('showTravelCost',
                   document.getElementById('display-travel-cost').checked
                   );
+  options.data.set('showPTCost',
+                   document.getElementById('display-pt-cost').checked
+                  );
   if (options.data.get('showTravelCost')) {
     if (cost <= 0) {
       options.showMessage('error', 'error');
@@ -128,6 +132,12 @@ options.saveOptions = function() {
     else {
       options.data.set('travelRate', consumption * cost);
     }
+  }
+  if (options.data.get('showPTCost')) {
+    if(PTCost===0)
+      options.data.set('showPTCost',false);
+    else
+      options.data.set('PTRate', PTCost);
   }
 
   options.data.set('showCheckupNotification',
@@ -205,6 +215,17 @@ options.storeData = function() {
   options.data.store();
 };
 
+
+/**
+ * Loads fuel prices
+ */
+
+options.loadFuelPrices = function() {
+  var prices = options.settings.getFuelPrices(
+    options.data.get('geoData').country_short);
+
+};
+
 /**
  * Saves user location based on coordinates
  * provided by navigator.geolocation
@@ -217,8 +238,8 @@ options.saveLocation = function() {
       state = 'administrative_area_level_1,political',
       gc = new google.maps.Geocoder();
   navigator.geolocation.getCurrentPosition(function(position) {
-    var lat = position.coords.latitude,
-        lng = position.coords.longitude,
+    var lat = position.coords.latitude,//-14.285038,
+        lng = position.coords.longitude,//-178.138252,
         latlng = new google.maps.LatLng(lat, lng);
     gc.geocode({'latLng': latlng}, function(results, status) {
       var addComps = results[0].address_components;
@@ -242,11 +263,17 @@ options.saveLocation = function() {
         .html((options.data.get('geoData')
                .locality + ', ' + options.data.get('geoData')
                .administrative_area_level_1 + ', ' + options.data.get('geoData')
-               .country).replace(/ undefined,/g, ''));
-      $('#currency-codes')
+               .country).replace(/ undefined,|undefined,/g, ''));
+      $('[id="currency-codes"]')
         .val(
           options.countries[options.data.get('geoData').country_short].currency
         );
+      options.populateCities(options
+                     .countries[options.data.get('geoData').country_short]);
+      options.data.set('currency', options.countries[options.data.get('geoData').country_short].currency);
+      $('#currency-codes').append($('<option></option>')
+                                  .val(options.data.get('currency'))
+                                  .html(options.data.get('currency')));
       options.data.store();
     });
   });
@@ -257,17 +284,20 @@ options.saveLocation = function() {
  */
 
 options.loadSavedData = function() {
+  options.loadFuelPrices();
   //if not saved once
   if (options.data.has('geoData')) {
     $('#green-electricity input').val(options.data.get('renPer').wiki);
     $('#location').html((options.data.get('geoData')
                          .locality + ', ' + options.data.get('geoData')
                          .administrative_area_level_1 + ', ' + options.data
-                         .get('geoData').country).replace(/ undefined,/g, ''));
+                         .get('geoData').country).replace(/ undefined,|undefined,/g, ''));
     $('#reLocation').show();
-    $('#currency-codes')
+    $('[id="currency-codes"]')
       .val(options
            .countries[options.data.get('geoData').country_short].currency);
+    options.populateCities(
+      options.countries[options.data.get('geoData').country_short]);
   }
   options.fType = $('#fuel-type').val();
   //restore only if values were saved once
@@ -275,9 +305,10 @@ options.loadSavedData = function() {
     $('[id="fuel-type"]').val(options.data.get('fuelType'));
     options.fType = $('#fuel-type').val();
     $('#fuel-cost').val(options.data.get('fuelCost').value);
-    $('#currency-codes').val(options.data.get('fuelCost').curr);
+    $('[id="currency-codes"]').val(options.data.get('fuelCost').curr);
     $('#distance-value').val(options.data.get('distance'));
     $('#fuel-value').val(options.data.get('fuel'));
+    $('#cities').val(options.data.get('PTRate'));
     $('#emission').val(options.data.get('co'));
     $('#last-checkup').val(options.data.get('lastCheckup'));
     $('#next-checkup-month').val(options.data.get('nextCheckupMonth'));
@@ -287,6 +318,10 @@ options.loadSavedData = function() {
       $('#display-travel-cost').attr('checked', true);
       options.toggleTravelCost($('#display-travel-cost'));
     }
+    if (options.data.get('showPTCost')) {
+      $('#display-pt-cost').attr('checked', true);
+      options.togglePTCost($('#display-travel-cost'));
+    }
     if (options.data.get('showCheckupNotification')) {
       $('#display-checkup-notify').attr('checked', true);
       options.toggleCheckupNotification($('#display-checkup-notify'));
@@ -295,6 +330,9 @@ options.loadSavedData = function() {
     options.toggleInputSource($('#' + options.data.get('inputSource')));
     $('#' + options.data.get('unitSystem')).attr('checked', true);
     options.toggleUnits($('#' + options.data.get('unitSystem')));
+    $('#currency-codes').append($('<option></option>')
+                                .val(options.data.get('currency'))
+                                .html(options.data.get('currency')));
   }
 };
 
@@ -406,6 +444,20 @@ options.toggleTravelCost = function(elem) {
 };
 
 /**
+ * Toggles public transport cost calculation
+ * @param {Element} elem
+ */
+
+options.togglePTCost = function(elem) {
+  if (elem.prop('checked')) {
+    $('.pt-cost-fields select').prop('disabled', false);
+  }
+  else {
+    $('.pt-cost-fields select').prop('disabled', true);
+  }
+};
+
+/**
  * Toggles checkup notification
  * @param {Element} elem
  */
@@ -480,6 +532,15 @@ options.mirrorFuelValues = function(elem) {
 };
 
 /**
+ * makes change in currency reflect in both drop-downs
+ * @param {Element} elem
+ */
+
+options.mirrorCurrency = function(elem) {
+  $('[id="currency-codes"]').val(elem.prop('value'));
+};
+
+/**
  * Loads data from external resources
  */
 
@@ -524,6 +585,9 @@ options.listeners = function() {
   $('#display-checkup-notify').on('click', function() {
     options.toggleCheckupNotification($(this));
   });
+  $('#display-pt-cost').on('click', function() {
+    options.togglePTCost($(this));
+  });
   $('#metric,#uscustomary,#imperial').on('click', function() {
     options.toggleUnits($(this));
   });
@@ -532,6 +596,9 @@ options.listeners = function() {
   });
   $('[id="fuel-type"]').on('change', function() {
     options.mirrorFuelValues($(this));
+  });
+  $('[id="currency-codes"]').on('change', function() {
+    options.mirrorCurrency($(this));
   });
   //Prevents adding Hyphen(-) in the input field.
   $('#distance-value,#emission,#fuel-value,#fuel-cost')
@@ -542,7 +609,6 @@ options.listeners = function() {
     });
 };
 
-
 /**
  * Initialises the StorageManager
  */
@@ -550,6 +616,16 @@ options.listeners = function() {
 options.initStorageManager = function() {
   options.data = new StorageManager('calculationObject', function() {
     console.log('StorageManager Initialised');
+  });
+};
+
+/**
+ * Initialises settingsProvider
+ */
+
+options.initSettings = function() {
+  options.settings = new ChromeSettingsProvider(function(){
+    console.log('settingsProvider initialised');
   });
 };
 
@@ -566,11 +642,36 @@ options.populateMenus = function() {
               .attr('data-language', options.fuels[i].langKey)
              );
   }
-  for (i = 0; i < options.currencyCodes.length; i++) {
-    $('#currency-codes')
+};
+
+/**
+ * Populates cities menus
+ * @param {object} country
+ */
+
+options.populateCities = function(country) {
+  var i;
+  $('#cities').empty();
+  if(country.avgCostPT){
+    $('#cities')
       .append($('<option></option>')
-              .html(options.currencyCodes[i])
-              .val(options.currencyCodes[i])
+              .html(chrome.i18n.getMessage('useAverage'))
+              .val(country.avgCostPT)
+             );
+  }
+  for (i in country.cities) {
+    $('#cities')
+      .append($('<option></option>')
+              .html(i)
+              .val(country.cities[i].avgCostPT)
+             );
+  }
+  if($.isEmptyObject(country.cities) &&
+     !country.avgCostPT){
+    $('#cities')
+      .append($('<option></option>')
+              .html(chrome.i18n.getMessage('noData'))
+              .val(0)
              );
   }
 };
@@ -595,18 +696,18 @@ $(document).on('DOMContentLoaded', function() {
 $(document).ajaxComplete(function(event, xhr, settings) {
   options[(/\/(\w*)\./).exec(settings.url)[1] + 'init'] = true;
   if (options.fuelsinit === true &&
-     options.currencyCodesinit === true &&
-     !options.populated) {
+      options.currencyCodesinit === true &&
+      options.countriesinit === true &&
+      !options.populated) {
     options.populated = true;
     options.populateMenus();
     options.loadMessages();
-  }
-  if (options.countriesinit === true) {
     options.loadSavedData();
   }
 });
 
 options.initStorageManager();
+options.initSettings();
 options.loadResources();
 
 googleAnalytics('UA-1471148-11');
