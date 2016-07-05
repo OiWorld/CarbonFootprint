@@ -134,8 +134,8 @@ options.saveOptions = function() {
     }
   }
   if (options.data.get('showPTCost')) {
-    if(PTCost===0)
-      options.data.set('showPTCost',false);
+    if (PTCost === 0)
+      options.data.set('showPTCost', false);
     else
       options.data.set('PTRate', PTCost);
   }
@@ -221,9 +221,27 @@ options.storeData = function() {
  */
 
 options.loadFuelPrices = function() {
-  var prices = options.settings.getFuelPrices(
-    options.data.get('geoData').country_short);
-
+  var prices = options.settings.fuelPrices[
+    options.data.get('geoData').country_short];
+  var exchangeRate = options.settings.exchangeRates[
+    options.settings.getCurrency()];
+  if (!exchangeRate) {
+    exchangeRate = options.defaultRates.rates[
+      options.settings.getCurrency()];
+  }
+  console.log(prices, options.fType, options.settings, exchangeRate);
+  if (prices) {
+    if (options.fType == 'Diesel') {
+      $('#fuel-cost').val((prices.diesel * exchangeRate).toFixed(2));
+    }
+    else if (options.fType == 'Gasoline') {
+      $('#fuel-cost').val((prices.gasoline * exchangeRate).toFixed(2));
+    }
+    else if (options.fType == 'LPG' ||
+            options.fType == 'CNG') {
+      $('#fuel-cost').val((prices.LPG * exchangeRate).toFixed(2));
+    }
+  }
 };
 
 /**
@@ -238,8 +256,8 @@ options.saveLocation = function() {
       state = 'administrative_area_level_1,political',
       gc = new google.maps.Geocoder();
   navigator.geolocation.getCurrentPosition(function(position) {
-    var lat = position.coords.latitude,//-14.285038,
-        lng = position.coords.longitude,//-178.138252,
+    var lat = position.coords.latitude,
+        lng = position.coords.longitude,
         latlng = new google.maps.LatLng(lat, lng);
     gc.geocode({'latLng': latlng}, function(results, status) {
       var addComps = results[0].address_components;
@@ -270,7 +288,8 @@ options.saveLocation = function() {
         );
       options.populateCities(options
                      .countries[options.data.get('geoData').country_short]);
-      options.data.set('currency', options.countries[options.data.get('geoData').country_short].currency);
+      options.data.set('currency', options.countries[
+        options.data.get('geoData').country_short].currency);
       $('#currency-codes').append($('<option></option>')
                                   .val(options.data.get('currency'))
                                   .html(options.data.get('currency')));
@@ -284,14 +303,14 @@ options.saveLocation = function() {
  */
 
 options.loadSavedData = function() {
-  options.loadFuelPrices();
   //if not saved once
   if (options.data.has('geoData')) {
     $('#green-electricity input').val(options.data.get('renPer').wiki);
     $('#location').html((options.data.get('geoData')
                          .locality + ', ' + options.data.get('geoData')
                          .administrative_area_level_1 + ', ' + options.data
-                         .get('geoData').country).replace(/ undefined,|undefined,/g, ''));
+                         .get('geoData').country)
+                        .replace(/ undefined,|undefined,/g, ''));
     $('#reLocation').show();
     $('[id="currency-codes"]')
       .val(options
@@ -529,6 +548,7 @@ options.mirrorFuelValues = function(elem) {
   options.fType = elem.prop('value');
   $('[id="fuel-type"]').val(options.fType);
   options.toggleUnits($('.save>:checkbox:checked'));
+  options.loadFuelPrices();
 };
 
 /**
@@ -553,6 +573,9 @@ options.loadResources = function() {
   });
   $.getJSON('/core/resources/countries.json', function(response) {
     options.countries = response;
+  });
+  $.getJSON('/core/resources/exchangeRates.json', function(response) {
+    options.defaultRates = response;
   });
   $.getScript('https://maps.googleapis.com/maps/api/js')
     .done(function() {
@@ -624,7 +647,7 @@ options.initStorageManager = function() {
  */
 
 options.initSettings = function() {
-  options.settings = new ChromeSettingsProvider(function(){
+  options.settings = new ChromeSettingsProvider(function() {
     console.log('settingsProvider initialised');
   });
 };
@@ -652,7 +675,7 @@ options.populateMenus = function() {
 options.populateCities = function(country) {
   var i;
   $('#cities').empty();
-  if(country.avgCostPT){
+  if (country.avgCostPT) {
     $('#cities')
       .append($('<option></option>')
               .html(chrome.i18n.getMessage('useAverage'))
@@ -666,8 +689,8 @@ options.populateCities = function(country) {
               .val(country.cities[i].avgCostPT)
              );
   }
-  if($.isEmptyObject(country.cities) &&
-     !country.avgCostPT){
+  if ($.isEmptyObject(country.cities) &&
+     !country.avgCostPT) {
     $('#cities')
       .append($('<option></option>')
               .html(chrome.i18n.getMessage('noData'))
@@ -703,6 +726,11 @@ $(document).ajaxComplete(function(event, xhr, settings) {
     options.populateMenus();
     options.loadMessages();
     options.loadSavedData();
+  }
+  if (options.exchangeRatesinit === true &&
+     !options.priceLoaded) {
+    options.priceLoaded = true;
+    options.loadFuelPrices();
   }
 });
 
