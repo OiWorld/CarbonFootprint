@@ -259,6 +259,7 @@
     "debugger",
     "idle",
     "geolocation",
-    "*://en.wikipedia.org/*"
+    "*://en.wikipedia.org/*",
+     "*://www.globalpetrolprices.com/*"
   ]
 }
