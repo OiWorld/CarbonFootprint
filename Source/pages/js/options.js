@@ -115,7 +115,14 @@ options.saveOptions = function() {
     consumption = co / options.fuels[options.fType].CO2Emission;
     break;
   }
-  options.data.set('emissionRate', co);
+  options.data.set('CO2emissionRate', co);
+  var CH4emissionRate = options.fuels[options.fType].CH4Emission * consumption;
+  options.data.set('CH4emissionRate', CH4emissionRate);
+  var N2OemissionRate = options.fuels[options.fType].N2OEmission * consumption;
+  options.data.set('N2OemissionRate', N2OemissionRate);
+  var GHGemissionRate = options.fuels[options.fType].GHGEmission * consumption;
+  options.data.set('GHGemissionRate', GHGemissionRate);
+
   options.data.set('consumptionRate', consumption);
   options.data.set('showTravelCost',
                   document.getElementById('display-travel-cost').checked

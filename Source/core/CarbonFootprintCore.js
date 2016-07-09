@@ -101,7 +101,22 @@ CarbonFootprintCore.prototype.computeTrees = function(carbonFootprint) {
 };
 
 /**
- * return an appropriate message based on trees required
+ * return a string for CH4,N2O,GHG Emissions
+ * @param {number} distance
+ * @return {string}
+ */
+
+CarbonFootprintCore.prototype.otherGasesString = function(distance) {
+  if (this.settingsProvider.getGHGEmission() >= 0) {
+    return 'CH₄: ' + ( this.settingsProvider.getCH4Emission() * 1000 * distance ).toFixed(3) + 'g,  ' + 
+      'N₂O: ' + ( this.settingsProvider.getN2OEmission() * 1000 * distance ).toFixed(3) + 'g,  ' +
+      'GHG: '  + ( this.settingsProvider.getGHGEmission() * distance ).toFixed(2) + 'kg\n'; 
+  }
+  return "";
+};
+
+/**
+ * return an appropriate message based on trees required  
  * @param {number} trees
  * @return {string}
  */
@@ -121,6 +136,8 @@ CarbonFootprintCore.prototype.treesToString = function(trees) {
   } else if (trees * 365 > 1) {
     return 'You will need ' + Math.round(trees * 365) +
       ' tropical trees growing for 1 day to capture that much CO2!';
+  } else {
+    return 'Your Carbon Emission is almost nil. Great going!'
   }
 };
 
@@ -134,12 +151,16 @@ CarbonFootprintCore.prototype.createFootprintElement = function(distance) {
   var footprint = this.computeFootprint(distance);
   var e = document.createElement('div');
   var treesStr = this.treesToString(this.computeTrees(footprint));
+  var otherGasStr = this.otherGasesString(distance);
+  var titleStr = otherGasStr + treesStr;
+  console.log(titleStr);
   var knowMoreUrl = chrome.extension.getURL('pages/knowMore.html');
   e.innerHTML = '<a href=' + knowMoreUrl + ' target=\'_blank\' title=\'' +
-    treesStr + '\' class=\'carbon\' id=\'carbon\'>' +
+    titleStr + '\' class=\'carbon\' id=\'carbon\'>' +
     this.footprintToString(footprint) +
     '</a> <a class=\'know-more-link\' href=' + knowMoreUrl +
-    ' target=\'_blank\' title=\'' + treesStr + '\'>Know More</a>';
+    ' target=\'_blank\' title=\'' + titleStr + '\'>Know More</a>';
+  e.onh
   return e;
 };
 
@@ -164,7 +185,7 @@ CarbonFootprintCore.prototype.computeTravelCost = function(distance) {
 CarbonFootprintCore.prototype.createTravelCostElement = function(distance) {
   var e = document.createElement('div');
   var knowMoreUrl = chrome.extension.getURL('pages/knowMore.html');
-  e.innerHTML = '<a href=http://goo.gl/yxdIs target=_blank' + ' ' +
+  e.innerHTML = '<a href=' + knowMoreUrl + ' target=_blank' + ' ' +
     'class=travelCost id=travelCost> Cost $' +
     this.computeTravelCost(distance).toFixed(2).toString() + '</a>';
   return e;
@@ -209,6 +230,6 @@ CarbonFootprintCore.prototype.getDistanceFromStrings =
                unit.match(/\u0444\u0443\u0442/)) { // Distance given in feet.
       distance *= CarbonFootprintCore.MI_TO_KM / 5280;
     }
-    console.log('The distance is: ' + ' kilometers');
+    console.log('The distance is: ' + distance + ' kilometers');
     return distance;
   };
