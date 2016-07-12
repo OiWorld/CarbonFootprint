@@ -145,7 +145,7 @@ CarbonFootprintCore.prototype.createFootprintElement = function(quantity, type) 
   var footprint = this.computeFootprint(quantity,type),
       e = document.createElement('div'),
       treesStr = this.treesToString(this.computeTrees(footprint)),
-      otherGasStr = this.otherGasesString(distance),
+      otherGasStr = this.otherGasesString(quantity),
       titleStr = otherGasStr + treesStr,
       knowMoreUrl = chrome.extension.getURL('pages/knowMore.html');
   console.log(titleStr);

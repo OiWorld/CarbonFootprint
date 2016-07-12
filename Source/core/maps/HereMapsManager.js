@@ -100,7 +100,7 @@ HereMapsManager.prototype.convertDistance = function(distanceStr) {
  * @param {element} e
  */
 
-HereMapsManager.prototype.insertFootprintElement = function(route, e) {
+HereMapsManager.prototype.insertFootprintElement = function(route, e, type) {
   if (route.getElementsByClassName('carbon').length === 0) {
     e.setAttribute(
       'style',
@@ -118,7 +118,7 @@ HereMapsManager.prototype.insertFootprintElement = function(route, e) {
  * @param {element} e
  */
 
-HereMapsManager.prototype.insertTravelCostElement = function(route, e) {
+HereMapsManager.prototype.insertTravelCostElement = function(route, e, type) {
   //A check to ensure that the display travel cost checkbox is checked
   if (route.getElementsByClassName('travelCost').length === 0) {
     e.setAttribute(
@@ -147,12 +147,14 @@ HereMapsManager.prototype.update = function() {
         var distanceInKm = thisMap.convertDistance(distanceString);
       thisMap.insertFootprintElement(
         routes[i],
-        thisMap.footprintCore.createFootprintElement(distanceInKm)
+        thisMap.footprintCore.createFootprintElement(distanceInKm,'d'),
+        'd'
       );
       if (thisMap.settingsProvider.showTravelCost())
         thisMap.insertTravelCostElement(
           routes[i],
-          thisMap.footprintCore.createTravelCostElement(distanceInKm)
+          thisMap.footprintCore.createTravelCostElement(distanceInKm,'d'),
+          'd'
         );
     }
   },1000);
