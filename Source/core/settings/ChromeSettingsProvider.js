@@ -74,7 +74,7 @@ ChromeSettingsProvider.prototype.get = function(key, def) {
 };
 
 /**
- * returns carbon emission rate
+ * returns CO2 emission rate
  * default emission rate provided by:
  * https://www.epa.gov/sites/production/files/2016-02/documents/420f14040a.pdf
  * find a credible source for public transport emission in kg/hr
@@ -83,10 +83,44 @@ ChromeSettingsProvider.prototype.get = function(key, def) {
 
 ChromeSettingsProvider.prototype.getCarbonEmission = function(type) {
   switch(type){
-  case 'd': return this.get('emissionRate', 0.255384);
+  case 'd': return this.get('CO2emissionRate', 0.255384);
   case 't': return 1;
   }
 };
+
+/**
+ * returns CH4 emission rate
+ * default emission rate provided by:
+ * https://www3.epa.gov/otaq/models/ngm/420p04016.pdf
+ * @return {number}
+ */
+
+ChromeSettingsProvider.prototype.getCH4Emission = function() {
+  return this.get('CH4emissionRate', 0.000024917);
+};
+
+/**
+ * returns N2O emission rate
+ * default emission rate provided by:
+ * https://www3.epa.gov/otaq/models/ngm/420p04016.pdf
+ * @return {number}
+ */
+
+ChromeSettingsProvider.prototype.getN2OEmission = function() {
+  return this.get('N2OemissionRate', 0.000017585);
+};
+
+/**
+ * returns GHG emission rate
+ * default emission rate provided by:
+ * https://www.epa.gov/sites/production/files/2016-02/documents/420f14040a.pdf
+ * @return {number}
+ */
+
+ChromeSettingsProvider.prototype.getGHGEmission = function() {
+  return this.get('GHGemissionRate', 0.25901);
+};
+
 
 /**
  * returns carbon emission unit

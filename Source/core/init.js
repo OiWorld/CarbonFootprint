@@ -22,7 +22,7 @@ new SettingsProvider(function(settingsProvider) {
       attributes: true,
       childList: true,
       characterData: true,
-      subtree: false
+      subtree: true
     });
   });
 });
