@@ -1,0 +1,16 @@
+{
+  "title": "Carbon Footprint™",
+  "name": "carbonfootprint",
+  "version": "0.0.1",
+  "description": "Automatically estimates the CO2 emissions for driving on routes suggested by Google Maps.",
+  "main": "index.js",
+  "author": "Kolya Opahle",
+  "engines": {
+    "firefox": ">=38.0a1",
+    "fennec": ">=38.0a1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "jetpack"
+  ]
+}

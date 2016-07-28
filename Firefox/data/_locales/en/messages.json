@@ -1,0 +1,173 @@
+{
+  "extName": {
+    "message": "Carbon Footprint for Google Maps™",
+    "description": "English title"
+  },
+  "extDesc": {
+    "message": "Automatically estimates the CO2 emissions for driving on routes suggested by Google Maps.",
+    "description": "English description"
+  },
+  "mainParah": {
+    "message": "<p>Whenever you ask Google Maps for driving directions, this browser extension automatically estimates the total CO<sub>2</sub> emission for the driving route suggested by Google Maps. The estimation is then shown to the left of the map, next to the route's total distance.</p><p>To improve the accuracy of the estimation, choose amongst one of the tabs whose value you wish to enter:  </p>",
+    "description": "The paragraph beside form"
+  },
+  "distanceTravelled": {
+    "message": "Distance Traveled:"
+  },
+  "fuelConsumed": {
+    "message": "Fuel Consumed:"
+  },
+  "fuelConsumptionUnit": {
+    "message": "Fuel Consumption Units"
+  },
+  "fuelEfficiency": {
+    "message": "Fuel Efficiency"
+  },
+  "fuelEfficiencyUnit": {
+    "message": "Fuel Efficiency Units"
+  },
+  "coEmission": {
+    "message": "CO<sub>2</sub> Emissions?:"
+  },
+  "emissionQues": {
+    "message": "Know your vehicle's average:"
+  },
+  "byFuelConsumption": {
+    "message": "Fuel Consumption?:"
+  },
+  "costCalculator": {
+    "message": "Cost Calculator"
+  },
+  "coEmissionUnit": {
+    "message": "CO<sub>2</sub> Emission Units"
+  },
+  "fuelType": {
+    "message": "Fuel Type:"
+  },
+  "fuelDiesel": {
+    "message": "Diesel"
+  },
+  "fuelGasoline": {
+    "message": "Gasoline"
+  },
+  "fuelLPG": {
+    "message": "LPG"
+  },
+  "fuelE10": {
+    "message": "E10"
+  },
+  "fuelE25": {
+    "message": "E25"
+  },
+  "fuelE85": {
+    "message": "E85"
+  },
+  "fuelEthanol": {
+    "message": "Ethanol"
+  },
+  "fuelBioDiesel": {
+    "message": "Bio-Diesel"
+  },
+  "fuelCNG": {
+    "message": "CNG"
+  },
+  "fuelElectricity":{
+    "message": "Electricity"
+  },
+  "fuelCost": {
+    "message": "Fuel Cost:"
+  },
+  "fuelCostUnit": {
+    "message": "in $ per Volume unit"
+  },
+  "fuelCostNote": {
+    "message": "'$' denotes a generic currency."
+  },
+  "distance": {
+    "message": "Distance"
+  },
+  "volume": {
+    "message": "Volume"
+  },
+  "mass": {
+    "message": "Mass"
+  },
+  "perVolume": {
+    "message": "per Volume"
+  },
+  "perDistance": {
+    "message": "per Distance"
+  },
+  "conversionNote": {
+    "message": "To get conversions change the units."
+  },
+  "travelCostEstimate": {
+    "message": "Display travel cost estimation"
+  },
+  "save": {
+    "message": "SAVE"
+  },
+  "notificationMenu": {
+    "message": "Vehicle Checkup"
+  },
+  "notificationDisplayLabel": {
+    "message": "Display vehicle checkup notification"
+  },
+  "notificationLastChekup": {
+    "message": "Last checkup Date:"
+  },
+  "notificationNextChekup": {
+    "message": "Next Checkup Months Years:"
+  },
+  "notificationTitle": {
+    "message": "You should checkup your car"
+  },
+  "notificationMessage": {
+    "message": "The time you set for the car inspection has passed."
+  },
+  "notificationInfoText": {
+    "message": "Keeping up with your car checkups ensures that your car is well maintained and guarantees that it always outputs the smallest possible amount of co₂."
+  },
+  "byFuelEfficiency": {
+    "message": "Fuel Efficiency"
+  },
+  "byFuelConsumptionPer": {
+    "message": "Fuel Consumption"
+  },
+  "byCustomValues": {
+    "message": "Custom Values"
+  },
+  "feMessage": {
+    "message": "enter <i>Distance Traveled</i> in 1 unit of <i>Fuel Consumed</i>"
+  },
+  "fcpMessage": {
+    "message": "enter <i>Fuel Consumed</i> per 100 units of <i>Distance Traveled</i>"
+  },
+  "cvMessage": {
+   "message": "enter total <i>Distance Traveled</i> for total <i>Fuel Consumed</i>"
+  },
+  "useMetric": {
+    "message": "Metric"
+  },
+  "useUSCustomary": {
+    "message": "US Customary"
+  },
+  "saved": {
+    "message": "Saved Successfully"
+  },
+  "error": {
+    "message": "Please enter a valid input"
+  },
+  "imperial": {
+    "message": "Imperial"
+  },
+  "greenElectricity": {
+    "message": "Green Electricity:"
+  },
+  "fuelB20": {
+    "message": "B20"
+  },
+  "footprints": {
+    "message": "Carbon Footprints"
+  }
+}
