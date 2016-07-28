@@ -55,8 +55,6 @@ $('#caloriesFormSubmit').click(function(){
 	}
 	var caloriesBurnt = caloriesPerHour * time;
 	
-
-
 	$('#outputCalories').html('Congratulations! You have burnt <b>' + caloriesBurnt + ' Calories</b>.<br>'
 		+ ' Moreover, a sedentary women require 1,600 to 2,000 calories a day, while'
 		+ ' sedentary men need about 2,000 to 2,600 calories daily to maintain their current weight. ');
