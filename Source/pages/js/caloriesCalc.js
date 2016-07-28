@@ -5,6 +5,7 @@
 * http://www.sustrans.org.uk/what-you-can-do/use-your-car-less/walking
 * http://www.tmr.qld.gov.au/Travel-and-transport/Cycling/Benefits.aspx
 * http://www.sustrans.org.uk/what-you-can-do/use-your-car-less/health-benefits-walking-and-cycling
+* http://livehealthy.chron.com/sedentary-lifestyle-calorie-intake-3186.html
 */
 
 $.fn.serializeObject = function()
@@ -54,7 +55,11 @@ $('#caloriesFormSubmit').click(function(){
 	}
 	var caloriesBurnt = caloriesPerHour * time;
 	
-	$('#outputCalories').html('Congratulations! You have burnt <b>' + caloriesBurnt + ' Calories</b>.');
+
+
+	$('#outputCalories').html('Congratulations! You have burnt <b>' + caloriesBurnt + ' Calories</b>.<br>'
+		+ ' Moreover, a sedentary women require 1,600 to 2,000 calories a day, while'
+		+ ' sedentary men need about 2,000 to 2,600 calories daily to maintain their current weight. ');
 
 });
 
