@@ -80,3 +80,11 @@ $('#caloriesFormSubmit').click(function(){
 	});
 	$('input[value="time"]').click();
 })();
+
+
+window.onload = function() {
+	chrome.storage.sync.get('calculationObject', function(data) {
+		var unitSystem = data['calculationObject']['unitSystem'] || 'metric';
+		$('input:radio[name="unitSystem"]').filter('[value=' + unitSystem + ']').click();
+	});
+};

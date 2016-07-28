@@ -410,10 +410,13 @@
 	                        	<div class="form-group">
 	                        		<label>Unit System</label><br>
 								    <label class="radio-inline">
-								        <input type="radio" name="unitSystem" value="us" checked>US customary
+								        <input type="radio" name="unitSystem" value="uscustomary" checked>US customary
 								    </label>
 								    <label class="radio-inline">
 								        <input type="radio" name="unitSystem" value="metric" >Metric
+								    </label>
+								    <label class="radio-inline">
+								        <input type="radio" name="unitSystem" value="imperial" >Imperial
 								    </label>
 	                        	</div>
 	                        	<div class="form-group">
@@ -428,16 +431,18 @@
 	                        	<div class="form-group">
 								    <label for="usrSpeed">Speed</label><br>
 								    <input type="number" class="form-control form-value" id="usrSpeed" name="speed" value="12">
-								    <select class="form-control form-unit" disabled="" val="us">
-								    	<option value="us">mph</option>
+								    <select class="form-control form-unit" disabled="" value="uscustomary">
+								    	<option value="uscustomary">mph</option>
+								    	<option value="imperial">mph</option>
 								    	<option value="metric">kph</option>
 								    </select>
 								</div>
 								<div class="form-group">
 								    <label for="usrWeight">Weight</label><br>
 								    <input type="number" class="form-control form-value" id="usrWeight" name="weight" value="130">
-								    <select class="form-control form-unit" disabled="" val="us">
-								    	<option value="us">lbs</option>
+								    <select class="form-control form-unit" disabled="" value="uscustomary">
+								    	<option value="uscustomary">lbs</option>
+								    	<option value="imperial">lbs</option>
 								    	<option value="metric">kg</option>
 								    </select>
 								</div>
@@ -451,8 +456,9 @@
 	                        	</div>
 	                        	<div class="form-group">
 								    <input type="number" class="form-control form-value" name="unitVal" value="1">
-								    <select class="form-control form-unit" id="unitSel" val="us" disabled="">
-								    	<option class="distanceOpt" value="us">miles</option>
+								    <select class="form-control form-unit" id="unitSel" value="uscustomary" disabled="">
+								    	<option class="distanceOpt" value="uscustomary">miles</option>
+								    	<option class="distanceOpt" value="imperial">miles</option>
 								    	<option class="distanceOpt" value="metric">km</option>
 								    	<option class="timeOpt" value="min">Min</option>
 								    	<option class="timeOpt" value="hour">Hours</option>
