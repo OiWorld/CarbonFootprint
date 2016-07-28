@@ -491,6 +491,11 @@ options.mirrorFuelValues = function(elem) {
  */
 
 options.loadResources = function() {
+  /**
+  * Sources: 
+  * https://www.epa.gov/sites/production/files/2015-11/documents/emission-factors_nov_2015.pdf
+  * http://www.biomassenergycentre.org.uk/portal/page?_pageid=75,163182&_dad=portal&_schema=PORTAL
+  */
   $.getJSON('/core/resources/fuels.json', function(response) {
     options.fuels = response;
   });
