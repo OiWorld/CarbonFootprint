@@ -79,7 +79,7 @@ MapQuestMapsManager.prototype.convertDistance = function(distanceStr) {
  * @param {element} e
  */
 
-MapQuestMapsManager.prototype.insertFootprintElement = function(e) {
+MapQuestMapsManager.prototype.insertFootprintElement = function(e, type) {
   e.id = 'footprintDiv';
   if (document.getElementById('footprintDiv')) {
     var el = document.getElementById('footprintDiv');
@@ -99,7 +99,7 @@ MapQuestMapsManager.prototype.insertFootprintElement = function(e) {
  * @param {element} e
  */
 
-MapQuestMapsManager.prototype.insertTravelCostElement = function(e) {
+MapQuestMapsManager.prototype.insertTravelCostElement = function(e, type) {
   e.id = 'travelCostDiv';
   if (document.getElementById('travelCostDiv')) {
     var el = document.getElementById('travelCostDiv');
@@ -123,11 +123,13 @@ MapQuestMapsManager.prototype.update = function() {
     var distanceString = this.getDistanceString();
     var distanceInKm = this.convertDistance(distanceString);
     this.insertFootprintElement(
-      this.footprintCore.createFootprintElement(distanceInKm)
+      this.footprintCore.createFootprintElement(distanceInKm,'d'),
+      'd'
     );
     if (this.settingsProvider.showTravelCost()) {
       this.insertTravelCostElement(
-        this.footprintCore.createTravelCostElement(distanceInKm)
+        this.footprintCore.createTravelCostElement(distanceInKm,'d'),
+        'd'
       );
     }
   }

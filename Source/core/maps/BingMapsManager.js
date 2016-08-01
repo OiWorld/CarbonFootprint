@@ -80,7 +80,7 @@ BingMapsManager.prototype.convertDistance = function(distanceStr) {
  * @param {element} e
  */
 
-BingMapsManager.prototype.insertFootprintElement = function(route, e) {
+BingMapsManager.prototype.insertFootprintElement = function(route, e, type) {
   if (route.getElementsByClassName('carbon').length === 0) {
     route.getElementsByClassName('drTitleRight')[0].appendChild(e);
   }
@@ -92,7 +92,7 @@ BingMapsManager.prototype.insertFootprintElement = function(route, e) {
  * @param {element} e
  */
 
-BingMapsManager.prototype.insertTravelCostElement = function(route, e) {
+BingMapsManager.prototype.insertTravelCostElement = function(route, e, type) {
   if (route.getElementsByClassName('travelCost').length === 0) {
     route.getElementsByClassName('drTitleRight')[0].appendChild(e);
   }
@@ -109,12 +109,14 @@ BingMapsManager.prototype.update = function() {
     var distanceInKm = this.convertDistance(distanceString);
     this.insertFootprintElement(
       routes[i],
-      this.footprintCore.createFootprintElement(distanceInKm)
+      this.footprintCore.createFootprintElement(distanceInKm,'d'),
+      'd'
     );
     if (this.settingsProvider.showTravelCost()) {
       this.insertTravelCostElement(
         routes[i],
-        this.footprintCore.createTravelCostElement(distanceInKm)
+        this.footprintCore.createTravelCostElement(distanceInKm,'d'),
+        'd'
       );
     }
   }

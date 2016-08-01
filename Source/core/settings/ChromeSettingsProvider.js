@@ -22,6 +22,16 @@ var ChromeSettingsProvider = function(cb) {
     console.log(self.settings);
     cb(self);
   });
+  chrome.storage.sync.get('exchangeRates', function(response) {
+    if (response)
+      self.exchangeRates = response.exchangeRates.rates;
+    console.log(self.exchangeRates);
+  });
+  chrome.storage.sync.get('fuelPrices', function(response) {
+    if (response)
+      self.fuelPrices = response.fuelPrices;
+    console.log(self.fuelPrices);
+  });
 };
 
 /**
@@ -67,11 +77,15 @@ ChromeSettingsProvider.prototype.get = function(key, def) {
  * returns CO2 emission rate
  * default emission rate provided by:
  * https://www.epa.gov/sites/production/files/2016-02/documents/420f14040a.pdf
+ * find a credible source for public transport emission in kg/hr
  * @return {number}
  */
 
-ChromeSettingsProvider.prototype.getCarbonEmission = function() {
-  return this.get('CO2emissionRate', 0.255384);
+ChromeSettingsProvider.prototype.getCarbonEmission = function(type) {
+  switch(type){
+  case 'd': return this.get('CO2emissionRate', 0.255384);
+  case 't': return 1;
+  }
 };
 
 /**
@@ -118,12 +132,34 @@ ChromeSettingsProvider.prototype.getCarbonEmissionUnit = function() {
 };
 
 /**
- * returns travel rate
+ * returns travel rate for driving
  * @return {number}
  */
 
 ChromeSettingsProvider.prototype.getTravelRate = function() {
   return this.get('travelRate', 30);
+};
+
+/**
+ * returns travel rate for public transport
+ * @return {number}
+ */
+
+ChromeSettingsProvider.prototype.getPTRate = function() {
+  var inUSD = this.get('PTRate', 1),
+      inLocal = inUSD * this.exchangeRates[
+        this.settings.currency
+      ];
+  return inLocal;
+};
+
+/**
+ * returns local currency
+ * @return {number}
+ */
+
+ChromeSettingsProvider.prototype.getCurrency = function() {
+  return this.settings.currency;
 };
 
 /**
@@ -133,6 +169,15 @@ ChromeSettingsProvider.prototype.getTravelRate = function() {
 
 ChromeSettingsProvider.prototype.showTravelCost = function() {
   return this.get('showTravelCost', false);
+};
+
+/**
+ * whether to show public transport cost
+ * @return {boolean}
+ */
+
+ChromeSettingsProvider.prototype.showPTCost = function() {
+  return this.get('showPTCost', false);
 };
 
 var SettingsProvider = ChromeSettingsProvider;

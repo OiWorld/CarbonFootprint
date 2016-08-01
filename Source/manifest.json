@@ -260,6 +260,6 @@
     "idle",
     "geolocation",
     "*://en.wikipedia.org/*",
-     "*://www.globalpetrolprices.com/*"
+    "*://www.globalpetrolprices.com/*"
   ]
 }

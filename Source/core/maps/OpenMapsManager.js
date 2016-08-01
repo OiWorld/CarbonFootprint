@@ -68,7 +68,7 @@ OpenMapsManager.prototype.convertDistance = function(distanceStr) {
  * @param {element} e
  */
 
-OpenMapsManager.prototype.insertFootprintElement = function(e) {
+OpenMapsManager.prototype.insertFootprintElement = function(e, type) {
   if (document.getElementsByClassName('carbon').length === 0) {
     if (document.getElementById('routing_summary')) {
       document.getElementById('routing_summary').appendChild(e);
@@ -81,7 +81,7 @@ OpenMapsManager.prototype.insertFootprintElement = function(e) {
  * @param {element} e
  */
 
-OpenMapsManager.prototype.insertTravelCostElement = function(e) {
+OpenMapsManager.prototype.insertTravelCostElement = function(e, type) {
   //A check to ensure that the display travel cost checkbox is checked
   if (document.getElementsByClassName('travelCost').length === 0) {
     if (document.getElementById('routing_summary')) {
@@ -99,11 +99,13 @@ OpenMapsManager.prototype.update = function() {
     var distanceString = this.getDistanceString();
     var distanceInKm = this.convertDistance(distanceString);
     this.insertFootprintElement(
-      this.footprintCore.createFootprintElement(distanceInKm)
+      this.footprintCore.createFootprintElement(distanceInKm,'d'),
+      'd'
     );
     if (this.settingsProvider.showTravelCost()) {
       this.insertTravelCostElement(
-        this.footprintCore.createTravelCostElement(distanceInKm)
+        this.footprintCore.createTravelCostElement(distanceInKm,'d'),
+        'd'
       );
     }
   }

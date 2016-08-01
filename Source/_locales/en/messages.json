@@ -169,5 +169,17 @@
   },
   "footprints": {
     "message": "Carbon Footprints"
+  },
+  "PTCostEstimate": {
+    "message": "Display public transport cost estimation"
+  },
+  "city": {
+    "message": "City:"
+  },
+  "noData": {
+    "message": "No data available"
+  },
+  "useAverage": {
+    "message": "None (use average)"
   }
 }
