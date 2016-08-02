@@ -51,8 +51,14 @@ CarbonFootprintCore.KG_TO_LBS = 2.204622621848775;
  * @return {number} footprint
  */
 
-CarbonFootprintCore.prototype.computeFootprint = function(distance) {
-  var footprint = distance * this.settingsProvider.getCarbonEmission();
+CarbonFootprintCore.prototype.computeFootprint = function(data, type) {
+  var footprint;
+  if(type=='d'){
+    footprint = data * this.settingsProvider.getCarbonEmission();
+  }
+  if(type=='t'){
+    footprint = data * this.settingsProvider.getPTCarbonEmission();
+  }
   return footprint;
 };
 
@@ -75,13 +81,7 @@ CarbonFootprintCore.prototype.footprintToString = function(footprint) {
       carbonUnit = 'oz';
     }
   }
-  var threshold = 100;
-  if (footprint < threshold) {
-    footprint = Math.round(footprint * 10) / 10;
-  }
-  else {
-    footprint = Math.round(footprint);
-  }
+  footprint = footprint.toPrecision(3);
   console.log('Carbon Footprint for this route is: ' +
               footprint + carbonUnit + ' CO<sub>2</sub>');
   return '' + footprint + carbonUnit + ' CO<sub>2</sub>';
@@ -137,24 +137,23 @@ CarbonFootprintCore.prototype.treesToString = function(trees) {
     return 'You will need ' + Math.round(trees * 365) +
       ' tropical trees growing for 1 day to capture that much CO2!';
   } else {
-    return 'Your Carbon Emission is almost nil. Great going!'
+    return 'Your Carbon Emission is almost nil. Great going!';
   }
 };
 
 /**
- * creates element where footprints will be displayed
- * @param {number} distance
+ * creates footprint using provided footprints
+ * @param {number} footprint
  * @return {element} e
  */
 
-CarbonFootprintCore.prototype.createFootprintElement = function(distance) {
-  var footprint = this.computeFootprint(distance);
-  var e = document.createElement('div');
-  var treesStr = this.treesToString(this.computeTrees(footprint));
-  var otherGasStr = this.otherGasesString(distance);
-  var titleStr = otherGasStr + treesStr;
+CarbonFootprintCore.prototype.createHTMLElement = function(footprint) {
+  var e = document.createElement('div'),
+      treesStr = this.treesToString(this.computeTrees(footprint)),
+      otherGasStr = this.otherGasesString(footprint),
+      titleStr = otherGasStr + treesStr,
+      knowMoreUrl = chrome.extension.getURL('pages/knowMore.html');
   console.log(titleStr);
-  var knowMoreUrl = chrome.extension.getURL('pages/knowMore.html');
   e.innerHTML = '<a href=' + knowMoreUrl + ' target=\'_blank\' title=\'' +
     titleStr + '\' class=\'carbon\' id=\'carbon\'>' +
     this.footprintToString(footprint) +
@@ -162,6 +161,30 @@ CarbonFootprintCore.prototype.createFootprintElement = function(distance) {
     ' target=\'_blank\' title=\'' + titleStr + '\'>Know More</a>';
   e.onh
   return e;
+};
+
+/**
+ * creates footprint element for driving mode
+ * @param {number} distance
+ * @return {element} element
+ */
+
+CarbonFootprintCore.prototype.createFootprintElement = function(distance) {
+  var footprint = this.computeFootprint(distance,'d');
+  var element = this.createHTMLElement(footprint);
+  return element;
+};
+
+/**
+ * creates footprint element for transit mode
+ * @param {number} time
+ * @return {element} element
+ */
+
+CarbonFootprintCore.prototype.createPTFootprintElement = function(time) {
+  var footprint = this.computeFootprint(time,'t');
+  var element = this.createHTMLElement(footprint);
+  return element;
 };
 
 /**
@@ -186,8 +209,9 @@ CarbonFootprintCore.prototype.createTravelCostElement = function(distance) {
   var e = document.createElement('div');
   var knowMoreUrl = chrome.extension.getURL('pages/knowMore.html');
   e.innerHTML = '<a href=' + knowMoreUrl + ' target=_blank' + ' ' +
-    'class=travelCost id=travelCost> Cost $' +
-    this.computeTravelCost(distance).toFixed(2).toString() + '</a>';
+    'class=travelCost id=travelCost>' +
+    this.computeTravelCost(distance).toFixed(2).toString() + ' ' +
+    this.settingsProvider.getCurrency() + '</a>';
   return e;
 };
 
