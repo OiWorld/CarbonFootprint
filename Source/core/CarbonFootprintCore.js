@@ -47,17 +47,18 @@ CarbonFootprintCore.KG_TO_LBS = 2.204622621848775;
 
 /**
  * computes footprints based on route distance
+ * 'd' is default type
  * @param {number} distance
  * @return {number} footprint
  */
 
 CarbonFootprintCore.prototype.computeFootprint = function(data, type) {
   var footprint;
-  if(type=='d'){
-    footprint = data * this.settingsProvider.getCarbonEmission();
-  }
   if(type=='t'){
     footprint = data * this.settingsProvider.getPTCarbonEmission();
+  }
+  else{
+    footprint = data * this.settingsProvider.getCarbonEmission();
   }
   return footprint;
 };
