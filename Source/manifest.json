@@ -215,8 +215,8 @@
       "all_frames" : true
     },
     {
-      "matches": [ "http://maps.here.com/*",
-        "https://maps.here.com/*"
+      "matches": [ "http://*.here.com/*",
+        "https://*.here.com/*"
       ],
       "css": ["core/css/main.css"],
       "js" : [
@@ -229,8 +229,8 @@
       "all_frames" : true
     },
     {
-      "matches": [ "http://www.mapquest.com/directions*",
-        "https://www.mapquest.com/directions*"
+      "matches": [ "http://www.mapquest.com/*",
+        "https://www.mapquest.com/*"
       ],
       "css": ["core/css/main.css"],
       "js" : [

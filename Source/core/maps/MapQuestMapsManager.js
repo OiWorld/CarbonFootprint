@@ -15,6 +15,7 @@
 var MapQuestMapsManager = function(footprintCore, settingsProvider) {
   this.footprintCore = footprintCore;
   this.settingsProvider = settingsProvider;
+  this.subtree = false;
   // click handler for angular route change
   var thisMap = this;
   var ul = document.getElementsByTagName('body')[0];
@@ -119,16 +120,19 @@ MapQuestMapsManager.prototype.insertTravelCostElement = function(e) {
  */
 
 MapQuestMapsManager.prototype.update = function() {
+  console.log('update!');
   if (this.isDriving()) {
     var distanceString = this.getDistanceString();
-    var distanceInKm = this.convertDistance(distanceString);
-    this.insertFootprintElement(
-      this.footprintCore.createFootprintElement(distanceInKm)
-    );
-    if (this.settingsProvider.showTravelCost()) {
-      this.insertTravelCostElement(
-        this.footprintCore.createTravelCostElement(distanceInKm)
+    if(distanceString) {    
+      var distanceInKm = this.convertDistance(distanceString);
+      this.insertFootprintElement(
+        this.footprintCore.createFootprintElement(distanceInKm)
       );
+      if (this.settingsProvider.showTravelCost()) {
+        this.insertTravelCostElement(
+          this.footprintCore.createTravelCostElement(distanceInKm)
+        );
+      }
     }
   }
 };
