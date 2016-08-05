@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Builder Version</key>
+	<string>12602.1.40.4</string>
+	<key>CFBundleDisplayName</key>
+	<string>CarbonSafari</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.OiWorld.CarbonFootprint</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Database Quota</key>
+		<integer>5242880</integer>
+		<key>Global Page</key>
+		<string>background/global.html</string>
+		<key>Popovers</key>
+		<array>
+			<dict>
+				<key>Filename</key>
+				<string>pages/popup.html</string>
+				<key>Height</key>
+				<integer>118</integer>
+				<key>Identifier</key>
+				<string>popup</string>
+				<key>Width</key>
+				<integer>200</integer>
+			</dict>
+		</array>
+		<key>Toolbar Items</key>
+		<array>
+			<dict>
+				<key>Identifier</key>
+				<string>toolbarButton</string>
+				<key>Image</key>
+				<string>images/globe-256.png</string>
+				<key>Include By Default</key>
+				<true/>
+				<key>Label</key>
+				<string>toolbar</string>
+				<key>Popover</key>
+				<string>popup</string>
+			</dict>
+		</array>
+	</dict>
+	<key>Description</key>
+	<string>Automatically estimates the CO2 emissions for driving on routes suggested by Google Maps.</string>
+	<key>DeveloperIdentifier</key>
+	<string>0000000000</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
