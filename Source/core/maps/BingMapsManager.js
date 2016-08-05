@@ -27,22 +27,39 @@ BingMapsManager.prototype.isDriving = function() {
   return !!document.getElementsByClassName('dirBtnDrive dirBtnSelected')[0];
 };
 
+BingMapsManager.prototype.isTransit = function() {
+  return !!document.getElementsByClassName('dirBtnTransit dirBtnSelected')[0];
+};
+
 /**
  * Gets driving routes.
  * @return {string} routes
  */
 
 BingMapsManager.prototype.getAllDrivingRoutes = function() {
-  var routes = [];
+  var drivingRoutes = [];
   if (this.isDriving()) {
     var r = document.getElementsByClassName('drTitle');
     for (var i = r.length - 1; i >= 0; i--) { // Filtering spurious routes.
       if (r[i].childNodes.length > 0) {
-        routes.push(r[i]);
+        drivingRoutes.push(r[i]);
       }
     }
   }
-  return routes;
+  return drivingRoutes;
+};
+
+BingMapsManager.prototype.getAllTransitRoutes = function() {
+  var transitRoutes = [];
+  if (this.isTransit()) {
+    var r = document.getElementsByClassName('drTitle');
+    for (var i = r.length - 1; i >= 0; i--) { // Filtering spurious routes.
+      if (r[i].childNodes.length > 0) {
+        transitRoutes.push(r[i]);
+      }
+    }
+  }
+  return transitRoutes;
 };
 
 /**
@@ -60,6 +77,21 @@ BingMapsManager.prototype.getDistanceString = function(route) {
 };
 
 /**
+ * Gets time for transit route.
+ * @param {object} route
+ * @return {string} timeString
+ */
+
+BingMapsManager.prototype.getTimeString = function(route) {
+  var timeString = route
+        .getElementsByClassName('drTitleRight')[0]
+        .innerHTML;
+  timeString = ' ' + timeString;
+  console.log('timeString:' + timeString);
+  return timeString;
+};
+
+/**
  * Converts Distance.
  * @param {string} distanceStr
  * @return {float} distanceFloat
@@ -71,6 +103,36 @@ BingMapsManager.prototype.convertDistance = function(distanceStr) {
     var distance = distanceAndUnit[0];
     var unit = distanceAndUnit[1];
     return this.footprintCore.getDistanceFromStrings(distance, unit);
+  }
+};
+
+/**
+ * Converts total time into hours.
+ * @param {string} timeStr
+ * @return {float} hrs
+ */
+
+BingMapsManager.prototype.convertTime = function(timeStr) {
+  if (timeStr) {
+    var days = (/ (\w*) d/).exec(timeStr);
+    var hrs = (/ (\w*) h/).exec(timeStr);
+    var mins = (/ (\w*) m/).exec(timeStr);
+    if(hrs){
+      hrs = parseFloat(hrs[1]);
+    }
+    else{
+      hrs = 0;
+    }
+    if(mins){
+      mins = parseFloat(mins[1]);
+      hrs += mins/60;
+    }
+    if(days){
+      days = parseFloat(days[1]);
+      hrs += days*24;
+    }
+    console.log(hrs);
+    return hrs;
   }
 };
 
@@ -103,20 +165,31 @@ BingMapsManager.prototype.insertTravelCostElement = function(route, e) {
  */
 
 BingMapsManager.prototype.update = function() {
-  var routes = this.getAllDrivingRoutes();
-  for (var i = 0; i < routes.length; i++) {
-    var distanceString = this.getDistanceString(routes[i]);
+  //var routes = this.getAllDrivingRoutes();
+  var drivingRoutes = this.getAllDrivingRoutes();
+  var transitRoutes = this.getAllTransitRoutes();
+  for (var i = 0; i < drivingRoutes.length; i++) {
+    var distanceString = this.getDistanceString(drivingRoutes[i]);
     var distanceInKm = this.convertDistance(distanceString);
     this.insertFootprintElement(
-      routes[i],
+      drivingRoutes[i],
       this.footprintCore.createFootprintElement(distanceInKm)
     );
     if (this.settingsProvider.showTravelCost()) {
       this.insertTravelCostElement(
-        routes[i],
+        drivingRoutes[i],
         this.footprintCore.createTravelCostElement(distanceInKm)
       );
     }
+  }
+  for (i = 0; i < transitRoutes.length; i++) {
+    var timeString = this.getTimeString(transitRoutes[i]);
+    var timeInHrs = this.convertTime(timeString);
+    this.insertFootprintElement(
+      transitRoutes[i],
+      this.footprintCore.createPTFootprintElement(timeInHrs),
+      't'
+    );
   }
 };
 

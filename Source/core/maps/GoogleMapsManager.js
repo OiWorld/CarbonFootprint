@@ -42,15 +42,15 @@ GoogleMapsManager.prototype.getMode = function(route) {
  */
 
 GoogleMapsManager.prototype.getAllRoutes = function() {
-  var routes = [];
+  var allRoutes = [];
   var r = document.getElementsByClassName(
     'widget-pane-section-directions-trip clearfix');
   for (var i = r.length - 1; i >= 0; i--) {
     if (r[i].childNodes.length > 0) {
-      routes.push(r[i]);
+      allRoutes.push(r[i]);
     }
   }
-  GoogleMapsManager.allRoutes = routes;
+  GoogleMapsManager.allRoutes = allRoutes;
 };
 
 /**
@@ -59,14 +59,14 @@ GoogleMapsManager.prototype.getAllRoutes = function() {
  */
 
 GoogleMapsManager.prototype.getAllDrivingRoutes = function() {
-  var routes = [];
+  var drivingRoutes = [];
   var r =  GoogleMapsManager.allRoutes;
   for (var i = r.length - 1; i >= 0; i--) {
     if (this.getMode(r[i]) == 'drive') {
-      routes.push(r[i]);
+      drivingRoutes.push(r[i]);
     }
   }
-  return routes;
+  return drivingRoutes;
 };
 
 /**
@@ -75,14 +75,14 @@ GoogleMapsManager.prototype.getAllDrivingRoutes = function() {
  */
 
 GoogleMapsManager.prototype.getAllTransitRoutes = function() {
-  var routes = [];
+  var transitRoutes = [];
   var r =  GoogleMapsManager.allRoutes;
   for (var i = r.length - 1; i >= 0; i--) {
     if (this.getMode(r[i]) == 'transit') {
-      routes.push(r[i]);
+      transitRoutes.push(r[i]);
     }
   }
-  return routes;
+  return transitRoutes;
 };
 
 /**
