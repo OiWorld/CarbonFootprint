@@ -13,7 +13,7 @@
     ]
   },
   "options_page": "pages/options.html",
-  "web_accessible_resources": ["pages/options.html"],
+  "web_accessible_resources": ["pages/options.html","pages/knowMore.html"],
   "page_action" :
   {
     "default_icon" : "images/globe-64.png",
@@ -259,6 +259,7 @@
     "debugger",
     "idle",
     "geolocation",
-    "*://en.wikipedia.org/*"
+    "*://en.wikipedia.org/*",
+     "*://www.globalpetrolprices.com/*"
   ]
 }

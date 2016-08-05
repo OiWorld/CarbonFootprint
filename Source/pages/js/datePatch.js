@@ -1,4 +1,7 @@
-//patching date functions because original java sucks
+/**
+ * patching date functions because original java sucks
+ * @author kolpa (Kolya Opahle)
+ */
 
 /**
  * Checks if given year is a leap year
@@ -7,7 +10,7 @@
  */
 
 Date.isLeapYear = function(year) {
-    return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0));
+  return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0));
 };
 
 /**
@@ -18,10 +21,10 @@ Date.isLeapYear = function(year) {
  */
 
 Date.getDaysInMonth = function(year, month) {
-    return [31,
-        (Date.isLeapYear(year) ? 29 : 28),
-        31, 30, 31, 30, 31, 31, 30, 31, 30, 31
-    ][month];
+  return [
+    31, (Date.isLeapYear(year) ? 29 : 28),
+    31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+  ][month];
 };
 
 /**
@@ -30,7 +33,7 @@ Date.getDaysInMonth = function(year, month) {
  */
 
 Date.prototype.isLeapYear = function() {
-    return Date.isLeapYear(this.getFullYear());
+  return Date.isLeapYear(this.getFullYear());
 };
 
 /**
@@ -39,7 +42,7 @@ Date.prototype.isLeapYear = function() {
  */
 
 Date.prototype.getDaysInMonth = function() {
-    return Date.getDaysInMonth(this.getFullYear(), this.getMonth());
+  return Date.getDaysInMonth(this.getFullYear(), this.getMonth());
 };
 
 /**
@@ -49,11 +52,11 @@ Date.prototype.getDaysInMonth = function() {
  */
 
 Date.prototype.addMonths = function(months) {
-    var n = this.getDate();
-    this.setDate(1);
-    this.setMonth(this.getMonth() + months);
-    this.setDate(Math.min(n, this.getDaysInMonth()));
-    return this;
+  var n = this.getDate();
+  this.setDate(1);
+  this.setMonth(this.getMonth() + months);
+  this.setDate(Math.min(n, this.getDaysInMonth()));
+  return this;
 };
 
 /**
@@ -63,5 +66,5 @@ Date.prototype.addMonths = function(months) {
  */
 
 Date.prototype.addYears = function(years) {
-    return this.addMonths(years * 12);
+  return this.addMonths(years * 12);
 };

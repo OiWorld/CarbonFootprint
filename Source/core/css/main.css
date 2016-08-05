@@ -14,22 +14,22 @@ a.carbon:active {
     color:red;
     text-decoration:none;
 }
-a.offset-link:link {
+a.know-more-link:link {
     color:green;
     text-decoration:underline;
     font-size:60%;
 }
-a.offset-link:visited {
+a.know-more-link:visited {
     color:green;
     text-decoration:underline;
     font-size:60%;
 }
-a.offset-link:hover {
+a.know-more-link:hover {
     color:green;
     text-decoration:underline;
     font-size:60%;
 }
-a.offset-link:active {
+a.know-more-link:active {
     color:green;
     text-decoration:underline;
     font-size:60%;

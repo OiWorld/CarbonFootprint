@@ -1,5 +1,5 @@
-{
-  "_comments":{
+{  
+  "_comments":{  
     "iso2 names and currency":"http://country.io/data/",
     "Renewble sources percentage":"https://en.wikipedia.org/wiki/List_of_countries_by_electricity_production_from_renewable_sources",
     "individual city average":"http://www.worldatlas.com/articles/cost-of-public-transportation-around-the-world.html http://www.priceoftravel.com/595/public-transportation-prices-in-80-worldwide-cities/",
@@ -21,13 +21,14 @@
       "Brussels":{  
         "avgCostPT":"2.2"
       }
-    }
+    },
+    "avgCostPT":"1.564"
   },
   "BF":{  
     "name":"Burkina Faso",
     "RenewablePer":"18.58",
     "currency":"XOF",
-    "cities":{
+    "cities":{  
 
     }
   },
@@ -39,7 +40,8 @@
       "Sofia":{  
         "avgCostPT":"0.6"
       }
-    }
+    },
+    "avgCostPT":"0.626"
   },
   "BA":{  
     "name":"Bosnia and Herzegovina",
@@ -47,7 +49,8 @@
     "currency":"BAM",
     "cities":{  
 
-    }
+    },
+    "avgCostPT":"1.411"
   },
   "BB":{  
     "name":"Barbados",
@@ -89,7 +92,9 @@
     "RenewablePer":"34.94",
     "currency":"BOB",
     "cities":{  
-
+      "La Paz":{  
+        "avgCostPT":"0.19"
+      }
     }
   },
   "BH":{  
@@ -173,7 +178,8 @@
       "Sao Paulo":{  
         "avgCostPT":"1.1"
       }
-    }
+    },
+    "avgCostPT":"0.779"
   },
   "BS":{  
     "name":"Bahamas",
@@ -213,7 +219,8 @@
       "Moscow":{  
         "avgCostPT":"0.9"
       }
-    }
+    },
+    "avgCostPT":"1.445"
   },
   "RW":{  
     "name":"Rwanda",
@@ -229,7 +236,8 @@
     "currency":"RSD",
     "cities":{  
 
-    }
+    },
+    "avgCostPT":"1.411"
   },
   "TL":{  
     "name":"East Timor",
@@ -269,7 +277,8 @@
       "Bucharest":{  
         "avgCostPT":"0.5"
       }
-    }
+    },
+    "avgCostPT":"0.595"
   },
   "TK":{  
     "name":"Tokelau",
@@ -315,7 +324,8 @@
       "Athens":{  
         "avgCostPT":"1.4"
       }
-    }
+    },
+    "avgCostPT":"1.072"
   },
   "GQ":{  
     "name":"Equatorial Guinea",
@@ -340,7 +350,8 @@
       "Tokyo":{  
         "avgCostPT":"1.5"
       }
-    }
+    },
+    "avgCostPT":"1.081"
   },
   "GY":{  
     "name":"Guyana",
@@ -369,7 +380,8 @@
     "currency":"GEL",
     "cities":{  
 
-    }
+    },
+    "avgCostPT":"0.655"
   },
   "GD":{  
     "name":"Grenada",
@@ -386,7 +398,8 @@
       "London":{  
         "avgCostPT":"4"
       }
-    }
+    },
+    "avgCostPT":"1.422"
   },
   "GA":{  
     "name":"Gabon",
@@ -469,8 +482,11 @@
     "RenewablePer":"50.27",
     "currency":"HRK",
     "cities":{  
-
-    }
+      "Zagreb":{  
+        "avgCostPT":"1.85"
+      }
+    },
+    "avgCostPT":"0.981"
   },
   "HT":{  
     "name":"Haiti",
@@ -488,7 +504,8 @@
       "Budapest":{  
         "avgCostPT":"1.3"
       }
-    }
+    },
+    "avgCostPT":"0.699"
   },
   "HK":{  
     "name":"Hong Kong",
@@ -519,7 +536,9 @@
     "RenewablePer":"65.99",
     "currency":"VEF",
     "cities":{  
-
+      "Caracas":{  
+        "avgCostPT":"0.12"
+      }
     }
   },
   "PR":{  
@@ -552,7 +571,8 @@
       "Lisbon":{  
         "avgCostPT":"1.8"
       }
-    }
+    },
+    "avgCostPT":"1.106"
   },
   "SJ":{  
     "name":"Svalbard and Jan Mayen",
@@ -582,7 +602,9 @@
     "RenewablePer":"64.14",
     "currency":"PAB",
     "cities":{  
-
+      "Panama City":{  
+        "avgCostPT":"0.25"
+      }
     }
   },
   "PF":{  
@@ -642,8 +664,12 @@
     "cities":{  
       "Warsaw":{  
         "avgCostPT":"0.9"
+      },
+      "Krakow":{  
+        "avgCostPT":"0.86"
       }
-    }
+    },
+    "avgCostPT":"0.591"
   },
   "PM":{  
     "name":"Saint Pierre and Miquelon",
@@ -675,7 +701,8 @@
       "Tallinn":{  
         "avgCostPT":"1.7"
       }
-    }
+    },
+    "avgCostPT":"0.725"
   },
   "EG":{  
     "name":"Egypt",
@@ -685,7 +712,8 @@
       "Cairo":{  
         "avgCostPT":"0.2"
       }
-    }
+    },
+    "avgCostPT":"0.188"
   },
   "ZA":{  
     "name":"South Africa",
@@ -694,15 +722,21 @@
     "cities":{  
       "Johannesburg":{  
         "avgCostPT":"0.8"
+      },
+      "Cape Town":{  
+        "avgCostPT":"1.14"
       }
-    }
+    },
+    "avgCostPT":"0.367"
   },
   "EC":{  
     "name":"Ecuador",
     "RenewablePer":"56.16",
     "currency":"USD",
     "cities":{  
-
+      "Quito":{  
+        "avgCostPT":"0.25"
+      }
     }
   },
   "IT":{  
@@ -715,8 +749,12 @@
       },
       "Rome":{  
         "avgCostPT":"1.6"
+      },
+      "Venice":{  
+        "avgCostPT":"8.9"
       }
-    }
+    },
+    "avgCostPT":"1.248"
   },
   "VN":{  
     "name":"Vietnam",
@@ -774,7 +812,8 @@
       "Madrid":{  
         "avgCostPT":"2"
       }
-    }
+    },
+    "avgCostPT":"0.649"
   },
   "ER":{  
     "name":"Eritrea",
@@ -820,14 +859,18 @@
     "RenewablePer":"9.24",
     "currency":"MAD",
     "cities":{  
-
+      "Marrakech":{  
+        "avgCostPT":"0.24"
+      }
     }
   },
   "MC":{  
     "name":"Monaco",
     "currency":"EUR",
     "cities":{  
-
+      "Monaco":{  
+        "avgCostPT":"1.37"
+      }
     }
   },
   "UZ":{  
@@ -857,7 +900,9 @@
     "name":"Macao",
     "currency":"MOP",
     "cities":{  
-
+      "Macau":{  
+        "avgCostPT":"0.41"
+      }
     }
   },
   "MN":{  
@@ -879,7 +924,8 @@
     "currency":"MKD",
     "cities":{  
 
-    }
+    },
+    "avgCostPT":"0.919"
   },
   "MU":{  
     "name":"Mauritius",
@@ -972,7 +1018,8 @@
       "Kuala Lumpur":{  
         "avgCostPT":"0.4"
       }
-    }
+    },
+    "avgCostPT":"0.61"
   },
   "MX":{  
     "name":"Mexico",
@@ -981,8 +1028,12 @@
     "cities":{  
       "Mexico City":{  
         "avgCostPT":"0.3"
+      },
+      "Cancun":{  
+        "avgCostPT":"0.49"
       }
-    }
+    },
+    "avgCostPT":"0.438"
   },
   "IL":{  
     "name":"Israel",
@@ -992,7 +1043,8 @@
       "Tel Aviv":{  
         "avgCostPT":"1.8"
       }
-    }
+    },
+    "avgCostPT":"1.34"
   },
   "FR":{  
     "name":"France",
@@ -1005,7 +1057,8 @@
       "Lyon":{  
         "avgCostPT":"2"
       }
-    }
+    },
+    "avgCostPT":"0.957"
   },
   "IO":{  
     "name":"British Indian Ocean Territory",
@@ -1029,7 +1082,8 @@
       "Helsinki":{  
         "avgCostPT":"2.9"
       }
-    }
+    },
+    "avgCostPT":"0.745"
   },
   "FJ":{  
     "name":"Fiji",
@@ -1077,7 +1131,8 @@
       "Amsterdam":{  
         "avgCostPT":"2.7"
       }
-    }
+    },
+    "avgCostPT":"2.858"
   },
   "NO":{  
     "name":"Norway",
@@ -1087,7 +1142,8 @@
       "Oslo":{  
         "avgCostPT":"3.8"
       }
-    }
+    },
+    "avgCostPT":"2.161"
   },
   "NA":{  
     "name":"Namibia",
@@ -1199,7 +1255,8 @@
       "Geneva":{  
         "avgCostPT":"3.1"
       }
-    }
+    },
+    "avgCostPT":"1.867"
   },
   "CO":{  
     "name":"Colombia",
@@ -1208,8 +1265,12 @@
     "cities":{  
       "Bogota":{  
         "avgCostPT":"0.7"
+      },
+      "Cartagena":{  
+        "avgCostPT":"0.64"
       }
-    }
+    },
+    "avgCostPT":"0.753"
   },
   "CN":{  
     "name":"China",
@@ -1222,7 +1283,8 @@
       "Shanghai":{  
         "avgCostPT":"0.4"
       }
-    }
+    },
+    "avgCostPT":"0.492"
   },
   "CM":{  
     "name":"Cameroon",
@@ -1260,7 +1322,8 @@
       "Toronto":{  
         "avgCostPT":"2.4"
       }
-    }
+    },
+    "avgCostPT":"0.62"
   },
   "CG":{  
     "name":"Republic of the Congo",
@@ -1294,7 +1357,8 @@
       "Prague":{  
         "avgCostPT":"1.2"
       }
-    }
+    },
+    "avgCostPT":"0.784"
   },
   "CY":{  
     "name":"Cyprus",
@@ -1446,7 +1510,8 @@
       "Bratislava":{  
         "avgCostPT":"0.9"
       }
-    }
+    },
+    "avgCostPT":"0.662"
   },
   "KR":{  
     "name":"South Korea",
@@ -1456,7 +1521,8 @@
       "Seoul":{  
         "avgCostPT":"1.1"
       }
-    }
+    },
+    "avgCostPT":"0.488"
   },
   "SI":{  
     "name":"Slovenia",
@@ -1466,7 +1532,8 @@
       "Ljubljana":{  
         "avgCostPT":"1.5"
       }
-    }
+    },
+    "avgCostPT":"1.134"
   },
   "KP":{  
     "name":"North Korea",
@@ -1488,7 +1555,9 @@
     "RenewablePer":"10.67",
     "currency":"XOF",
     "cities":{  
-
+      "Dakar":{  
+        "avgCostPT":"0.31"
+      }
     }
   },
   "SM":{  
@@ -1532,7 +1601,9 @@
     "name":"Singapore",
     "currency":"SGD",
     "cities":{  
-
+      "Singapore":{  
+        "avgCostPT":"0.61"
+      }
     }
   },
   "SE":{  
@@ -1543,7 +1614,8 @@
       "Stockholm":{  
         "avgCostPT":"4.2"
       }
-    }
+    },
+    "avgCostPT":"0.855"
   },
   "SD":{  
     "name":"Sudan",
@@ -1584,7 +1656,8 @@
       "Copenhagen":{  
         "avgCostPT":"4.6"
       }
-    }
+    },
+    "avgCostPT":"1.087"
   },
   "VG":{  
     "name":"British Virgin Islands",
@@ -1607,7 +1680,8 @@
       "Munich":{  
         "avgCostPT":"2.9"
       }
-    }
+    },
+    "avgCostPT":"0.509"
   },
   "YE":{  
     "name":"Yemen",
@@ -1641,14 +1715,17 @@
       "Los Angeles":{  
         "avgCostPT":"1.5"
       }
-    }
+    },
+    "avgCostPT":"0.792"
   },
   "UY":{  
     "name":"Uruguay",
     "RenewablePer":"62.98",
     "currency":"UYU",
     "cities":{  
-
+      "Montevideo":{  
+        "avgCostPT":"0.76"
+      }
     }
   },
   "YT":{  
@@ -1720,7 +1797,8 @@
       "Istanbul":{  
         "avgCostPT":"0.7"
       }
-    }
+    },
+    "avgCostPT":"0.619"
   },
   "LK":{  
     "name":"Sri Lanka",
@@ -1745,7 +1823,8 @@
       "Riga":{  
         "avgCostPT":"1.3"
       }
-    }
+    },
+    "avgCostPT":"0.536"
   },
   "TO":{  
     "name":"Tonga",
@@ -1762,7 +1841,8 @@
       "Vilnius":{  
         "avgCostPT":"0.9"
       }
-    }
+    },
+    "avgCostPT":"0.638"
   },
   "LU":{  
     "name":"Luxembourg",
@@ -1796,8 +1876,12 @@
     "cities":{  
       "Bangkok":{  
         "avgCostPT":"0.7"
+      },
+      "Phuket":{  
+        "avgCostPT":"0.83"
       }
-    }
+    },
+    "avgCostPT":"0.311"
   },
   "TF":{  
     "name":"French Southern Territories",
@@ -1900,7 +1984,9 @@
     "RenewablePer":"99.98",
     "currency":"ISK",
     "cities":{  
-
+      "Reykjavik":{  
+        "avgCostPT":"2.5"
+      }
     }
   },
   "IR":{  
@@ -1925,7 +2011,8 @@
     "currency":"ALL",
     "cities":{  
 
-    }
+    },
+    "avgCostPT":"0.335"
   },
   "AO":{  
     "name":"Angola",
@@ -1957,7 +2044,8 @@
       "Buenos Aires":{  
         "avgCostPT":"0.5"
       }
-    }
+    },
+    "avgCostPT":"0.689"
   },
   "AU":{  
     "name":"Australia",
@@ -1966,8 +2054,12 @@
     "cities":{  
       "Sydney":{  
         "avgCostPT":"2.6"
+      },
+      "Melbourne":{  
+        "avgCostPT":"3.63"
       }
-    }
+    },
+    "avgCostPT":"1.675"
   },
   "AT":{  
     "name":"Austria",
@@ -1977,7 +2069,8 @@
       "Vienna":{  
         "avgCostPT":"2.3"
       }
-    }
+    },
+    "avgCostPT":"2.345"
   },
   "AW":{  
     "name":"Aruba",
@@ -1997,7 +2090,8 @@
       "New Delhi":{  
         "avgCostPT":"0.4"
       }
-    }
+    },
+    "avgCostPT":"0.575"
   },
   "AX":{  
     "name":"Aland Islands",
@@ -2021,8 +2115,12 @@
     "cities":{  
       "Dublin":{  
         "avgCostPT":"3.2"
+      },
+      "Galway":{  
+        "avgCostPT":"2.47"
       }
-    }
+    },
+    "avgCostPT":"0.927"
   },
   "ID":{  
     "name":"Indonesia",
@@ -2042,7 +2140,8 @@
       "Kiev":{  
         "avgCostPT":"0.2"
       }
-    }
+    },
+    "avgCostPT":"0.307"
   },
   "QA":{  
     "name":"Qatar",
