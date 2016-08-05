@@ -13,7 +13,7 @@
 
 var CarbonFootprintCore = function(settingsProvider) {
   this.settingsProvider = settingsProvider;
-  this.treeGrowthPerYear = 8300;
+  this.treeGrowthPerYear = 8.3;
 };
 
 /**
