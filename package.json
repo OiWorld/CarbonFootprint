@@ -15,5 +15,9 @@
     "karma-mocha-reporter": "^2.0.3",
     "karma-phantomjs-launcher": "^1.0.0",
     "phantomjs-prebuilt": "^2.1.7"
+  },
+  "dependencies": {
+    "chrome-to-firefox-translation": "^1.0.1",
+    "gulp-flatten": "^0.3.0"
   }
 }

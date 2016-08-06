@@ -2,6 +2,7 @@ var buttons = require('sdk/ui/button/action');
 var pageMod = require('sdk/page-mod');
 var tabs = require('sdk/tabs');
 var data = require("sdk/self").data;
+var locale = require("sdk/l10n").get;
 
 var button = buttons.ActionButton({
   id: 'carbon-footprint-link',
@@ -46,7 +47,7 @@ pageMod.PageMod({
   contentScriptFile: './pages/js/firefoxFix.js',
   onAttach: function(wk) {
     wk.port.on('translationRequest', function(dt) {
-      wk.port.emit('translationResponse', {key: dt.key, translation: 'allah'});
+      wk.port.emit('translationResponse', {key: dt.key, translation: locale(dt.key)});
     });
   }
 });
