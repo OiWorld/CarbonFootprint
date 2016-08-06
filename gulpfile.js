@@ -7,6 +7,9 @@ var flatten = require('gulp-flatten');
 
 var lintFiles = ['Source/**/*.js', '!Source/**/*.min.js', '!Source/background/google-maps-api.js'];
 
+var chormeBuildpath = 'Build/Chrome/';
+var firefoxBuildpath = 'Build/Firefox/';
+
 gulp.task('karma', function (done) {
 	new Server({
 		configFile: __dirname + '/karma.conf.js',
@@ -20,11 +23,49 @@ gulp.task('gjslint', function() {
 	.pipe(gjslint.reporter('jshint', stylish))
 });
 
-gulp.task('localize', function() {
-	return gulp.src('Source/_locales/**/*.json')
+gulp.task('localesFF', function() {
+	return gulp.src('Source/Locales/**/*.json')
 	.pipe(localizeForFirefox())
 	.pipe(flatten())
-	.pipe(gulp.dest('localesFF'))
-})
+	.pipe(gulp.dest(firefoxBuildpath + 'locale'))
+});
+
+gulp.task('coreFirefox', function() {
+	return gulp.src('Source/Core/**')
+	.pipe(gulp.dest(firefoxBuildpath + 'data'))
+});
+
+gulp.task('foldersFirefox', function() {
+	return gulp.src('Source/Firefox/*/**')
+	.pipe(gulp.dest(firefoxBuildpath + 'data'))
+});
+
+gulp.task('filesFirefox', function() {
+	return gulp.src('Source/Firefox/*.*')
+	.pipe(gulp.dest(firefoxBuildpath))
+});
+
+gulp.task('specificFirefox', ['foldersFirefox', 'filesFirefox']);
+
+gulp.task('localesChrome', function() {
+	return gulp.src('Source/Locales/**/*.json')
+	.pipe(gulp.dest(chormeBuildpath + '_locales'))
+});
+
+gulp.task('coreChrome', function() {
+	return gulp.src('Source/Core/**')
+	.pipe(gulp.dest(chormeBuildpath))
+});
+
+gulp.task('specificChrome', function() {
+	return gulp.src('Source/Chrome/**')
+	.pipe(gulp.dest(chormeBuildpath))
+});
+
+gulp.task('groupFirefox', ['localesFF', 'coreFirefox', 'specificFirefox']);
+gulp.task('groupChrome', ['localesChrome', 'coreChrome', 'specificChrome']);
+
+gulp.task('group', ['groupChrome', 'groupFirefox']);
+
 
 gulp.task('test', ['gjslint', 'karma']);
