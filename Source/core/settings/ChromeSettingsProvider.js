@@ -22,6 +22,16 @@ var ChromeSettingsProvider = function(cb) {
     console.log(self.settings);
     cb(self);
   });
+  chrome.storage.sync.get('exchangeRates', function(response) {
+    if (response)
+      self.exchangeRates = response.exchangeRates.rates;
+    console.log(self.exchangeRates);
+  });
+  chrome.storage.sync.get('fuelPrices', function(response) {
+    if (response)
+      self.fuelPrices = response.fuelPrices;
+    console.log(self.fuelPrices);
+  });
 };
 
 /**
@@ -75,6 +85,17 @@ ChromeSettingsProvider.prototype.getCarbonEmission = function() {
 };
 
 /**
+ * returns CO2 emission rate for public transport in kg/h
+ * http://www.catf.us/resources/publications/files/20120227-Diesel_vs_CNG_FINAL_MJBA.pdf
+ * http://www.tmb.cat/en/transports-en-xifres
+ * @return {number}
+ */
+
+ChromeSettingsProvider.prototype.getPTCarbonEmission = function() {
+  return 0.533148;
+};
+
+/**
  * returns CH4 emission rate
  * default emission rate provided by:
  * https://www3.epa.gov/otaq/models/ngm/420p04016.pdf
@@ -124,6 +145,15 @@ ChromeSettingsProvider.prototype.getCarbonEmissionUnit = function() {
 
 ChromeSettingsProvider.prototype.getTravelRate = function() {
   return this.get('travelRate', 30);
+};
+
+/**
+ * returns local currency
+ * @return {number}
+ */
+  
+ChromeSettingsProvider.prototype.getCurrency = function() {
+  return this.settings.currency;
 };
 
 /**
