@@ -133,7 +133,9 @@ var caloriesForm = {
 		});
 
 		$('#caloriesForm input[value="time"]').click();
-
+		$('.close-modal').click(function(){
+			$('.outputDiv').html('');
+		})
 		var form = this;
 		$('#caloriesFormSubmit').on("click",function(){
 	    		form.submit(form);
