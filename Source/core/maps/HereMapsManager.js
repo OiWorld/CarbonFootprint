@@ -13,26 +13,9 @@
  */
 
 var HereMapsManager = function(footprintCore, settingsProvider) {
-  //Append script as DOM to enable angularDebug
-  //function updateRouteMode() to get mode through angular element scopr
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.innerHTML = 'window.here.features.angularDebug=true;' +
-    'function updateRouteMode() {' +
-    'var routes = document.getElementsByClassName("route_card");' +
-    'for (var i = routes.length - 1; i >= 0; i--) {' +
-    'var mode = angular.element(routes[i]).scope()' +
-    '.route.mode.transportModes[0];' +
-    'routes[i].setAttribute("data-mode",mode);' +
-    ' } };';
-  document.head.appendChild(script);
-  //append a div to trigger updateRouteMode
-  var e = document.createElement('div');
-  e.id = 'updateModeTrigger';
-  e.setAttribute('onclick', 'updateRouteMode()');
-  document.getElementsByTagName('body')[0].appendChild(e);
   this.footprintCore = footprintCore;
   this.settingsProvider = settingsProvider;
+  this.subtree = true;
   this.update();
 };
 
@@ -43,7 +26,8 @@ var HereMapsManager = function(footprintCore, settingsProvider) {
  */
 
 HereMapsManager.prototype.getMode = function(route) {
-  var mode = route.getAttribute('data-mode');
+  // var mode = route.getAttribute('data-mode');
+  var mode = route.classList[1].match(/route_card_(.*)/)[1];
   console.log('Route mode: ' + mode);
   return mode;
 };
@@ -137,11 +121,7 @@ HereMapsManager.prototype.insertTravelCostElement = function(route, e) {
 
 HereMapsManager.prototype.update = function() {
   var thisMap = this;
-  //execute after data is loaded
-  setTimeout(function() {
-    //trigger click for routeMode evaluation
-    document.getElementById('updateModeTrigger').click();
-    var routes = thisMap.getAllDrivingRoutes();
+  var routes = thisMap.getAllDrivingRoutes();
     for (var i = 0; i < routes.length; i++) {
       var distanceString = thisMap.getDistanceString(routes[i]);
         var distanceInKm = thisMap.convertDistance(distanceString);
@@ -155,7 +135,6 @@ HereMapsManager.prototype.update = function() {
           thisMap.footprintCore.createTravelCostElement(distanceInKm)
         );
     }
-  },1000);
 };
 
 var MapManager = HereMapsManager;

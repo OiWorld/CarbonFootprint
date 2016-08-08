@@ -48,7 +48,7 @@ describe("Basic Carbon Footprint Core Tests With Mocks", function() {
 
 	it("Compute Trees should return [0, 0, 1, 6] for a list of [200, 100, 5000, 50000] footprints and a tree growth per year of 8300", function() {
 		var footprints = [200, 100, 5000, 50000];
-		var results = [0, 0, 1, 6];
+		var results = [24, 12, 602, 6024];
 
 		for (var i = 0; i < footprints.length; i++) {
 			expect(carbonFootprintCore.computeTrees(footprints[i])).toBe(results[i]);

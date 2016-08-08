@@ -12,17 +12,18 @@ new SettingsProvider(function(settingsProvider) {
   });
   var core = new CarbonFootprintCore(settingsProvider);
   var mapsManager = new MapManager(core, settingsProvider);
+  console.log(mapsManager.subtree);
   chrome.runtime.sendMessage({showPageAction: 'True'},function() {
     var target = document.getElementsByTagName('body')[0],
         observer = new MutationObserver(function() {
+          console.log('Observing!');
           mapsManager.update();
-          console.log('observing!');
         });
     observer.observe(target, {
       attributes: true,
       childList: true,
       characterData: true,
-      subtree: true
+      subtree: mapsManager.subtree
     });
   });
 });
