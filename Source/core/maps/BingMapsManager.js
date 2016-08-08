@@ -188,8 +188,7 @@ BingMapsManager.prototype.update = function() {
     var timeInHrs = this.convertTime(timeString);
     this.insertFootprintElement(
       transitRoutes[i],
-      this.footprintCore.createPTFootprintElement(timeInHrs),
-      't'
+      this.footprintCore.createPTFootprintElement(timeInHrs)
     );
   }
 };
