@@ -396,7 +396,7 @@ ul.social-buttons li a:hover .fa-github {
     text-align: left;
 }
 
-#caloriesForm {   
+.form-main {   
     display: inline-block;
     width: 500px;
     max-width: 100%;
@@ -407,12 +407,12 @@ ul.social-buttons li a:hover .fa-github {
     border: 1px solid #ddd;
 }
 
-#caloriesFormSubmit {
+.form-submit {
     background-color: #fed136;
     color: #fff;
 }
 
-#caloriesForm > h3 {
+.form-main > h3 {
     text-align: center;
     padding: 10px 0;
 }
@@ -435,7 +435,7 @@ input[type="radio"][name="unit"]:checked + span{
     font-weight: bold;
 }
 
-#outputCalories {
+#outputCalories, #outputAbsorption {
     padding: 15px 0 5px;
     font-size: 1.2em;
 }
