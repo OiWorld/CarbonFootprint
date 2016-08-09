@@ -8,8 +8,8 @@
 new SettingsProvider(function(settingsProvider) {
   settingsProvider.addUsingDefaultListener(function() {
     var optionsUrl = Helper.getFilePath('pages/options.html');
+    Helper.openUrl(optionsUrl);
     console.log('calling window open on ' + optionsUrl);
-    window.open(optionsUrl);
   });
   var core = new CarbonFootprintCore(settingsProvider, Helper);
   var mapsManager = new MapManager(core, settingsProvider);

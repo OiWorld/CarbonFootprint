@@ -3,11 +3,12 @@ var pageMod = require('sdk/page-mod');
 var tabs = require('sdk/tabs');
 var data = require("sdk/self").data;
 var locale = require("sdk/l10n").get;
+var storage = require("sdk/simple-storage").storage;
 
 var button = buttons.ActionButton({
   id: 'carbon-footprint-link',
   label: 'Carbon Footprint™',
-  disabled: false,
+  disabled: true,
   icon: './images/globe-64-off.png',
   onClick: function() {
     tabs.open('./pages/options.html');
@@ -24,7 +25,7 @@ var gmaps = pageMod.PageMod({
     "./core/maps/GoogleMapsManager.js",
     "./core/init.js"
 	],
-  contentScriptWhen: "ready",
+  contentScriptWhen: "start",
   onAttach: function(wk) {
     wk.port.on('showPageAction', function(ev) {
       console.log('showPageAction received');
@@ -32,6 +33,15 @@ var gmaps = pageMod.PageMod({
         disabled: false,
         icon: './images/globe-64.png'
       });
+    });
+    wk.port.on('storageGetRequest', function(stor) {
+      if (stor.storageKey in storage)
+        wk.port.emit('storageGetResponse', {values: {}[stor.storageKey] = storage[stor.storageKey], tag: stor.tag});
+      else
+        wk.port.emit('storageGetResponse', {values: {}, tag: stor.tag});
+    });
+    wk.port.on('openUrl', function(dt) {
+      tabs.open(dt.url);
     });
   }
 });
@@ -48,6 +58,17 @@ pageMod.PageMod({
   onAttach: function(wk) {
     wk.port.on('translationRequest', function(dt) {
       wk.port.emit('translationResponse', {key: dt.key, translation: locale(dt.key)});
+    });
+    wk.port.on('storageGetRequest', function(stor) {
+      if (stor.storageKey in storage)
+        wk.port.emit('storageGetResponse', {values: {}[stor.storageKey] = storage[stor.storageKey], tag: stor.tag});
+      else
+        wk.port.emit('storageGetResponse', {values: {}, tag: stor.tag});
+    });
+    wk.port.on('storageSetRequest', function(stor) {
+      for (var i in stor.data)
+        storage[i] = stor.data[i];
+      console.log(storage);
     });
   }
 });

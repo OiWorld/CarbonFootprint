@@ -500,13 +500,13 @@ options.mirrorFuelValues = function(elem) {
  */
 
 options.loadResources = function() {
-  $.getJSON('/core/resources/fuels.json', function(response) {
+  $.getJSON(browserServices.getFilePath('/core/resources/fuels.json'), function(response) {
     options.fuels = response;
   });
-  $.getJSON('/core/resources/currencyCodes.json', function(response) {
+  $.getJSON(browserServices.getFilePath('/core/resources/currencyCodes.json'), function(response) {
     options.currencyCodes = response.currencyCodes;
   });
-  $.getJSON('/core/resources/countries.json', function(response) {
+  $.getJSON(browserServices.getFilePath('/core/resources/countries.json'), function(response) {
     options.countries = response;
   });
   $.getScript('https://maps.googleapis.com/maps/api/js')
@@ -563,9 +563,10 @@ options.listeners = function() {
  * Initialises the StorageManager
  */
 
-options.initStorageManager = function() {
+options.initStorageManager = function(cb) {
   options.data = new StorageManager('calculationObject', function() {
     console.log('StorageManager Initialised');
+    cb();
   });
 };
 
@@ -600,7 +601,6 @@ options.loadMessages = function() {
   for (i = 0; i < $('[data-language]').length; i++) {
     browserServices.getLocalisation($($('[data-language]')[i]).data('language'), i, function(trans, index) {
         var elm = $($('[data-language]')[index]);
-        console.log(trans);
         elm.html(trans);
     });
   }
@@ -624,7 +624,7 @@ $(document).ajaxComplete(function(event, xhr, settings) {
   }
 });
 
-options.initStorageManager();
-options.loadResources();
-
-googleAnalytics('UA-1471148-11');
+options.initStorageManager(function() {
+  options.loadResources();
+  //googleAnalytics('UA-1471148-11');
+});

@@ -12,10 +12,18 @@
  */
 
 var FirefoxSettingsProvider = function(cb) {
-  var self = this;
-  self.usingDefaultListeners = [];
-  self.settings = {};
-  cb(self);
+  var selfe = this;
+  selfe.usingDefaultListeners = [];
+  self.port.emit('storageGetRequest',{tag: 9001, storageKey: 'calculationObject'});
+  self.port.on('storageGetResponse', function(storage) {
+    if (storage.tag === 9001) {
+      if (storage.values.calculationObject)
+        selfe.settings = storage.values.calculationObject;
+      else
+        selfe.settings = {};
+    cb(selfe);
+    }
+  });
 };
 
 /**

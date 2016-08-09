@@ -66,7 +66,7 @@ browserServices.getChromeStorage = function(key, valuescb) {
 }
 
 browserServices.getFirefoxStorage = function(key, valuescb) {
-	valuescb({});
+	firefoxApi.getStorage(key, valuescb);
 }
 
 browserServices.getStorage = function(key , valuescb) {
@@ -82,7 +82,7 @@ browserServices.setChromeStorage = function(values) {
 }
 
 browserServices.setFirefoxStorage = function(values) {
-	//chrome.storage.sync.set(values);
+	firefoxApi.saveStorage(values);
 }
 
 browserServices.setStorage = function(values) {
@@ -91,4 +91,20 @@ browserServices.setStorage = function(values) {
 		browserServices.setChromeStorage(values);
 	if (browser == 'firefox')
 		browserServices.setFirefoxStorage(values);
+}
+
+browserServices.getChromeFilePath = function(path) {
+	return path;
+}
+
+browserServices.getFirefoxFilePath = function(path) {
+	return 'resource://carbonfootprint/data' + path;
+}
+
+browserServices.getFilePath = function(path) {
+	var browser = browserServices.checkBrowser();
+	if (browser == 'chrome')
+		return browserServices.getChromeFilePath(path);
+	if (browser == 'firefox')
+		return browserServices.getFirefoxFilePath(path);
 }

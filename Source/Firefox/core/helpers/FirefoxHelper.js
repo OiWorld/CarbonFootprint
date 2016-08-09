@@ -15,4 +15,10 @@ FirefoxHelper.showPageAction = function(cb) {
 	});
 	cb();
 };
+
+FirefoxHelper.openUrl = function(url) {
+	console.log('openUrl called');
+	self.port.emit('openUrl', {url: url});
+};
+
 var Helper = FirefoxHelper;

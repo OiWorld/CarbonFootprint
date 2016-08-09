@@ -10,4 +10,8 @@ ChromeHelper.showPageAction = function(cb) {
 	chrome.runtime.sendMessage({showPageAction: 'True'}, cb);
 };
 
+ChromeHelper.openUrl = function(url) {
+	window.open(url);
+};
+
 var Helper = ChromeHelper;
