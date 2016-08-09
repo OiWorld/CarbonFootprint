@@ -391,3 +391,51 @@ ul.social-buttons li a:hover .fa-google-plus {
 ul.social-buttons li a:hover .fa-github {
     color: #333333;
 }
+
+#accordianCalories {
+    text-align: left;
+}
+
+.form-main {   
+    display: inline-block;
+    width: 500px;
+    max-width: 100%;
+    text-align: left;
+    background: #f0f0f0;
+    padding: 15px 30px 25px;
+    border-radius: 2px;
+    border: 1px solid #ddd;
+}
+
+.form-submit {
+    background-color: #fed136;
+    color: #fff;
+}
+
+.form-main > h3 {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.form-value {
+    display: inline-block;
+    width: calc(100% - 90px);
+}
+
+.form-unit {
+    display: inline-block;
+    width: 85px;
+}
+
+.timeOpt {
+    display: none;
+}
+
+input[type="radio"][name="unit"]:checked + span{
+    font-weight: bold;
+}
+
+#outputCalories, #outputAbsorption {
+    padding: 15px 0 5px;
+    font-size: 1.2em;
+}

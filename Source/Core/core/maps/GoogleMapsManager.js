@@ -15,6 +15,7 @@
 var GoogleMapsManager = function(footprintCore, settingsProvider) {
   this.footprintCore = footprintCore;
   this.settingsProvider = settingsProvider;
+  this.subtree = true;
   this.update();
 };
 
@@ -38,26 +39,56 @@ GoogleMapsManager.prototype.getMode = function(route) {
 };
 
 /**
+ * Gets all routes.
+ */
+
+GoogleMapsManager.prototype.getAllRoutes = function() {
+  var allRoutes = [];
+  var r = document.getElementsByClassName(
+    'widget-pane-section-directions-trip clearfix');
+  for (var i = r.length - 1; i >= 0; i--) {
+    if (r[i].childNodes.length > 0) {
+      allRoutes.push(r[i]);
+    }
+  }
+  GoogleMapsManager.allRoutes = allRoutes;
+};
+
+/**
  * Gets driving routes.
  * @return {string} routes
  */
 
 GoogleMapsManager.prototype.getAllDrivingRoutes = function() {
-  var routes = [];
-  var r = document.getElementsByClassName(
-    'widget-pane-section-directions-trip clearfix');
+  var drivingRoutes = [];
+  var r =  GoogleMapsManager.allRoutes;
   for (var i = r.length - 1; i >= 0; i--) {
-    if (r[i].childNodes.length > 0) {
-      if (this.getMode(r[i]) == 'drive') {
-        routes.push(r[i]);
-      }
+    if (this.getMode(r[i]) == 'drive') {
+      drivingRoutes.push(r[i]);
     }
   }
-  return routes;
+  return drivingRoutes;
+};
+
+/**
+ * Gets driving routes.
+ * @return {string} routes
+ */
+
+GoogleMapsManager.prototype.getAllTransitRoutes = function() {
+  var transitRoutes = [];
+  var r =  GoogleMapsManager.allRoutes;
+  for (var i = r.length - 1; i >= 0; i--) {
+    if (this.getMode(r[i]) == 'transit') {
+      transitRoutes.push(r[i]);
+    }
+  }
+  return transitRoutes;
 };
 
 /**
  * Classes that contain distance and where results are displayed
+ * for driving mode
  */
 
 GoogleMapsManager.prototype.infoClasses = [
@@ -66,7 +97,15 @@ GoogleMapsManager.prototype.infoClasses = [
 ];
 
 /**
- * Gets distance for a route.
+ * Classes that contain distance and where results are displayed
+ * for transit mode
+ */
+
+GoogleMapsManager.prototype.durationClass =
+  'widget-pane-section-directions-trip-duration';
+
+/**
+ * Gets distance for driving route.
  * @param {object} route
  * @return {string} distanceString
  */
@@ -79,6 +118,20 @@ GoogleMapsManager.prototype.getDistanceString = function(route) {
         .innerHTML;
   console.log('distanceString: ' + distanceString);
   return distanceString;
+};
+
+/**
+ * Gets time for transit route.
+ * @param {object} route
+ * @return {string} timeString
+ */
+
+GoogleMapsManager.prototype.getTimeString = function(route) {
+  var timeString = route
+        .getElementsByClassName('widget-pane-section-directions-trip-duration')[0].innerHTML;
+  timeString = ' ' + timeString;
+  console.log('timeString:' + timeString);
+  return timeString;
 };
 
 /**
@@ -99,17 +152,56 @@ GoogleMapsManager.prototype.convertDistance = function(distanceStr) {
 };
 
 /**
+ * Converts total time into hours.
+ * @param {string} timeStr
+ * @return {float} hrs
+ */
+
+GoogleMapsManager.prototype.convertTime = function(timeStr) {
+  if (timeStr) {
+    var days = (/ (\w*) d/).exec(timeStr);
+    var hrs = (/ (\w*) h/).exec(timeStr);
+    var mins = (/ (\w*) m/).exec(timeStr);
+    if(hrs){
+      hrs = parseFloat(hrs[1]);
+    }
+    else{
+      hrs = 0;
+    }
+    if(mins){
+      mins = parseFloat(mins[1]);
+      hrs += mins/60;
+    }
+    if(days){
+      days = parseFloat(days[1]);
+      hrs += days*24;
+    }
+    return hrs;
+  }
+};
+
+/**
  * Inserts element where footprints will be displayed if not present
  * @param {object} route
  * @param {element} e
+ * @param {string} type Driving and Transit have different DOM classes
  */
 
-GoogleMapsManager.prototype.insertFootprintElement = function(route, e) {
+GoogleMapsManager.prototype.insertFootprintElement = function(route, e, type) {
   if (route.getElementsByClassName('carbon').length === 0) {
-    route
-      .getElementsByClassName(this.infoClasses[0] + ' ' +
-                              this.infoClasses[1])[0]
-      .appendChild(e);
+    switch(type){
+    case 'd':
+      route
+        .getElementsByClassName(this.infoClasses[0] + ' ' +
+                                this.infoClasses[1])[0]
+        .appendChild(e);
+      break;
+    case 't':
+      route
+        .getElementsByClassName('widget-pane-section-directions-trip-numbers')[0]
+        .appendChild(e);
+      break;
+    }
   }
 };
 
@@ -117,14 +209,15 @@ GoogleMapsManager.prototype.insertFootprintElement = function(route, e) {
  * Inserts element where travel cost will be displayed if not present
  * @param {object} route
  * @param {element} e
+ * @param {string} type
  */
 
 GoogleMapsManager.prototype.insertTravelCostElement = function(route, e) {
   if (route.getElementsByClassName('travelCost').length === 0) {
-    route
-      .getElementsByClassName(this.infoClasses[0] + ' ' +
-                              this.infoClasses[1])[0]
-      .appendChild(e);
+      route
+        .getElementsByClassName(this.infoClasses[0] + ' ' +
+                                this.infoClasses[1])[0]
+        .appendChild(e);
   }
 };
 
@@ -133,20 +226,33 @@ GoogleMapsManager.prototype.insertTravelCostElement = function(route, e) {
  */
 
 GoogleMapsManager.prototype.update = function() {
-  var routes = this.getAllDrivingRoutes();
-  for (var i = 0; i < routes.length; i++) {
-    var distanceString = this.getDistanceString(routes[i]);
+  this.getAllRoutes();
+  var i;
+  var drivingRoutes = this.getAllDrivingRoutes();
+  var transitRoutes = this.getAllTransitRoutes();
+  for (i = 0; i < drivingRoutes.length; i++) {
+    var distanceString = this.getDistanceString(drivingRoutes[i]);
     var distanceInKm = this.convertDistance(distanceString);
     this.insertFootprintElement(
-      routes[i],
-      this.footprintCore.createFootprintElement(distanceInKm)
+      drivingRoutes[i],
+      this.footprintCore.createFootprintElement(distanceInKm),
+      'd'
     );
     if (this.settingsProvider.showTravelCost()) {
       this.insertTravelCostElement(
-        routes[i],
+        drivingRoutes[i],
         this.footprintCore.createTravelCostElement(distanceInKm)
       );
     }
+  }
+  for (i = 0; i < transitRoutes.length; i++) {
+    var timeString = this.getTimeString(transitRoutes[i]);
+    var timeInHrs = this.convertTime(timeString);
+    this.insertFootprintElement(
+      transitRoutes[i],
+      this.footprintCore.createPTFootprintElement(timeInHrs),
+      't'
+    );
   }
 };
 

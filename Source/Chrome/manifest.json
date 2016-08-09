@@ -180,6 +180,7 @@
       "js" : [
         "core/CarbonFootprintCore.js",
         "core/settings/ChromeSettingsProvider.js",
+        "core/helpers/ChromeHelper.js",
         "core/maps/GoogleMapsManager.js",
         "core/init.js"
       ],
@@ -194,6 +195,7 @@
       "js" : [
         "core/CarbonFootprintCore.js",
         "core/settings/ChromeSettingsProvider.js",
+        "core/helpers/ChromeHelper.js",
         "core/maps/OpenMapsManager.js",
         "core/init.js"
       ],
@@ -208,6 +210,7 @@
       "js" : [
         "core/CarbonFootprintCore.js",
         "core/settings/ChromeSettingsProvider.js",
+        "core/helpers/ChromeHelper.js",
         "core/maps/BingMapsManager.js",
         "core/init.js"
       ],
@@ -215,13 +218,14 @@
       "all_frames" : true
     },
     {
-      "matches": [ "http://maps.here.com/*",
-        "https://maps.here.com/*"
+      "matches": [ "http://*.here.com/*",
+        "https://*.here.com/*"
       ],
       "css": ["core/css/main.css"],
       "js" : [
         "core/CarbonFootprintCore.js",
         "core/settings/ChromeSettingsProvider.js",
+        "core/helpers/ChromeHelper.js",
         "core/maps/HereMapsManager.js",
         "core/init.js"
       ],
@@ -229,13 +233,14 @@
       "all_frames" : true
     },
     {
-      "matches": [ "http://www.mapquest.com/directions*",
-        "https://www.mapquest.com/directions*"
+      "matches": [ "http://www.mapquest.com/*",
+        "https://www.mapquest.com/*"
       ],
       "css": ["core/css/main.css"],
       "js" : [
         "core/CarbonFootprintCore.js",
         "core/settings/ChromeSettingsProvider.js",
+        "core/helpers/ChromeHelper.js",
         "core/maps/MapQuestMapsManager.js",
         "core/init.js"
       ],
@@ -251,7 +256,6 @@
     "256" : "images/globe-256.png"
   },
   "permissions": [
-    "https://maps.googleapis.com/*",
     "tabs",
     "storage",
     "alarms",
@@ -259,7 +263,7 @@
     "debugger",
     "idle",
     "geolocation",
-    "*://en.wikipedia.org/*",
-     "*://www.globalpetrolprices.com/*"
+    "https://maps.googleapis.com/*",
+    "*://www.globalpetrolprices.com/*"
   ]
 }

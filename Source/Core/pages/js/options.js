@@ -51,15 +51,16 @@ options.KG_TO_LBS = 2.204622621848775;
  */
 
 options.saveOptions = function() {
-  var distance = parseFloat($('#distance-value').val());
-  var fuel = parseFloat($('#fuel-value').val());
-  var co = parseFloat($('#emission').val());
-  var cost = parseFloat($('#fuel-cost').val());
-  var curr = $('#currency-codes').val();
-  var lastCheckup = $('#last-checkup').val();
-  var nextCheckupYear = parseInt($('#next-checkup-year').val());
-  var nextCheckupMonth = parseInt($('#next-checkup-month').val());
-  var consumption;
+  var distance = parseFloat($('#distance-value').val()),
+      fuel = parseFloat($('#fuel-value').val()),
+      co = parseFloat($('#emission').val()),
+      cost = parseFloat($('#fuel-cost').val()),
+      curr = $('[id="currency-codes"]').val(),
+      lastCheckup = $('#last-checkup').val(),
+      nextCheckupYear = parseInt($('#next-checkup-year').val()),
+      nextCheckupMonth = parseInt($('#next-checkup-month').val()),
+      PTCost = parseFloat($('#cities').val()),
+      consumption;
   options.data.set('co', co);
   options.data.set('distance', distance);
   options.data.set('fuel', fuel);
@@ -252,14 +253,47 @@ options.saveLocation = function() {
         .html((options.data.get('geoData')
                .locality + ', ' + options.data.get('geoData')
                .administrative_area_level_1 + ', ' + options.data.get('geoData')
-               .country).replace(/ undefined,/g, ''));
-      $('#currency-codes')
+               .country).replace(/ undefined,|undefined,/g, ''));
+      $('[id="currency-codes"]')
         .val(
           options.countries[options.data.get('geoData').country_short].currency
         );
+      options.data.set('currency', options.countries[
+        options.data.get('geoData').country_short].currency);
+      $('#currency-codes').append($('<option></option>')
+                                  .val(options.data.get('currency'))
+                                  .html(options.data.get('currency')));
       options.data.store();
     });
   });
+};
+
+/**
+ * Loads fuel prices
+ */
+
+options.loadFuelPrices = function() {
+  var prices = options.settings.fuelPrices[
+    options.data.get('geoData').country_short];
+  var exchangeRate = options.settings.exchangeRates[
+            options.settings.getCurrency()];
+  if (!exchangeRate) {
+    exchangeRate = options.defaultRates.rates[
+      options.settings.getCurrency()];
+  }
+  console.log(prices, options.fType, options.settings, exchangeRate);
+  if (prices) {
+    if (options.fType == 'Diesel') {
+      $('#fuel-cost').val((prices.diesel * exchangeRate).toFixed(2));
+    }
+    else if (options.fType == 'Gasoline') {
+      $('#fuel-cost').val((prices.gasoline * exchangeRate).toFixed(2));
+    }
+    else if (options.fType == 'LPG' ||
+             options.fType == 'CNG') {
+      $('#fuel-cost').val((prices.LPG * exchangeRate).toFixed(2));
+    }
+  }
 };
 
 /**
@@ -272,10 +306,11 @@ options.loadSavedData = function() {
     $('#green-electricity input').val(options.data.get('renPer').wiki);
     $('#location').html((options.data.get('geoData')
                          .locality + ', ' + options.data.get('geoData')
-                         .administrative_area_level_1 + ', ' + options.data
-                         .get('geoData').country).replace(/ undefined,/g, ''));
+                         .administrative_area_level_1 + ', ' +
+                         options.data.get('geoData').country)
+                        .replace(/ undefined,|undefined,/g, ''));
     $('#reLocation').show();
-    $('#currency-codes')
+    $('[id="currency-codes"]')
       .val(options
            .countries[options.data.get('geoData').country_short].currency);
   }
@@ -285,7 +320,7 @@ options.loadSavedData = function() {
     $('[id="fuel-type"]').val(options.data.get('fuelType'));
     options.fType = $('#fuel-type').val();
     $('#fuel-cost').val(options.data.get('fuelCost').value);
-    $('#currency-codes').val(options.data.get('fuelCost').curr);
+    $('[id="#currency-codes"]').val(options.data.get('fuelCost').curr);
     $('#distance-value').val(options.data.get('distance'));
     $('#fuel-value').val(options.data.get('fuel'));
     $('#emission').val(options.data.get('co'));
@@ -305,6 +340,9 @@ options.loadSavedData = function() {
     options.toggleInputSource($('#' + options.data.get('inputSource')));
     $('#' + options.data.get('unitSystem')).attr('checked', true);
     options.toggleUnits($('#' + options.data.get('unitSystem')));
+    $('#currency-codes').append($('<option></option>')
+                                .val(options.data.get('currency'))
+                                .html(options.data.get('currency')));
   }
 };
 
@@ -493,6 +531,16 @@ options.mirrorFuelValues = function(elem) {
   options.fType = elem.prop('value');
   $('[id="fuel-type"]').val(options.fType);
   options.toggleUnits($('.save>:checkbox:checked'));
+  options.loadFuelPrices();
+};
+
+/**
+ * makes change in currency reflect in both drop-downs
+ * @param {Element} elem
+ */
+  
+options.mirrorCurrency = function(elem) {
+  $('[id="currency-codes"]').val(elem.prop('value'));
 };
 
 /**
@@ -500,6 +548,11 @@ options.mirrorFuelValues = function(elem) {
  */
 
 options.loadResources = function() {
+  /**
+  * Sources: 
+  * https://www.epa.gov/sites/production/files/2015-11/documents/emission-factors_nov_2015.pdf
+  * http://www.biomassenergycentre.org.uk/portal/page?_pageid=75,163182&_dad=portal&_schema=PORTAL
+  */
   $.getJSON(browserServices.getFilePath('/core/resources/fuels.json'), function(response) {
     options.fuels = response;
   });
@@ -508,6 +561,9 @@ options.loadResources = function() {
   });
   $.getJSON(browserServices.getFilePath('/core/resources/countries.json'), function(response) {
     options.countries = response;
+  });
+  $.getJSON('/core/resources/exchangeRates.json', function(response) {
+    options.defaultRates = response;
   });
   $.getScript('https://maps.googleapis.com/maps/api/js')
     .done(function() {
@@ -549,6 +605,9 @@ options.listeners = function() {
   $('[id="fuel-type"]').on('change', function() {
     options.mirrorFuelValues($(this));
   });
+  $('[id="currency-codes"]').on('change', function() {
+    options.mirrorCurrency($(this));
+  });
   //Prevents adding Hyphen(-) in the input field.
   $('#distance-value,#emission,#fuel-value,#fuel-cost')
     .on('keypress', function(evtmin) {
@@ -571,6 +630,17 @@ options.initStorageManager = function(cb) {
 };
 
 /**
+ * TODO!!!! --> We cant do this in firefox since it is invoking chrome apis directly so we need to find a workaround asap!
+ * Initialises settingsProvider
+ */
+
+options.initSettings = function() {
+  options.settings = new ChromeSettingsProvider(function() {
+    console.log('settingsProvider initialised');
+  });
+};
+
+/**
  * Populates the drop-down menus from data loaded from external sources
  */
 
@@ -581,13 +651,6 @@ options.populateMenus = function() {
       .append($('<option></option>')
               .val(i)
               .attr('data-language', options.fuels[i].langKey)
-             );
-  }
-  for (i = 0; i < options.currencyCodes.length; i++) {
-    $('#currency-codes')
-      .append($('<option></option>')
-              .html(options.currencyCodes[i])
-              .val(options.currencyCodes[i])
              );
   }
 };
@@ -613,18 +676,23 @@ $(document).on('DOMContentLoaded', function() {
 $(document).ajaxComplete(function(event, xhr, settings) {
   options[(/\/(\w*)\./).exec(settings.url)[1] + 'init'] = true;
   if (options.fuelsinit === true &&
-     options.currencyCodesinit === true &&
-     !options.populated) {
+      options.currencyCodesinit === true &&
+      options.countriesinit === true &&
+      !options.populated) {
     options.populated = true;
-    //options.populateMenus();
+    options.populateMenus();
     options.loadMessages();
-  }
-  if (options.countriesinit === true) {
     options.loadSavedData();
+  }
+  if (options.exchangeRatesinit === true &&
+      !options.priceLoaded) {
+    options.priceLoaded = true;
+    options.loadFuelPrices();
   }
 });
 
 options.initStorageManager(function() {
+  options.initSettings();
   options.loadResources();
   //googleAnalytics('UA-1471148-11');
 });

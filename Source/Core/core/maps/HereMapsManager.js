@@ -13,26 +13,9 @@
  */
 
 var HereMapsManager = function(footprintCore, settingsProvider) {
-  //Append script as DOM to enable angularDebug
-  //function updateRouteMode() to get mode through angular element scopr
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.innerHTML = 'window.here.features.angularDebug=true;' +
-    'function updateRouteMode() {' +
-    'var routes = document.getElementsByClassName("route_card");' +
-    'for (var i = routes.length - 1; i >= 0; i--) {' +
-    'var mode = angular.element(routes[i]).scope()' +
-    '.route.mode.transportModes[0];' +
-    'routes[i].setAttribute("data-mode",mode);' +
-    ' } };';
-  document.head.appendChild(script);
-  //append a div to trigger updateRouteMode
-  var e = document.createElement('div');
-  e.id = 'updateModeTrigger';
-  e.setAttribute('onclick', 'updateRouteMode()');
-  document.getElementsByTagName('body')[0].appendChild(e);
   this.footprintCore = footprintCore;
   this.settingsProvider = settingsProvider;
+  this.subtree = true;
   this.update();
 };
 
@@ -43,7 +26,10 @@ var HereMapsManager = function(footprintCore, settingsProvider) {
  */
 
 HereMapsManager.prototype.getMode = function(route) {
-  var mode = route.getAttribute('data-mode');
+  // var mode = route.getAttribute('data-mode');
+  if(!route.classList[1])
+    return 'pt';
+  var mode = route.classList[1].match(/route_card_(.*)/)[1];
   console.log('Route mode: ' + mode);
   return mode;
 };
@@ -55,11 +41,28 @@ HereMapsManager.prototype.getMode = function(route) {
 
 HereMapsManager.prototype.getAllDrivingRoutes = function() {
   var routes = [];
-
   // Get all non-transit driving routes suggested by Here Maps. route_card
   var r = document.getElementsByClassName('route_card');
   for (var i = r.length - 1; i >= 0; i--) { // Filtering spurious routes.
     if (this.getMode(r[i]) == 'car') {
+      routes.push(r[i]);
+    }
+  }
+  console.log(routes);
+  return routes;
+};
+
+/**
+ * Gets transit routes.
+ * @return {string} routes
+ */
+
+HereMapsManager.prototype.getAllTransitRoutes = function() {
+  var routes = [];
+  // Get all transit driving routes suggested by Here Maps. route_card
+  var r = document.getElementsByClassName('route_card');
+  for (var i = r.length - 1; i >= 0; i--) { // Filtering spurious routes.
+    if (this.getMode(r[i]) == 'pt') {
       routes.push(r[i]);
     }
   }
@@ -80,6 +83,19 @@ HereMapsManager.prototype.getDistanceString = function(route) {
 };
 
 /**
+ * Gets time for transit route.
+ * @param {object} route
+ * @return {string} timeString
+ */
+
+HereMapsManager.prototype.getTimeString = function(route) {
+  var timeString = route.getElementsByClassName('duration')[0].textContent;
+  timeString = ' ' + timeString;
+  console.log('timeString:' + timeString);
+  return timeString;
+};
+
+/**
  * Converts Distance.
  * @param {string} distanceStr
  * @return {float} distanceFloat
@@ -91,6 +107,35 @@ HereMapsManager.prototype.convertDistance = function(distanceStr) {
     var distance = distanceAndUnit[0];
     var unit = distanceAndUnit[1];
     return this.footprintCore.getDistanceFromStrings(distance, unit);
+  }
+};
+
+/**
+ * Converts total time into hours.
+ * @param {string} timeStr
+ * @return {float} hrs
+ */
+
+HereMapsManager.prototype.convertTime = function(timeStr) {
+  if (timeStr) {
+    var days = (/ (\w*)d/).exec(timeStr);
+    var hrs = (/ (\w*)h/).exec(timeStr);
+    var mins = (/ (\w*)m/).exec(timeStr);
+    if(hrs){
+      hrs = parseFloat(hrs[1]);
+    }
+    else{
+      hrs = 0;
+    }
+    if(mins){
+      mins = parseFloat(mins[1]);
+      hrs += mins/60;
+    }
+    if(days){
+      days = parseFloat(days[1]);
+      hrs += days*24;
+    }
+    return hrs;
   }
 };
 
@@ -137,25 +182,30 @@ HereMapsManager.prototype.insertTravelCostElement = function(route, e) {
 
 HereMapsManager.prototype.update = function() {
   var thisMap = this;
-  //execute after data is loaded
-  setTimeout(function() {
-    //trigger click for routeMode evaluation
-    document.getElementById('updateModeTrigger').click();
-    var routes = thisMap.getAllDrivingRoutes();
-    for (var i = 0; i < routes.length; i++) {
-      var distanceString = thisMap.getDistanceString(routes[i]);
-        var distanceInKm = thisMap.convertDistance(distanceString);
-      thisMap.insertFootprintElement(
-        routes[i],
-        thisMap.footprintCore.createFootprintElement(distanceInKm)
+  var drivingRoutes = thisMap.getAllDrivingRoutes();
+  var i;
+  for (i = 0; i < drivingRoutes.length; i++) {
+    var distanceString = thisMap.getDistanceString(drivingRoutes[i]);
+    var distanceInKm = thisMap.convertDistance(distanceString);
+    thisMap.insertFootprintElement(
+      drivingRoutes[i],
+      thisMap.footprintCore.createFootprintElement(distanceInKm)
+    );
+    if (thisMap.settingsProvider.showTravelCost())
+      thisMap.insertTravelCostElement(
+        drivingRoutes[i],
+        thisMap.footprintCore.createTravelCostElement(distanceInKm)
       );
-      if (thisMap.settingsProvider.showTravelCost())
-        thisMap.insertTravelCostElement(
-          routes[i],
-          thisMap.footprintCore.createTravelCostElement(distanceInKm)
-        );
-    }
-  },1000);
+  }
+  var transitRoutes = thisMap.getAllTransitRoutes();
+  for (i = 0; i < transitRoutes.length; i++) {
+    var timeString = this.getTimeString(transitRoutes[i]);
+    var timeInHrs = ' ' + this.convertTime(timeString);
+    thisMap.insertFootprintElement(
+      transitRoutes[i],
+      this.footprintCore.createPTFootprintElement(timeInHrs)
+    );
+  }
 };
 
 var MapManager = HereMapsManager;

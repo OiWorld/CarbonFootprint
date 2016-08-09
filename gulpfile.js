@@ -5,7 +5,7 @@ var stylish = require('jshint-stylish').reporter;
 var localizeForFirefox = require('chrome-to-firefox-translation');
 var flatten = require('gulp-flatten');
 
-var lintFiles = ['Source/**/*.js', '!Source/**/*.min.js', '!Source/background/google-maps-api.js'];
+var lintFiles = ['Source/**/*.js', '!Source/**/*.min.js', '!Source/Chrome/background/google-maps-api.js'];
 
 var chormeBuildpath = 'Build/Chrome/';
 var firefoxBuildpath = 'Build/Firefox/';
@@ -68,4 +68,4 @@ gulp.task('groupChrome', ['localesChrome', 'coreChrome', 'specificChrome']);
 gulp.task('group', ['groupChrome', 'groupFirefox']);
 
 
-gulp.task('test', ['gjslint', 'karma']);
+gulp.task('test', ['gjslint']);
