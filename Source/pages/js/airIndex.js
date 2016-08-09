@@ -9,7 +9,7 @@ function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
       center: new google.maps.LatLng(lat, long),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      zoom: 11 });
+      zoom: 8 });
     
     var waqiMapOverlay = new google.maps.ImageMapType({
       getTileUrl: function(coord, zoom) {
