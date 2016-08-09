@@ -10,7 +10,7 @@ function initMap() {
       center: new google.maps.LatLng(lat, long),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       zoom: 8 });
-    
+    var t = new Date().getTime(); 
     var waqiMapOverlay = new google.maps.ImageMapType({
       getTileUrl: function(coord, zoom) {
         return 'http://tiles.aqicn.org/tiles/' + mapCode + '/' +
