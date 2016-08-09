@@ -23,12 +23,12 @@ var ChromeSettingsProvider = function(cb) {
     cb(self);
   });
   chrome.storage.sync.get('exchangeRates', function(response) {
-    if (response)
+    if (Object.keys(response).length != 0)
       self.exchangeRates = response.exchangeRates.rates;
     console.log(self.exchangeRates);
   });
   chrome.storage.sync.get('fuelPrices', function(response) {
-    if (response)
+    if (Object.keys(response).length != 0)
       self.fuelPrices = response.fuelPrices;
     console.log(self.fuelPrices);
   });
