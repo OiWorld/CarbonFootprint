@@ -276,10 +276,10 @@ options.loadFuelPrices = function() {
   var prices = options.settings.fuelPrices[
     options.data.get('geoData').country_short];
   var exchangeRate = options.settings.exchangeRates[
-            options.settings.getCurrency()];
+            options.data.get('currency')];
   if (!exchangeRate) {
     exchangeRate = options.defaultRates.rates[
-      options.settings.getCurrency()];
+      options.data.get('currency')];
   }
   console.log(prices, options.fType, options.settings, exchangeRate);
   if (prices) {
@@ -562,7 +562,7 @@ options.loadResources = function() {
   $.getJSON(browserServices.getFilePath('/core/resources/countries.json'), function(response) {
     options.countries = response;
   });
-  $.getJSON('/core/resources/exchangeRates.json', function(response) {
+  $.getJSON(browserServices.getFilePath('/core/resources/exchangeRates.json'), function(response) {
     options.defaultRates = response;
   });
   $.getScript('https://maps.googleapis.com/maps/api/js')
@@ -634,9 +634,10 @@ options.initStorageManager = function(cb) {
  * Initialises settingsProvider
  */
 
-options.initSettings = function() {
-  options.settings = new ChromeSettingsProvider(function() {
-    console.log('settingsProvider initialised');
+options.initSettings = function(cb) {
+  options.settings = new BackgroundDataAdapter(function() {
+    console.log('ChromeBackgroundDataAdapter initialised');
+    cb();
   });
 };
 
@@ -692,7 +693,8 @@ $(document).ajaxComplete(function(event, xhr, settings) {
 });
 
 options.initStorageManager(function() {
-  options.initSettings();
-  options.loadResources();
-  //googleAnalytics('UA-1471148-11');
+  options.initSettings(function() {
+    options.loadResources();
+    //googleAnalytics('UA-1471148-11');
+  });
 });

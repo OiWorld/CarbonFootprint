@@ -22,16 +22,6 @@ var ChromeSettingsProvider = function(cb) {
     console.log(self.settings);
     cb(self);
   });
-  chrome.storage.sync.get('exchangeRates', function(response) {
-    if (response)
-      self.exchangeRates = response.exchangeRates.rates;
-    console.log(self.exchangeRates);
-  });
-  chrome.storage.sync.get('fuelPrices', function(response) {
-    if (response)
-      self.fuelPrices = response.fuelPrices;
-    console.log(self.fuelPrices);
-  });
 };
 
 /**
@@ -153,7 +143,7 @@ ChromeSettingsProvider.prototype.getTravelRate = function() {
  */
   
 ChromeSettingsProvider.prototype.getCurrency = function() {
-  return this.settings.currency;
+  return this.get('currency', 3);
 };
 
 /**
