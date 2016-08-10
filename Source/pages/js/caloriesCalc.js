@@ -1,8 +1,8 @@
 /**
 * Sources:
 * Calories Calculator: http://www.ilovebicycling.com/how-many-calories-do-you-burn-when-cycling/
-* Benfits Source:
 * http://www.sustrans.org.uk/what-you-can-do/use-your-car-less/walking
+* Benfits Source:
 * http://www.tmr.qld.gov.au/Travel-and-transport/Cycling/Benefits.aspx
 * http://www.sustrans.org.uk/what-you-can-do/use-your-car-less/health-benefits-walking-and-cycling
 * http://livehealthy.chron.com/sedentary-lifestyle-calorie-intake-3186.html
