@@ -13,10 +13,10 @@ var BackgroundDataAdapter = function(cb) {
 
 	browserServices.getStorage('exchangeRates', function(response) {
 		if (response)
-			self.exchangeRates = response.exchangeRates.rates;
+			self.exchangeRates = response.rates;
 		browserServices.getStorage('fuelPrices', function(response) {
 			if (response)
-				self.fuelPrices = response.fuelPrices;
+				self.fuelPrices = response;
 			cb();
 		});
 	});

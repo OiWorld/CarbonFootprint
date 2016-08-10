@@ -636,7 +636,7 @@ options.initStorageManager = function(cb) {
 
 options.initSettings = function(cb) {
   options.settings = new BackgroundDataAdapter(function() {
-    console.log('ChromeBackgroundDataAdapter initialised');
+    console.log('BackgroundDataAdapter initialised');
     cb();
   });
 };
