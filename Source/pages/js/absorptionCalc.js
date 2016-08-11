@@ -8,7 +8,7 @@
 
 var absorptionForm = {
 	treeStats : {},
-	
+	emissionRate : 0.255384,
 	timeString : function(days) {
 		var str = '';
 		// Map lengths of `days` to different time periods
@@ -29,7 +29,7 @@ var absorptionForm = {
 
 	submit : function(form) {
 		var data = $('#absorptionForm').serializeObject();
-		console.log(data);
+		// console.log(data);
 		var emission = data.emission,
 		unit = $('#emissionUnit option:selected').text();
 		if(data.unitSystem != "metric") {
@@ -39,26 +39,40 @@ var absorptionForm = {
 		var tree = data.treeType;
 		var treeDays = ( emission * 525600 ) / form.treeStats[tree];
 		//time in years, months, days for absorpton of given CO2
-		var timeStr = 'It will take <b>' + form.timeString(treeDays) + '</b>for a <b>' + tree + '</b> tree to absorb <b>' + 	data.emission + ' ' + unit + '</b> of CO<sub>2</sub>.';
+		var timeStr = 'It will take <b>' + form.timeString(treeDays) + '</b>for a <b>' + tree + '</b> tree to absorb <b>' + data.emission + ' ' + unit + '</b> of CO<sub>2</sub>.';
 
 		var respDays = ( emission / 1.04326 ) * 24 * 60;
 		var respStr = 'The same amount of CO<sub>2</sub> will be produced by a human (through respiration) in <b>' + form.timeString(respDays) + '</b>.';
-		console.log(timeStr, respStr);
-		$('#outputAbsorption').html(timeStr + ' ' + respStr);
+
+		//gets distance in kilometers
+		var distance = emission / form.emissionRate;
+		var distUnit = 'km';
+		if(data.unitSystem != "metric") {
+			//conver to miles
+			distance *= 0.621371; 
+			distUnit = 'miles';
+		}
+		var carStr = 'Also, a car would have to travel <b>' + distance + ' ' + distUnit + '</b> to produce <b>' + data.emission + ' ' + unit + '</b> of CO<sub>2</sub>.';
+		// console.log(timeStr, respStr, carStr);
+		$('#outputAbsorption').html(timeStr + '<br>' + respStr + '<br>' + carStr );
 	},
 
 	init : function() {
+		// Load tree data
 	    var form = this;
 		$.getJSON('/core/resources/trees.json', function(response) {
-	    	console.log(response);
-	    	form.treeStats = response;
-	    	for (var key in response) {
+	    	// console.log(response);
+	    	form.treeStats = response.treeData;
+	    	for (var key in form.treeStats) {
 	    		$('#treeType').append('<option value="' + key + '">' + key + '</option>');
 	    	}
 	    	$('#absorptionFormSubmit').on("click",function(){
 	    		form.submit(form);
 	    	});
 	  	});
+	  	chrome.storage.sync.get('calculationObject', function(data) {
+			form.emissionRate = data['calculationObject']['CO2emissionRate'] || 0.255384;
+		});	
 	},
 }
 

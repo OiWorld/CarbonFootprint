@@ -1,4 +1,5 @@
 /**
+<<<<<<< HEAD
 * Sources:
 * Calories Calculator: http://www.ilovebicycling.com/how-many-calories-do-you-burn-when-cycling/
 * http://www.sustrans.org.uk/what-you-can-do/use-your-car-less/walking
@@ -8,6 +9,9 @@
 * http://livehealthy.chron.com/sedentary-lifestyle-calorie-intake-3186.html
 */
 
+/**
+ * return serialized form data as JSON
+ */
 $.fn.serializeObject = function()
 {
     var o = {};
@@ -24,49 +28,6 @@ $.fn.serializeObject = function()
     });
     return o;
 };
-
-// $('#caloriesFormSubmit').click(function(){
-// 	var data = $('#caloriesForm').serializeObject();
-// 	var time = +data.unitVal;
-// 	if(data.unitSystem == "metric") {
-// 		data.speed *= 0.621371;
-// 		data.weight *= 2.20462;
-// 		if( data.unit == "distance" ) {
-// 			data.unitVal *= 0.621371;
-// 			time = data.unitVal/data.speed;
-// 		}
-// 	}
-	
-// 	if( data.speed <= 0 || data.weight <= 0 || time <=0 ) {
-// 		alert("Invalid Data! Negative and Zero value not possible.");
-// 		return;
-// 	}
-
-// 	var caloriesPerHour ;
-// 	if( data.mode == "cycling" ) {
-// 		if(data.speed < 5.5) {
-// 			alert("Speed for cycling should be greater than 5.5mph !");
-// 			return;
-// 		}
-// 		caloriesPerHour = (((data.weight - 130)/75) * ((34*data.speed) - 135)) + ((59*data.speed)-236);
-// 	}
-// 	else {
-// 		caloriesPerHour = (((data.weight - 130)/75) * ((54.45*data.speed) + 13.65)) + ((94.3*data.speed)+24.6);
-// 	}
-// 	var caloriesBurnt = caloriesPerHour * time;
-	
-// 	$('#outputCalories').html('Congratulations! You have burnt <b>' + caloriesBurnt + ' Calories</b>.<br>'
-// 		+ ' Moreover, a sedentary women require 1,600 to 2,000 calories a day, while'
-// 		+ ' sedentary men need about 2,000 to 2,600 calories daily to maintain their current weight. ');
-
-// });
-
-// (function(){
-
-// })();
-
-
-
 
 var caloriesForm = {
 
@@ -106,11 +67,18 @@ var caloriesForm = {
 	},
 
 	init : function() {
+
+		/**
+		 * Get unitSystem as specified in options page
+		 */
 		chrome.storage.sync.get('calculationObject', function(data) {
 			var unitSystem = data['calculationObject']['unitSystem'] || 'metric';
 			$('input:radio[name="unitSystem"]').filter('[value=' + unitSystem + ']').click();
 		});	
 
+		/**
+		 * Handle change in unitSystem selection
+		 */
 		$('input:radio[name="unitSystem"]').change(function(){
 			var unit = $(this).val();
 			$('input:radio[name="unitSystem"]').filter('[value=' + unit + ']').click();
@@ -118,7 +86,9 @@ var caloriesForm = {
 			$('#unitSel').val( unit ).prop('disabled', true);
 			$('.form-unit').val( unit );
 		});
-
+		/**
+		 * Handle change in time/distance radio for calories calc
+		 */
 		$('#caloriesForm input:radio[name="unit"]').change(function(){
 			if( $(this).val() == "distance" ) {
 				$('.timeOpt').hide();
@@ -133,9 +103,13 @@ var caloriesForm = {
 		});
 
 		$('#caloriesForm input[value="time"]').click();
+
+		// Reset form output on close
 		$('.close-modal').click(function(){
 			$('.outputDiv').html('');
 		})
+
+		// Click handler for submit
 		var form = this;
 		$('#caloriesFormSubmit').on("click",function(){
 	    		form.submit(form);
