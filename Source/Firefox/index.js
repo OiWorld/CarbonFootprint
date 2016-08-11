@@ -28,8 +28,11 @@ pageMod.PageMod({
       wk.port.emit('translationResponse', {key: dt.key, translation: locale(dt.key)});
     });
     wk.port.on('storageGetRequest', function(stor) {
-      if (stor.storageKey in storage)
-        wk.port.emit('storageGetResponse', {values: {}[stor.storageKey] = storage[stor.storageKey], tag: stor.tag});
+      if (stor.storageKey in storage) {
+        var values = {};
+        values[stor.storageKey] = storage[stor.storageKey];
+        wk.port.emit('storageGetResponse', {values: values, tag: stor.tag});
+      }
       else
         wk.port.emit('storageGetResponse', {values: {}, tag: stor.tag});
     });

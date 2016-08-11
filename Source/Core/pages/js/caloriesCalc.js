@@ -71,7 +71,7 @@ var caloriesForm = {
 		/**
 		 * Get unitSystem as specified in options page
 		 */
-		chrome.storage.sync.get('calculationObject', function(data) {
+		browserServices.getStorage('calculationObject', function(data) {
 			var unitSystem = data['calculationObject']['unitSystem'] || 'metric';
 			$('input:radio[name="unitSystem"]').filter('[value=' + unitSystem + ']').click();
 		});	
