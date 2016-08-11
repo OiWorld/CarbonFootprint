@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Know More | Carbon Footprints</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Core CSS -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet prefetch">
+
+    <!-- Custom CSS -->
+    <link href="css/knowMore.css" rel="stylesheet prefetch">
+</head>
+<body id="page-top" class="index">
+
+    <!-- tile Grid Section -->
+    <section id="tile" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Know More</h2>
+                    <h3 class="section-subheading text-muted">Additional utilities and information.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 tile-item">
+                    <a href="#tileModal1" class="tile-link" data-toggle="modal">
+                        <div class="tile-hover">
+                            <div class="tile-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/aqi.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="tile-caption">
+                        <h4>Air Quality Index</h4>
+                        <p class="text-muted">Know the air quality around you.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 tile-item">
+                    <a href="#tileModal2" class="tile-link" data-toggle="modal">
+                        <div class="tile-hover">
+                            <div class="tile-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/reduce.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="tile-caption">
+                        <h4>Reduce your Carbon Footprints</h4>
+                        <p class="text-muted">Make a difference.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 tile-item">
+                    <a href="#tileModal3" class="tile-link" data-toggle="modal">
+                        <div class="tile-hover">
+                            <div class="tile-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/carbonFootprint.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="tile-caption">
+                        <h4>About</h4>
+                        <p class="text-muted">Know about the extension.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 tile-item">
+                    <a href="#tileModal4" class="tile-link" data-toggle="modal">
+                        <div class="tile-hover">
+                            <div class="tile-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/cycle.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="tile-caption">
+                        <h4>Go Eco-friendly! Burn Calories!</h4>
+                        <p class="text-muted">Benifits of cycling & walking.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 tile-item">
+                    <a href="#tileModal5" class="tile-link" data-toggle="modal">
+                        <div class="tile-hover">
+                            <div class="tile-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/trees.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="tile-caption">
+                        <h4>CO<sub>2</sub> Absorption Calculator</h4>
+                        <p class="text-muted">Trees absorption rate & facts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- tile Modals -->
+    <!-- Use the modals below to showcase details about your tile projects! -->
+
+    <!-- tile Modal 1 -->
+    <div class="tile-modal modal fade" id="tileModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Live Air Quality Index</h2>
+                            <p class="item-intro text-muted">Know the air quality around you.</p>
+                            <p>
+                                <div id='map' style='height:380px;' ></div>
+                            </p>
+                            <p>
+                                <form class="form-inline pull-left">
+                                    <div class="form-group">
+                                        <label for="map-type">Marker Type: </label>
+                                        <select class="form-control" id="map-type">
+                                            <option value="usepa-aqi" selected>Air Quality Index</option>
+                                            <option value="usepa-pm25">PM<sub>2.5</sub></option>
+                                            <option value="usepa-10">PM<sub>10</sub></option>
+                                            <option value="usepa-o3">Ozone</option>
+                                            <option value="usepa-no2">NO<sub>2</sub></option>
+                                            <option value="usepa-so2">SO<sub>2</sub></option>
+                                            <option value="usepa-co">CO</option>
+                                            <option value="asean-pm10">Asean PM<sub>10</sub></option>
+                                        </select>
+                                    </div>
+                                </form>
+                                <span class="pull-right"><i>Source: </i><a href="http://aqicn.org/">http://aqicn.org/</a></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- tile Modal 2 -->
+    <div class="tile-modal modal fade" id="tileModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Reduce your Carbon Footprints</h2>
+                            <p class="item-intro text-muted">Make a difference.</p>
+                            <p>
+                                <div id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                    <i class="fa fa-plus accordian-icon"></i>
+                                                    From Driving.
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                            <ul>
+                                                <li><strong>Alternatives to driving - </strong> When possible, walk or ride your bike in order to avoid carbon emissions completely. Carpooling and public transportation drastically reduce CO2 emissions by spreading them out over many riders.</li>
+                                                <li><strong>Drive a <em>low carbon</em> vehicle - </strong>&nbsp;High mileage doesn’t always mean low CO2 emissions. All vehicles have an&nbsp;<span style="text-decoration: underline;"><a href="http://www.fueleconomy.gov/feg/findacar.shtml" target="_blank">estimated miles-per-gallon rating</a></span>. Electric cars emit no CO2 <span style="text-decoration: underline;"><a href="http://www.pnas.org/content/111/52/18490" target="_blank">if they’re charged with clean electricity</a></span>. If you don’t charge it with your home’s solar panels AND live somewhere like WY, MO, MO, WV, or KY you’re BETTER OFF with a hybrid or high-mileage gas/diesel car. <span style="text-decoration: underline;"><a href="http://www.washingtonpost.com/blogs/govbeat/wp/2014/06/02/the-states-that-will-be-hit-hardest-by-the-epas-coal-regulations-in-one-map/" target="_blank">Here’s why</a></span>. After incentives and gas savings, it essentially costs nothing to switch to an electric car like the <span style="text-decoration: underline;"><a href="cotap.org/2014/10/california-hidden-gas-tax-advertisements/" target="_blank">the Nissan Leaf</a></span>.</li>
+                                                <li><strong>Get a hitch-mounted cargo rack - </strong> Don’t buy a minivan or SUV if you don’t need 4WD and/or will only occasionally need the extra space. A receiver hitch and a rack <span style="text-decoration: underline;"><a href="http://www.amazon.com/Pro-Series-63153-Mounted-Carrier/dp/B001G4Z5J0/" target="_blank">like this one</a></span> only cost a few hundred bucks. Avoid roof-top boxes, which cost much more, increase aerodynamic drag, and decrease fuel economy.</li>
+                                                <li><strong>Driving style - </strong>&nbsp;Speeding and unnecessary acceleration <span style="text-decoration: underline;"><a href="http://www.fueleconomy.gov/feg/driveHabits.shtml" target="_blank">reduce mileage by up to 33%</a></span>, waste gas and money, and increase your carbon footprint.</li>
+                                                <li><strong>Tire inflation and other tuning - </strong>Properly inflated tires improve your gas mileage by up to 3%. It also helps to use the correct grade of motor oil, and to keep your engine tuned, because <span style="text-decoration: underline;"><a href="http://www.fueleconomy.gov/feg/maintain.shtml">some maintenance fixes</a></span>, like fixing faulty oxygen sensors, can increase fuel efficiency by up to 40%.</li>
+                                                <li><strong>Avoid traffic - </strong> Being stuck in traffic wastes gas and unneccessarily creates CO2. Use traffic websites and apps and go a different way or wait.</li>
+                                                <li><strong>Misc - </strong>Combine errands to make fewer trips. Remove excess weight from your car.&nbsp;Use cruise control.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingTwo">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                    <i class="fa fa-plus accordian-icon"></i>
+                                                    From Air Travel.
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                            <ul>
+                                                <li><strong>General.</strong> Until petroleum-based aviation fuel is replaced, you should avoid flying when possible, fly less frequently, fly shorter distances, and fly economy class.</li>
+                                                <li><strong>Leisure Air Travel.</strong> Take fewer and longer vacations that are far away, and more frequent and driveable “staycations” closer to home.</li>
+                                                <li><strong>Work Air Travel.</strong> Increase your use of video-conferencing tools like Skype and Facetime.</li>
+                                                <li><strong>What class?</strong> Economy class is best, for the same reasons as carpooling and public transportation. Each flyer’s share of a flight’s carbon emissions is relatively less because it’s spread out over more people.</li>
+                                                <li><strong>That’s Economy <em>class</em>.</strong> When <span style="text-decoration: underline;"><a href="http://www.dailymail.co.uk/news/article-2621361/Prince-William-flies-economy-class-journey-home-American-wedding.html" target="_blank">Prince William</a></span> flies economy <em>class</em>, he’s leading by example. Then there’s <span style="text-decoration: underline;"><a href="http://www.dailymail.co.uk/news/article-2251071/Jumbo-fit-prince-The-240million-private-jet-Turkish-bath-boardroom-concert-hall.html" target="_blank">Prince Alwaleed bin Talal al-Saud</a></span>, or the Sultan of Brunei, who buy <em>entire economy-size planes</em> and convert them into flying palaces.</li>
+                                                <li><strong>Don’t fly on private jets.</strong> Fly first or business class if you <em>must</em>, because at least those seats always fill up anyway, and avoid private jets, including services like <span style="text-decoration: underline;"><a href="https://www.netjets.com/" target="_blank">NetJets</a></span> and <span style="text-decoration: underline;"><a href="https://www.xojet.com/" target="_blank">XOJET</a></span>.</li>
+                                                <li><strong>Don’t buy a Honda.</strong> <span style="text-decoration: underline;"><a href="http://www.hondajet.com/" target="_blank">HondaJet</a></span>, that is. Their cars are fine, though.</li>
+                                                <li><strong>Don’t be a space tourist.</strong> Watch <span style="text-decoration: underline;"><a href="http://www.pbs.org/wgbh/nova/space/" target="_blank">NOVΛ</a></span> on PBS instead. Richard Branson’s “spaceline” <span style="text-decoration: underline;"><a href="http://www.virgingalactic.com/human-spaceflight/" target="_blank">Virgin Galactic</a></span> seeks to right the injustice that “most of our planet’s seven billion people have had no opportunity to experience space” and Jeff Bezos’ <span style="text-decoration: underline;"><a href="https://www.blueorigin.com/astronaut-experience" target="_blank">Blue Origin</a></span> promises “life-changing views” of what’s left of our planet.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingThree">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                    <i class="fa fa-plus accordian-icon"></i>
+                                                    From Home Energy Consumption.
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                            <ul>
+                                                <li><strong>Insulate and seal your home. </strong>Reduce drafts and air leaks with caulk, insulation, and weather stripping. Many states offer programs and incentives to facilitate this, and a great example is <span style="text-decoration: underline;"><a href="https://energyupgradeca.org" target="_blank">Energy Upgrade California</a></span>.</li>
+                                                <li><strong>Appliances.</strong> Make energy efficiency a primary consideration when choosing a new furnace, air conditioning unit, dishwasher, or refrigerator.&nbsp;Products bearing the <span style="text-decoration: underline;"><a href="http://www.energystar.gov/" target="_blank">ENERGY STAR</a></span> label are recognized for having superior efficiency.</li>
+                                                <li><strong>Lighting.</strong> Turn off lights you’re not using and when you leave the room.&nbsp;Replace incandescent light bulbs with compact flourescent or <a href="http://gelinkbulbs.com" target="_blank"><u>LED</u></a> ones.</li>
+                                                <li><strong>Thermostat.</strong> Don’t set it too high or low. Install a programmable model to turn off the heat/air conditioning when you’re not home.</li>
+                                                <li><strong>Solar.</strong> Add solar panels to the roof of your home. This costs a little more than the above options, but many providers offer financing options which minimize upfront costs. Two examples are <span style="text-decoration: underline;"><a href="http://www.solarcity.com/" target="_blank">SolarCity</a></span> and <span style="text-decoration: underline;"><a href="http://www.sunrun.com" target="_blank">SunRun</a></span>. If you live in a state with a <span style="text-decoration: underline;"><a href="http://en.wikipedia.org/wiki/Net_metering" target="_blank">Net Metering</a></span> law, you could eliminate your electricity bill or even <em>earn</em> money by selling electricity back to the grid.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingFour">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                    <i class="fa fa-plus accordian-icon"></i>
+                                                    From Food.
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                            <ul>
+                                                <li><strong>Eat locally-produced and organic food.</strong> It has been estimated that&nbsp;<span style="text-decoration: underline;"><a href="http://www.epa.gov/climatechange/climate-change-waste/" target="_blank">13% of U.S. greenhouse gas emissions</a></span>&nbsp;result from the production and transport of food. Transporting food requires petroleum-based fuels, and many fertilizers are also fossil fuel-based.</li>
+                                                <li><strong>Cut the beef and dairy.</strong> It takes a lot of resources to raise cows, and it’s especially bad if you buy beef from somewhere like Brazil, where it was grazed on land that used to be tropical forest but was cleared for agricultural use. Deforestation is a top contributor to carbon emissions and thus climate change.</li>
+                                                <li><strong>Avoid Robert Mugabe’s Birthday Party.</strong> This year attendees will be feasting on <span style="text-decoration: underline;"><a href="http://www.theguardian.com/world/2015/feb/16/robert-mugabe-birthday-party-elephant-meat-lion-zimbabwe-91" target="_blank">two elephants, two buffalo, two sables, five impalas and a lion</a></span>. What a sad day in Zimbabwe for both food sustainability and economic inequality.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingFive">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                                    <i class="fa fa-plus accordian-icon"></i>
+                                                    Other Ways.
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                                            <ul>
+                                                <li><strong>Water usage.</strong> Lower the amount of energy used to pump, treat, and heat water by washing your car less often, using <span style="text-decoration: underline;"><a href="http://www.sunset.com/garden/climate-zones/" target="_blank">climate-appropriate plants</a></span> in your garden, installing drip irrigation so that plants receive only what they need, and making water-efficient choices when purchasing shower heads, faucet heads, toilets, dishwashers and washing machines.</li>
+                                                <li><strong>Reuse and recycle.</strong>&nbsp; It has been estimated that <span style="text-decoration: underline;"><a href="http://www.epa.gov/climatechange/climate-change-waste/" target="_blank">29% of U.S. greenhouse gas emissions</a></span> result from the “provision of goods,” which means the extraction of resources, manufacturing, transport, and final disposal of “goods” which include consumer products and packaging, building components, and passenger vehicles, but excluding food. By buying used products and reselling or recyling items you no longer use, you dramatically reduce your carbon footprint from the “provision of goods.”</li>
+                                                <li><strong>Support clean energy sources.</strong>&nbsp; Whenever you can, advocate for clean alternatives to fossil fuels, such as wind, solar, geothermal, and appropriately designed hydroelectric and biomass energy projects.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- tile Modal 3 -->
+<div class="tile-modal modal fade" id="tileModal3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <!-- Project Details Go Here -->
+                        <h2>About</h2>
+                        <p class="item-intro text-muted">Know about the extension.</p>
+                        <p style="text-align:left;">
+                            <div class="info-text">Whenever you ask Google Maps for driving directions, this browser extension automatically estimates the total CO2 emission caused by driving on the suggested routes. The estimation is shown next to the route's total distance.</div>
+                            <div class="info-text">To improve the accuracy of the estimations, the options allow you to configure several parameters related to the fuel consumption and environment-friendliness of your car.</div>
+                            <div class="info-text">If you have comments or questions, please send them to MapsCarbonFootprint@gmail.com.</div>
+                            <div class="info-text">If you like this extension, please give it a good rating, like it on <a href="http://www.facebook.com/pages/Carbon-Footprint-for-Google-Maps/217487891623173" taget="_blank">facebook</a> and +1 it on <a href="https://plus.google.com/b/112973863308036008385/112973863308036008385/posts" taget="_blank">Google+</a>.</div>
+                            <div class="info-text">Spread this extension and help us raise environmental awareness! Let's preserve the environment, stop global warming and save our planet!</div>
+                        </p>
+                        <p>
+                            <ul class="list-inline social-buttons">
+                                <li><a href="http://www.facebook.com/pages/Carbon-Footprint-for-Google-Maps/217487891623173" target="_blank"><i class="fa fa-facebook fa-fw"></i></a></li>
+                                <li><a href="https://plus.google.com/b/112973863308036008385/112973863308036008385/posts" target="_blank"><i class="fa fa-google-plus fa-fw"></i></a></li>
+                                <li><a href="https://github.com/OiWorld/CarbonFootprintGoogleMap" target="_blank"><i class="fa fa-github fa-fw"></i></a></li>
+                                <li><a href="https://twitter.com/oiworld" target="_blank"><i class="fa fa-twitter fa-fw"></i></a></li>     
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- tile Modal 4 -->
+<div class="tile-modal modal fade" id="tileModal4" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <!-- Project Details Go Here -->
+                        <h2>Benefits of Walking and Cycling</h2>          
+                        <p>
+                            <div id="accordionCalories" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOneCalories">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOneCalories" aria-expanded="false" aria-controls="collapseOneCalories">
+                                                <i class="fa fa-plus accordian-icon"></i>
+                                                Health benefits
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOneCalories" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOneCalories">
+                                        <ul>
+                                            <li>Regular physical activity dramatically cuts the risk of developing heart disease, diabetes, obesity and some cancers. It also reduces cholesterol, lowers high blood pressure and is good for our sense of wellbeing.</li>
+                                            <li>it strengthens muscles, bones and joints.</li>
+                                            <li>it helps maintain flexibility and co-ordination as you get older.</li>
+                                            <li>cycling raises your metabolic rate, which can help to keep weight off.</li>
+                                            <li>moderate pedal-pushing burns up to 500 calories per hour, which is more than walking or swimming.</li>
+                                            <li>a 20-minute bike ride to work could use the same amount of calories as a cappuccino, a bar of chocolate or a 175ml glass of wine.</li>
+                                            <li>brisk walking burns as many calories as jogging over the same distance.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingTwoCalories">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwoCalories" aria-expanded="false" aria-controls="collapseTwoCalories">
+                                                <i class="fa fa-plus accordian-icon"></i>
+                                                Environmental benefits
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwoCalories" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwoCalories">
+                                        <ul>
+                                            <li>It is a pollution-free mode of transport. Cycles reduce the need to build, service and dispose of cars.</li>
+                                            <li>Cycling 10 km each way to work would save 1500 kg of greenhouse gas emissions each year.</li>
+                                            <li>Reduces roadway congestion at peak travel times.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingThreeCalories">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThreeCalories" aria-expanded="false" aria-controls="collapseThreeCalories">
+                                                <i class="fa fa-plus accordian-icon"></i>
+                                                Economic benefits
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThreeCalories" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThreeCalories">
+                                        <ul>
+                                            <li>In comparison, the cost of buying and maintaining a bike is around one per cent of the cost of buying and maintaining a car. No cost for walking.</li>
+                                            <li>Cycling 10 km each way to work each day will save about A$1700 per year in transport costs.</li>
+                                            <li>Also, bicycle parking is usually free, easily accessible and more convenient than car parking.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingFourCalories">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFourCalories" aria-expanded="false" aria-controls="collapseFourCalories">
+                                                <i class="fa fa-plus accordian-icon"></i>
+                                                Social benefits
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFourCalories" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFourCalories">
+                                        <ul>
+                                            <li>Cycling provides economic and independent travel for those who might otherwise have their travel options restricted.</li>
+                                            <li>Offers increased mobility to many groups of the population with low rates of car ownership, such as low income earners, unemployed people, seniors and those under 18 years of age.</li>
+                                            <li>More people cycling and walking provides additional opportunity for social interaction on the streets and this enhances a sense of community.</li>
+                                            <li>More bikes in a neighbourhood provides a safer road environment and children can also take advantage of slower and less dangerous traffic to cycle as well.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingFiveCalories">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFiveCalories" aria-expanded="false" aria-controls="collapseFiveCalories">
+                                                <i class="fa fa-plus accordian-icon"></i>
+                                                Other Benifits.
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFiveCalories" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFiveCalories">
+                                        <ul>
+                                            <li>More bikes and less cars on the road can reduce this congestion and its associated costs.</li>
+                                            <li>Bikes and cycling facilities can extend the catchments of existing public transport services. On average, 10 times more households are within cycling distance of public transport than are within walking distance.</li>
+                                            <li>Bicycles offer door-to-door service because they can be parked closer to destinations than cars and are quicker over shorter distances.</li> 
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </p>
+                        <div>
+                            <form id="caloriesForm" class="form-main" role="form">
+                                <h3>Calories Calculator</h3>
+                                <div class="form-group">
+                                    <label>Unit System</label><br>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="unitSystem" value="metric" >Metric
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="unitSystem" value="uscustomary" checked>US customary
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="unitSystem" value="imperial" >Imperial
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>Travel Mode</label><br>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="mode" value="cycling" checked>Cycling
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="mode" value="walking" >Walking
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="usrSpeed">Speed</label><br>
+                                    <input type="number" class="form-control form-value" id="usrSpeed" name="speed" value="12">
+                                    <select class="form-control form-unit" disabled="" value="uscustomary">
+                                        <option value="uscustomary">mph</option>
+                                        <option value="imperial">mph</option>
+                                        <option value="metric">kph</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="usrWeight">Weight</label><br>
+                                    <input type="number" class="form-control form-value" id="usrWeight" name="weight" value="130">
+                                    <select class="form-control form-unit" disabled="" value="uscustomary">
+                                        <option value="uscustomary">lbs</option>
+                                        <option value="imperial">lbs</option>
+                                        <option value="metric">kg</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="unit" value="time"><span>Time Taken</span>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="unit" value="distance" checked><span>Distance Covered</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control form-value" name="unitVal" value="1">
+                                    <select class="form-control form-unit" id="unitSel" value="uscustomary" disabled="">
+                                        <option class="distanceOpt" value="uscustomary">miles</option>
+                                        <option class="distanceOpt" value="imperial">miles</option>
+                                        <option class="distanceOpt" value="metric">km</option>
+                                        <option class="timeOpt" value="min">Min</option>
+                                        <option class="timeOpt" value="hour">Hours</option>
+
+                                    </select>
+                                </div>
+                                <div id="caloriesFormSubmit" class="btn btn-md form-submit">Submit</div>
+                                <div id="outputCalories" class="outputDiv"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- tile Modal 5 -->
+<div class="tile-modal modal fade" id="tileModal5" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <!-- Project Details Go Here -->
+                        <h2>Aborption Calculator</h2>
+                        <p class="item-intro text-muted">Trees absorption rate & facts.</p>
+                        <p>
+                            <div>
+                                <form id="absorptionForm" class="form-main" role="form">
+                                    <h3>Aborption Time Calculator</h3>
+                                    <div class="form-group">
+                                        <label>Unit System</label><br>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="unitSystem" value="metric" >Metric
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="unitSystem" value="uscustomary" checked>US customary
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="unitSystem" value="imperial" >Imperial
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="treeType">Tree</label><br>
+                                        <select id="treeType" name="treeType" class="form-control">
+                                        <!-- <option value="uscustomary">lbs</option> -->
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="usrEmission">CO<sub>2</sub> Emitted</label><br>
+                                        <input type="number" class="form-control form-value" id="usrEmission" name="emission" value="1.2">
+                                        <select class="form-control form-unit" disabled="" value="uscustomary" id="emissionUnit">
+                                            <option value="uscustomary">lbs</option>
+                                            <option value="imperial">lbs</option>
+                                            <option value="metric">kg</option>
+                                        </select>
+                                    </div>
+                                    <div id="absorptionFormSubmit" class="btn btn-md form-submit">Submit</div>
+                                    <div id="outputAbsorption" class="outputDiv"></div>
+
+                                </form>
+                            </div>
+                        </p><br>
+                        <h3 class="text-center">Facts</h3>
+                        <p class="text-left">
+                        <!-- http://forestlearning.edu.au/images/resources/How%20carbon%20is%20stored%20in%20trees%20and%20wood%20products.pdf -->
+                            Carbon is cycled through ecosystems in several different forms. It has a tendency to be 
+                            attracted to oxygen and form gaseous compounds such as carbon dioxide (CO<sub>2</sub>) and
+                            carbon monoxide (CO) which in high concentrations can be considered air pollutants and
+                            play a role in climate change. Carbon dioxide gas can be removed from the atmosphere by
+                            trees through photosynthesis. This process involves plant cells converting the carbon from
+                            carbon dioxide to a solid form in sugars (the carbohydrates glucose and starch) that can be
+                            stored in leaves, stems, trunks, branches and roots, and contribute to tree growth. Oxygen
+                            is released back into the atmosphere as a by-product of photosynthesis which animals
+                            depend upon for survival.<br><br>
+                            <b>The chemical formula for photosynthesis:</b><br>
+                            6 CO<sub>2</sub> + 12 H<sub>2</sub>O + photons ➔ C<sub>6</sub>H<sub>1</sub>2O<sub>6</sub> + 6 O<sub>2</sub> + 6 H<sub>2</sub>O
+                            <br><br>
+                            The carbon cycle demonstrates the various phases of carbon through living things, the soil,
+                            water and atmosphere. If the carbon cycle was in equilibrium, the rate at which carbon
+                            is removed from stores would equal the amount being taken out of the atmosphere. The
+                            current concern about the carbon cycle is that it is considered to be out of equilibrium in
+                            response to human intervention.<br><br>
+                            The burning of fossil fuels high in carbon has disturbed the natural balance of the cycle and
+                            enhanced the rate at which carbon is returned to the gas phase. This increase in carbon
+                            gas in the atmosphere, particularly as carbon dioxide and methane, has been found to
+                            contribute to global warming and is referred to as the ‘man-made greenhouse effect’ – the
+                            process where greenhouse gases trap infrared radiation in the atmosphere and cause the
+                            earth to warm.<br><br>
+                            Carbon constitutes approximately 50% the dry mass of trees and when wood from these
+                            trees is used to produce wood products the carbon is stored for life in that product. For
+                            framing in our homes this carbon storage is life is around 100 years, around 30 years in
+                            furniture, 30 years in railroad ties and around 6 years in pallets and paper. Carbon stored in
+                            wood is only released back to the atmosphere when the wood product is burnt or decays. 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Custom JavaScript -->
+<script type="text/javascript" src="js/browserServices.js"></script>
+<script type="text/javascript" src="js/airIndex.js"></script>
+<script type="text/javascript" src="js/caloriesCalc.js"></script>
+<script type="text/javascript" src="js/absorptionCalc.js"></script>
+
+</body>
+</html
