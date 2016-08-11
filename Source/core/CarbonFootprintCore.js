@@ -96,7 +96,7 @@ CarbonFootprintCore.prototype.footprintToString = function(footprint) {
 
 CarbonFootprintCore.prototype.computeTrees = function(carbonFootprint) {
   var trees = carbonFootprint / this.treeGrowthPerYear;
-  trees = Math.round(trees);
+  trees = Math.round(trees * 100) / 100;
   console.log('Trees: ' + trees);
   return trees;
 };
