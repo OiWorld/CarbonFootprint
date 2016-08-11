@@ -41,6 +41,33 @@ pageMod.PageMod({
   }
 });
 
+//Chrome api replacement for know more
+pageMod.PageMod({
+  include: data.url('./pages/knowMore.html'),
+  contentScriptWhen: 'start',
+  contentScriptFile: './pages/js/firefoxFix.js',
+  onAttach: function(wk) {
+    wk.port.on('translationRequest', function(dt) {
+      wk.port.emit('translationResponse', {key: dt.key, translation: locale(dt.key)});
+    });
+    wk.port.on('storageGetRequest', function(stor) {
+      if (stor.storageKey in storage) {
+        var values = {};
+        values[stor.storageKey] = storage[stor.storageKey];
+        wk.port.emit('storageGetResponse', {values: values, tag: stor.tag});
+      }
+      else
+        wk.port.emit('storageGetResponse', {values: {}, tag: stor.tag});
+    });
+    wk.port.on('storageSetRequest', function(stor) {
+      
+      for (var i in stor.data)
+        storage[i] = stor.data[i];
+      console.log(storage);
+    });
+  }
+});
+
 function onAttachListener (wk) {
   wk.port.on('showPageAction', function(ev) {
     console.log('showPageAction received');
@@ -50,8 +77,11 @@ function onAttachListener (wk) {
     });
   });
   wk.port.on('storageGetRequest', function(stor) {
-    if (stor.storageKey in storage)
-      wk.port.emit('storageGetResponse', {values: {}[stor.storageKey] = storage[stor.storageKey], tag: stor.tag});
+    if (stor.storageKey in storage) {
+      var values = {};
+      values[stor.storageKey] = storage[stor.storageKey];
+      wk.port.emit('storageGetResponse', {values: values, tag: stor.tag});
+    }
     else
       wk.port.emit('storageGetResponse', {values: {}, tag: stor.tag});
   });
@@ -62,14 +92,14 @@ function onAttachListener (wk) {
 
 // Google Maps
 var gmaps = pageMod.PageMod({
-	include: /https?:\/\/(www\.)?google\..*\/maps.*/,
-	contentScriptFile: [
+  include: /https?:\/\/(www\.)?google\..*\/maps.*/,
+  contentScriptFile: [
     "./core/CarbonFootprintCore.js",
     "./core/helpers/FirefoxHelper.js",
     "./core/settings/FirefoxSettingsProvider.js",
     "./core/maps/GoogleMapsManager.js",
     "./core/init.js"
-	],
+  ],
   contentScriptWhen: "start",
   onAttach: onAttachListener
 });
