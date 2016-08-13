@@ -20,6 +20,9 @@ function initMap() {
       name: 'Air Quality'
     });
     map.overlayMapTypes.insertAt(0, waqiMapOverlay);
+    setTimeout(function(){
+      google.maps.event.trigger(map, 'resize');
+    },1500);
   };
   navigator.geolocation.getCurrentPosition(geoSuccess);
 }
@@ -30,12 +33,12 @@ function loadMapsAPI() {
     console.log(country);
     var script = document.createElement('script');
     script.src = 'https://maps.googleapis.' + ( country==='china'?'cn':'com' ) + '/maps/api/js' +
-      '?sensor=false&callback=initMap';
+      '?&callback=initMap';
     document.body.appendChild(script);
   }).fail(function(){
     var script = document.createElement('script');
     script.src = 'https://maps.googleapis.com/maps/api/js' +
-      '?sensor=false&callback=initMap';
+      '?&callback=initMap';
     document.body.appendChild(script);
   });
   document.getElementById('map-type').onchange = initMap;

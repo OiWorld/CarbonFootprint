@@ -1,7 +1,6 @@
 /**
-<<<<<<< HEAD
 * Sources:
-* Calories Calculator: http://www.ilovebicycling.com/how-many-calories-do-you-burn-when-cycling/
+* Calories Calculator: https://www.valdosta.edu/administration/finance-admin/campus-wellness/documents/calorie-and-exercise-burned.pdf
 * http://www.sustrans.org.uk/what-you-can-do/use-your-car-less/walking
 * Benfits Source:
 * http://www.tmr.qld.gov.au/Travel-and-transport/Cycling/Benefits.aspx
@@ -74,6 +73,9 @@ var caloriesForm = {
 		browserServices.getStorage('calculationObject', function(data) {
 			var unitSystem = data['calculationObject']['unitSystem'] || 'metric';
 			$('input:radio[name="unitSystem"]').filter('[value=' + unitSystem + ']').click();
+
+			// Default time
+			$('#caloriesForm input[value="time"]').click();
 		});	
 
 		/**
@@ -102,8 +104,6 @@ var caloriesForm = {
 			}
 		});
 
-		$('#caloriesForm input[value="time"]').click();
-
 		// Reset form output on close
 		$('.close-modal').click(function(){
 			$('.outputDiv').html('');
@@ -114,6 +114,7 @@ var caloriesForm = {
 		$('#caloriesFormSubmit').on("click",function(){
 	    		form.submit(form);
 	    });
+
 	},
 }
 
