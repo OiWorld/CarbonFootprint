@@ -122,7 +122,7 @@
                             <h2>Live Air Quality Index</h2>
                             <p class="item-intro text-muted">Know the air quality around you.</p>
                             <p>
-                                <div id='map' style='height:380px;' ></div>
+                                <div id='map'></div>
                             </p>
                             <p>
                                 <form class="form-inline pull-left">
@@ -529,12 +529,6 @@
                                         </label>
                                     </div>
                                     <div class="form-group">
-                                        <label for="treeType">Tree</label><br>
-                                        <select id="treeType" name="treeType" class="form-control">
-                                        <!-- <option value="uscustomary">lbs</option> -->
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="usrEmission">CO<sub>2</sub> Emitted</label><br>
                                         <input type="number" class="form-control form-value" id="usrEmission" name="emission" value="1.2">
                                         <select class="form-control form-unit" disabled="" value="uscustomary" id="emissionUnit">
@@ -543,6 +537,42 @@
                                             <option value="metric">kg</option>
                                         </select>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="treeName">Tree Name</label><br>
+                                        <select id="treeName" name="treeName" class="form-control">
+                                        <!-- <option value="uscustomary">lbs</option> -->
+                                        </select>
+                                    </div>
+                                    <div class="form-group checkbox">
+                                        <label><input type="checkbox" id="customTreeCheckbox" name="customTree">Tree not found? Try custom inputs!</label>
+                                    </div>
+                                    <div id="customTreeInput">
+                                        <div class="form-group">
+                                            <label for="treeHeight">Tree Height</label><br>
+                                            <input type="number" class="form-control form-value" id="treeHeight" name="treeHeight" value="1.2">
+                                            <select class="form-control form-unit" disabled="" value="uscustomary" id="treeHeightUnit">
+                                                <option value="uscustomary">ft</option>
+                                                <option value="imperial">ft</option>
+                                                <option value="metric">m</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="treeDiameter">Tree Diameter</label><br>
+                                            <input type="number" class="form-control form-value" id="treeDiameter" name="treeDiameter" value="20">
+                                            <select class="form-control form-unit" disabled="" value="uscustomary" id="treeDiameterUnit">
+                                                <option value="uscustomary">inch</option>
+                                                <option value="imperial">inch</option>
+                                                <option value="metric">cm</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="treeAge">Tree Age</label><br>
+                                            <input type="number" class="form-control form-value" id="treeAge" name="treeAge" value="10">
+                                            <select class="form-control form-unit-def" disabled="" value="years">
+                                                <option value="years">yrs</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div id="absorptionFormSubmit" class="btn btn-md form-submit">Submit</div>
                                     <div id="outputAbsorption" class="outputDiv"></div>
 
@@ -550,7 +580,7 @@
                             </div>
                         </p><br>
                         <h3 class="text-center">Facts</h3>
-                        <p class="text-left">
+                        <p class="text-justify">
                         <!-- http://forestlearning.edu.au/images/resources/How%20carbon%20is%20stored%20in%20trees%20and%20wood%20products.pdf -->
                             Carbon is cycled through ecosystems in several different forms. It has a tendency to be 
                             attracted to oxygen and form gaseous compounds such as carbon dioxide (CO<sub>2</sub>) and
