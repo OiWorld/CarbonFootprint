@@ -6,7 +6,7 @@ var localizeForFirefox = require('chrome-to-firefox-translation');
 var flatten = require('gulp-flatten');
 var concat = require('gulp-concat');
 
-var lintFiles = ['Source/**/*.js', '!Source/**/*.min.js', '!Source/Chrome/background/google-maps-api.js'];
+var lintFiles = ['source/**/*.js', '!Source/**/*.min.js', '!Source/Chrome/background/google-maps-api.js'];
 
 var chormeBuildpath = 'Build/Chrome/';
 var firefoxBuildpath = 'Build/Firefox/';
@@ -87,7 +87,7 @@ gulp.task('groupFirefox', ['localesFF', 'coreFirefox', 'specificFirefox']);
 gulp.task('groupChrome', ['localesChrome', 'coreChrome', 'specificChrome']);
 gulp.task('groupSafari', ['localesSafari', 'coreSafari', 'chromeShared','specificSafari']);
 
-gulp.task('group', ['groupChrome', 'groupFirefox']);
+gulp.task('group', ['groupChrome', 'groupFirefox', 'groupSafari']);
 
 
 gulp.task('test', ['gjslint']);

@@ -329,7 +329,7 @@ injector.mapQuest =  [
 
 injector.allMaps = injector.googleMaps;
 
-injector.allMaps.concat(injector.openStreetMap,
+injector.allMaps = injector.allMaps.concat(injector.openStreetMap,
                         injector.bingMaps,
                         injector.hereMaps,
                         injector.mapQuest);
