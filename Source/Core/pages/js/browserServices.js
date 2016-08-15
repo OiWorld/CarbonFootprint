@@ -15,10 +15,6 @@ browserServices.checkBrowser = function() {
     if(navigator.userAgent.toLowerCase().indexOf("safari") != -1)
       browser = 'safari';
   }
-	if ('safariApi' in window)
-		browser = 'safari';
-  else
-    browser = 'safari';
   console.log(browser);
 	return browser;
 };

@@ -333,7 +333,7 @@ background.updateFuelPrices = function() {
             }
             else {
               if(background.isChrome){
-                var storeObj;
+                var storeObj = {};
                 storeObj.fuelPrices = finalObj;
                 chrome.storage.sync.set(storeObj);
               }
