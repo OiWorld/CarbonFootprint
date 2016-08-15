@@ -308,8 +308,8 @@ injector.googleMaps = [
 ];
 
 injector.openStreetMap =  [
-  "https://www.openstreetmap.org/*",
-  "http://www.openstreetmap.org/*"
+  "https://*.openstreetmap.org/*",
+  "http://*.openstreetmap.org/*"
 ];
 
 injector.bingMaps =  [
@@ -318,37 +318,40 @@ injector.bingMaps =  [
 ];
 
 injector.hereMaps =  [
-  "https://maps.here.com/*",
-  "http://maps.here.com/*"
+  "https://*.here.com/*",
+  "http://*.here.com/*"
 ];
 
 injector.mapQuest =  [ 
-  "https://*.mapquest.com/directions*",
-  "http://*.mapquest.com/directions*"
+  "https://*.mapquest.com/*",
+  "http://*.mapquest.com/*"
 ];
 
-injector.allMaps = injector.googleMaps.concat(injector.openStreetMap,
-                                         injector.bingMaps,
-                                         injector.hereMaps,
-                                         injector.mapQuest);
+injector.allMaps = injector.googleMaps;
+
+injector.allMaps.concat(injector.openStreetMap,
+                        injector.bingMaps,
+                        injector.hereMaps,
+                        injector.mapQuest);
 
 injector.URL = safari.extension.baseURI;
 
-var styleSheet = "var head  = document.getElementsByTagName('head')[0];var link  = document.createElement('link');link.rel  = 'stylesheet';link.type = 'text/css';link.href = safari.extension.baseURI + 'core/css/main.css';head.appendChild(link);";
-
-/*safari
-  .extension
-  .addContentStyleSheetFromURL(injector.URL + 'core/css/main.css',
-                               injector.allMaps,[]);*/
+var styleSheet = "var head  = document.getElementsByTagName('head')[0];"+
+      "var link  = document.createElement('link');" +
+      "link.rel  = 'stylesheet';" +
+      "link.type = 'text/css';" +
+      "link.href = safari.extension.baseURI + 'core/css/main.css';" +
+      "head.appendChild(link);";
 
 safari
   .extension
   .addContentScript(styleSheet,injector.allMaps,[],true);
 
 injector.commonScripts = [
-  injector.URL + 'core/settings/ChromeSettingsProvider.js',
+  injector.URL + 'core/settings/SafariSettingsProvider.js',
   injector.URL + 'core/init.js',
-  injector.URL + 'core/CarbonFootprintCore.js'
+  injector.URL + 'core/CarbonFootprintCore.js',
+  injector.URL + 'core/helpers/SafariHelper.js'
 ];
 
 for (var i in injector.commonScripts){

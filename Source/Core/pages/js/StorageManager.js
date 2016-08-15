@@ -15,13 +15,41 @@
 var StorageManager = function(key, cb) {
   var self = this;
   self.storageKey = key;
-  browserServices.getStorage(self.storageKey, function(storeValues) {
-    if (storeValues[self.storageKey])
-      self.storeValues = storeValues[self.storageKey];
-    else
-      self.storeValues = {};
-    cb();
-  });
+  /**
+   * detecting SAFARI browser
+   * 'chrom' filters down (chrom)e as well as (chrom)ium 
+   */
+  if(navigator.userAgent.toLowerCase().indexOf("chrom") != -1){
+    self.isSafari = false; 
+  }
+  else {
+    if(navigator.userAgent.toLowerCase().indexOf("safari") != -1)
+      self.isSafari = true;
+  }
+  if(!self.isSafari){
+    browserServices.getStorage(self.storageKey, function(storeValues) {
+      if (storeValues[self.storageKey])
+        self.storeValues = storeValues[self.storageKey];
+      else
+        self.storeValues = {};
+      cb();
+    });
+  }
+  else{
+    safari.self.tab.dispatchMessage(self.storageKey,{
+      type: "getItem"
+    });
+    safari.self.addEventListener("message", function(response) {
+      if(response.name === self.storageKey) {
+        console.log(response.message);
+        if(response.message !== null)
+          self.storeValues = response.message;
+        else
+          self.storeValues = {};
+        cb();
+      }
+    }, false);
+  }
 };
 
 /**
@@ -29,9 +57,17 @@ var StorageManager = function(key, cb) {
  */
 
 StorageManager.prototype.store = function() {
-  var storeObject = {};
-  storeObject[this.storageKey] = this.storeValues;
-  browserServices.setStorage(storeObject);
+  if(!this.isSafari){
+    var storeObject = {};
+    storeObject[this.storageKey] = this.storeValues;
+    browserServices.setStorage(storeObject);
+  }
+  else{
+    safari.self.tab.dispatchMessage(this.storageKey,{
+      type: "setItem",
+      item: this.storeValues
+    });
+  }
 };
 
 /**

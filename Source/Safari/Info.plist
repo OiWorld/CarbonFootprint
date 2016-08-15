@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>Builder Version</key>
-	<string>12602.1.40.4</string>
+	<string>12602.1.50</string>
 	<key>CFBundleDisplayName</key>
-	<string>CarbonSafari</string>
+	<string>Carbon Footprint Calculator</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.OiWorld.CarbonFootprint</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>4.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>Chrome</key>
@@ -50,7 +50,7 @@
 		</array>
 	</dict>
 	<key>Description</key>
-	<string>Automatically estimates the CO2 emissions for driving on routes suggested by Google Maps.</string>
+	<string>Automatically estimates the CO2 emissions for driving on routes suggested by map services.</string>
 	<key>DeveloperIdentifier</key>
 	<string>0000000000</string>
 	<key>ExtensionInfoDictionaryVersion</key>
