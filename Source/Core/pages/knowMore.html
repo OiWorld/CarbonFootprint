@@ -100,6 +100,20 @@
                         <p class="text-muted">Trees absorption rate & facts.</p>
                     </div>
                 </div>
+                <div class="col-md-4 col-sm-6 tile-item">
+                    <a href="#tileModal6" class="tile-link" data-toggle="modal">
+                        <div class="tile-hover">
+                            <div class="tile-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/contact.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="tile-caption">
+                        <h4>Contact Us</h4>
+                        <p class="text-muted">Feedback & bug report.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -122,7 +136,7 @@
                             <h2>Live Air Quality Index</h2>
                             <p class="item-intro text-muted">Know the air quality around you.</p>
                             <p>
-                                <div id='map' style='height:380px;' ></div>
+                                <div id='map'></div>
                             </p>
                             <p>
                                 <form class="form-inline pull-left">
@@ -273,7 +287,7 @@
     </div>
 
 <!-- tile Modal 3 -->
-<!-- Sources: Description for the extension + social links -->
+<!-- Sources: Description for the extension -->
 <div class="tile-modal modal fade" id="tileModal3" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
@@ -295,14 +309,6 @@
                             <div class="info-text">If you have comments or questions, please send them to MapsCarbonFootprint@gmail.com.</div>
                             <div class="info-text">If you like this extension, please give it a good rating, like it on <a href="http://www.facebook.com/pages/Carbon-Footprint-for-Google-Maps/217487891623173" taget="_blank">facebook</a> and +1 it on <a href="https://plus.google.com/b/112973863308036008385/112973863308036008385/posts" taget="_blank">Google+</a>.</div>
                             <div class="info-text">Spread this extension and help us raise environmental awareness! Let's preserve the environment, stop global warming and save our planet!</div>
-                        </p>
-                        <p>
-                            <ul class="list-inline social-buttons">
-                                <li><a href="http://www.facebook.com/pages/Carbon-Footprint-for-Google-Maps/217487891623173" target="_blank"><i class="fa fa-facebook fa-fw"></i></a></li>
-                                <li><a href="https://plus.google.com/b/112973863308036008385/112973863308036008385/posts" target="_blank"><i class="fa fa-google-plus fa-fw"></i></a></li>
-                                <li><a href="https://github.com/OiWorld/CarbonFootprintGoogleMap" target="_blank"><i class="fa fa-github fa-fw"></i></a></li>
-                                <li><a href="https://twitter.com/oiworld" target="_blank"><i class="fa fa-twitter fa-fw"></i></a></li>     
-                            </ul>
                         </p>
                     </div>
                 </div>
@@ -529,12 +535,6 @@
                                         </label>
                                     </div>
                                     <div class="form-group">
-                                        <label for="treeType">Tree</label><br>
-                                        <select id="treeType" name="treeType" class="form-control">
-                                        <!-- <option value="uscustomary">lbs</option> -->
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="usrEmission">CO<sub>2</sub> Emitted</label><br>
                                         <input type="number" class="form-control form-value" id="usrEmission" name="emission" value="1.2">
                                         <select class="form-control form-unit" disabled="" value="uscustomary" id="emissionUnit">
@@ -543,6 +543,42 @@
                                             <option value="metric">kg</option>
                                         </select>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="treeName">Tree Name</label><br>
+                                        <select id="treeName" name="treeName" class="form-control">
+                                        <!-- <option value="uscustomary">lbs</option> -->
+                                        </select>
+                                    </div>
+                                    <div class="form-group checkbox">
+                                        <label><input type="checkbox" id="customTreeCheckbox" name="customTree">Tree not found? Try custom inputs!</label>
+                                    </div>
+                                    <div id="customTreeInput">
+                                        <div class="form-group">
+                                            <label for="treeHeight">Tree Height</label><br>
+                                            <input type="number" class="form-control form-value" id="treeHeight" name="treeHeight" value="1.2">
+                                            <select class="form-control form-unit" disabled="" value="uscustomary" id="treeHeightUnit">
+                                                <option value="uscustomary">ft</option>
+                                                <option value="imperial">ft</option>
+                                                <option value="metric">m</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="treeDiameter">Tree Diameter</label><br>
+                                            <input type="number" class="form-control form-value" id="treeDiameter" name="treeDiameter" value="20">
+                                            <select class="form-control form-unit" disabled="" value="uscustomary" id="treeDiameterUnit">
+                                                <option value="uscustomary">inch</option>
+                                                <option value="imperial">inch</option>
+                                                <option value="metric">cm</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="treeAge">Tree Age</label><br>
+                                            <input type="number" class="form-control form-value" id="treeAge" name="treeAge" value="10">
+                                            <select class="form-control form-unit-def" disabled="" value="years">
+                                                <option value="years">yrs</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div id="absorptionFormSubmit" class="btn btn-md form-submit">Submit</div>
                                     <div id="outputAbsorption" class="outputDiv"></div>
 
@@ -550,7 +586,7 @@
                             </div>
                         </p><br>
                         <h3 class="text-center">Facts</h3>
-                        <p class="text-left">
+                        <p class="text-justify">
                         <!-- http://forestlearning.edu.au/images/resources/How%20carbon%20is%20stored%20in%20trees%20and%20wood%20products.pdf -->
                             Carbon is cycled through ecosystems in several different forms. It has a tendency to be 
                             attracted to oxygen and form gaseous compounds such as carbon dioxide (CO<sub>2</sub>) and
@@ -580,6 +616,44 @@
                             framing in our homes this carbon storage is life is around 100 years, around 30 years in
                             furniture, 30 years in railroad ties and around 6 years in pallets and paper. Carbon stored in
                             wood is only released back to the atmosphere when the wood product is burnt or decays. 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- tile Modal 6 -->
+<div class="tile-modal modal fade" id="tileModal6" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <h2>Contact Us</h2>
+                        <p class="item-intro text-muted">Feedback & Bug Report.</p>
+                        <p>
+                            If you like this extension, please give it a good rating in the <a href="https://chrome.google.com/webstore/detail/carbon-footprint-for-goog/ednfpjleaanokkjcgljbmamhlbkddcgh/reviews" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> Chrome Web Store</a>.
+                            <br><br>
+                            If you want to report any bug or issue, contact us at: 
+                            <a href="mailto:MapsCarbonFootprint@gmail.com" target="_top">
+                                <i class="fa fa-envelope" aria-hidden="true"></i> MapsCarbonFootprint@gmail.com
+                            </a>
+                        </p>
+                         <p>
+                            <ul class="list-inline social-buttons">
+                                <li><a href="http://www.facebook.com/pages/Carbon-Footprint-for-Google-Maps/217487891623173" target="_blank"><i class="fa fa-facebook fa-fw"></i></a></li>
+                                <li><a href="https://plus.google.com/b/112973863308036008385/112973863308036008385/posts" target="_blank"><i class="fa fa-google-plus fa-fw"></i></a></li>
+                                <li><a href="https://github.com/OiWorld/CarbonFootprintGoogleMap" target="_blank"><i class="fa fa-github fa-fw"></i></a></li>
+                                <li><a href="https://twitter.com/oiworld" target="_blank"><i class="fa fa-twitter fa-fw"></i></a></li>     
+                            </ul>
                         </p>
                     </div>
                 </div>

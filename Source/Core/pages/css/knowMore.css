@@ -319,6 +319,10 @@ body {
     webkit-tap-highlight-color: #fed136
 }
 
+#map {
+    height: 380px;
+    width: 100%;
+}
 /* Accordian Panel */
 .panel {
     border: none;
@@ -422,7 +426,7 @@ ul.social-buttons li a:hover .fa-github {
     width: calc(100% - 90px);
 }
 
-.form-unit {
+.form-unit, .form-unit-def {
     display: inline-block;
     width: 85px;
 }
@@ -438,4 +442,8 @@ input[type="radio"][name="unit"]:checked + span{
 #outputCalories, #outputAbsorption {
     padding: 15px 0 5px;
     font-size: 1.2em;
+}
+
+#customTreeInput {
+    display: none;
 }
