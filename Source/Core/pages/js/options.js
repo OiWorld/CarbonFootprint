@@ -8,6 +8,21 @@
 var options = {};
 
 /**
+ * detecting SAFARI browser
+ * 'chrom' filters down (chrom)e as well as (chrom)ium 
+ */
+
+if(navigator.userAgent.toLowerCase().indexOf("chrom") != -1){
+  options.isSafari = false; 
+}
+else {
+  if(navigator.userAgent.toLowerCase().indexOf("safari") != -1){
+    options.isSafari = true;
+    $("head,body").css("font-size", "0.86em");
+  }
+}
+
+/**
  * defines initial unit system
  */
 
@@ -178,6 +193,16 @@ options.setAlarm = function(time) {
 };
 
 /**
+ * returns message corresponding to given ID
+ * for safari only
+ * @return {string}
+ */
+
+options.getMessage = function(ID){
+  return options.messages[ID].message;
+};
+
+/**
  * Shows status in #message
  * @param {string} msgcode
  * @param {string} type
@@ -185,15 +210,15 @@ options.setAlarm = function(time) {
 
 options.showMessage = function(msgcode, type) {
   var status = $('#message');
-
-  browserServices.getLocalisation(msgcode, 0, function(trans, id) {
-    switch (type) {
+  if(!options.isSafari){
+    browserServices.getLocalisation(msgcode, 0, function(trans, id) {
+      switch (type) {
       case 'error':
         status
           .html(trans)
           .css('display', 'block')
           .css('background-color', '#fb5151');
-      break;
+        break;
       case 'good':
         status
           .html(trans)
@@ -202,9 +227,29 @@ options.showMessage = function(msgcode, type) {
         setTimeout(function() {
           status.css('display', 'none');
         }, 1200);
+        break;
+      }
+    });
+  }
+  else{
+    switch (type) {
+    case 'error':
+      status
+        .html(options.getMessage(msgcode))
+        .css('display', 'block')
+        .css('background-color', '#fb5151');
+      break;
+    case 'good':
+      status
+        .html(options.getMessage(msgcode))
+        .css('display', 'block')
+        .css('background-color', '#a6ff4d');
+      setTimeout(function() {
+        status.css('display', 'none');
+      }, 1200);
       break;
     }
-  });
+  }
 };
 
 /**
@@ -273,8 +318,11 @@ options.saveLocation = function() {
  */
 
 options.loadFuelPrices = function() {
-  var prices = options.settings.fuelPrices[
-    options.data.get('geoData').country_short];
+  var country = options.data.get('geoData');
+  country = country.country_short;
+  if(!country)
+    return;
+  var prices = options.settings.fuelPrices[country];
   var exchangeRate = options.settings.exchangeRates[
             options.data.get('currency')];
   if (!exchangeRate) {
@@ -408,7 +456,12 @@ options.toggleInputType = function(elem) {
       $('#fuel-consumed-per').prop('checked', false);
       $('#custom-values').prop('checked', false);
       browserServices.getLocalisation('feMessage', 0, function(trans, id) {
-        $('#usage-message').html(trans);
+        if(!options.isSafari){
+          $('#usage-message').html(trans);
+        }
+        else{
+          $('#usage-message').html(options.getMessage('feMessage'));
+        }
       });
     }
     else {
@@ -422,7 +475,12 @@ options.toggleInputType = function(elem) {
       $('#fuel-efficiency').prop('checked', false);
       $('#custom-values').prop('checked', false);
       browserServices.getLocalisation('fcpMessage', 0, function(trans, id) {
-        $('#usage-message').html(trans);
+        if(!options.isSafari){
+          $('#usage-message').html(trans);
+        }
+        else{
+          $('#usage-message').html(options.getMessage('fcpMessage'));
+        }
       });
     }
     else {
@@ -436,7 +494,12 @@ options.toggleInputType = function(elem) {
       $('#fuel-consumed-per').prop('checked', false);
       $('#fuel-efficiency').prop('checked', false);
       browserServices.getLocalisation('cvMessage', 0, function(trans, id) {
-        $('#usage-message').html(trans);
+        if(!options.isSafari){
+          $('#usage-message').html(trans);
+        }
+        else{
+          $('#usage-message').html(options.getMessage('cvMessage'));
+        }
       });
     }
     else {
@@ -549,10 +612,18 @@ options.mirrorCurrency = function(elem) {
 
 options.loadResources = function() {
   /**
-  * Sources: 
-  * https://www.epa.gov/sites/production/files/2015-11/documents/emission-factors_nov_2015.pdf
-  * http://www.biomassenergycentre.org.uk/portal/page?_pageid=75,163182&_dad=portal&_schema=PORTAL
-  */
+   * Sources: 
+   * https://www.epa.gov/sites/production/files/2015-11/documents/emission-factors_nov_2015.pdf
+   * http://www.biomassenergycentre.org.uk/portal/page?_pageid=75,163182&_dad=portal&_schema=PORTAL
+   */
+  var locale = (/(\w*)-/).exec(navigator.language)[1];
+  $.getJSON(browserServices.getFilePath('/_locales/' + locale + '/messages.json'), function(response) {
+    options.messages = response;
+  }).fail(function() {
+    $.getJSON(browserServices.getFilePath('/_locales/en/messages.json'), function(response) {
+      options.messages = response;
+    });
+  });
   $.getJSON(browserServices.getFilePath('/core/resources/fuels.json'), function(response) {
     options.fuels = response;
   });
@@ -582,6 +653,7 @@ options.listeners = function() {
   $('#save-button').on('click', options.saveOptions);
   $('.tab-button').on('click', function() {
     options.switchTab($(this));
+    options.loadFuelPrices();
   });
   $('#by-fuel-consumption,#direct-co-emission').on('click', function() {
     options.toggleInputSource($(this));
@@ -635,10 +707,33 @@ options.initStorageManager = function(cb) {
  */
 
 options.initSettings = function(cb) {
-  options.settings = new BackgroundDataAdapter(function() {
-    console.log('BackgroundDataAdapter initialised');
-    cb();
-  });
+  if(!options.isSafari){
+    options.settings = new BackgroundDataAdapter(function() {
+      console.log('BackgroundDataAdapter initialised');
+      cb();
+    });
+  }
+  else{
+    options.settings = {};
+    safari.self.tab.dispatchMessage("fuelPrices",{
+      type: "getItem"
+    });
+    safari.self.tab.dispatchMessage("exchangeRates",{
+      type: "getItem"
+    });
+    safari.self.addEventListener("message", function(response) {
+      if(response.name === 'exchangeRates'){
+        if(response.message !== null)
+          options.settings.exchangeRates = response.message.rates;
+        console.log(options.settings.exchangeRates);
+      }
+      else if(response.name === 'fuelPrices'){
+        if(response.message !== null)
+          options.settings.fuelPrices = response.message;
+        console.log(options.settings.fuelPrices);
+      }
+    }, false);
+  }
 };
 
 /**
@@ -661,12 +756,19 @@ options.populateMenus = function() {
  */
 
 options.loadMessages = function() {
+  console.log(options.messages);
   var i;
   for (i = 0; i < $('[data-language]').length; i++) {
-    browserServices.getLocalisation($($('[data-language]')[i]).data('language'), i, function(trans, index) {
+    if(!options.isSafari){
+      browserServices.getLocalisation($($('[data-language]')[i]).data('language'), i, function(trans, index) {
         var elm = $($('[data-language]')[index]);
         elm.html(trans);
-    });
+      });
+    }
+    else{
+      $($('[data-language]')[i])
+        .html(options.getMessage($($('[data-language]')[i]).data('language')));
+    }
   }
 };
 
@@ -675,10 +777,15 @@ $(document).on('DOMContentLoaded', function() {
 });
 
 $(document).ajaxComplete(function(event, xhr, settings) {
-  options[(/\/(\w*)\./).exec(settings.url)[1] + 'init'] = true;
+  if((/\w\/(\w*)\.json/).exec(settings.url) !== null)
+    options[(/\w\/(\w*)\./).exec(settings.url)[1] + 'init'] = true;
+  if((/maps.googleapis.com/).exec(settings.url) !== null)
+    options.mapsAPIloaded = true;
   if (options.fuelsinit === true &&
       options.currencyCodesinit === true &&
       options.countriesinit === true &&
+      options.messagesinit === true &&
+      options.mapsAPIloaded === true &&
       !options.populated) {
     options.populated = true;
     options.populateMenus();
@@ -691,10 +798,17 @@ $(document).ajaxComplete(function(event, xhr, settings) {
     options.loadFuelPrices();
   }
 });
-
+/*
 options.initStorageManager(function() {
   options.initSettings(function() {
+    console.log("asdas");
     options.loadResources();
     //googleAnalytics('UA-1471148-11');
   });
-});
+});*/
+
+
+options.initStorageManager(function(){});
+options.initSettings(function(){});
+options.loadResources(function(){});
+
