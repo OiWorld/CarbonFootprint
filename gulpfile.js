@@ -4,7 +4,6 @@ var Server = require('karma').Server;
 var stylish = require('jshint-stylish').reporter;
 var localizeForFirefox = require('chrome-to-firefox-translation');
 var flatten = require('gulp-flatten');
-var concat = require('gulp-concat');
 
 var lintFiles = ['source/**/*.js', '!Source/**/*.min.js', '!Source/Chrome/background/google-maps-api.js'];
 
