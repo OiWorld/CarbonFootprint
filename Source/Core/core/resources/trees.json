@@ -1,0 +1,27 @@
+{
+  "treeData" : {
+    "Cherry" : 26.9,
+    "Ginkgo" : 35.4,
+    "Zelkova" : 33.7,
+    "Buttonwood" : 55.6,
+    "Maple" : 20.5,
+    "Metasequoia" : 69.6,
+    "Locust" : 32.5,
+    "Tulip" : 101.9,
+    "Pine" : 7.3,
+    "Basswood" : 9.7,
+    "Hemlock" : 6.2,
+    "Elm" : 5.6,
+    "Chestnut" : 4.6,
+    "White Ash" : 4.1,
+    "Yellow Birch" : 3.7,
+    "Hackberry" : 5.9,
+    "Silver Maple" : 5.8,
+    "Bur Oak" : 4.6,
+    "White Oak" : 4.2,
+    "Ash" : 4.1,
+    "Red Maple" : 3.9,
+    "Sugar Maple" : 3.0
+  },
+  "_comments" : "CO2 emission in kg/tree/year"
+}

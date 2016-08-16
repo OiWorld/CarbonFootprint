@@ -14,17 +14,17 @@ new SettingsProvider(function(settingsProvider) {
   var core = new CarbonFootprintCore(settingsProvider, Helper);
   var mapsManager = new MapManager(core, settingsProvider);
   Helper.showPageAction(function() {
-    console.log(mapsManager.subtree);
-    var target = document.getElementsByTagName('body')[0],
-        observer = new MutationObserver(function() {
-          console.log('Observing!');
-          mapsManager.update();
-        });
-    observer.observe(target, {
-      attributes: true,
-      childList: true,
-      characterData: true,
-      subtree: mapsManager.subtree
-    });
+    console.log('Page Action Visible!');
+  });
+  var target = document.getElementsByTagName('body')[0],
+      observer = new MutationObserver(function() {
+        console.log('Observing!');
+        mapsManager.update();
+      });
+  observer.observe(target, {
+    attributes: true,
+    childList: true,
+    characterData: true,
+    subtree: mapsManager.subtree
   });
 });
