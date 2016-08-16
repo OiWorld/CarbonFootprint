@@ -7,16 +7,6 @@
 
 googleAnalytics('UA-1471148-10');
 
-chrome.runtime.onMessage.addListener(
-  function(request, sender) {
-    console.log('Request Received');
-    if (request.showPageAction) {
-      console.log('Show pageAction icon in tab: ' + sender.tab.id);
-      chrome.pageAction.show(sender.tab.id); // shows icon
-    }
-  }
-);
-
 chrome.alarms.onAlarm.addListener(
   function(alarm) {
     if (alarm.name === 'CarCheckupAlarm') {
@@ -192,3 +182,74 @@ background.jQuery.onload = function() {
   });
   window.setTimeout(background.updateResources, background.updateInt);
 };
+
+
+/**
+ * Array to maintain tabIds of tabs using extension
+ */
+
+background.tabids = [];
+
+/**
+ * Function to show pageAction and update pageAction Title
+ * Also push tabIds in background.tabids if it doesnt exist
+ */
+
+chrome.runtime.onMessage.addListener(
+  function(request, sender) {
+    console.log('Request Received');
+    if (request.showPageAction) {
+      console.log('Show pageAction icon in tab: ' + sender.tab.id);
+      if(background.tabids.indexOf(sender.tab.id) == -1) {
+        background.tabids.push(sender.tab.id);
+      }
+      chrome.pageAction.show(sender.tab.id); // shows icon
+    chrome.pageAction.setTitle({tabId:sender.tab.id,title:'Carbon Footprint'}); //update title
+    }
+  }
+);
+
+
+/**
+ * Function called if tab is closed
+ * deletes the tabId of closed tab
+ */
+
+chrome.tabs.onRemoved.addListener(function(tabid, removed) {
+  // console.log(tabid,removed);
+  var index = background.tabids.indexOf(tabid);
+  if (index > -1) {
+    background.tabids.splice(index, 1);
+  }
+})
+
+/**
+ * Function called if tabInfo (url,load status) is updated
+ * deletes the tabId if the extension is no longer used by checking with updated title of pageAction
+ */
+
+chrome.tabs.onUpdated.addListener(function(tabid,changeInfo,Tab) {
+  // console.log(tabid,changeInfo,Tab);
+  chrome.pageAction.getTitle({tabId:tabid},function(title) {
+    if(title != "Carbon Footprint") {
+      var index = background.tabids.indexOf(tabid);
+      if (index > -1) {
+        background.tabids.splice(index, 1);
+      }
+    }
+  })
+})
+
+/**
+ * Function called if storage is updated
+ * reloads all the tabs in backgrounds.tabids
+ */
+
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+  // console.log("Change Received!",changes,namespace);
+  if( 'calculationObject' in changes && namespace == 'sync') {
+    for(var i = 0; i < background.tabids.length; ++i) {
+      chrome.tabs.reload(background.tabids[i]);
+    }     
+  }
+});
