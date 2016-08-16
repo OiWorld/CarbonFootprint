@@ -5,7 +5,7 @@ var stylish = require('jshint-stylish').reporter;
 var localizeForFirefox = require('chrome-to-firefox-translation');
 var flatten = require('gulp-flatten');
 
-var lintFiles = ['source/**/*.js', '!Source/**/*.min.js', '!Source/Chrome/background/google-maps-api.js'];
+var lintFiles = ['Source/**/*.js', '!Source/**/*.min.js', '!Source/Chrome/background/google-maps-api.js'];
 
 var chormeBuildpath = 'Build/Chrome/';
 var firefoxBuildpath = 'Build/Firefox/';
