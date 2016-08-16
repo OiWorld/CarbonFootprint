@@ -4,6 +4,9 @@ var Server = require('karma').Server;
 var stylish = require('jshint-stylish').reporter;
 var localizeForFirefox = require('chrome-to-firefox-translation');
 var flatten = require('gulp-flatten');
+var run = require('jpm/lib/run');
+var cmd = require('jpm/lib/cmd');
+var argv = require('yargs').argv;
 
 var lintFiles = ['source/**/*.js', '!Source/**/*.min.js', '!Source/Chrome/background/google-maps-api.js'];
 
@@ -88,5 +91,23 @@ gulp.task('groupSafari', ['localesSafari', 'coreSafari', 'chromeShared','specifi
 
 gulp.task('group', ['groupChrome', 'groupFirefox', 'groupSafari']);
 
+gulp.task('runFirefox', ['groupFirefox'], function(done) {
+
+	if (!argv.b) {
+		console.error('You need to specify the firefox binary with -b');
+		return;
+	}
+
+	var dataObj = {
+		addonDir: __dirname + '/' + firefoxBuildpath,
+		binary: argv.b
+	};
+
+	cmd.prepare('run', dataObj, function(mf) {
+		run(mf, dataObj).then(null, console.error);
+	})();
+
+	done();
+});
 
 gulp.task('test', ['gjslint']);
