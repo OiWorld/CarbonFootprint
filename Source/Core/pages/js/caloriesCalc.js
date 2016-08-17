@@ -33,6 +33,7 @@ var caloriesForm = {
 	submit: function(form) {
 		var data = $('#caloriesForm').serializeObject();
 		var time = +data.unitVal;
+		// Convert data to US customary
 		if(data.unitSystem == "metric") {
 			data.speed *= 0.621371;
 			data.weight *= 2.20462;
@@ -41,7 +42,7 @@ var caloriesForm = {
 				time = data.unitVal/data.speed;
 			}
 		}
-		
+		//  Non-Negative value check
 		if( data.speed <= 0 || data.weight <= 0 || time <=0 ) {
 			alert("Invalid Data! Negative and Zero value not possible.");
 			return;
@@ -50,12 +51,20 @@ var caloriesForm = {
 		var caloriesPerHour ;
 		if( data.mode == "cycling" ) {
 			if(data.speed < 5.5) {
-				alert("Speed for cycling should be greater than 5.5mph !");
+				alert("Speed for cycling should be greater than 5.5mph or 8.9kph!");
 				return;
 			}
+			/**
+			 * Equation made from best fit line across two dimension (weight,speed)
+			 * based of data from sources for cycling
+			 */
 			caloriesPerHour = (((data.weight - 130)/75) * ((34*data.speed) - 135)) + ((59*data.speed)-236);
 		}
 		else {
+			/**
+			 * Equation made from best fit line across two dimension (weight,speed)
+			 * based of data from sources for running/walking
+			 */
 			caloriesPerHour = (((data.weight - 130)/75) * ((54.45*data.speed) + 13.65)) + ((94.3*data.speed)+24.6);
 		}
 		var caloriesBurnt = caloriesPerHour * time;
