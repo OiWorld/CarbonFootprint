@@ -125,7 +125,7 @@ ChromeSettingsProvider.prototype.getGHGEmission = function() {
  */
 
 ChromeSettingsProvider.prototype.getCarbonEmissionUnit = function() {
-  return this.get('units',{m: 'kg'}).m;
+  return this.get('units', {m: 'kg'}).m;
 };
 
 /**
@@ -141,7 +141,7 @@ ChromeSettingsProvider.prototype.getTravelRate = function() {
  * returns local currency
  * @return {number}
  */
-  
+
 ChromeSettingsProvider.prototype.getCurrency = function() {
   return this.get('currency', 3);
 };

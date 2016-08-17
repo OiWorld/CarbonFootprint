@@ -9,10 +9,10 @@ browserServices.checkBrowser = function() {
 		browser = 'firefox';
   /**
    * detecting SAFARI browser
-   * 'chrom' filters down (chrom)e as well as (chrom)ium 
+   * 'chrom' filters down (chrom)e as well as (chrom)ium
    */
-  if(!(navigator.userAgent.toLowerCase().indexOf("chrom") != -1)){
-    if(navigator.userAgent.toLowerCase().indexOf("safari") != -1)
+  if (!(navigator.userAgent.toLowerCase().indexOf('chrom') != -1)) {
+    if (navigator.userAgent.toLowerCase().indexOf('safari') != -1)
       browser = 'safari';
   }
   console.log(browser);
@@ -27,7 +27,7 @@ browserServices.getFirefoxLocalisation = function(key, index, cb) {
 	firefoxApi.getTranslation(key, index, cb);
 };
 
-browserServices.getLocalisation = function (key, index, cb) {
+browserServices.getLocalisation = function(key, index, cb) {
 	var browser = browserServices.checkBrowser();
 	if (browser == 'chrome')
 		browserServices.getChromeLocalisation(key, index, cb);
@@ -108,7 +108,7 @@ browserServices.getFirefoxFilePath = function(path) {
 };
 
 browserServices.getSafariFilePath = function(path) {
-  return (safari.extension.baseURI + path).replace(/(\w)\/\//,"$1/");
+  return (safari.extension.baseURI + path).replace(/(\w)\/\//, '$1/');
 };
 
 browserServices.getFilePath = function(path) {

@@ -27,7 +27,7 @@ var HereMapsManager = function(footprintCore, settingsProvider) {
 
 HereMapsManager.prototype.getMode = function(route) {
   // var mode = route.getAttribute('data-mode');
-  if(!route.classList[1])
+  if (!route.classList[1])
     return 'pt';
   var mode = route.classList[1].match(/route_card_(.*)/)[1];
   console.log('Route mode: ' + mode);
@@ -121,19 +121,19 @@ HereMapsManager.prototype.convertTime = function(timeStr) {
     var days = (/ (\w*)d/).exec(timeStr);
     var hrs = (/ (\w*)h/).exec(timeStr);
     var mins = (/ (\w*)m/).exec(timeStr);
-    if(hrs){
+    if (hrs) {
       hrs = parseFloat(hrs[1]);
     }
-    else{
+    else {
       hrs = 0;
     }
-    if(mins){
+    if (mins) {
       mins = parseFloat(mins[1]);
-      hrs += mins/60;
+      hrs += mins / 60;
     }
-    if(days){
+    if (days) {
       days = parseFloat(days[1]);
-      hrs += days*24;
+      hrs += days * 24;
     }
     return hrs;
   }

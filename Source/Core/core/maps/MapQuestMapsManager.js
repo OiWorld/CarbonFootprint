@@ -123,7 +123,7 @@ MapQuestMapsManager.prototype.update = function() {
   console.log('update!');
   if (this.isDriving()) {
     var distanceString = this.getDistanceString();
-    if(distanceString) {    
+    if (distanceString) {
       var distanceInKm = this.convertDistance(distanceString);
       this.insertFootprintElement(
         this.footprintCore.createFootprintElement(distanceInKm)
