@@ -81,7 +81,7 @@ if (background.isChrome) {
 
   /**
    * Function to show pageAction and update pageAction Title
-   * Also push tabIds in background.tabids if it doesnt exist
+   * Also push tabIds in background.tabs if it doesnt exist
    */
 
   chrome.runtime.onMessage.addListener(
@@ -89,8 +89,8 @@ if (background.isChrome) {
       console.log('Request Received');
       if (request.showPageAction) {
         console.log('Show pageAction icon in tab: ' + sender.tab.id);
-        if (background.tabids.indexOf(sender.tab.id) == -1) {
-          background.tabids.push(sender.tab.id);
+        if (background.tabs.indexOf(sender.tab.id) == -1) {
+          background.tabs.push(sender.tab.id);
         }
         chrome.pageAction.show(sender.tab.id); // shows icon
         chrome.pageAction.setTitle({tabId: sender.tab.id, title: 'Carbon Footprint'}); //update title
@@ -121,9 +121,9 @@ if (background.isChrome) {
 
   chrome.tabs.onRemoved.addListener(function(tabid, removed) {
     // console.log(tabid,removed);
-    var index = background.tabids.indexOf(tabid);
+    var index = background.tabs.indexOf(tabid);
     if (index > -1) {
-      background.tabids.splice(index, 1);
+      background.tabs.splice(index, 1);
     }
   });
 
@@ -136,9 +136,9 @@ if (background.isChrome) {
     // console.log(tabid,changeInfo,Tab);
     chrome.pageAction.getTitle({tabId: tabid},function(title) {
       if (title != 'Carbon Footprint') {
-        var index = background.tabids.indexOf(tabid);
+        var index = background.tabs.indexOf(tabid);
         if (index > -1) {
-          background.tabids.splice(index, 1);
+          background.tabs.splice(index, 1);
         }
       }
     });
@@ -146,14 +146,14 @@ if (background.isChrome) {
 
   /**
    * Function called if storage is updated
-   * reloads all the tabs in backgrounds.tabids
+   * reloads all the tabs in backgrounds.tabs
    */
 
   chrome.storage.onChanged.addListener(function(changes, namespace) {
     // console.log("Change Received!",changes,namespace);
     if ('calculationObject' in changes && namespace == 'sync') {
-      for (var i = 0; i < background.tabids.length; ++i) {
-        chrome.tabs.reload(background.tabids[i]);
+      for (var i = 0; i < background.tabs.length; ++i) {
+        chrome.tabs.reload(background.tabs[i]);
       }
     }
   });
