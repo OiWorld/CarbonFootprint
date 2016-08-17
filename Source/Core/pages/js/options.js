@@ -319,9 +319,9 @@ options.saveLocation = function() {
 
 options.loadFuelPrices = function() {
   var country = options.data.get('geoData');
-  country = country.country_short;
   if(!country)
     return;
+  country = country.country_short;
   var prices = options.settings.fuelPrices[country];
   var exchangeRate = options.settings.exchangeRates[
             options.data.get('currency')];
@@ -734,6 +734,7 @@ options.initSettings = function(cb) {
       }
     }, false);
   }
+  cb();
 };
 
 /**
@@ -798,17 +799,11 @@ $(document).ajaxComplete(function(event, xhr, settings) {
     options.loadFuelPrices();
   }
 });
-/*
+
 options.initStorageManager(function() {
   options.initSettings(function() {
-    console.log("asdas");
     options.loadResources();
     //googleAnalytics('UA-1471148-11');
   });
-});*/
-
-
-options.initStorageManager(function(){});
-options.initSettings(function(){});
-options.loadResources(function(){});
+});
 
