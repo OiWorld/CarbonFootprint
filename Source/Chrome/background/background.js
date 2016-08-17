@@ -1,5 +1,5 @@
 /**
- * Background listeners of the extension
+ * Background listeners of the extension for Safari and Chrome
  * @author Kolpa (Kolya Opahle)
  * @author PrateekGupta1509 (Prateek Gupta)
  * @author heychirag (Chirag Arora)
