@@ -305,9 +305,10 @@ options.saveLocation = function() {
         );
       options.data.set('currency', options.countries[
         options.data.get('geoData').country_short].currency);
-      $('#currency-codes').append($('<option></option>')
-                                  .val(options.data.get('currency'))
-                                  .html(options.data.get('currency')));
+      if($("#currency-codes").children().length === 0)
+        $('#currency-codes').append($('<option></option>')
+                                    .val(options.data.get('currency'))
+                                    .html(options.data.get('currency')));
       options.data.store();
     });
   });
@@ -322,6 +323,7 @@ options.loadFuelPrices = function() {
   if (!country)
     return;
   country = country.country_short;
+  console.log(options.settings.fuelPrices,options.settings.exchangeRates);
   var prices = options.settings.fuelPrices[country];
   var exchangeRate = options.settings.exchangeRates[
             options.data.get('currency')];
@@ -359,8 +361,13 @@ options.loadSavedData = function() {
                         .replace(/ undefined,|undefined,/g, ''));
     $('#reLocation').show();
     $('[id="currency-codes"]')
-      .val(options
-           .countries[options.data.get('geoData').country_short].currency);
+      .val(
+        options.countries[options.data.get('geoData').country_short].currency
+      );
+    if($("#currency-codes").children().length === 0)
+      $('#currency-codes').append($('<option></option>')
+                                  .val(options.data.get('currency'))
+                                  .html(options.data.get('currency')));
   }
   options.fType = $('#fuel-type').val();
   //restore only if values were saved once
@@ -697,8 +704,8 @@ options.listeners = function() {
 options.initStorageManager = function(cb) {
   options.data = new StorageManager('calculationObject', function() {
     console.log('StorageManager Initialised');
-    cb();
   });
+  cb();
 };
 
 /**
@@ -710,7 +717,6 @@ options.initSettings = function(cb) {
   if (!options.isSafari) {
     options.settings = new BackgroundDataAdapter(function() {
       console.log('BackgroundDataAdapter initialised');
-      cb();
     });
   }
   else {
