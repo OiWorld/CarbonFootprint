@@ -211,11 +211,9 @@ CarbonFootprintCore.prototype.computeTravelCost = function(distance) {
 
 CarbonFootprintCore.prototype.createTravelCostElement = function(distance) {
   var e = document.createElement('div');
-  var knowMoreUrl = this.helper.getFilePath('pages/knowMore.html');
-  e.innerHTML = '<a href=' + knowMoreUrl + ' target=_blank' + ' ' +
-    'class=travelCost id=travelCost>' +
+  e.innerHTML = '<div class=travelCost id=travelCost>' +
     this.computeTravelCost(distance).toFixed(2).toString() + ' ' +
-    this.settingsProvider.getCurrency() + '</a>';
+    this.settingsProvider.getCurrency() + '</div>';
   return e;
 };
 
