@@ -7,22 +7,6 @@
 
 googleAnalytics('UA-1471148-10');
 
-chrome.alarms.onAlarm.addListener(
-  function(alarm) {
-    if (alarm.name === 'CarCheckupAlarm') {
-      chrome.notifications.create('CarCheckupNotification', {
-        type: 'basic',
-        iconUrl: 'images/globe-256.png',
-        title: chrome.i18n.getMessage('notificationTitle'),
-        message: chrome.i18n.getMessage('notificationMessage') +
-          ' ' + chrome.i18n.getMessage('notificationInfoText'),
-        eventTime: alarm.scheduledTime,
-        requireInteraction: true
-      });
-    }
-  }
-);
-
 /**
  * namespace for background
  */
@@ -30,42 +14,303 @@ chrome.alarms.onAlarm.addListener(
 var background = {};
 
 /**
- * script element for xml2json
+ * check if the browser is chrome or safari
  */
 
-background.xml2json = document.createElement('script');
+background.isChrome = (function(){
+  if(navigator.userAgent.toLowerCase().indexOf("chrome") != -1){
+    background.isSafari = false; 
+    return true;
+  }
+  else {
+    if(navigator.userAgent.toLowerCase().indexOf("safari") != -1)
+      background.isSafari = true;
+    return false;
+  }
+})();
 
 /**
- * binds source of xml2json script
- * @const
+ * array where active tabs are stored
  */
 
-background.xml2json.src = '/background/xml2json.min.js';
+background.tabs = [];
 
 /**
- * loads xml2json converter library
+ * CHROME APIs
  */
 
-document.getElementsByTagName('head')[0].appendChild(background.xml2json);
+if(background.isChrome){
+
+  /**
+   * script element for xml2json
+   */
+
+  background.xml2json = document.createElement('script');
+
+  /**
+   * binds source of xml2json script
+   * @const
+   */
+
+  background.xml2json.src = '/background/xml2json.min.js';
+
+  /**
+   * loads xml2json converter library
+   */
+
+  document.getElementsByTagName('head')[0].appendChild(background.xml2json);
+
+  /**
+   * script element for jQuery
+   */
+
+  background.jQuery = document.createElement('script');
+
+  /**
+   * binds source of jQuery script
+   * @const
+   */
+
+  background.jQuery.src = '/pages/js/jquery.min.js';
+
+  /**
+   * loads jQuery
+   */
+
+  document.getElementsByTagName('head')[0].appendChild(background.jQuery);
+
+  /**
+   * Function to show pageAction and update pageAction Title
+   * Also push tabIds in background.tabids if it doesnt exist
+   */
+
+  chrome.runtime.onMessage.addListener(
+    function(request, sender) {
+      console.log('Request Received');
+      if (request.showPageAction) {
+        console.log('Show pageAction icon in tab: ' + sender.tab.id);
+        if(background.tabids.indexOf(sender.tab.id) == -1) {
+          background.tabids.push(sender.tab.id);
+        }
+        chrome.pageAction.show(sender.tab.id); // shows icon
+        chrome.pageAction.setTitle({tabId:sender.tab.id,title:'Carbon Footprint'}); //update title
+      }
+    }
+  );
+
+  chrome.alarms.onAlarm.addListener(
+    function(alarm) {
+      if (alarm.name === 'CarCheckupAlarm') {
+        chrome.notifications.create('CarCheckupNotification', {
+          type: 'basic',
+          iconUrl: 'images/globe-256.png',
+          title: chrome.i18n.getMessage('notificationTitle'),
+          message: chrome.i18n.getMessage('notificationMessage') +
+            ' ' + chrome.i18n.getMessage('notificationInfoText'),
+          eventTime: alarm.scheduledTime,
+          requireInteraction: true
+        });
+      }
+    }
+  );
+
+  /**
+   * Function called if tab is closed
+   * deletes the tabId of closed tab
+   */
+
+  chrome.tabs.onRemoved.addListener(function(tabid, removed) {
+    // console.log(tabid,removed);
+    var index = background.tabids.indexOf(tabid);
+    if (index > -1) {
+      background.tabids.splice(index, 1);
+    }
+  });
+
+  /**
+   * Function called if tabInfo (url,load status) is updated
+   * deletes the tabId if the extension is no longer used by checking with updated title of pageAction
+   */
+
+  chrome.tabs.onUpdated.addListener(function(tabid,changeInfo,Tab) {
+    // console.log(tabid,changeInfo,Tab);
+    chrome.pageAction.getTitle({tabId:tabid},function(title) {
+      if(title != "Carbon Footprint") {
+        var index = background.tabids.indexOf(tabid);
+        if (index > -1) {
+          background.tabids.splice(index, 1);
+        }
+      }
+    });
+  });
+
+  /**
+   * Function called if storage is updated
+   * reloads all the tabs in backgrounds.tabids
+   */
+
+  chrome.storage.onChanged.addListener(function(changes, namespace) {
+    // console.log("Change Received!",changes,namespace);
+    if( 'calculationObject' in changes && namespace == 'sync') {
+      for(var i = 0; i < background.tabids.length; ++i) {
+        chrome.tabs.reload(background.tabids[i]);
+      }
+    }
+  });
+}
 
 /**
- * script element for jQuery
+ * SAFARI APIs
  */
 
-background.jQuery = document.createElement('script');
+if(background.isSafari){
+  safari.application.addEventListener('message', function(response) {
+    if (response.message) {
+      if (response.message.type === 'getItem') {
+        response
+          .target
+          .page
+          .dispatchMessage(response.name,
+                           safari.extension.settings.getItem(response.name));
+      }
+      if (response.message.type === 'setItem') {
+        safari
+          .extension
+          .settings
+          .setItem(response.name, response.message.item);
+      }
+    }
+    if (response.name === 'Initialised') {
+      console.log('Working in tab: ', response.target);
+      background.tabs.push(response.target);
+      response.target.addEventListener('close', function(response) {
+        background.tabs.splice(background.tabs.indexOf(response.target), 1);
+      }, false);
+    }
+  }, false);
 
-/**
- * binds source of jQuery script
- * @const
- */
+  safari.extension.settings.addEventListener('change', function(response) {
+    var temp = background.tabs;
+    background.tabs = [];
+    for (var i in temp) {
+      if (temp[i].page)
+        temp[i].page.dispatchMessage('reload');
+    }
+  }, false);
 
-background.jQuery.src = '/pages/js/jquery.min.js';
+  /**
+   * sets alarm for showing notification
+   * note: basic implementation due to unavailability of alarms API in safari
+   */
 
-/**
- * loads jQuery
- */
+  background.setNotificationAlarm = function() {
+    var settings = safari.extension.settings.getItem('calculationObject');
+    if (settings)
+      if (settings.showCheckupNotification) {
+        var lastCheckupDate = new Date(settings.lastCheckup);
+        var now = new Date();
+        var nextCheckupDate = new Date(settings.lastCheckup);
+        nextCheckupDate.addMonths(settings.nextCheckupMonth);
+        nextCheckupDate.addYears(settings.nextCheckupYear);
+        //shows notification 3 days prior
+        var threeDays = 3 * 24 * 3600 * 1000;// in milliseconds
+        var prior = new Date(nextCheckupDate.getTime() - threeDays);
+        // time difference between 'now' and when to show notification
+        var diff = prior.getTime() - now.getTime();
+        if (diff <= 0) {
+          background.showNotification();
+        }
+        // reset lastcheckup when 'now' has passed checkup date
+        if (now.getTime > nextCheckupDate.getTime) {
+          var dd = nextCheckupDate.getDate();
+          var mm = nextCheckupDate.getMonth() + 1;
+          var yyyy = nextCheckupDate.getFullYear();
+          if (dd < 10) {
+            dd = '0' + dd;
+          }
+          if (mm < 10) {
+            mm = '0' + mm;
+          }
+          var newlastCheckup = mm + '/' + dd + '/' + yyyy;
+          settings.lastCheckup = newlastCheckup;
+          safari.extension.settings.setItem('calculationObject', settings);
+        }
+      }
+  };
 
-document.getElementsByTagName('head')[0].appendChild(background.jQuery);
+  /**
+   * shows checkup notification when called
+   */
+
+  background.showNotification = function() {
+    if (!'Notification' in window) {
+      // If the browser version is unsupported, remain silent.
+      console.log('Browser Not Supprted');
+      return;
+    }
+    console.log(Notification.permission);
+    if (Notification.permission === 'default') {
+      Notification.requestPermission(function() {
+        background.showNotification();
+      });
+    }
+    else if (Notification.permission === 'granted') {
+      var n = new Notification(
+        background.getMessage('notificationTitle'),
+        {
+          'body': background.getMessage('notificationInfoText'),
+          'tag' : 'checkupNotification'
+        }
+      );
+      n.onclick = function() {
+        safari.application.activeBrowserWindow.openTab().url =
+          safari.extension.baseURI + 'pages/knowMore.html';
+      };
+    }
+  };
+
+  /**
+   * return requested message with ID
+   * @param {string} ID
+   * @return {string}
+   */
+
+  background.getMessage = function(ID) {
+    return background.messages[ID].message;
+  };
+
+  /**
+   * loads locale messages since safari has no support for i18n
+   * loads en locale messages as default
+   */
+
+  background.loadMessages = function() {
+    var URL = safari.extension.baseURI;
+    var locale = (/(\w*)-/).exec(navigator.language)[1];
+    $.ajax({
+      type: 'GET',
+      url: URL + '_locales/' + locale + '/messages.json',
+      success: function(response) {
+        background.messages = JSON.parse(response);
+      },
+      complete: function() {
+        background.setNotificationAlarm();
+      },
+      error: function() {
+        $.ajax({
+          type: 'GET',
+          url: URL + '_locales/en/messages.json',
+          success: function(response) {
+            background.messages = JSON.parse(response);
+          },
+          complete: function() {
+            background.setNotificationAlarm();
+          }
+        });
+      }
+    });
+  };
+}
 
 /**
  * update interval (1 week in ms)
@@ -78,18 +323,26 @@ background.updateInt = 7 * 24 * 3600 * 1000;
  * calls fixer.io api to get exchange rates
  */
 
+console.log(background.isChrome,background.isSafari);
+
 background.updateExchangeRates = function() {
+  var exchangeRates;
   $.ajax({
     type: 'GET',
     url: 'http://api.fixer.io/latest?base=USD',
     success: function(response) {
-      background.storeObj.exchangeRates = response;
+      exchangeRates = response;
     },
     complete: function() {
-      var date = new Date();
-      background.storeObj.time = date.getTime();
-      chrome.storage.sync.set(background.storeObj);
-      console.log(background.storeObj);
+      console.log(exchangeRates);
+      if(background.isChrome){
+        var storeObj = {};
+        storeObj.exchangeRates = exchangeRates;
+        chrome.storage.sync.set(storeObj);
+      }
+      else if(background.isSafari){
+        safari.extension.settings.setItem('exchangeRates',exchangeRates);
+      }
     }
   });
 };
@@ -132,8 +385,14 @@ background.updateFuelPrices = function() {
               callServer();
             }
             else {
-              background.storeObj.fuelPrices = finalObj;
-              background.updateExchangeRates();
+              if(background.isChrome){
+                var storeObj = {};
+                storeObj.fuelPrices = finalObj;
+                chrome.storage.sync.set(storeObj);
+              }
+              else if(background.isSafari){
+                safari.extension.settings.setItem('fuelPrices', finalObj); 
+              }
             }
           }
         });
@@ -146,8 +405,18 @@ background.updateFuelPrices = function() {
  */
 
 background.updateResources = function() {
-  background.storeObj = {};
   background.updateFuelPrices();
+  background.updateExchangeRates();
+  var time = new Date();
+  time = time.getTime();
+  if(background.isChrome){
+    var storeObj = {};
+    storeObj.time = time;
+    chrome.storage.sync.set(storeObj);
+  }
+  if(background.isSafari){
+    safari.extension.settings.setItem('time', time);
+  }
 };
 
 /**
@@ -169,87 +438,42 @@ background.checkLastUpdate = function(prevTime) {
 
 /**
  * checks if apis need to be called after jQuery is loaded
+ * in CHROME only
  */
 
-background.jQuery.onload = function() {
-  chrome.storage.sync.get('time', function(response) {
-    if (!response.time) {
+if(background.isChrome){
+  background.jQuery.onload = function() {
+    chrome.storage.sync.get('time', function(response) {
+      if (!response.time) {
+        background.updateResources();
+      }
+      else if (background.checkLastUpdate(response.time)) {
+        background.updateResources();
+      }
+    });
+    window.setTimeout(background.updateResources, background.updateInt);
+  };
+}
+
+/**
+ * checks if apis need to be called after jQuery is loaded
+ * in SAFARI only
+ */
+
+if(background.isSafari){
+  window.onload = function() {
+    background.loadMessages();
+    var time = safari.extension.settings.getItem('time');
+    if (time === null) {
       background.updateResources();
     }
-    else if (background.checkLastUpdate(response.time)) {
+    else if (background.checkLastUpdate(time)) {
       background.updateResources();
     }
-  });
-  window.setTimeout(background.updateResources, background.updateInt);
-};
-
-
-/**
- * Array to maintain tabIds of tabs using extension
- */
-
-background.tabids = [];
-
-/**
- * Function to show pageAction and update pageAction Title
- * Also push tabIds in background.tabids if it doesnt exist
- */
-
-chrome.runtime.onMessage.addListener(
-  function(request, sender) {
-    console.log('Request Received');
-    if (request.showPageAction) {
-      console.log('Show pageAction icon in tab: ' + sender.tab.id);
-      if(background.tabids.indexOf(sender.tab.id) == -1) {
-        background.tabids.push(sender.tab.id);
-      }
-      chrome.pageAction.show(sender.tab.id); // shows icon
-    chrome.pageAction.setTitle({tabId:sender.tab.id,title:'Carbon Footprint'}); //update title
+    else {
+      console.log(safari.extension.settings.getItem('fuelPrices'));
+      console.log(safari.extension.settings.getItem('exchangeRates'));
     }
-  }
-);
-
-
-/**
- * Function called if tab is closed
- * deletes the tabId of closed tab
- */
-
-chrome.tabs.onRemoved.addListener(function(tabid, removed) {
-  // console.log(tabid,removed);
-  var index = background.tabids.indexOf(tabid);
-  if (index > -1) {
-    background.tabids.splice(index, 1);
-  }
-})
-
-/**
- * Function called if tabInfo (url,load status) is updated
- * deletes the tabId if the extension is no longer used by checking with updated title of pageAction
- */
-
-chrome.tabs.onUpdated.addListener(function(tabid,changeInfo,Tab) {
-  // console.log(tabid,changeInfo,Tab);
-  chrome.pageAction.getTitle({tabId:tabid},function(title) {
-    if(title != "Carbon Footprint") {
-      var index = background.tabids.indexOf(tabid);
-      if (index > -1) {
-        background.tabids.splice(index, 1);
-      }
-    }
-  })
-})
-
-/**
- * Function called if storage is updated
- * reloads all the tabs in backgrounds.tabids
- */
-
-chrome.storage.onChanged.addListener(function(changes, namespace) {
-  // console.log("Change Received!",changes,namespace);
-  if( 'calculationObject' in changes && namespace == 'sync') {
-    for(var i = 0; i < background.tabids.length; ++i) {
-      chrome.tabs.reload(background.tabids[i]);
-    }     
-  }
-});
+    window.setTimeout(background.updateResources, background.updateInt);
+  };
+}
