@@ -1,9 +1,9 @@
-var FirefoxHelper = function (argument) {
+var FirefoxHelper = function(argument) {
 
 };
 
 FirefoxHelper.getFilePath = function(filename) {
-	
+
 	return 'resource://carbonfootprint/data/' + filename;
 };
 

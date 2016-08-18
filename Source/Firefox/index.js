@@ -1,12 +1,12 @@
 var buttons = require('sdk/ui/button/action');
 var pageMod = require('sdk/page-mod');
 var tabs = require('sdk/tabs');
-var data = require("sdk/self").data;
-var locale = require("sdk/l10n").get;
-var storage = require("sdk/simple-storage").storage;
-var request = require("sdk/request").Request;
-var XMLHttpRequest = require("sdk/net/xhr").XMLHttpRequest;
-var { setTimeout } = require("sdk/timers");
+var data = require('sdk/self').data;
+var locale = require('sdk/l10n').get;
+var storage = require('sdk/simple-storage').storage;
+var request = require('sdk/request').Request;
+var XMLHttpRequest = require('sdk/net/xhr').XMLHttpRequest;
+var { setTimeout } = require('sdk/timers');
 
 var button = buttons.ActionButton({
   id: 'carbon-footprint-link',
@@ -63,7 +63,7 @@ pageMod.PageMod({
         wk.port.emit('storageGetResponse', {values: {}, tag: stor.tag});
     });
     wk.port.on('storageSetRequest', function(stor) {
-      
+
       for (var i in stor.data)
         storage[i] = stor.data[i];
       console.log(storage);
@@ -71,7 +71,7 @@ pageMod.PageMod({
   }
 });
 
-function onAttachListener (wk) {
+function onAttachListener(wk) {
   wk.port.on('showPageAction', function(ev) {
     console.log('showPageAction received');
     button.state('tab', {
@@ -97,13 +97,13 @@ function onAttachListener (wk) {
 var gmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?google\..*\/maps.*/,
   contentScriptFile: [
-    "./core/CarbonFootprintCore.js",
-    "./core/helpers/FirefoxHelper.js",
-    "./core/settings/FirefoxSettingsProvider.js",
-    "./core/maps/GoogleMapsManager.js",
-    "./core/init.js"
+    './core/CarbonFootprintCore.js',
+    './core/helpers/FirefoxHelper.js',
+    './core/settings/FirefoxSettingsProvider.js',
+    './core/maps/GoogleMapsManager.js',
+    './core/init.js'
   ],
-  contentScriptWhen: "start",
+  contentScriptWhen: 'start',
   onAttach: onAttachListener
 });
 
@@ -112,52 +112,52 @@ var gmaps = pageMod.PageMod({
 var gmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?openstreetmap.org\/.*/,
   contentScriptFile: [
-    "./core/CarbonFootprintCore.js",
-    "./core/helpers/FirefoxHelper.js",
-    "./core/settings/FirefoxSettingsProvider.js",
-    "./core/maps/OpenMapsManager.js",
-    "./core/init.js"
+    './core/CarbonFootprintCore.js',
+    './core/helpers/FirefoxHelper.js',
+    './core/settings/FirefoxSettingsProvider.js',
+    './core/maps/OpenMapsManager.js',
+    './core/init.js'
   ],
-  contentScriptWhen: "start",
+  contentScriptWhen: 'start',
   onAttach: onAttachListener
 });
 
 var gmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?bing.com\/mapspreview.*/,
   contentScriptFile: [
-    "./core/CarbonFootprintCore.js",
-    "./core/helpers/FirefoxHelper.js",
-    "./core/settings/FirefoxSettingsProvider.js",
-    "./core/maps/BingMapsManager.js",
-    "./core/init.js"
+    './core/CarbonFootprintCore.js',
+    './core/helpers/FirefoxHelper.js',
+    './core/settings/FirefoxSettingsProvider.js',
+    './core/maps/BingMapsManager.js',
+    './core/init.js'
   ],
-  contentScriptWhen: "start",
+  contentScriptWhen: 'start',
   onAttach: onAttachListener
 });
 
 var gmaps = pageMod.PageMod({
   include: /https?:\/\/.*\.here.com\/.*/,
   contentScriptFile: [
-    "./core/CarbonFootprintCore.js",
-    "./core/helpers/FirefoxHelper.js",
-    "./core/settings/FirefoxSettingsProvider.js",
-    "./core/maps/HereMapsManager.js",
-    "./core/init.js"
+    './core/CarbonFootprintCore.js',
+    './core/helpers/FirefoxHelper.js',
+    './core/settings/FirefoxSettingsProvider.js',
+    './core/maps/HereMapsManager.js',
+    './core/init.js'
   ],
-  contentScriptWhen: "start",
+  contentScriptWhen: 'start',
   onAttach: onAttachListener
 });
 
 var gmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?mapquest.com\/.*/,
   contentScriptFile: [
-    "./core/CarbonFootprintCore.js",
-    "./core/helpers/FirefoxHelper.js",
-    "./core/settings/FirefoxSettingsProvider.js",
-    "./core/maps/MapQuestMapsManager.js",
-    "./core/init.js"
+    './core/CarbonFootprintCore.js',
+    './core/helpers/FirefoxHelper.js',
+    './core/settings/FirefoxSettingsProvider.js',
+    './core/maps/MapQuestMapsManager.js',
+    './core/init.js'
   ],
-  contentScriptWhen: "start",
+  contentScriptWhen: 'start',
   onAttach: onAttachListener
 });
 
@@ -169,14 +169,14 @@ updater.updateExchangeRates = function() {
   request({
     url: 'http://api.fixer.io/latest?base=USD',
     onComplete: function(response) {
-      if(response.status === 200) {
+      if (response.status === 200) {
         storage.exchangeRates = response.json;
         var date = new Date();
         storage.time = date.getTime();
       }
     }
   }).get();
-}
+};
 
 updater.updateFuelPrices = function() {
   var site = 'http://www.globalpetrolprices.com/api/getGasXML_weekly.php?',
@@ -188,12 +188,12 @@ updater.updateFuelPrices = function() {
 
   var done = function() {
     storage.fuelPrices = finalobj;
-  }
+  };
 
   var parseXml = function(xml) {
     var countries = xml.getElementsByTagName('mtc:country');
 
-    for(country of countries) {
+    for (country of countries) {
       if (!(country.getAttribute('id') in finalobj)) {
         finalobj[country.getAttribute('id')] = {};
       }
@@ -210,11 +210,11 @@ updater.updateFuelPrices = function() {
       doRequest();
     else
       done();
-  }
+  };
 
   var doRequest = function() {
     var url = site + fuel + type + cnc + key;
-    
+
     var req = new XMLHttpRequest();
     req.open('GET', url);
 
@@ -224,12 +224,12 @@ updater.updateFuelPrices = function() {
           parseXml(req.responseXML);
         }
       }
-    }
+    };
 
     req.send();
-  }
+  };
   doRequest();
-}
+};
 
 updater.updateInt = 7 * 24 * 3600 * 1000;
 
@@ -247,7 +247,7 @@ updater.checkLastUpdate = function(prevTime) {
 updater.doUpdate = function() {
   updater.updateFuelPrices();
   updater.updateExchangeRates();
-}
+};
 
 setTimeout(updater.doUpdate, updater.updateInt);
 

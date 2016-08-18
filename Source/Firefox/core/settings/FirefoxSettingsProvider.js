@@ -14,7 +14,7 @@
 var FirefoxSettingsProvider = function(cb) {
   var selfe = this;
   selfe.usingDefaultListeners = [];
-  self.port.emit('storageGetRequest',{tag: 9001, storageKey: 'calculationObject'});
+  self.port.emit('storageGetRequest', {tag: 9001, storageKey: 'calculationObject'});
   self.port.on('storageGetResponse', function(storage) {
     if (storage.tag === 9001) {
       if (storage.values)
@@ -116,7 +116,7 @@ FirefoxSettingsProvider.prototype.getGHGEmission = function() {
  */
 
 FirefoxSettingsProvider.prototype.getCarbonEmissionUnit = function() {
-  return this.get('units',{m: 'kg'}).m;
+  return this.get('units', {m: 'kg'}).m;
 };
 
 /**
@@ -132,7 +132,7 @@ FirefoxSettingsProvider.prototype.getTravelRate = function() {
  * returns local currency
  * @return {number}
  */
-  
+
 FirefoxSettingsProvider.prototype.getCurrency = function() {
   return this.get('currency', 3);
 };

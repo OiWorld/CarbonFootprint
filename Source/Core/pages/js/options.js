@@ -9,16 +9,16 @@ var options = {};
 
 /**
  * detecting SAFARI browser
- * 'chrom' filters down (chrom)e as well as (chrom)ium 
+ * 'chrom' filters down (chrom)e as well as (chrom)ium
  */
 
-if(navigator.userAgent.toLowerCase().indexOf("chrom") != -1){
-  options.isSafari = false; 
+if (navigator.userAgent.toLowerCase().indexOf('chrom') != -1) {
+  options.isSafari = false;
 }
 else {
-  if(navigator.userAgent.toLowerCase().indexOf("safari") != -1){
+  if (navigator.userAgent.toLowerCase().indexOf('safari') != -1) {
     options.isSafari = true;
-    $("head,body").css("font-size", "0.86em");
+    $('head,body').css('font-size', '0.86em');
   }
 }
 
@@ -198,7 +198,7 @@ options.setAlarm = function(time) {
  * @return {string}
  */
 
-options.getMessage = function(ID){
+options.getMessage = function(ID) {
   return options.messages[ID].message;
 };
 
@@ -210,7 +210,7 @@ options.getMessage = function(ID){
 
 options.showMessage = function(msgcode, type) {
   var status = $('#message');
-  if(!options.isSafari){
+  if (!options.isSafari) {
     browserServices.getLocalisation(msgcode, 0, function(trans, id) {
       switch (type) {
       case 'error':
@@ -231,7 +231,7 @@ options.showMessage = function(msgcode, type) {
       }
     });
   }
-  else{
+  else {
     switch (type) {
     case 'error':
       status
@@ -319,7 +319,7 @@ options.saveLocation = function() {
 
 options.loadFuelPrices = function() {
   var country = options.data.get('geoData');
-  if(!country)
+  if (!country)
     return;
   country = country.country_short;
   var prices = options.settings.fuelPrices[country];
@@ -456,10 +456,10 @@ options.toggleInputType = function(elem) {
       $('#fuel-consumed-per').prop('checked', false);
       $('#custom-values').prop('checked', false);
       browserServices.getLocalisation('feMessage', 0, function(trans, id) {
-        if(!options.isSafari){
+        if (!options.isSafari) {
           $('#usage-message').html(trans);
         }
-        else{
+        else {
           $('#usage-message').html(options.getMessage('feMessage'));
         }
       });
@@ -475,10 +475,10 @@ options.toggleInputType = function(elem) {
       $('#fuel-efficiency').prop('checked', false);
       $('#custom-values').prop('checked', false);
       browserServices.getLocalisation('fcpMessage', 0, function(trans, id) {
-        if(!options.isSafari){
+        if (!options.isSafari) {
           $('#usage-message').html(trans);
         }
-        else{
+        else {
           $('#usage-message').html(options.getMessage('fcpMessage'));
         }
       });
@@ -494,10 +494,10 @@ options.toggleInputType = function(elem) {
       $('#fuel-consumed-per').prop('checked', false);
       $('#fuel-efficiency').prop('checked', false);
       browserServices.getLocalisation('cvMessage', 0, function(trans, id) {
-        if(!options.isSafari){
+        if (!options.isSafari) {
           $('#usage-message').html(trans);
         }
-        else{
+        else {
           $('#usage-message').html(options.getMessage('cvMessage'));
         }
       });
@@ -601,7 +601,7 @@ options.mirrorFuelValues = function(elem) {
  * makes change in currency reflect in both drop-downs
  * @param {Element} elem
  */
-  
+
 options.mirrorCurrency = function(elem) {
   $('[id="currency-codes"]').val(elem.prop('value'));
 };
@@ -612,7 +612,7 @@ options.mirrorCurrency = function(elem) {
 
 options.loadResources = function() {
   /**
-   * Sources: 
+   * Sources:
    * https://www.epa.gov/sites/production/files/2015-11/documents/emission-factors_nov_2015.pdf
    * http://www.biomassenergycentre.org.uk/portal/page?_pageid=75,163182&_dad=portal&_schema=PORTAL
    */
@@ -707,28 +707,28 @@ options.initStorageManager = function(cb) {
  */
 
 options.initSettings = function(cb) {
-  if(!options.isSafari){
+  if (!options.isSafari) {
     options.settings = new BackgroundDataAdapter(function() {
       console.log('BackgroundDataAdapter initialised');
       cb();
     });
   }
-  else{
+  else {
     options.settings = {};
-    safari.self.tab.dispatchMessage("fuelPrices",{
-      type: "getItem"
+    safari.self.tab.dispatchMessage('fuelPrices', {
+      type: 'getItem'
     });
-    safari.self.tab.dispatchMessage("exchangeRates",{
-      type: "getItem"
+    safari.self.tab.dispatchMessage('exchangeRates', {
+      type: 'getItem'
     });
-    safari.self.addEventListener("message", function(response) {
-      if(response.name === 'exchangeRates'){
-        if(response.message !== null)
+    safari.self.addEventListener('message', function(response) {
+      if (response.name === 'exchangeRates') {
+        if (response.message !== null)
           options.settings.exchangeRates = response.message.rates;
         console.log(options.settings.exchangeRates);
       }
-      else if(response.name === 'fuelPrices'){
-        if(response.message !== null)
+      else if (response.name === 'fuelPrices') {
+        if (response.message !== null)
           options.settings.fuelPrices = response.message;
         console.log(options.settings.fuelPrices);
       }
@@ -760,13 +760,13 @@ options.loadMessages = function() {
   console.log(options.messages);
   var i;
   for (i = 0; i < $('[data-language]').length; i++) {
-    if(!options.isSafari){
+    if (!options.isSafari) {
       browserServices.getLocalisation($($('[data-language]')[i]).data('language'), i, function(trans, index) {
         var elm = $($('[data-language]')[index]);
         elm.html(trans);
       });
     }
-    else{
+    else {
       $($('[data-language]')[i])
         .html(options.getMessage($($('[data-language]')[i]).data('language')));
     }
@@ -778,9 +778,9 @@ $(document).on('DOMContentLoaded', function() {
 });
 
 $(document).ajaxComplete(function(event, xhr, settings) {
-  if((/\w\/(\w*)\.json/).exec(settings.url) !== null)
+  if ((/\w\/(\w*)\.json/).exec(settings.url) !== null)
     options[(/\w\/(\w*)\./).exec(settings.url)[1] + 'init'] = true;
-  if((/maps.googleapis.com/).exec(settings.url) !== null)
+  if ((/maps.googleapis.com/).exec(settings.url) !== null)
     options.mapsAPIloaded = true;
   if (options.fuelsinit === true &&
       options.currencyCodesinit === true &&

@@ -12,18 +12,18 @@
 
 function openTab(element) {
   var isSafari = false;
-  if(!(navigator.userAgent.toLowerCase().indexOf("chrom") != -1)){
-    if(navigator.userAgent.toLowerCase().indexOf("safari") != -1){
+  if (!(navigator.userAgent.toLowerCase().indexOf('chrom') != -1)) {
+    if (navigator.userAgent.toLowerCase().indexOf('safari') != -1) {
       isSafari = true;
     }
   }
-  if(!isSafari){
+  if (!isSafari) {
     window.close();
     chrome.tabs.create({
       url: chrome.extension.getURL('pages/' + element + '.html')
     });
   }
-  else{
+  else {
     safari.application.activeBrowserWindow.openTab().url =
       safari.extension.baseURI + 'pages/' + element + '.html';
     safari.self.hide();
