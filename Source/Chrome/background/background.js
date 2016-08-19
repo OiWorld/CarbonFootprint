@@ -385,6 +385,7 @@ background.updateFuelPrices = function() {
               callServer();
             }
             else {
+              console.log(finalObj);
               if (background.isChrome) {
                 var storeObj = {};
                 storeObj.fuelPrices = finalObj;
