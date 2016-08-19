@@ -399,7 +399,7 @@ injector.styleSheet = "var head  = document.getElementsByTagName('head')[0];" +
 
 safari
   .extension
-  .addContentScript(styleSheet, injector.allMaps, [], true);
+  .addContentScript(injector.styleSheet, injector.allMaps, [], true);
 
 
 /**
