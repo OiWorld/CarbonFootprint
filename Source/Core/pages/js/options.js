@@ -18,7 +18,7 @@ if (navigator.userAgent.toLowerCase().indexOf('chrom') != -1) {
 else {
   if (navigator.userAgent.toLowerCase().indexOf('safari') != -1) {
     options.isSafari = true;
-    $('head,body').css('font-size', '0.86em');
+    $('head,body').css('font-size', '0.78em');
   }
 }
 
@@ -601,7 +601,6 @@ options.mirrorFuelValues = function(elem) {
   options.fType = elem.prop('value');
   $('[id="fuel-type"]').val(options.fType);
   options.toggleUnits($('.save>:checkbox:checked'));
-  options.loadFuelPrices();
 };
 
 /**
@@ -660,7 +659,6 @@ options.listeners = function() {
   $('#save-button').on('click', options.saveOptions);
   $('.tab-button').on('click', function() {
     options.switchTab($(this));
-    options.loadFuelPrices();
   });
   $('#by-fuel-consumption,#direct-co-emission').on('click', function() {
     options.toggleInputSource($(this));
@@ -686,6 +684,9 @@ options.listeners = function() {
   });
   $('[id="currency-codes"]').on('change', function() {
     options.mirrorCurrency($(this));
+  });
+  $('#load-prices-button').on('click', function(){
+    options.loadFuelPrices();
   });
   //Prevents adding Hyphen(-) in the input field.
   $('#distance-value,#emission,#fuel-value,#fuel-cost')
@@ -799,11 +800,11 @@ $(document).ajaxComplete(function(event, xhr, settings) {
     options.loadMessages();
     options.loadSavedData();
   }
-  if (options.exchangeRatesinit === true &&
+  /*if (options.exchangeRatesinit === true &&
       !options.priceLoaded) {
     options.priceLoaded = true;
     options.loadFuelPrices();
-  }
+  }*/
 });
 
 options.initStorageManager(function() {
