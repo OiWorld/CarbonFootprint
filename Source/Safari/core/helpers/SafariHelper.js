@@ -4,6 +4,12 @@
  * @author heychirag (Chirag Arora)
  */
 
+/**
+ * SafariHelper namespace
+ * @constructor
+ * @param {|} argument
+ */
+
 var SafariHelper = function(argument) {
 
 };
@@ -30,7 +36,7 @@ SafariHelper.openUrl = function(url) {
 };
 
 /**
- * called to when extension intialises on a page
+ * called when extension intialises on a page
  * @param {function} cb
  */
 

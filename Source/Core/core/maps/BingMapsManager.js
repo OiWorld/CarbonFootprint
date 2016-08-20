@@ -28,6 +28,11 @@ BingMapsManager.prototype.isDriving = function() {
   return !!document.getElementsByClassName('dirBtnDrive dirBtnSelected')[0];
 };
 
+/**
+ * Checks if the route is by transit.
+ * @return {boolean}
+ */
+
 BingMapsManager.prototype.isTransit = function() {
   return !!document.getElementsByClassName('dirBtnTransit dirBtnSelected')[0];
 };
@@ -49,6 +54,11 @@ BingMapsManager.prototype.getAllDrivingRoutes = function() {
   }
   return drivingRoutes;
 };
+
+/**
+ * Gets transit routes.
+ * @return {string} routes
+ */
 
 BingMapsManager.prototype.getAllTransitRoutes = function() {
   var transitRoutes = [];
