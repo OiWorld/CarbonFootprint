@@ -118,19 +118,19 @@ BingMapsManager.prototype.convertTime = function(timeStr) {
     var days = (/ (\w*) d/).exec(timeStr);
     var hrs = (/ (\w*) h/).exec(timeStr);
     var mins = (/ (\w*) m/).exec(timeStr);
-    if(hrs){
+    if (hrs) {
       hrs = parseFloat(hrs[1]);
     }
-    else{
+    else {
       hrs = 0;
     }
-    if(mins){
+    if (mins) {
       mins = parseFloat(mins[1]);
-      hrs += mins/60;
+      hrs += mins / 60;
     }
-    if(days){
+    if (days) {
       days = parseFloat(days[1]);
-      hrs += days*24;
+      hrs += days * 24;
     }
     console.log(hrs);
     return hrs;

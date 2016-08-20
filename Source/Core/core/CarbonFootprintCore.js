@@ -55,10 +55,10 @@ CarbonFootprintCore.KG_TO_LBS = 2.204622621848775;
 
 CarbonFootprintCore.prototype.computeFootprint = function(data, type) {
   var footprint;
-  if(type=='t'){
+  if (type == 't') {
     footprint = data * this.settingsProvider.getPTCarbonEmission();
   }
-  else{
+  else {
     footprint = data * this.settingsProvider.getCarbonEmission();
   }
   return footprint;
@@ -110,15 +110,15 @@ CarbonFootprintCore.prototype.computeTrees = function(carbonFootprint) {
 
 CarbonFootprintCore.prototype.otherGasesString = function(distance) {
   if (this.settingsProvider.getGHGEmission() >= 0) {
-    return 'CH₄: ' + ( this.settingsProvider.getCH4Emission() * 1000 * distance ).toFixed(3) + 'g,  ' + 
-      'N₂O: ' + ( this.settingsProvider.getN2OEmission() * 1000 * distance ).toFixed(3) + 'g,  ' +
-      'GHG: '  + ( this.settingsProvider.getGHGEmission() * distance ).toFixed(2) + 'kg\n'; 
+    return 'CH₄: ' + (this.settingsProvider.getCH4Emission() * 1000 * distance).toFixed(3) + 'g,  ' +
+      'N₂O: ' + (this.settingsProvider.getN2OEmission() * 1000 * distance).toFixed(3) + 'g,  ' +
+      'GHG: ' + (this.settingsProvider.getGHGEmission() * distance).toFixed(2) + 'kg\n';
   }
-  return "";
+  return '';
 };
 
 /**
- * return an appropriate message based on trees required  
+ * return an appropriate message based on trees required
  * @param {number} trees
  * @return {string}
  */
@@ -154,16 +154,16 @@ CarbonFootprintCore.prototype.createHTMLElement = function(footprint) {
       treesStr = this.treesToString(this.computeTrees(footprint)),
       otherGasStr = this.otherGasesString(footprint),
       titleStr = otherGasStr + treesStr,
-      knowMoreUrl = this.helper.getFilePath('pages/knowMore.html');  
-  
+      knowMoreUrl = this.helper.getFilePath('pages/knowMore.html');
+
   console.log(titleStr);
-  
+
   e.innerHTML = '<a href=' + knowMoreUrl + ' target=\'_blank\' title=\'' +
     titleStr + '\' class=\'carbon\' id=\'carbon\'>' +
     this.footprintToString(footprint) +
     '</a> <a class=\'know-more-link\' href=' + knowMoreUrl +
     ' target=\'_blank\' title=\'' + titleStr + '\'>Know More</a>';
-  e.onh
+  e.onh;
   return e;
 };
 
@@ -174,7 +174,7 @@ CarbonFootprintCore.prototype.createHTMLElement = function(footprint) {
  */
 
 CarbonFootprintCore.prototype.createFootprintElement = function(distance) {
-  var footprint = this.computeFootprint(distance,'d');
+  var footprint = this.computeFootprint(distance, 'd');
   var element = this.createHTMLElement(footprint);
   return element;
 };
@@ -186,7 +186,7 @@ CarbonFootprintCore.prototype.createFootprintElement = function(distance) {
  */
 
 CarbonFootprintCore.prototype.createPTFootprintElement = function(time) {
-  var footprint = this.computeFootprint(time,'t');
+  var footprint = this.computeFootprint(time, 't');
   var element = this.createHTMLElement(footprint);
   return element;
 };
@@ -211,11 +211,9 @@ CarbonFootprintCore.prototype.computeTravelCost = function(distance) {
 
 CarbonFootprintCore.prototype.createTravelCostElement = function(distance) {
   var e = document.createElement('div');
-  var knowMoreUrl = this.helper.getFilePath('pages/knowMore.html');
-  e.innerHTML = '<a href=' + knowMoreUrl + ' target=_blank' + ' ' +
-    'class=travelCost id=travelCost>' +
+  e.innerHTML = '<div class=travelCost id=travelCost>' +
     this.computeTravelCost(distance).toFixed(2).toString() + ' ' +
-    this.settingsProvider.getCurrency() + '</a>';
+    this.settingsProvider.getCurrency() + '</div>';
   return e;
 };
 

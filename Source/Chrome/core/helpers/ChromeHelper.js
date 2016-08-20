@@ -1,4 +1,4 @@
-var ChromeHelper = function (argument) {
+var ChromeHelper = function(argument) {
 
 };
 

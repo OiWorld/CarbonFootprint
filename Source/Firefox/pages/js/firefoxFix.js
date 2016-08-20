@@ -27,7 +27,7 @@ function getTranslation(key, index, cb) {
 	self.port.emit('translationRequest', {key: key});
 	translationRequests.push({
 		key: key,
-		callback: function (translation) {
+		callback: function(translation) {
 			cb(translation, index);
 		}
 	});

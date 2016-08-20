@@ -1,5 +1,5 @@
 /**
- * Background listeners of the extension
+ * Background listeners of the extension for Safari and Chrome
  * @author Kolpa (Kolya Opahle)
  * @author PrateekGupta1509 (Prateek Gupta)
  * @author heychirag (Chirag Arora)
@@ -17,13 +17,13 @@ var background = {};
  * check if the browser is chrome or safari
  */
 
-background.isChrome = (function(){
-  if(navigator.userAgent.toLowerCase().indexOf("chrome") != -1){
-    background.isSafari = false; 
+background.isChrome = (function() {
+  if (navigator.userAgent.toLowerCase().indexOf('chrome') != -1) {
+    background.isSafari = false;
     return true;
   }
   else {
-    if(navigator.userAgent.toLowerCase().indexOf("safari") != -1)
+    if (navigator.userAgent.toLowerCase().indexOf('safari') != -1)
       background.isSafari = true;
     return false;
   }
@@ -39,56 +39,65 @@ background.tabs = [];
  * CHROME APIs
  */
 
-if(background.isChrome){
+if (background.isChrome) {
 
   /**
    * script element for xml2json
    */
-  
+
   background.xml2json = document.createElement('script');
-  
+
   /**
    * binds source of xml2json script
    * @const
    */
-  
+
   background.xml2json.src = '/background/xml2json.min.js';
-  
+
   /**
    * loads xml2json converter library
    */
-  
+
   document.getElementsByTagName('head')[0].appendChild(background.xml2json);
-  
+
   /**
    * script element for jQuery
    */
-  
+
   background.jQuery = document.createElement('script');
 
   /**
    * binds source of jQuery script
    * @const
    */
-  
+
   background.jQuery.src = '/pages/js/jquery.min.js';
-  
+
   /**
    * loads jQuery
    */
-  
+
   document.getElementsByTagName('head')[0].appendChild(background.jQuery);
-  
+
+  /**
+   * Function to show pageAction and update pageAction Title
+   * Also push tabIds in background.tabs if it doesnt exist
+   */
+
   chrome.runtime.onMessage.addListener(
     function(request, sender) {
       console.log('Request Received');
       if (request.showPageAction) {
         console.log('Show pageAction icon in tab: ' + sender.tab.id);
+        if (background.tabs.indexOf(sender.tab.id) == -1) {
+          background.tabs.push(sender.tab.id);
+        }
         chrome.pageAction.show(sender.tab.id); // shows icon
+        chrome.pageAction.setTitle({tabId: sender.tab.id, title: 'Carbon Footprint'}); //update title
       }
     }
   );
-  
+
   chrome.alarms.onAlarm.addListener(
     function(alarm) {
       if (alarm.name === 'CarCheckupAlarm') {
@@ -104,13 +113,57 @@ if(background.isChrome){
       }
     }
   );
+
+  /**
+   * Function called if tab is closed
+   * deletes the tabId of closed tab
+   */
+
+  chrome.tabs.onRemoved.addListener(function(tabid, removed) {
+    // console.log(tabid,removed);
+    var index = background.tabs.indexOf(tabid);
+    if (index > -1) {
+      background.tabs.splice(index, 1);
+    }
+  });
+
+  /**
+   * Function called if tabInfo (url,load status) is updated
+   * deletes the tabId if the extension is no longer used by checking with updated title of pageAction
+   */
+
+  chrome.tabs.onUpdated.addListener(function(tabid, changeInfo, Tab) {
+    // console.log(tabid,changeInfo,Tab);
+    chrome.pageAction.getTitle({tabId: tabid},function(title) {
+      if (title != 'Carbon Footprint') {
+        var index = background.tabs.indexOf(tabid);
+        if (index > -1) {
+          background.tabs.splice(index, 1);
+        }
+      }
+    });
+  });
+
+  /**
+   * Function called if storage is updated
+   * reloads all the tabs in backgrounds.tabs
+   */
+
+  chrome.storage.onChanged.addListener(function(changes, namespace) {
+    // console.log("Change Received!",changes,namespace);
+    if ('calculationObject' in changes && namespace == 'sync') {
+      for (var i = 0; i < background.tabs.length; ++i) {
+        chrome.tabs.reload(background.tabs[i]);
+      }
+    }
+  });
 }
 
 /**
  * SAFARI APIs
  */
 
-if(background.isSafari){
+if (background.isSafari) {
   safari.application.addEventListener('message', function(response) {
     if (response.message) {
       if (response.message.type === 'getItem') {
@@ -270,7 +323,7 @@ background.updateInt = 7 * 24 * 3600 * 1000;
  * calls fixer.io api to get exchange rates
  */
 
-console.log(background.isChrome,background.isSafari);
+console.log(background.isChrome, background.isSafari);
 
 background.updateExchangeRates = function() {
   var exchangeRates;
@@ -282,13 +335,13 @@ background.updateExchangeRates = function() {
     },
     complete: function() {
       console.log(exchangeRates);
-      if(background.isChrome){
+      if (background.isChrome) {
         var storeObj = {};
         storeObj.exchangeRates = exchangeRates;
         chrome.storage.sync.set(storeObj);
       }
-      else if(background.isSafari){
-        safari.extension.settings.setItem('exchangeRates',exchangeRates);
+      else if (background.isSafari) {
+        safari.extension.settings.setItem('exchangeRates', exchangeRates);
       }
     }
   });
@@ -332,13 +385,14 @@ background.updateFuelPrices = function() {
               callServer();
             }
             else {
-              if(background.isChrome){
+              console.log(finalObj);
+              if (background.isChrome) {
                 var storeObj = {};
                 storeObj.fuelPrices = finalObj;
                 chrome.storage.sync.set(storeObj);
               }
-              else if(background.isSafari){
-                safari.extension.settings.setItem('fuelPrices', finalObj); 
+              else if (background.isSafari) {
+                safari.extension.settings.setItem('fuelPrices', finalObj);
               }
             }
           }
@@ -356,12 +410,12 @@ background.updateResources = function() {
   background.updateExchangeRates();
   var time = new Date();
   time = time.getTime();
-  if(background.isChrome){
+  if (background.isChrome) {
     var storeObj = {};
     storeObj.time = time;
     chrome.storage.sync.set(storeObj);
   }
-  if(background.isSafari){
+  if (background.isSafari) {
     safari.extension.settings.setItem('time', time);
   }
 };
@@ -388,7 +442,7 @@ background.checkLastUpdate = function(prevTime) {
  * in CHROME only
  */
 
-if(background.isChrome){
+if (background.isChrome) {
   background.jQuery.onload = function() {
     chrome.storage.sync.get('time', function(response) {
       if (!response.time) {
@@ -407,7 +461,7 @@ if(background.isChrome){
  * in SAFARI only
  */
 
-if(background.isSafari){
+if (background.isSafari) {
   window.onload = function() {
     background.loadMessages();
     var time = safari.extension.settings.getItem('time');

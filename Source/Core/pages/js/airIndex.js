@@ -17,7 +17,7 @@ function initMap() {
       center: new google.maps.LatLng(lat, long),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       zoom: 8 });
-    var t = new Date().getTime(); 
+    var t = new Date().getTime();
 
      /**
      * Load overlay tiles from aqicn of choosen mapType
@@ -34,7 +34,7 @@ function initMap() {
     /**
      * Error fix in case map cannot evaluate div size
      */
-    setTimeout(function(){
+    setTimeout(function() {
       google.maps.event.trigger(map, 'resize');
     },1500);
   };
@@ -46,7 +46,7 @@ function initMap() {
 
 function loadMapsAPI() {
   // Get country of user
-  $.getJSON("http://freegeoip.net/json/", function (data) {
+  $.getJSON('http://freegeoip.net/json/', function(data) {
     var country = data.country_name.toLowerCase();//your country
     console.log(country);
     var script = document.createElement('script');
@@ -54,10 +54,10 @@ function loadMapsAPI() {
       * Load from '.cn' is country is china
       * Callback to init to load maps and overlay tiles
       */
-    script.src = 'https://maps.googleapis.' + ( country==='china'?'cn':'com' ) + '/maps/api/js' +
+    script.src = 'https://maps.googleapis.' + (country === 'china' ? 'cn' : 'com') + '/maps/api/js' +
       '?&callback=initMap';
     document.body.appendChild(script);
-  }).fail(function(){
+  }).fail(function() {
     // default maps api if freegeoip fails
     var script = document.createElement('script');
     script.src = 'https://maps.googleapis.com/maps/api/js' +
