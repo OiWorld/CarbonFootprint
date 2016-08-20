@@ -169,5 +169,8 @@
   },
   "footprints": {
     "message": "Carbon Footprints"
+  },
+  "loadPricesBtn": {
+    "message": "Get Price"
   }
 }

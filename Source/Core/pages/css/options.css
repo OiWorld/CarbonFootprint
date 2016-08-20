@@ -71,6 +71,7 @@ input[type="text"],input[type="number"],select,button {
     display: block;
     margin-bottom: 0.4em;
 }
+
 input[type="checkbox"] {
     margin-bottom: 0.4em;    
 }
@@ -93,8 +94,6 @@ input[type="text"],input[type="number"],select {
     font-size:0.9em;
 }
 
-
-
 button {
     width: 120px;
     padding: 0.5em 1em;
@@ -110,6 +109,16 @@ button {
     -webkit-transition: background 0.2s ease-in; 
     -moz-transition: background 0.2s ease-in; 
     cursor: pointer;
+}
+
+#load-prices-button {
+    margin-top: 0;
+    width: 80px;
+    margin-left: 1em;
+    font-size: 0.95em;
+    height: 2em;
+    font-weight: normal;
+    white-space: nowrap;
 }
 
 button:hover {
