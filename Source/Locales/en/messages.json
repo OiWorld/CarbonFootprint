@@ -116,8 +116,14 @@
   "notificationLastChekup": {
     "message": "Last checkup Date:"
   },
-  "notificationNextChekup": {
-    "message": "Next Checkup Months Years:"
+  "notificationNextChekupNext": {
+    "message": "Next Checkup in:"
+  },
+  "notificationNextChekupYears": {
+    "message": "years and"
+  },
+  "notificationNextChekupMonths": {
+    "message": "months"
   },
   "notificationTitle": {
     "message": "You should checkup your car"
@@ -126,7 +132,7 @@
     "message": "The time you set for the car inspection has passed."
   },
   "notificationInfoText": {
-    "message": "Keeping up with your car checkups ensures that your car is well maintained and guarantees that it always outputs the smallest possible amount of co₂."
+    "message": "Keeping up with your car checkups ensures that your car always outputs the smallest possible amount of co₂."
   },
   "byFuelEfficiency": {
     "message": "Fuel Efficiency"
