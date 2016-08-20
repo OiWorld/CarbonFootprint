@@ -188,7 +188,8 @@ GoogleMapsManager.prototype.convertTime = function(timeStr) {
  */
 
 GoogleMapsManager.prototype.insertFootprintElement = function(route, e, type) {
-  if (route.getElementsByClassName('carbon').length === 0) {
+  if (route.getElementsByClassName('widget-pane-section-directions-trip-numbers')[0]
+        .getElementsByClassName('carbon').length === 0) {
     switch (type) {
     case 'd':
       route
