@@ -1,8 +1,8 @@
 {
-  "title": "Carbon Footprint™",
+  "title": "Carbon Footprint",
   "name": "carbonfootprint",
-  "version": "0.0.1",
-  "description": "Automatically estimates the CO2 emissions for driving on routes suggested by Google Maps.",
+  "version": "4.0.0",
+  "description": "Automatically estimates the CO2 emissions for driving on routes suggested by Google Maps™.",
   "main": "index.js",
   "author": "Kolya Opahle",
   "engines": {
@@ -12,7 +12,7 @@
   "permissions": {
   "unsafe-content-script": true
   },
-  "license": "MIT",
+  "license": "GPL",
   "keywords": [
     "jetpack"
   ]

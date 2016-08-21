@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Carbon Footprint™",
-  "version": "4.0",
-  "description": "Automatically estimates the CO2 emissions for driving on routes suggested by Google Maps.",
+  "name": "Carbon Footprint",
+  "version": "4.0.0",
+  "description": "Automatically estimates the CO2 emissions for driving on routes suggested by Google Maps™.",
   "content_security_policy": "script-src 'self' https://maps.googleapis.com https://maps.gstatic.com https://ssl.google-analytics.com https://maps.google.com/; object-src 'self';media-src 'self';",
   "default_locale" : "en",
   "background" : 
