@@ -91,7 +91,7 @@ GoogleMapsManager.prototype.getAllTransitRoutes = function() {
  * for driving mode
  */
 
-GoogleMapsManager.prototype.infoClasses = [
+GoogleMapsManager.infoClasses = [
   'widget-pane-section-directions-trip-distance',
   'widget-pane-section-directions-trip-secondary-text'
 ];
@@ -101,7 +101,7 @@ GoogleMapsManager.prototype.infoClasses = [
  * for transit mode
  */
 
-GoogleMapsManager.prototype.durationClass =
+GoogleMapsManager.durationClass =
   'widget-pane-section-directions-trip-duration';
 
 /**
@@ -128,7 +128,7 @@ GoogleMapsManager.prototype.getDistanceString = function(route) {
 
 GoogleMapsManager.prototype.getTimeString = function(route) {
   var timeString = route
-        .getElementsByClassName('widget-pane-section-directions-trip-duration')[0].innerHTML;
+        .getElementsByClassName(GoogleMapsManager.durationClass)[0].innerHTML;
   timeString = ' ' + timeString;
   console.log('timeString:' + timeString);
   return timeString;
@@ -188,8 +188,9 @@ GoogleMapsManager.prototype.convertTime = function(timeStr) {
  */
 
 GoogleMapsManager.prototype.insertFootprintElement = function(route, e, type) {
-  if (route.getElementsByClassName('widget-pane-section-directions-trip-numbers')[0]
-        .getElementsByClassName('carbon').length === 0) {
+  if (route
+      .getElementsByClassName('widget-pane-section-directions-trip-numbers')[0]
+      .getElementsByClassName('carbon').length === 0) {
     switch (type) {
     case 'd':
       route
@@ -210,7 +211,6 @@ GoogleMapsManager.prototype.insertFootprintElement = function(route, e, type) {
  * Inserts element where travel cost will be displayed if not present
  * @param {object} route
  * @param {element} e
- * @param {string} type
  */
 
 GoogleMapsManager.prototype.insertTravelCostElement = function(route, e) {

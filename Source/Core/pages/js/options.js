@@ -8,14 +8,17 @@
 var options = {};
 
 /**
+ * @const {boolean}
+ */
+
+options.isSafari = false;
+
+/**
  * detecting SAFARI browser
  * 'chrom' filters down (chrom)e as well as (chrom)ium
  */
 
-if (navigator.userAgent.toLowerCase().indexOf('chrom') != -1) {
-  options.isSafari = false;
-}
-else {
+if (!(navigator.userAgent.toLowerCase().indexOf('chrom') != -1)) {
   if (navigator.userAgent.toLowerCase().indexOf('safari') != -1) {
     options.isSafari = true;
     $('head,body').css('font-size', '0.78em');
@@ -195,6 +198,7 @@ options.setAlarm = function(time) {
 /**
  * returns message corresponding to given ID
  * for safari only
+ * @param {string} ID
  * @return {string}
  */
 
@@ -305,7 +309,7 @@ options.saveLocation = function() {
         );
       options.data.set('currency', options.countries[
         options.data.get('geoData').country_short].currency);
-      if($("#currency-codes").children().length === 0)
+      if ($('#currency-codes').children().length === 0)
         $('#currency-codes').append($('<option></option>')
                                     .val(options.data.get('currency'))
                                     .html(options.data.get('currency')));
@@ -323,7 +327,7 @@ options.loadFuelPrices = function() {
   if (!country)
     return;
   country = country.country_short;
-  console.log(options.settings.fuelPrices,options.settings.exchangeRates);
+  console.log(options.settings.fuelPrices, options.settings.exchangeRates);
   var prices = options.settings.fuelPrices[country];
   var exchangeRate = options.settings.exchangeRates[
             options.data.get('currency')];
@@ -364,7 +368,7 @@ options.loadSavedData = function() {
       .val(
         options.countries[options.data.get('geoData').country_short].currency
       );
-    if($("#currency-codes").children().length === 0)
+    if ($('#currency-codes').children().length === 0)
       $('#currency-codes').append($('<option></option>')
                                   .val(options.data.get('currency'))
                                   .html(options.data.get('currency')));
@@ -623,23 +627,29 @@ options.loadResources = function() {
    * http://www.biomassenergycentre.org.uk/portal/page?_pageid=75,163182&_dad=portal&_schema=PORTAL
    */
   var locale = (/(\w*)-/).exec(navigator.language)[1];
-  $.getJSON(browserServices.getFilePath('/_locales/' + locale + '/messages.json'), function(response) {
+  $.getJSON(browserServices.getFilePath('/_locales/' + locale +
+                                        '/messages.json'), function(response) {
     options.messages = response;
   }).fail(function() {
-    $.getJSON(browserServices.getFilePath('/_locales/en/messages.json'), function(response) {
+    $.getJSON(browserServices.getFilePath('/_locales/en/messages.json'),
+              function(response) {
       options.messages = response;
     });
   });
-  $.getJSON(browserServices.getFilePath('/core/resources/fuels.json'), function(response) {
+  $.getJSON(browserServices.getFilePath('/core/resources/fuels.json'),
+            function(response) {
     options.fuels = response;
   });
-  $.getJSON(browserServices.getFilePath('/core/resources/currencyCodes.json'), function(response) {
+  $.getJSON(browserServices.getFilePath('/core/resources/currencyCodes.json'),
+            function(response) {
     options.currencyCodes = response.currencyCodes;
   });
-  $.getJSON(browserServices.getFilePath('/core/resources/countries.json'), function(response) {
+  $.getJSON(browserServices.getFilePath('/core/resources/countries.json'),
+            function(response) {
     options.countries = response;
   });
-  $.getJSON(browserServices.getFilePath('/core/resources/exchangeRates.json'), function(response) {
+  $.getJSON(browserServices.getFilePath('/core/resources/exchangeRates.json'),
+            function(response) {
     options.defaultRates = response;
   });
   $.getScript('https://maps.googleapis.com/maps/api/js')
@@ -685,7 +695,7 @@ options.listeners = function() {
   $('[id="currency-codes"]').on('change', function() {
     options.mirrorCurrency($(this));
   });
-  $('#load-prices-button').on('click', function(){
+  $('#load-prices-button').on('click', function() {
     options.loadFuelPrices();
   });
   //Prevents adding Hyphen(-) in the input field.
@@ -700,6 +710,7 @@ options.listeners = function() {
 
 /**
  * Initialises the StorageManager
+ * @param {function} cb
  */
 
 options.initStorageManager = function(cb) {
@@ -710,8 +721,8 @@ options.initStorageManager = function(cb) {
 };
 
 /**
- * TODO!!!! --> We cant do this in firefox since it is invoking chrome apis directly so we need to find a workaround asap!
  * Initialises settingsProvider
+ * @param {function} cb
  */
 
 options.initSettings = function(cb) {
@@ -768,10 +779,13 @@ options.loadMessages = function() {
   var i;
   for (i = 0; i < $('[data-language]').length; i++) {
     if (!options.isSafari) {
-      browserServices.getLocalisation($($('[data-language]')[i]).data('language'), i, function(trans, index) {
-        var elm = $($('[data-language]')[index]);
-        elm.html(trans);
-      });
+      browserServices
+        .getLocalisation($($('[data-language]')[i]).data('language'),
+                         i,
+                         function(trans, index) {
+          var elm = $($('[data-language]')[index]);
+          elm.html(trans);
+        });
     }
     else {
       $($('[data-language]')[i])

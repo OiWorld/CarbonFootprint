@@ -93,7 +93,9 @@ if (background.isChrome) {
           background.tabs.push(sender.tab.id);
         }
         chrome.pageAction.show(sender.tab.id); // shows icon
-        chrome.pageAction.setTitle({tabId: sender.tab.id, title: 'Carbon Footprint'}); //update title
+        chrome.pageAction.setTitle({
+          tabId: sender.tab.id, title: 'Carbon Footprint'
+        });
       }
     }
   );
@@ -129,7 +131,8 @@ if (background.isChrome) {
 
   /**
    * Function called if tabInfo (url,load status) is updated
-   * deletes the tabId if the extension is no longer used by checking with updated title of pageAction
+   * deletes the tabId if the extension is no longer used by
+   * checking with updated title of pageAction
    */
 
   chrome.tabs.onUpdated.addListener(function(tabid, changeInfo, Tab) {
@@ -219,6 +222,9 @@ if (background.isSafari) {
         var diff = prior.getTime() - now.getTime();
         if (diff <= 0) {
           background.showNotification();
+        }
+        else {
+          window.setTimeout(background.showNotification, diff);
         }
         // reset lastcheckup when 'now' has passed checkup date
         if (now.getTime > nextCheckupDate.getTime) {
@@ -322,8 +328,6 @@ background.updateInt = 7 * 24 * 3600 * 1000;
 /**
  * calls fixer.io api to get exchange rates
  */
-
-console.log(background.isChrome, background.isSafari);
 
 background.updateExchangeRates = function() {
   var exchangeRates;
@@ -443,6 +447,11 @@ background.checkLastUpdate = function(prevTime) {
  */
 
 if (background.isChrome) {
+
+  /**
+   * function to update resources when jQuery loads
+   */
+
   background.jQuery.onload = function() {
     chrome.storage.sync.get('time', function(response) {
       if (!response.time) {
@@ -462,6 +471,11 @@ if (background.isChrome) {
  */
 
 if (background.isSafari) {
+
+  /**
+   * function to update resources when window loads
+   */
+
   window.onload = function() {
     background.loadMessages();
     var time = safari.extension.settings.getItem('time');

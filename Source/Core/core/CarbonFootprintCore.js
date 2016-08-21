@@ -9,6 +9,7 @@
  * CarbonFootprintCore namespace.
  * @constructor
  * @param {object} settingsProvider
+ * @param {function} helper
  */
 
 var CarbonFootprintCore = function(settingsProvider, helper) {
@@ -49,7 +50,8 @@ CarbonFootprintCore.KG_TO_LBS = 2.204622621848775;
 /**
  * computes footprints based on route distance
  * 'd' is default type
- * @param {number} distance
+ * @param {number} data
+ * @param {character} type
  * @return {number} footprint
  */
 
@@ -110,9 +112,11 @@ CarbonFootprintCore.prototype.computeTrees = function(carbonFootprint) {
 
 CarbonFootprintCore.prototype.otherGasesString = function(distance) {
   if (this.settingsProvider.getGHGEmission() >= 0) {
-    return 'CH₄: ' + (this.settingsProvider.getCH4Emission() * 1000 * distance).toFixed(3) + 'g,  ' +
-      'N₂O: ' + (this.settingsProvider.getN2OEmission() * 1000 * distance).toFixed(3) + 'g,  ' +
-      'GHG: ' + (this.settingsProvider.getGHGEmission() * distance).toFixed(2) + 'kg\n';
+    return 'CH₄: ' + (this.settingsProvider.getCH4Emission() * 1000 * distance)
+      .toFixed(3) + 'g,  ' + 'N₂O: ' + (this.settingsProvider.getN2OEmission() *
+                                        1000 * distance).toFixed(3) + 'g,  ' +
+      'GHG: ' + (this.settingsProvider.getGHGEmission() *
+                 distance).toFixed(2) + 'kg\n';
   }
   return '';
 };
