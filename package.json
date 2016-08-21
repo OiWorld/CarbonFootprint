@@ -19,6 +19,10 @@
     "karma-mocha-reporter": "^2.0.3",
     "karma-phantomjs-launcher": "^1.0.0",
     "phantomjs-prebuilt": "^2.1.7",
-    "yargs": "^4.8.1"
+    "yargs": "^4.8.1",
+    "gulp-if": "^2.0.1",
+    "gulp-filter": "^4.0.0",
+    "gulp-uglify": "^2.0.0",
+    "delete-empty": "^0.1.3"
   }
 }
