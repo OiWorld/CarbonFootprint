@@ -112,8 +112,8 @@ GoogleMapsManager.durationClass =
 
 GoogleMapsManager.prototype.getDistanceString = function(route) {
   var distanceString = route
-        .getElementsByClassName(this.infoClasses[0] + ' ' +
-                                this.infoClasses[1])[0]
+        .getElementsByClassName(GoogleMapsManager.infoClasses[0] + ' ' +
+                                GoogleMapsManager.infoClasses[1])[0]
         .childNodes[5]
         .innerHTML;
   console.log('distanceString: ' + distanceString);
@@ -194,8 +194,8 @@ GoogleMapsManager.prototype.insertFootprintElement = function(route, e, type) {
     switch (type) {
     case 'd':
       route
-        .getElementsByClassName(this.infoClasses[0] + ' ' +
-                                this.infoClasses[1])[0]
+        .getElementsByClassName(GoogleMapsManager.infoClasses[0] + ' ' +
+                                GoogleMapsManager.infoClasses[1])[0]
         .appendChild(e);
       break;
     case 't':
@@ -216,8 +216,8 @@ GoogleMapsManager.prototype.insertFootprintElement = function(route, e, type) {
 GoogleMapsManager.prototype.insertTravelCostElement = function(route, e) {
   if (route.getElementsByClassName('travelCost').length === 0) {
       route
-        .getElementsByClassName(this.infoClasses[0] + ' ' +
-                                this.infoClasses[1])[0]
+        .getElementsByClassName(GoogleMapsManager.infoClasses[0] + ' ' +
+                                GoogleMapsManager.infoClasses[1])[0]
         .appendChild(e);
   }
 };
