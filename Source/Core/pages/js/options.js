@@ -631,7 +631,7 @@ options.loadResources = function() {
 
   try {
     locale = (/(\w*)-/).exec(navigator.language)[1];
-  } catch(err) {
+  } catch (err) {
     locale = 'en';
   }
 

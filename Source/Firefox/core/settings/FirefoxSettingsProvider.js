@@ -14,7 +14,12 @@
 var FirefoxSettingsProvider = function(cb) {
   var selfe = this;
   selfe.usingDefaultListeners = [];
-  self.port.emit('storageGetRequest', {tag: 9001, storageKey: 'calculationObject'});
+  self.port.emit('storageGetRequest',
+    {
+      tag: 9001,
+      storageKey: 'calculationObject'
+    }
+  );
   self.port.on('storageGetResponse', function(storage) {
     if (storage.tag === 9001) {
       if (storage.values.calculationObject)
