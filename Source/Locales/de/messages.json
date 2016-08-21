@@ -94,5 +94,14 @@
   },
   "notificationMessage": {
     "message": "Die von dir für eine Inspektion gesetzte Zeit wurde erreicht."
+  },
+  "notificationNextChekupNext": {
+    "message": "Nächste inspektion:"
+  },
+  "notificationNextChekupYears": {
+    "message": "Jahre und"
+  },
+  "notificationNextChekupMonths": {
+    "message": "Monate"
   }
 }

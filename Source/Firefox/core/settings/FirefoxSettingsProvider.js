@@ -17,8 +17,8 @@ var FirefoxSettingsProvider = function(cb) {
   self.port.emit('storageGetRequest', {tag: 9001, storageKey: 'calculationObject'});
   self.port.on('storageGetResponse', function(storage) {
     if (storage.tag === 9001) {
-      if (storage.values)
-        selfe.settings = storage.values;
+      if (storage.values.calculationObject)
+        selfe.settings = storage.values.calculationObject;
       else
         selfe.settings = {};
     cb(selfe);
@@ -74,6 +74,17 @@ FirefoxSettingsProvider.prototype.get = function(key, def) {
 
 FirefoxSettingsProvider.prototype.getCarbonEmission = function() {
   return this.get('CO2emissionRate', 0.255384);
+};
+
+/**
+ * returns CO2 emission rate for public transport in kg/h
+ * http://www.catf.us/resources/publications/files/20120227-Diesel_vs_CNG_FINAL_MJBA.pdf
+ * http://www.tmb.cat/en/transports-en-xifres
+ * @return {number}
+ */
+
+FirefoxSettingsProvider.prototype.getPTCarbonEmission = function() {
+  return 0.533148;
 };
 
 /**

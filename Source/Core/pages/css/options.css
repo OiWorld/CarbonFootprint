@@ -306,3 +306,7 @@ select:disabled {
     text-align: center;
     color: grey;
 }
+
+#next-checkup-month {
+    margin-left: 0;
+}
