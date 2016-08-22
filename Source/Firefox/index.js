@@ -1,20 +1,40 @@
-var buttons = require('sdk/ui/button/action');
+var buttons = require('sdk/ui/button/toggle');
 var pageMod = require('sdk/page-mod');
 var tabs = require('sdk/tabs');
 var data = require('sdk/self').data;
+var panels = require("sdk/panel");
 var locale = require('sdk/l10n').get;
 var storage = require('sdk/simple-storage').storage;
 var request = require('sdk/request').Request;
 var XMLHttpRequest = require('sdk/net/xhr').XMLHttpRequest;
 var { setTimeout } = require('sdk/timers');
 
-var button = buttons.ActionButton({
+var panel = panels.Panel({
+  width: 200,
+  height: 129,
+  contentURL: './pages/popup.html',
+  contentScriptFile: './pages/js/popupPanel.js',
+  onHide: function() {
+    button.state('window', {checked: false});
+  }
+});
+
+panel.port.on("link", function(url) {
+  tabs.open('./pages/' + url + '.html');
+  panel.hide();
+});
+
+var button = buttons.ToggleButton({
   id: 'carbon-footprint-link',
   label: 'Carbon Footprint™',
   disabled: true,
   icon: './images/globe-64-off.png',
-  onClick: function() {
-    tabs.open('./pages/options.html');
+  onChange: function(state) {
+    if (state.checked) {
+      panel.show({
+        position: button
+      });
+    }
   }
 });
 
@@ -103,7 +123,7 @@ var gmaps = pageMod.PageMod({
     './core/maps/GoogleMapsManager.js',
     './core/init.js'
   ],
-  contentScriptWhen: 'start',
+  contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });
 
@@ -118,7 +138,7 @@ var gmaps = pageMod.PageMod({
     './core/maps/OpenMapsManager.js',
     './core/init.js'
   ],
-  contentScriptWhen: 'start',
+  contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });
 
@@ -131,7 +151,7 @@ var gmaps = pageMod.PageMod({
     './core/maps/BingMapsManager.js',
     './core/init.js'
   ],
-  contentScriptWhen: 'start',
+  contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });
 
@@ -144,7 +164,7 @@ var gmaps = pageMod.PageMod({
     './core/maps/HereMapsManager.js',
     './core/init.js'
   ],
-  contentScriptWhen: 'start',
+  contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });
 
@@ -157,7 +177,7 @@ var gmaps = pageMod.PageMod({
     './core/maps/MapQuestMapsManager.js',
     './core/init.js'
   ],
-  contentScriptWhen: 'start',
+  contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });
 
