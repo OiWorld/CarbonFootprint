@@ -2,7 +2,7 @@ var buttons = require('sdk/ui/button/toggle');
 var pageMod = require('sdk/page-mod');
 var tabs = require('sdk/tabs');
 var data = require('sdk/self').data;
-var panels = require("sdk/panel");
+var panels = require('sdk/panel');
 var locale = require('sdk/l10n').get;
 var storage = require('sdk/simple-storage').storage;
 var request = require('sdk/request').Request;
@@ -19,7 +19,7 @@ var panel = panels.Panel({
   }
 });
 
-panel.port.on("link", function(url) {
+panel.port.on('link', function(url) {
   tabs.open('./pages/' + url + '.html');
   panel.hide();
 });
@@ -45,7 +45,12 @@ pageMod.PageMod({
   contentScriptFile: './pages/js/firefoxFix.js',
   onAttach: function(wk) {
     wk.port.on('translationRequest', function(dt) {
-      wk.port.emit('translationResponse', {key: dt.key, translation: locale(dt.key)});
+      wk.port.emit('translationResponse',
+        {
+          key: dt.key,
+          translation: locale(dt.key)
+        }
+      );
     });
     wk.port.on('storageGetRequest', function(stor) {
       if (stor.storageKey in storage) {
@@ -71,7 +76,12 @@ pageMod.PageMod({
   contentScriptFile: './pages/js/firefoxFix.js',
   onAttach: function(wk) {
     wk.port.on('translationRequest', function(dt) {
-      wk.port.emit('translationResponse', {key: dt.key, translation: locale(dt.key)});
+      wk.port.emit('translationResponse',
+        {
+          key: dt.key,
+          translation: locale(dt.key)
+        }
+      );
     });
     wk.port.on('storageGetRequest', function(stor) {
       if (stor.storageKey in storage) {
@@ -185,6 +195,10 @@ var gmaps = pageMod.PageMod({
 
 var updater = {};
 
+/**
+ * calls fixer.io api to get exchange rates
+ */
+
 updater.updateExchangeRates = function() {
   request({
     url: 'http://api.fixer.io/latest?base=USD',
@@ -197,6 +211,10 @@ updater.updateExchangeRates = function() {
     }
   }).get();
 };
+
+/**
+ * calls globalpetrolprices.com api to get fuel prices
+ */
 
 updater.updateFuelPrices = function() {
   var site = 'http://www.globalpetrolprices.com/api/getGasXML_weekly.php?',
@@ -221,7 +239,8 @@ updater.updateFuelPrices = function() {
       var gas_type = country.getElementsByTagName('mtc:gas_type')[0];
 
       if (gas_type.childNodes[0].nodeValue !== '0') {
-        finalobj[country.getAttribute('id')][gas_type.getAttribute('id')] = gas_type.childNodes[0].nodeValue;
+        finalobj[country.getAttribute('id')][gas_type.getAttribute('id')] =
+        gas_type.childNodes[0].nodeValue;
       }
     }
 
@@ -251,7 +270,18 @@ updater.updateFuelPrices = function() {
   doRequest();
 };
 
+/**
+ * update interval (1 week in ms)
+ * @const
+ */
+
 updater.updateInt = 7 * 24 * 3600 * 1000;
+
+/**
+ * checks how long ago the data was last updated
+ * @param {number} prevTime
+ * @return {boolean}
+ */
 
 updater.checkLastUpdate = function(prevTime) {
   var now = new Date();
@@ -263,6 +293,10 @@ updater.checkLastUpdate = function(prevTime) {
   else
     return false;
 };
+
+/**
+ * run the Fuel and Exchange rate updates
+ */
 
 updater.doUpdate = function() {
   updater.updateFuelPrices();

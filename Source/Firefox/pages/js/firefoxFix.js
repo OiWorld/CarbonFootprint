@@ -67,6 +67,10 @@ exportFunction(saveStorage, clone, {
   defineAs: 'saveStorage'
 });
 
+/**
+ * Exposes the defined functions to the javascript of the content window
+ */
+
 unsafeWindow.firefoxApi = clone;
 
 console.log('loaded Firefox Fix');
