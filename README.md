@@ -12,6 +12,8 @@ Building and using
 
 * run `gulp group` or `gulp groupFirefox` or `gulp groupChrome` or `gulp groupSafari`
 
+* add flag `--minify` to minify the build. This includes removing of all debug statements and comments.
+
 * for chrome, load the unpacked extension from the Build/Chrome folder
 
 * for firefox, run `jpm run` inside of Build/Firefox
