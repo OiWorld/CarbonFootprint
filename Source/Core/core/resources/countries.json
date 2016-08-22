@@ -1,9 +1,9 @@
 {  
   "_comments":{  
-    "iso2namesandcurrency":"http://country.io/data/",
-    "Renewblesourcespercentage":"https://en.wikipedia.org/wiki/List_of_countries_by_electricity_production_from_renewable_sources",
-    "individualcityaverage":"http://www.worldatlas.com/articles/cost-of-public-transportation-around-the-world.htmlhttp://www.priceoftravel.com/595/public-transportation-prices-in-80-worldwide-cities/",
-    "countryaverage":"http://www.goeuro.com/transportation-price-index"
+    "iso2 names and currency":"http://country.io/data/",
+    "Renewble sources percentage":"https://en.wikipedia.org/wiki/List_of_countries_by_electricity_production_from_renewable_sources",
+    "individual city average":"http://www.worldatlas.com/articles/cost-of-public-transportation-around-the-world.html http://www.priceoftravel.com/595/public-transportation-prices-in-80-worldwide-cities/",
+    "country average":"http://www.goeuro.com/transportation-price-index"
   },
   "BD":{  
     "name":"Bangladesh",
@@ -17,7 +17,7 @@
     "avgCostPT":"1.564"
   },
   "BF":{  
-    "name":"BurkinaFaso",
+    "name":"Burkina Faso",
     "RenewablePer":"18.58",
     "currency":"XOF"
   },
@@ -28,7 +28,7 @@
     "avgCostPT":"0.626"
   },
   "BA":{  
-    "name":"BosniaandHerzegovina",
+    "name":"Bosnia and Herzegovina",
     "RenewablePer":"31.03",
     "currency":"BAM",
     "avgCostPT":"1.411"
@@ -38,11 +38,11 @@
     "currency":"BBD"
   },
   "WF":{  
-    "name":"WallisandFutuna",
+    "name":"Wallis and Futuna",
     "currency":"XPF"
   },
   "BL":{  
-    "name":"SaintBarthelemy",
+    "name":"Saint Barthelemy",
     "currency":"EUR"
   },
   "BM":{  
@@ -83,7 +83,7 @@
     "currency":"JMD"
   },
   "BV":{  
-    "name":"BouvetIsland",
+    "name":"Bouvet Island",
     "currency":"NOK"
   },
   "BW":{  
@@ -96,7 +96,7 @@
     "currency":"WST"
   },
   "BQ":{  
-    "name":"Bonaire,SaintEustatiusandSaba",
+    "name":"Bonaire, Saint Eustatius and Saba",
     "currency":"USD"
   },
   "BR":{  
@@ -141,7 +141,7 @@
     "avgCostPT":"1.411"
   },
   "TL":{  
-    "name":"EastTimor",
+    "name":"East Timor",
     "currency":"USD"
   },
   "RE":{  
@@ -182,7 +182,7 @@
     "currency":"GTQ"
   },
   "GS":{  
-    "name":"SouthGeorgiaandtheSouthSandwichIslands",
+    "name":"South Georgia and the South Sandwich Islands",
     "currency":"GBP"
   },
   "GR":{  
@@ -192,7 +192,7 @@
     "avgCostPT":"1.072"
   },
   "GQ":{  
-    "name":"EquatorialGuinea",
+    "name":"Equatorial Guinea",
     "RenewablePer":"7",
     "currency":"XAF"
   },
@@ -215,7 +215,7 @@
     "currency":"GBP"
   },
   "GF":{  
-    "name":"FrenchGuiana",
+    "name":"French Guiana",
     "currency":"EUR"
   },
   "GE":{  
@@ -229,7 +229,7 @@
     "currency":"XCD"
   },
   "GB":{  
-    "name":"UnitedKingdom",
+    "name":"United Kingdom",
     "RenewablePer":"11.99",
     "currency":"GBP",
     "avgCostPT":"1.422"
@@ -240,7 +240,7 @@
     "currency":"XAF"
   },
   "SV":{  
-    "name":"ElSalvador",
+    "name":"El Salvador",
     "RenewablePer":"60.71",
     "currency":"USD"
   },
@@ -298,7 +298,7 @@
     "avgCostPT":"0.699"
   },
   "HK":{  
-    "name":"HongKong",
+    "name":"Hong Kong",
     "currency":"HKD"
   },
   "HN":{  
@@ -307,7 +307,7 @@
     "currency":"HNL"
   },
   "HM":{  
-    "name":"HeardIslandandMcDonaldIslands",
+    "name":"Heard Island and McDonald Islands",
     "currency":"AUD"
   },
   "VE":{  
@@ -316,12 +316,12 @@
     "currency":"VEF"
   },
   "PR":{  
-    "name":"PuertoRico",
+    "name":"Puerto Rico",
     "RenewablePer":"0.74",
     "currency":"USD"
   },
   "PS":{  
-    "name":"PalestinianTerritory",
+    "name":"Palestinian Territory",
     "currency":"ILS"
   },
   "PW":{  
@@ -335,7 +335,7 @@
     "avgCostPT":"1.106"
   },
   "SJ":{  
-    "name":"SvalbardandJanMayen",
+    "name":"Svalbard and Jan Mayen",
     "currency":"NOK"
   },
   "PY":{  
@@ -354,11 +354,11 @@
     "currency":"PAB"
   },
   "PF":{  
-    "name":"FrenchPolynesia",
+    "name":"French Polynesia",
     "currency":"XPF"
   },
   "PG":{  
-    "name":"PapuaNewGuinea",
+    "name":"Papua New Guinea",
     "RenewablePer":"32.84",
     "currency":"PGK"
   },
@@ -388,7 +388,7 @@
     "avgCostPT":"0.591"
   },
   "PM":{  
-    "name":"SaintPierreandMiquelon",
+    "name":"Saint Pierre and Miquelon",
     "currency":"EUR"
   },
   "ZM":{  
@@ -397,7 +397,7 @@
     "currency":"ZMK"
   },
   "EH":{  
-    "name":"WesternSahara",
+    "name":"Western Sahara",
     "currency":"MAD"
   },
   "EE":{  
@@ -413,7 +413,7 @@
     "avgCostPT":"0.188"
   },
   "ZA":{  
-    "name":"SouthAfrica",
+    "name":"South Africa",
     "RenewablePer":"1.01",
     "currency":"ZAR",
     "avgCostPT":"0.367"
@@ -435,7 +435,7 @@
     "currency":"VND"
   },
   "SB":{  
-    "name":"SolomonIslands",
+    "name":"Solomon Islands",
     "currency":"SBD"
   },
   "ET":{  
@@ -453,7 +453,7 @@
     "currency":"ZWL"
   },
   "SA":{  
-    "name":"SaudiArabia",
+    "name":"Saudi Arabia",
     "currency":"SAR"
   },
   "ES":{  
@@ -483,7 +483,7 @@
     "currency":"MGA"
   },
   "MF":{  
-    "name":"SaintMartin",
+    "name":"Saint Martin",
     "currency":"EUR"
   },
   "MA":{  
@@ -518,7 +518,7 @@
     "currency":"MNT"
   },
   "MH":{  
-    "name":"MarshallIslands",
+    "name":"Marshall Islands",
     "currency":"USD"
   },
   "MK":{  
@@ -550,7 +550,7 @@
     "currency":"EUR"
   },
   "MP":{  
-    "name":"NorthernMarianaIslands",
+    "name":"Northern Mariana Islands",
     "currency":"USD"
   },
   "MS":{  
@@ -563,7 +563,7 @@
     "currency":"MRO"
   },
   "IM":{  
-    "name":"IsleofMan",
+    "name":"Isle of Man",
     "currency":"GBP"
   },
   "UG":{  
@@ -601,11 +601,11 @@
     "avgCostPT":"0.957"
   },
   "IO":{  
-    "name":"BritishIndianOceanTerritory",
+    "name":"British Indian Ocean Territory",
     "currency":"USD"
   },
   "SH":{  
-    "name":"SaintHelena",
+    "name":"Saint Helena",
     "currency":"SHP"
   },
   "FI":{  
@@ -620,7 +620,7 @@
     "currency":"FJD"
   },
   "FK":{  
-    "name":"FalklandIslands",
+    "name":"Falkland Islands",
     "currency":"FKP"
   },
   "FM":{  
@@ -628,7 +628,7 @@
     "currency":"USD"
   },
   "FO":{  
-    "name":"FaroeIslands",
+    "name":"Faroe Islands",
     "RenewablePer":"39.5",
     "currency":"DKK"
   },
@@ -659,7 +659,7 @@
     "currency":"VUV"
   },
   "NC":{  
-    "name":"NewCaledonia",
+    "name":"New Caledonia",
     "RenewablePer":"14.73",
     "currency":"XPF"
   },
@@ -668,7 +668,7 @@
     "currency":"XOF"
   },
   "NF":{  
-    "name":"NorfolkIsland",
+    "name":"Norfolk Island",
     "currency":"AUD"
   },
   "NG":{  
@@ -677,7 +677,7 @@
     "currency":"NGN"
   },
   "NZ":{  
-    "name":"NewZealand",
+    "name":"New Zealand",
     "RenewablePer":"72.93",
     "currency":"NZD"
   },
@@ -695,7 +695,7 @@
     "currency":"NZD"
   },
   "CK":{  
-    "name":"CookIslands",
+    "name":"Cook Islands",
     "currency":"NZD"
   },
   "XK":{  
@@ -703,7 +703,7 @@
     "currency":"EUR"
   },
   "CI":{  
-    "name":"IvoryCoast",
+    "name":"Ivory Coast",
     "RenewablePer":"27.47",
     "currency":"XOF"
   },
@@ -736,7 +736,7 @@
     "currency":"CLP"
   },
   "CC":{  
-    "name":"CocosIslands",
+    "name":"Cocos Islands",
     "currency":"AUD"
   },
   "CA":{  
@@ -746,22 +746,22 @@
     "avgCostPT":"0.62"
   },
   "CG":{  
-    "name":"RepublicoftheCongo",
+    "name":"Republic of the Congo",
     "RenewablePer":"62.39",
     "currency":"XAF"
   },
   "CF":{  
-    "name":"CentralAfricanRepublic",
+    "name":"Central African Republic",
     "RenewablePer":"85.64",
     "currency":"XAF"
   },
   "CD":{  
-    "name":"DemocraticRepublicoftheCongo",
+    "name":"Democratic Republic of the Congo",
     "RenewablePer":"99.58",
     "currency":"CDF"
   },
   "CZ":{  
-    "name":"CzechRepublic",
+    "name":"Czech Republic",
     "RenewablePer":"9.79",
     "currency":"CZK",
     "avgCostPT":"0.784"
@@ -772,11 +772,11 @@
     "currency":"EUR"
   },
   "CX":{  
-    "name":"ChristmasIsland",
+    "name":"Christmas Island",
     "currency":"AUD"
   },
   "CR":{  
-    "name":"CostaRica",
+    "name":"Costa Rica",
     "RenewablePer":"92.24",
     "currency":"CRC"
   },
@@ -785,7 +785,7 @@
     "currency":"ANG"
   },
   "CV":{  
-    "name":"CapeVerde",
+    "name":"Cape Verde",
     "RenewablePer":"2.28",
     "currency":"CVE"
   },
@@ -805,7 +805,7 @@
     "currency":"SYP"
   },
   "SX":{  
-    "name":"SintMaarten",
+    "name":"Sint Maarten",
     "currency":"ANG"
   },
   "KG":{  
@@ -819,7 +819,7 @@
     "currency":"KES"
   },
   "SS":{  
-    "name":"SouthSudan",
+    "name":"South Sudan",
     "currency":"SSP"
   },
   "SR":{  
@@ -837,7 +837,7 @@
     "currency":"KHR"
   },
   "KN":{  
-    "name":"SaintKittsandNevis",
+    "name":"Saint Kitts and Nevis",
     "currency":"XCD"
   },
   "KM":{  
@@ -846,7 +846,7 @@
     "currency":"KMF"
   },
   "ST":{  
-    "name":"SaoTomeandPrincipe",
+    "name":"Sao Tome and Principe",
     "RenewablePer":"15.38",
     "currency":"STD"
   },
@@ -857,7 +857,7 @@
     "avgCostPT":"0.662"
   },
   "KR":{  
-    "name":"SouthKorea",
+    "name":"South Korea",
     "RenewablePer":"1.43",
     "currency":"KRW",
     "avgCostPT":"0.488"
@@ -869,7 +869,7 @@
     "avgCostPT":"1.134"
   },
   "KP":{  
-    "name":"NorthKorea",
+    "name":"North Korea",
     "RenewablePer":"71.25",
     "currency":"KPW"
   },
@@ -883,11 +883,11 @@
     "currency":"XOF"
   },
   "SM":{  
-    "name":"SanMarino",
+    "name":"San Marino",
     "currency":"EUR"
   },
   "SL":{  
-    "name":"SierraLeone",
+    "name":"Sierra Leone",
     "RenewablePer":"68.97",
     "currency":"SLL"
   },
@@ -901,7 +901,7 @@
     "currency":"KZT"
   },
   "KY":{  
-    "name":"CaymanIslands",
+    "name":"Cayman Islands",
     "currency":"KYD"
   },
   "SG":{  
@@ -920,7 +920,7 @@
     "currency":"SDG"
   },
   "DO":{  
-    "name":"DominicanRepublic",
+    "name":"Dominican Republic",
     "RenewablePer":"13.77",
     "currency":"DOP"
   },
@@ -940,7 +940,7 @@
     "avgCostPT":"1.087"
   },
   "VG":{  
-    "name":"BritishVirginIslands",
+    "name":"British Virgin Islands",
     "currency":"USD"
   },
   "DE":{  
@@ -959,7 +959,7 @@
     "currency":"DZD"
   },
   "US":{  
-    "name":"UnitedStates",
+    "name":"United States",
     "RenewablePer":"12.56",
     "currency":"USD",
     "avgCostPT":"0.792"
@@ -974,7 +974,7 @@
     "currency":"EUR"
   },
   "UM":{  
-    "name":"UnitedStatesMinorOutlyingIslands",
+    "name":"United States Minor Outlying Islands",
     "currency":"USD"
   },
   "LB":{  
@@ -983,7 +983,7 @@
     "currency":"LBP"
   },
   "LC":{  
-    "name":"SaintLucia",
+    "name":"Saint Lucia",
     "currency":"XCD"
   },
   "LA":{  
@@ -1000,7 +1000,7 @@
     "currency":"TWD"
   },
   "TT":{  
-    "name":"TrinidadandTobago",
+    "name":"Trinidad and Tobago",
     "RenewablePer":"0.23",
     "currency":"TTD"
   },
@@ -1011,7 +1011,7 @@
     "avgCostPT":"0.619"
   },
   "LK":{  
-    "name":"SriLanka",
+    "name":"Sri Lanka",
     "RenewablePer":"30.32",
     "currency":"LKR"
   },
@@ -1056,7 +1056,7 @@
     "avgCostPT":"0.311"
   },
   "TF":{  
-    "name":"FrenchSouthernTerritories",
+    "name":"French Southern Territories",
     "currency":"EUR"
   },
   "TG":{  
@@ -1069,7 +1069,7 @@
     "currency":"XAF"
   },
   "TC":{  
-    "name":"TurksandCaicosIslands",
+    "name":"Turks and Caicos Islands",
     "currency":"USD"
   },
   "LY":{  
@@ -1081,12 +1081,12 @@
     "currency":"EUR"
   },
   "VC":{  
-    "name":"SaintVincentandtheGrenadines",
+    "name":"Saint Vincent and the Grenadines",
     "RenewablePer":"18.25",
     "currency":"XCD"
   },
   "AE":{  
-    "name":"UnitedArabEmirates",
+    "name":"United Arab Emirates",
     "currency":"AED"
   },
   "AD":{  
@@ -1094,7 +1094,7 @@
     "currency":"EUR"
   },
   "AG":{  
-    "name":"AntiguaandBarbuda",
+    "name":"Antigua and Barbuda",
     "currency":"XCD"
   },
   "AF":{  
@@ -1107,7 +1107,7 @@
     "currency":"XCD"
   },
   "VI":{  
-    "name":"U.S.VirginIslands",
+    "name":"U.S. Virgin Islands",
     "currency":"USD"
   },
   "IS":{  
@@ -1141,7 +1141,7 @@
     "currency":""
   },
   "AS":{  
-    "name":"AmericanSamoa",
+    "name":"American Samoa",
     "currency":"USD"
   },
   "AR":{  
@@ -1173,7 +1173,7 @@
     "avgCostPT":"0.575"
   },
   "AX":{  
-    "name":"AlandIslands",
+    "name":"Aland Islands",
     "currency":"EUR"
   },
   "AZ":{  
