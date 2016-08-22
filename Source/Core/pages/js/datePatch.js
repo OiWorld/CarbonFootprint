@@ -1,5 +1,5 @@
 /**
- * patching date functions because original java sucks
+ * patching date functions because original js sucks
  * @author kolpa (Kolya Opahle)
  */
 

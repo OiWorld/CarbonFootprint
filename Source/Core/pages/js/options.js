@@ -674,7 +674,9 @@ options.loadResources = function() {
  */
 
 options.listeners = function() {
-  $('#save-button').on('click', options.saveOptions);
+  $('#save-button').on('click', function() {
+    options.saveOptions();
+  });
   $('.tab-button').on('click', function() {
     options.switchTab($(this));
   });

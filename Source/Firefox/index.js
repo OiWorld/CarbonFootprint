@@ -8,6 +8,79 @@ var storage = require('sdk/simple-storage').storage;
 var request = require('sdk/request').Request;
 var XMLHttpRequest = require('sdk/net/xhr').XMLHttpRequest;
 var { setTimeout } = require('sdk/timers');
+var notifications = require('sdk/notifications');
+
+
+/**
+ * patching date functions because original js sucks
+ */
+
+/**
+ * Checks if given year is a leap year
+ * @param {int} year
+ * @return {boolean}
+ */
+
+Date.isLeapYear = function(year) {
+  return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0));
+};
+
+/**
+ * Returns the amount of days in the month of the year
+ * @param {int} year
+ * @param {int} month
+ * @return {int}
+ */
+
+Date.getDaysInMonth = function(year, month) {
+  return [
+    31, (Date.isLeapYear(year) ? 29 : 28),
+    31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+  ][month];
+};
+
+/**
+ * Adds the leap year check to the Date prototype
+ * @return {Date}
+ */
+
+Date.prototype.isLeapYear = function() {
+  return Date.isLeapYear(this.getFullYear());
+};
+
+/**
+ * Adds the day in month to the Date prototype
+ * @return {Date}
+ */
+
+Date.prototype.getDaysInMonth = function() {
+  return Date.getDaysInMonth(this.getFullYear(), this.getMonth());
+};
+
+/**
+ * Add months amount of months to the current date
+ * @param {int} months
+ * @return {Date}
+ */
+
+Date.prototype.addMonths = function(months) {
+  var n = this.getDate();
+  this.setDate(1);
+  this.setMonth(this.getMonth() + months);
+  this.setDate(Math.min(n, this.getDaysInMonth()));
+  return this;
+};
+
+/**
+ * Add years amount of years to the current date
+ * @param {int} years
+ * @return {Date}
+ */
+
+Date.prototype.addYears = function(years) {
+  return this.addMonths(years * 12);
+};
+
 
 var panel = panels.Panel({
   width: 200,
@@ -93,10 +166,10 @@ pageMod.PageMod({
         wk.port.emit('storageGetResponse', {values: {}, tag: stor.tag});
     });
     wk.port.on('storageSetRequest', function(stor) {
-
       for (var i in stor.data)
         storage[i] = stor.data[i];
       console.log(storage);
+      alarm.checkTrigger();
     });
   }
 });
@@ -312,3 +385,60 @@ if ('time' in storage) {
   console.log('updating');
   updater.doUpdate();
 }
+
+
+var alarm = {};
+
+/**
+ * displays the checkup notification
+ */
+
+alarm.showNotification = function() {
+  notifications.notify({
+    title: locale('notificationTitle'),
+    text: locale('notificationMessage') +
+    ' ' + locale('notificationInfoText'),
+    iconUrl: './images/globe-256.png'
+  });
+};
+
+/**
+ * checks if the checkup notification should be displayed
+ */
+
+alarm.checkTrigger = function() {
+  if (storage.calculationObject) {
+    if (storage.calculationObject.showCheckupNotification) {
+      var last = storage.calculationObject.lastCheckup;
+      var next = new Date(last);
+      var now = new Date();
+
+      next.addMonths(storage.calculationObject.nextCheckupMonth);
+      next.addYears(storage.calculationObject.nextCheckupYear);
+
+      var diff = next.getTime() - now.getTime();
+
+      if (diff <= 0) {
+        alarm.showNotification();
+        var dd = next.getDate();
+        var mm = next.getMonth() + 1;
+        var yyyy = next.getFullYear();
+
+        if (dd < 10) {
+          dd = '0' + dd;
+        }
+        if (mm < 10) {
+          mm = '0' + mm;
+        }
+
+        var newlastCheckup = mm + '/' + dd + '/' + yyyy;
+        storage.calculationObject.lastCheckup = newlastCheckup;
+        
+      } else {
+        setTimeout(alarm.showNotification, diff);
+      }
+    }
+  }
+};
+
+alarm.checkTrigger();
