@@ -76,7 +76,8 @@ browserServices.clearChromeAlarm = function(name) {
  */
 
 browserServices.clearFirefoxAlarm = function(name) {
-  //chrome.alarms.clear(name);
+  //these are not needed
+  //firefoxApi.clearAlarm(name);
 };
 
 /**
@@ -109,7 +110,8 @@ browserServices.createChromeAlarm = function(name, obj) {
  */
 
 browserServices.createFirefoxAlarm = function(name, obj) {
-  //chrome.alarms.create(name, obj);
+  //these are not needed
+  //firefoxApi.createAlarm(obj);
 };
 
 /**
