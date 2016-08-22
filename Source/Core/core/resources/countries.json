@@ -13,8 +13,7 @@
   "BE":{  
     "name":"Belgium",
     "RenewablePer":"13.76",
-    "currency":"EUR",
-    "avgCostPT":"1.564"
+    "currency":"EUR"
   },
   "BF":{  
     "name":"Burkina Faso",
@@ -24,14 +23,12 @@
   "BG":{  
     "name":"Bulgaria",
     "RenewablePer":"12.11",
-    "currency":"BGN",
-    "avgCostPT":"0.626"
+    "currency":"BGN"
   },
   "BA":{  
     "name":"Bosnia and Herzegovina",
     "RenewablePer":"31.03",
-    "currency":"BAM",
-    "avgCostPT":"1.411"
+    "currency":"BAM"
   },
   "BB":{  
     "name":"Barbados",
@@ -102,8 +99,7 @@
   "BR":{  
     "name":"Brazil",
     "RenewablePer":"83.98",
-    "currency":"BRL",
-    "avgCostPT":"0.779"
+    "currency":"BRL"
   },
   "BS":{  
     "name":"Bahamas",
@@ -126,8 +122,7 @@
   "RU":{  
     "name":"Russia",
     "RenewablePer":"16.59",
-    "currency":"RUB",
-    "avgCostPT":"1.445"
+    "currency":"RUB"
   },
   "RW":{  
     "name":"Rwanda",
@@ -137,8 +132,7 @@
   "RS":{  
     "name":"Serbia",
     "RenewablePer":"28.96",
-    "currency":"RSD",
-    "avgCostPT":"1.411"
+    "currency":"RSD"
   },
   "TL":{  
     "name":"East Timor",
@@ -161,8 +155,7 @@
   "RO":{  
     "name":"Romania",
     "RenewablePer":"26.43",
-    "currency":"RON",
-    "avgCostPT":"0.595"
+    "currency":"RON"
   },
   "TK":{  
     "name":"Tokelau",
@@ -188,8 +181,7 @@
   "GR":{  
     "name":"Greece",
     "RenewablePer":"17.56",
-    "currency":"EUR",
-    "avgCostPT":"1.072"
+    "currency":"EUR"
   },
   "GQ":{  
     "name":"Equatorial Guinea",
@@ -203,8 +195,7 @@
   "JP":{  
     "name":"Japan",
     "RenewablePer":"12.66",
-    "currency":"JPY",
-    "avgCostPT":"1.081"
+    "currency":"JPY"
   },
   "GY":{  
     "name":"Guyana",
@@ -221,8 +212,7 @@
   "GE":{  
     "name":"Georgia",
     "RenewablePer":"75.47",
-    "currency":"GEL",
-    "avgCostPT":"0.655"
+    "currency":"GEL"
   },
   "GD":{  
     "name":"Grenada",
@@ -231,8 +221,7 @@
   "GB":{  
     "name":"United Kingdom",
     "RenewablePer":"11.99",
-    "currency":"GBP",
-    "avgCostPT":"1.422"
+    "currency":"GBP"
   },
   "GA":{  
     "name":"Gabon",
@@ -283,8 +272,7 @@
   "HR":{  
     "name":"Croatia",
     "RenewablePer":"50.27",
-    "currency":"HRK",
-    "avgCostPT":"0.981"
+    "currency":"HRK"
   },
   "HT":{  
     "name":"Haiti",
@@ -294,8 +282,7 @@
   "HU":{  
     "name":"Hungary",
     "RenewablePer":"8.14",
-    "currency":"HUF",
-    "avgCostPT":"0.699"
+    "currency":"HUF"
   },
   "HK":{  
     "name":"Hong Kong",
@@ -331,8 +318,7 @@
   "PT":{  
     "name":"Portugal",
     "RenewablePer":"44.49",
-    "currency":"EUR",
-    "avgCostPT":"1.106"
+    "currency":"EUR"
   },
   "SJ":{  
     "name":"Svalbard and Jan Mayen",
@@ -384,8 +370,7 @@
   "PL":{  
     "name":"Poland",
     "RenewablePer":"11.04",
-    "currency":"PLN",
-    "avgCostPT":"0.591"
+    "currency":"PLN"
   },
   "PM":{  
     "name":"Saint Pierre and Miquelon",
@@ -403,20 +388,17 @@
   "EE":{  
     "name":"Estonia",
     "RenewablePer":"13.03",
-    "currency":"EUR",
-    "avgCostPT":"0.725"
+    "currency":"EUR"
   },
   "EG":{  
     "name":"Egypt",
     "RenewablePer":"9.48",
-    "currency":"EGP",
-    "avgCostPT":"0.188"
+    "currency":"EGP"
   },
   "ZA":{  
     "name":"South Africa",
     "RenewablePer":"1.01",
-    "currency":"ZAR",
-    "avgCostPT":"0.367"
+    "currency":"ZAR"
   },
   "EC":{  
     "name":"Ecuador",
@@ -426,8 +408,7 @@
   "IT":{  
     "name":"Italy",
     "RenewablePer":"32.67",
-    "currency":"EUR",
-    "avgCostPT":"1.248"
+    "currency":"EUR"
   },
   "VN":{  
     "name":"Vietnam",
@@ -459,8 +440,7 @@
   "ES":{  
     "name":"Spain",
     "RenewablePer":"30.99",
-    "currency":"EUR",
-    "avgCostPT":"0.649"
+    "currency":"EUR"
   },
   "ER":{  
     "name":"Eritrea",
@@ -523,8 +503,7 @@
   },
   "MK":{  
     "name":"Macedonia",
-    "currency":"MKD",
-    "avgCostPT":"0.919"
+    "currency":"MKD"
   },
   "MU":{  
     "name":"Mauritius",
@@ -579,26 +558,22 @@
   "MY":{  
     "name":"Malaysia",
     "RenewablePer":"7.75",
-    "currency":"MYR",
-    "avgCostPT":"0.61"
+    "currency":"MYR"
   },
   "MX":{  
     "name":"Mexico",
     "RenewablePer":"15.73",
-    "currency":"MXN",
-    "avgCostPT":"0.438"
+    "currency":"MXN"
   },
   "IL":{  
     "name":"Israel",
     "RenewablePer":"0.8",
-    "currency":"ILS",
-    "avgCostPT":"1.34"
+    "currency":"ILS"
   },
   "FR":{  
     "name":"France",
     "RenewablePer":"17.42",
-    "currency":"EUR",
-    "avgCostPT":"0.957"
+    "currency":"EUR"
   },
   "IO":{  
     "name":"British Indian Ocean Territory",
@@ -611,8 +586,7 @@
   "FI":{  
     "name":"Finland",
     "RenewablePer":"41.82",
-    "currency":"EUR",
-    "avgCostPT":"0.745"
+    "currency":"EUR"
   },
   "FJ":{  
     "name":"Fiji",
@@ -640,14 +614,12 @@
   "NL":{  
     "name":"Netherlands",
     "RenewablePer":"12.72",
-    "currency":"EUR",
-    "avgCostPT":"2.858"
+    "currency":"EUR"
   },
   "NO":{  
     "name":"Norway",
     "RenewablePer":"98.47",
-    "currency":"NOK",
-    "avgCostPT":"2.161"
+    "currency":"NOK"
   },
   "NA":{  
     "name":"Namibia",
@@ -710,20 +682,17 @@
   "CH":{  
     "name":"Switzerland",
     "RenewablePer":"61.96",
-    "currency":"CHF",
-    "avgCostPT":"1.867"
+    "currency":"CHF"
   },
   "CO":{  
     "name":"Colombia",
     "RenewablePer":"82.44",
-    "currency":"COP",
-    "avgCostPT":"0.753"
+    "currency":"COP"
   },
   "CN":{  
     "name":"China",
     "RenewablePer":"21.05",
-    "currency":"CNY",
-    "avgCostPT":"0.492"
+    "currency":"CNY"
   },
   "CM":{  
     "name":"Cameroon",
@@ -742,8 +711,7 @@
   "CA":{  
     "name":"Canada",
     "RenewablePer":"64.48",
-    "currency":"CAD",
-    "avgCostPT":"0.62"
+    "currency":"CAD"
   },
   "CG":{  
     "name":"Republic of the Congo",
@@ -763,8 +731,7 @@
   "CZ":{  
     "name":"Czech Republic",
     "RenewablePer":"9.79",
-    "currency":"CZK",
-    "avgCostPT":"0.784"
+    "currency":"CZK"
   },
   "CY":{  
     "name":"Cyprus",
@@ -853,20 +820,17 @@
   "SK":{  
     "name":"Slovakia",
     "RenewablePer":"20.35",
-    "currency":"EUR",
-    "avgCostPT":"0.662"
+    "currency":"EUR"
   },
   "KR":{  
     "name":"South Korea",
     "RenewablePer":"1.43",
-    "currency":"KRW",
-    "avgCostPT":"0.488"
+    "currency":"KRW"
   },
   "SI":{  
     "name":"Slovenia",
     "RenewablePer":"28.92",
-    "currency":"EUR",
-    "avgCostPT":"1.134"
+    "currency":"EUR"
   },
   "KP":{  
     "name":"North Korea",
@@ -911,8 +875,7 @@
   "SE":{  
     "name":"Sweden",
     "RenewablePer":"60.21",
-    "currency":"SEK",
-    "avgCostPT":"0.855"
+    "currency":"SEK"
   },
   "SD":{  
     "name":"Sudan",
@@ -936,8 +899,7 @@
   "DK":{  
     "name":"Denmark",
     "RenewablePer":"50.73",
-    "currency":"DKK",
-    "avgCostPT":"1.087"
+    "currency":"DKK"
   },
   "VG":{  
     "name":"British Virgin Islands",
@@ -946,8 +908,7 @@
   "DE":{  
     "name":"Germany",
     "RenewablePer":"32.7",
-    "currency":"EUR",
-    "avgCostPT":"0.509"
+    "currency":"EUR"
   },
   "YE":{  
     "name":"Yemen",
@@ -961,8 +922,7 @@
   "US":{  
     "name":"United States",
     "RenewablePer":"12.56",
-    "currency":"USD",
-    "avgCostPT":"0.792"
+    "currency":"USD"
   },
   "UY":{  
     "name":"Uruguay",
@@ -1007,8 +967,7 @@
   "TR":{  
     "name":"Turkey",
     "RenewablePer":"28.31",
-    "currency":"TRY",
-    "avgCostPT":"0.619"
+    "currency":"TRY"
   },
   "LK":{  
     "name":"Sri Lanka",
@@ -1022,8 +981,7 @@
   "LV":{  
     "name":"Latvia",
     "RenewablePer":"67.79",
-    "currency":"EUR",
-    "avgCostPT":"0.536"
+    "currency":"EUR"
   },
   "TO":{  
     "name":"Tonga",
@@ -1032,8 +990,7 @@
   "LT":{  
     "name":"Lithuania",
     "RenewablePer":"30.02",
-    "currency":"LTL",
-    "avgCostPT":"0.638"
+    "currency":"LTL"
   },
   "LU":{  
     "name":"Luxembourg",
@@ -1052,8 +1009,7 @@
   "TH":{  
     "name":"Thailand",
     "RenewablePer":"8.75",
-    "currency":"THB",
-    "avgCostPT":"0.311"
+    "currency":"THB"
   },
   "TF":{  
     "name":"French Southern Territories",
@@ -1128,8 +1084,7 @@
   "AL":{  
     "name":"Albania",
     "RenewablePer":"99.98",
-    "currency":"ALL",
-    "avgCostPT":"0.335"
+    "currency":"ALL"
   },
   "AO":{  
     "name":"Angola",
@@ -1147,20 +1102,17 @@
   "AR":{  
     "name":"Argentina",
     "RenewablePer":"31.1",
-    "currency":"ARS",
-    "avgCostPT":"0.689"
+    "currency":"ARS"
   },
   "AU":{  
     "name":"Australia",
     "RenewablePer":"13.47",
-    "currency":"AUD",
-    "avgCostPT":"1.675"
+    "currency":"AUD"
   },
   "AT":{  
     "name":"Austria",
     "RenewablePer":"78.39",
-    "currency":"EUR",
-    "avgCostPT":"2.345"
+    "currency":"EUR"
   },
   "AW":{  
     "name":"Aruba",
@@ -1169,8 +1121,7 @@
   "IN":{  
     "name":"India",
     "RenewablePer":"15.2",
-    "currency":"INR",
-    "avgCostPT":"0.575"
+    "currency":"INR"
   },
   "AX":{  
     "name":"Aland Islands",
@@ -1184,8 +1135,7 @@
   "IE":{  
     "name":"Ireland",
     "RenewablePer":"20.23",
-    "currency":"EUR",
-    "avgCostPT":"0.927"
+    "currency":"EUR"
   },
   "ID":{  
     "name":"Indonesia",
@@ -1195,8 +1145,7 @@
   "UA":{  
     "name":"Ukraine",
     "RenewablePer":"5.95",
-    "currency":"UAH",
-    "avgCostPT":"0.307"
+    "currency":"UAH"
   },
   "QA":{  
     "name":"Qatar",
