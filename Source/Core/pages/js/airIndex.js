@@ -54,7 +54,8 @@ function loadMapsAPI() {
       * Load from '.cn' is country is china
       * Callback to init to load maps and overlay tiles
       */
-    script.src = 'https://maps.googleapis.' + (country === 'china' ? 'cn' : 'com') + '/maps/api/js' +
+    script.src = 'https://maps.googleapis.' +
+      (country === 'china' ? 'cn' : 'com') + '/maps/api/js' +
       '?&callback=initMap';
     document.body.appendChild(script);
   }).fail(function() {
@@ -67,5 +68,9 @@ function loadMapsAPI() {
   // Call initMap when a map type is changes
   document.getElementById('map-type').onchange = initMap;
 }
+
+/**
+ * Loads google map api on window.onload
+ */
 
 window.onload = loadMapsAPI;

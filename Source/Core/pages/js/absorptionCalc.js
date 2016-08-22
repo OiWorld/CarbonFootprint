@@ -59,7 +59,8 @@ var absorptionForm = {
 
       /**
        * CO2 Sequestered by tree till its current age
-       * Tree mass (kg of fresh biomass) x 120% (Weight below ground) x 72.5% (dry mass) x 50% (carbon %) x 3.67 * LBS_to_KG
+       * Tree mass (kg of fresh biomass) x 120% (Weight below ground) x
+           72.5% (dry mass) x 50% (carbon %) x 3.67 * LBS_to_KG
        * Avg. CO2 sequestered per year = CO2 sequestered / Age
        */
       treeRate = weight * 1.2 * 0.725 * 0.5 * 3.67 * 0.453592 /
@@ -78,8 +79,8 @@ var absorptionForm = {
 
     var respMins = (emission / 1.04326) * 24 * 60;
     var respStr =
-      'The same amount of CO<sub>2</sub> will be produced by a human (through respiration) in <b>' +
-      form.timeString(respMins) + '</b>.';
+      'The same amount of CO<sub>2</sub> will be produced by a human ' +
+      '(through respiration) in <b>' + form.timeString(respMins) + '</b>.';
 
     //gets distance in kilometers
     var distance = emission / form.emissionRate;

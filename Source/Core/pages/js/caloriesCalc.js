@@ -1,6 +1,7 @@
 /**
  * Sources:
- * Calories Calculator: https://www.valdosta.edu/administration/finance-admin/campus-wellness/documents/calorie-and-exercise-burned.pdf
+ * Calories Calculator:
+ * https://www.valdosta.edu/administration/finance-admin/campus-wellness/documents/calorie-and-exercise-burned.pdf
  * http://www.sustrans.org.uk/what-you-can-do/use-your-car-less/walking
  * Benfits Source:
  * http://www.tmr.qld.gov.au/Travel-and-transport/Cycling/Benefits.aspx
@@ -9,7 +10,8 @@
  */
 
 /**
- * return serialized form data as JSON
+ * @this {formData}
+ * @return {object} serialized form data as JSON
  */
 
 $.fn.serializeObject = function() {
@@ -73,10 +75,10 @@ var caloriesForm = {
     var caloriesBurnt = caloriesPerHour * time;
 
     $('#outputCalories').html(
-      'Congratulations! You have burnt <b>' + Math.round(
-        caloriesBurnt) + ' Calories</b>.<br>' +
-      ' Moreover, a sedentary women require 1,600 to 2,000 calories a day, while' +
-      ' sedentary men need about 2,000 to 2,600 calories daily to maintain their current weight. '
+      'Congratulations! You have burnt <b>' + Math.round(caloriesBurnt) +
+        ' Calories</b>.<br> Moreover, a sedentary women ' +
+        'require 1,600 to 2,000 calories a day, while sedentary men need ' +
+        'about 2,000 to 2,600 calories daily to maintain their current weight.'
     );
   },
 
