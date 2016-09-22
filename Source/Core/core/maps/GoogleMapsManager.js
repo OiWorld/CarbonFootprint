@@ -27,7 +27,7 @@ var GoogleMapsManager = function(footprintCore, settingsProvider) {
 
 GoogleMapsManager.prototype.getMode = function(route) {
   var m = route.getElementsByClassName(
-    'widget-pane-section-directions-trip-travel-mode-icon');
+    'section-directions-trip-travel-mode-icon');
   for (var i = m.length - 1; i >= 0; i--) {
     var style = m[i].parentElement.style;
     if (style.display != 'none') {
@@ -45,7 +45,7 @@ GoogleMapsManager.prototype.getMode = function(route) {
 GoogleMapsManager.prototype.getAllRoutes = function() {
   var allRoutes = [];
   var r = document.getElementsByClassName(
-    'widget-pane-section-directions-trip clearfix');
+    'section-directions-trip clearfix');
   for (var i = r.length - 1; i >= 0; i--) {
     if (r[i].childNodes.length > 0) {
       allRoutes.push(r[i]);
@@ -92,8 +92,8 @@ GoogleMapsManager.prototype.getAllTransitRoutes = function() {
  */
 
 GoogleMapsManager.infoClasses = [
-  'widget-pane-section-directions-trip-distance',
-  'widget-pane-section-directions-trip-secondary-text'
+  'section-directions-trip-distance',
+  'section-directions-trip-secondary-text'
 ];
 
 /**
@@ -102,7 +102,7 @@ GoogleMapsManager.infoClasses = [
  */
 
 GoogleMapsManager.durationClass =
-  'widget-pane-section-directions-trip-duration';
+  'section-directions-trip-duration';
 
 /**
  * Gets distance for driving route.
@@ -189,7 +189,7 @@ GoogleMapsManager.prototype.convertTime = function(timeStr) {
 
 GoogleMapsManager.prototype.insertFootprintElement = function(route, e, type) {
   if (route
-      .getElementsByClassName('widget-pane-section-directions-trip-numbers')[0]
+      .getElementsByClassName('section-directions-trip-numbers')[0]
       .getElementsByClassName('carbon').length === 0) {
     switch (type) {
     case 'd':
@@ -200,7 +200,7 @@ GoogleMapsManager.prototype.insertFootprintElement = function(route, e, type) {
       break;
     case 't':
       route
-        .getElementsByClassName('widget-pane-section-directions-trip-numbers')[0]
+        .getElementsByClassName('section-directions-trip-numbers')[0]
         .appendChild(e);
       break;
     }
