@@ -16,31 +16,29 @@
     <div  id="container">
         <div id="description" data-language="mainParah" >
             <p>
-                Whenever you ask Google Maps for driving directions, this browser extension automatically
-                estimates the total CO<sub>2</sub> emission for the driving route suggested by Google Maps. 
-                The estimation is then shown to the left of the map, next to the route's total distance.
-            </p>
-            <p>
-                To improve the accuracy of the estimation, choose amongst one of the tabs whose value you wish to enter:
+                Find out approximately how much CO<sub>2</sub> is emitted by your car
+                on driving routes suggested by Google Maps, Open Street Map or Here Maps.
+                The CO<sub>2</sub> emission estimation is shown next to the route's total distance.
+                Optionally, the fuel cost may be shown as well.
             </p>
         </div>
         <div id="form-cont">
             <div id="form">
                 <div id="emission-type-cont">
-                    <div class="tab-button selected" data-language="footprints">Carbon Footprints</div>
-                    <div class="tab-button" data-language="costCalculator">Cost Calculator</div>
+                    <div class="tab-button selected" data-language="footprints">Carbon Footprint</div>
+                    <div class="tab-button" data-language="costCalculator">Fuel Cost</div>
                     <div class="tab-button" data-language="notificationMenu">Vehicle Checkup</div>
                 </div>
                 <div id="form-fields">
                     <div class="tab open footprints">
                         <div class="form-group">  
-                            <label data-language="emissionQues">Know your vehicle's average CO2 emission?</label>
+                            <label data-language="emissionQues"></label>
                         </div>
                         <div class="form-group">
                             <input type="checkbox" style="" id="direct-co-emission" checked>
                             <div class="emission-input-cont">
                                 <div class="form-data by-co">
-                                    <label for="emission" data-language="coEmission" >CO<sub>2</sub> Emission</label>
+                                    <label for="emission" data-language="coEmission">CO<sub>2</sub> Emission Rate</label>
                                     <input id="emission" type="number" size="5" value="0.255384" style="text-align:center" min="0">
                                     <select class="selectMUnit" style="text-align:center" id="emission-unit-mass">
                                         <option value="kg" id="mass-unit">kg</option>

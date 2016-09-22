@@ -8,7 +8,7 @@
     "description": "English description"
   },
   "mainParah": {
-    "message": "<p>Whenever you ask Google Maps for driving directions, this browser extension automatically estimates the total CO<sub>2</sub> emission for the driving route suggested by Google Maps. The estimation is then shown to the left of the map, next to the route's total distance.</p><p>To improve the accuracy of the estimation, choose amongst one of the tabs whose value you wish to enter:  </p>",
+    "message": "<p>Find out approximately how much CO<sub>2</sub> is emitted by your car on driving routes suggested by Google Maps, Open Street Map or Here Maps. The CO<sub>2</sub> emission estimation is shown next to the route's total distance. Optionally, the fuel cost may be shown as well.</p>",
     "description": "The paragraph beside form"
   },
   "distanceTravelled": {
@@ -27,16 +27,16 @@
     "message": "Fuel Efficiency Units"
   },
   "coEmission": {
-    "message": "CO<sub>2</sub> Emissions?:"
+    "message": "CO<sub>2</sub> Emissions Rate:"
   },
   "emissionQues": {
-    "message": "Know your vehicle's average:"
+    "message": "To improve the accuracy of the estimations, please adjust below the fuel efficiency, the fuel consumption or the CO<sub>2</sub> emission rate of your car."
   },
   "byFuelConsumption": {
-    "message": "Fuel Consumption?:"
+    "message": "Fuel Consumption:"
   },
   "costCalculator": {
-    "message": "Cost Calculator"
+    "message": "Fuel Cost"
   },
   "coEmissionUnit": {
     "message": "CO<sub>2</sub> Emission Units"
@@ -78,7 +78,7 @@
     "message": "Fuel Cost:"
   },
   "fuelCostUnit": {
-    "message": "in $ per Volume unit"
+    "message": "in $ per unit of Volume"
   },
   "fuelCostNote": {
     "message": "'$' denotes a generic currency."
@@ -99,10 +99,10 @@
     "message": "per Distance"
   },
   "conversionNote": {
-    "message": "To get conversions change the units."
+    "message": "To get conversions, change the units."
   },
   "travelCostEstimate": {
-    "message": "Display travel cost estimation"
+    "message": "Display fuel cost estimation"
   },
   "save": {
     "message": "SAVE"
@@ -150,7 +150,7 @@
     "message": "enter <i>Fuel Consumed</i> per 100 units of <i>Distance Traveled</i>"
   },
   "cvMessage": {
-   "message": "enter total <i>Distance Traveled</i> for total <i>Fuel Consumed</i>"
+    "message": "enter total <i>Distance Traveled</i> for total <i>Fuel Consumed</i>"
   },
   "useMetric": {
     "message": "Metric"
@@ -174,7 +174,7 @@
     "message": "B20"
   },
   "footprints": {
-    "message": "Carbon Footprints"
+    "message": "Carbon Footprint"
   },
   "loadPricesBtn": {
     "message": "Get Price"
