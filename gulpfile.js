@@ -5,6 +5,7 @@ var stylish = require('jshint-stylish').reporter;
 var localizeForFirefox = require('chrome-to-firefox-translation');
 var flatten = require('gulp-flatten');
 var run = require('jpm/lib/run');
+var xpi = require('jpm/lib/xpi');
 var cmd = require('jpm/lib/cmd');
 var argv = require('yargs').argv;
 var gulpif = require('gulp-if');
@@ -163,6 +164,18 @@ gulp.task('runFirefox', ['groupFirefox'], function(done) {
 
 	cmd.prepare('run', dataObj, function(mf) {
 		run(mf, dataObj).then(null, console.error);
+	})();
+
+	done();
+});
+
+gulp.task('packageFirefox', ['groupFirefox'], function(done) {
+	var dataObj = {
+		addonDir: __dirname + '/' + firefoxBuildpath,
+	};
+
+	cmd.prepare('xpi', dataObj, function(mf) {
+		xpi(mf, dataObj).then(null, console.error);
 	})();
 
 	done();
