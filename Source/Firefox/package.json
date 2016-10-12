@@ -1,7 +1,7 @@
 {
   "title": "Carbon Footprint",
-  "name": "carbonfootprint",
-  "version": "4.0.0",
+  "name": "carbon-footprint",
+  "version": "4.0.1",
   "description": "Automatically estimates the CO2 emissions for driving on routes suggested by Google Maps™.",
   "main": "index.js",
   "author": "Kolya Opahle",
