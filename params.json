@@ -1,0 +1,6 @@
+{
+  "name": "Carbon Footprint",
+  "tagline": "A browser extension for Google Chrome, Firefox and Safari that displays carbon footprint information in Google Maps, Here Maps and Open Street Map.",
+  "body": "### Installation\r\n\r\nThe Carbon Footprint extension is available for Google Chrome, Safari and Firefox. Choose your browser below:\r\n\r\n* [Google Chrome](https://chrome.google.com/webstore/detail/carbon-footprint/ednfpjleaanokkjcgljbmamhlbkddcgh)\r\n* Safari (Coming soon...)\r\n* Firefox (Coming soon...)\r\n\r\n\r\n### Authors and Contributors\r\n\r\nThe Carbon Footprint extension was created by Bruno Woltzenlogel Paleo (@Ceilican) in 2011. In 2016, Chirac Arora, Kolya Opahle and Prateek Gupta joined the project as Google Summer of Code students.\r\n\r\n### Support or Contact\r\n\r\nIf you have any question, feature request or bug report, please [contact us](mailto:carbon-footprint-dev@googlegroups.com).",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
