@@ -1,3 +1,5 @@
 _site/*
 _deploy/*
 Rakefile
+node_modules/*
+Build/*
