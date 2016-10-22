@@ -16,18 +16,17 @@ a.carbon:active {
 }
 a.know-more-link:link {
     color:green;
-    text-decoration:underline;
-    font-size:0.7em;
+    font-size:1.5em;
 }
 a.know-more-link:visited {
     color:green;
     text-decoration:underline;
-    font-size:0.7em;
+    font-size:1.5em;
 }
 a.know-more-link:hover {
     color:green;
     text-decoration:underline;
-    font-size:0.7em;
+    font-size:2em;
 }
 a.know-more-link:active {
     color:green;

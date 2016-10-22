@@ -166,7 +166,7 @@ CarbonFootprintCore.prototype.createHTMLElement = function(footprint) {
     titleStr + '\' class=\'carbon\' id=\'carbon\'>' +
     this.footprintToString(footprint) +
     '</a> <a class=\'know-more-link\' href=' + knowMoreUrl +
-    ' target=\'_blank\' title=\'' + titleStr + '\'>Know More</a>';
+    ' target=\'_blank\' title=\'' + titleStr + '\'>&#63;</a>';
   e.onh;
   return e;
 };
