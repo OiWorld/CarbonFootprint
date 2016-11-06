@@ -1,94 +1,94 @@
-{ 
+{
   "Diesel":{
     "langKey":"fuelDiesel",
     "measuredBy":"v",
     "CO2Emission":"2.614",
-    "CH4Emission":"0.00011095",
-    "N2OEmission":"0.00002113",
-    "GHGEmission":"3.128",
-    "_comments":"kg/L;"
+    "CH4Emission":"0.00277375",
+    "N2OEmission":"0.00629674",
+    "GHGEmission":"2.62307049",
+    "_comments":"CO2e kg/L;"
   },
   "Gasoline":{
     "langKey":"fuelGasoline",
     "measuredBy":"v",
     "CO2Emission":"2.328",
-    "CH4Emission":"0.0001003",
-    "N2OEmission":"0.0000211",
-    "GHGEmission":"2.600",
-    "_comments":"kg/L;"
+    "CH4Emission":"0.0025075",
+    "N2OEmission":"0.0062878",
+    "GHGEmission":"2.3367953",
+    "_comments":"CO2e kg/L;"
   },
   "E10":{
     "langKey":"fuelE10",
     "measuredBy":"v",
     "CO2Emission":"2.2455",
-    "CH4Emission":"0.00009264",
-    "N2OEmission":"0.00001925",
-    "GHGEmission":"2.157",
-    "_comments":"kg/L;(0.10 * ethanol) + (0.90 * gasoline);"
+    "CH4Emission":"0.002316",
+    "N2OEmission":"0.0057365",
+    "GHGEmission":"2.2535525",
+    "_comments":"CO2e kg/L;(0.10 * ethanol) + (0.90 * gasoline);"
   },
   "E25":{
     "fuel":"E25",
     "langKey":"fuelE25",
     "measuredBy":"v",
     "CO2Emission":"2.12175",
-    "CH4Emission":"0.00008116",
-    "N2OEmission":"0.00001649",
-    "GHGEmission":"1.900",
-    "_comments":"kg/L;(0.25 * ethanol) + (0.75 * gasoline);"
+    "CH4Emission":"0.002029",
+    "N2OEmission":"0.00491402",
+    "GHGEmission":"2.12869302",
+    "_comments":"CO2e kg/L;(0.25 * ethanol) + (0.75 * gasoline);"
   },
   "E85":{
     "langKey":"fuelE85",
     "measuredBy":"v",
     "CO2Emission":"1.62675",
-    "CH4Emission":"0.00003525",
-    "N2OEmission":"0.00000541",
-    "GHGEmission":"0.874",
-    "_comments":"kg/L;(0.85 * ethanol) + (0.15 * gasoline);"
+    "CH4Emission":"0.00088125",
+    "N2OEmission":"0.00161218",
+    "GHGEmission":"1.62924343",
+    "_comments":"CO2e kg/L;(0.85 * ethanol) + (0.15 * gasoline);"
   },
   "Ethanol":{
     "langKey":"fuelEthanol",
     "measuredBy":"v",
     "CO2Emission":"1.503",
-    "CH4Emission":"0.00002377",
-    "N2OEmission":"0.00000264",
-    "GHGEmission":"0.6175",
-    "_comments":"kg/L;"
+    "CH4Emission":"0.00059425",
+    "N2OEmission":"0.00078672",
+    "GHGEmission":"1.50438097",
+    "_comments":"CO2e kg/L;"
   },
   "Bio-Diesel":{
     "langKey":"fuelBioDiesel",
     "measuredBy":"v",
     "CO2Emission":"2.486",
-    "CH4Emission":"0.00003698",
-    "N2OEmission":"0.00000264",
-    "GHGEmission":"0.8855",
-    "_comments":"kg/L;"
+    "CH4Emission":"0.0009245",
+    "N2OEmission":"0.00078672",
+    "GHGEmission":"2.48771122",
+    "_comments":"CO2e kg/L;"
   },
   "B20":{
     "langKey":"fuelB20",
     "measuredBy":"v",
     "CO2Emission":"2.5884",
-    "CH4Emission":"0.00009615",
-    "N2OEmission":"0.000017432",
-    "GHGEmission":"2.6795",
-     "_comments":"kg/L;(0.8 * diesel) + (0.20 * Bio-Diesel)"
+    "CH4Emission":"0.00240375",
+    "N2OEmission":"0.00519474",
+    "GHGEmission":"2.59599849",
+    "_comments":"CO2e kg/L;(0.8 * diesel) + (0.20 * Bio-Diesel)"
   },
   "LPG":{
     "langKey":"fuelLPG",
     "measuredBy":"v",
     "CO2Emission":"1.533",
-    "CH4Emission":"0.0000739",
-    "N2OEmission":"0.0000158",
-    "GHGEmission":"1.712",
-    "_comments":"kg/L;"
+    "CH4Emission":"0.0018475",
+    "N2OEmission":"0.0047084",
+    "GHGEmission":"1.5395559",
+    "_comments":"CO2e kg/L;"
   },
   "CNG":{
     "langKey":"fuelCNG",
     "measuredBy":"m",
     "CO2Emission":"1.725",
-    "CH4Emission":"0.00003273",
-    "N2OEmission":"0.000003178",
-    "GHGEmission":"1.926",
-    "_comments":"kg/kg;"
+    "CH4Emission":"0.00081825",
+    "N2OEmission":"0.00094704",
+    "GHGEmission":"1.72676529",
+    "_comments":"CO2e kg/kg;"
   },
   "Electricity":{
     "langKey":"fuelElectricity",
@@ -97,6 +97,6 @@
     "CH4Emission":"-1",
     "N2OEmission":"-1",
     "GHGEmission":"-1",
-    "_comments":"kg/kWh;"
+    "_comments":"CO2e kg/kWh;"
   }
 }

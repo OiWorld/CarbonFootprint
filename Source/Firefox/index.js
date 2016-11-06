@@ -433,7 +433,6 @@ alarm.checkTrigger = function() {
 
         var newlastCheckup = mm + '/' + dd + '/' + yyyy;
         storage.calculationObject.lastCheckup = newlastCheckup;
-        
       } else {
         setTimeout(alarm.showNotification, diff);
       }

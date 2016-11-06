@@ -113,10 +113,10 @@ CarbonFootprintCore.prototype.computeTrees = function(carbonFootprint) {
 CarbonFootprintCore.prototype.otherGasesString = function(distance) {
   if (this.settingsProvider.getGHGEmission() >= 0) {
     return 'CH₄: ' + (this.settingsProvider.getCH4Emission() * 1000 * distance)
-      .toFixed(3) + 'g,  ' + 'N₂O: ' + (this.settingsProvider.getN2OEmission() *
-                                        1000 * distance).toFixed(3) + 'g,  ' +
-      'GHG: ' + (this.settingsProvider.getGHGEmission() *
-                 distance).toFixed(2) + 'kg\n';
+      .toFixed(3) + 'g CO₂e,  ' + 'N₂O: ' +
+      (this.settingsProvider.getN2OEmission() * 1000 * distance).toFixed(3) +
+      'g CO₂e,  ' + 'GHG: ' + (this.settingsProvider.getGHGEmission() *
+                 distance).toFixed(3) + 'kg CO₂e\n';
   }
   return '';
 };
@@ -150,26 +150,28 @@ CarbonFootprintCore.prototype.treesToString = function(trees) {
 /**
  * creates footprint using provided footprints
  * @param {number} footprint
+ * @param {number} distance
  * @return {element} e
  */
 
-CarbonFootprintCore.prototype.createHTMLElement = function(footprint) {
-  var e = document.createElement('div'),
-      treesStr = this.treesToString(this.computeTrees(footprint)),
-      otherGasStr = this.otherGasesString(footprint),
-      titleStr = otherGasStr + treesStr,
-      knowMoreUrl = this.helper.getFilePath('pages/knowMore.html');
+CarbonFootprintCore.prototype.createHTMLElement =
+  function(footprint, distance) {
+    var e = document.createElement('div'),
+        treesStr = this.treesToString(this.computeTrees(footprint)),
+        otherGasStr = this.otherGasesString(distance),
+        titleStr = otherGasStr + treesStr,
+        knowMoreUrl = this.helper.getFilePath('pages/knowMore.html');
 
-  console.log(titleStr);
+    console.log(titleStr);
 
-  e.innerHTML = '<a href=' + knowMoreUrl + ' target=\'_blank\' title=\'' +
-    titleStr + '\' class=\'carbon\' id=\'carbon\'>' +
-    this.footprintToString(footprint) +
-    '</a> <a class=\'know-more-link\' href=' + knowMoreUrl +
-    ' target=\'_blank\' title=\'' + titleStr + '\'>Know More</a>';
-  e.onh;
-  return e;
-};
+    e.innerHTML = '<a href=' + knowMoreUrl + ' target=\'_blank\' title=\'' +
+      titleStr + '\' class=\'carbon\' id=\'carbon\'>' +
+      this.footprintToString(footprint) +
+      '</a> <a class=\'know-more-link\' href=' + knowMoreUrl +
+      ' target=\'_blank\' title=\'' + titleStr + '\'>Know More</a>';
+    e.onh;
+    return e;
+  };
 
 /**
  * creates footprint element for driving mode
@@ -179,7 +181,7 @@ CarbonFootprintCore.prototype.createHTMLElement = function(footprint) {
 
 CarbonFootprintCore.prototype.createFootprintElement = function(distance) {
   var footprint = this.computeFootprint(distance, 'd');
-  var element = this.createHTMLElement(footprint);
+  var element = this.createHTMLElement(footprint, distance);
   return element;
 };
 
