@@ -165,8 +165,8 @@ CarbonFootprintCore.prototype.createHTMLElement = function(footprint) {
   e.innerHTML = '<a href=' + knowMoreUrl + ' target=\'_blank\' title=\'' +
     titleStr + '\' class=\'carbon\' id=\'carbon\'>' +
     this.footprintToString(footprint) +
-    '</a> <a class=\'know-more-link\' href=' + knowMoreUrl +
-    ' target=\'_blank\' title=\'' + titleStr + '\'>&#63;</a>';
+    '</a> <a  href=' + knowMoreUrl +
+    ' target=\'_blank\' title=\'' + titleStr + '\'><img src="' + chrome.runtime.getURL('images/quest_mark.jpg') + '" id="quest_mark_icon"></a>';
   e.onh;
   return e;
 };
