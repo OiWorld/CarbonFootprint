@@ -173,7 +173,6 @@ CarbonFootprintCore.prototype.createHTMLElement =
     e.onh;
     return e;
   };
->>>>>>> OiWorld/master
 
 /**
  * creates footprint element for driving mode
