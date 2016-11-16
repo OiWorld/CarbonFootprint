@@ -154,6 +154,7 @@ CarbonFootprintCore.prototype.treesToString = function(trees) {
  * @return {element} e
  */
 
+
 CarbonFootprintCore.prototype.createHTMLElement =
   function(footprint, distance) {
     var e = document.createElement('div'),
@@ -168,7 +169,7 @@ CarbonFootprintCore.prototype.createHTMLElement =
       titleStr + '\' class=\'carbon\' id=\'carbon\'>' +
       this.footprintToString(footprint) +
       '</a> <a class=\'know-more-link\' href=' + knowMoreUrl +
-      ' target=\'_blank\' title=\'' + titleStr + '\'>Know More</a>';
+      ' target=\'_blank\' title=\'' + titleStr + '\'><img src="' + chrome.runtime.getURL('images/quest_mark.jpg') + '" id="quest_mark_icon"></a>';
     e.onh;
     return e;
   };
