@@ -14,26 +14,10 @@ a.carbon:active {
     color:red;
     text-decoration:none;
 }
-a.know-more-link:link {
-    color:green;
-    text-decoration:underline;
-    font-size:0.7em;
-}
-a.know-more-link:visited {
-    color:green;
-    text-decoration:underline;
-    font-size:0.7em;
-}
-a.know-more-link:hover {
-    color:green;
-    text-decoration:underline;
-    font-size:0.7em;
-}
-a.know-more-link:active {
-    color:green;
-    text-decoration:underline;
-    font-size:0.7em;
-}
 div.travelCost {
 	color:#4285F4;
+}
+#quest_mark_icon{
+    height: 18px;
+    width: 16px;
 }
