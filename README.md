@@ -3,8 +3,17 @@ Carbon Footprint for Google Maps
 
 A browser extension that displays carbon footprint information in multiple map services.
 
-Building and using
-------------------
+Downloading and Using the Latest Stable Version
+-----------------------------------------------
+
+To download and install the extension to your favorite browser, visit Carbon Footprint's page in your browser's extension/add-on gallery/store:
+
+*	[Google Chrome Web Store](https://chrome.google.com/webstore/detail/carbon-footprint/ednfpjleaanokkjcgljbmamhlbkddcgh)
+*	Safari (Coming soon... In the meanwhile, you can download a pre-built beta version from the "Dist" folder, or follow the instructions below it yourself.)
+*	[Firefox Add-On Gallery](https://addons.mozilla.org/en-US/firefox/addon/carbon-footprint/)
+
+Building and Using Beta Versions
+--------------------------------
 
 * clone this repository
 
@@ -34,3 +43,5 @@ Contributions
 If you would like to contribute to the development of this extension, please [contact the developers](mailto:bruno.wp@gmail.com).
 
 * [Google Summer of Code](GoogleSummerOfCode.md) grants are available every year. If you would like to apply, it is never too early to contact us. 
+
+

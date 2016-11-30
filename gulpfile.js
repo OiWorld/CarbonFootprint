@@ -12,7 +12,9 @@ var gulpif = require('gulp-if');
 var gulpFilter = require('gulp-filter');
 var stripDebug = require('gulp-strip-debug');
 var uglify = require('gulp-uglify');
+var shell = require('gulp-shell');
 var del = require('delete-empty');
+var runSequence = require('run-sequence');
 
 var lintFiles = ['Source/**/*.js', '!Source/**/*.min.js', '!Source/Chrome/background/google-maps-api.js'];
 
@@ -132,6 +134,10 @@ gulp.task('localesSafari', function() {
 	  .pipe(gulp.dest(safariBuildpath + '_locales'));
 });
 
+gulp.task('clearXAttr', shell.task([
+  'xattr -rc ' + safariBuildpath
+]));
+
 gulp.task('cleanChrome',function() {
   return del.sync(chormeBuildpath);
 });
@@ -146,7 +152,13 @@ gulp.task('cleanFirefox',function() {
 
 gulp.task('groupFirefox', ['cleanFirefox','localesFF', 'coreFirefox', 'specificFirefox']);
 gulp.task('groupChrome', ['cleanChrome','localesChrome', 'coreChrome', 'specificChrome']);
-gulp.task('groupSafari', ['cleanSafari','localesSafari', 'coreSafari', 'chromeShared','specificSafari']);
+gulp.task('copySafariFiles', ['localesSafari', 'coreSafari', 'chromeShared','specificSafari']);
+
+gulp.task('groupSafari', function(done) {
+  runSequence('cleanSafari', 'copySafariFiles', 'clearXAttr', function() {
+    done();
+  });
+});
 
 gulp.task('group', ['groupChrome', 'groupFirefox', 'groupSafari']);
 
