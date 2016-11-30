@@ -169,11 +169,7 @@ CarbonFootprintCore.prototype.createHTMLElement =
       titleStr + '\' class=\'carbon\' id=\'carbon\'>' +
       this.footprintToString(footprint) +
       '</a> <a class=\'know-more-link\' href=' + knowMoreUrl +
-<<<<<<< HEAD
       ' target=\'_blank\' title=\'' + titleStr + '\'><img src="' + this.helper.getFilePath('images/quest_mark.jpg') + '" id="quest_mark_icon"></a>';
-=======
-      ' target=\'_blank\' title=\'' + titleStr + '\'>Learn More</a>';
->>>>>>> OiWorld/master
     e.onh;
     return e;
   };
