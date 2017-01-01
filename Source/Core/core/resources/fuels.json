@@ -8,6 +8,15 @@
     "GHGEmission":"2.62307049",
     "_comments":"CO2e kg/L;"
   },
+  "Petrol":{
+    "langKey":"fuelPetrol",
+    "measuredBy":"v",
+    "CO2Emission":"2.328",
+    "CH4Emission":"0.0025075",
+    "N2OEmission":"0.0062878",
+    "GHGEmission":"2.3367953",
+    "_comments":"CO2e kg/L;"
+  },
   "Gasoline":{
     "langKey":"fuelGasoline",
     "measuredBy":"v",
