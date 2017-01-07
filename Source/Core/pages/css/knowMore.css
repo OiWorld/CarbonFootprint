@@ -447,3 +447,9 @@ input[type="radio"][name="unit"]:checked + span{
 #customTreeInput {
     display: none;
 }
+
+.modal-body{
+	background:gray;
+	opacity:.65;
+	border-radius:15px;
+}
