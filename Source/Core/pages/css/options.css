@@ -118,11 +118,11 @@ button {
 }
 
 #load-prices-button {
-    margin-top: 0;
+    margin-top: 100;
     width: 80px;
-    margin-left: 1em;
+    margin-left: -5em;
     font-size: 0.95em;
-    height: 2em;
+    height: 3em;
     font-weight: normal;
     white-space: nowrap;
 }
@@ -152,6 +152,10 @@ div#emission-type-cont > div.tab-button.selected {
     background: #f0f0f0;
     opacity: 1;
     border-bottom: 4px solid #2980B9;
+}
+
+.tab-button:hover{
+	 border-bottom: 2.55px solid #2980B9;
 }
 
 div#form-fields {
