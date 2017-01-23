@@ -23,13 +23,13 @@ a.active {
     outline: 0
 }
 a {
-    color: #fed136
+    color: #337ab7
 }
 a:hover,
 a:focus,
 a:active,
 a.active {
-    color: #fec503
+    color: #23527c
 }
 h1,
 h2,
