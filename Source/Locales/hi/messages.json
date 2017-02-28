@@ -35,6 +35,9 @@
   "fuelDiesel": {
     "message": "Diesel"
   },
+  "fuelPetrol": {
+    "message": "Petrol"
+  },
   "fuelGasoline": {
     "message": "Gasoline"
   },
