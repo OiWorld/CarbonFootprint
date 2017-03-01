@@ -21,11 +21,11 @@ Building and Using Beta Versions
 
 * run `gulp group` or `gulp groupFirefox` or `gulp groupChrome` or `gulp groupSafari`
 
-* add flag `--debug` to keep all debug statements and comments. 
+* add flag `--debug` to keep all debug statements and comments.
 
 * for chrome, load the unpacked extension from the Build/Chrome folder
 
-* for firefox, run `jpm runFirefox` and use the -b flag to point to a non extension veryifying version of Firefox like the Developer Edition
+* for firefox, run `jpm runFirefox` and use the -b flag to point to a non extension verifying version of Firefox like the Developer Edition
 
 * for safari, load folder with extension `.safariextension` into _Extension Builder_ `Develop -> Show Extension Builder`. To show _Develop_ menu go to `Safari -> Preferences -> Advanced`. Change extension metadata as required from the _Extension Builder_. To package the extension for distribution, get an extension certificate from Apple.
 
