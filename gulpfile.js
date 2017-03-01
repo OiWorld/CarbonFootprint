@@ -21,7 +21,7 @@ var lintFiles = ['Source/**/*.js', '!Source/**/*.min.js', '!Source/Chrome/backgr
 var chormeBuildpath = 'Build/Chrome/';
 var firefoxBuildpath = 'Build/Firefox/';
 var safariBuildpath = 'Build/Safari/CarbonFootprint.safariextension/';
-var doMinify = (argv.minify === undefined) ? false : true;
+var doMinify = (argv.debug === undefined) ? true : false;
 
 gulp.task('karma', function (done) {
 	new Server({
