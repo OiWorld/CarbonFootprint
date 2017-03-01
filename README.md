@@ -21,7 +21,7 @@ Building and Using Beta Versions
 
 * run `gulp group` or `gulp groupFirefox` or `gulp groupChrome` or `gulp groupSafari`
 
-* adding flag `--debug` to keep all debug statements and comments. 
+* add flag `--debug` to keep all debug statements and comments. 
 
 * for chrome, load the unpacked extension from the Build/Chrome folder
 
