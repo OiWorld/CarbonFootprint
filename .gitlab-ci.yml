@@ -1,0 +1,9 @@
+image: node:latest
+
+before_script:
+  - npm install -g gulp-cli
+  - npm install
+
+test:
+  script:
+    - gulp test
