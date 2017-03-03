@@ -1,76 +1,52 @@
-/*
- * Function to initialze google maps with tiles from aqicn
- */
-
 function initMap() {
-  var startPos;
-  var mapCode = document.getElementById('map-type').value;
-  var geoSuccess = function(position) {
-    startPos = position;
-    var lat = startPos.coords.latitude || 51.505,
-        long = startPos.coords.longitude || -0.09;
-    // console.log(startPos,mapCode);
-    /**
-     * Load google maps
-     */
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: new google.maps.LatLng(lat, long),
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      zoom: 8 });
-    var t = new Date().getTime();
+    var mapCode = document.getElementById('map-type').value;
 
-     /**
-     * Load overlay tiles from aqicn of choosen mapType
-     */
-    var waqiMapOverlay = new google.maps.ImageMapType({
-      getTileUrl: function(coord, zoom) {
-        return 'http://tiles.aqicn.org/tiles/' + mapCode + '/' +
-          zoom + '/' + coord.x + '/' + coord.y +
-          '.png?token=99a82d982d2bbcacc291962fba93d7535029ba17';
-      },
-      name: 'Air Quality'
+    // Loads overlay tiles from aqicn for Leaflet Maps
+    // for details regarding implementation visit: Load overlay tiles from aqicn of choosen mapType
+    var OSM_URL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    var OSM_ATTRIB = '&copy;  <a  href="http://openstreetmap.org/copyright">OpenStreetMap</a>  contributors';
+    var osmLayer = L.tileLayer(OSM_URL, {
+        attribution: OSM_ATTRIB
     });
-    map.overlayMapTypes.insertAt(0, waqiMapOverlay);
-    /**
-     * Error fix in case map cannot evaluate div size
-     */
-    setTimeout(function() {
-      google.maps.event.trigger(map, 'resize');
-    },1500);
-  };
-  /**
-   * Use geolocation to get user coordinates for map
-   */
-  navigator.geolocation.getCurrentPosition(geoSuccess);
+    var WAQI_URL = 'http://tiles.aqicn.org/tiles/' + mapCode + '/' + '{z}/{x}/{y}.png?token=99a82d982d2bbcacc291962fba93d7535029ba17';
+    var WAQI_ATTR = 'Air  Quality  Tiles  &copy;  <a  href="http://waqi.info">waqi.info</a>';
+    var waqiLayer = L.tileLayer(WAQI_URL, {
+        attribution: WAQI_ATTR
+    });
+
+    //Loads  Leaflet maps || Documentation: http://leafletjs.com/examples/quick-start/
+    var map = L.map('map');
+
+    //Use HTML5 geolocation to get user coordinates for map
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            map.setView([pos.lat, pos.lng], 8);
+            map.addLayer(osmLayer).addLayer(waqiLayer);
+            var marker = L.marker([pos.lat, pos.lng]).addTo(map);
+            marker.bindPopup("Air Index Quality").openPopup();
+        });
+    } else {
+        handleLocationError(false);
+    }
+} // initMap ends
+
+// fallback for browsers that doesn't support geolocation
+function handleLocationError(browserHasGeolocation) {
+    $('#map').append('<p class="geolocation-failure">Error: The Geolocation service failed. Your browser doesn\'t support geolocation.</p>');
 }
 
 function loadMapsAPI() {
-  // Get country of user
-  $.getJSON('http://freegeoip.net/json/', function(data) {
-    var country = data.country_name.toLowerCase();//your country
-    console.log(country);
-    var script = document.createElement('script');
-    /**
-      * Load from '.cn' is country is china
-      * Callback to init to load maps and overlay tiles
-      */
-    script.src = 'https://maps.googleapis.' +
-      (country === 'china' ? 'cn' : 'com') + '/maps/api/js' +
-      '?&callback=initMap';
-    document.body.appendChild(script);
-  }).fail(function() {
-    // default maps api if freegeoip fails
-    var script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js' +
-      '?&callback=initMap';
-    document.body.appendChild(script);
-  });
-  // Call initMap when a map type is changes
-  document.getElementById('map-type').onchange = initMap;
+    //calling initMap function
+    initMap();
+    // Call initMap when a map type is changes
+    document.getElementById('map-type').onchange = initMap;
 }
 
 /**
- * Loads google map api on window.onload
+ * Loads Leaflet maps api on window.onload
  */
-
 window.onload = loadMapsAPI;
