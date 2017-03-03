@@ -20,6 +20,27 @@ html,body {
     }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100px, 0);
+    transform: translate3d(0, 100px, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+#header > div, #form-cont, #description {
+    opacity: 0;
+    animation: fadeInUp 800ms;
+    animation-delay: 350ms;
+    animation-fill-mode: forwards;
+}
+
 #header {
     height: 130px;
     width: 100%;
