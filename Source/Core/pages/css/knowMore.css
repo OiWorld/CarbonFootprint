@@ -1,16 +1,16 @@
 :root {
   /* color palate inspired from: https://www.materialpalette.com/indigo/pink */
-    --dark-primary-color: #303F9F;
-    --primary-color: #3F51B5;
-    --light-primary-color: #C5CAE9;
-    --text-icon-color: #FFFFFF;
-    --primary-text-color: #212121;
-    --secondary-text-color: #757575;
-    --accent-color: #fe4081;
-    --divider-color: #BDBDBD;
-    --anchor-tag-color: #3F51B5;
-    --anchor-tag-hover-color: #757575;
-    --anchot-tag-other-color: #3c763d;
+  --dark-primary-color: #303F9F;
+  --primary-color: #3F51B5;
+  --light-primary-color: #C5CAE9;
+  --text-icon-color:#FFFFFF;
+  --primary-text-color:#212121;
+  --secondary-text-color:#757575;
+  --accent-color: #fe4081;
+  --divider-color: #BDBDBD;
+  --anchor-tag-color: #3F51B5;
+  --anchor-tag-hover-color: #757575;
+  --anchot-tag-other-color: #3c763d;
 }
 
 body {
@@ -22,43 +22,35 @@ body {
 .text-muted {
     color: #777;
 }
-
 .text-primary {
     color: var(--secondary-text-color);
 }
-
 p {
     font-size: 14px;
     line-height: 1.75;
 }
-
 p.large {
     font-size: 16px;
 }
-
 a,
 a:hover,
 a:focus,
 a:active,
 a.active {
-    outline: 0;
+    outline: 0
 }
-
 a {
     color: var(--anchor-tag-color);
     text-decoration: none;
 }
-
 a:hover {
     color: var(--anchor-tag-hover-color);
 }
-
 a:focus,
 a:active,
 a.active {
-    color: var(--anchot-tag-other-color);
+  color: var(--anchot-tag-other-color);
 }
-
 h1,
 h2,
 h3,
@@ -70,7 +62,6 @@ h6 {
     /*font-weight: 700;*/
     color: var(--primary-color);
 }
-
 hr {
     border: 0;
     height: 2px;
@@ -79,7 +70,6 @@ hr {
     margin-top: 0;
 }
 }
-
 .img-centered {
     margin: 0 auto;
 }
@@ -97,7 +87,6 @@ hr {
     text-transform: uppercase;
     font-weight: 700;
 }
-
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
@@ -107,13 +96,11 @@ hr {
     background-color: #fec503;
     border-color: #f6bf01;
 }
-
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
     background-image: none;
 }
-
 .btn-primary.disabled,
 .btn-primary[disabled],
 fieldset[disabled] .btn-primary,
@@ -132,12 +119,10 @@ fieldset[disabled] .btn-primary.active {
     background-color: #fed136;
     border-color: #fed136;
 }
-
 .btn-primary .badge {
     color: #fed136;
     background-color: #fff;
 }
-
 .btn-xl {
     color: #fff;
     background-color: #fed136;
@@ -147,9 +132,8 @@ fieldset[disabled] .btn-primary.active {
     font-weight: 700;
     border-radius: 3px;
     font-size: 18px;
-    padding: 20px 40px;
+    padding: 20px 40px
 }
-
 .btn-xl:hover,
 .btn-xl:focus,
 .btn-xl:active,
@@ -159,13 +143,11 @@ fieldset[disabled] .btn-primary.active {
     background-color: #fec503;
     border-color: #f6bf01;
 }
-
 .btn-xl:active,
 .btn-xl.active,
 .open .dropdown-toggle.btn-xl {
-    background-image: none;
+    background-image: none
 }
-
 .btn-xl.disabled,
 .btn-xl[disabled],
 fieldset[disabled] .btn-xl,
@@ -184,23 +166,19 @@ fieldset[disabled] .btn-xl.active {
     background-color: #fed136;
     border-color: #fed136;
 }
-
 .btn-xl .badge {
     color: #fed136;
     background-color: #fff;
 }
-
 section {
     padding: 25px 0;
 }
-
 section h2.section-heading {
     font-size: 7vw;
     margin-top: 0;
     margin-bottom: 15px;
     font-weight: 400;
 }
-
 section h3.section-subheading {
     font-size: 16px;
     font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -209,24 +187,20 @@ section h3.section-subheading {
     font-weight: 400;
     margin-bottom: 45px;
 }
-
 .service-heading {
     margin: 15px 0;
     text-transform: none;
 }
-
 #tile .tile-item {
     margin: 0 0 15px;
     right: 0;
 }
-
 #tile .tile-item .tile-link {
     display: block;
     position: relative;
     max-width: 400px;
     margin: 0 auto;
 }
-
 #tile .tile-item .tile-link .tile-hover {
     background: rgba(128, 128, 128, .5);
     position: absolute;
@@ -237,11 +211,9 @@ section h3.section-subheading {
     -webkit-transition: all ease .5s;
     -moz-transition: all ease .5s;
 }
-
 #tile .tile-item .tile-link .tile-hover:hover {
     opacity: 1;
 }
-
 #tile .tile-item .tile-link .tile-hover .tile-hover-content {
     position: absolute;
     width: 100%;
@@ -250,18 +222,15 @@ section h3.section-subheading {
     text-align: center;
     top: 50%;
     margin-top: -12px;
-    color: #fff;
+    color: #fff
 }
-
 #tile .tile-item .tile-link .tile-hover .tile-hover-content i {
     margin-top: -12px;
 }
-
 #tile .tile-item .tile-link .tile-hover .tile-hover-content h3,
 #tile .tile-item .tile-link .tile-hover .tile-hover-content h4 {
     margin: 0;
 }
-
 #tile .tile-item .tile-caption {
     max-width: 400px;
     margin: 0 auto;
@@ -269,40 +238,33 @@ section h3.section-subheading {
     text-align: center;
     padding: 25px;
 }
-
 #tile .tile-item .tile-caption h4 {
     text-transform: none;
     margin: 0;
 }
-
 #tile .tile-item .tile-caption p {
     font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: italic;
     font-size: 16px;
     margin: 0;
 }
-
 #tile * {
     z-index: 2;
 }
-
 @media (min-width: 767px) {
     #tile .tile-item {
         margin: 0 0 30px;
     }
 }
-
 .btn:focus,
 .btn:active,
 .btn.active,
 .btn:active:focus {
     outline: 0;
 }
-
 .tile-modal {
     padding: 0 !important;
 }
-
 .tile-modal .modal-content {
     border-radius: 0;
     background-clip: border-box;
@@ -313,32 +275,26 @@ section h3.section-subheading {
     padding: 30px 0;
     text-align: center;
 }
-
 .tile-modal .modal-content h2 {
     margin-bottom: 15px;
     font-size: 3em;
 }
-
 .tile-modal .modal-content p {
     margin-bottom: 30px;
 }
-
 .tile-modal .modal-content p.item-intro {
     margin: 20px 0 30px;
     font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: italic;
     font-size: 16px;
 }
-
 .tile-modal .modal-content ul.list-inline {
     margin-bottom: 30px;
     margin-top: 0;
 }
-
 .tile-modal .modal-content img {
     margin-bottom: 30px;
 }
-
 .tile-modal .close-modal {
     position: absolute;
     width: 50px;
@@ -349,11 +305,9 @@ section h3.section-subheading {
     cursor: pointer;
     z-index: 2;
 }
-
 .tile-modal .close-modal:hover {
     opacity: .3;
 }
-
 .tile-modal .close-modal .lr {
     height: 50px;
     width: 1px;
@@ -364,7 +318,6 @@ section h3.section-subheading {
     -webkit-transform: rotate(45deg);
     z-index: 1051;
 }
-
 .tile-modal .close-modal .lr .rl {
     height: 50px;
     width: 1px;
@@ -374,109 +327,57 @@ section h3.section-subheading {
     -webkit-transform: rotate(90deg);
     z-index: 1052;
 }
-
 .tile-modal .modal-backdrop {
     opacity: 0;
     display: none;
 }
-
 ::-moz-selection {
     text-shadow: none;
-    /*background: #fed136*/;
+    /*background: #fed136*/
 }
-
 ::selection {
     text-shadow: none;
-    /*background: #fed136*/;
+    /*background: #fed136*/
 }
-
 img::selection {
     background: 0 0;
 }
-
 img::-moz-selection {
     background: 0 0;
 }
-
 body {
     webkit-tap-highlight-color: #fed136;
 }
 
-/*Leaflet Map*/
 #map {
-    height: 300px;
-    background-color: #bdbdbd;
-    border: 1px solid var(--accent-color);
+    height: 380px;
+    width: 100%;
 }
-
-.geolocation-failure {
-    text-align: center;
-    margin-top: 174px;
-    color: var(--accent-color);
-}
-
-/*Overiding Leaflet stylesheet to match our page UI*/
-.leaflet-touch .leaflet-bar {
-    border: 1px solid var(--primary-color);
-}
-
-.leaflet-touch .leaflet-bar a {
-    color: var(--primary-color);
-}
-
-.leaflet-bar a {
-    border-bottom: 1px solid var(--primary-color);
-}
-
-.leaflet-bar a:hover {
-    background-color: var(--accent-color);
-    color: var(--text-icon-color);
-}
-
-/*Leaflet marker coustomization || overiding default stylesheet*/
-.leaflet-popup-content {
-    color: var(--primary-color);
-}
-
-.leaflet-container a.leaflet-popup-close-button {
-    color: var(--light-primary-color);
-}
-
-.leaflet-container a.leaflet-popup-close-button:hover {
-    color: var(--primary-color);
-}
-
-
 /* Accordian Panel */
 #accordion {
-    background-color: var(--primary-color);
+  background-color: var(--primary-color);
 }
-
 .panel {
     border: none;
     box-shadow: none;
     text-align: left;
     background-color: var(--primary-color);
 }
-
 .panel-default>.panel-heading {
     background-color: transparent;
     border: none;
 }
-
 .panel-title {
     text-align: center;
 }
-
-.panel-title>a,.panel-title>a:hover {
+.panel-title>a,.panel-title>a:hover{
     color: var(--text-icon-color);
     text-decoration: none;
     font-size: 1.2em;
     font-weight: 400;
 }
-
 .accordian-icon {
-    margin-right: 7px;
+    margin-right:7px;
     color: var(--accent-color);
 }
 
@@ -488,9 +389,8 @@ body {
 .panel-collapse ul {
     list-style: none;
 }
-
 .panel-collapse ul li {
-    margin-bottom: 15px;
+    margin-bottom:15px;
 }
 
 .info-text {
@@ -519,39 +419,30 @@ ul.social-buttons li a {
 ul.social-buttons li a:hover, ul.social-buttons li a:focus, ul.social-buttons li a:active {
     background-color: #ddd;
 }
-
 ul.social-buttons li a .fa-facebook {
     color: #3b5998;
 }
-
 ul.social-buttons li a .fa-twitter {
     color: #4099ff;
 }
-
 ul.social-buttons li a .fa-google-plus {
     color: #dd4b39;
 }
-
 ul.social-buttons li a .fa-gitlab {
     color: #fca326;
 }
-
-ul.social-buttons li a .fa-facebook:hover {
-    color: #fff;
+ul.social-buttons li a .fa-facebook:hover{
+  color:#fff;
 }
-
-ul.social-buttons li a .fa-twitter:hover {
-    color: #fff;
+ul.social-buttons li a .fa-twitter:hover{
+  color:#fff;
 }
-
-ul.social-buttons li a .fa-google-plus:hover {
-    color: #fff;
+ul.social-buttons li a .fa-google-plus:hover{
+  color:#fff;
 }
-
-ul.social-buttons li a .fa-gitlab:hover {
-    color: #fff;
+ul.social-buttons li a .fa-gitlab:hover{
+  color:#fff;
 }
-
 #accordianCalories {
     text-align: left;
 }
@@ -594,11 +485,9 @@ ul.social-buttons li a .fa-gitlab:hover {
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(236, 145, 176,.6);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(236, 145, 176);
 }
-
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
     background-color: var(--text-icon-color);
 }
-
 .btn:hover {
     color: var(--light-primary-color);
 }
@@ -607,7 +496,7 @@ ul.social-buttons li a .fa-gitlab:hover {
     display: none;
 }
 
-input[type="radio"][name="unit"]:checked + span {
+input[type="radio"][name="unit"]:checked + span{
     font-weight: bold;
 }
 
@@ -622,26 +511,18 @@ input[type="radio"][name="unit"]:checked + span {
 
 /*Media Quries*/
 @media screen and (min-width: 620px) {
-    section h2.section-heading {
-        font-size: 4vw;
-    }
-    #map {
-      height: 350px;
-    }
+  section h2.section-heading {
+      font-size: 4vw;
+  }
 }
-
 @media screen and (min-width: 881px) {
-    section h2.section-heading {
-        font-size: 3.5vw;
-        font-weight: initial;
-    }
-    #map {
-      height: 400px;
-    }
+  section h2.section-heading {
+      font-size: 3.5vw;
+      font-weight: initial
+  }
 }
-
 @media screen and (min-width: 1200px) {
-    hr {
-        margin-bottom: 30px;
-    }
+  hr {
+      margin-bottom: 30px;
+  }
 }
