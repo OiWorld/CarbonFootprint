@@ -26,8 +26,6 @@ function initMap() {
             };
             map.setView([pos.lat, pos.lng], 8);
             map.addLayer(osmLayer).addLayer(waqiLayer);
-            var marker = L.marker([pos.lat, pos.lng]).addTo(map);
-            marker.bindPopup("Air Index Quality").openPopup();
         });
     } else {
         handleLocationError(false);
