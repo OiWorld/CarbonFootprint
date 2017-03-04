@@ -242,7 +242,7 @@ browserServices.getFilePath = function(path) {
 
 
 var webStoreLink = function() {
-  console.log("Chrome Services");
+
   var browser = browserServices.checkBrowser();
   var link = '';
   var store = '';
@@ -252,15 +252,16 @@ var webStoreLink = function() {
       store = 'Chrome Web Store';
       break;
     case 'firefox':
-      link = 'https://addons.mozilla.org/en-US/firefox/addon/carbon-footprint/'
-      store = 'Firefox Add-ons'
+      link = 'https://addons.mozilla.org/en-US/firefox/addon/carbon-footprint/';
+      store = 'Firefox Add-ons';
       break;
     default:
       link = 'safari';
-  };
+  }
 
   document.getElementById('rating-link').href = link;
-  document.getElementById('rating-link').innerHTML = "<i class='fa fa-external-link aria-hidden'='true'></i> " + store;
+  document.getElementById('rating-link').innerHTML =
+    "<i class='fa fa-external-link aria-hidden'='true'></i> " + store;
 };
 
 webStoreLink();
