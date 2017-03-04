@@ -37,8 +37,22 @@ html,body {
 #header > div, #form-cont, #description {
     opacity: 0;
     animation: fadeInUp 800ms;
-    animation-delay: 350ms;
+    animation-delay: 250ms;
     animation-fill-mode: forwards;
+}
+
+#reLocation {
+    animation: load 1s linear infinite;
+}
+
+@keyframes load {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 #header {
