@@ -290,8 +290,8 @@ options.saveLocation = function() {
           geoData[addComps[i].types[0] + '_short'] = addComps[i].short_name;
         }
       }
-      $('#reLocation').css('pointer-events','auto');
-      $('#reLocation').css('animation','none');
+      $('#reLocation').css('pointer-events', 'auto');
+      $('#reLocation').css('animation', 'none');
       options.data.set('geoData', geoData);
       options.data.set('renPer',
                       {'wiki': options.countries[options.data
@@ -300,7 +300,6 @@ options.saveLocation = function() {
                        .RenewablePer});
       $('#green-electricity input').val(options.data.get('renPer').wiki);
       $('#location')
-        .css('animation','none')
         .html((options.data.get('geoData')
                .locality + ', ' + options.data.get('geoData')
                .administrative_area_level_1 + ', ' + options.data.get('geoData')
@@ -365,8 +364,8 @@ options.loadSavedData = function() {
                          .administrative_area_level_1 + ', ' +
                          options.data.get('geoData').country)
                         .replace(/ undefined,|undefined,/g, ''));
-    $('#reLocation').css('pointer-events','auto');
-    $('#reLocation').css('animation','none');
+    $('#reLocation').css('pointer-events', 'auto');
+    $('#reLocation').css('animation', 'none');
     $('[id="currency-codes"]')
       .val(
         options.countries[options.data.get('geoData').country_short].currency
@@ -675,7 +674,7 @@ options.loadResources = function() {
       options.loadMessages();
       options.loadSavedData();
     } else {
-      options.firstRun=false;
+      options.firstRun = false;
       options.populateMenus();
       options.loadMessages();
       options.loadSavedData();
