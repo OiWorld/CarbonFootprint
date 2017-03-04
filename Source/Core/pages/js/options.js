@@ -290,7 +290,8 @@ options.saveLocation = function() {
           geoData[addComps[i].types[0] + '_short'] = addComps[i].short_name;
         }
       }
-      $('#reLocation').show();
+      $('#reLocation').css('pointer-events', 'auto');
+      $('#reLocation').css('animation', 'none');
       options.data.set('geoData', geoData);
       options.data.set('renPer',
                       {'wiki': options.countries[options.data
@@ -363,7 +364,8 @@ options.loadSavedData = function() {
                          .administrative_area_level_1 + ', ' +
                          options.data.get('geoData').country)
                         .replace(/ undefined,|undefined,/g, ''));
-    $('#reLocation').show();
+    $('#reLocation').css('pointer-events', 'auto');
+    $('#reLocation').css('animation', 'none');
     $('[id="currency-codes"]')
       .val(
         options.countries[options.data.get('geoData').country_short].currency
@@ -634,7 +636,7 @@ options.loadResources = function() {
   } catch (err) {
     locale = 'en';
   }
-
+  $.when(
   $.getJSON(browserServices.getFilePath('/_locales/' + locale +
                                         '/messages.json'), function(response) {
     options.messages = response;
@@ -643,29 +645,47 @@ options.loadResources = function() {
               function(response) {
       options.messages = response;
     });
-  });
+  }),
   $.getJSON(browserServices.getFilePath('/core/resources/fuels.json'),
             function(response) {
     options.fuels = response;
-  });
+  }),
   $.getJSON(browserServices.getFilePath('/core/resources/currencyCodes.json'),
             function(response) {
     options.currencyCodes = response.currencyCodes;
-  });
+  }),
   $.getJSON(browserServices.getFilePath('/core/resources/countries.json'),
             function(response) {
     options.countries = response;
-  });
+  }),
   $.getJSON(browserServices.getFilePath('/core/resources/exchangeRates.json'),
             function(response) {
     options.defaultRates = response;
+  })
+  ).then(function() {
+    if (options.fuelsinit === true &&
+      options.currencyCodesinit === true &&
+      options.countriesinit === true &&
+      options.messagesinit === true &&
+      options.data.has('geoData') &&
+      !options.firstRun
+      ) {
+      options.populateMenus();
+      options.loadMessages();
+      options.loadSavedData();
+    } else {
+      options.firstRun = false;
+      options.populateMenus();
+      options.loadMessages();
+      options.loadSavedData();
+    }
   });
   $.getScript('https://maps.googleapis.com/maps/api/js')
-    .done(function() {
-      if (!options.data.has('geoData')) {
-        options.saveLocation();
-      }
-    });
+      .done(function() {
+        if (!options.data.has('geoData')) {
+          options.saveLocation();
+        }
+      });
 };
 
 

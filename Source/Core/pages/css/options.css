@@ -20,6 +20,41 @@ html,body {
     }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100px, 0);
+    transform: translate3d(0, 100px, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+#header > div, #form-cont, #description {
+    opacity: 0;
+    animation: fadeInUp 800ms;
+    animation-delay: 250ms;
+    animation-fill-mode: forwards;
+}
+
+#reLocation {
+    animation: load 1s linear infinite;
+}
+
+@keyframes load {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 #header {
     height: 130px;
     width: 100%;
