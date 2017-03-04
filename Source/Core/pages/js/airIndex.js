@@ -24,7 +24,7 @@ function initMap() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            map.setView([pos.lat, pos.lng], 8);
+            map.setView([pos.lat, pos.lng], 11);
             map.addLayer(osmLayer).addLayer(waqiLayer);
         });
     } else {
