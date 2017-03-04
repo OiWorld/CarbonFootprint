@@ -239,29 +239,3 @@ browserServices.getFilePath = function(path) {
   if (browser == 'safari')
     return browserServices.getSafariFilePath(path);
 };
-
-
-var webStoreLink = function() {
-
-  var browser = browserServices.checkBrowser();
-  var link = '';
-  var store = '';
-  switch (browser) {
-    case 'chrome':
-      link = 'https://chrome.google.com/webstore/detail/carbon-footprint-for-goog/ednfpjleaanokkjcgljbmamhlbkddcgh/reviews';
-      store = 'Chrome Web Store';
-      break;
-    case 'firefox':
-      link = 'https://addons.mozilla.org/en-US/firefox/addon/carbon-footprint/';
-      store = 'Firefox Add-ons';
-      break;
-    default:
-      link = 'safari';
-  }
-
-  document.getElementById('rating-link').href = link;
-  document.getElementById('rating-link').innerHTML =
-    "<i class='fa fa-external-link aria-hidden'='true'></i> " + store;
-};
-
-webStoreLink();
