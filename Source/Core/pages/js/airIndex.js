@@ -30,6 +30,17 @@ function initMap() {
     } else {
         handleLocationError(false);
     }
+
+    // addressing the issue - when the map is created, the container width/height for leaflet's `map-canvas' element is not adjusted
+    // to the width/height of the modal dialog. This causes the map size to be incorrect (smaller) than what it should be.
+    // map.invalidateSize() will work to re-adjust the width/height bounds of the L.Map's container.
+    // map.invalidateSize() official documentation here: http://leafletjs.com/reference.html#map-invalidatesize
+    //The timeout is because there may be some animation/transition time for the modal to display and be added to the DOM.
+    $('#tileModal1').on('show.bs.modal', function(){
+      setTimeout(function() {
+        map.invalidateSize();
+      }, 200);
+     });
 } // initMap ends
 
 // fallback for browsers that doesn't support geolocation
