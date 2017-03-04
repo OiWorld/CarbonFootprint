@@ -634,7 +634,7 @@ options.loadResources = function() {
   } catch (err) {
     locale = 'en';
   }
-
+  $.when(
   $.getJSON(browserServices.getFilePath('/_locales/' + locale +
                                         '/messages.json'), function(response) {
     options.messages = response;
@@ -643,29 +643,40 @@ options.loadResources = function() {
               function(response) {
       options.messages = response;
     });
-  });
+  }),
   $.getJSON(browserServices.getFilePath('/core/resources/fuels.json'),
             function(response) {
     options.fuels = response;
-  });
+  }),
   $.getJSON(browserServices.getFilePath('/core/resources/currencyCodes.json'),
             function(response) {
     options.currencyCodes = response.currencyCodes;
-  });
+  }),
   $.getJSON(browserServices.getFilePath('/core/resources/countries.json'),
             function(response) {
     options.countries = response;
-  });
+  }),
   $.getJSON(browserServices.getFilePath('/core/resources/exchangeRates.json'),
             function(response) {
     options.defaultRates = response;
+  })
+  ).then(function() {
+      if (options.fuelsinit === true &&
+      options.currencyCodesinit === true &&
+      options.countriesinit === true &&
+      options.messagesinit === true &&
+      options.data.has('geoData')) {
+      options.populateMenus();
+      options.loadMessages();
+      options.loadSavedData();
+  }
   });
   $.getScript('https://maps.googleapis.com/maps/api/js')
-    .done(function() {
-      if (!options.data.has('geoData')) {
-        options.saveLocation();
-      }
-    });
+      .done(function() {
+        if (!options.data.has('geoData')) {
+          options.saveLocation();
+        }
+      });
 };
 
 
