@@ -290,7 +290,7 @@ options.saveLocation = function() {
           geoData[addComps[i].types[0] + '_short'] = addComps[i].short_name;
         }
       }
-      $('#reLocation').show();
+      $('#reLocation').css('pointer-events','auto');
       $('#reLocation').css('animation','none');
       options.data.set('geoData', geoData);
       options.data.set('renPer',
@@ -365,7 +365,7 @@ options.loadSavedData = function() {
                          .administrative_area_level_1 + ', ' +
                          options.data.get('geoData').country)
                         .replace(/ undefined,|undefined,/g, ''));
-    $('#reLocation').show();
+    $('#reLocation').css('pointer-events','auto');
     $('#reLocation').css('animation','none');
     $('[id="currency-codes"]')
       .val(
