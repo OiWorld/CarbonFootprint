@@ -260,7 +260,7 @@ var webStoreLink = function() {
   };
 
   document.getElementById('rating-link').href = link;
-  document.getElementById('rating-link').innerHTML = "<i class='fa fa-external-link aria-hidden'='true'></i>" + store;
+  document.getElementById('rating-link').innerHTML = "<i class='fa fa-external-link aria-hidden'='true'></i> " + store;
 };
 
 webStoreLink();
