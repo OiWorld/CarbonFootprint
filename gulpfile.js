@@ -16,6 +16,7 @@ var shell = require('gulp-shell');
 var del = require('delete-empty');
 var runSequence = require('run-sequence');
 var dom = require('gulp-dom');
+var variables = require('./buildVariables.json');
 
 var lintFiles = ['Source/**/*.js', '!Source/**/*.min.js', '!Source/Chrome/background/google-maps-api.js'];
 
@@ -47,8 +48,6 @@ gulp.task('localesFF', function() {
 gulp.task('coreFirefox', function() {
   var jsFilter = gulpFilter('**/*.js',{restore:true});
 	var linkFilter = gulpFilter('**/knowMore.html', {restore:true});
-	var storeName = 'Firefox Add-on Gallery';
-	var storeLink = 'https://addons.mozilla.org/en-US/firefox/addon/carbon-footprint/';
 	return gulp.src('Source/Core/**')
     .pipe(jsFilter)
     .pipe(gulpif(doMinify,stripDebug()))
@@ -56,9 +55,10 @@ gulp.task('coreFirefox', function() {
     .pipe(jsFilter.restore)
 		.pipe(linkFilter)
 		.pipe(dom(function(){
-			this.getElementById('rating-link').href = storeLink;
+			this.getElementById('rating-link').href = variables['firefox']['storeLink'];
 			this.getElementById('rating-link').innerHTML =
-				"<i class='fa fa-external-link aria-hidden'='true'></i> " + storeName;
+				"<i class='fa fa-external-link aria-hidden'='true'></i> " +
+				variables['firefox']['storeName'];
 			return this;
 		}))
 		.pipe(linkFilter.restore)
@@ -95,8 +95,6 @@ gulp.task('localesChrome', function() {
 gulp.task('coreChrome', function() {
   var jsFilter = gulpFilter('**/*.js',{restore:true});
 	var linkFilter = gulpFilter('**/knowMore.html', {restore:true});
-	var storeName = 'Chrome Web Store';
-	var storeLink = 'https://chrome.google.com/webstore/detail/carbon-footprint-for-goog/ednfpjleaanokkjcgljbmamhlbkddcgh/reviews';
   return gulp.src('Source/Core/**')
     .pipe(jsFilter)
     .pipe(gulpif(doMinify,stripDebug()))
@@ -104,9 +102,10 @@ gulp.task('coreChrome', function() {
     .pipe(jsFilter.restore)
 		.pipe(linkFilter)
 		.pipe(dom(function(){
-			this.getElementById('rating-link').href = storeLink;
+			this.getElementById('rating-link').href = variables['chrome']['storeLink'];
 			this.getElementById('rating-link').innerHTML =
-				"<i class='fa fa-external-link aria-hidden'='true'></i> " + storeName;
+				"<i class='fa fa-external-link aria-hidden'='true'></i> " +
+				variables['chrome']['storeName'];
 			return this;
 		}))
 		.pipe(linkFilter.restore)
@@ -125,8 +124,6 @@ gulp.task('specificChrome', function() {
 gulp.task('coreSafari', function() {
   var jsFilter = gulpFilter('**/*.js',{restore:true});
 	var linkFilter = gulpFilter('**/knowMore.html', {restore:true});
-	var storeName = 'Chrome Web Store';
-	var storeLink = 'https://chrome.google.com/webstore/detail/carbon-footprint-for-goog/ednfpjleaanokkjcgljbmamhlbkddcgh/reviews';
 	return gulp.src('Source/Core/**')
     .pipe(jsFilter)
     .pipe(gulpif(doMinify,stripDebug()))
@@ -134,9 +131,14 @@ gulp.task('coreSafari', function() {
     .pipe(jsFilter.restore)
 		.pipe(linkFilter)
 		.pipe(dom(function(){
-			this.getElementById('rating-link').href = storeLink;
+			/*
+			* TODO Safari is currently linked to Google Chrome Web Store.
+			* Update variables.json with appropriate link once app is published
+			*/
+			this.getElementById('rating-link').href = variables['safari']['storeLink'];
 			this.getElementById('rating-link').innerHTML =
-				"<i class='fa fa-external-link aria-hidden'='true'></i> " + storeName;
+				"<i class='fa fa-external-link aria-hidden'='true'></i> " +
+				variables['safari']['storeName'];
 			return this;
 		}))
 		.pipe(linkFilter.restore)
