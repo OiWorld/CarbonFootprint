@@ -45,6 +45,8 @@ gulp.task('localesFF', function() {
 	  .pipe(gulp.dest(firefoxBuildpath + 'locale'));
 });
 
+
+
 gulp.task('coreFirefox', function() {
   var jsFilter = gulpFilter('**/*.js',{restore:true});
 	var linkFilter = gulpFilter('**/knowMore.html', {restore:true});
@@ -59,6 +61,12 @@ gulp.task('coreFirefox', function() {
 			this.getElementById('rating-link').innerHTML =
 				"<i class='fa fa-external-link aria-hidden'='true'></i> " +
 				variables['firefox']['storeName'];
+			this.getElementById('store-link-1').href = variables['safari']['storeLink'];
+			this.getElementById('store-link-1').innerHTML =
+				"<img src= '" + variables['safari']['badge']+"' class='img-responsive'/>"
+			this.getElementById('store-link-2').href = variables['chrome']['storeLink'];
+			this.getElementById('store-link-2').innerHTML =
+				"<img src= '" + variables['chrome']['badge']+"' class='img-responsive'/>"
 			return this;
 		}))
 		.pipe(linkFilter.restore)
@@ -106,6 +114,12 @@ gulp.task('coreChrome', function() {
 			this.getElementById('rating-link').innerHTML =
 				"<i class='fa fa-external-link aria-hidden'='true'></i> " +
 				variables['chrome']['storeName'];
+			this.getElementById('store-link-1').href = variables['firefox']['storeLink'];
+			this.getElementById('store-link-1').innerHTML =
+				"<img src= '" + variables['firefox']['badge']+"' class='img-responsive'/>"
+			this.getElementById('store-link-2').href = variables['safari']['storeLink'];
+			this.getElementById('store-link-2').innerHTML =
+				"<img src= '" + variables['safari']['badge']+"' class='img-responsive'/>"
 			return this;
 		}))
 		.pipe(linkFilter.restore)
@@ -132,13 +146,19 @@ gulp.task('coreSafari', function() {
 		.pipe(linkFilter)
 		.pipe(dom(function(){
 			/*
-			* TODO Safari is currently linked to Google Chrome Web Store.
+			* TODO Safari is currently linked to https://safari-extensions.apple.com.
 			* Update variables.json with appropriate link once app is published
 			*/
 			this.getElementById('rating-link').href = variables['safari']['storeLink'];
 			this.getElementById('rating-link').innerHTML =
 				"<i class='fa fa-external-link aria-hidden'='true'></i> " +
 				variables['safari']['storeName'];
+			this.getElementById('store-link-1').href = variables['chrome']['storeLink'];
+			this.getElementById('store-link-1').innerHTML =
+				"<img src= '" + variables['chrome']['badge']+"' class='img-responsive'/>"
+			this.getElementById('store-link-2').href = variables['firefox']['storeLink'];
+			this.getElementById('store-link-2').innerHTML =
+				"<img src= '" + variables['firefox']['badge']+"' class='img-responsive'/>"
 			return this;
 		}))
 		.pipe(linkFilter.restore)
