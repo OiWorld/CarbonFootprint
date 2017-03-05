@@ -226,7 +226,7 @@ var gmaps = pageMod.PageMod({
 });
 
 var gmaps = pageMod.PageMod({
-  include: /https?:\/\/(www\.)?bing.com\/mapspreview.*/,
+  include: /https?:\/\/(www\.)?bing.com\/maps.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
     './core/helpers/FirefoxHelper.js',
