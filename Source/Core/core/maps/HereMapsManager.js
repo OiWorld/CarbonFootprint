@@ -118,9 +118,9 @@ HereMapsManager.prototype.convertDistance = function(distanceStr) {
 
 HereMapsManager.prototype.convertTime = function(timeStr) {
   if (timeStr) {
-    var days = (/ (\w*)d/).exec(timeStr);
-    var hrs = (/ (\w*)h/).exec(timeStr);
-    var mins = (/ (\w*)m/).exec(timeStr);
+    var days = (/ (\w*) d/).exec(timeStr);
+    var hrs = (/ (\w*) h/).exec(timeStr);
+    var mins = (/ (\w*) m/).exec(timeStr);
     if (hrs) {
       hrs = parseFloat(hrs[1]);
     }
@@ -149,12 +149,12 @@ HereMapsManager.prototype.insertFootprintElement = function(route, e) {
   if (route.getElementsByClassName('carbon').length === 0) {
     e.setAttribute(
       'style',
-      'padding-right:15px;display:inline-block;position:relative;top:-15px;'
+      'padding-left:5px;display:inline-block;position:relative;top:-5px;'
     );
     route
-      .getElementsByClassName('route_card_footer_container')[0]
+      .getElementsByClassName('route_card_information')[0]
       .appendChild(e);
-  }
+}
 };
 
 /**
