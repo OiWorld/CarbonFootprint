@@ -92,7 +92,7 @@ MapQuestMapsManager.prototype.insertFootprintElement = function(e) {
     'style',
     'padding:3px 15px;display:inline-block;position:relative;'
   );
-  document.querySelector('.route-info-bar').insertBefore(e, directionButton);
+  document.querySelector('.via-area').insertBefore(e, directionButton);
 };
 
 /**
@@ -112,7 +112,7 @@ MapQuestMapsManager.prototype.insertTravelCostElement = function(e) {
     'style',
     'padding:3px 15px;display:inline-block;position:relative;'
   );
-  document.querySelector('.route-info-bar').insertBefore(e, directionButton);
+  document.querySelector('.via-area').insertBefore(e, directionButton);
 };
 
 /**
