@@ -21,7 +21,7 @@ var ChromeHelper = function(argument) {
  */
 
 ChromeHelper.getFilePath = function(filename) {
-  return chrome.extension.getURL(filename);
+  return chrome.runtime.getURL(filename);
 };
 
 /**
