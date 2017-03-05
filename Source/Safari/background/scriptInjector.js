@@ -341,8 +341,8 @@ injector.openStreetMap = [
  */
 
 injector.bingMaps = [
-  'http://*.bing.com/mapspreview*',
-  'https://*.bing.com/mapspreview*',
+  'https://*.bing.com/maps*',
+  'http://*.bing.com/maps*'
 ];
 
 /**

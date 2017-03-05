@@ -242,8 +242,9 @@
       "all_frames" : true
     },
     {
-      "matches": [ "http://www.bing.com/mapspreview*",
-        "https://www.bing.com/mapspreview*"
+      "matches": [
+        "https://www.bing.com/maps*",
+        "http://www.bing.com/maps*"
       ],
       "css": ["core/css/main.css"],
       "js" : [
