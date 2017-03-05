@@ -1,5 +1,8 @@
 function initMap() {
     var mapCode = document.getElementById('map-type').value;
+    var formattedMap = '<div id="map"></div>';
+
+    $('#map-container').html(formattedMap);
 
     // Loads overlay tiles from aqicn for Leaflet Maps
     // for details regarding implementation visit: Load overlay tiles from aqicn of choosen mapType
@@ -36,11 +39,11 @@ function initMap() {
     // map.invalidateSize() will work to re-adjust the width/height bounds of the L.Map's container.
     // map.invalidateSize() official documentation here: http://leafletjs.com/reference.html#map-invalidatesize
     //The timeout is because there may be some animation/transition time for the modal to display and be added to the DOM.
-    $('#tileModal1').on('show.bs.modal', function(){
-      setTimeout(function() {
-        map.invalidateSize();
-      }, 200);
-     });
+    $('#tileModal1').on('show.bs.modal', function() {
+        setTimeout(function() {
+            map.invalidateSize();
+        }, 200);
+    });
 } // initMap ends
 
 // fallback for browsers that doesn't support geolocation
