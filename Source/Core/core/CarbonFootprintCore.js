@@ -164,13 +164,11 @@ CarbonFootprintCore.prototype.createHTMLElement =
         knowMoreUrl = this.helper.getFilePath('pages/knowMore.html');
 
     console.log(titleStr);
-
+    e.setAttribute("id", "carbon-footprint-label");
     e.innerHTML = '<a href=' + knowMoreUrl + ' target=\'_blank\' title=\'' +
       titleStr + '\' class=\'carbon\' id=\'carbon\'>' +
       this.footprintToString(footprint) +
-      '</a> <a class=\'know-more-link\' href=' + knowMoreUrl +
-      ' target=\'_blank\' title=\'' + titleStr + '\'><img src="' +
-      this.helper.getFilePath('images/quest_mark.jpg') +
+      ' <img src="' + this.helper.getFilePath('images/quest_mark.png') +
       '" id="quest_mark_icon"></a>';
     e.onh;
     return e;
