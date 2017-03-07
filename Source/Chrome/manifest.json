@@ -297,6 +297,21 @@
       ],
       "run_at": "document_end",
       "all_frames": true
+    },{
+      "matches": [
+        "https://*.yandex.*/maps*",
+        "http://*.yandex.*/maps*"
+      ],
+      "css": ["core/css/main.css"],
+      "js": [
+        "core/CarbonFootprintCore.js",
+        "core/settings/ChromeSettingsProvider.js",
+        "core/helpers/ChromeHelper.js",
+        "core/maps/YandexMapsManager.js",
+        "core/init.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": true
     }
   ],
   "icons": {

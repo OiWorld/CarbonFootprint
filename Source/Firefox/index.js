@@ -264,7 +264,18 @@ var gmaps = pageMod.PageMod({
   onAttach: onAttachListener
 });
 
-
+var gmaps = pageMod.PageMod({
+  include: /https?:\/\/(www\.)?yandex.*\/maps\/.*/,
+  contentScriptFile: [
+    './core/CarbonFootprintCore.js',
+    './core/helpers/FirefoxHelper.js',
+    './core/settings/FirefoxSettingsProvider.js',
+    './core/maps/YandexMapsManager.js',
+    './core/init.js'
+  ],
+  contentScriptWhen: 'ready',
+  onAttach: onAttachListener
+});
 
 var updater = {};
 

@@ -474,6 +474,19 @@ injector.mapQuest = [
 ];
 
 /**
+ * matching patterns for Map Quest
+ * Note: include both https and http links in different lines
+ * because safari won't accept '*://'
+ */
+
+injector.yandexMaps = [
+    'http://*.yandex.com/maps*',
+    'http://*.yandex.ru/maps*',
+    'https://*.yandex.com/maps*',
+    'https://*.yandex.ru/maps*'
+];
+
+/**
  * matching patterns for all map services
  */
 
@@ -482,7 +495,8 @@ injector.allMaps = injector.googleMaps;
 injector.allMaps = injector.allMaps.concat(injector.openStreetMap,
     injector.bingMaps,
     injector.hereMaps,
-    injector.mapQuest);
+    injector.mapQuest,
+    injector.yandexMaps);
 
 /**
  * base URL of the extension in Safari
@@ -550,3 +564,8 @@ safari
     .extension
     .addContentScriptFromURL(injector.URL + 'core/maps/MapQuestMapsManager.js',
         injector.mapQuest, [], true);
+
+safari
+    .extension
+    .addContentScriptFromURL(injector.URL + 'core/maps/YandexMapsManager.js',
+        injector.yandexMaps, [], true);
