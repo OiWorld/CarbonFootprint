@@ -2,7 +2,7 @@ a.carbon:link,
 a.carbon:visited,
 a.carbon:hover,
 a.carbon:active {
-    color: #2c3e50 !important;
+    color: #ff0000;
     text-decoration:none;
 }
 div.travelCost {
@@ -13,14 +13,8 @@ div.travelCost {
     width: 16px;
 }
 #carbon-footprint-label {
-  display: inline-block;
-  float: right;
-  padding: 5px 10px;
-  background: #f1c40f;
-  color: #2c3e50;
+  padding: 10px 0;
   font-weight: bold;
-  border: 2px solid #f39c12;
-  border-radius: 5px;
 }
 #carbon-footprint-label a img{
   vertical-align: sub;
