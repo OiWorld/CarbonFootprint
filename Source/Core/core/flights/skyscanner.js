@@ -55,8 +55,7 @@ skyscannerManager.prototype.insertInDom = function(processedList){
   for(var x = 0, i = insertIn.length; x < i; x++){
     var co2 = document.createElement("span");
     co2.className = "carbon";
-    var node = document.createTextNode(processedList[x].co2Emission + "kg of carbon/person");
-    co2.appendChild(node);
+    co2.innerHTML = processedList[x].co2Emission + "kg of CO<sub>2</sub> per person";
     if(insertIn[x].childNodes[1].childNodes.length <= 4 || insertIn[x].childNodes[1].childNodes[4].className == "leg-operator" && insertIn[x].childNodes[1].childNodes.length <= 5){
       insertIn[x].childNodes[1].appendChild(co2);
     }
