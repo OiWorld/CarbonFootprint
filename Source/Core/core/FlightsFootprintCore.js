@@ -1,12 +1,12 @@
 var FlightsFootprintCore = function(){
   console.log("start http");
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.open('GET', Helper.getFilePath("core/resources/airports.json"), true);
-  xmlhttp.onreadystatechange = function() {
-      if (xmlhttp.readyState == 4) {
+  var httpAirports = new XMLHttpRequest();
+  httpAirports.open('GET', Helper.getFilePath("core/resources/airports.json"), true);
+  httpAirports.onreadystatechange = function() {
+      if (httpAirports.readyState == 4) {
         console.log("ready state = 4");
-          if(xmlhttp.status == 200) {
-              core.airportsData = JSON.parse(xmlhttp.responseText);
+          if(httpAirports.status == 200) {
+              core.airportsData = JSON.parse(httpAirports.responseText);
               console.log("got reply");
               //console.log(this.airportsData);
           }
@@ -16,17 +16,17 @@ var FlightsFootprintCore = function(){
       }
       else{
         console.log("error getting json not ready");
-        console.log(xmlhttp.readyState);
+        console.log(httpAirports.readyState);
       }
   };
-  xmlhttp.send();
-  var xmlhttp2 = new XMLHttpRequest();
-  xmlhttp2.open('GET', Helper.getFilePath("core/resources/airplanes.json"), true);
-  xmlhttp2.onreadystatechange = function() {
-      if (xmlhttp2.readyState == 4) {
+  httpAirports.send();
+  var httpAirplanes = new XMLHttpRequest();
+  httpAirplanes.open('GET', Helper.getFilePath("core/resources/airplanes.json"), true);
+  httpAirplanes.onreadystatechange = function() {
+      if (httpAirplanes.readyState == 4) {
         console.log("ready state = 4");
-          if(xmlhttp2.status == 200) {
-              core.airplanesData = JSON.parse(xmlhttp2.responseText);
+          if(httpAirplanes.status == 200) {
+              core.airplanesData = JSON.parse(httpAirplanes.responseText);
               console.log("got reply");
               //console.log(this.airportsData);
           }
@@ -36,14 +36,14 @@ var FlightsFootprintCore = function(){
       }
       else{
         console.log("error getting json not ready");
-        console.log(xmlhttp2.readyState);
+        console.log(httpAirplanes.readyState);
       }
   };
-  xmlhttp2.send();
+  httpAirplanes.send();
 };
 
 FlightsFootprintCore.CO2_FOR_JETFUEL = 3.16; // 3.16 tons of co2 for 1 ton of jet fuel
-FlightsFootprintCore.NM_TO_KM = 1.852;
+FlightsFootprintCore.NMI_TO_KM = 1.852; // 1 nautical mile = 1.852 kilometers
 
 FlightsFootprintCore.prototype.getCoordinates = function(list){
   console.log("reached core");
@@ -76,19 +76,31 @@ FlightsFootprintCore.prototype.getEmission = function(list){
     var fuelConsumptionFloor, fuelConsumptionCeil;
     var distanceFloor, distanceCeil;
     for(var y = 0, j = core.airplanesData.distances.length; y < j; y++){
-      if(core.airplanesData.distances[y]*FlightsFootprintCore.NM_TO_KM > list[x].distance){
+      if(core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM > list[x].distance){
         fuelConsumptionFloor = core.airplanesData[aircraft][y-1];
         fuelConsumptionCeil = core.airplanesData[aircraft][y];
-        distanceFloor = core.airplanesData.distances[y-1]*FlightsFootprintCore.NM_TO_KM;
-        distanceCeil = core.airplanesData.distances[y]*FlightsFootprintCore.NM_TO_KM;
+        distanceFloor = core.airplanesData.distances[y-1]*FlightsFootprintCore.NMI_TO_KM;
+        distanceCeil = core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM;
         break;
       }
     }
-    var fuelConsumption = fuelConsumptionFloor + ((fuelConsumptionCeil - fuelConsumptionFloor)/(distanceCeil - distanceFloor))*(list[x].distance - distanceFloor);
+    var fuelConsumption = fuelConsumptionFloor + ((fuelConsumptionCeil - fuelConsumptionFloor)/
+                          (distanceCeil - distanceFloor))*(list[x].distance - distanceFloor);
     //console.log("fuelConsumption1" + fuelConsumption1);
-    list[x].co2Emission = Math.floor(fuelConsumption*FlightsFootprintCore.CO2_FOR_JETFUEL/853);
+    list[x].co2Emission = this.convertFuelToCO2(fuelConsumption);
   }
-  console.log("--- final list ---");
-  console.log(list);
+  //console.log("--- final list ---");
+  //console.log(list);
   return list;
+};
+
+FlightsFootprintCore.prototype.convertFuelToCO2 = function(fuel){
+  return Math.floor(fuel*FlightsFootprintCore.CO2_FOR_JETFUEL/853);
+};
+
+FlightsFootprintCore.prototype.createHTMLElement = function(co2Emission){
+  var co2 = document.createElement("span");
+  co2.className = "carbon";
+  co2.innerHTML = co2Emission + "kg of CO<sub>2</sub> per person";
+  return co2;
 };

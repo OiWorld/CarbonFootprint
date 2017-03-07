@@ -12,7 +12,8 @@ skyscannerManager.prototype.getList = function(){
     processedList.push({
       depart: rawList[x].childNodes[1].childNodes[0].childNodes[0].childNodes[1].innerHTML,
       arrive: rawList[x].childNodes[1].childNodes[2].childNodes[0].childNodes[1].innerHTML,
-      stop: rawList[x].childNodes[1].childNodes[1].childNodes[2].childNodes[1].childNodes[0] ? rawList[x].childNodes[1].childNodes[1].childNodes[2].childNodes[1].childNodes[0].innerHTML : "",
+      stop: rawList[x].childNodes[1].childNodes[1].childNodes[2].childNodes[1].childNodes[0] ?
+            rawList[x].childNodes[1].childNodes[1].childNodes[2].childNodes[1].childNodes[0].innerHTML : "",
       aircraft: "A380", //hardcoded for now
     });
   }
@@ -32,10 +33,14 @@ skyscannerManager.prototype.getDistances = function(processedList){
   for(var x = 0, i = processedList.length; x < i; x++){
     console.log(processedList[x]);
     if(processedList[x].stopCoordinates){
-      processedList[x].distance = core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon, processedList[x].stopCoordinates.lat, processedList[x].stopCoordinates.lon) + core.getDistance(processedList[x].stopCoordinates.lat, processedList[x].stopCoordinates.lon, processedList[x].arriveCoordinates.lat, processedList[x].arriveCoordinates.lon);
+      processedList[x].distance = core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
+                                                   processedList[x].stopCoordinates.lat, processedList[x].stopCoordinates.lon) +
+                                  core.getDistance(processedList[x].stopCoordinates.lat, processedList[x].stopCoordinates.lon,
+                                                   processedList[x].arriveCoordinates.lat, processedList[x].arriveCoordinates.lon);
     }
     else{
-      processedList[x].distance = core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon, processedList[x].arriveCoordinates.lat, processedList[x].arriveCoordinates.lon);
+      processedList[x].distance = core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
+                                                   processedList[x].arriveCoordinates.lat, processedList[x].arriveCoordinates.lon);
     }
   }
   console.log("---got distances---");
@@ -53,11 +58,10 @@ skyscannerManager.prototype.getEmission = function(processedList){
 skyscannerManager.prototype.insertInDom = function(processedList){
   insertIn = document.getElementsByClassName("card-main");
   for(var x = 0, i = insertIn.length; x < i; x++){
-    var co2 = document.createElement("span");
-    co2.className = "carbon";
-    co2.innerHTML = processedList[x].co2Emission + "kg of CO<sub>2</sub> per person";
-    if(insertIn[x].childNodes[1].childNodes.length <= 4 || insertIn[x].childNodes[1].childNodes[4].className == "leg-operator" && insertIn[x].childNodes[1].childNodes.length <= 5){
-      insertIn[x].childNodes[1].appendChild(co2);
+    if(insertIn[x].childNodes[1].childNodes.length <= 4 ||
+       insertIn[x].childNodes[1].childNodes[4].className == "leg-operator" &&
+       insertIn[x].childNodes[1].childNodes.length <= 5){
+         insertIn[x].childNodes[1].appendChild(core.createHTMLElement(processedList[x].co2Emission));
     }
     //console.log(insertIn[x].childNodes[1].childNodes[1]);
   }
