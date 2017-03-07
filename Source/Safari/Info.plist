@@ -9,7 +9,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Carbon Footprint Calculator</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.aossie.CarbonFootprint</string>
+	<string>org.aossie.CarbonFootprint</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
