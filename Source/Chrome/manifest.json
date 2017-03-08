@@ -299,8 +299,10 @@
       "all_frames": true
     },{
       "matches": [
-        "https://*.yandex.*/maps*",
-        "http://*.yandex.*/maps*"
+        "http://*.yandex.com/maps*",
+        "https://*.yandex.com/maps*",
+        "http://*.yandex.ru/maps*",
+        "https://*.yandex.ru/maps*"
       ],
       "css": ["core/css/main.css"],
       "js": [
