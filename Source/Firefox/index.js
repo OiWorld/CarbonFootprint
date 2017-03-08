@@ -264,6 +264,18 @@ var gmaps = pageMod.PageMod({
   onAttach: onAttachListener
 });
 
+var skyscanner = pageMod.PageMod({
+  include: /https?:\/\/(www\.)?skyscanner\..*\/transport.*/,
+  contentScriptFile: [
+    "./core/flights/flightsDataProvider.js",
+    "./core/helpers/FirefoxHelper.js",
+    "./core/flights/skyscanner.js",
+    "./core/FlightsFootprintCore.js",
+    "./core/initFlight.js"
+  ],
+  contentScriptWhen: 'ready',
+  onAttach: onAttachListener
+});
 
 
 var updater = {};

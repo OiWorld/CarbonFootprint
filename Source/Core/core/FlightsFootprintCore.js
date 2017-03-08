@@ -1,45 +1,6 @@
 var FlightsFootprintCore = function(){
-  console.log("start http");
-  var httpAirports = new XMLHttpRequest();
-  httpAirports.open('GET', Helper.getFilePath("core/resources/airports.json"), true);
-  httpAirports.onreadystatechange = function() {
-      if (httpAirports.readyState == 4) {
-        console.log("ready state = 4");
-          if(httpAirports.status == 200) {
-              core.airportsData = JSON.parse(httpAirports.responseText);
-              console.log("got reply");
-              //console.log(this.airportsData);
-          }
-          else{
-            console.log("error getting json status != 200");
-          }
-      }
-      else{
-        console.log("error getting json not ready");
-        console.log(httpAirports.readyState);
-      }
-  };
-  httpAirports.send();
-  var httpAirplanes = new XMLHttpRequest();
-  httpAirplanes.open('GET', Helper.getFilePath("core/resources/airplanes.json"), true);
-  httpAirplanes.onreadystatechange = function() {
-      if (httpAirplanes.readyState == 4) {
-        console.log("ready state = 4");
-          if(httpAirplanes.status == 200) {
-              core.airplanesData = JSON.parse(httpAirplanes.responseText);
-              console.log("got reply");
-              //console.log(this.airportsData);
-          }
-          else{
-            console.log("error getting json status != 200");
-          }
-      }
-      else{
-        console.log("error getting json not ready");
-        console.log(httpAirplanes.readyState);
-      }
-  };
-  httpAirplanes.send();
+  this.airplanesData = flightsDataProvider.Aircrafts;
+  this.airportsData = flightsDataProvider.Airports;
 };
 
 FlightsFootprintCore.CO2_FOR_JETFUEL = 3.16; // 3.16 tons of co2 for 1 ton of jet fuel
@@ -77,8 +38,8 @@ FlightsFootprintCore.prototype.getEmission = function(list){
     var distanceFloor, distanceCeil;
     for(var y = 0, j = core.airplanesData.distances.length; y < j; y++){
       if(core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM > list[x].distance){
-        fuelConsumptionFloor = core.airplanesData[aircraft][y-1];
-        fuelConsumptionCeil = core.airplanesData[aircraft][y];
+        fuelConsumptionFloor = core.airplanesData[aircraft].fuel[y-1];
+        fuelConsumptionCeil = core.airplanesData[aircraft].fuel[y];
         distanceFloor = core.airplanesData.distances[y-1]*FlightsFootprintCore.NMI_TO_KM;
         distanceCeil = core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM;
         break;
@@ -87,15 +48,15 @@ FlightsFootprintCore.prototype.getEmission = function(list){
     var fuelConsumption = fuelConsumptionFloor + ((fuelConsumptionCeil - fuelConsumptionFloor)/
                           (distanceCeil - distanceFloor))*(list[x].distance - distanceFloor);
     //console.log("fuelConsumption1" + fuelConsumption1);
-    list[x].co2Emission = this.convertFuelToCO2(fuelConsumption);
+    list[x].co2Emission = this.convertFuelToCO2(fuelConsumption, aircraft);
   }
   //console.log("--- final list ---");
   //console.log(list);
   return list;
 };
 
-FlightsFootprintCore.prototype.convertFuelToCO2 = function(fuel){
-  return Math.floor(fuel*FlightsFootprintCore.CO2_FOR_JETFUEL/853);
+FlightsFootprintCore.prototype.convertFuelToCO2 = function(fuel, aircraft){
+  return Math.floor(fuel*FlightsFootprintCore.CO2_FOR_JETFUEL/this.airplanesData[aircraft].capacity);
 };
 
 FlightsFootprintCore.prototype.createHTMLElement = function(co2Emission){
