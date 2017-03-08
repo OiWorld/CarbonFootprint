@@ -12,10 +12,11 @@
     ]
   },
   "options_page": "pages/options.html",
-  "web_accessible_resources": ["pages/options.html", "pages/knowMore.html", "images/quest_mark.jpg"],
-  "page_action": {
-    "default_icon": "images/globe-64.png",
-    "default_title": "Google Maps Carbon Footprint",
+  "web_accessible_resources": ["pages/options.html","pages/knowMore.html","images/quest_mark.png"],
+  "page_action" :
+  {
+    "default_icon" : "images/globe-64.png",
+    "default_title" : "Google Maps Carbon Footprint",
     "default_popup": "pages/popup.html"
   },
   "content_scripts": [{

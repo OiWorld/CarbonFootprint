@@ -1,23 +1,21 @@
-a.carbon:link {
-    color:red;
-    text-decoration:none;
-}
-a.carbon:visited {
-    color:red;
-    text-decoration:none;
-}
-a.carbon:hover {
-    color:red;
-    text-decoration:none;
-}
+a.carbon:link,
+a.carbon:visited,
+a.carbon:hover,
 a.carbon:active {
-    color:red;
+    color: #ff0000;
     text-decoration:none;
 }
 div.travelCost {
 	color:#4285F4;
 }
 #quest_mark_icon{
-    height: 18px;
+    height: 16px;
     width: 16px;
+}
+#carbon-footprint-label {
+  padding: 10px 0;
+  font-weight: bold;
+}
+#carbon-footprint-label a img{
+  vertical-align: sub;
 }
