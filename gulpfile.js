@@ -249,4 +249,4 @@ gulp.task('packageFirefox', ['groupFirefox'], function(done) {
 	done();
 });
 
-gulp.task('test', ['gjslint']);
+gulp.task('test', ['gjslint','karma']);

@@ -4,10 +4,9 @@
   "version": "4.0.1",
   "description": "Automatically estimates the CO2 emissions for driving on routes suggested by Google Maps™.",
   "content_security_policy": "script-src 'self' https://maps.googleapis.com https://maps.gstatic.com https://ssl.google-analytics.com https://maps.google.com/ https://unpkg.com/leaflet@1.0.3/dist/leaflet.js; object-src 'self';media-src 'self';",
-  "default_locale" : "en",
-  "background" :
-  {
-    "scripts" : [
+  "default_locale": "en",
+  "background": {
+    "scripts": [
       "background/google-analytics.js",
       "background/background.js"
     ]
@@ -20,11 +19,12 @@
     "default_title" : "Google Maps Carbon Footprint",
     "default_popup": "pages/popup.html"
   },
-  "content_scripts" : [
-    {
-      "matches" : [
+  "content_scripts": [{
+      "matches": [
+        "*://www.google.ac/maps*",
         "*://www.google.ad/maps*",
         "*://www.google.ae/maps*",
+        "*://www.google.al/maps*",
         "*://www.google.am/maps*",
         "*://www.google.as/maps*",
         "*://www.google.at/maps*",
@@ -40,6 +40,7 @@
         "*://www.google.by/maps*",
         "*://www.google.ca/maps*",
         "*://www.google.cat/maps*",
+        "*://www.google.cc/maps*",
         "*://www.google.cd/maps*",
         "*://www.google.cf/maps*",
         "*://www.google.cg/maps*",
@@ -72,6 +73,7 @@
         "*://www.google.co.za/maps*",
         "*://www.google.co.zm/maps*",
         "*://www.google.co.zw/maps*",
+        "*://www.google.com/maps*",
         "*://www.google.com.af/maps*",
         "*://www.google.com.ag/maps*",
         "*://www.google.com.ai/maps*",
@@ -85,6 +87,7 @@
         "*://www.google.com.bz/maps*",
         "*://www.google.com.co/maps*",
         "*://www.google.com.cu/maps*",
+        "*://www.google.com.cy/maps*",
         "*://www.google.com.do/maps*",
         "*://www.google.com.ec/maps*",
         "*://www.google.com.eg/maps*",
@@ -99,6 +102,7 @@
         "*://www.google.com.kh/maps*",
         "*://www.google.com.kw/maps*",
         "*://www.google.com.lb/maps*",
+        "*://www.google.com.lc/maps*",
         "*://www.google.com.ly/maps*",
         "*://www.google.com.mm/maps*",
         "*://www.google.com.mt/maps*",
@@ -126,11 +130,12 @@
         "*://www.google.com.tj/maps*",
         "*://www.google.com.tr/maps*",
         "*://www.google.com.tw/maps*",
+        "*://www.google.com.ua/maps*",
         "*://www.google.com.uy/maps*",
         "*://www.google.com.vc/maps*",
         "*://www.google.com.vn/maps*",
-        "*://www.google.com/maps*",
         "*://www.google.cv/maps*",
+        "*://www.google.cx/maps*",
         "*://www.google.cz/maps*",
         "*://www.google.de/maps*",
         "*://www.google.dj/maps*",
@@ -139,11 +144,13 @@
         "*://www.google.dz/maps*",
         "*://www.google.ee/maps*",
         "*://www.google.es/maps*",
+        "*://www.google.eu/maps*",
         "*://www.google.fi/maps*",
         "*://www.google.fm/maps*",
         "*://www.google.fr/maps*",
         "*://www.google.ga/maps*",
         "*://www.google.ge/maps*",
+        "*://www.google.gf/maps*",
         "*://www.google.gg/maps*",
         "*://www.google.gl/maps*",
         "*://www.google.gm/maps*",
@@ -156,10 +163,11 @@
         "*://www.google.hu/maps*",
         "*://www.google.ie/maps*",
         "*://www.google.im/maps*",
+        "*://www.google.io/maps*",
         "*://www.google.iq/maps*",
         "*://www.google.is/maps*",
-        "*://www.google.it.ao/maps*",
         "*://www.google.it/maps*",
+        "*://www.google.it.ao/maps*",
         "*://www.google.je/maps*",
         "*://www.google.jo/maps*",
         "*://www.google.kg/maps*",
@@ -173,6 +181,7 @@
         "*://www.google.lu/maps*",
         "*://www.google.lv/maps*",
         "*://www.google.md/maps*",
+        "*://www.google.me/maps*",
         "*://www.google.mg/maps*",
         "*://www.google.mk/maps*",
         "*://www.google.ml/maps*",
@@ -183,12 +192,14 @@
         "*://www.google.mv/maps*",
         "*://www.google.mw/maps*",
         "*://www.google.ne/maps*",
+        "*://www.google.nf/maps*",
         "*://www.google.nl/maps*",
         "*://www.google.no/maps*",
         "*://www.google.nr/maps*",
         "*://www.google.nu/maps*",
         "*://www.google.pl/maps*",
         "*://www.google.pn/maps*",
+        "*://www.google.ps/maps*",
         "*://www.google.pt/maps*",
         "*://www.google.ro/maps*",
         "*://www.google.rs/maps*",
@@ -202,6 +213,7 @@
         "*://www.google.sm/maps*",
         "*://www.google.sn/maps*",
         "*://www.google.so/maps*",
+        "*://www.google.sr/maps*",
         "*://www.google.st/maps*",
         "*://www.google.td/maps*",
         "*://www.google.tg/maps*",
@@ -216,30 +228,30 @@
         "*://www.google.ws/maps*"
       ],
       "css": ["core/css/main.css"],
-      "js" : [
+      "js": [
         "core/CarbonFootprintCore.js",
         "core/settings/ChromeSettingsProvider.js",
         "core/helpers/ChromeHelper.js",
         "core/maps/GoogleMapsManager.js",
         "core/init.js"
       ],
-      "run_at" : "document_end",
-      "all_frames" : false
+      "run_at": "document_end",
+      "all_frames": false
     },
     {
       "matches": ["https://www.openstreetmap.org/*",
         "http://www.openstreetmap.org/*"
       ],
       "css": ["core/css/main.css"],
-      "js" : [
+      "js": [
         "core/CarbonFootprintCore.js",
         "core/settings/ChromeSettingsProvider.js",
         "core/helpers/ChromeHelper.js",
         "core/maps/OpenMapsManager.js",
         "core/init.js"
       ],
-      "run_at" : "document_end",
-      "all_frames" : true
+      "run_at": "document_end",
+      "all_frames": true
     },
     {
       "matches": [
@@ -247,53 +259,53 @@
         "http://www.bing.com/maps*"
       ],
       "css": ["core/css/main.css"],
-      "js" : [
+      "js": [
         "core/CarbonFootprintCore.js",
         "core/settings/ChromeSettingsProvider.js",
         "core/helpers/ChromeHelper.js",
         "core/maps/BingMapsManager.js",
         "core/init.js"
       ],
-      "run_at" : "document_end",
-      "all_frames" : true
+      "run_at": "document_end",
+      "all_frames": true
     },
     {
-      "matches": [ "http://*.here.com/*",
+      "matches": ["http://*.here.com/*",
         "https://*.here.com/*"
       ],
       "css": ["core/css/main.css"],
-      "js" : [
+      "js": [
         "core/CarbonFootprintCore.js",
         "core/settings/ChromeSettingsProvider.js",
         "core/helpers/ChromeHelper.js",
         "core/maps/HereMapsManager.js",
         "core/init.js"
       ],
-      "run_at" : "document_end",
-      "all_frames" : true
+      "run_at": "document_end",
+      "all_frames": true
     },
     {
-      "matches": [ "http://www.mapquest.com/*",
+      "matches": ["http://www.mapquest.com/*",
         "https://www.mapquest.com/*"
       ],
       "css": ["core/css/main.css"],
-      "js" : [
+      "js": [
         "core/CarbonFootprintCore.js",
         "core/settings/ChromeSettingsProvider.js",
         "core/helpers/ChromeHelper.js",
         "core/maps/MapQuestMapsManager.js",
         "core/init.js"
       ],
-      "run_at" : "document_end",
-      "all_frames" : true
+      "run_at": "document_end",
+      "all_frames": true
     }
   ],
-  "icons" : {
-    "32" : "images/globe-32.png",
-    "48" : "images/globe-48.png",
-    "64" : "images/globe-64.png",
-    "128" : "images/globe-128.png",
-    "256" : "images/globe-256.png"
+  "icons": {
+    "32": "images/globe-32.png",
+    "48": "images/globe-48.png",
+    "64": "images/globe-64.png",
+    "128": "images/globe-128.png",
+    "256": "images/globe-256.png"
   },
   "permissions": [
     "tabs",
