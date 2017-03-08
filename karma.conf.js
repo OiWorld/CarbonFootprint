@@ -7,7 +7,7 @@ module.exports = function(config) {
 			'jasmine'
 		],
 		files: [
-			'Source/core/CarbonFootprintCore.js',
+			'Source/Core/core/CarbonFootprintCore.js',
 			'Spec/**/*Spec.js'
 		],
 		reporters: [

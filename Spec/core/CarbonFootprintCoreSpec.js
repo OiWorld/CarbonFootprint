@@ -32,6 +32,21 @@ describe("Basic Carbon Footprint Core Tests With Mocks", function() {
     		return true;
 		};
 
+		//Fake CH4 Emission Rate
+		MockSettingsProvider.prototype.getCH4Emission = function () {
+			return 10;
+		}
+
+		//Fake GHG emission Rate
+		MockSettingsProvider.prototype.getGHGEmission = function () {
+			return 5;
+		}
+
+		//Fake NO2 emission Rate
+		MockSettingsProvider.prototype.getN2OEmission = function () {
+			return 20;
+		}
+
 		var settingsProvider = new MockSettingsProvider();
 
 		carbonFootprintCore  = new CarbonFootprintCore(settingsProvider);
@@ -52,6 +67,28 @@ describe("Basic Carbon Footprint Core Tests With Mocks", function() {
 
 		for (var i = 0; i < footprints.length; i++) {
 			expect(carbonFootprintCore.computeTrees(footprints[i])).toBe(results[i]);
+		}
+	});
+
+	//travel cost check
+	it("Compute Travel Cost should return [6000, 3000, 150000, 1500000] for a list of [200, 100, 5000, 50000] distances and a default travel cost of 30", function() {
+		var distances = [200, 100, 5000, 50000];
+		var results = [6000, 3000, 150000, 1500000];
+
+		for (var i = 0; i < distances.length; i++) {
+			expect(carbonFootprintCore.computeTravelCost(distances[i])).toBe(results[i]);
+		}
+	});
+
+	//Other gases string
+	it("Compute Other Gases String should return value in resuls for a list of [200,100,1700,20] and a CH4,NO2 and GHG value of 10,20,5", function() {
+		var distances = [200,100,1700,20];
+		var results = ["CH₄: 2000000.000g CO₂e,  N₂O: 4000000.000g CO₂e,  GHG: 1000.000kg CO₂e\n",
+									"CH₄: 1000000.000g CO₂e,  N₂O: 2000000.000g CO₂e,  GHG: 500.000kg CO₂e\n",
+									"CH₄: 17000000.000g CO₂e,  N₂O: 34000000.000g CO₂e,  GHG: 8500.000kg CO₂e\n",
+									"CH₄: 200000.000g CO₂e,  N₂O: 400000.000g CO₂e,  GHG: 100.000kg CO₂e\n"];
+		for (var i = 0; i < distances.length; i++) {
+			expect(carbonFootprintCore.otherGasesString(distances[i])).toEqual(results[i]);
 		}
 	});
 
