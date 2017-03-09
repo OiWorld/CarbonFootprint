@@ -1,21 +1,24 @@
-a.carbon:link,
-a.carbon:visited,
-a.carbon:hover,
-a.carbon:active {
-    color: #ff0000;
-    text-decoration:none;
+a.carbon:link, a.carbon:visited, a.carbon:hover, a.carbon:active {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
 }
+
 div.travelCost {
-	color:#4285F4;
+    color: inherit;
+    font-weight: bold;
 }
-#quest_mark_icon{
-    height: 16px;
-    width: 16px;
+/* Styling for svg question mark icon */
+#quest_mark_icon {
+    position: relative;
+    height: 14px;
+    width: 14px;
+    top: 0;
+    margin-left: 5px;
+    vertical-align: sub;
+    fill: currentColor;
 }
+/* Emission output container div */
 #carbon-footprint-label {
-  padding: 10px 0;
-  font-weight: bold;
-}
-#carbon-footprint-label a img{
-  vertical-align: sub;
+    padding: 10px 0 5px 0;
 }

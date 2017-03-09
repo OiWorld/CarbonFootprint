@@ -149,10 +149,10 @@ HereMapsManager.prototype.insertFootprintElement = function(route, e) {
   if (route.getElementsByClassName('carbon').length === 0) {
     e.setAttribute(
       'style',
-      'padding-left:5px;display:inline-block;position:relative;top:-5px;'
+      'font-size:14px; padding-bottom: 0;'
     );
     route
-      .getElementsByClassName('route_card_information')[0]
+      .getElementsByClassName('route_card_right')[0]
       .appendChild(e);
 }
 };
