@@ -1,6 +1,13 @@
 var FlightsFootprintCore = function(){
-  this.airplanesData = flightsDataProvider.Aircrafts;
-  this.airportsData = flightsDataProvider.Airports;
+  dataHelper = new DataHelper();
+  dataHelper.getData("core/resources/airplanes.json", function(data){
+    core.airplanesData = data;
+    console.log(data);
+  });
+  dataHelper.getData("core/resources/airports.json", function(data){
+    core.airportsData = data;
+    console.log(data);
+  });
 };
 
 FlightsFootprintCore.CO2_FOR_JETFUEL = 3.16; // 3.16 tons of co2 for 1 ton of jet fuel

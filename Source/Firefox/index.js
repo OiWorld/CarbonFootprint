@@ -267,16 +267,28 @@ var gmaps = pageMod.PageMod({
 var skyscanner = pageMod.PageMod({
   include: /https?:\/\/(www\.)?skyscanner\..*\/transport.*/,
   contentScriptFile: [
-    "./core/flights/flightsDataProvider.js",
+    "./core/helpers/flightDataHelper.js",
     "./core/helpers/FirefoxHelper.js",
-    "./core/flights/skyscanner.js",
     "./core/FlightsFootprintCore.js",
+    "./core/flights/skyscanner.js",
     "./core/initFlight.js"
   ],
   contentScriptWhen: 'ready',
-  onAttach: onAttachListener
+  onAttach: flightsDataListener
 });
 
+function flightsDataListener(worker){
+  worker.port.on("loadAirplanesData", function(){
+    console.log("recieved airplanes req");
+    var json = JSON.parse(data.load("./core/resources/airplanes.json"));
+    worker.port.emit('airplanesDataLoaded', json);
+  });
+  worker.port.on("loadAirportsData", function(){
+    console.log("recieved airports req");
+    var json = JSON.parse(data.load("./core/resources/airports.json"));
+    worker.port.emit('airportsDataLoaded', json);
+  });
+}
 
 var updater = {};
 

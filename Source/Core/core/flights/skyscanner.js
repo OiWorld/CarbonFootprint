@@ -69,9 +69,11 @@ skyscannerManager.prototype.insertInDom = function(processedList){
 
 skyscannerManager.prototype.update = function(){
   var processedList = this.getList();
-  processedList = this.getCoordinates(processedList);
-  processedList = this.getDistances(processedList);
-  processedList = this.getEmission(processedList);
-  this.insertInDom(processedList);
+  if(core.airplanesData && core.airportsData){
+    processedList = this.getCoordinates(processedList);
+    processedList = this.getDistances(processedList);
+    processedList = this.getEmission(processedList);
+    this.insertInDom(processedList);
+  }
 };
 var FlightManager = skyscannerManager;
