@@ -628,7 +628,11 @@ options.loadResources = function() {
    * https://www.epa.gov/sites/production/files/2015-11/documents/emission-factors_nov_2015.pdf
    * http://www.biomassenergycentre.org.uk/portal/page?_pageid=75,163182&_dad=portal&_schema=PORTAL
    */
-
+   $.ajaxSetup({'beforeSend': function(xhr){
+       if (xhr.overrideMimeType)
+           xhr.overrideMimeType("application/json");
+       }
+   });
   var locale;
 
   try {
@@ -857,4 +861,3 @@ options.initStorageManager(function() {
     //googleAnalytics('UA-1471148-11');
   });
 });
-
