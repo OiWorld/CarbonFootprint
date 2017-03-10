@@ -8,10 +8,10 @@ var browserServices = {};
 browserServices.checkBrowser = function() {
   var browser;
 
-  if ('chrome' in window)
+  if ('chrome' in window || 'firefoxApi' in window)
     browser = 'chrome';
-  if ('firefoxApi' in window)
-    browser = 'firefox';
+  // if ('firefoxApi' in window)
+    // browser = 'firefox';
   /**
    * detecting SAFARI browser
    * 'chrom' filters down (chrom)e as well as (chrom)ium
@@ -55,10 +55,10 @@ browserServices.getFirefoxLocalisation = function(key, index, cb) {
 
 browserServices.getLocalisation = function(key, index, cb) {
   var browser = browserServices.checkBrowser();
-  if (browser == 'chrome')
+  if (browser == 'chrome' || browser == 'firefox')
     browserServices.getChromeLocalisation(key, index, cb);
-  if (browser == 'firefox')
-    browserServices.getFirefoxLocalisation(key, index, cb);
+  // if (browser == 'firefox')
+    // browserServices.getFirefoxLocalisation(key, index, cb);
 };
 
 /**
@@ -87,10 +87,10 @@ browserServices.clearFirefoxAlarm = function(name) {
 
 browserServices.clearAlarm = function(name) {
   var browser = browserServices.checkBrowser();
-  if (browser == 'chrome')
+  if (browser == 'chrome' || browser == 'firefox')
     browserServices.clearChromeAlarm(name);
-  if (browser == 'firefox')
-    browserServices.clearFirefoxAlarm(name);
+  // if (browser == 'firefox')
+    // browserServices.clearFirefoxAlarm(name);
 };
 
 /**
@@ -122,10 +122,10 @@ browserServices.createFirefoxAlarm = function(name, obj) {
 
 browserServices.createAlarm = function(name, obj) {
   var browser = browserServices.checkBrowser();
-  if (browser == 'chrome')
+  if (browser == 'chrome' || browser == 'firefox')
     browserServices.createChromeAlarm(name, obj);
-  if (browser == 'firefox')
-    browserServices.createFirefoxAlarm(name, obj);
+  // if (browser == 'firefox')
+    // browserServices.createFirefoxAlarm(name, obj);
 };
 
 /**
@@ -156,10 +156,10 @@ browserServices.getFirefoxStorage = function(key, valuescb) {
 
 browserServices.getStorage = function(key, valuescb) {
   var browser = browserServices.checkBrowser();
-  if (browser == 'chrome')
+  if (browser == 'chrome' || browser == 'firefox')
     browserServices.getChromeStorage(key, valuescb);
-  if (browser == 'firefox')
-    browserServices.getFirefoxStorage(key, valuescb);
+  // if (browser == 'firefox')
+    // browserServices.getFirefoxStorage(key, valuescb);
 };
 
 /**
@@ -187,10 +187,10 @@ browserServices.setFirefoxStorage = function(values) {
 
 browserServices.setStorage = function(values) {
   var browser = browserServices.checkBrowser();
-  if (browser == 'chrome')
+  if (browser == 'chrome' || browser == 'firefox')
     browserServices.setChromeStorage(values);
-  if (browser == 'firefox')
-    browserServices.setFirefoxStorage(values);
+  // if (browser == 'firefox')
+    // browserServices.setFirefoxStorage(values);
 };
 
 /**
@@ -232,10 +232,10 @@ browserServices.getSafariFilePath = function(path) {
 
 browserServices.getFilePath = function(path) {
   var browser = browserServices.checkBrowser();
-  if (browser == 'chrome')
+  if (browser == 'chrome' || browser == 'firefox')
     return browserServices.getChromeFilePath(path);
-  if (browser == 'firefox')
-    return browserServices.getFirefoxFilePath(path);
+  // if (browser == 'firefox')
+    // return browserServices.getFirefoxFilePath(path);
   if (browser == 'safari')
     return browserServices.getSafariFilePath(path);
 };
