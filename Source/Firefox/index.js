@@ -212,7 +212,7 @@ var gmaps = pageMod.PageMod({
 
 
 //Map Services...
-var gmaps = pageMod.PageMod({
+var osmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?openstreetmap.org\/.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
@@ -225,7 +225,7 @@ var gmaps = pageMod.PageMod({
   onAttach: onAttachListener
 });
 
-var gmaps = pageMod.PageMod({
+var bmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?bing.com\/maps.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
@@ -238,7 +238,7 @@ var gmaps = pageMod.PageMod({
   onAttach: onAttachListener
 });
 
-var gmaps = pageMod.PageMod({
+var hmaps = pageMod.PageMod({
   include: /https?:\/\/.*\.here.com\/.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
@@ -251,7 +251,7 @@ var gmaps = pageMod.PageMod({
   onAttach: onAttachListener
 });
 
-var gmaps = pageMod.PageMod({
+var mqmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?mapquest.com\/.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
@@ -264,7 +264,7 @@ var gmaps = pageMod.PageMod({
   onAttach: onAttachListener
 });
 
-var gmaps = pageMod.PageMod({
+var ymaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?yandex.*\/maps\/.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
@@ -277,8 +277,8 @@ var gmaps = pageMod.PageMod({
   onAttach: onAttachListener
 });
 
-var gmaps = pageMod.PageMod({
-  include: /https?:\/\/(www\.)?waze.com\/livemap/,
+var wmaps = pageMod.PageMod({
+  include: /https?:\/\/(www\.)?waze.com\/livemap.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
     './core/helpers/FirefoxHelper.js',
