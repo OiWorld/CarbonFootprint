@@ -278,7 +278,7 @@ var gmaps = pageMod.PageMod({
 });
 
 var gmaps = pageMod.PageMod({
-  include: /https?:\/\/(www\.)?waze.com\/livemap.*/,
+  include: /https?:\/\/(www\.)?waze.com\/livemap*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
     './core/helpers/FirefoxHelper.js',
