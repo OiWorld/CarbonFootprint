@@ -486,6 +486,10 @@ injector.yandexMaps = [
     'https://*.yandex.ru/maps*'
 ];
 
+injector.wazeMaps = [
+    'http://www.waze.com/livemap*'
+];
+
 /**
  * matching patterns for all map services
  */
@@ -496,7 +500,9 @@ injector.allMaps = injector.allMaps.concat(injector.openStreetMap,
     injector.bingMaps,
     injector.hereMaps,
     injector.mapQuest,
-    injector.yandexMaps);
+    injector.yandexMaps,
+    injector.wazeMaps
+  );
 
 /**
  * base URL of the extension in Safari
@@ -569,3 +575,8 @@ safari
     .extension
     .addContentScriptFromURL(injector.URL + 'core/maps/YandexMapsManager.js',
         injector.yandexMaps, [], true);
+
+safari
+    .extension
+    .addContentScriptFromURL(injector.URL + 'core/maps/WazeMapsManager.js',
+        injector.wazeMaps, [], true);

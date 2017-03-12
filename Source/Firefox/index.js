@@ -277,6 +277,19 @@ var gmaps = pageMod.PageMod({
   onAttach: onAttachListener
 });
 
+var gmaps = pageMod.PageMod({
+  include: /https?:\/\/(www\.)?waze.com\/livemap\/.*/,
+  contentScriptFile: [
+    './core/CarbonFootprintCore.js',
+    './core/helpers/FirefoxHelper.js',
+    './core/settings/FirefoxSettingsProvider.js',
+    './core/maps/WazeMapsManager.js',
+    './core/init.js'
+  ],
+  contentScriptWhen: 'ready',
+  onAttach: onAttachListener
+});
+
 var updater = {};
 
 /**
