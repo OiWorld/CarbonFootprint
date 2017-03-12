@@ -1,0 +1,17 @@
+{
+  "chrome" : {
+    "storeName" : "Chrome Web Store",
+    "storeLink" : "https://chrome.google.com/webstore/detail/carbon-footprint-for-goog/ednfpjleaanokkjcgljbmamhlbkddcgh/reviews",
+    "badge" : "./img/chromeBadge.png"
+  },
+  "firefox" : {
+    "storeName" : "Firefox Add-On Gallery",
+    "storeLink" : "https://addons.mozilla.org/en-US/firefox/addon/carbon-footprint/",
+    "badge" : "./img/firefoxBadge.png"
+  },
+  "safari" : {
+    "storeName" : "Safari Extensions",
+    "storeLink" : "https://safari-extensions.apple.com",
+    "badge" : "./img/safariBadge.png"
+  }
+}

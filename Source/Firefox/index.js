@@ -226,7 +226,7 @@ var gmaps = pageMod.PageMod({
 });
 
 var gmaps = pageMod.PageMod({
-  include: /https?:\/\/(www\.)?bing.com\/mapspreview.*/,
+  include: /https?:\/\/(www\.)?bing.com\/maps.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
     './core/helpers/FirefoxHelper.js',
@@ -264,7 +264,31 @@ var gmaps = pageMod.PageMod({
   onAttach: onAttachListener
 });
 
+var skyscanner = pageMod.PageMod({
+  include: /https?:\/\/(www\.)?skyscanner\..*\/transport.*/,
+  contentScriptFile: [
+    "./core/helpers/flightDataHelper.js",
+    "./core/helpers/FirefoxHelper.js",
+    "./core/FlightsFootprintCore.js",
+    "./core/flights/skyscanner.js",
+    "./core/initFlight.js"
+  ],
+  contentScriptWhen: 'ready',
+  onAttach: flightsDataListener
+});
 
+function flightsDataListener(worker){
+  worker.port.on("loadAirplanesData", function(){
+    console.log("recieved airplanes req");
+    var json = JSON.parse(data.load("./core/resources/airplanes.json"));
+    worker.port.emit('airplanesDataLoaded', json);
+  });
+  worker.port.on("loadAirportsData", function(){
+    console.log("recieved airports req");
+    var json = JSON.parse(data.load("./core/resources/airports.json"));
+    worker.port.emit('airportsDataLoaded', json);
+  });
+}
 
 var updater = {};
 

@@ -78,7 +78,6 @@ hr {
     margin-bottom: 25px;
     margin-top: 0;
 }
-}
 
 .img-centered {
     margin: 0 auto;
@@ -286,12 +285,6 @@ section h3.section-subheading {
     z-index: 2;
 }
 
-@media (min-width: 767px) {
-    #tile .tile-item {
-        margin: 0 0 30px;
-    }
-}
-
 .btn:focus,
 .btn:active,
 .btn.active,
@@ -382,12 +375,14 @@ section h3.section-subheading {
 
 ::-moz-selection {
     text-shadow: none;
-    /*background: #fed136*/;
+    /*background: #fed136*/
+    ;
 }
 
 ::selection {
     text-shadow: none;
-    /*background: #fed136*/;
+    /*background: #fed136*/
+    ;
 }
 
 img::selection {
@@ -403,6 +398,10 @@ body {
 }
 
 /*Leaflet Map*/
+#map-container {
+    width: 100%;
+}
+
 #map {
     height: 300px;
     background-color: #bdbdbd;
@@ -415,25 +414,22 @@ body {
     color: var(--accent-color);
 }
 
-/*Overiding Leaflet stylesheet to match our page UI*/
+/*overriding leaflet's default stylessheets to match our page UI*/
 .leaflet-touch .leaflet-bar {
     border: 1px solid var(--primary-color);
 }
-
 .leaflet-touch .leaflet-bar a {
     color: var(--primary-color);
 }
-
 .leaflet-bar a {
     border-bottom: 1px solid var(--primary-color);
 }
-
 .leaflet-bar a:hover {
     background-color: var(--accent-color);
     color: var(--text-icon-color);
 }
 
-/*Leaflet marker coustomization || overiding default stylesheet*/
+/* Leaflet map's marker coustomization*/
 .leaflet-popup-content {
     color: var(--primary-color);
 }
@@ -445,7 +441,6 @@ body {
 .leaflet-container a.leaflet-popup-close-button:hover {
     color: var(--primary-color);
 }
-
 
 /* Accordian Panel */
 #accordion {
@@ -625,8 +620,15 @@ input[type="radio"][name="unit"]:checked + span {
     section h2.section-heading {
         font-size: 4vw;
     }
+
     #map {
-      height: 350px;
+        height: 350px;
+    }
+}
+
+@media (min-width: 767px) {
+    #tile .tile-item {
+        margin: 0 0 30px;
     }
 }
 
@@ -635,8 +637,9 @@ input[type="radio"][name="unit"]:checked + span {
         font-size: 3.5vw;
         font-weight: initial;
     }
+
     #map {
-      height: 400px;
+        height: 400px;
     }
 }
 

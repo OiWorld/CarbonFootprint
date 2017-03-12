@@ -15,6 +15,8 @@ var uglify = require('gulp-uglify');
 var shell = require('gulp-shell');
 var del = require('delete-empty');
 var runSequence = require('run-sequence');
+var dom = require('gulp-dom');
+var variables = require('./buildVariables.json');
 
 var lintFiles = ['Source/**/*.js', '!Source/**/*.min.js', '!Source/Chrome/background/google-maps-api.js'];
 
@@ -43,13 +45,31 @@ gulp.task('localesFF', function() {
 	  .pipe(gulp.dest(firefoxBuildpath + 'locale'));
 });
 
+
+
 gulp.task('coreFirefox', function() {
   var jsFilter = gulpFilter('**/*.js',{restore:true});
+	var linkFilter = gulpFilter('**/knowMore.html', {restore:true});
 	return gulp.src('Source/Core/**')
     .pipe(jsFilter)
     .pipe(gulpif(doMinify,stripDebug()))
     .pipe(gulpif(doMinify,uglify()))
     .pipe(jsFilter.restore)
+		.pipe(linkFilter)
+		.pipe(dom(function(){
+			this.getElementById('rating-link').href = variables['firefox']['storeLink'];
+			this.getElementById('rating-link').innerHTML =
+				"<i class='fa fa-external-link aria-hidden'='true'></i> " +
+				variables['firefox']['storeName'];
+			this.getElementById('store-link-1').href = variables['safari']['storeLink'];
+			this.getElementById('store-link-1').innerHTML =
+				"<img src= '" + variables['safari']['badge']+"' class='img-responsive'/>"
+			this.getElementById('store-link-2').href = variables['chrome']['storeLink'];
+			this.getElementById('store-link-2').innerHTML =
+				"<img src= '" + variables['chrome']['badge']+"' class='img-responsive'/>"
+			return this;
+		}))
+		.pipe(linkFilter.restore)
 	  .pipe(gulp.dest(firefoxBuildpath + 'data'));
 });
 
@@ -82,11 +102,27 @@ gulp.task('localesChrome', function() {
 
 gulp.task('coreChrome', function() {
   var jsFilter = gulpFilter('**/*.js',{restore:true});
+	var linkFilter = gulpFilter('**/knowMore.html', {restore:true});
   return gulp.src('Source/Core/**')
     .pipe(jsFilter)
     .pipe(gulpif(doMinify,stripDebug()))
     .pipe(gulpif(doMinify,uglify()))
     .pipe(jsFilter.restore)
+		.pipe(linkFilter)
+		.pipe(dom(function(){
+			this.getElementById('rating-link').href = variables['chrome']['storeLink'];
+			this.getElementById('rating-link').innerHTML =
+				"<i class='fa fa-external-link aria-hidden'='true'></i> " +
+				variables['chrome']['storeName'];
+			this.getElementById('store-link-1').href = variables['firefox']['storeLink'];
+			this.getElementById('store-link-1').innerHTML =
+				"<img src= '" + variables['firefox']['badge']+"' class='img-responsive'/>"
+			this.getElementById('store-link-2').href = variables['safari']['storeLink'];
+			this.getElementById('store-link-2').innerHTML =
+				"<img src= '" + variables['safari']['badge']+"' class='img-responsive'/>"
+			return this;
+		}))
+		.pipe(linkFilter.restore)
 	  .pipe(gulp.dest(chormeBuildpath));
 });
 
@@ -101,11 +137,31 @@ gulp.task('specificChrome', function() {
 });
 gulp.task('coreSafari', function() {
   var jsFilter = gulpFilter('**/*.js',{restore:true});
+	var linkFilter = gulpFilter('**/knowMore.html', {restore:true});
 	return gulp.src('Source/Core/**')
     .pipe(jsFilter)
     .pipe(gulpif(doMinify,stripDebug()))
     .pipe(gulpif(doMinify,uglify()))
     .pipe(jsFilter.restore)
+		.pipe(linkFilter)
+		.pipe(dom(function(){
+			/*
+			* TODO Safari is currently linked to https://safari-extensions.apple.com.
+			* Update variables.json with appropriate link once app is published
+			*/
+			this.getElementById('rating-link').href = variables['safari']['storeLink'];
+			this.getElementById('rating-link').innerHTML =
+				"<i class='fa fa-external-link aria-hidden'='true'></i> " +
+				variables['safari']['storeName'];
+			this.getElementById('store-link-1').href = variables['chrome']['storeLink'];
+			this.getElementById('store-link-1').innerHTML =
+				"<img src= '" + variables['chrome']['badge']+"' class='img-responsive'/>"
+			this.getElementById('store-link-2').href = variables['firefox']['storeLink'];
+			this.getElementById('store-link-2').innerHTML =
+				"<img src= '" + variables['firefox']['badge']+"' class='img-responsive'/>"
+			return this;
+		}))
+		.pipe(linkFilter.restore)
 	  .pipe(gulp.dest(safariBuildpath));
 });
 

@@ -2,16 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Author</key>
+	<string>AOSSIE</string>
 	<key>Builder Version</key>
-	<string>12602.1.50</string>
+	<string>12602.4.8</string>
 	<key>CFBundleDisplayName</key>
 	<string>Carbon Footprint Calculator</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.OiWorld.CarbonFootprint</string>
+	<string>org.aossie.CarbonFootprint</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.0</string>
+	<string>4.1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>Chrome</key>
@@ -65,5 +67,7 @@
 			<string>All</string>
 		</dict>
 	</dict>
+	<key>Website</key>
+	<string>https://gitlab.com/aossie/CarbonFootprint</string>
 </dict>
 </plist>
