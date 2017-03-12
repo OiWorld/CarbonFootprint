@@ -26,12 +26,15 @@ var HereMapsManager = function(footprintCore, settingsProvider) {
  */
 
 HereMapsManager.prototype.getMode = function(route) {
-  // var mode = route.getAttribute('data-mode');
+  // return pt if no additional route info class is found
   if (!route.classList[1])
     return 'pt';
-  var mode = route.classList[1].match(/route_card_(.*)/)[1];
-  console.log('Route mode: ' + mode);
-  return mode;
+  // find the mode of route e.g. car or pedestrian
+  var mode = route.classList[1].match(/route_card_(.*)/);
+  if (mode){
+    console.log('Route mode: ' + mode[1]);
+    return mode[1];
+  }
 };
 
 /**
@@ -43,7 +46,7 @@ HereMapsManager.prototype.getAllDrivingRoutes = function() {
   var routes = [];
   // Get all non-transit driving routes suggested by Here Maps. route_card
   var r = document.getElementsByClassName('route_card');
-  for (var i = r.length - 1; i >= 0; i--) { // Filtering spurious routes.
+  for (var i = 0; i < r.length; i++) { // Filtering spurious routes.
     if (this.getMode(r[i]) == 'car') {
       routes.push(r[i]);
     }
@@ -166,12 +169,8 @@ HereMapsManager.prototype.insertFootprintElement = function(route, e) {
 HereMapsManager.prototype.insertTravelCostElement = function(route, e) {
   //A check to ensure that the display travel cost checkbox is checked
   if (route.getElementsByClassName('travelCost').length === 0) {
-    e.setAttribute(
-      'style',
-      'padding-right:15px;display:inline-block;position:relative;top:-15px;'
-    );
     route
-      .getElementsByClassName('route_card_footer_container')[0]
+      .getElementsByClassName('route_card_right')[0]
       .appendChild(e);
   }
 };
