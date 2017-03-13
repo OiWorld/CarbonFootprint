@@ -252,8 +252,17 @@ CarbonFootprintCore.prototype.getDistanceFromStrings =
     if (unit.match(/\bm\b/) || unit.match(/\s\u043C,/)) { // Distance given in meters.
       distance /= 1000;
     } else if (unit.match(/\bmi\b/) ||
-               unit.match(/\bMeile(n*)\b/) ||
-               unit.match(/\bmile(s*)\b/) ||
+               unit.match(/\bMeile(n?)\b/) ||
+               unit.match(/\bmil/) ||
+               unit.match(/\bm\u00ed/)||
+               unit.match(/\bmaili(a?)/)||
+               unit.match(/\bmylia/)||
+               unit.match(/\bmigli(o|a)/)||
+               unit.match(/\bmérföld/)||
+               unit.match(/\bjūdze(s?)/)||
+               unit.match(/\bμίλι/)||
+               unit.match(/\bмілі/)||
+               unit.match(/\bmi(j|i)l/)||
                unit.match(/\u043C\u0438\u043B/)) {  // Distance given in miles.
       distance *= CarbonFootprintCore.MI_TO_KM;
     } else if (unit.match(/\bft\b/) ||
