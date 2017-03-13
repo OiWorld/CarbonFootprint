@@ -27,5 +27,8 @@
     "phantomjs-prebuilt": "^2.1.7",
     "run-sequence": "1.2.2",
     "yargs": "^4.8.1"
+  },
+  "dependencies": {
+    "watchify": "^3.9.0"
   }
 }
