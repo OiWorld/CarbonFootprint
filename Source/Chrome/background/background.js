@@ -154,7 +154,7 @@ if (background.isChrome) {
 
   chrome.storage.onChanged.addListener(function(changes, namespace) {
     // console.log("Change Received!",changes,namespace);
-    if ('calculationObject' in changes && namespace == 'local') {
+    if ('calculationObject' in changes && namespace == 'sync') {
       for (var i = 0; i < background.tabs.length; ++i) {
         chrome.tabs.reload(background.tabs[i]);
       }
@@ -342,7 +342,7 @@ background.updateExchangeRates = function() {
       if (background.isChrome) {
         var storeObj = {};
         storeObj.exchangeRates = exchangeRates;
-        chrome.storage.local.set(storeObj);
+        chrome.storage.sync.set(storeObj);
       }
       else if (background.isSafari) {
         safari.extension.settings.setItem('exchangeRates', exchangeRates);
@@ -393,7 +393,7 @@ background.updateFuelPrices = function() {
               if (background.isChrome) {
                 var storeObj = {};
                 storeObj.fuelPrices = finalObj;
-                chrome.storage.local.set(storeObj);
+                chrome.storage.sync.set(storeObj);
               }
               else if (background.isSafari) {
                 safari.extension.settings.setItem('fuelPrices', finalObj);
@@ -417,7 +417,7 @@ background.updateResources = function() {
   if (background.isChrome) {
     var storeObj = {};
     storeObj.time = time;
-    chrome.storage.local.set(storeObj);
+    chrome.storage.sync.set(storeObj);
   }
   if (background.isSafari) {
     safari.extension.settings.setItem('time', time);
@@ -453,7 +453,7 @@ if (background.isChrome) {
    */
 
   background.jQuery.onload = function() {
-    chrome.storage.local.get('time', function(response) {
+    chrome.storage.sync.get('time', function(response) {
       if (!response.time) {
         background.updateResources();
       }

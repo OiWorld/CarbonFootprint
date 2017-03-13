@@ -135,7 +135,7 @@ browserServices.createAlarm = function(name, obj) {
  */
 
 browserServices.getChromeStorage = function(key, valuescb) {
-  chrome.storage.local.get(key, valuescb);
+  chrome.storage.sync.get(key, valuescb);
 };
 
 /**
@@ -168,7 +168,7 @@ browserServices.getStorage = function(key, valuescb) {
  */
 
 browserServices.setChromeStorage = function(values) {
-  chrome.storage.local.set(values);
+  chrome.storage.sync.set(values);
 };
 
 /**

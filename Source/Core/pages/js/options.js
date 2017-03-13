@@ -276,6 +276,7 @@ options.saveLocation = function() {
       country = 'country,political',
       state = 'administrative_area_level_1,political',
       gc = new google.maps.Geocoder();
+      console.log("ABOUT TO BEGIN");
   navigator.geolocation.getCurrentPosition(function(position) {
     var lat = position.coords.latitude,
         lng = position.coords.longitude,
