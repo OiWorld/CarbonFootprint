@@ -1,4 +1,3 @@
-
 var gulp = require('gulp');
 var gjslint = require('gulp-gjslint');
 var Server = require('karma').Server;
@@ -217,7 +216,7 @@ gulp.task('groupSafari', function(done) {
   });
 });
 
-gulp.task('group', ['groupChrome', 'groupFirefox', 'groupSafari','watch']);
+gulp.task('group', ['groupChrome', 'groupFirefox', 'groupSafari']);
 
 gulp.task('runFirefox', ['groupFirefox'], function(done) {
 
@@ -251,8 +250,3 @@ gulp.task('packageFirefox', ['groupFirefox'], function(done) {
 });
 
 gulp.task('test', ['gjslint','karma']);
-
-// debug task 
-gulp.task('watch',function(){
-	gulp.watch('Source/Core/**',['group']);
-});
