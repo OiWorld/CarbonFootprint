@@ -401,9 +401,10 @@ options.loadSavedData = function() {
     options.toggleInputSource($('#' + options.data.get('inputSource')));
     $('#' + options.data.get('unitSystem')).attr('checked', true);
     options.toggleUnits($('#' + options.data.get('unitSystem')));
-    $('#currency-codes').append($('<option></option>')
-                                .val(options.data.get('currency'))
-                                .html(options.data.get('currency')));
+    if ($('#currency-codes').children().length === 0)
+      $('#currency-codes').append($('<option></option>')
+                                  .val(options.data.get('currency'))
+                                  .html(options.data.get('currency')));
   }
 };
 
