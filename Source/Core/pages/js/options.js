@@ -341,7 +341,8 @@ options.loadFuelPrices = function() {
     if (options.fType == 'Diesel') {
       $('#fuel-cost').val((prices.diesel * exchangeRate).toFixed(2));
     }
-    else if (options.fType == 'Gasoline') {
+    else if (options.fType == 'Gasoline' ||
+             options.fType == 'Petrol') {
       $('#fuel-cost').val((prices.gasoline * exchangeRate).toFixed(2));
     }
     else if (options.fType == 'LPG' ||
@@ -350,6 +351,22 @@ options.loadFuelPrices = function() {
     }
   }
 };
+
+/**
+ * Disable the GET PRICE button and change if prices
+ * are not available for a selected fuel type
+ */
+
+options.checkFuelPrice = function() {
+    if (options.fType == 'Diesel' ||
+        options.fType == 'Gasoline' ||
+        options.fType == 'Petrol' ||
+        options.fType == 'LPG' ||
+        options.fType == 'CNG')
+      $('#load-prices-button').prop('disabled', false);
+    else
+      $('#load-prices-button').prop('disabled', true);
+}
 
 /**
  * Loads data that is already been saved by user
@@ -722,6 +739,7 @@ options.listeners = function() {
   });
   $('[id="fuel-type"]').on('change', function() {
     options.mirrorFuelValues($(this));
+    options.checkFuelPrice();
   });
   $('[id="currency-codes"]').on('change', function() {
     options.mirrorCurrency($(this));
@@ -858,4 +876,3 @@ options.initStorageManager(function() {
     //googleAnalytics('UA-1471148-11');
   });
 });
-
