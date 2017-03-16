@@ -53,6 +53,13 @@ CarbonFootprintCore.MI_TO_KM = 1.609344;
 
 CarbonFootprintCore.KG_TO_LBS = 2.204622621848775;
 
+/**
+ * average Carbon dioxide emission per sec per person
+ * @const
+ * reference : http://data.worldbank.org/indicator/EN.ATM.CO2E.PC
+ */
+
+CarbonFootprintCore.humansEmission = 0.0001519811393;
 
 /**
  * computes footprints based on route distance
@@ -72,6 +79,31 @@ CarbonFootprintCore.prototype.computeFootprint = function(data, type) {
   }
   return footprint;
 };
+
+/**
+ * Analogy of above function just difference in the
+ * paramaters
+ * @param {Array} data
+ * @param {character} type
+ * @return {number} footprint
+ */
+
+ CarbonFootprintCore.prototype.computeTransitFootprint = function(data, type) {
+   var footprint;
+   if (type == 't') {
+    console.log(CarbonFootprintCore.humansEmission);
+    console.log(this.settingsProvider.getPTCarbonEmission());
+    console.log(data[0]);
+    console.log(data[1]);
+     footprint = (data[0] * this.settingsProvider.getPTCarbonEmission())/60 + (data[1] * CarbonFootprintCore.humansEmission.toFixed(6));
+   }
+   else {
+      data = data/1000;
+     footprint = data * this.settingsProvider.getCarbonEmission();
+   }
+   console.log(footprint);
+   return footprint;
+ };
 
 /**
  * converts footprints to appropriate units
@@ -137,18 +169,18 @@ CarbonFootprintCore.prototype.otherGasesString = function(distance) {
 CarbonFootprintCore.prototype.treesToString = function(trees) {
   if (trees > 1) {
     return 'You will need ' + Math.round(trees) +
-      ' tropical trees growing for 1 year to capture that much CO2!' +
+      ' tropical trees growing for 1 year to capture that much CO₂!' +
       ' (or ' + Math.round(trees * 12) +
       ' trees growing for 1 month, or ' + Math.round(trees * 365) +
       ' trees growing for 1 day)';
   } else if (trees * 12 > 1) {
     return 'You will need ' + Math.round(trees * 12) +
-      ' tropical trees growing for 1 month to capture that much CO2!' +
+      ' tropical trees growing for 1 month to capture that much CO₂!' +
       ' (or ' + Math.round(trees * 365) +
       ' trees growing for 1 day)';
   } else if (trees * 365 > 1) {
     return 'You will need ' + Math.round(trees * 365) +
-      ' tropical trees growing for 1 day to capture that much CO2!';
+      ' tropical trees growing for 1 day to capture that much CO₂!';
   } else {
     return 'Your Carbon Emission is almost nil. Great going!';
   }
@@ -161,10 +193,10 @@ CarbonFootprintCore.prototype.treesToString = function(trees) {
  * @return {element} e
  */
 
-
 CarbonFootprintCore.prototype.createHTMLElement =
   function(footprint, distance) {
-    var e = document.createElement('div'),
+    var e = document.createElement('div');
+    console.log(footprint,distance);
         treesStr = this.treesToString(this.computeTrees(footprint)),
         otherGasStr = this.otherGasesString(distance),
         titleStr = otherGasStr + treesStr,
@@ -209,6 +241,28 @@ CarbonFootprintCore.prototype.createPTFootprintElement = function(time) {
 };
 
 /**
+ * creates footprint element for transit mode with walking time
+ * @param {Array} time
+ * @return {element} element
+ */
+
+CarbonFootprintCore.prototype.createPTransitFootprintElement = function(data,type) {
+  console.log(type);
+  if(type == "t"){
+    var footprint = this.computeTransitFootprint(data, 't');
+    console.log("hello check here");
+    var element = this.createHTMLElement(footprint);
+  }
+  else{
+    var footprint = this.computeTransitFootprint(data,'d');
+    console.log(data);
+    var element = this.createHTMLElement(footprint,data);
+  }
+  return element;
+};
+
+
+/**
  * computes travel cost on basis of route distance and fuel price
  * @param {number} distance
  * @return {number} travelCost
@@ -243,7 +297,6 @@ CarbonFootprintCore.prototype.createTravelCostElement = function(distance) {
 
 CarbonFootprintCore.prototype.getDistanceFromStrings =
   function(distance, unit) {
-
     distance = distance.trim();
     var lastIndex = distance.lastIndexOf(",");
     var i = distance.length - lastIndex;
