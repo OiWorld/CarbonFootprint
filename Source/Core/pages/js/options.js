@@ -680,6 +680,7 @@ options.loadResources = function() {
       options.loadMessages();
       options.loadSavedData();
     }
+      options.populated=true;
   });
   $.getScript('https://maps.googleapis.com/maps/api/js')
       .done(function() {
