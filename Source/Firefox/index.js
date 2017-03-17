@@ -206,13 +206,14 @@ var gmaps = pageMod.PageMod({
     './core/maps/GoogleMapsManager.js',
     './core/init.js'
   ],
+  contentStyleFile: './core/css/main.css',
   contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });
 
 
 //Map Services...
-var gmaps = pageMod.PageMod({
+var osmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?openstreetmap.org\/.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
@@ -221,11 +222,12 @@ var gmaps = pageMod.PageMod({
     './core/maps/OpenMapsManager.js',
     './core/init.js'
   ],
+  contentStyleFile: './core/css/main.css',
   contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });
 
-var gmaps = pageMod.PageMod({
+var bmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?bing.com\/maps.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
@@ -234,11 +236,12 @@ var gmaps = pageMod.PageMod({
     './core/maps/BingMapsManager.js',
     './core/init.js'
   ],
+  contentStyleFile: './core/css/main.css',
   contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });
 
-var gmaps = pageMod.PageMod({
+var hmaps = pageMod.PageMod({
   include: /https?:\/\/.*\.here.com\/.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
@@ -247,11 +250,12 @@ var gmaps = pageMod.PageMod({
     './core/maps/HereMapsManager.js',
     './core/init.js'
   ],
+  contentStyleFile: './core/css/main.css',
   contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });
 
-var gmaps = pageMod.PageMod({
+var mqmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?mapquest.com\/.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
@@ -260,11 +264,12 @@ var gmaps = pageMod.PageMod({
     './core/maps/MapQuestMapsManager.js',
     './core/init.js'
   ],
+  contentStyleFile: './core/css/main.css',
   contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });
 
-var gmaps = pageMod.PageMod({
+var ymaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?yandex.*\/maps\/.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
@@ -273,6 +278,21 @@ var gmaps = pageMod.PageMod({
     './core/maps/YandexMapsManager.js',
     './core/init.js'
   ],
+  contentStyleFile: './core/css/main.css',
+  contentScriptWhen: 'ready',
+  onAttach: onAttachListener
+});
+
+var wmaps = pageMod.PageMod({
+  include: /https?:\/\/(www\.)?waze.com\/livemap.*/,
+  contentScriptFile: [
+    './core/CarbonFootprintCore.js',
+    './core/helpers/FirefoxHelper.js',
+    './core/settings/FirefoxSettingsProvider.js',
+    './core/maps/WazeMapsManager.js',
+    './core/init.js'
+  ],
+  contentStyleFile: './core/css/main.css',
   contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });

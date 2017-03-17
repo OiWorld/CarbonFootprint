@@ -11,6 +11,7 @@
     --anchor-tag-color: #3F51B5;
     --anchor-tag-hover-color: #757575;
     --anchot-tag-other-color: #3c763d;
+    --accordion-heading-color: #f9f9f9;
 }
 
 body {
@@ -82,12 +83,11 @@ hr {
 .img-centered {
     margin: 0 auto;
 }
-/*.bg-light-gray {
-    background-color: #f7f7f7;
-}*/
-/*.bg-darkest-gray {
-    background-color: #222;
-}*/
+/* overiding FontAwesome class to favor animation style in accordions, refer knowMore.js `toggleAccordion()` function for more details*/
+.fa .fa-chevron-right {
+    transition: background 0.5s ease-out;
+}
+
 .btn-primary {
     color: #fff;
     background-color: #fed136;
@@ -444,18 +444,18 @@ body {
 
 /* Accordian Panel */
 #accordion {
-    background-color: var(--primary-color);
+    /*background-color: var(--primary-color);*/;
 }
 
 .panel {
     border: none;
     box-shadow: none;
     text-align: left;
-    background-color: var(--primary-color);
 }
 
 .panel-default>.panel-heading {
-    background-color: transparent;
+    background-color: var(--accordion-heading-color);
+    transition: background 0.5s ease-out;
     border: none;
 }
 
@@ -463,19 +463,46 @@ body {
     text-align: center;
 }
 
+.panel-title>a {
+    display: block;
+}
+
 .panel-title>a,.panel-title>a:hover {
-    color: var(--text-icon-color);
+    color: var(--dark-primary-color);
+    transition: background 0.5s ease-out;
     text-decoration: none;
     font-size: 1.2em;
     font-weight: 400;
+}
+/* toggles on user click , refer `knowMore.js` `toggleAccordion()` function for more details*/
+#accordion .highlight {
+    background: var(--primary-color);
+    transition: background 0.5s ease-in;
+}
+
+#accordion .highlight-text {
+    color: var(--text-icon-color);
+    transition: background 0.5s ease-in;
+}
+
+#accordionCalories .highlight {
+    background-color: var(--primary-color);
+    transition: background 0.5s ease-in;
+}
+
+#accordionCalories .highlight-text {
+    color: var(--text-icon-color);
+    transition: background 0.5s ease-in;
 }
 
 .accordian-icon {
     margin-right: 7px;
     color: var(--accent-color);
+    float: right;
 }
 
 .panel-collapse {
+    color: var(--secondary-text-color);
     padding: 10px 5px;
     background-color: #fff;
 }

@@ -1,0 +1,113 @@
+{
+  "extName": {
+    "message": "கூகிள் மேப்ஸின் கார்பன் போஒட்ப்ரிண்ட்ஸ் ™",
+    "description": "English title"
+  },
+  "extDesc": {
+    "message": " தானாகவே கூகிள் மேப்ஸ்  பரிந்துரைத்த பாதைகளில் CO2 வெளியேற்றத்தை மதிப்பிட்டும்.",
+    "description": "English description"
+  },
+  "mainParah": {
+    "message": "<p>கூகிள் மேப்ஸ்  பரிந்துரைத்த பாதைகளில் உங்கள் வாகனம் வெளியேற்றும் CO<sub>2</sub> அளவுகளை மதிப்பிட்டுங்கள். CO<sub>2</sub> உமிழ்வு மதிப்பு பாதையின் மொத்த தூரத்திற்கு அடுத்து காட்டப்பட்டுள்ளது . விருப்பமாக, எரிபொருள் செலவும் காட்டப்படலாம்.</p>",
+    "description": "The paragraph beside form"
+  },
+  "distanceTravelled": {
+    "message": "பயணித்த தூரம்:"
+  },
+  "fuelConsumed": {
+    "message": "உட்கொள்ளப்பட்ட எரிபொருள்:"
+  },
+  "fuelConsumptionUnit": {
+    "message": "எரிபொருள் நுகர்வு அலகுகள்"
+  },
+  "fuelEfficiency": {
+    "message": "எரிபொருள் திறன்"
+  },
+  "fuelEfficiencyUnit": {
+    "message": "எரிபொருள் திறன் அலகுகள்"
+  },
+  "coEmission": {
+    "message": "CO<sub>2</sub> வெளியேற்றத்தின் விகிதம்:"
+  },
+  "emissionQues": {
+    "message": "மதிப்பீடுகலின் துல்லியத்தை மேம்படுத்த , எரிபொருள் திறன், எரிபொருள் பயன்பாடு அல்லது உங்கள் காரின்  CO<sub>2</sub> வெளியேற்று விகிதத்தை மாற்றவும்."
+  },
+  "byFuelConsumption": {
+    "message": "எரிபொருள் பயன்பாடு:"
+  },
+  "costCalculator": {
+    "message": "எரிபொருள் செலவு"
+  },
+  "coEmissionUnit": {
+    "message": "CO<sub>2</sub> உமிழ்வு அலகுகள்"
+  },
+  "fuelType": {
+    "message": "எரிபொருள் வகை:"
+  },
+  "fuelDiesel": {
+    "message": "Diesel"
+  },
+  "fuelPetrol": {
+    "message": "Petrol"
+  },
+  "fuelGasoline": {
+    "message": "Gasoline"
+  },
+  "fuelLPG": {
+    "message": "LPG"
+  },
+  "fuelE10": {
+    "message": "E10"
+  },
+  "fuelE25": {
+    "message": "E25"
+  },
+  "fuelE85": {
+    "message": "E85"
+  },
+  "fuelEthanol": {
+    "message": "Ethanol"
+  },
+  "fuelBioDiesel": {
+    "message": "Bio-Diesel"
+  },
+  "fuelCNG": {
+    "message": "CNG"
+  },
+  "fuelElectricity":{
+    "message": "Electricity"
+  },
+  "fuelCost": {
+    "message": "எரிபொருள் செலவு:"
+  },
+  "fuelCostUnit": {
+    "message": "தொகுதி ஒன்றுக்கு ஒரு $"
+  },
+  "fuelCostNote": {
+    "message": "'$' ஒரு பொதுவான நாணயத்தை குறிக்கிறது."
+  },
+  "distance": {
+    "message": "தூரம்"
+  },
+  "volume": {
+    "message": "தொகுதி"
+  },
+  "mass": {
+    "message": "நிறை"
+  },
+  "perVolume": {
+    "message": "தொகுதி ஒன்றுக்கு"
+  },
+  "perDistance": {
+    "message": "தூரம் ஒன்றுக்கு"
+  },
+  "conversionNote": {
+    "message": "மாற்றங்கள் பெற, அலகுகளை மாற்றவும் ."
+  },
+  "travelCostEstimate": {
+    "message": "எரிபொருள் செலவு மதிப்பீட்டின் காட்சி"
+  },
+  "save": {
+    "message": "பதிவு செய் "
+  }
+}

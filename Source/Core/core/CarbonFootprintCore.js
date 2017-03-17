@@ -40,6 +40,13 @@ CarbonFootprintCore.USGAL_TO_L = 3.785411784;
 CarbonFootprintCore.MI_TO_KM = 1.609344;
 
 /**
+ * 1 Foot to Kilometers
+ * @const
+ */
+
+ CarbonFootprintCore.FT_TO_KM = 0.0003048;
+
+/**
  * 1 Kilogram to Pounds
  * @const
  */
@@ -233,35 +240,35 @@ CarbonFootprintCore.prototype.createTravelCostElement = function(distance) {
 
 CarbonFootprintCore.prototype.getDistanceFromStrings =
   function(distance, unit) {
-    var splitDistance = distance.split(/[.,]/);
-    distance = '';
-    var i = 0;
-    if (splitDistance.length == 1) {
-      distance = splitDistance[0];
-    } else {
-      // contains a decimal digit
-      if (splitDistance[splitDistance.length - 1].length == 1) {
-        for (i = 0; i < splitDistance.length - 1; i = i + 1) {
-          distance = '' + distance + splitDistance[i];
-        }
-        distance += '.' + splitDistance[splitDistance.length - 1];
-      } else {
-        for (i = 0; i < splitDistance.length; i = i + 1) {
-          distance = '' + distance + splitDistance[i];
-        }
-      }
+
+    distance = distance.trim();
+    var lastIndex = distance.lastIndexOf(",");
+    var i = distance.length - lastIndex;
+    if(i <= 3){
+      distance = distance.substr(0, lastIndex) + '.' + distance.substr(lastIndex + 1);
     }
-    // Distance given in meters.
-    if (unit.match(/\bm\b/) || unit.match(/\s\u043C,/)) {
+    distance =  parseFloat( distance.replace( /,/g , '' ).replace( ' ', '' ))
+
+    if (unit.match(/\bm\b/) || unit.match(/\s\u043C,/)) { // Distance given in meters.
       distance /= 1000;
-    } else if (unit.match(/\bmi\b/) || // Distance given in miles.
-               unit.match(/\bMeile\/n\b/) ||
-               unit.match(/\u043C\u0438\u043B/)) {
+    } else if (unit.match(/\bmi\b/) ||
+               unit.match(/\bMeile(n?)\b/) ||
+               unit.match(/\bmil/) ||
+               unit.match(/\bm\u00ed/)||
+               unit.match(/\bmaili(a?)/)||
+               unit.match(/\bmylia/)||
+               unit.match(/\bmigli(o|a)/)||
+               unit.match(/\bmérföld/)||
+               unit.match(/\bjūdze(s?)/)||
+               unit.match(/\bμίλι/)||
+               unit.match(/\bмілі/)||
+               unit.match(/\bmi(j|i)l/)||
+               unit.match(/\u043C\u0438\u043B/)) {  // Distance given in miles.
       distance *= CarbonFootprintCore.MI_TO_KM;
     } else if (unit.match(/\bft\b/) ||
                unit.match(/\bp\u00E9s\b/) ||
-               unit.match(/\u0444\u0443\u0442/)) { // Distance given in feet.
-      distance *= CarbonFootprintCore.MI_TO_KM / 5280;
+               unit.match(/\u0444\u0443\u0442/)) {  // Distance given in feet.
+      distance *= CarbonFootprintCore.FT_TO_KM;
     }
     console.log('The distance is: ' + distance + ' kilometers');
     return distance;

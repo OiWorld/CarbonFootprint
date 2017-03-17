@@ -307,7 +307,8 @@
       ],
       "run_at": "document_end",
       "all_frames": true
-    },{
+    },
+    {
       "matches": [
         "http://*.yandex.com/maps*",
         "https://*.yandex.com/maps*",
@@ -320,6 +321,21 @@
         "core/settings/ChromeSettingsProvider.js",
         "core/helpers/ChromeHelper.js",
         "core/maps/YandexMapsManager.js",
+        "core/init.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://www.waze.com/livemap*"
+      ],
+      "css": ["core/css/main.css"],
+      "js": [
+        "core/CarbonFootprintCore.js",
+        "core/settings/ChromeSettingsProvider.js",
+        "core/helpers/ChromeHelper.js",
+        "core/maps/WazeMapsManager.js",
         "core/init.js"
       ],
       "run_at": "document_end",
