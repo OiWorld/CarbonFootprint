@@ -21,8 +21,8 @@
   },
   "applications": {
     "gecko": {
-      "id": "some@examsomtple.com",
-      "strict_min_version": "42.0"
+      "id": "carbon-footprint@aossie.org",
+      "strict_min_version": "53.0"
     }
   },
   "options_ui": {
