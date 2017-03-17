@@ -316,6 +316,13 @@ options.saveLocation = function() {
                                     .html(options.data.get('currency')));
       options.data.store();
     });
+  },
+  // If unable to get location
+  function(error) {
+    console.log(error);
+    $('#reLocation').css('pointer-events', 'auto');
+    $('#reLocation').css('animation', 'none');
+    $('#location').html("Unable to retrieve location");
   });
 };
 
@@ -697,6 +704,7 @@ options.loadResources = function() {
       options.loadMessages();
       options.loadSavedData();
     }
+      options.populated=true;
   });
   $.getScript('https://maps.googleapis.com/maps/api/js')
       .done(function() {
