@@ -316,6 +316,13 @@ options.saveLocation = function() {
                                     .html(options.data.get('currency')));
       options.data.store();
     });
+  },
+  // If unable to get location
+  function(error) {
+    console.log(error);
+    $('#reLocation').css('pointer-events', 'auto');
+    $('#reLocation').css('animation', 'none');
+    $('#location').html("Unable to retrieve location");
   });
 };
 
@@ -859,4 +866,3 @@ options.initStorageManager(function() {
     //googleAnalytics('UA-1471148-11');
   });
 });
-
