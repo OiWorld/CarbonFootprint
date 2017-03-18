@@ -665,7 +665,6 @@ options.toggleUnits = function(elem) {
  */
 
 options.mirrorFuelValues = function(elem) {
-  console.log("Fuel Type ", $(elem).val());
   options.fType = $(elem).val();
   $('[id="fuel-type"]').val(options.fType);
   options.toggleUnits($('.save>:checkbox:checked'));
