@@ -73,13 +73,14 @@ options.saveOptions = function() {
       fuel = parseFloat($('#fuel-value').val()),
       co = parseFloat($('#emission').val()),
       cost = parseFloat($('#fuel-cost').val()),
-      curr = $('[id="currency-codes"]').val(),
+      curr = $('#currency-codes').val(),
       lastCheckup = $('#last-checkup').val(),
       nextCheckupYear = parseInt($('#next-checkup-year').val()),
       nextCheckupMonth = parseInt($('#next-checkup-month').val()),
       PTCost = parseFloat($('#cities').val()),
       consumption;
   options.data.set('co', co);
+  options.data.set('currency', curr);
   options.data.set('distance', distance);
   options.data.set('fuel', fuel);
   options.data.set('fuelType', options.fType);
@@ -304,26 +305,26 @@ options.saveLocation = function() {
                .locality + ', ' + options.data.get('geoData')
                .administrative_area_level_1 + ', ' + options.data.get('geoData')
                .country).replace(/ undefined,|undefined,/g, ''));
-      $('[id="currency-codes"]')
-        .val(
-          options.countries[options.data.get('geoData').country_short].currency
-        );
       options.data.set('currency', options.countries[
         options.data.get('geoData').country_short].currency);
-      if ($('#currency-codes').children().length === 0)
-        $('#currency-codes').append($('<option></option>')
-                                    .val(options.data.get('currency'))
-                                    .html(options.data.get('currency')));
+      // Selects the default currency of the user's location
+      $('#currency-codes').val(options.data.get('currency'));
+      // Update GET PRICE button based on the location and type of fuel
+      options.checkFuelPrice();
       options.data.store();
     });
   },
   // If unable to get location
   function(error) {
     console.log(error);
+    options.data.set('geoData', null);
     $('#reLocation').css('pointer-events', 'auto');
     $('#reLocation').css('animation', 'none');
     $('#location').html("Unable to retrieve location");
     $('#load-prices-button').prop('disabled', true);
+    // Fallback to USD if location is not available
+    options.data.set('currency', 'USD');
+    $('#currency-codes').val(options.data.get('currency'));
   });
 };
 
@@ -339,10 +340,10 @@ options.loadFuelPrices = function() {
   console.log(options.settings.fuelPrices, options.settings.exchangeRates);
   var prices = options.settings.fuelPrices[country];
   var exchangeRate = options.settings.exchangeRates[
-            options.data.get('currency')];
+            $('#currency-codes').val()];
   if (!exchangeRate) {
     exchangeRate = options.defaultRates.rates[
-      options.data.get('currency')];
+      $('#currency-codes').val()];
   }
   console.log(prices, options.fType, options.settings, exchangeRate);
   if (prices) {
@@ -404,20 +405,15 @@ options.loadSavedData = function() {
                         .replace(/ undefined,|undefined,/g, ''));
     $('#reLocation').css('pointer-events', 'auto');
     $('#reLocation').css('animation', 'none');
-    $('[id="currency-codes"]')
-      .val(
-        options.countries[options.data.get('geoData').country_short].currency
-      );
-    if ($('#currency-codes').children().length === 0)
-      $('#currency-codes').append($('<option></option>')
-                                  .val(options.data.get('currency'))
-                                  .html(options.data.get('currency')));
+    // Selects the saved currency
+    $('#currency-codes').val(options.data.get('currency'));
   }
   else {
     $('#reLocation').css('pointer-events', 'auto');
     $('#reLocation').css('animation', 'none');
     $('#location').html("Unable to retrieve location");
     $('#load-prices-button').prop('disabled', true);
+    $('#currency-codes').val(options.data.get('currency'));
   }
   options.fType = $('#fuel-type').val();
   //restore only if values were saved once
@@ -447,12 +443,30 @@ options.loadSavedData = function() {
     options.toggleInputSource($('#' + options.data.get('inputSource')));
     $('#' + options.data.get('unitSystem')).attr('checked', true);
     options.toggleUnits($('#' + options.data.get('unitSystem')));
-    if ($('#currency-codes').children().length === 0)
-      $('#currency-codes').append($('<option></option>')
-                                  .val(options.data.get('currency'))
-                                  .html(options.data.get('currency')));
+    $('#currency-codes').val(options.data.get('currency'));
   }
 };
+
+/**
+ * Returns an array containing all the currencies
+ * @param {Object} options.countries
+ * @returns {Array} List of all currencies
+ */
+
+function getAllCurrencies(countries) {
+  var currencies = [];
+  for (var country in countries){
+    if(countries[country].currency)
+      currencies.push(countries[country].currency);
+  }
+  // Sort the currencies in lexical order
+  currencies.sort();
+  // Remove duplicate currencies in the array
+  currencies = currencies.filter(function(elem, index, self) {
+    return index == self.indexOf(elem);
+  });
+  return currencies;
+}
 
 /**
  * switches tabs in main view
@@ -651,7 +665,8 @@ options.toggleUnits = function(elem) {
  */
 
 options.mirrorFuelValues = function(elem) {
-  options.fType = elem.prop('value');
+  console.log("Fuel Type ", $(elem).val());
+  options.fType = $(elem).val();
   $('[id="fuel-type"]').val(options.fType);
   options.toggleUnits($('.save>:checkbox:checked'));
 };
@@ -771,7 +786,7 @@ options.listeners = function() {
     options.mirrorFuelValues($(this));
     options.checkFuelPrice();
   });
-  $('[id="currency-codes"]').on('change', function() {
+  $('#currency-codes').on('change', function() {
     options.mirrorCurrency($(this));
   });
   $('#load-prices-button').on('click', function() {
@@ -846,6 +861,13 @@ options.populateMenus = function() {
               .val(i)
               .attr('data-language', options.fuels[i].langKey)
              );
+  }
+  // Populate all currencies
+  var currencies = getAllCurrencies(options.countries);
+  for(i=0; i<currencies.length; i++){
+          $('#currency-codes').append($('<option></option>')
+                              .val(currencies[i])
+                              .html(currencies[i]));
   }
 };
 
