@@ -10,7 +10,7 @@ html,body {
     left: 0;
     height: 100%;
     width: 100%;
-    overflow-x:hidden; 
+    overflow-x:hidden;
     background: #2980B9;
 }
 
@@ -91,7 +91,7 @@ html,body {
 
 
     vertical-align: top;
-    margin-top: -50px; 
+    margin-top: -50px;
 }
 
 #form {
@@ -114,7 +114,7 @@ input[type="text"],input[type="number"],select,button {
 }
 
 input[type="checkbox"] {
-    margin-bottom: 0.4em;    
+    margin-bottom: 0.4em;
 }
 
 label {
@@ -146,9 +146,9 @@ button {
     background: #27ae60;
     border:none;
     border-radius: 2px;
-    transition: background 0.2s ease-in; 
-    -webkit-transition: background 0.2s ease-in; 
-    -moz-transition: background 0.2s ease-in; 
+    transition: background 0.2s ease-in;
+    -webkit-transition: background 0.2s ease-in;
+    -moz-transition: background 0.2s ease-in;
     cursor: pointer;
 }
 
@@ -160,6 +160,11 @@ button {
     height: 2em;
     font-weight: normal;
     white-space: nowrap;
+}
+
+#load-prices-button:disabled {
+    background: #dddddd;
+    cursor: not-allowed;
 }
 
 button:hover {

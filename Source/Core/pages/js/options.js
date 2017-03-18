@@ -323,6 +323,7 @@ options.saveLocation = function() {
     $('#reLocation').css('pointer-events', 'auto');
     $('#reLocation').css('animation', 'none');
     $('#location').html("Unable to retrieve location");
+    $('#load-prices-button').prop('disabled', true);
   });
 };
 
@@ -348,7 +349,8 @@ options.loadFuelPrices = function() {
     if (options.fType == 'Diesel') {
       $('#fuel-cost').val((prices.diesel * exchangeRate).toFixed(2));
     }
-    else if (options.fType == 'Gasoline') {
+    else if (options.fType == 'Gasoline' ||
+             options.fType == 'Petrol') {
       $('#fuel-cost').val((prices.gasoline * exchangeRate).toFixed(2));
     }
     else if (options.fType == 'LPG' ||
@@ -359,12 +361,41 @@ options.loadFuelPrices = function() {
 };
 
 /**
+ * Disable the GET PRICE button and change if prices
+ * are not available for a selected fuel type
+ */
+
+options.checkFuelPrice = function() {
+  var country = options.data.get('geoData');
+  if (!country){
+    $('#load-prices-button').prop('disabled', true);
+    return;
+  }
+  country = country.country_short;
+  var prices = options.settings.fuelPrices[country];
+  // Set price of petrol same as gasoline
+  if(prices.gasoline)
+    prices.petrol = prices.gasoline;
+  if(prices.LPG)
+    prices.CNG = prices.LPG;
+  console.log(prices);
+  for(var key in prices) {
+    if (key.toLowerCase() == options.fType.toLowerCase()) {
+      $('#load-prices-button').prop('disabled', false);
+      return;
+    }
+  }
+  // GET PRICE button disabled by default
+  $('#load-prices-button').prop('disabled', true);
+}
+
+/**
  * Loads data that is already been saved by user
  */
 
 options.loadSavedData = function() {
   //if not saved once
-  if (options.data.has('geoData')) {
+  if (options.data.get('geoData')) {
     $('#green-electricity input').val(options.data.get('renPer').wiki);
     $('#location').html((options.data.get('geoData')
                          .locality + ', ' + options.data.get('geoData')
@@ -382,13 +413,21 @@ options.loadSavedData = function() {
                                   .val(options.data.get('currency'))
                                   .html(options.data.get('currency')));
   }
+  else {
+    $('#reLocation').css('pointer-events', 'auto');
+    $('#reLocation').css('animation', 'none');
+    $('#location').html("Unable to retrieve location");
+    $('#load-prices-button').prop('disabled', true);
+  }
   options.fType = $('#fuel-type').val();
   //restore only if values were saved once
   if (options.data.has('init')) {
     $('[id="fuel-type"]').val(options.data.get('fuelType'));
     options.fType = $('#fuel-type').val();
+    // Enable or disable the GET PRICE button on page load
+    options.checkFuelPrice();
     $('#fuel-cost').val(options.data.get('fuelCost').value);
-    $('[id="#currency-codes"]').val(options.data.get('fuelCost').curr);
+    $('[id="currency-codes"]').val(options.data.get('fuelCost').curr);
     $('#distance-value').val(options.data.get('distance'));
     $('#fuel-value').val(options.data.get('fuel'));
     $('#emission').val(options.data.get('co'));
@@ -730,6 +769,7 @@ options.listeners = function() {
   });
   $('[id="fuel-type"]').on('change', function() {
     options.mirrorFuelValues($(this));
+    options.checkFuelPrice();
   });
   $('[id="currency-codes"]').on('change', function() {
     options.mirrorCurrency($(this));
