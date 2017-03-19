@@ -304,6 +304,20 @@ var wmaps = pageMod.PageMod({
   onAttach: onAttachListener
 });
 
+var vmmaps = pageMod.PageMod({
+  include: /https?:\/\/.*\.viamichelin.*/,
+  contentScriptFile: [
+    './core/CarbonFootprintCore.js',
+    './core/helpers/FirefoxHelper.js',
+    './core/settings/FirefoxSettingsProvider.js',
+    './core/maps/ViaMichelinMapsManager.js',
+    './core/init.js'
+  ],
+  contentStyleFile: './core/css/main.css',
+  contentScriptWhen: 'ready',
+  onAttach: onAttachListener
+});
+
 var updater = {};
 
 /**
