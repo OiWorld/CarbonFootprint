@@ -533,6 +533,7 @@ safari
  */
 
 injector.commonScripts = [
+    injector.URL + 'core/SettingsProviderCore.js',
     injector.URL + 'core/settings/SafariSettingsProvider.js',
     injector.URL + 'core/init.js',
     injector.URL + 'core/CarbonFootprintCore.js',

@@ -201,6 +201,7 @@ var gmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?google\..*\/maps.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
+    './core/SettingsProviderCore.js',
     './core/helpers/FirefoxHelper.js',
     './core/settings/FirefoxSettingsProvider.js',
     './core/maps/GoogleMapsManager.js',
@@ -217,6 +218,7 @@ var osmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?openstreetmap.org\/.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
+    '.core/SettingsProviderCore.js',
     './core/helpers/FirefoxHelper.js',
     './core/settings/FirefoxSettingsProvider.js',
     './core/maps/OpenMapsManager.js',
@@ -231,6 +233,7 @@ var bmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?bing.com\/maps.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
+    '.core/SettingsProviderCore.js',
     './core/helpers/FirefoxHelper.js',
     './core/settings/FirefoxSettingsProvider.js',
     './core/maps/BingMapsManager.js',
@@ -245,6 +248,7 @@ var hmaps = pageMod.PageMod({
   include: /https?:\/\/.*\.here.com\/.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
+    '.core/SettingsProviderCore.js',
     './core/helpers/FirefoxHelper.js',
     './core/settings/FirefoxSettingsProvider.js',
     './core/maps/HereMapsManager.js',
@@ -259,6 +263,7 @@ var mqmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?mapquest.com\/.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
+    '.core/SettingsProviderCore.js',
     './core/helpers/FirefoxHelper.js',
     './core/settings/FirefoxSettingsProvider.js',
     './core/maps/MapQuestMapsManager.js',
@@ -273,6 +278,7 @@ var ymaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?yandex.*\/maps\/.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
+    '.core/SettingsProviderCore.js',
     './core/helpers/FirefoxHelper.js',
     './core/settings/FirefoxSettingsProvider.js',
     './core/maps/YandexMapsManager.js',
@@ -287,6 +293,7 @@ var wmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?waze.com\/livemap.*/,
   contentScriptFile: [
     './core/CarbonFootprintCore.js',
+    '.core/SettingsProviderCore.js',
     './core/helpers/FirefoxHelper.js',
     './core/settings/FirefoxSettingsProvider.js',
     './core/maps/WazeMapsManager.js',
