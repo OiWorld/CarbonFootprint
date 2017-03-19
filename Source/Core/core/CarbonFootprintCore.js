@@ -251,7 +251,7 @@ CarbonFootprintCore.prototype.getDistanceFromStrings =
 
     if (unit.match(/\bm\b/) || unit.match(/\s\u043C,/)) { // Distance given in meters.
       distance /= 1000;
-    } else if (unit.match(/\bmi\b/) ||
+    } else if (unit.match(/\bmi\b/) ||  // Source: http://www.indifferentlanguages.com/words/mile
                unit.match(/\bMeile(n?)\b/) ||
                unit.match(/\bmil/) ||
                unit.match(/\bm\u00ed/)||
