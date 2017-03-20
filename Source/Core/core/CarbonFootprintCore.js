@@ -118,7 +118,7 @@ CarbonFootprintCore.prototype.computeTrees = function(carbonFootprint) {
  */
 
 CarbonFootprintCore.prototype.otherGasesString = function(distance) {
-  if (this.settingsProvider.getGHGEmission() >= 0) {
+  if (this.settingsProvider.getGHGEmission() >= 0 && !isNaN(distance)) {
     return 'CH₄: ' + (this.settingsProvider.getCH4Emission() * 1000 * distance)
       .toFixed(3) + 'g CO₂e,  ' + 'N₂O: ' +
       (this.settingsProvider.getN2OEmission() * 1000 * distance).toFixed(3) +
