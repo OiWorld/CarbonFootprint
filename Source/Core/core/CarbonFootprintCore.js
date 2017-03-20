@@ -125,8 +125,6 @@ CarbonFootprintCore.prototype.otherGasesString = function(distance) {
       'g CO₂e,  ' + 'GHG: ' + (this.settingsProvider.getGHGEmission() *
                  distance).toFixed(3) + 'kg CO₂e\n';
   }
-  else
-    return 'CH₄: NA, N₂O: NA, GHG: NA\n';
   return '';
 };
 
