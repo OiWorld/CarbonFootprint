@@ -229,6 +229,7 @@
       ],
       "css": ["core/css/main.css"],
       "js": [
+        "pages/js/jquery.min.js",
         "core/CarbonFootprintCore.js",
         "core/SettingsProviderCore.js",
         "core/settings/ChromeSettingsProvider.js",
