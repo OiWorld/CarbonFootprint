@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -147,38 +144,36 @@
                         <div class="modal-body">
                             <h2>Live Air Quality Index</h2>
                             <div id="map-container"></div>
-                            <p>
-                                <form class="form-inline pull-left">
-                                    <div class="form-group">
-                                        <label for="map-type">Marker Type: </label>
-                                        <select class="form-control" id="map-type">
-                                            <option value="usepa-aqi" selected>Air Quality Index</option>
-                                            <option value="usepa-pm25">PM<sub>2.5</sub>
-                                            </option>
-                                            <option value="usepa-10">PM<sub>10</sub>
-                                            </option>
-                                            <option value="usepa-o3">Ozone</option>
-                                            <option value="usepa-no2">NO<sub>2</sub>
-                                            </option>
-                                            <option value="usepa-so2">SO<sub>2</sub>
-                                            </option>
-                                            <option value="usepa-co">CO</option>
-                                            <option value="asean-pm10">Asean PM<sub>10</sub>
-                                            </option>
-                                        </select>
-                                    </div>
-                                </form>
-                                <span class="pull-right"><i>Source: </i><a href="http://aqicn.org/">http://aqicn.org/</a></span>
-                                <ul id="airScale">
-                                  <li style="font-weight: bold">Scale: </li>
-                                  <li title="Good" style="background-color: #019866"></li>
-                                  <li title="Moderate" style="background-color: #ffdd34"></li>
-                                  <li title="Unhealthy for sensitive groups" style="background-color: #ff9934"></li>
-                                  <li title="Unhealthy" style="background-color: #cf0033"></li>
-                                  <li title="Very unhealthy" style="background-color: #670099"></li>
-                                  <li title="Hazardous" style="background-color: #820126"></li>
-                                </ul>
-                            </p>
+                            <ul id="airScale">
+                              <li style="color: inherit; padding-left:0px">Scale: </li>
+                              <li style="background-color: #019866">Good</li>
+                              <li style="background-color: #ffdd34">Moderate</li>
+                              <li style="background-color: #ff9934">Unhealthy for sensitive groups</li>
+                              <li style="background-color: #cf0033">Unhealthy</li>
+                              <li style="background-color: #670099">Very unhealthy</li>
+                              <li style="background-color: #820126">Hazardous</li>
+                            </ul>
+                            <form class="form-inline pull-left">
+                                <div class="form-group">
+                                    <label for="map-type">Marker Type: </label>
+                                    <select class="form-control" id="map-type">
+                                        <option value="usepa-aqi" selected="">Air Quality Index</option>
+                                        <option value="usepa-pm25">PM2.5
+                                        </option>
+                                        <option value="usepa-10">PM10
+                                        </option>
+                                        <option value="usepa-o3">Ozone</option>
+                                        <option value="usepa-no2">NO2
+                                        </option>
+                                        <option value="usepa-so2">SO2
+                                        </option>
+                                        <option value="usepa-co">CO</option>
+                                        <option value="asean-pm10">Asean PM10
+                                        </option>
+                                    </select>
+                                </div>
+                            </form>
+                            <span class="pull-right"><i>Source: </i><a href="http://aqicn.org/">http://aqicn.org/</a></span>
                         </div>
                     </div>
                 </div>
@@ -203,7 +198,7 @@
                             <h2>Carbon Footprint Reduction</h2>
                             <p class="item-intro text-muted">Read below various tips to make a difference and reduce carbon footprint:</p>
                             <p>
-                                <div id="accordion" role="tablist" aria-multiselectable="true">
+                                </p><div id="accordion" role="tablist" aria-multiselectable="true">
                                   <!-- Keeping this open by default -->
                                     <div class="panel panel-default">
                                         <div class="panel-heading highlight" role="tab" id="headingFour">
@@ -258,7 +253,7 @@
                                                 <li><strong>Get a hitch-mounted cargo rack - </strong> Don’t buy an expensive and polluting minivan or SUV if will only occasionally need the extra space or do not need 4WD. A receiver hitch and a rack will cost you and the environment much less. Avoid roof-top boxes, which cost much more, increase aerodynamic drag, and decrease fuel economy.</li>
                                                 <li><strong>Improve your Driving Style - </strong>&nbsp;<a href="http://www.fueleconomy.gov/feg/driveHabits.shtml" target="_blank">Speeding and unnecessary acceleration reduce fuel efficiency by up to 33%</a>, waste fuel and money, and increase your carbon footprint.</li>
                                                 <li><strong>Keep your tires inflated and your car well-tuned - </strong>Properly inflated tires improve your car's fuel efficiency by up to 3%. Some <a href="http://www.fueleconomy.gov/feg/maintain.shtml">maintenance fixes</a>
-                                                    </span>, like using the correct grade of motor oil and fixing faulty oxygen sensors, can increase fuel efficiency by up to 40%.</li>
+                                                    , like using the correct grade of motor oil and fixing faulty oxygen sensors, can increase fuel efficiency by up to 40%.</li>
                                                 <li><strong>Avoid traffic - </strong> Being stuck in traffic wastes fuel and unneccessarily creates CO<sub>2</sub>. Use traffic websites and apps to go a different way or wait.</li>
                                                 <li>Combine trips to make fewer and shorter trips. Remove excess weight from your car.&nbsp;Use cruise control.</li>
                                             </ul>
@@ -301,7 +296,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </p>
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -326,22 +321,22 @@
                             <!-- Project Details Go Here -->
                             <h2>About</h2>
                             <p class="text-justify">
-                                <div class="info-text">Whenever you ask Google Maps, Here Maps or Open Street Map for driving directions, this browser extension automatically estimates the total CO<sub>2</sub> emissions caused by driving on the suggested routes. The estimation is shown next to the route's total distance.</div>
+                                </p><div class="info-text">Whenever you ask Google Maps, Here Maps or Open Street Map for driving directions, this browser extension automatically estimates the total CO<sub>2</sub> emissions caused by driving on the suggested routes. The estimation is shown next to the route's total distance.</div>
                                 <div class="info-text">To improve the accuracy of the estimations, the options allow you to configure several parameters related to the fuel consumption and environment-friendliness of your car.</div>
                                 <div class="info-text">If you have comments or questions, please send them to MapsCarbonFootprint@gmail.com.</div>
                                 <div class="info-text">If you like this extension, please give it a <a href="https://chrome.google.com/webstore/detail/carbon-footprint-for-goog/ednfpjleaanokkjcgljbmamhlbkddcgh/reviews">good rating</a>, like it on <a href="http://www.facebook.com/pages/Carbon-Footprint-for-Google-Maps/217487891623173" taget="_blank">facebook</a> and +1 it on <a href="https://plus.google.com/b/112973863308036008385/112973863308036008385/posts" taget="_blank">Google+</a>.</div>
                                 <div class="info-text">Spread this extension and help us raise environmental awareness! Let's preserve the environment, stop climate change and global warming, and save our planet!</div>
-                            </p>
+                            <p></p>
                             <div>
                                 <h4>Sponsors:</h4>
                                 <p class="text-justify">
-                                    <a href='https://summerofcode.withgoogle.com' target="_blank">Google Summer of Code</a> - Google provided three scholarships for students to work on this project.
-                                    <br />
-                                    <a href='http://www.iue.tuwien.ac.at/cse/index.php/gsoc.html' target="_blank">Computer Science and Engineering @ TU-Wien</a> - The umbrella organization for open source projects of the Vienna University of Technology has made it possible for our project to participate in Google's Summer of Code program and has supported our project throughout the program and beyond.
+                                    <a href="https://summerofcode.withgoogle.com" target="_blank">Google Summer of Code</a> - Google provided three scholarships for students to work on this project.
+                                    <br>
+                                    <a href="http://www.iue.tuwien.ac.at/cse/index.php/gsoc.html" target="_blank">Computer Science and Engineering @ TU-Wien</a> - The umbrella organization for open source projects of the Vienna University of Technology has made it possible for our project to participate in Google's Summer of Code program and has supported our project throughout the program and beyond.
                                 </p>
                             </div>
                             <div class="text-left">
-                                <h4>Credits:</h4> Tile Images: <a href='http://www.freepik.com/' target="_blank">Vectors by Freepik.</a>
+                                <h4>Credits:</h4> Tile Images: <a href="http://www.freepik.com/" target="_blank">Vectors by Freepik.</a>
                             </div>
                         </div>
                     </div>
@@ -453,7 +448,7 @@
                                             <input type="radio" name="unitSystem" value="metric">Metric
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="unitSystem" value="uscustomary" checked>US customary
+                                            <input type="radio" name="unitSystem" value="uscustomary" checked="">US customary
                                         </label>
                                         <label class="radio-inline">
                                             <input type="radio" name="unitSystem" value="imperial">Imperial
@@ -463,7 +458,7 @@
                                         <label>Travel Mode</label>
                                         <br>
                                         <label class="radio-inline">
-                                            <input type="radio" name="mode" value="cycling" checked>Cycling
+                                            <input type="radio" name="mode" value="cycling" checked="">Cycling
                                         </label>
                                         <label class="radio-inline">
                                             <input type="radio" name="mode" value="walking">Walking
@@ -494,7 +489,7 @@
                                             <input type="radio" name="unit" value="time"><span>Time Taken</span>
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="unit" value="distance" checked><span>Distance Covered</span>
+                                            <input type="radio" name="unit" value="distance" checked=""><span>Distance Covered</span>
                                         </label>
                                     </div>
                                     <div class="form-group">
@@ -536,7 +531,7 @@
                             <!-- Project Details Go Here -->
                             <h2>Calculator of CO<sub>2</sub>Absorption by Trees</h2>
                             <p>
-                                <div>
+                                </p><div>
                                     <form id="absorptionForm" class="form-main" role="form">
                                         <h3>Aborption Time Calculator</h3>
                                         <div class="form-group">
@@ -546,7 +541,7 @@
                                                 <input type="radio" name="unitSystem" value="metric">Metric
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="unitSystem" value="uscustomary" checked>US customary
+                                                <input type="radio" name="unitSystem" value="uscustomary" checked="">US customary
                                             </label>
                                             <label class="radio-inline">
                                                 <input type="radio" name="unitSystem" value="imperial">Imperial
@@ -608,7 +603,7 @@
 
                                     </form>
                                 </div>
-                            </p>
+                            <p></p>
                             <br>
                             <h3 class="text-center">More Information</h3>
                             <p class="text-justify">
@@ -647,21 +642,17 @@
                         <div class="modal-body">
                             <h2>Contact Us</h2>
                             <p>
-                                If you like this extension, please give it a good rating at <a href="#" target="_blank" id='rating-link'><i class="fa fa-external-link" aria-hidden="true"></i> Chrome Web Store</a>.
+                                If you like this extension, please give it a good rating at <a href="https://chrome.google.com/webstore/detail/carbon-footprint-for-goog/ednfpjleaanokkjcgljbmamhlbkddcgh/reviews" target="_blank" id="rating-link"><i class="fa fa-external-link aria-hidden" ='true'=""></i> Chrome Web Store</a>.
                                 <br>
                                 <br> Get this extension for other browsers
 
-                                <div class="row">
+                                </p><div class="row">
                                     <div class="col-xs-3"></div>
                                     <div class="col-xs-3">
-                                        <a href='google.com' id='store-link-1'>
-                                            <img src="./img/firefoxBadge.png" class="img-responsive" />
-                                        </a>
+                                        <a href="https://addons.mozilla.org/en-US/firefox/addon/carbon-footprint/" id="store-link-1"><img src="./img/firefoxBadge.png" class="img-responsive"></a>
                                     </div>
                                     <div class="col-xs-3">
-                                        <a href='google.com' id='store-link-2'>
-                                            <img src="./img/safariBadge.png" class="img-responsive" />
-                                        </a>
+                                        <a href="https://safari-extensions.apple.com" id="store-link-2"><img src="./img/safariBadge.png" class="img-responsive"></a>
                                     </div>
                                     <div class="col-xs-3"></div>
 
@@ -670,9 +661,9 @@
                                 <a href="mailto:MapsCarbonFootprint@gmail.com" target="_top">
                                     <i class="fa fa-envelope" aria-hidden="true"></i> MapsCarbonFootprint@gmail.com
                                 </a>
-                            </p>
+                            <p></p>
                             <p>
-                                <ul class="list-inline social-buttons">
+                                </p><ul class="list-inline social-buttons">
                                     <li><a href="http://www.facebook.com/pages/Carbon-Footprint-for-Google-Maps/217487891623173" target="_blank"><i class="fa fa-facebook fa-fw"></i></a>
                                     </li>
                                     <li><a href="https://plus.google.com/b/112973863308036008385/112973863308036008385/posts" target="_blank"><i class="fa fa-google-plus fa-fw"></i></a>
@@ -682,7 +673,7 @@
                                     <li><a href="https://twitter.com/oiworld" target="_blank"><i class="fa fa-twitter fa-fw"></i></a>
                                     </li>
                                 </ul>
-                            </p>
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -707,6 +698,7 @@
     <script type="text/javascript" src="js/caloriesCalc.js"></script>
     <script type="text/javascript" src="js/absorptionCalc.js"></script>
 
-</body>
 
-</html>
+
+
+</body></html>

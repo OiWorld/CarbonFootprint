@@ -678,6 +678,14 @@ input[type="radio"][name="unit"]:checked + span {
 
 ul#airScale li{
   display: inline;
-  padding-top: 8px;
-  padding-left: 22px;
+  padding: 8px;
+  color: white;
+  margin: 0px;
+  margin-right: -4px;
+}
+
+ul#airScale {
+  margin-top: 12px;
+  margin-bottom: 15px;
+  padding: 0px;
 }
