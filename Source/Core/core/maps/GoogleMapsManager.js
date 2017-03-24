@@ -500,8 +500,15 @@ GoogleMapsManager.prototype.insertDetailedFootprintElement = function(){
     }
   }
   catch(err){
-    console.error('Please try open maps in normal mode.');
-    this.liteGoogleMaps();
+    var url = window.location.href ;
+    if(url.substring(url.length-4,url.length) == 'lite'){
+      console.error('Please try open maps in normal mode.');
+      this.liteGoogleMaps();
+    }
+    else{
+      console.log('showing possible routes to the destination');
+    }
+    
   }
 };
 
