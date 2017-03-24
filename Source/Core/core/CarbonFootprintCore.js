@@ -59,7 +59,7 @@ CarbonFootprintCore.KG_TO_LBS = 2.204622621848775;
  * reference : http://data.worldbank.org/indicator/EN.ATM.CO2E.PC
  */
 
-CarbonFootprintCore.humansEmission = 0.0001519811393;
+CarbonFootprintCore.humansEmission = 0.0001519811393*3600;
 
 /**
  * computes footprints based on route distance
@@ -91,14 +91,13 @@ CarbonFootprintCore.prototype.computeFootprint = function(data, type) {
  CarbonFootprintCore.prototype.computeTransitFootprint = function(data, type) {
    var footprint;
    if (type == 't') {
-    console.log(CarbonFootprintCore.humansEmission);
     console.log(this.settingsProvider.getPTCarbonEmission());
     console.log(data[0]);
     console.log(data[1]);
-     footprint = (data[0] * this.settingsProvider.getPTCarbonEmission())/60 + (data[1] * CarbonFootprintCore.humansEmission.toFixed(6));
+     footprint = (data[0] * this.settingsProvider.getPTCarbonEmission())/60 +
+      (data[1] * CarbonFootprintCore.humansEmission.toFixed(2)/60);
    }
    else {
-      data = data/1000;
      footprint = data * this.settingsProvider.getCarbonEmission();
    }
    console.log(footprint);
@@ -126,8 +125,8 @@ CarbonFootprintCore.prototype.footprintToString = function(footprint) {
   }
   footprint = footprint.toPrecision(3);
   console.log('Carbon Footprint for this route is: ' +
-              footprint + carbonUnit + ' CO<sub>2</sub>');
-  return '' + footprint + carbonUnit + ' CO<sub>2</sub>';
+              footprint +' '+ carbonUnit + ' CO<sub>2</sub>');
+  return '' + footprint +' '+ carbonUnit + ' CO<sub>2</sub>';
 };
 
 /**
@@ -247,17 +246,8 @@ CarbonFootprintCore.prototype.createPTFootprintElement = function(time) {
  */
 
 CarbonFootprintCore.prototype.createPTransitFootprintElement = function(data,type) {
-  console.log(type);
-  if(type == "t"){
-    var footprint = this.computeTransitFootprint(data, 't');
-    console.log("hello check here");
-    var element = this.createHTMLElement(footprint);
-  }
-  else{
-    var footprint = this.computeTransitFootprint(data,'d');
-    console.log(data);
-    var element = this.createHTMLElement(footprint,data);
-  }
+  var footprint = this.computeTransitFootprint(data, 't');
+  var element = this.createHTMLElement(footprint);
   return element;
 };
 
