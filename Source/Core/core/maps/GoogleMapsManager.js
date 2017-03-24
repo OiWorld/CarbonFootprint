@@ -203,7 +203,6 @@ GoogleMapsManager.prototype.travelInfo = function(dataType){
     }
   }
   catch(err){
-    console.error(err);
   }
 };
 
@@ -257,6 +256,34 @@ GoogleMapsManager.summaryTitleClass =
   GoogleMapsManager.infoTransitClasses4T = 
   'section-trip-summary'; 
 
+  /**
+  * Class from which distance is extracted in lite mode
+  */
+
+  GoogleMapsManager.drivingModeScreen = 
+  'ml-directions-pane-header-container';
+
+  /**
+  * Class from which time is extracted in lite mode
+  */
+
+  GoogleMapsManager.transitModeScreen = 
+  'ml-directions-selection-screen';
+
+  /**
+  *  Class in which footprints are to inserted in lite mode
+  */
+
+  GoogleMapsManager.insertInLiteTransit =
+  'ml-directions-selection-screen-transit-further-details';
+
+  /**
+  * Class in which footprints are to inserted in lite mode
+  */
+
+  GoogleMapsManager.insertInLiteDriving = 
+  'ml-directions-pane-header-line-summary-container' ;
+
 /**
  * Gets distance for driving route.
  * @param {object} route
@@ -279,7 +306,8 @@ GoogleMapsManager.prototype.getDistanceString = function(route) {
  * @return {array} [timeString,walkingTime] as obtained from scrapping
  */
 
-GoogleMapsManager.prototype.getTimeString = function(route) {
+GoogleMapsManager.prototype.getTimeString = function(route,type) {
+  if(type == "n"){
   var timeString = route
         .getElementsByClassName(GoogleMapsManager.durationClass)[0].innerHTML;
   var walkingTime = route
@@ -289,6 +317,15 @@ GoogleMapsManager.prototype.getTimeString = function(route) {
   console.log(walkingTime);
   console.log('timeString:' + timeString);
   return [timeString,walkingTime];
+  }
+  else{
+    var timeString = route
+                .getElementsByClassName('ml-directions-selection-screen-lines-section-right')[0]
+                .innerText;
+    console.log(timeString);
+    timeString = " " + timeString;
+    return timeString;
+  }
 };
 
 /**
@@ -368,24 +405,51 @@ GoogleMapsManager.prototype.insertFootprintElement = function(route, e, type) {
  * Inserts element where footprints will be displayed if not present in details view
  * @param {object} route
  * @param {element} e
+ * @param {char} type
+ * @param {char} mode lite("l")/normal("n");
  */
 
 GoogleMapsManager.prototype.insertTransitElement = function(route,e,type){
   console.log(route[0]);
-  if(document
+    if(document
     .getElementsByClassName('carbon').length === 0 && document.getElementsByClassName('section-directions-trip').length == 0){
-    if(type == 'd'){document
-      .getElementsByClassName(GoogleMapsManager.infoTransitClasses4D[0] + ' ' +
+      if(type == 'd'){document
+        .getElementsByClassName(GoogleMapsManager.infoTransitClasses4D[0] + ' ' +
                               GoogleMapsManager.infoTransitClasses4D[1])[0]
-      .appendChild(e);
-    }
-    else{
+        .appendChild(e);
+      }
+      else{
       document.getElementsByClassName(GoogleMapsManager.infoTransitClasses4T)[0]
       .appendChild(e);
+      }
     }
-  }
-}
+};
 
+/**
+ * Inserts footprint elements in the lite mode .
+ * @param {object} route
+ * @param {element} e
+ */
+
+GoogleMapsManager.prototype.insertInLiteMaps = function(route,e,type){
+  if(type=="t"){
+    if (route
+            .getElementsByClassName(GoogleMapsManager.insertInLiteTransit)[0]
+             .getElementsByClassName('carbon').length === 0){
+      route
+      .getElementsByClassName(GoogleMapsManager.insertInLiteTransit)[0]
+      .append(e);
+    }  
+  }
+  else{
+    if(route
+            .getElementsByClassName('carbon').length === 0){
+      route
+          .getElementsByClassName(GoogleMapsManager.insertInLiteDriving)[0]
+          .append(e);
+    }
+  }  
+} 
 /**
  * Inserts element where footprints will be displayed if not present in details view
  *       Considering the walking time and total time in the journey when distance is 
@@ -436,7 +500,8 @@ GoogleMapsManager.prototype.insertDetailedFootprintElement = function(){
     }
   }
   catch(err){
-    console.error(err);
+    console.error('Please try open maps in normal mode.');
+    this.liteGoogleMaps();
   }
 };
 
@@ -452,6 +517,70 @@ GoogleMapsManager.prototype.insertTravelCostElement = function(route, e) {
         .getElementsByClassName(GoogleMapsManager.infoClasses[0] + ' ' +
                                 GoogleMapsManager.infoClasses[1])[0]
         .appendChild(e);
+  }
+};
+
+/**
+ * Calling for inserting the footprint in lite Google maps
+ */ 
+
+GoogleMapsManager.prototype.liteGoogleMaps = function(){
+  this.liteMapsTransitMode();
+  this.liteMapsDrivingMode();
+};
+
+/**
+ * Inserts footprint elements in transit mode for each route
+ */
+
+GoogleMapsManager.prototype.liteMapsTransitMode = function(){
+  try{
+  var transitElements = $('.' + GoogleMapsManager.transitModeScreen)[0]
+                            .getElementsByClassName('ml-directions-selection-screen-row');
+  console.log(transitElements);
+  var distance = 0 ;
+    for(var x=0;x<transitElements.length;x++){
+      timeString = this.getTimeString(transitElements[x]);
+      timeInMins = this.convertTime(timeString,'l')*60;
+      this.insertInLiteMaps(
+        transitElements[x],
+        this.footprintCore.createPTransitFootprintElement([timeInMins,0],'t'),
+        't'
+        );
+    }
+  }
+  catch(err){
+  }
+};
+
+/**
+ * Inserts footprint element during Driving
+ */
+
+GoogleMapsManager.prototype.liteMapsDrivingMode = function(){
+  try{
+    var targetElement = document.getElementsByClassName('ml-directions-pane-toggle')[0];
+    console.log(targetElement);
+    var distanceString = document.getElementsByClassName('ml-directions-pane-header-distance')[0]
+                        .innerText;
+    console.log(distanceString);
+    if(distanceString.length > 0){
+        distanceString = distanceString.substring(1,distanceString.length-1);
+        var distanceInKm = this.convertDistance(distanceString);
+        this.insertInLiteMaps(
+          targetElement,
+          this.footprintCore.createFootprintElement(distanceInKm),
+          'd'
+          );
+      if (this.settingsProvider.showTravelCost()){
+        this.insertTravelCostElement(
+          targetElement,
+          this.footprintCore.createTravelCostElement(distanceInKm)
+        );
+      }
+    }
+  }
+  catch(err){
   }
 };
 
@@ -482,7 +611,7 @@ GoogleMapsManager.prototype.update = function(){
     }
   }
   for (i = 0; i < transitRoutes.length; i++) {
-    var timeString = this.getTimeString(transitRoutes[i]);
+    var timeString = this.getTimeString(transitRoutes[i],"n");
     var timeInMins = this.convertTime(timeString[0])*60;
     var walkingTimeInMins = this.convertTime(timeString[1])*60;
     console.log(walkingTimeInMins)
