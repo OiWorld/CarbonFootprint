@@ -260,14 +260,14 @@ GoogleMapsManager.summaryTitleClass =
   * Class from which distance is extracted in lite mode
   */
 
-  GoogleMapsManager.drivingModeScreen = 
-  'ml-directions-pane-header-container';
+  GoogleMapsManager.drivingLiteModeScreen = 
+  'ml-directions-pane-toggle';
 
   /**
   * Class from which time is extracted in lite mode
   */
 
-  GoogleMapsManager.transitModeScreen = 
+  GoogleMapsManager.transitLiteModeScreen = 
   'ml-directions-selection-screen';
 
   /**
@@ -282,7 +282,7 @@ GoogleMapsManager.summaryTitleClass =
   */
 
   GoogleMapsManager.insertInLiteDriving = 
-  'ml-directions-pane-header-line-summary-container' ;
+  'ml-directions-pane-header-line-summary-container';
 
 /**
  * Gets distance for driving route.
@@ -501,7 +501,7 @@ GoogleMapsManager.prototype.insertDetailedFootprintElement = function(){
   }
   catch(err){
     var url = window.location.href ;
-    if(url.substring(url.length-4,url.length) == 'lite'){
+    if(url.indexOf('force=lite') > 0){
       console.error('Please try open maps in normal mode.');
       this.liteGoogleMaps();
     }
@@ -542,10 +542,9 @@ GoogleMapsManager.prototype.liteGoogleMaps = function(){
 
 GoogleMapsManager.prototype.liteMapsTransitMode = function(){
   try{
-  var transitElements = $('.' + GoogleMapsManager.transitModeScreen)[0]
+  var transitElements = $('.' + GoogleMapsManager.transitLiteModeScreen)[0]
                             .getElementsByClassName('ml-directions-selection-screen-row');
   console.log(transitElements);
-  var distance = 0 ;
     for(var x=0;x<transitElements.length;x++){
       timeString = this.getTimeString(transitElements[x]);
       timeInMins = this.convertTime(timeString,'l')*60;
@@ -566,7 +565,7 @@ GoogleMapsManager.prototype.liteMapsTransitMode = function(){
 
 GoogleMapsManager.prototype.liteMapsDrivingMode = function(){
   try{
-    var targetElement = document.getElementsByClassName('ml-directions-pane-toggle')[0];
+    var targetElement = document.getElementsByClassName(GoogleMapsManager.drivingLiteModeScreen)[0];
     console.log(targetElement);
     var distanceString = document.getElementsByClassName('ml-directions-pane-header-distance')[0]
                         .innerText;
