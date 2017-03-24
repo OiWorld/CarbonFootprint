@@ -200,7 +200,6 @@ function onAttachListener(wk) {
 var gmaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?google\..*\/maps.*/,
   contentScriptFile: [
-    './pages/js/jquery.min.js',
     './core/CarbonFootprintCore.js',
     './core/SettingsProviderCore.js',
     './core/helpers/FirefoxHelper.js',
