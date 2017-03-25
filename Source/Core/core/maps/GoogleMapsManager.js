@@ -491,7 +491,6 @@ GoogleMapsManager.prototype.liteMapsTransitMode = function(){
     }
   }
   catch(err){
-    console.error(err);
   }
 };
 
@@ -531,46 +530,47 @@ GoogleMapsManager.prototype.liteMapsDrivingMode = function(){
  */
 
 GoogleMapsManager.prototype.update = function(){
-  this.getAllRoutes();
-  var i;
-  var drivingRoutes = this.getAllDrivingRoutes();
-  var transitRoutes = this.getAllTransitRoutes();
-  for (i = 0; i < drivingRoutes.length; i++) {
-    var distanceString = this.getDistanceString(drivingRoutes[i]);
-    console.log(distanceString);
-    var distanceInKm = this.convertDistance(distanceString);
-    this.insertFootprintElement(
-      drivingRoutes[i],
-      this.footprintCore.createFootprintElement(distanceInKm),
-      'd'
-    );
-    if (this.settingsProvider.showTravelCost()) {
-      this.insertTravelCostElement(
+  if(document.getElementsByClassName('ml-directions-pane-toggle').length > 0){
+    console.error('You are currently using lite version of google maps. To get more benefits on cabonfootprints please use normal version.');
+    this.liteGoogleMaps();  
+  }
+  else
+  {
+    this.getAllRoutes();
+    var i;
+    var drivingRoutes = this.getAllDrivingRoutes();
+    var transitRoutes = this.getAllTransitRoutes();
+    for (i = 0; i < drivingRoutes.length; i++) {
+      var distanceString = this.getDistanceString(drivingRoutes[i]);
+      console.log(distanceString);
+      var distanceInKm = this.convertDistance(distanceString);
+      this.insertFootprintElement(
         drivingRoutes[i],
-        this.footprintCore.createTravelCostElement(distanceInKm)
+        this.footprintCore.createFootprintElement(distanceInKm),
+        'd'
+      );
+      if (this.settingsProvider.showTravelCost()) {
+        this.insertTravelCostElement(
+          drivingRoutes[i],
+          this.footprintCore.createTravelCostElement(distanceInKm)
+        );
+      }
+    }
+    for (i = 0; i < transitRoutes.length; i++) {
+      var timeString = this.getTimeString(transitRoutes[i],"n");
+      var timeInMins = this.convertTime(timeString[0])*60;
+      var walkingTimeInMins = this.convertTime(timeString[1])*60;
+      console.log(walkingTimeInMins)
+      this.insertFootprintElement(
+        transitRoutes[i],
+        this.footprintCore.createPTransitFootprintElement([timeInMins,walkingTimeInMins],'t'),
+        't'
       );
     }
-  }
-  for (i = 0; i < transitRoutes.length; i++) {
-    var timeString = this.getTimeString(transitRoutes[i],"n");
-    var timeInMins = this.convertTime(timeString[0])*60;
-    var walkingTimeInMins = this.convertTime(timeString[1])*60;
-    console.log(walkingTimeInMins)
-    this.insertFootprintElement(
-      transitRoutes[i],
-      this.footprintCore.createPTransitFootprintElement([timeInMins,walkingTimeInMins],'t'),
-      't'
-    );
-  }
-  check = document.getElementsByClassName('section-trip-summary-subtitle')
-  if (check.length > 0) {
-    this.insertDetailedFootprintElement();
-  }
-  var url = window.location.href ;
-  console.log(url);
-  if(url.indexOf('force=lite') > 0){
-    console.error('Please try open maps in normal mode.');
-    this.liteGoogleMaps();  
+    check = document.getElementsByClassName('section-trip-summary-subtitle');
+    if (check.length > 0) {
+      this.insertDetailedFootprintElement();
+    }
   }
 };
 
