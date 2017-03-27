@@ -206,6 +206,7 @@ var gmaps = pageMod.PageMod({
     './core/maps/GoogleMapsManager.js',
     './core/init.js'
   ],
+  contentStyleFile: './core/css/main.css',
   contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });
@@ -221,6 +222,7 @@ var gmaps = pageMod.PageMod({
     './core/maps/OpenMapsManager.js',
     './core/init.js'
   ],
+  contentStyleFile: './core/css/main.css',
   contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });
@@ -234,6 +236,7 @@ var gmaps = pageMod.PageMod({
     './core/maps/BingMapsManager.js',
     './core/init.js'
   ],
+  contentStyleFile: './core/css/main.css',
   contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });
@@ -247,6 +250,7 @@ var gmaps = pageMod.PageMod({
     './core/maps/HereMapsManager.js',
     './core/init.js'
   ],
+  contentStyleFile: './core/css/main.css',
   contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });
@@ -260,6 +264,7 @@ var gmaps = pageMod.PageMod({
     './core/maps/MapQuestMapsManager.js',
     './core/init.js'
   ],
+  contentStyleFile: './core/css/main.css',
   contentScriptWhen: 'ready',
   onAttach: onAttachListener
 });
