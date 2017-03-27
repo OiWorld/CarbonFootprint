@@ -210,7 +210,7 @@ browserServices.getChromeFilePath = function(path) {
  */
 
 browserServices.getFirefoxFilePath = function(path) {
-  return 'resource://carbonfootprint/data' + path;
+  return 'resource://carbon-footprint/data' + path;
 };
 
 /**

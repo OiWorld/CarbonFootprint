@@ -12,6 +12,7 @@
  * @param {object} settingsProvider
  */
 
+
 var GoogleMapsManager = function(footprintCore, settingsProvider) {
   this.footprintCore = footprintCore;
   this.settingsProvider = settingsProvider;
@@ -87,8 +88,88 @@ GoogleMapsManager.prototype.getAllTransitRoutes = function() {
 };
 
 /**
+ * Gets Total walking time during transit travel.
+ * @return {Integer} in seconds
+ *
+ */
+
+GoogleMapsManager.prototype.transitWalkingTime = function(){
+  var transitStep = document.getElementsByClassName('section-directions-trip-walking-duration section-directions-trip-secondary-text');
+  walkingTimeInMin = this.convertTime(transitStep[0].innerText)*60;
+  console.log("walkig time ->"+ walkingTimeInMin);
+  return walkingTimeInMin;
+}
+
+/**
+ * Gets Distance for Private Mode of Transportation.
+ * @return {Integer} in meters
+ *
+ */
+
+GoogleMapsManager.prototype.dataFromDrivingMode = function(dataString,datatype){
+      console.log('welcome in case 1');
+      dataString = dataString.substring(1,dataString.length-1);
+      distanceInKm = this.convertDistance(dataString);
+      console.log(distanceInKm);
+      if(dataType == 'flag'){
+        return "km";
+      }else{
+        return distanceInKm;
+      }
+}
+
+/**
+ * Gets Travelling time for Public Mode of Transportation.
+ * @return {array} Times in Minutes
+ *
+ */
+
+GoogleMapsManager.prototype.dataFromTransitMode = function(dataString,dataType){
+
+  totalTimeInMin = this.convertTime(" "+dataString.substring(1,dataString.length-1))*60;
+  console.log("total transitTime is ->" + totalTimeInMin);
+  if (dataType == 'flag'){
+    return "min";
+  }else{
+    return [totalTimeInMin, this.transitWalkingTime()];
+  }
+}
+
+/**
+ * Gets transit distance(in meters) or time(in sec) when either of them is available .
+ * @return object
+ *
+ */
+
+GoogleMapsManager.prototype.travelInfo = function(dataType){
+  route = document.getElementsByClassName('section-trip-summary-subtitle');
+  console.log(route);
+  console.log('calling getdata');
+  route = document.getElementsByClassName('section-trip-summary-subtitle');
+  count = 0;
+
+  for(var i = 0; i< route.length; i++){
+    if(route[i].innerText.length > 2){
+      dataString = route[i].innerText;
+      break;
+    }
+    count++;
+  }
+
+  if(count === 0 && route.length > 0){
+    return this.dataFromDrivingMode(dataString,dataType);
+  }else if(count === 1 && route.length > 0){
+    return this.dataFromTransitMode(dataString,dataType);
+  }else{
+    return {
+      "status" : false
+    };
+  }
+};
+
+/**
  * Classes that contain distance and where results are displayed
- * for driving mode
+ *    for driving mode
  */
 
 GoogleMapsManager.infoClasses = [
@@ -98,11 +179,43 @@ GoogleMapsManager.infoClasses = [
 
 /**
  * Classes that contain distance and where results are displayed
- * for transit mode
+ *    for transit mode
  */
 
 GoogleMapsManager.durationClass =
   'section-directions-trip-duration';
+
+/**
+  * Class in which resulted element of footprint is appended
+  */
+
+GoogleMapsManager.summaryTitleClass =
+  'section-trip-summary-description' ;
+
+  /**
+    * Class from which the distance is scrapped from the dom
+    */
+
+  GoogleMapsManager.infoTransitClasses4D = [
+    'section-directions-trip-summary',
+    'section-directions-trip-secondary-text'
+  ];
+
+/**
+  * Class from which walking distance during travelling is scrapped
+  */
+
+  GoogleMapsManager.walkingSummary = [
+    'section-directions-trip-walking-duration',
+    'section-directions-trip-secondary-text'
+  ];
+
+  /**
+  * Class from which time is extracted for a particular route
+  */
+
+  GoogleMapsManager.infoTransitClasses4T =
+  'section-trip-summary';
 
 /**
  * Gets distance for driving route.
@@ -123,15 +236,19 @@ GoogleMapsManager.prototype.getDistanceString = function(route) {
 /**
  * Gets time for transit route.
  * @param {object} route
- * @return {string} timeString
+ * @return {array} [timeString,walkingTime] as obtained from scrapping
  */
 
 GoogleMapsManager.prototype.getTimeString = function(route) {
   var timeString = route
         .getElementsByClassName(GoogleMapsManager.durationClass)[0].innerHTML;
+  var walkingTime = route
+        .getElementsByClassName(GoogleMapsManager.walkingSummary[0] + ' ' +
+                                  GoogleMapsManager.walkingSummary[1])[0].innerText;
   timeString = ' ' + timeString;
+  console.log(walkingTime);
   console.log('timeString:' + timeString);
-  return timeString;
+  return [timeString,walkingTime];
 };
 
 /**
@@ -208,6 +325,61 @@ GoogleMapsManager.prototype.insertFootprintElement = function(route, e, type) {
 };
 
 /**
+ * Inserts element where footprints will be displayed if not present in details view
+ * @param {object} route
+ * @param {element} e
+ */
+
+GoogleMapsManager.prototype.insertTransitElement = function(route,e,type){
+  console.log(route[0]);
+  if(document
+    .getElementsByClassName('carbon').length === 0 && document.getElementsByClassName('section-directions-trip').length == 0){
+    if(type == 'd'){document
+      .getElementsByClassName(GoogleMapsManager.infoTransitClasses4D[0] + ' ' +
+                              GoogleMapsManager.infoTransitClasses4D[1])[0]
+      .appendChild(e);
+    }
+    else{
+      document.getElementsByClassName(GoogleMapsManager.infoTransitClasses4T)[0]
+      .appendChild(e);
+    }
+  }
+}
+
+/**
+ * Inserts element where footprints will be displayed if not present in details view
+ *       Considering the walking time and total time in the journey when distance is
+ *        not given .
+ * @param {object} route
+ * @param {element} e
+ */
+
+GoogleMapsManager.prototype.insertDetailedFootprintElement = function(){
+    unit = this.travelInfo(dataType='flag');
+    data = this.travelInfo(dataType = 'data');
+    console.log(data);
+    type = "t" ; //default
+    if(unit == "km"){
+      type = "d";
+      dataElement = this.footprintCore.createFootprintElement(data,"d");
+    }else if(unit == "min"){
+      type = "t";
+      totalTransitTime = data[0];
+      totalWalkingTime = data[1];
+      dataElement = this.footprintCore.createPTransitFootprintElement(data,"t");
+      console.log("totalWalkingTime "+totalWalkingTime);
+    }   else{
+      console.log(unit);
+      console.log(data);
+    }
+
+    targetElement = document.getElementsByClassName(GoogleMapsManager.summaryTitleClass);
+    console.log(targetElement);
+
+    this.insertTransitElement(targetElement,dataElement,type);
+};
+
+/**
  * Inserts element where travel cost will be displayed if not present
  * @param {object} route
  * @param {element} e
@@ -226,13 +398,14 @@ GoogleMapsManager.prototype.insertTravelCostElement = function(route, e) {
  * called by MutationObeserver to update footprints
  */
 
-GoogleMapsManager.prototype.update = function() {
+GoogleMapsManager.prototype.update = function(){
   this.getAllRoutes();
   var i;
   var drivingRoutes = this.getAllDrivingRoutes();
   var transitRoutes = this.getAllTransitRoutes();
   for (i = 0; i < drivingRoutes.length; i++) {
     var distanceString = this.getDistanceString(drivingRoutes[i]);
+    console.log(distanceString);
     var distanceInKm = this.convertDistance(distanceString);
     this.insertFootprintElement(
       drivingRoutes[i],
@@ -248,12 +421,18 @@ GoogleMapsManager.prototype.update = function() {
   }
   for (i = 0; i < transitRoutes.length; i++) {
     var timeString = this.getTimeString(transitRoutes[i]);
-    var timeInHrs = this.convertTime(timeString);
+    var timeInMins = this.convertTime(timeString[0])*60;
+    var walkingTimeInMins = this.convertTime(timeString[1])*60;
+    console.log(walkingTimeInMins)
     this.insertFootprintElement(
       transitRoutes[i],
-      this.footprintCore.createPTFootprintElement(timeInHrs),
+      this.footprintCore.createPTransitFootprintElement([timeInMins,walkingTimeInMins],'t'),
       't'
     );
+  }
+  check = document.getElementsByClassName('section-trip-summary-subtitle')
+  if (check.length > 0) {
+    this.insertDetailedFootprintElement();
   }
 };
 

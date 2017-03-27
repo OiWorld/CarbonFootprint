@@ -474,7 +474,7 @@ injector.mapQuest = [
 ];
 
 /**
- * matching patterns for Map Quest
+ * matching patterns for Yandex Quest
  * Note: include both https and http links in different lines
  * because safari won't accept '*://'
  */
@@ -491,6 +491,41 @@ injector.wazeMaps = [
 ];
 
 /**
+ * matching patterns for ViaMichelin maps
+ * Note: include both https and http links in different lines
+ * because safari won't accept '*://'
+ */
+
+injector.viaMichelinMaps = [
+    'http://*.viamichelin.com/*',
+    'https://*.viamichelin.com/*',
+    'https://*.viamichelin.be/*',
+    'http://*.viamichelin.be/*',
+    'https://*.viamichelin.fr/*',
+    'http://*.viamichelin.fr/*',
+    'https://*.viamichelin.it/*',
+    'http://*.viamichelin.it/*',
+    'https://*.viamichelin.es/*',
+    'http://*.viamichelin.es/*',
+    'https://*.viamichelin.co.uk/*',
+    'http://*.viamichelin.co.uk/*',
+    'https://*.viamichelin.de/*',
+    'http://*.viamichelin.de/*',
+    'https://*.viamichelin.nl/*',
+    'http://*.viamichelin.nl/*',
+    'https://*.viamichelin.at/*',
+    'http://*.viamichelin.at/*',
+    'https://*.viamichelin.ch/*',
+    'http://*.viamichelin.ch/*',
+    'https://*.viamichelin.pl/*',
+    'http://*.viamichelin.pl/*',
+    'https://*.viamichelin.pt/*',
+    'http://*.viamichelin.pt/*',
+    'https://*.viamichelin.ie/*',
+    'http://*.viamichelin.ie/*'
+];
+
+/**
  * matching patterns for all map services
  */
 
@@ -501,8 +536,8 @@ injector.allMaps = injector.allMaps.concat(injector.openStreetMap,
     injector.hereMaps,
     injector.mapQuest,
     injector.yandexMaps,
-    injector.wazeMaps
-  );
+    injector.wazeMaps,
+    injector.viaMichelinMaps);
 
 /**
  * base URL of the extension in Safari
@@ -533,6 +568,7 @@ safari
  */
 
 injector.commonScripts = [
+    injector.URL + 'core/SettingsProviderCore.js',
     injector.URL + 'core/settings/SafariSettingsProvider.js',
     injector.URL + 'core/init.js',
     injector.URL + 'core/CarbonFootprintCore.js',
@@ -580,3 +616,7 @@ safari
     .extension
     .addContentScriptFromURL(injector.URL + 'core/maps/WazeMapsManager.js',
         injector.wazeMaps, [], true);
+safari
+    .extension
+    .addContentScriptFromURL(injector.URL + 'core/maps/ViaMichelinMapsManager.js',
+        injector.viaMichelinMaps, [], true);

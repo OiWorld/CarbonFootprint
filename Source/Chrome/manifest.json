@@ -239,6 +239,7 @@
       "css": ["core/css/main.css"],
       "js": [
         "core/CarbonFootprintCore.js",
+        "core/SettingsProviderCore.js",
         "core/settings/ChromeSettingsProvider.js",
         "core/helpers/ChromeHelper.js",
         "core/maps/GoogleMapsManager.js",
@@ -254,6 +255,7 @@
       "css": ["core/css/main.css"],
       "js": [
         "core/CarbonFootprintCore.js",
+        "core/SettingsProviderCore.js",
         "core/settings/ChromeSettingsProvider.js",
         "core/helpers/ChromeHelper.js",
         "core/maps/OpenMapsManager.js",
@@ -270,6 +272,7 @@
       "css": ["core/css/main.css"],
       "js": [
         "core/CarbonFootprintCore.js",
+        "core/SettingsProviderCore.js",
         "core/settings/ChromeSettingsProvider.js",
         "core/helpers/ChromeHelper.js",
         "core/maps/BingMapsManager.js",
@@ -285,6 +288,7 @@
       "css": ["core/css/main.css"],
       "js": [
         "core/CarbonFootprintCore.js",
+        "core/SettingsProviderCore.js",
         "core/settings/ChromeSettingsProvider.js",
         "core/helpers/ChromeHelper.js",
         "core/maps/HereMapsManager.js",
@@ -300,6 +304,7 @@
       "css": ["core/css/main.css"],
       "js": [
         "core/CarbonFootprintCore.js",
+        "core/SettingsProviderCore.js",
         "core/settings/ChromeSettingsProvider.js",
         "core/helpers/ChromeHelper.js",
         "core/maps/MapQuestMapsManager.js",
@@ -318,6 +323,7 @@
       "css": ["core/css/main.css"],
       "js": [
         "core/CarbonFootprintCore.js",
+        "core/SettingsProviderCore.js",
         "core/settings/ChromeSettingsProvider.js",
         "core/helpers/ChromeHelper.js",
         "core/maps/YandexMapsManager.js",
@@ -333,9 +339,37 @@
       "css": ["core/css/main.css"],
       "js": [
         "core/CarbonFootprintCore.js",
+        "core/SettingsProviderCore.js",
         "core/settings/ChromeSettingsProvider.js",
         "core/helpers/ChromeHelper.js",
         "core/maps/WazeMapsManager.js",
+        "core/init.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "*://www.viamichelin.com/*",
+        "*://*.viamichelin.be/*",
+        "*://www.viamichelin.fr/*",
+        "*://www.viamichelin.it/*",
+        "*://www.viamichelin.es/*",
+        "*://www.viamichelin.co.uk/*",
+        "*://www.viamichelin.de/*",
+        "*://www.viamichelin.nl/*",
+        "*://www.viamichelin.at/*",
+        "*://*.viamichelin.ch/*",
+        "*://www.viamichelin.pl/*",
+        "*://www.viamichelin.pt/*",
+        "*://www.viamichelin.ie/*"
+      ],
+      "css": ["core/css/main.css"],
+      "js": [
+        "core/CarbonFootprintCore.js",
+        "core/settings/ChromeSettingsProvider.js",
+        "core/helpers/ChromeHelper.js",
+        "core/maps/ViaMichelinMapsManager.js",
         "core/init.js"
       ],
       "run_at": "document_end",
