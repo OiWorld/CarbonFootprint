@@ -17,7 +17,13 @@ a.carbon:active {
 div.travelCost {
 	color:#4285F4;
 }
-#quest_mark_icon{
-    height: 18px;
-    width: 16px;
+
+#quest_mark_icon {
+    position: relative;
+    height: 14px;
+    width: 14px;
+    top: 0;
+    margin-left: 5px;
+    vertical-align: sub;
+    fill: currentColor;
 }
