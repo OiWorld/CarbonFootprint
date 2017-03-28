@@ -240,7 +240,7 @@ GoogleMapsManager.summaryTitleClass =
   */
 
   GoogleMapsManager.insertInLiteDriving = 
-  'ml-directions-pane-header-time';
+  'ml-directions-pane-header-line-summary-container';
 
 /**
  * Gets distance for driving route.
@@ -402,7 +402,9 @@ GoogleMapsManager.prototype.insertInLiteMaps = function(route,e,type){
   else{
     if(route
             .getElementsByClassName('carbon').length === 0){
-      e.style.display = "inline";
+      // e.style.display = "inline";
+      console.log(document.getElementsByClassName('ml-directions-pane-content')[0].style);
+      document.getElementsByClassName('ml-directions-pane-content')[0].style.marginTop = "25px";
       route
           .getElementsByClassName(GoogleMapsManager.insertInLiteDriving)[0]
           .append(e);
