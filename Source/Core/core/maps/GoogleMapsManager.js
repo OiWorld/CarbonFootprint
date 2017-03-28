@@ -402,9 +402,7 @@ GoogleMapsManager.prototype.insertInLiteMaps = function(route,e,type){
   else{
     if(route
             .getElementsByClassName('carbon').length === 0){
-      // e.style.display = "inline";
-      console.log(document.getElementsByClassName('ml-directions-pane-content')[0].style);
-      document.getElementsByClassName('ml-directions-pane-content')[0].style.marginTop = "25px";
+      document.getElementsByClassName('ml-directions-pane-content')[0].style.marginTop = "33px";
       route
           .getElementsByClassName(GoogleMapsManager.insertInLiteDriving)[0]
           .append(e);
