@@ -218,8 +218,10 @@ GoogleMapsManager.summaryTitleClass =
   * Class from which distance is extracted in lite mode
   */
 
-  GoogleMapsManager.drivingLiteModeScreen = 
-  'ml-directions-pane-toggle';
+  GoogleMapsManager.drivingLiteModeScreen = [
+  'ml-directions-pane-scrollable',
+  'ml-directions-pane-underscroll-header'
+  ];
 
   /**
   * Class from which time is extracted in lite mode
@@ -390,23 +392,34 @@ GoogleMapsManager.prototype.insertTransitElement = function(route,e,type){
  */
 
 GoogleMapsManager.prototype.insertInLiteMaps = function(route,e,type){
+  console.log("calling again");
+  console.log(type);
   if(type=="t"){
     if (route
             .getElementsByClassName(GoogleMapsManager.insertInLiteTransit)[0]
              .getElementsByClassName('carbon').length === 0){
-      route
+    route
       .getElementsByClassName(GoogleMapsManager.insertInLiteTransit)[0]
       .append(e);
     }  
   }
   else{
+    console.log("inserting");
+    if(route.getElementsByClassName('carbon').length >0)
+    route.getElementsByClassName('carbon')[0].parentElement.remove();
+    
     if(route
+            .getElementsByClassName(GoogleMapsManager.insertInLiteDriving)[0]
             .getElementsByClassName('carbon').length === 0){
-      document.getElementsByClassName('ml-directions-pane-content')[0].style.marginTop = "5vh";
-      route
-          .getElementsByClassName(GoogleMapsManager.insertInLiteDriving)[0]
-          .append(e);
+    console.log("calling again");
+    route
+        .getElementsByClassName(GoogleMapsManager.insertInLiteDriving)[0]
+        .append(e);
+        console.log("inserted");
     }
+    else{
+      console.error("can't update DOM of carbon class since previous DOM is still present after reload.");
+    }     
   }  
 } 
 /**
@@ -468,8 +481,8 @@ GoogleMapsManager.prototype.insertTravelCostElement = function(route, e) {
  */ 
 
 GoogleMapsManager.prototype.liteGoogleMaps = function(){
-  this.liteMapsTransitMode();
   this.liteMapsDrivingMode();
+  this.liteMapsTransitMode();
 };
 
 /**
@@ -501,25 +514,30 @@ GoogleMapsManager.prototype.liteMapsTransitMode = function(){
 
 GoogleMapsManager.prototype.liteMapsDrivingMode = function(){
   try{
-    var targetElement = document.getElementsByClassName(GoogleMapsManager.drivingLiteModeScreen)[0];
-    console.log(targetElement);
+    var targetElements = GoogleMapsManager.drivingLiteModeScreen;
+    console.log(targetElements);
     var distanceString = document.getElementsByClassName('ml-directions-pane-header-distance')[0]
                         .innerText;
     console.log(distanceString);
     if(distanceString.length > 0){
         distanceString = distanceString.substring(1,distanceString.length-1);
         var distanceInKm = this.convertDistance(distanceString);
+        console.log("calling again");
+      for(var i=0;i<targetElements.length;i++){
+        console.log(document.getElementsByClassName(targetElements[i])[0]);
+        targetElement = document.getElementsByClassName(targetElements[i])[0];
         this.insertInLiteMaps(
           targetElement,
           this.footprintCore.createFootprintElement(distanceInKm),
           'd'
-          );
-      if (this.settingsProvider.showTravelCost()){
-        this.insertTravelCostElement(
-          targetElement,
-          this.footprintCore.createTravelCostElement(distanceInKm)
         );
       }
+      if (this.settingsProvider.showTravelCost()){
+        this.insertTravelCostElement(
+          document.getElementsByClassName(targetElements[0])[0],
+          this.footprintCore.createTravelCostElement(distanceInKm)
+        );
+      }  
     }
   }
   catch(err){
