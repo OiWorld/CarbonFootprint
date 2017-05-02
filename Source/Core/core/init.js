@@ -16,6 +16,7 @@ new SettingsProvider(function(settingsProvider) {
   Helper.showPageAction(function() {
     console.log('Page Action Visible!');
   });
+
     var target = document.getElementsByTagName('body')[0],
       observer = new MutationObserver(function() {
         console.log('Observing!');
