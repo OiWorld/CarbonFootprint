@@ -100,8 +100,8 @@ panel.port.on('link', function(url) {
 var button = buttons.ToggleButton({
   id: 'carbon-footprint-link',
   label: 'Carbon Footprint™',
-  disabled: true,
-  icon: './images/globe-64-off.png',
+  disabled: false,
+  icon: './images/globe-64.png',
   onChange: function(state) {
     if (state.checked) {
       panel.show({
