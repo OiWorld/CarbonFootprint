@@ -100,7 +100,6 @@ panel.port.on('link', function(url) {
 var button = buttons.ToggleButton({
   id: 'carbon-footprint-link',
   label: 'Carbon Footprint™',
-  disabled: false,
   icon: './images/globe-64.png',
   onChange: function(state) {
     if (state.checked) {
@@ -175,13 +174,6 @@ pageMod.PageMod({
 });
 
 function onAttachListener(wk) {
-  wk.port.on('showPageAction', function(ev) {
-    console.log('showPageAction received');
-    button.state('tab', {
-      disabled: false,
-      icon: './images/globe-64.png'
-    });
-  });
   wk.port.on('storageGetRequest', function(stor) {
     if (stor.storageKey in storage) {
       var values = {};
