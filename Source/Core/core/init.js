@@ -16,14 +16,14 @@ new SettingsProvider(function(settingsProvider) {
   Helper.showPageAction(function() {
     console.log('Page Action Visible!');
   });
-  var target = document.getElementsByTagName('body')[0],
+
+    var target = document.getElementsByTagName('body')[0],
       observer = new MutationObserver(function() {
         console.log('Observing!');
         mapsManager.update();
       });
   observer.observe(target, {
     attributes: true,
-    childList: true,
     characterData: true,
     subtree: mapsManager.subtree
   });
