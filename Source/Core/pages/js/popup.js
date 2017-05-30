@@ -18,10 +18,10 @@ function openTab(element) {
     }
   }
   if (!isSafari) {
-    window.close();
     chrome.tabs.create({
       url: chrome.extension.getURL('pages/' + element + '.html')
     });
+    window.close();
   }
   else {
     safari.application.activeBrowserWindow.openTab().url =
