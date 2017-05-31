@@ -148,27 +148,36 @@
                             <h2>Live Air Quality Index</h2>
                             <div id="map-container"></div>
                             <p>
-                                <form class="form-inline pull-left">
-                                    <div class="form-group">
-                                        <label for="map-type">Marker Type: </label>
-                                        <select class="form-control" id="map-type">
-                                            <option value="usepa-aqi" selected>Air Quality Index</option>
-                                            <option value="usepa-pm25">PM<sub>2.5</sub>
-                                            </option>
-                                            <option value="usepa-10">PM<sub>10</sub>
-                                            </option>
-                                            <option value="usepa-o3">Ozone</option>
-                                            <option value="usepa-no2">NO<sub>2</sub>
-                                            </option>
-                                            <option value="usepa-so2">SO<sub>2</sub>
-                                            </option>
-                                            <option value="usepa-co">CO</option>
-                                            <option value="asean-pm10">Asean PM<sub>10</sub>
-                                            </option>
-                                        </select>
-                                    </div>
-                                </form>
-                                <span class="pull-right"><i>Source: </i><a href="http://aqicn.org/">http://aqicn.org/</a></span>
+                              <ul id="airQualityScale">
+                                <li style="color: inherit; padding-left:0px">Scale: </li>
+                                <li style="background-color: #019866">Good</li>
+                                <li style="background-color: #ffdd34">Moderate</li>
+                                <li style="background-color: #ff9934">Unhealthy for sensitive groups</li>
+                                <li style="background-color: #cf0033">Unhealthy</li>
+                                <li style="background-color: #670099">Very unhealthy</li>
+                                <li style="background-color: #820126">Hazardous</li>
+                              </ul>
+                              <form class="form-inline pull-left">
+                                  <div class="form-group">
+                                      <label for="map-type">Marker Type: </label>
+                                      <select class="form-control" id="map-type">
+                                          <option value="usepa-aqi" selected>Air Quality Index</option>
+                                          <option value="usepa-pm25">PM<sub>2.5</sub>
+                                          </option>
+                                          <option value="usepa-10">PM<sub>10</sub>
+                                          </option>
+                                          <option value="usepa-o3">Ozone</option>
+                                          <option value="usepa-no2">NO<sub>2</sub>
+                                          </option>
+                                          <option value="usepa-so2">SO<sub>2</sub>
+                                          </option>
+                                          <option value="usepa-co">CO</option>
+                                          <option value="asean-pm10">Asean PM<sub>10</sub>
+                                          </option>
+                                      </select>
+                                  </div>
+                              </form>
+                              <span class="pull-right"><i>Source: </i><a href="http://aqicn.org/">http://aqicn.org/</a></span>
                             </p>
                         </div>
                     </div>
