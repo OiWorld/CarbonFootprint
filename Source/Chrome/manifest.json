@@ -19,12 +19,6 @@
     "default_title" : "Google Maps Carbon Footprint",
     "default_popup": "pages/popup.html"
   },
-  "applications": {
-    "gecko": {
-      "id": "carbon-footprint@aossie.org",
-      "strict_min_version": "53.0"
-    }
-  },
   "options_ui": {
     "page": "pages/options.html"
   },
