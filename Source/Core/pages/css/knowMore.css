@@ -675,3 +675,17 @@ input[type="radio"][name="unit"]:checked + span {
         margin-bottom: 30px;
     }
 }
+
+ul#airQualityScale li{
+  display: inline;
+  padding: 8px;
+  color: white;
+  margin: 0px;
+  margin-right: -4px;
+}
+
+ul#airQualityScale {
+  margin-top: -15px;
+  margin-bottom: 15px;
+  padding: 0px;
+}
