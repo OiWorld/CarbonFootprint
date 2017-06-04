@@ -20,9 +20,13 @@ FlightsFootprintCore.prototype.getCoordinates = function(list){
   for(var x = 0, i = list.length; x < i; x++){
     list[x].departCoordinates = core.airportsData[list[x].depart];
     list[x].arriveCoordinates = core.airportsData[list[x].arrive];
-    if(list[x].stop.length){
-      list[x].stopCoordinates = core.airportsData[list[x].stop];
-    }
+      if(list[x].stops.length){
+          list[x].stopCoordinatesNew = [];
+          for(var y=0;y<list[x].stops.length;y++){
+              list[x].stopCoordinatesNew.push(core.airportsData[list[x].stops[y]]);
+          }
+          console.log(list[x].stopCoordinatesNew);
+      }
   }
   return list;
 };
@@ -39,18 +43,18 @@ FlightsFootprintCore.prototype.getDistance = function(lat1, lon1, lat2, lon2){
 
 FlightsFootprintCore.prototype.getEmission = function(list){
   //console.log(core.airplanesData);
-  for(var x = 0, i = list.length; x < i; x++){
+    for(var x = 0, i = list.length; x < i; x++){
     var aircraft = list[x].aircraft;
     var fuelConsumptionFloor, fuelConsumptionCeil;
-    var distanceFloor, distanceCeil;
+        var distanceFloor, distanceCeil;
     for(var y = 0, j = core.airplanesData.distances.length; y < j; y++){
-      if(core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM > list[x].distance){
+        if(core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM > list[x].distance){
         fuelConsumptionFloor = core.airplanesData[aircraft].fuel[y-1];
         fuelConsumptionCeil = core.airplanesData[aircraft].fuel[y];
         distanceFloor = core.airplanesData.distances[y-1]*FlightsFootprintCore.NMI_TO_KM;
         distanceCeil = core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM;
         break;
-      }
+        }
     }
     var fuelConsumption = fuelConsumptionFloor + ((fuelConsumptionCeil - fuelConsumptionFloor)/
                           (distanceCeil - distanceFloor))*(list[x].distance - distanceFloor);
