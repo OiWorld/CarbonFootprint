@@ -1,6 +1,6 @@
 var flightManager = new FlightManager();
 var core = new FlightsFootprintCore();
-var target = document.getElementsByClassName(flightManager.refresh)[0],
+var target = document.getElementsByTagName("body")[0],
     observer = new MutationObserver(function() {
       console.log('Observing!');
       flightManager.update();
