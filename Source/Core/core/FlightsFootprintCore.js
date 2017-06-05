@@ -35,7 +35,11 @@ FlightsFootprintCore.prototype.getTotalDistance = function(processedList){
     for(var x = 0, i = processedList.length; x < i; x++){
         processedList[x].distance = 0;
         console.log(processedList[x]);
+<<<<<<< HEAD
         console.log(processedList[x].stopCoordinatesNew);
+=======
+        console.log(processedList[x].stopCoordinatesNew)
+>>>>>>> cdae7cf0d1c673350a52a667ba822bda12825e2f
       if(processedList[x].stopCoordinatesNew){
           noOfStops = processedList[x].stopCoordinatesNew.length;
           console.log(noOfStops);
