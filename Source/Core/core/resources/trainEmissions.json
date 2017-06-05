@@ -1,9 +1,15 @@
 {
   "trainData": {
+<<<<<<< HEAD
     "sncf": {
       "intercités": 10.8,
       "tgv": 3.2,
       "tgv lyria": 3.2,
+=======
+    "france": {
+      "intercités": 10.8,
+      "tgv": 3.2,
+>>>>>>> basic ability to calculate emissions of trains and processing code for sncf
       "lyria": 3.2,
       "idtgv": 3.2,
       "ouigo": 3.2,
@@ -17,7 +23,11 @@
       "alleo": 11.3,
       "bus": 96.5,
       "average": 10.59,
+<<<<<<< HEAD
       "_comment": "CO2 in gram/km, source: http://medias.sncf.com/sncfcom/pdf/co2/Information_CO2_des_prestations_de_transport_Methodologie_generale.pdf or check relevant docs folder"
+=======
+      "_comment": "CO2 in gram/km"
+>>>>>>> basic ability to calculate emissions of trains and processing code for sncf
     }
   }
 }
