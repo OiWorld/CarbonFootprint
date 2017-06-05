@@ -18,6 +18,7 @@ div.travelCost {
     vertical-align: sub;
     fill: currentColor;
 }
+
 /* Emission output container div */
 #carbon-footprint-label {
     padding: 10px 0 5px 0;
