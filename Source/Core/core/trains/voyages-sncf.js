@@ -8,7 +8,7 @@ var sncfManager = function(){
 };
 
 sncfManager.prototype.getList = function(){
-  console.log("get list");
+  //console.log("get list");
   var rawList = document.getElementsByClassName("proposal-info");
   var processedList = [];
   for(var x = 0, i = rawList.length; x < i; x++){
