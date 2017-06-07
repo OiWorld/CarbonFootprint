@@ -1,5 +1,5 @@
 var pricelineManager = function(){
-
+    this.treeGrowthPerYear = 8.3;
 };
 
 /**
