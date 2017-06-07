@@ -424,7 +424,21 @@
      ],
      "run_at" : "document_end",
      "all_frames" : true
-    }
+   },
+   {
+    "matches": [
+      "https://booking.eurostar.com/*/train-search/standard*"
+    ],
+    "css": ["core/css/main.css"],
+    "js":[
+      "core/TrainsFootprintCore.js",
+      "core/helpers/ChromeHelper.js",
+      "core/trains/eurostar.js",
+      "core/initTrain.js"
+    ],
+    "run_at" : "document_end",
+    "all_frames" : true
+  }
   ],
   "icons": {
     "32": "images/globe-32.png",
