@@ -410,6 +410,29 @@
         ],
         "run_at":"document_end",
         "all_frames":true
+    },
+    {
+        "matches":[
+            "https://www.ca.kayak.com/flights/*",
+            "https://www.kayak.es/flights/*",
+            "https://www.kayak.com/flights/*",
+            "https://www.kayak.co.in/flights/*"
+            "https://www.kayak.co.uk/flights/*",
+            "https://www.kayak.de/flights/*",
+            "https://www.kayak.co.au/flight*",
+            "https://www.kayak.ie/flights/*",
+            "https://www.kayak.co.jp/flights/*"
+        ],
+        "css":["core/css/flights.css"],
+        "js":[
+            "core/helpers/flightDataHelper.js",
+            "core/helpers/ChromeHelper.js",
+            "core/flights/kayak.js",
+            "core/FlightsFootprintCore.js",
+            "core/initFlight.js"
+        ],
+        "run_at":"document_end",
+        "all_frames":true
     }
   ],
   "icons": {
