@@ -33,7 +33,7 @@ skyscannerManager.prototype.getCoordinates = function(processedList){
 };
 
 skyscannerManager.prototype.getDistances = function(processedList){
-    processedList = core.getTotalDistance(processedList);
+  processedList = core.getTotalDistance(processedList);
   console.log("---got distances---");
   console.log(processedList);
   return processedList;
