@@ -15,5 +15,6 @@ span.carbon{
 /* Emission output container div */
 #carbon-footprint-label {
     padding: 10px 0 5px 0;
+    color:#212121;
 }
 

@@ -416,7 +416,7 @@
             "https://www.ca.kayak.com/flights/*",
             "https://www.kayak.es/flights/*",
             "https://www.kayak.com/flights/*",
-            "https://www.kayak.co.in/flights/*"
+            "https://www.kayak.co.in/flights/*",
             "https://www.kayak.co.uk/flights/*",
             "https://www.kayak.de/flights/*",
             "https://www.kayak.co.au/flight*",
@@ -427,7 +427,7 @@
         "js":[
             "core/helpers/flightDataHelper.js",
             "core/helpers/ChromeHelper.js",
-            "core/flights/kayak.js",
+            "core/flights/kayak1.js",
             "core/FlightsFootprintCore.js",
             "core/initFlight.js"
         ],
