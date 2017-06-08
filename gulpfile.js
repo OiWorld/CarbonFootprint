@@ -275,7 +275,7 @@ gulp.task('groupSafari', function(done) {
   });
 });
 
-gulp.task('group', ['groupChrome', 'groupFirefox', 'groupSafari']);
+gulp.task('group', ['groupChrome', 'groupFirefox', 'groupSafari', 'groupWebext']);
 
 gulp.task('runFirefox', ['groupFirefox'], function(done) {
 

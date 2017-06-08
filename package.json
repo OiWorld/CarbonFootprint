@@ -29,6 +29,7 @@
     "npm": "^5.0.1",
     "phantomjs-prebuilt": "^2.1.7",
     "run-sequence": "1.2.2",
+    "web-ext": "^1.9.1",
     "yargs": "^4.8.1"
   }
 }
