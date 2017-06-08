@@ -20,7 +20,14 @@ eurostarManager.prototype.geocodeStations = function(){
   }
 };
 
+eurostarManager.prototype.setStyle = function(emission){
+  emission.style.fontSize = "x-large";
+  return emission;
+};
+
 eurostarManager.prototype.insertInDom = function(emission){
+  emission = this.setStyle(emission);
+  console.log(emission);
   var element = document.getElementsByClassName("train-table-head")[0];
   if(element.getElementsByClassName('carbon').length === 0){
     element.appendChild(emission);
