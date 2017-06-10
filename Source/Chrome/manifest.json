@@ -438,7 +438,21 @@
     ],
     "run_at" : "document_end",
     "all_frames" : true
-  }
+  },
+  {
+   "matches": [
+     "https://www.tgv-lyria.com/en/booking/timetables-and-fares/timetables*"
+   ],
+   "css": ["core/css/main.css"],
+   "js":[
+     "core/TrainsFootprintCore.js",
+     "core/helpers/ChromeHelper.js",
+     "core/trains/tgv-lyria.js",
+     "core/initTrain.js"
+   ],
+   "run_at" : "document_end",
+   "all_frames" : true
+ }
   ],
   "icons": {
     "32": "images/globe-32.png",
