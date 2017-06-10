@@ -8,6 +8,7 @@ var FlightsFootprintCore = function(){
     core.airportsData = data;
     console.log(data);
   });
+    this.treeGrowthPerYear = 8.3;
 };
 
 FlightsFootprintCore.CO2_FOR_JETFUEL = 3.16; // 3.16 tons of co2 for 1 ton of jet fuel
@@ -35,7 +36,7 @@ FlightsFootprintCore.prototype.getTotalDistance = function(processedList){
     for(var x = 0, i = processedList.length; x < i; x++){
         processedList[x].distance = 0;
         console.log(processedList[x]);
-        console.log(processedList[x].stopCoordinatesNew)
+        console.log(processedList[x].stopCoordinatesNew);
       if(processedList[x].stopCoordinatesNew.length>0){
           noOfStops = processedList[x].stopCoordinatesNew.length;
           console.log(noOfStops);
