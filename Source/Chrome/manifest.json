@@ -395,6 +395,21 @@
       ],
       "run_at" : "document_end",
       "all_frames" : true
+    },
+    {
+        "matches":[
+            "https://www.cleartrip.com/flights/*"
+        ],
+        "css":["core/css/flights.css"],
+        "js":[
+            "core/helpers/flightDataHelper.js",
+            "core/helpers/ChromeHelper.js",
+            "core/flights/cleartrip.js",
+            "core/FlightsFootprintCore.js",
+            "core/initFlight.js"
+        ],
+        "run_at":"document_end",
+        "all_frames":true
     }
   ],
   "icons": {
