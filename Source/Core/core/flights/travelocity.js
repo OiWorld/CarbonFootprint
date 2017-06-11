@@ -1,4 +1,4 @@
-var clearTripManager = function(){
+var travelocityManager = function(){
 
 };
 
@@ -7,33 +7,50 @@ var clearTripManager = function(){
 * @return array of Object
 */
 
-clearTripManager.prototype.getList = function(){
-    console.log("Hey Cleartrip!");
-    var rawList = document.getElementsByClassName('listItem nonBundled');
-    console.log("raw list");
-    console.log(rawList);
+travelocityManager.prototype.getList = function(){
+    //console.log("Hey Cleartrip!");
+    var rawList = document.getElementsByClassName('flight-module segment offer-listing');
+    console.log("--raw list--");
+    //console.log(rawList);
     var processedList = [];
-    var route,getValidRoute=[];
+    var route,airports=[],depart,arrive,stops=[];
     for(var x=0; x< rawList.length; x++){
-        route = rawList[x].getElementsByClassName('route')[0].innerText;
-        route = route.split(" ");
-
-        for(var y=0;y<route.length;y+=2){
-            getValidRoute.push(route[y]);
+        details = rawList[x].getElementsByClassName('primary-block');
+        //console.log(rawList);
+        airports = details[1].getElementsByClassName('secondary')[0].innerText;
+        //console.log(airports);
+        check = details[2].getElementsByClassName('primary')[0].innerText;
+        //console.log(check);
+        check = check.split(" ");
+        //console.log(check);
+        if(check.length===1){
+            stops = [];
+            //console.log("no stops");
         }
-        route = getValidRoute;
-        getValidRoute = [];
-        if(route.length>2) stops = route.slice(1,route.length-1);
-        else stops = [];
-        var depart = route[0];
-        var arrive = route[route.length-1];
+        else{
+            stops = details[2].getElementsByClassName('secondary')[0].innerText;
+            //console.log(stops);
+            if(parseInt(check[0]) == 1){
+            stops = stops.split(" ");
+                stops = stops[stops.length-1];
+                stops = [stops];
+         }
+            else{
+                //console.log(stops);
+            stops = stops.split(",").join("").split(" ");
+         }
+        }
+        route = airports.split(" ").join("").split("-");
+        depart = route[0];
+        arrive = route[1];
+        //console.log(depart,arrive);
         processedList.push({
             depart: depart,
             arrive :arrive,
             stops:stops,
             aircraft: "A380"
         });
-        console.log(stops);
+        //console.log(stops);
     }
     console.log(processedList);
     return processedList;
@@ -45,7 +62,7 @@ clearTripManager.prototype.getList = function(){
 * @return array
 */
 
-clearTripManager.prototype.getCoordinates = function(processedList){
+travelocityManager.prototype.getCoordinates = function(processedList){
     processedList = core.getCoordinates(processedList);
     console.log("--- got coordinates ---");
     console.log(processedList);
@@ -58,7 +75,7 @@ clearTripManager.prototype.getCoordinates = function(processedList){
 * @return array
 */
 
-clearTripManager.prototype.getDistances = function(processedList){
+travelocityManager.prototype.getDistances = function(processedList){
     processedList = core.getTotalDistance(processedList);
     console.log("---got Distance---");
     console.log(processedList);
@@ -71,7 +88,7 @@ clearTripManager.prototype.getDistances = function(processedList){
 * @return array
 */
 
-clearTripManager.prototype.getEmission = function(processedList){
+travelocityManager.prototype.getEmission = function(processedList){
     processedList = core.getEmission(processedList);
     console.log(processedList);
     return processedList;
@@ -83,8 +100,8 @@ clearTripManager.prototype.getEmission = function(processedList){
 * @return array
 */
 
-clearTripManager.prototype.insertInDom = function(processedList){
-    var checkOption = document.getElementsByClassName('listItem nonBundled');
+travelocityManager.prototype.insertInDom = function(processedList){
+    var checkOption = document.getElementsByClassName('details-holder');
     var insertIn = [];
     console.log(checkOption);
     console.log(processedList);
@@ -108,7 +125,7 @@ clearTripManager.prototype.insertInDom = function(processedList){
 * Function for Updating the DOM
 */
 
-clearTripManager.prototype.update = function(){
+travelocityManager.prototype.update = function(){
     var processedList = this.getList();
     if(core.airplanesData && core.airportsData){
         processedList = this.getCoordinates(processedList);
@@ -119,4 +136,4 @@ clearTripManager.prototype.update = function(){
     console.log(processedList);
 };
 
-var FlightManager = clearTripManager ;
+var FlightManager = travelocityManager ;
