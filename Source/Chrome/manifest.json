@@ -424,20 +424,6 @@
      ],
      "run_at" : "document_end",
      "all_frames" : true
-    },
-    {
-     "matches": [
-       "https://en.voyages-sncf.com/en/results*"
-     ],
-     "css": ["core/css/main.css"],
-     "js":[
-       "core/TrainsFootprintCore.js",
-       "core/helpers/ChromeHelper.js",
-       "core/trains/voyages-sncf.js",
-       "core/initTrain.js"
-     ],
-     "run_at" : "document_end",
-     "all_frames" : true
    },
    {
     "matches": [
@@ -453,20 +439,34 @@
     "run_at" : "document_end",
     "all_frames" : true
   },
-  {
-   "matches": [
-     "https://www.tgv-lyria.com/en/booking/timetables-and-fares/timetables*"
-   ],
-   "css": ["core/css/main.css"],
-   "js":[
-     "core/TrainsFootprintCore.js",
-     "core/helpers/ChromeHelper.js",
-     "core/trains/tgv-lyria.js",
-     "core/initTrain.js"
-   ],
-   "run_at" : "document_end",
-   "all_frames" : true
- }
+     {
+       "matches": [
+         "https://www.tgv-lyria.com/en/booking/timetables-and-fares/timetables*"
+       ],
+       "css": ["core/css/main.css"],
+       "js":[
+         "core/TrainsFootprintCore.js",
+         "core/helpers/ChromeHelper.js",
+         "core/trains/tgv-lyria.js",
+         "core/initTrain.js"
+       ],
+       "run_at" : "document_end",
+       "all_frames" : true
+     },
+     {
+       "matches": [
+         "https://thalys.vsct.fr/billet-train/resultats*"
+       ],
+       "css": ["core/css/main.css"],
+       "js":[
+         "core/TrainsFootprintCore.js",
+         "core/helpers/ChromeHelper.js",
+         "core/trains/thalys.js",
+         "core/initTrain.js"
+       ],
+       "run_at" : "document_end",
+       "all_frames" : true
+     }
   ],
   "icons": {
     "32": "images/globe-32.png",
