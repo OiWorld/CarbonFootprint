@@ -32,21 +32,7 @@ thalysManager.prototype.insertInDom = function(emission){
   }
 };
 
-// Checks wheather the departure or arrival stations have changed, if changed then geocode them again
-thalysManager.prototype.checkChangeInStations = function(){
-  var stations = document.getElementsByClassName("train-table-head__journey-info-od")[0].innerHTML;
-  currentArrive = stations.split(" ")[0];
-  currentDepart = stations.split(" ")[2];
-  console.log(currentDepart + " ->  " + currentArrive);
-  if(this.stations.arrive != currentArrive || this.stations.depart != currentDepart){
-    this.stations.arrive = currentArrive;
-    this.stations.depart = currentDepart;
-    this.distance = 0; //geocode again
-  }
-};
-
 thalysManager.prototype.update = function(){
-  //this.checkChangeInStations();
   var processedList = this.geocodeStations();
   if(core.distance > 1){ //Check if station have alredy been geocoded
     this.insertInDom(core.getEmission(["thalys"])); //There is only 1 type of train
