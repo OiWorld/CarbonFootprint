@@ -451,6 +451,21 @@
     },
     {
         "matches":[
+            "https://www.hipmunk.com/*"
+        ],
+        "css":["core/css/flights.css"],
+        "js":[
+            "core/helpers/flightDataHelper.js",
+            "core/helpers/ChromeHelper.js",
+            "core/flights/hipmunk.js",
+            "core/FlightsFootprintCore.js",
+            "core/initFlight.js"
+        ],
+        "run_at":"document_end",
+        "all_frames":true
+    },
+    {
+        "matches":[
             "https://www.expedia.com/*",
             "https://www.expedia.ca/*",
             "https://www.expedia.co.in/*",
