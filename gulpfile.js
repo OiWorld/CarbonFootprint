@@ -192,29 +192,27 @@ gulp.task('localesWebext', function() {
 });
 
 gulp.task('coreWebExt', function() {
-  var jsFilter = gulpFilter('**/*.js',{restore:true});
+  	var jsFilter = gulpFilter('**/*.js',{restore:true});
 	var linkFilter = gulpFilter('**/knowMore.html', {restore:true});
-  return gulp.src('Source/Core/**')
-    .pipe(jsFilter)
-    .pipe(gulpif(doMinify,stripDebug()))
-    .pipe(gulpif(doMinify,uglify()))
-    .pipe(jsFilter.restore)
-		.pipe(linkFilter)
-		.pipe(dom(function(){
-			this.getElementById('rating-link').href = variables['firefox']['storeLink'];
-			this.getElementById('rating-link').innerHTML =
-				"<i class='fa fa-external-link aria-hidden'='true'></i> " +
-				variables['firefox']['storeName'];
-			this.getElementById('store-link-1').href = variables['safari']['storeLink'];
-			this.getElementById('store-link-1').innerHTML =
-				"<img src= '" + variables['safari']['badge']+"' class='img-responsive'/>"
-			this.getElementById('store-link-2').href = variables['chrome']['storeLink'];
-			this.getElementById('store-link-2').innerHTML =
-				"<img src= '" + variables['chrome']['badge']+"' class='img-responsive'/>"
-			return this;
-		}))
-		.pipe(linkFilter.restore)
-	  .pipe(gulp.dest(webExtensionBuildpath));
+	return gulp.src('Source/Core/**')
+	.pipe(jsFilter)
+	.pipe(gulpif(doMinify,stripDebug()))
+	.pipe(gulpif(doMinify,uglify()))
+	.pipe(jsFilter.restore)
+	.pipe(linkFilter)
+	.pipe(cheerio(function($, file){
+		$('#rating-link')
+			.attr('href', variables['firefox']['storeLink'])
+			.html(`<i class="fa fa-external-link" aria-hidden="true"></i> ${variables['firefox']['storeName']}`);
+		$('#store-link-1')
+			.attr('href', variables['safari']['storeLink'])
+			.html(`<img src="${variables['safari']['badge']}" class="img-responsive" />`);
+		$('#store-link-2')
+			.attr('href', variables['chrome']['storeLink'])
+			.html(`<img src="${variables['chrome']['badge']}" class="img-responsive" />`);
+	}))
+	.pipe(linkFilter.restore)
+	.pipe(gulp.dest(webExtensionBuildpath));
 });
 
 gulp.task('specificWebExt', function() {
