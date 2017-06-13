@@ -466,6 +466,37 @@
     },
     {
         "matches":[
+            "https://www.makemytrip.com/air/*"
+        ],
+        "css":["core/css/flights.css"],
+        "js":[
+            "core/helpers/flightDataHelper.js",
+            "core/helpers/ChromeHelper.js",
+            "core/flights/makemytrip.js",
+            "core/FlightsFootprintCore.js",
+            "core/initFlight.js"
+        ],
+        "run_at":"document_end",
+        "all_frames":true
+    },
+    {
+        "matches":[
+            "https://www.google.co.in/flights/*",
+            "https://www.google.ca/flights/*"
+        ],
+        "css":["core/css/flights.css"],
+        "js":[
+            "core/helpers/flightDataHelper.js",
+            "core/helpers/ChromeHelper.js",
+            "core/flights/googleflights.js",
+            "core/FlightsFootprintCore.js",
+            "core/initFlight.js"
+        ],
+        "run_at":"document_end",
+        "all_frames":true
+    },
+    {
+        "matches":[
             "https://www.expedia.com/*",
             "https://www.expedia.ca/*",
             "https://www.expedia.co.in/*",
