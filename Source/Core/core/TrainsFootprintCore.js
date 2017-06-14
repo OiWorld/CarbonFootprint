@@ -84,6 +84,11 @@ TrainsFootprintCore.prototype.createHTMLElement =
   };
 
   TrainsFootprintCore.prototype.footprintToString = function(footprint) {
+    var unit = " g";
+    if(footprint >= 1000){
+      unit = " kg";
+      footprint /= 1000;
+    }
     footprint = footprint.toFixed(1);
-    return '' + footprint +" g"+ ' CO<sub>2</sub> per person';
+    return '' + footprint + unit + ' CO<sub>2</sub> per person';
   };
