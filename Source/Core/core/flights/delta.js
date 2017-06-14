@@ -1,32 +1,19 @@
-var lufthansaManager = function(){
+var deltaManager = function(){
   this.subtree = true;
 };
-lufthansaManager.prototype.getList = function(){
-  var rawList = document.getElementsByClassName("cell segments");
+deltaManager.prototype.getList = function(){
+  var rawList = document.getElementsByClassName("flightPathProgress");
   console.log("raw list");
   console.log(rawList);
   var processedList = [];
   for(var x = 0, i = rawList.length; x < i; x++){
-    var rawStops = rawList[x].getElementsByTagName('abbr');
     var stops = [];
-    for(var y = 1, j = rawStops.length; y < j-1; y += 2){
-      stops.push(rawStops[y].innerHTML);
-    }
-    var aircrafts = [];
-    var aircraftsDiv = rawList[x].getElementsByClassName("aircraft");
-    segment = rawList[x].getElementsByClassName("segment-info");
-    var a = 0;
-    for(y = 0, j = segment.length; y < j; y++){
-      if(segment[y].childNodes[1].childNodes.length > 7){
-        aircrafts.push(aircraftsDiv[a++].alt.split(" ").pop());
-      }
-      else{
-        aircrafts.push("A380"); // default aircraft if aircraft not specified;
-      }
+    for(var y = 2, j = rawList[x].childNodes.length; y < j-2; y++){
+      stops.push(rawList[x].childNodes[y].innerHTML.split(" ")[0]);
     }
     processedList.push({
-      depart: rawStops[0].innerHTML,
-      arrive: rawStops[rawStops.length - 1].innerHTML,
+      depart: rawList[x].childNodes[0].innerHTML,
+      arrive: rawList[x].childNodes[rawList[x].childNodes.length - 1].innerHTML,
       stops: stops,
       aircraft: "A380" //hardcoded for now
     });
@@ -36,14 +23,14 @@ lufthansaManager.prototype.getList = function(){
   return processedList;
 };
 
-lufthansaManager.prototype.getCoordinates = function(processedList){
+deltaManager.prototype.getCoordinates = function(processedList){
   processedList = core.getCoordinates(processedList);
   console.log("--- got coordinates ---");
   console.log(processedList);
   return processedList;
 };
 
-lufthansaManager.prototype.getDistances = function(processedList){
+deltaManager.prototype.getDistances = function(processedList){
     for(var x = 0, i = processedList.length; x < i; x++){
         processedList[x].distance = 0;
     console.log(processedList[x]);
@@ -69,15 +56,15 @@ lufthansaManager.prototype.getDistances = function(processedList){
   return processedList;
 };
 
-lufthansaManager.prototype.getEmission = function(processedList){
+deltaManager.prototype.getEmission = function(processedList){
   processedList = core.getEmission(processedList);
   console.log("---got fuel consumption---");
   console.log(processedList);
   return processedList;
 };
 
-lufthansaManager.prototype.insertInDom = function(processedList){
-  insertIn = document.getElementsByClassName("carrier");
+deltaManager.prototype.insertInDom = function(processedList){
+  insertIn = document.getElementsByClassName("aminitiesDetailWrapper");
   for(var x = 0, i = insertIn.length; x < i; x++){
     if(insertIn[x].getElementsByClassName("carbon").length === 0){
          insertIn[x].appendChild(core.createHTMLElement(processedList[x].co2Emission));
@@ -86,7 +73,7 @@ lufthansaManager.prototype.insertInDom = function(processedList){
   }
 };
 
-lufthansaManager.prototype.update = function(){
+deltaManager.prototype.update = function(){
   var processedList = this.getList();
   if(core.airplanesData && core.airportsData){
     processedList = this.getCoordinates(processedList);
@@ -95,4 +82,4 @@ lufthansaManager.prototype.update = function(){
     this.insertInDom(processedList);
   }
 };
-var FlightManager = lufthansaManager;
+var FlightManager = deltaManager;

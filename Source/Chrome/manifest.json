@@ -969,6 +969,21 @@
           "all_frames" : true
         },
         {
+          "matches": [
+            "https://www.delta.com/air-shopping/findFlights.action*"
+          ],
+          "css": ["core/css/flights.css"],
+          "js":[
+            "core/helpers/flightDataHelper.js",
+            "core/helpers/ChromeHelper.js",
+            "core/flights/delta.js",
+            "core/FlightsFootprintCore.js",
+            "core/initFlight.js"
+          ],
+          "run_at" : "document_end",
+          "all_frames" : true
+        },
+        {
             "matches": [
                 "https://en.voyages-sncf.com/en/results*"
             ],
