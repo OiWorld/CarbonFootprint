@@ -12,8 +12,8 @@
     ]
   },
     "options_page": "pages/options.html",
-    "web_accessible_resources": ["pages/options.html","pages/knowMore.html","images/quest_mark.jpg", "core/resources/airports.json", "core/resources/airplanes.json"],
-  "page_action" :
+    "web_accessible_resources": ["pages/options.html","pages/knowMore.html","images/quest_mark.jpg", "core/resources/airports.json", "core/resources/airplanes.json", "core/resources/trainEmissions.json"],
+  "browser_action" :
   {
     "default_icon" : "images/globe-64.png",
     "default_title" : "Google Maps Carbon Footprint",
@@ -397,19 +397,33 @@
       "all_frames" : true
     },
     {
-        "matches":[
-            "https://www.priceline.com/m/fly/*"
-        ],
-        "css":["core/css/flights.css"],
-        "js":[
-            "core/helpers/flightDataHelper.js",
-            "core/helpers/ChromeHelper.js",
-            "core/flights/priceline.js",
-            "core/FlightsFootprintCore.js",
-            "core/initFlight.js"
-        ],
-        "run_at":"document_end",
-        "all_frames":true
+      "matches":[
+          "https://www.priceline.com/m/fly/*"
+      ],
+      "css":["core/css/flights.css"],
+      "js":[
+          "core/helpers/flightDataHelper.js",
+          "core/helpers/ChromeHelper.js",
+          "core/flights/priceline.js",
+          "core/FlightsFootprintCore.js",
+          "core/initFlight.js"
+      ],
+      "run_at":"document_end",
+      "all_frames":true
+    },
+    {
+     "matches": [
+       "https://en.voyages-sncf.com/en/results*"
+     ],
+     "css": ["core/css/main.css"],
+     "js":[
+       "core/TrainsFootprintCore.js",
+       "core/helpers/ChromeHelper.js",
+       "core/trains/voyages-sncf.js",
+       "core/initTrain.js"
+     ],
+     "run_at" : "document_end",
+     "all_frames" : true
     }
   ],
   "icons": {
