@@ -85,7 +85,7 @@ hipmunkManager.prototype.insertInDom = function(processedList){
     console.log(checkOption);
     console.log(processedList);
     for(var x=0;x<checkOption.length;x++){
-        box[x].style.height = '80px';
+        box[x].style.height = '95px';
         console.log(checkOption[x].getElementsByClassName('carbon'));
         insertIn = checkOption[x];
         console.log(x);
