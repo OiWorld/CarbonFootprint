@@ -21,7 +21,7 @@ ouigoManager.prototype.geocodeStations = function(){
 };
 
 ouigoManager.prototype.setStyle = function(emission){
-  emission.style.fontSize = "x-large";
+  //emission.style.fontSize = "medium";
   emission.style.textAlign = "center";
   return emission;
 };

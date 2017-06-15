@@ -20,7 +20,14 @@ lyriaManager.prototype.geocodeStations = function(){
   }
 };
 
+lyriaManager.prototype.setStyle = function(emission){
+  emission.style.fontSize = "small";
+  emission.style.color = "#595450";
+  return emission;
+};
+
 lyriaManager.prototype.insertInDom = function(emission){
+  emission = this.setStyle(emission);
   console.log(emission);
   var element = document.getElementsByTagName("h2")[0];
   if(element.getElementsByClassName('carbon').length === 0){

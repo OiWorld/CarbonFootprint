@@ -20,6 +20,7 @@ thalysManager.prototype.geocodeStations = function(){
 
 thalysManager.prototype.setStyle = function(emission){
   emission.style.marginLeft = "10px";
+  emission.style.fontSize = "small";
   return emission;
 };
 
