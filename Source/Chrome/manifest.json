@@ -984,6 +984,21 @@
           "all_frames" : true
         },
         {
+          "matches": [
+            "https://bookaa.amadeus.com/plnext/AADX/Override.action*"
+          ],
+          "css": ["core/css/flights.css"],
+          "js":[
+            "core/helpers/flightDataHelper.js",
+            "core/helpers/ChromeHelper.js",
+            "core/flights/aa.js",
+            "core/FlightsFootprintCore.js",
+            "core/initFlight.js"
+          ],
+          "run_at" : "document_end",
+          "all_frames" : true
+        },
+        {
             "matches": [
                 "https://en.voyages-sncf.com/en/results*"
             ],
