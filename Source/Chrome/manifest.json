@@ -543,6 +543,76 @@
         "run_at":"document_end",
         "all_frames":true
     },
+{
+     "matches": [
+       "https://en.voyages-sncf.com/en/results*"
+     ],
+     "css": ["core/css/main.css"],
+     "js":[
+       "core/TrainsFootprintCore.js",
+       "core/helpers/ChromeHelper.js",
+       "core/trains/voyages-sncf.js",
+       "core/initTrain.js"
+     ],
+     "run_at" : "document_end",
+     "all_frames" : true
+   },
+   {
+    "matches": [
+      "https://booking.eurostar.com/*/train-search/standard*"
+    ],
+    "css": ["core/css/main.css"],
+    "js":[
+      "core/TrainsFootprintCore.js",
+      "core/helpers/ChromeHelper.js",
+      "core/trains/eurostar.js",
+      "core/initTrain.js"
+    ],
+    "run_at" : "document_end",
+    "all_frames" : true
+  },
+     {
+       "matches": [
+         "https://www.tgv-lyria.com/en/booking/timetables-and-fares/timetables*"
+       ],
+       "css": ["core/css/main.css"],
+       "js":[
+         "core/TrainsFootprintCore.js",
+         "core/helpers/ChromeHelper.js",
+         "core/trains/tgv-lyria.js",
+         "core/initTrain.js"
+       ],
+       "run_at" : "document_end",
+       "all_frames" : true
+     },
+     {
+       "matches": [
+         "https://thalys.vsct.fr/billet-train/resultats*"
+       ],
+       "css": ["core/css/main.css"],
+       "js":[
+         "core/TrainsFootprintCore.js",
+         "core/helpers/ChromeHelper.js",
+         "core/trains/thalys.js",
+         "core/initTrain.js"
+       ],
+       "run_at" : "document_end",
+       "all_frames" : true
+     },
+     {
+      "matches": [
+        "https://ventes.ouigo.com/Schedule/Select*"
+      ],
+      "css": ["core/css/main.css"],
+      "js":[
+        "core/TrainsFootprintCore.js",
+        "core/helpers/ChromeHelper.js",
+        "core/trains/ouigo.js",
+        "core/initTrain.js"
+      ],
+      "run_at" : "document_end",
+      "all_frames" : true
+     },
     {
         "matches":[
             "https://www.travelocity.com/*"
