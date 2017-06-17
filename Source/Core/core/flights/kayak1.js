@@ -22,7 +22,7 @@ kayakManager.prototype.getList = function(){
         arrive = rawList[x].getElementsByClassName('return')[0].getElementsByClassName('bottom')[0].innerText.split(" ")[0];
         console.log(stops);
         if(stops.length==1){
-            if(stops[0]==="nonstop")
+            if(stops[0]==="non-stop")
                stops = [];
 
         }
