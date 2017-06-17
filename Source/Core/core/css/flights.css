@@ -14,10 +14,16 @@ span.carbon{
 
 /* Emission output container div */
 #carbon-footprint-label {
-    padding: 5px 10px 0px 5px;
+    padding: 5px 10px 0px 10px;
     color:#212121 !important;
 }
 
 a#carbon{
     color:#212121 !important;
 }
+
+/* ======= */
+/*     padding: 10px 0 5px 0; */
+/* } */
+
+/* >>>>>>> 04bbcd3f7bf49099bf8294277a3cf2ad25306be4 */

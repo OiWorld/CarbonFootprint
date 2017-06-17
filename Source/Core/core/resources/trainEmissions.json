@@ -1,0 +1,23 @@
+{
+  "trainData": {
+    "sncf": {
+      "intercités": 10.8,
+      "tgv": 3.2,
+      "tgv lyria": 3.2,
+      "lyria": 3.2,
+      "idtgv": 3.2,
+      "ouigo": 3.2,
+      "transilien": 5.8,
+      "rer": 5.8,
+      "ter": 29.7,
+      "thalys": 11.6,
+      "eurostar": 8.2,
+      "elipsos": 27,
+      "gala": 12,
+      "alleo": 11.3,
+      "bus": 96.5,
+      "average": 10.59,
+      "_comment": "CO2 in gram/km, source: http://medias.sncf.com/sncfcom/pdf/co2/Information_CO2_des_prestations_de_transport_Methodologie_generale.pdf or check relevant docs folder"
+    }
+  }
+}

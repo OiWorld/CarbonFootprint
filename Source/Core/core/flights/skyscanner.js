@@ -33,26 +33,7 @@ skyscannerManager.prototype.getCoordinates = function(processedList){
 };
 
 skyscannerManager.prototype.getDistances = function(processedList){
-    for(var x = 0, i = processedList.length; x < i; x++){
-        processedList[x].distance = 0;
-    console.log(processedList[x]);
-      if(processedList[x].stopCoordinatesNew){
-          noOfStops = processedList[x].stopCoordinatesNew.length;
-          console.log(noOfStops);
-      processedList[x].distance += core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
-                                                   processedList[x].stopCoordinatesNew[0].lat, processedList[x].stopCoordinatesNew[0].lon) +
-              core.getDistance(processedList[x].stopCoordinatesNew[noOfStops-1].lat, processedList[x].stopCoordinatesNew[noOfStops-1].lon,
-                               processedList[x].arriveCoordinates.lat, processedList[x].arriveCoordinates.lon);
-          for(var y = 0; y < noOfStops-1 ; y++){
-              console.log("Totally working fine");
-              processedList[x].distance += core.getDistance(processedList[x].stopCoordinatesNew[y].lat,processedList[x].stopCoordinatesNew[y].lon,processedList[x].stopCoordinatesNew[y+1].lat,processedList[x].stopCoordinatesNew[y+1].lon);
-          }
-    }
-    else{
-      processedList[x].distance += core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
-                                                   processedList[x].arriveCoordinates.lat, processedList[x].arriveCoordinates.lon);
-    }
-  }
+  processedList = core.getTotalDistance(processedList);
   console.log("---got distances---");
   console.log(processedList);
   return processedList;
