@@ -54,7 +54,7 @@ tripAdvisorManager.prototype.getDistances = function(processedList){
     for(var x = 0, i = processedList.length; x < i; x++){
         processedList[x].distance = 0;
     console.log(processedList[x]);
-      if(processedList[x].stopCoordinatesNew){
+      if(processedList[x].stopCoordinatesNew.length){
           noOfStops = processedList[x].stopCoordinatesNew.length;
           console.log(noOfStops);
       processedList[x].distance += core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
@@ -84,14 +84,30 @@ tripAdvisorManager.prototype.getEmission = function(processedList){
 };
 
 tripAdvisorManager.prototype.insertInDom = function(processedList){
-  insertIn = document.getElementsByClassName("segmentInfo");
-  for(var x = 0, i = insertIn.length; x < i; x++){
-    if(insertIn[x].getElementsByClassName("carbon").length === 0){
-      insertIn[x].appendChild(core.createHTMLElement(processedList[x].co2Emission));
+  insertIn = document.getElementsByClassName("outerItineraryWrapper");
+  if(processedList.length == insertIn.length){
+    for(var x = 0, i = insertIn.length; x < i; x++){
+      if(insertIn[x].getElementsByClassName("carbon").length === 0){
+        insertIn[x].appendChild(core.createMark(processedList[x].co2Emission));
+      }
+      else{
+        insertIn[x].removeChild(insertIn[x].childNodes[insertIn[x].childNodes.length - 1]);
+        insertIn[x].appendChild(core.createMark(processedList[x].co2Emission));
+      }
     }
-    else{
-      insertIn[x].removeChild(insertIn[x].getElementsByClassName("carbon")[0]);
-      insertIn[x].appendChild(core.createHTMLElement(processedList[x].co2Emission));
+  }
+  else{
+    var y = 0;
+    for(var x = 0, i = insertIn.length; x < i; x++){
+      if(insertIn[x].getElementsByClassName("carbon").length === 0){
+        insertIn[x].appendChild(core.createMark(processedList[y].co2Emission, processedList[y+1].co2Emission));
+        y += 2;
+      }
+      else{
+        insertIn[x].removeChild(insertIn[x].childNodes[insertIn[x].childNodes.length - 1]);
+        insertIn[x].appendChild(core.createMark(processedList[y].co2Emission, processedList[y+1].co2Emission));
+        y += 2;
+      }
     }
   }
 };

@@ -51,7 +51,7 @@ aaManager.prototype.getDistances = function(processedList){
     for(var x = 0, i = processedList.length; x < i; x++){
         processedList[x].distance = 0;
     console.log(processedList[x]);
-      if(processedList[x].stopCoordinatesNew){
+      if(processedList[x].stopCoordinatesNew.length){
           noOfStops = processedList[x].stopCoordinatesNew.length;
           console.log(noOfStops);
       processedList[x].distance += core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
@@ -89,11 +89,11 @@ aaManager.prototype.insertInDom = function(processedList){
   insertIn = document.getElementsByClassName("bound-table-flightline-header");
   for(var x = 0, i = insertIn.length; x < i; x++){
     if(insertIn[x].getElementsByClassName("carbon").length === 0){
-      insertIn[x].appendChild(core.createHTMLElement(processedList[x].co2Emission));
+      insertIn[x].appendChild(core.createMark(processedList[x].co2Emission));
     }
     else{
-      insertIn[x].removeChild(insertIn[x].getElementsByClassName("carbon")[0]);
-      insertIn[x].appendChild(core.createHTMLElement(processedList[x].co2Emission));
+      insertIn[x].removeChild(insertIn[x].childNodes[insertIn[x].childNodes.length - 1]);
+      insertIn[x].appendChild(core.createMark(processedList[x].co2Emission));
     }
   }
 };

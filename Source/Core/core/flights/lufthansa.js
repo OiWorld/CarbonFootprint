@@ -77,10 +77,11 @@ lufthansaManager.prototype.getEmission = function(processedList){
 };
 
 lufthansaManager.prototype.insertInDom = function(processedList){
-  insertIn = document.getElementsByClassName("carrier");
+  insertIn = document.getElementsByClassName("flight wdk-line");
   for(var x = 0, i = insertIn.length; x < i; x++){
-    if(insertIn[x].getElementsByClassName("carbon").length === 0){
-         insertIn[x].appendChild(core.createHTMLElement(processedList[x].co2Emission));
+    var insert = insertIn[x].getElementsByClassName("description")[0];
+    if(insert.getElementsByClassName("carbon").length === 0){
+         insert.appendChild(core.createMark(processedList[x].co2Emission));
     }
     //console.log(insertIn[x].childNodes[1].childNodes[1]);
   }

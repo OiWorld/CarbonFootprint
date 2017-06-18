@@ -8,12 +8,13 @@ deltaManager.prototype.getList = function(){
   var processedList = [];
   for(var x = 0, i = rawList.length; x < i; x++){
     var stops = [];
-    for(var y = 2, j = rawList[x].childNodes.length; y < j-2; y++){
-      stops.push(rawList[x].childNodes[y].innerHTML.split(" ")[0]);
+    rawStops = rawList[x].getElementsByClassName("originCityVia2Stops").length > 0 ? rawList[x].getElementsByClassName("originCityVia2Stops"): [];
+    for(var y = 0, j = rawStops.length; y < j; y++){
+      stops.push(rawStops[y].innerHTML.split(" ")[0]);
     }
     processedList.push({
-      depart: rawList[x].childNodes[0].innerHTML,
-      arrive: rawList[x].childNodes[rawList[x].childNodes.length - 1].innerHTML,
+      depart: rawList[x].getElementsByClassName("originCity")[0].innerHTML,
+      arrive: rawList[x].getElementsByClassName("destinationCity")[0].innerHTML,
       stops: stops,
       aircraft: "A380" //hardcoded for now
     });
@@ -34,7 +35,7 @@ deltaManager.prototype.getDistances = function(processedList){
     for(var x = 0, i = processedList.length; x < i; x++){
         processedList[x].distance = 0;
     console.log(processedList[x]);
-      if(processedList[x].stopCoordinatesNew){
+      if(processedList[x].stopCoordinatesNew.length){
           noOfStops = processedList[x].stopCoordinatesNew.length;
           console.log(noOfStops);
       processedList[x].distance += core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
@@ -67,7 +68,7 @@ deltaManager.prototype.insertInDom = function(processedList){
   insertIn = document.getElementsByClassName("aminitiesDetailWrapper");
   for(var x = 0, i = insertIn.length; x < i; x++){
     if(insertIn[x].getElementsByClassName("carbon").length === 0){
-         insertIn[x].appendChild(core.createHTMLElement(processedList[x].co2Emission));
+         insertIn[x].appendChild(core.createMark(processedList[x].co2Emission));
     }
     //console.log(insertIn[x].childNodes[1].childNodes[1]);
   }
