@@ -1015,6 +1015,21 @@
           "all_frames" : true
         },
         {
+          "matches": [
+            "https://www.tripadvisor.com/CheapFlightsSearchResults*"
+          ],
+          "css": ["core/css/flights.css"],
+          "js":[
+            "core/helpers/flightDataHelper.js",
+            "core/helpers/ChromeHelper.js",
+            "core/flights/tripAdvisor.js",
+            "core/FlightsFootprintCore.js",
+            "core/initFlight.js"
+          ],
+          "run_at" : "document_end",
+          "all_frames" : true
+        },
+        {
             "matches": [
                 "https://en.voyages-sncf.com/en/results*"
             ],
