@@ -15,18 +15,17 @@ kayakManager.prototype.getList = function(){
     for(var x = 0; x<rawList.length; x++){
 
         stops = rawList[x].getElementsByClassName('stops')[0].innerText;
-        stops = stops.split(",").join("").split(" ");
-        airport = rawList[x].getElementsByClassName('airport');
-        depart = airport[0].innerText;
-        arrive = airport[1].innerText;
-        if(stops.length>1){
-            stops = stops.slice(2,stops.length);
-            stops = stops.join(" ");
-            stops = stops.slice(1,stops.length-1);
-            console.log(stops);
-            stops = stops.split(" ");
-         }
-        else stops = [];
+        stops = stops.split(",").join("");
+        stops = stops.slice(0,stops.length-1);
+        stops = stops.split(" ");
+        depart = rawList[x].getElementsByClassName('depart')[0].getElementsByClassName('bottom')[0].innerText;
+        arrive = rawList[x].getElementsByClassName('return')[0].getElementsByClassName('bottom')[0].innerText.split(" ")[0];
+        console.log(stops);
+        if(stops.length==1){
+            if(stops[0]==="non-stop")
+               stops = [];
+
+        }
         processedList.push({
             depart:depart,
             arrive:arrive,
@@ -84,11 +83,11 @@ kayakManager.prototype.insertInDom = function(processedList){
     console.log(checkOption);
     console.log(processedList);
     for(var x=0;x<checkOption.length;x++){
-        insertIn = checkOption[x].getElementsByClassName('tripDetailsCol');
+        insertIn = checkOption[x].getElementsByClassName('extraInfo');
         insertIn = insertIn[insertIn.length-1];
         if(checkOption[x].getElementsByClassName('carbon').length<1){
-            console.log("here we are");
             insertIn.appendChild(core.createMark(processedList[2*x].co2Emission,processedList[(2*x)+1].co2Emission));
+            console.log('inserted');
         }
         else{
             console.log("already presented");
