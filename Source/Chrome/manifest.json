@@ -999,6 +999,22 @@
           "all_frames" : true
         },
         {
+          "matches": [
+            "http://book.spicejet.com/Select.aspx*",
+            "http://book2.spicejet.com/Select.aspx"
+          ],
+          "css": ["core/css/flights.css"],
+          "js":[
+            "core/helpers/flightDataHelper.js",
+            "core/helpers/ChromeHelper.js",
+            "core/flights/spiceJet.js",
+            "core/FlightsFootprintCore.js",
+            "core/initFlight.js"
+          ],
+          "run_at" : "document_end",
+          "all_frames" : true
+        },
+        {
             "matches": [
                 "https://en.voyages-sncf.com/en/results*"
             ],

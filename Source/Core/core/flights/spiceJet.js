@@ -1,53 +1,68 @@
-var aaManager = function(){
+var deltaManager = function(){
   this.subtree = true;
-  this.list = [];
 };
-aaManager.prototype.getList = function(){
-  var rawList = document.getElementsByClassName("bound-table-flightline");
+deltaManager.prototype.getList = function(){
+  var rawList = document.getElementsByClassName("flightInfo");
   console.log("raw list");
-  console.log(rawList);
+  //console.log(rawList);
   var processedList = [];
-  for(var x = 0, i = rawList.length; x < i; x++){
-    var stops = [];
+  list = [];
+  for(var x = 0, i = rawList.length; x < i; x+=2){
+    list.push(rawList[x].getElementsByTagName("p"));
+  }
+  console.log(list);
+  for(x = 0, i = list.length; x < i; x++){
+    var depart, arrive, stopsProcessed = [], stops = [], airplanes = [];
+    for(var y = 1, j = list[x].length; y < j; y+=5){
+      var destinations = list[x][y].innerHTML.split("\n");
+      airplanes.push(list[x][y+1].innerHTML.split(" ")[4]);
+      if(y == 1){
+        depart = destinations[0].substring(0, 3);
+        stops.push(destinations[2].substring(10, 13));
+      }
+      if(y == list[x].length - 3){
+        arrive = destinations[2].substring(10, 13);
+        stops.push(destinations[0].substring(0, 3));
+      }
+      if(y != 1 && y != list[x].length - 3){
+        stops.push(destinations[0].substring(0, 3));
+        stops.push(destinations[2].substring(10, 13));
+      }
+    }
+    if(stops[0] == arrive){
+      stopsProcessed = [];
+    }
+    else{
+      for(y = 0, j = stops.length; y < j; y+=2){
+        stopsProcessed.push(stops[y]);
+      }
+    }
+    console.log("-------final scraped values--------");
+    console.log(depart);
+    console.log(stopsProcessed);
+    console.log(arrive);
     processedList.push({
-      depart: rawList[x].getElementsByClassName("citycode-from")[0].innerHTML.trim().substring(1, 4),
-      arrive: rawList[x].getElementsByClassName("citycode-to")[0].innerHTML.trim().substring(1, 4),
-      stops: stops,
-      aircraft: "A380", //hardcoded for now,
-      updated: false,
-      aircraftStore: []
+      depart: depart,
+      arrive: arrive,
+      stops: stopsProcessed,
+      aircraft: "A380", //hardcoded for now
+      airplanes: airplanes
     });
-    if(rawList[x].getElementsByClassName("segment timeline-segment").length){
-      processedList[processedList.length - 1].updated = true;
-      for(var y = 0, j = rawList[x].getElementsByClassName("timeline-airline").length; y < j; y++){
-        processedList[processedList.length - 1].aircraftStore.push(rawList[x].getElementsByClassName("timeline-airline")[y].getElementsByClassName("equipment")[0].innerText.trim());
-      }
-      for(y = 1, j = rawList[x].getElementsByClassName("timeline-locationcode").length - 1; y < j; y += 2){
-        processedList[processedList.length - 1].stops.push(rawList[x].getElementsByClassName("timeline-locationcode")[y].innerText.trim());
-      }
-    }
   }
-  if(this.list.length === 0){
-    this.list = processedList;
-  }
-  for(x = 0, i = processedList.length; x < i; x++){
-    if(processedList[x].updated){
-      this.list[x] = processedList[x];
-    }
-  }
+  //console.log(list);
   console.log("--- initial list ---");
   console.log(processedList);
-  return this.list;
+  return processedList;
 };
 
-aaManager.prototype.getCoordinates = function(processedList){
+deltaManager.prototype.getCoordinates = function(processedList){
   processedList = core.getCoordinates(processedList);
   console.log("--- got coordinates ---");
   console.log(processedList);
   return processedList;
 };
 
-aaManager.prototype.getDistances = function(processedList){
+deltaManager.prototype.getDistances = function(processedList){
     for(var x = 0, i = processedList.length; x < i; x++){
         processedList[x].distance = 0;
     console.log(processedList[x]);
@@ -72,33 +87,25 @@ aaManager.prototype.getDistances = function(processedList){
   console.log(processedList);
   return processedList;
 };
-//flight-details-container-rowtitle-header
-//flight-details-group
-//aircraft col-xs-24
-//row
-//bound-table-flightline-header
-//flight-details availability-flight-details flight-details-without-button availability-flight-details-without-button row
-aaManager.prototype.getEmission = function(processedList){
+
+deltaManager.prototype.getEmission = function(processedList){
   processedList = core.getEmission(processedList);
   console.log("---got fuel consumption---");
   console.log(processedList);
   return processedList;
 };
 
-aaManager.prototype.insertInDom = function(processedList){
-  insertIn = document.getElementsByClassName("bound-table-flightline-header");
+deltaManager.prototype.insertInDom = function(processedList){
+  insertIn = document.getElementsByClassName("flight-icon-symbol bold");
   for(var x = 0, i = insertIn.length; x < i; x++){
     if(insertIn[x].getElementsByClassName("carbon").length === 0){
-      insertIn[x].appendChild(core.createHTMLElement(processedList[x].co2Emission));
+         insertIn[x].appendChild(core.createHTMLElement(processedList[x].co2Emission));
     }
-    else{
-      insertIn[x].removeChild(insertIn[x].getElementsByClassName("carbon")[0]);
-      insertIn[x].appendChild(core.createHTMLElement(processedList[x].co2Emission));
-    }
+    //console.log(insertIn[x].childNodes[1].childNodes[1]);
   }
 };
 
-aaManager.prototype.update = function(){
+deltaManager.prototype.update = function(){
   var processedList = this.getList();
   if(core.airplanesData && core.airportsData){
     processedList = this.getCoordinates(processedList);
@@ -107,4 +114,4 @@ aaManager.prototype.update = function(){
     this.insertInDom(processedList);
   }
 };
-var FlightManager = aaManager;
+var FlightManager = deltaManager;
