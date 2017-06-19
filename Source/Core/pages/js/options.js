@@ -277,6 +277,7 @@ options.saveLocation = function() {
       country = 'country,political',
       state = 'administrative_area_level_1,political',
       gc = new google.maps.Geocoder();
+      console.log("ABOUT TO BEGIN");
   navigator.geolocation.getCurrentPosition(function(position) {
     var lat = position.coords.latitude,
         lng = position.coords.longitude,
@@ -689,7 +690,11 @@ options.loadResources = function() {
    * https://www.epa.gov/sites/production/files/2015-11/documents/emission-factors_nov_2015.pdf
    * http://www.biomassenergycentre.org.uk/portal/page?_pageid=75,163182&_dad=portal&_schema=PORTAL
    */
-
+   $.ajaxSetup({'beforeSend': function(xhr){
+       if (xhr.overrideMimeType)
+           xhr.overrideMimeType("application/json");
+       }
+   });
   var locale;
 
   try {

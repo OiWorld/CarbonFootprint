@@ -19,6 +19,9 @@
     "default_title" : "Google Maps Carbon Footprint",
     "default_popup": "pages/popup.html"
   },
+  "options_ui": {
+    "page": "pages/options.html"
+  },
   "content_scripts": [{
       "matches": [
         "*://www.google.ac/maps*",
