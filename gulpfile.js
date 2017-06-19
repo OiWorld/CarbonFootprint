@@ -119,7 +119,7 @@ gulp.task('coreChrome', function() {
 			.html(`<img src="${variables['safari']['badge']}" class="img-responsive" />`);
 	}))
 	.pipe(linkFilter.restore)
-	.pipe(gulp.dest(chormeBuildpath));
+	.pipe(gulp.dest(chromeBuildpath));
 });
 
 gulp.task('specificChrome', function() {
