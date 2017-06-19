@@ -1,68 +1,49 @@
-var spiceManager = function(){
+var unitedManager = function(){
   this.subtree = true;
 };
-spiceManager.prototype.getList = function(){
-  var rawList = document.getElementsByClassName("flightInfo");
+unitedManager.prototype.getList = function(){
+  var rawList = document.getElementsByClassName("flight-block-summary-container");
   console.log("raw list");
-  //console.log(rawList);
+  console.log(rawList);
   var processedList = [];
-  list = [];
-  for(var x = 0, i = rawList.length; x < i; x+=2){
-    list.push(rawList[x].getElementsByTagName("p"));
-  }
-  console.log(list);
-  for(x = 0, i = list.length; x < i; x++){
-    var depart, arrive, stopsProcessed = [], stops = [], airplanes = [];
-    for(var y = 1, j = list[x].length; y < j; y+=5){
-      var destinations = list[x][y].innerHTML.split("\n");
-      airplanes.push(list[x][y+1].innerHTML.split(" ")[4]);
-      if(y == 1){
-        depart = destinations[0].substring(0, 3);
-        stops.push(destinations[2].substring(10, 13));
-      }
-      if(y == list[x].length - 3){
-        arrive = destinations[2].substring(10, 13);
-        stops.push(destinations[0].substring(0, 3));
-      }
-      if(y != 1 && y != list[x].length - 3){
-        stops.push(destinations[0].substring(0, 3));
-        stops.push(destinations[2].substring(10, 13));
-      }
-    }
-    if(stops[0] == arrive){
-      stopsProcessed = [];
+  for(var x = 0, i = rawList.length; x < i; x++){
+    var aircrafts = [];
+    var stops = [];
+    var aircraftElement = rawList[x].getElementsByClassName('segment-aircraft-type');
+    var stopElement = rawList[x].getElementsByClassName('segment-market');
+    if(rawList[x].getElementsByClassName('non-stop')[0]){
+      console.log("no stops " + x);
+      aircrafts = aircraftElement ? aircraftElement[0].childNodes[2].data.trim() : [];
     }
     else{
-      for(y = 0, j = stops.length; y < j; y+=2){
-        stopsProcessed.push(stops[y]);
+      console.log("multiple stops " + x);
+      for(var y = 0, j = aircraftElement.length; y < j ; y++){
+        aircrafts.push(aircraftElement[y].childNodes[2].data.trim());
+      }
+      for(y = 0, j = stopElement.length - 1; y < j ; y++){
+        stops.push(stopElement[y].innerText.split(" to ")[1]);
       }
     }
-    console.log("-------final scraped values--------");
-    console.log(depart);
-    console.log(stopsProcessed);
-    console.log(arrive);
     processedList.push({
-      depart: depart,
-      arrive: arrive,
-      stops: stopsProcessed,
-      aircraft: "A380", //hardcoded for now
-      airplanes: airplanes
+      depart: rawList[x].getElementsByClassName("origin-airport-mismatch-code")[0].innerHTML,
+      arrive: rawList[x].getElementsByClassName("destination-airport-mismatch-code")[0].innerHTML,
+      stops: stops,
+      aircraft: "A380" //hardcoded for now
     });
   }
-  //console.log(list);
   console.log("--- initial list ---");
   console.log(processedList);
   return processedList;
 };
 
-spiceManager.prototype.getCoordinates = function(processedList){
+unitedManager.prototype.getCoordinates = function(processedList){
   processedList = core.getCoordinates(processedList);
   console.log("--- got coordinates ---");
   console.log(processedList);
   return processedList;
 };
 
-spiceManager.prototype.getDistances = function(processedList){
+unitedManager.prototype.getDistances = function(processedList){
     for(var x = 0, i = processedList.length; x < i; x++){
         processedList[x].distance = 0;
     console.log(processedList[x]);
@@ -88,29 +69,23 @@ spiceManager.prototype.getDistances = function(processedList){
   return processedList;
 };
 
-spiceManager.prototype.getEmission = function(processedList){
+unitedManager.prototype.getEmission = function(processedList){
   processedList = core.getEmission(processedList);
   console.log("---got fuel consumption---");
   console.log(processedList);
   return processedList;
 };
 
-spiceManager.prototype.style = function(e){
-  e.style.marginTop = "5px";
-  e.style.marginLeft = "-65px";
-  return e;
-};
-
-spiceManager.prototype.insertInDom = function(processedList){
-  insertIn = document.getElementsByClassName("flight-icon-symbol bold");
+unitedManager.prototype.insertInDom = function(processedList){
+  insertIn = document.getElementsByClassName("flight-block");
   for(var x = 0, i = insertIn.length; x < i; x++){
-    if(insertIn[x].getElementsByClassName("carbon").length === 0){
-         insertIn[x].appendChild(this.style(core.createMark(processedList[x].co2Emission)));
+    if (insertIn[x].getElementsByClassName('carbon').length === 0) {
+      insertIn[x].appendChild(core.createMark(processedList[x].co2Emission));
     }
   }
 };
 
-spiceManager.prototype.update = function(){
+unitedManager.prototype.update = function(){
   var processedList = this.getList();
   if(core.airplanesData && core.airportsData){
     processedList = this.getCoordinates(processedList);
@@ -119,4 +94,4 @@ spiceManager.prototype.update = function(){
     this.insertInDom(processedList);
   }
 };
-var FlightManager = spiceManager;
+var FlightManager = unitedManager;
