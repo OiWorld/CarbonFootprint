@@ -123,19 +123,4 @@ googleFlightsManager.prototype.insertInDom = function(processedList){
     }
 };
 
-/**
-* Function for Updating the DOM
-*/
-
-googleFlightsManager.prototype.update = function(){
-    var processedList = this.getList();
-    if(core.airplanesData && core.airportsData){
-        processedList = this.getCoordinates(processedList);
-        processedList = this.getDistances(processedList);
-        processedList = this.getEmission(processedList);
-        this.insertInDom(processedList);
-    }
-    console.log(processedList);
-};
-
 var FlightManager = googleFlightsManager ;

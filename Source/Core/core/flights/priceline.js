@@ -106,19 +106,4 @@ pricelineManager.prototype.insertInDom = function(processedList){
     }
 };
 
-/**
-* Function for Updating the DOM
-*/
-
-pricelineManager.prototype.update = function(){
-    var processedList = this.getList();
-    if(core.airplanesData && core.airportsData){
-        processedList = this.getCoordinates(processedList);
-        processedList = this.getDistances(processedList);
-        processedList = this.getEmission(processedList);
-        this.insertInDom(processedList);
-    }
-    console.log(processedList);
-};
-
 var FlightManager = pricelineManager ;
