@@ -4,7 +4,7 @@ var BasicValidator = function() {
 BasicValidator.prototype.counterMeasure = function(msg){
   console.log("Something is wrong");
   console.log(msg);
-  this.server.error(msg, this.website);
+  this.server.error(this.website, msg);
   this.showNotification();
   this.throwError();
 };
@@ -37,14 +37,19 @@ BasicValidator.prototype.getById = function(i, element = document){
   }
 };
 
-BasicValidator.prototype.getChildNode = function(children, element){
+BasicValidator.prototype.getChildNode = function(children, element = document){
   for(var x = 0, i = children.length; x < i; x++){
-    if(element.childNodes){
+    if(element && element.childNodes.length){
       element = element.childNodes[children.shift()];
     }
     else{
-      this.counterMeasure();
+      this.counterMeasure("invalid childNodes");
     }
   }
-  return element;
+  if(element){
+    return element;
+  }
+  else{
+    this.counterMeasure("invalid childNodes");
+  }
 };
