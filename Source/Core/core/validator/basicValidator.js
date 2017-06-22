@@ -4,6 +4,7 @@ var BasicValidator = function() {
 BasicValidator.prototype.counterMeasure = function(msg){
   console.log("Something is wrong");
   console.log(msg);
+  this.server.error(msg, this.website);
   this.showNotification();
   this.throwError();
 };
@@ -46,42 +47,4 @@ BasicValidator.prototype.getChildNode = function(children, element){
     }
   }
   return element;
-};
-
-var FlightsValidator = function() {
-  BasicValidator.call(this);
-  this.server = new Server();
-};
-
-FlightsValidator.prototype = Object.create(BasicValidator.prototype);
-FlightsValidator.prototype.constructor = FlightsValidator;
-
-FlightsValidator.prototype.verifyAirports = function(airport){
-  if(typeof airport !== 'string' || airport.length != 3){
-    this.counterMeasure();
-  }
-};
-
-FlightsValidator.prototype.verifyStops = function(list){
-  if(!Array.isArray(list)){
-    this.counterMeasure();
-  }
-  else{
-    for(var x = 0, i = list.length; x < i; x++){
-      this.verifyAirports(list[x]);
-    }
-  }
-};
-
-FlightsValidator.prototype.verifyAirplanes = function(list){
-  if(!Array.isArray(list)){
-    this.counterMeasure();
-  }
-  else{
-    for(var x = 0, i = list.length; x < i; x++){
-      if(typeof airport !== 'string' && list[x].length > 15){ //15 is an experimental value right now
-        this.counterMeasure();
-      }
-    }
-  }
 };

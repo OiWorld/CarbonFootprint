@@ -1,6 +1,6 @@
 var skyscannerManager = function(){
   this.subtree = true;
-  this.validator = new FlightsValidator();
+  this.validator = new FlightsValidator("skyscanner");
 };
 skyscannerManager.prototype.getList = function(){
   var rawList = document.getElementsByClassName("card-main");
@@ -16,6 +16,7 @@ skyscannerManager.prototype.getList = function(){
       aircraft: "A380" //hardcoded for now
     });
   }
+  this.validator.verifyList(processedList);
   console.log("--- initial list ---");
   //console.log(processedList);
   return processedList;
@@ -52,7 +53,7 @@ skyscannerManager.prototype.insertInDom = function(processedList){
     if(this.validator.getChildNode([1], insertIn[x]).childNodes.length <= 4 ||
        this.validator.getChildNode([1,4], insertIn[x]).className == "leg-operator" &&
        this.validator.getChildNode([1], insertIn[x]).childNodes.length <= 5){
-         this.validator.getChildNode([1], insertIn[x]).appendChild(core.createMark(processedList[x].co2Emission));
+         this.validator.getChildNode([1], insertIn[x]).appendChild(core.createMark(processedList[x].co2Emission, 0));
     }
     //console.log(insertIn[x].childNodes[1].childNodes[1]);
   }
