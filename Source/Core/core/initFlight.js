@@ -23,7 +23,7 @@ var target = document.getElementsByTagName("body")[0],
     });
 observer.observe(target, {
   attributes: true,
-  childList: false,
+  childList: true,
   characterData: true,
   subtree: flightManager.subtree
 });
