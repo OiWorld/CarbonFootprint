@@ -1,32 +1,32 @@
-var Verifier = function() {
-
+var BasicValidator = function() {
 };
 
-Verifier.prototype.counterMeasure = function(){
+BasicValidator.prototype.counterMeasure = function(msg){
   console.log("Something is wrong");
+  console.log(msg);
   this.showNotification();
   this.throwError();
 };
 
-Verifier.prototype.showNotification = function(){
+BasicValidator.prototype.showNotification = function(){
   console.log("Show A notifiation");
 };
 
-Verifier.prototype.throwError = function(){
+BasicValidator.prototype.throwError = function(){
   console.log("Throw an error");
 };
 
-Verifier.prototype.getByClass = function(c, element = document){
+BasicValidator.prototype.getByClass = function(c, element = document){
   var toGet = element.getElementsByClassName(c);
   if(toGet.length){
-    return get;
+    return toGet;
   }
   else{
-    this.counterMeasure();
+    this.counterMeasure("cant get class " + c);
   }
 };
 
-Verifier.prototype.getById = function(i, element = document){
+BasicValidator.prototype.getById = function(i, element = document){
   var toGet = element.getElementById(i);
   if(toGet){
     return toGet;
@@ -36,7 +36,7 @@ Verifier.prototype.getById = function(i, element = document){
   }
 };
 
-Verifier.prototype.getChildNode = function(element, children){
+BasicValidator.prototype.getChildNode = function(children, element){
   for(var x = 0, i = children.length; x < i; x++){
     if(element.childNodes){
       element = element.childNodes[children.shift()];
@@ -48,13 +48,21 @@ Verifier.prototype.getChildNode = function(element, children){
   return element;
 };
 
-Verifier.prototype.verifyAirports = function(airport){
+var FlightsValidator = function() {
+  BasicValidator.call(this);
+  this.server = new Server();
+};
+
+FlightsValidator.prototype = Object.create(BasicValidator.prototype);
+FlightsValidator.prototype.constructor = FlightsValidator;
+
+FlightsValidator.prototype.verifyAirports = function(airport){
   if(typeof airport !== 'string' || airport.length != 3){
     this.counterMeasure();
   }
 };
 
-Verifier.prototype.verifyStops = function(list){
+FlightsValidator.prototype.verifyStops = function(list){
   if(!Array.isArray(list)){
     this.counterMeasure();
   }
@@ -65,7 +73,7 @@ Verifier.prototype.verifyStops = function(list){
   }
 };
 
-Verifier.prototype.verifyAirplanes = function(list){
+FlightsValidator.prototype.verifyAirplanes = function(list){
   if(!Array.isArray(list)){
     this.counterMeasure();
   }
