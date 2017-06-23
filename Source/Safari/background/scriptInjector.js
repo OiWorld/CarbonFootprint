@@ -525,19 +525,554 @@ injector.viaMichelinMaps = [
     'http://*.viamichelin.ie/*'
 ];
 
+injector.cleartrip = [
+     "https://www.cleartrip.com/flights/*"
+];
+
+injector.expedia = [
+    "https://www.expedia.com/*",
+    "https://www.expedia.ca/*",
+    "https://www.expedia.co.in/*",
+    "https://www.expedia.com.ar/*",
+    "https://www.expedia.at/*",
+    "https://www.expedia.com.au/*",
+    "https://www.expedia.be/*",
+    "https://www.expedia.com.br/*",
+    "https://www.expedia.ch/*",
+    "https://www.expedia.dk/*",
+    "https://www.expedia.fi/*",
+    "https://www.expedia.fr/*",
+    "https://www.expedia.de/*",
+    "https://www.expedia.com.hk/*",
+    "https://www.expedia.co.id/*",
+    "https://www.expedia.ie/*",
+    "https://www.expedia.it/*",
+    "https://www.expedia.co.jp/*",
+    "https://www.expedia.co.kr/*",
+    "https://www.expedia.com.my/*",
+    "https://www.expedia.mx/*",
+    "https://www.expedia.nl/*",
+    "https://www.expedia.co.nz/*",
+    "https://www.expedia.no/*",
+    "https://www.expedia.com.ph/*",
+    "https://www.expedia.com.sg/*",
+    "https://www.expedia.es/*",
+    "https://www.expedia.se/*",
+    "https://www.expedia.com.tw/*",
+    "https://www.expedia.co.th/*",
+    "https://www.expedia.co.uk/*",
+    "https://www.expedia.com/*",
+    "https://www.expedia.com.vn/*",
+    "https://www.expedia.cn/*"
+];
+
+injector.googleFlights = [
+    'http://*.google.ac/flights*',
+    'http://*.google.ad/flights*',
+    'http://*.google.ae/flights*',
+    'http://*.google.al/flights*',
+    'http://*.google.am/flights*',
+    'http://*.google.as/flights*',
+    'http://*.google.at/flights*',
+    'http://*.google.az/flights*',
+    'http://*.google.ba/flights*',
+    'http://*.google.be/flights*',
+    'http://*.google.bf/flights*',
+    'http://*.google.bg/flights*',
+    'http://*.google.bi/flights*',
+    'http://*.google.bj/flights*',
+    'http://*.google.bs/flights*',
+    'http://*.google.bt/flights*',
+    'http://*.google.by/flights*',
+    'http://*.google.ca/flights*',
+    'http://*.google.cat/flights*',
+    'http://*.google.cc/flights*',
+    'http://*.google.cd/flights*',
+    'http://*.google.cf/flights*',
+    'http://*.google.cg/flights*',
+    'http://*.google.ch/flights*',
+    'http://*.google.ci/flights*',
+    'http://*.google.cl/flights*',
+    'http://*.google.cm/flights*',
+    'http://*.google.cn/flights*',
+    'http://*.google.co.ao/flights*',
+    'http://*.google.co.bw/flights*',
+    'http://*.google.co.ck/flights*',
+    'http://*.google.co.cr/flights*',
+    'http://*.google.co.id/flights*',
+    'http://*.google.co.il/flights*',
+    'http://*.google.co.in/flights*',
+    'http://*.google.co.jp/flights*',
+    'http://*.google.co.ke/flights*',
+    'http://*.google.co.kr/flights*',
+    'http://*.google.co.ls/flights*',
+    'http://*.google.co.ma/flights*',
+    'http://*.google.co.mz/flights*',
+    'http://*.google.co.nz/flights*',
+    'http://*.google.co.th/flights*',
+    'http://*.google.co.tz/flights*',
+    'http://*.google.co.ug/flights*',
+    'http://*.google.co.uk/flights*',
+    'http://*.google.co.uz/flights*',
+    'http://*.google.co.ve/flights*',
+    'http://*.google.co.vi/flights*',
+    'http://*.google.co.za/flights*',
+    'http://*.google.co.zm/flights*',
+    'http://*.google.co.zw/flights*',
+    'http://*.google.com/flights*',
+    'http://*.google.com.af/flights*',
+    'http://*.google.com.ag/flights*',
+    'http://*.google.com.ai/flights*',
+    'http://*.google.com.ar/flights*',
+    'http://*.google.com.au/flights*',
+    'http://*.google.com.bd/flights*',
+    'http://*.google.com.bh/flights*',
+    'http://*.google.com.bn/flights*',
+    'http://*.google.com.bo/flights*',
+    'http://*.google.com.br/flights*',
+    'http://*.google.com.bz/flights*',
+    'http://*.google.com.co/flights*',
+    'http://*.google.com.cu/flights*',
+    'http://*.google.com.cy/flights*',
+    'http://*.google.com.do/flights*',
+    'http://*.google.com.ec/flights*',
+    'http://*.google.com.eg/flights*',
+    'http://*.google.com.et/flights*',
+    'http://*.google.com.fj/flights*',
+    'http://*.google.com.gh/flights*',
+    'http://*.google.com.gi/flights*',
+    'http://*.google.com.gt/flights*',
+    'http://*.google.com.gy/flights*',
+    'http://*.google.com.hk/flights*',
+    'http://*.google.com.jm/flights*',
+    'http://*.google.com.kh/flights*',
+    'http://*.google.com.kw/flights*',
+    'http://*.google.com.lb/flights*',
+    'http://*.google.com.lc/flights*',
+    'http://*.google.com.ly/flights*',
+    'http://*.google.com.mm/flights*',
+    'http://*.google.com.mt/flights*',
+    'http://*.google.com.mx/flights*',
+    'http://*.google.com.my/flights*',
+    'http://*.google.com.na/flights*',
+    'http://*.google.com.nf/flights*',
+    'http://*.google.com.ng/flights*',
+    'http://*.google.com.ni/flights*',
+    'http://*.google.com.np/flights*',
+    'http://*.google.com.om/flights*',
+    'http://*.google.com.pa/flights*',
+    'http://*.google.com.pe/flights*',
+    'http://*.google.com.pg/flights*',
+    'http://*.google.com.ph/flights*',
+    'http://*.google.com.pk/flights*',
+    'http://*.google.com.pr/flights*',
+    'http://*.google.com.py/flights*',
+    'http://*.google.com.qa/flights*',
+    'http://*.google.com.sa/flights*',
+    'http://*.google.com.sb/flights*',
+    'http://*.google.com.sg/flights*',
+    'http://*.google.com.sl/flights*',
+    'http://*.google.com.sv/flights*',
+    'http://*.google.com.tj/flights*',
+    'http://*.google.com.tr/flights*',
+    'http://*.google.com.tw/flights*',
+    'http://*.google.com.ua/flights*',
+    'http://*.google.com.uy/flights*',
+    'http://*.google.com.vc/flights*',
+    'http://*.google.com.vn/flights*',
+    'http://*.google.cv/flights*',
+    'http://*.google.cx/flights*',
+    'http://*.google.cz/flights*',
+    'http://*.google.de/flights*',
+    'http://*.google.dj/flights*',
+    'http://*.google.dk/flights*',
+    'http://*.google.dm/flights*',
+    'http://*.google.dz/flights*',
+    'http://*.google.ee/flights*',
+    'http://*.google.es/flights*',
+    'http://*.google.eu/flights*',
+    'http://*.google.fi/flights*',
+    'http://*.google.fm/flights*',
+    'http://*.google.fr/flights*',
+    'http://*.google.ga/flights*',
+    'http://*.google.ge/flights*',
+    'http://*.google.gf/flights*',
+    'http://*.google.gg/flights*',
+    'http://*.google.gl/flights*',
+    'http://*.google.gm/flights*',
+    'http://*.google.gp/flights*',
+    'http://*.google.gr/flights*',
+    'http://*.google.gy/flights*',
+    'http://*.google.hn/flights*',
+    'http://*.google.hr/flights*',
+    'http://*.google.ht/flights*',
+    'http://*.google.hu/flights*',
+    'http://*.google.ie/flights*',
+    'http://*.google.im/flights*',
+    'http://*.google.io/flights*',
+    'http://*.google.iq/flights*',
+    'http://*.google.is/flights*',
+    'http://*.google.it/flights*',
+    'http://*.google.it.ao/flights*',
+    'http://*.google.je/flights*',
+    'http://*.google.jo/flights*',
+    'http://*.google.kg/flights*',
+    'http://*.google.kh/flights*',
+    'http://*.google.ki/flights*',
+    'http://*.google.kz/flights*',
+    'http://*.google.la/flights*',
+    'http://*.google.li/flights*',
+    'http://*.google.lk/flights*',
+    'http://*.google.lt/flights*',
+    'http://*.google.lu/flights*',
+    'http://*.google.lv/flights*',
+    'http://*.google.md/flights*',
+    'http://*.google.me/flights*',
+    'http://*.google.mg/flights*',
+    'http://*.google.mk/flights*',
+    'http://*.google.ml/flights*',
+    'http://*.google.mn/flights*',
+    'http://*.google.ms/flights*',
+    'http://*.google.mt/flights*',
+    'http://*.google.mu/flights*',
+    'http://*.google.mv/flights*',
+    'http://*.google.mw/flights*',
+    'http://*.google.ne/flights*',
+    'http://*.google.nf/flights*',
+    'http://*.google.nl/flights*',
+    'http://*.google.no/flights*',
+    'http://*.google.nr/flights*',
+    'http://*.google.nu/flights*',
+    'http://*.google.pl/flights*',
+    'http://*.google.pn/flights*',
+    'http://*.google.ps/flights*',
+    'http://*.google.pt/flights*',
+    'http://*.google.ro/flights*',
+    'http://*.google.rs/flights*',
+    'http://*.google.ru/flights*',
+    'http://*.google.rw/flights*',
+    'http://*.google.sc/flights*',
+    'http://*.google.se/flights*',
+    'http://*.google.sh/flights*',
+    'http://*.google.si/flights*',
+    'http://*.google.sk/flights*',
+    'http://*.google.sm/flights*',
+    'http://*.google.sn/flights*',
+    'http://*.google.so/flights*',
+    'http://*.google.sr/flights*',
+    'http://*.google.st/flights*',
+    'http://*.google.td/flights*',
+    'http://*.google.tg/flights*',
+    'http://*.google.tk/flights*',
+    'http://*.google.tl/flights*',
+    'http://*.google.tm/flights*',
+    'http://*.google.tn/flights*',
+    'http://*.google.to/flights*',
+    'http://*.google.tt/flights*',
+    'http://*.google.vg/flights*',
+    'http://*.google.vu/flights*',
+    'http://*.google.ws/flights*',
+    'https://*.google.ac/flights*',
+    'https://*.google.ad/flights*',
+    'https://*.google.ae/flights*',
+    'https://*.google.al/flights*',
+    'https://*.google.am/flights*',
+    'https://*.google.as/flights*',
+    'https://*.google.at/flights*',
+    'https://*.google.az/flights*',
+    'https://*.google.ba/flights*',
+    'https://*.google.be/flights*',
+    'https://*.google.bf/flights*',
+    'https://*.google.bg/flights*',
+    'https://*.google.bi/flights*',
+    'https://*.google.bj/flights*',
+    'https://*.google.bs/flights*',
+    'https://*.google.bt/flights*',
+    'https://*.google.by/flights*',
+    'https://*.google.ca/flights*',
+    'https://*.google.cat/flights*',
+    'https://*.google.cc/flights*',
+    'https://*.google.cd/flights*',
+    'https://*.google.cf/flights*',
+    'https://*.google.cg/flights*',
+    'https://*.google.ch/flights*',
+    'https://*.google.ci/flights*',
+    'https://*.google.cl/flights*',
+    'https://*.google.cm/flights*',
+    'https://*.google.cn/flights*',
+    'https://*.google.co.ao/flights*',
+    'https://*.google.co.bw/flights*',
+    'https://*.google.co.ck/flights*',
+    'https://*.google.co.cr/flights*',
+    'https://*.google.co.id/flights*',
+    'https://*.google.co.il/flights*',
+    'https://*.google.co.in/flights*',
+    'https://*.google.co.jp/flights*',
+    'https://*.google.co.ke/flights*',
+    'https://*.google.co.kr/flights*',
+    'https://*.google.co.ls/flights*',
+    'https://*.google.co.ma/flights*',
+    'https://*.google.co.mz/flights*',
+    'https://*.google.co.nz/flights*',
+    'https://*.google.co.th/flights*',
+    'https://*.google.co.tz/flights*',
+    'https://*.google.co.ug/flights*',
+    'https://*.google.co.uk/flights*',
+    'https://*.google.co.uz/flights*',
+    'https://*.google.co.ve/flights*',
+    'https://*.google.co.vi/flights*',
+    'https://*.google.co.za/flights*',
+    'https://*.google.co.zm/flights*',
+    'https://*.google.co.zw/flights*',
+    'https://*.google.com/flights*',
+    'https://*.google.com.af/flights*',
+    'https://*.google.com.ag/flights*',
+    'https://*.google.com.ai/flights*',
+    'https://*.google.com.ar/flights*',
+    'https://*.google.com.au/flights*',
+    'https://*.google.com.bd/flights*',
+    'https://*.google.com.bh/flights*',
+    'https://*.google.com.bn/flights*',
+    'https://*.google.com.bo/flights*',
+    'https://*.google.com.br/flights*',
+    'https://*.google.com.bz/flights*',
+    'https://*.google.com.co/flights*',
+    'https://*.google.com.cu/flights*',
+    'https://*.google.com.cy/flights*',
+    'https://*.google.com.do/flights*',
+    'https://*.google.com.ec/flights*',
+    'https://*.google.com.eg/flights*',
+    'https://*.google.com.et/flights*',
+    'https://*.google.com.fj/flights*',
+    'https://*.google.com.gh/flights*',
+    'https://*.google.com.gi/flights*',
+    'https://*.google.com.gt/flights*',
+    'https://*.google.com.gy/flights*',
+    'https://*.google.com.hk/flights*',
+    'https://*.google.com.jm/flights*',
+    'https://*.google.com.kh/flights*',
+    'https://*.google.com.kw/flights*',
+    'https://*.google.com.lb/flights*',
+    'https://*.google.com.lc/flights*',
+    'https://*.google.com.ly/flights*',
+    'https://*.google.com.mm/flights*',
+    'https://*.google.com.mt/flights*',
+    'https://*.google.com.mx/flights*',
+    'https://*.google.com.my/flights*',
+    'https://*.google.com.na/flights*',
+    'https://*.google.com.nf/flights*',
+    'https://*.google.com.ng/flights*',
+    'https://*.google.com.ni/flights*',
+    'https://*.google.com.np/flights*',
+    'https://*.google.com.om/flights*',
+    'https://*.google.com.pa/flights*',
+    'https://*.google.com.pe/flights*',
+    'https://*.google.com.pg/flights*',
+    'https://*.google.com.ph/flights*',
+    'https://*.google.com.pk/flights*',
+    'https://*.google.com.pr/flights*',
+    'https://*.google.com.py/flights*',
+    'https://*.google.com.qa/flights*',
+    'https://*.google.com.sa/flights*',
+    'https://*.google.com.sb/flights*',
+    'https://*.google.com.sg/flights*',
+    'https://*.google.com.sl/flights*',
+    'https://*.google.com.sv/flights*',
+    'https://*.google.com.tj/flights*',
+    'https://*.google.com.tr/flights*',
+    'https://*.google.com.tw/flights*',
+    'https://*.google.com.ua/flights*',
+    'https://*.google.com.uy/flights*',
+    'https://*.google.com.vc/flights*',
+    'https://*.google.com.vn/flights*',
+    'https://*.google.cv/flights*',
+    'https://*.google.cx/flights*',
+    'https://*.google.cz/flights*',
+    'https://*.google.de/flights*',
+    'https://*.google.dj/flights*',
+    'https://*.google.dk/flights*',
+    'https://*.google.dm/flights*',
+    'https://*.google.dz/flights*',
+    'https://*.google.ee/flights*',
+    'https://*.google.es/flights*',
+    'https://*.google.eu/flights*',
+    'https://*.google.fi/flights*',
+    'https://*.google.fm/flights*',
+    'https://*.google.fr/flights*',
+    'https://*.google.ga/flights*',
+    'https://*.google.ge/flights*',
+    'https://*.google.gf/flights*',
+    'https://*.google.gg/flights*',
+    'https://*.google.gl/flights*',
+    'https://*.google.gm/flights*',
+    'https://*.google.gp/flights*',
+    'https://*.google.gr/flights*',
+    'https://*.google.gy/flights*',
+    'https://*.google.hn/flights*',
+    'https://*.google.hr/flights*',
+    'https://*.google.ht/flights*',
+    'https://*.google.hu/flights*',
+    'https://*.google.ie/flights*',
+    'https://*.google.im/flights*',
+    'https://*.google.io/flights*',
+    'https://*.google.iq/flights*',
+    'https://*.google.is/flights*',
+    'https://*.google.it/flights*',
+    'https://*.google.it.ao/flights*',
+    'https://*.google.je/flights*',
+    'https://*.google.jo/flights*',
+    'https://*.google.kg/flights*',
+    'https://*.google.kh/flights*',
+    'https://*.google.ki/flights*',
+    'https://*.google.kz/flights*',
+    'https://*.google.la/flights*',
+    'https://*.google.li/flights*',
+    'https://*.google.lk/flights*',
+    'https://*.google.lt/flights*',
+    'https://*.google.lu/flights*',
+    'https://*.google.lv/flights*',
+    'https://*.google.md/flights*',
+    'https://*.google.me/flights*',
+    'https://*.google.mg/flights*',
+    'https://*.google.mk/flights*',
+    'https://*.google.ml/flights*',
+    'https://*.google.mn/flights*',
+    'https://*.google.ms/flights*',
+    'https://*.google.mt/flights*',
+    'https://*.google.mu/flights*',
+    'https://*.google.mv/flights*',
+    'https://*.google.mw/flights*',
+    'https://*.google.ne/flights*',
+    'https://*.google.nf/flights*',
+    'https://*.google.nl/flights*',
+    'https://*.google.no/flights*',
+    'https://*.google.nr/flights*',
+    'https://*.google.nu/flights*',
+    'https://*.google.pl/flights*',
+    'https://*.google.pn/flights*',
+    'https://*.google.ps/flights*',
+    'https://*.google.pt/flights*',
+    'https://*.google.ro/flights*',
+    'https://*.google.rs/flights*',
+    'https://*.google.ru/flights*',
+    'https://*.google.rw/flights*',
+    'https://*.google.sc/flights*',
+    'https://*.google.se/flights*',
+    'https://*.google.sh/flights*',
+    'https://*.google.si/flights*',
+    'https://*.google.sk/flights*',
+    'https://*.google.sm/flights*',
+    'https://*.google.sn/flights*',
+    'https://*.google.so/flights*',
+    'https://*.google.sr/flights*',
+    'https://*.google.st/flights*',
+    'https://*.google.td/flights*',
+    'https://*.google.tg/flights*',
+    'https://*.google.tk/flights*',
+    'https://*.google.tl/flights*',
+    'https://*.google.tm/flights*',
+    'https://*.google.tn/flights*',
+    'https://*.google.to/flights',
+    'https://*.google.tt/flights*',
+    'https://*.google.vg/flights*',
+    'https://*.google.vu/flights*',
+    'https://*.google.ws/flights*'
+];
+
+injector.hipmunk = [
+    "https://www.hipmunk.com/*"
+];
+
+injector.kayak = [
+    "https://www.ca.kayak.com/flights/*",
+    "https://www.kayak.es/flights/*",
+    "https://www.kayak.com/flights/*",
+    "https://www.kayak.co.in/flights/*",
+    "https://www.kayak.co.uk/flights/*",
+    "https://www.kayak.de/flights/*",
+    "https://www.kayak.co.au/flight*",
+    "https://www.kayak.ie/flights/*",
+    "https://www.kayak.co.jp/flights/*"
+];
+
+injector.makemytrip = [
+    "https://www.makemytrip.com/air/*"
+];
+
+injector.priceline = [
+    "https://www.skyscanner.co.in/transport/flights/*",
+    "https://www.skyscanner.com/transport/flights/*",
+    "https://www.skyscanner.net/transport/flights/*",
+    "https://www.skyscanner.com.au/transport/flights/*",
+    "https://www.skyscanner.co.id/transport/flights/*",
+    "https://www.espanol.skyscanner.com/transport/flights/*",
+    "https://www.skyscanner.ru/transport/flights/*",
+    "https://www.skyscanner.co.kr/transport/flights/*",
+    "https://www.skyscanner.jp/transport/flights/*",
+    "https://www.skyscanner.com.sg/transport/flights/*",
+    "https://www.skyscanner.co.th/transport/flights/*",
+    "https://www.skyscanner.com.vn/transport/flights/*",
+    "https://www.skyscanner.com.my/transport/flights/*",
+    "https://www.skyscanner.com.ph/transport/flights/*",
+    "https://www.skyscanner.com.tr/transport/flights/*",
+    "https://www.skyscanner.com.ph/transport/flights/*"
+];
+
+injector.skyscanner = [
+    "https://www.priceline.com/m/fly/*"
+];
+
+injector.travelocity = [
+    "https://www.travelocity.com/*"
+];
+
+injector.eurostar = [
+    "https://booking.eurostar.com/*/train-search/standard*"
+];
+
+injector.ouigo = [
+    "https://ventes.ouigo.com/Schedule/Select*"
+];
+
+injector.tgvlyria = [
+    "https://www.tgv-lyria.com/en/booking/timetables-and-fares/timetables*"
+];
+
+injector.voyages = [
+    "https://en.voyages-sncf.com/en/results*"
+];
+
 /**
  * matching patterns for all map services
  */
 
-injector.allMaps = injector.googleMaps;
+injector.allMaps = injector.bingMaps;
 
-injector.allMaps = injector.allMaps.concat(injector.openStreetMap,
-    injector.bingMaps,
+injector.allMaps = injector.allMaps.concat(injector.googleMaps,
     injector.hereMaps,
     injector.mapQuest,
-    injector.yandexMaps,
+    injector.openStreetMap,
+    injector.viaMichelinMaps,
     injector.wazeMaps,
-    injector.viaMichelinMaps);
+    injector.yandexMaps
+);
+
+injector.allFlights = [].concate(injector.cleartrip,
+    injector.expedia,
+    injector.googleFlights,
+    injector.hipmunk,
+    injector.kayak,
+    injector.makemytrip,
+    injector.priceline,
+    injector.skyscanner,
+    injector.travelocity
+);
+
+injector.allTrains = [].concat(injector.eurostar,
+    injector.ouigo,
+    injector.tgvlyria,
+    injector.voyages
+);
 
 /**
  * base URL of the extension in Safari
@@ -551,17 +1086,31 @@ injector.URL = safari.extension.baseURI;
  * doesn't work for some reason
  */
 
-injector.styleSheet = "var head  = document.getElementsByTagName('head')[0];" +
+injector.styleSheetMain = "var head  = document.getElementsByTagName('head')[0];" +
     "var link  = document.createElement('link');" +
     "link.rel  = 'stylesheet';" +
     "link.type = 'text/css';" +
     "link.href = safari.extension.baseURI + 'core/css/main.css';" +
     'head.appendChild(link);';
 
+injector.styleSheetFlight = "var head  = document.getElementsByTagName('head')[0];" +
+    "var link  = document.createElement('link');" +
+    "link.rel  = 'stylesheet';" +
+    "link.type = 'text/css';" +
+    "link.href = safari.extension.baseURI + 'core/css/flights.css';" +
+    'head.appendChild(link);';
+
 safari
     .extension
-    .addContentScript(injector.styleSheet, injector.allMaps, [], true);
+    .addContentScript(injector.styleSheetMain, injector.allMaps, [], true);
 
+safari
+    .extension
+    .addContentScript(injector.styleSheetFlight, injector.allFlights, [], true);
+
+safari.
+    extension.
+    addContentScript(injector.styleSheetMain, injector.allTrains, [],true);
 
 /**
  * links to scripts that are common to all map services
@@ -575,48 +1124,134 @@ injector.commonScripts = [
     injector.URL + 'core/helpers/SafariHelper.js'
 ];
 
-for (var i in injector.commonScripts) {
+/**
+ * links to scripts that are common to all flight services
+ */
+
+injector.commonScriptFlights = injector.commonScripts;
+injector.commonScriptFlights[2] = injector.URL + 'core/initFlights.js';
+injector.commonScriptFlights[3] = injector.URL + 'core/FlightstFootprintCore.js';
+
+/**
+ * links to scripts that are common to all train services
+ */
+
+injector.commonScriptTrains = injector.commonScripts;
+injector.commonScriptTrains[2] = injector.URL + 'core/initTrains.js';
+injector.commonScriptTrains[3] = injector.URL + 'core/TrainsFootprintCore.js';
+
+for (var i in injector.commonScripts){
     safari
         .extension
         .addContentScriptFromURL(injector.commonScripts[i],
-            injector.allMaps, [], true);
+                                 injector.allMaps, [], true);
+    safari.
+        extension.
+        addContentScriptFromURL(injector.commonScriptFlights[i],
+                                injector.allFlights, [], true);
+    safari.
+        extension.
+        addContentScriptFromURL(injector.commonScriptTrains[i],
+                                injector.allTrains, [], true);
 }
 
-safari
-    .extension
-    .addContentScriptFromURL(injector.URL + 'core/maps/GoogleMapsManager.js',
-        injector.googleMaps, [], true);
+/**
+ * links to manager script for different services
+ */
 
-safari
-    .extension
-    .addContentScriptFromURL(injector.URL + 'core/maps/OpenMapsManager.js',
-        injector.openStreetMap, [], true);
+injector.allMapManagers = [
+    injector.URL + 'core/maps/BingMapsManager.js',
+    injector.URL + 'core/maps/GoogleMapsManager.js',
+    injector.URL + 'core/maps/HereMapsManager.js',
+    injector.URL + 'core/maps/MapQuestMapsManager.js',
+    injector.URL + 'core/maps/OpenMapsManager.js',
+    injector.URL + 'core/maps/ViaMichelinMapsManager.js',
+    injector.URL + 'core/maps/WazeMapsManager.js',
+    injector.URL + 'core/maps/YandexMapsManager.js'
+];
 
-safari
-    .extension
-    .addContentScriptFromURL(injector.URL + 'core/maps/BingMapsManager.js',
-        injector.bingMaps, [], true);
+injector.allFlightManagers = [
+    injector.URL + 'core/flights/cleatrip.js',
+    injector.URL + 'core/flights/expedia.js',
+    injector.URL + 'core/flights/googleflights.js',
+    injector.URL + 'core/flights/hipmunk.js',
+    injector.URL + 'core/flights/kayak.js',
+    injector.URL + 'core/flights/makemytrip.js',
+    injector.URL + 'core/flights/priceline.js',
+    injector.URL + 'core/flights/skyscanner.js',
+    injector.URL + 'core/flights/travelocity.js'
+];
 
-safari
-    .extension
-    .addContentScriptFromURL(injector.URL + 'core/maps/HereMapsManager.js',
-        injector.hereMaps, [], true);
+injector.allTrainManagers = [
+    injector.URL + 'core/trains/eurostar.js',
+    injector.URL + 'core/trains/ouigo.js',
+    injector.URL + 'core/trains/tgv-lyria.js',
+    injector.URL + 'core/trains/voyages-sncf.js'
+];
 
-safari
-    .extension
-    .addContentScriptFromURL(injector.URL + 'core/maps/MapQuestMapsManager.js',
-        injector.mapQuest, [], true);
+/**
+ * Matching URLs for different services
+ */
 
-safari
-    .extension
-    .addContentScriptFromURL(injector.URL + 'core/maps/YandexMapsManager.js',
-        injector.yandexMaps, [], true);
+injector.allMapURLs = [
+    injector.bingMaps,
+    injector.googleMaps,
+    injector.hereMaps,
+    injector.mapQuest,
+    injector.openStreetMap,
+    injector.viaMichelinMaps,
+    injector.wazeMaps,
+    injector.yandexMaps
+];
 
-safari
-    .extension
-    .addContentScriptFromURL(injector.URL + 'core/maps/WazeMapsManager.js',
-        injector.wazeMaps, [], true);
-safari
-    .extension
-    .addContentScriptFromURL(injector.URL + 'core/maps/ViaMichelinMapsManager.js',
-        injector.viaMichelinMaps, [], true);
+injector.allFlightURLs = [
+    injector.cleartrip,
+    injector.expedia,
+    injector.googleFlights,
+    injector.hipmunk,
+    injector.kayak,
+    injector.makemytrip,
+    injector.priceline,
+    injector.skyscanner,
+    injector.travelocity
+];
+
+injector.allTrainURLs = [
+    injector.eurostar,
+    injector.ouigo,
+    injector.tgvlyria,
+    injector.voyages
+];
+
+/**
+ * links safari to different map services
+ */
+
+for( i in injector.allMapURLs){
+    safari.
+        extension.
+        addContentScriptFromURL(injector.allMapManagers[i],
+                                 injector.allMapURLs[i], [], true);
+}
+
+/**
+ * links safari to different flight services
+ */
+
+for( i in injector.allFlightURLs){
+    safari.
+        extension.
+        addContentScriptFromURL(injector.allFlightManagers[i],
+                                injector.allFlightURLs[i], [], true);
+}
+
+/**
+ * links safari to different train services
+ */
+
+for( i in injector.allTrainURLs){
+    safari.
+        extension.
+        addContentScriptFromURL(injector.allTrainManagers[i],
+                                injector.allTrainURLs[i], [], true);
+}
