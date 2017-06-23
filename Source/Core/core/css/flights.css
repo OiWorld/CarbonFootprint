@@ -20,5 +20,8 @@ span.carbon{
 
 a#carbon{
     color:#212121 !important;
-    text-decoration:none;
+    text-decoration:none !important;
+}
+a#carbon:hover{
+    text-decoration:none !important;
 }
