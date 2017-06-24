@@ -2,8 +2,8 @@ var BasicValidator = function() {
 };
 
 BasicValidator.prototype.counterMeasure = function(msg){
-  console.log("Something is wrong");
-  console.log(msg);
+  console.error("Something is wrong");
+  console.error(msg);
   this.server.error(this.website, msg);
   this.showNotification();
   this.throwError();
@@ -36,6 +36,17 @@ BasicValidator.prototype.getById = function(i, element = document){
   }
   else{
     this.counterMeasure("cant get id " + i);
+  }
+};
+
+BasicValidator.prototype.getByTag = function(t, element = document){
+  var toGet = element.getElementsByTagName(t);
+  if(toGet.length){
+    console.log("got tag " + t);
+    return toGet;
+  }
+  else{
+    this.counterMeasure("cant get tag " + t);
   }
 };
 
