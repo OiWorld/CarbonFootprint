@@ -34,7 +34,7 @@ FlightsValidator.prototype.verifyAirplanes = function(list){
   else{
     for(var x = 0, i = list.length; x < i; x++){
       if(typeof list[x] !== 'string' || list[x].length > 15){ //15 is an experimental value right now
-        this.counterMeasure();
+        this.counterMeasure("invalid airplane");
       }
       else{
         console.log("valid airplane");

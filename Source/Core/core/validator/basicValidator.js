@@ -20,6 +20,7 @@ BasicValidator.prototype.throwError = function(){
 BasicValidator.prototype.getByClass = function(c, element = document){
   var toGet = element.getElementsByClassName(c);
   if(toGet.length){
+    console.log("got class " + c);
     return toGet;
   }
   else{
@@ -30,10 +31,11 @@ BasicValidator.prototype.getByClass = function(c, element = document){
 BasicValidator.prototype.getById = function(i, element = document){
   var toGet = element.getElementById(i);
   if(toGet){
+    console.log("got id " + i);
     return toGet;
   }
   else{
-    this.counterMeasure();
+    this.counterMeasure("cant get id " + i);
   }
 };
 
