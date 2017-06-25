@@ -72,3 +72,9 @@ BasicValidator.prototype.isString = function(s){
     this.counterMeasure("not a string");
   }
 };
+
+BasicValidator.prototype.isNumber = function(i){
+  if(typeof i !== 'number'){
+    this.counterMeasure("not a number");
+  }
+};
