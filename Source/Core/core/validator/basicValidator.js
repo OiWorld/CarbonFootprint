@@ -66,3 +66,9 @@ BasicValidator.prototype.getChildNode = function(children, element = document){
     this.counterMeasure("invalid childNodes");
   }
 };
+
+BasicValidator.prototype.isString = function(s){
+  if(typeof s !== 'string' || s.length === 0){
+    this.counterMeasure("not a string");
+  }
+};
