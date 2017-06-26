@@ -526,44 +526,44 @@ injector.viaMichelinMaps = [
 ];
 
 injector.cleartrip = [
-     "https://www.cleartrip.com/flights/*"
+     'https://www.cleartrip.com/flights/*'
 ];
 
 injector.expedia = [
-    "https://www.expedia.com/*",
-    "https://www.expedia.ca/*",
-    "https://www.expedia.co.in/*",
-    "https://www.expedia.com.ar/*",
-    "https://www.expedia.at/*",
-    "https://www.expedia.com.au/*",
-    "https://www.expedia.be/*",
-    "https://www.expedia.com.br/*",
-    "https://www.expedia.ch/*",
-    "https://www.expedia.dk/*",
-    "https://www.expedia.fi/*",
-    "https://www.expedia.fr/*",
-    "https://www.expedia.de/*",
-    "https://www.expedia.com.hk/*",
-    "https://www.expedia.co.id/*",
-    "https://www.expedia.ie/*",
-    "https://www.expedia.it/*",
-    "https://www.expedia.co.jp/*",
-    "https://www.expedia.co.kr/*",
-    "https://www.expedia.com.my/*",
-    "https://www.expedia.mx/*",
-    "https://www.expedia.nl/*",
-    "https://www.expedia.co.nz/*",
-    "https://www.expedia.no/*",
-    "https://www.expedia.com.ph/*",
-    "https://www.expedia.com.sg/*",
-    "https://www.expedia.es/*",
-    "https://www.expedia.se/*",
-    "https://www.expedia.com.tw/*",
-    "https://www.expedia.co.th/*",
-    "https://www.expedia.co.uk/*",
-    "https://www.expedia.com/*",
-    "https://www.expedia.com.vn/*",
-    "https://www.expedia.cn/*"
+    'https://www.expedia.com/*',
+    'https://www.expedia.ca/*',
+    'https://www.expedia.co.in/*',
+    'https://www.expedia.com.ar/*',
+    'https://www.expedia.at/*',
+    'https://www.expedia.com.au/*',
+    'https://www.expedia.be/*',
+    'https://www.expedia.com.br/*',
+    'https://www.expedia.ch/*',
+    'https://www.expedia.dk/*',
+    'https://www.expedia.fi/*',
+    'https://www.expedia.fr/*',
+    'https://www.expedia.de/*',
+    'https://www.expedia.com.hk/*',
+    'https://www.expedia.co.id/*',
+    'https://www.expedia.ie/*',
+    'https://www.expedia.it/*',
+    'https://www.expedia.co.jp/*',
+    'https://www.expedia.co.kr/*',
+    'https://www.expedia.com.my/*',
+    'https://www.expedia.mx/*',
+    'https://www.expedia.nl/*',
+    'https://www.expedia.co.nz/*',
+    'https://www.expedia.no/*',
+    'https://www.expedia.com.ph/*',
+    'https://www.expedia.com.sg/*',
+    'https://www.expedia.es/*',
+    'https://www.expedia.se/*',
+    'https://www.expedia.com.tw/*',
+    'https://www.expedia.co.th/*',
+    'https://www.expedia.co.uk/*',
+    'https://www.expedia.com/*',
+    'https://www.expedia.com.vn/*',
+    'https://www.expedia.cn/*'
 ];
 
 injector.googleFlights = [
@@ -980,66 +980,66 @@ injector.googleFlights = [
 ];
 
 injector.hipmunk = [
-    "https://www.hipmunk.com/*"
+    'https://www.hipmunk.com/*'
 ];
 
 injector.kayak = [
-    "https://www.ca.kayak.com/flights/*",
-    "https://www.kayak.es/flights/*",
-    "https://www.kayak.com/flights/*",
-    "https://www.kayak.co.in/flights/*",
-    "https://www.kayak.co.uk/flights/*",
-    "https://www.kayak.de/flights/*",
-    "https://www.kayak.co.au/flight*",
-    "https://www.kayak.ie/flights/*",
-    "https://www.kayak.co.jp/flights/*"
+    'https://www.ca.kayak.com/flights/*',
+    'https://www.kayak.es/flights/*',
+    'https://www.kayak.com/flights/*',
+    'https://www.kayak.co.in/flights/*',
+    'https://www.kayak.co.uk/flights/*',
+    'https://www.kayak.de/flights/*',
+    'https://www.kayak.co.au/flight*',
+    'https://www.kayak.ie/flights/*',
+    'https://www.kayak.co.jp/flights/*'
 ];
 
 injector.makemytrip = [
-    "https://www.makemytrip.com/air/*"
+    'https://www.makemytrip.com/air/*'
 ];
 
 injector.priceline = [
-    "https://www.skyscanner.co.in/transport/flights/*",
-    "https://www.skyscanner.com/transport/flights/*",
-    "https://www.skyscanner.net/transport/flights/*",
-    "https://www.skyscanner.com.au/transport/flights/*",
-    "https://www.skyscanner.co.id/transport/flights/*",
-    "https://www.espanol.skyscanner.com/transport/flights/*",
-    "https://www.skyscanner.ru/transport/flights/*",
-    "https://www.skyscanner.co.kr/transport/flights/*",
-    "https://www.skyscanner.jp/transport/flights/*",
-    "https://www.skyscanner.com.sg/transport/flights/*",
-    "https://www.skyscanner.co.th/transport/flights/*",
-    "https://www.skyscanner.com.vn/transport/flights/*",
-    "https://www.skyscanner.com.my/transport/flights/*",
-    "https://www.skyscanner.com.ph/transport/flights/*",
-    "https://www.skyscanner.com.tr/transport/flights/*",
-    "https://www.skyscanner.com.ph/transport/flights/*"
+    'https://www.skyscanner.co.in/transport/flights/*',
+    'https://www.skyscanner.com/transport/flights/*',
+    'https://www.skyscanner.net/transport/flights/*',
+    'https://www.skyscanner.com.au/transport/flights/*',
+    'https://www.skyscanner.co.id/transport/flights/*',
+    'https://www.espanol.skyscanner.com/transport/flights/*',
+    'https://www.skyscanner.ru/transport/flights/*',
+    'https://www.skyscanner.co.kr/transport/flights/*',
+    'https://www.skyscanner.jp/transport/flights/*',
+    'https://www.skyscanner.com.sg/transport/flights/*',
+    'https://www.skyscanner.co.th/transport/flights/*',
+    'https://www.skyscanner.com.vn/transport/flights/*',
+    'https://www.skyscanner.com.my/transport/flights/*',
+    'https://www.skyscanner.com.ph/transport/flights/*',
+    'https://www.skyscanner.com.tr/transport/flights/*',
+    'https://www.skyscanner.com.ph/transport/flights/*'
 ];
 
 injector.skyscanner = [
-    "https://www.priceline.com/m/fly/*"
+    'https://www.priceline.com/m/fly/*'
 ];
 
 injector.travelocity = [
-    "https://www.travelocity.com/*"
+    'https://www.travelocity.com/*'
 ];
 
 injector.eurostar = [
-    "https://booking.eurostar.com/*/train-search/standard*"
+    'https://booking.eurostar.com/*/train-search/standard*'
 ];
 
 injector.ouigo = [
-    "https://ventes.ouigo.com/Schedule/Select*"
+    'https://ventes.ouigo.com/Schedule/Select*'
 ];
 
 injector.tgvlyria = [
-    "https://www.tgv-lyria.com/en/booking/timetables-and-fares/timetables*"
+    'https://www.tgv-lyria.com/en/booking/timetables-and-fares/timetables*'
 ];
 
 injector.voyages = [
-    "https://en.voyages-sncf.com/en/results*"
+    'https://en.voyages-sncf.com/en/results*'
 ];
 
 /**
@@ -1086,18 +1086,18 @@ injector.URL = safari.extension.baseURI;
  * doesn't work for some reason
  */
 
-injector.styleSheetMain = "var head  = document.getElementsByTagName('head')[0];" +
-    "var link  = document.createElement('link');" +
-    "link.rel  = 'stylesheet';" +
-    "link.type = 'text/css';" +
-    "link.href = safari.extension.baseURI + 'core/css/main.css';" +
+injector.styleSheetMain = 'var head  = document.getElementsByTagName(\'head\')[0];' +
+    'var link  = document.createElement(\'link\');' +
+    'link.rel  = \'stylesheet\';' +
+    'link.type = \'text/css\';' +
+    'link.href = safari.extension.baseURI + \'core/css/main.css\';' +
     'head.appendChild(link);';
 
-injector.styleSheetFlight = "var head  = document.getElementsByTagName('head')[0];" +
-    "var link  = document.createElement('link');" +
-    "link.rel  = 'stylesheet';" +
-    "link.type = 'text/css';" +
-    "link.href = safari.extension.baseURI + 'core/css/flights.css';" +
+injector.styleSheetFlight = 'var head  = document.getElementsByTagName(\'head\')[0];' +
+    'var link  = document.createElement(\'link\');' +
+    'link.rel  = \'stylesheet\';' +
+    'link.type = \'text/css\';' +
+    'link.href = safari.extension.baseURI + \'core/css/flights.css\';' +
     'head.appendChild(link);';
 
 safari
@@ -1129,15 +1129,15 @@ injector.commonScripts = [
  */
 
 injector.commonScriptFlights = injector.commonScripts;
-injector.commonScriptFlights[2] = injector.URL + 'core/initFlights.js';
-injector.commonScriptFlights[3] = injector.URL + 'core/FlightstFootprintCore.js';
+injector.commonScriptFlights[2] = injector.URL + 'core/initFlight.js';
+injector.commonScriptFlights[3] = injector.URL + 'core/FlightsFootprintCore.js';
 
 /**
  * links to scripts that are common to all train services
  */
 
 injector.commonScriptTrains = injector.commonScripts;
-injector.commonScriptTrains[2] = injector.URL + 'core/initTrains.js';
+injector.commonScriptTrains[2] = injector.URL + 'core/initTrain.js';
 injector.commonScriptTrains[3] = injector.URL + 'core/TrainsFootprintCore.js';
 
 for (var i in injector.commonScripts){
