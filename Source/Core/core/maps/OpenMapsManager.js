@@ -16,6 +16,7 @@ var OpenMapsManager = function(footprintCore, settingsProvider) {
   this.footprintCore = footprintCore;
   this.settingsProvider = settingsProvider;
   this.subtree = true;
+  this.validator = new MapsValidator("openmaps");
   this.update();
 };
 
@@ -41,6 +42,7 @@ OpenMapsManager.prototype.getDistanceString = function() {
   var distanceString,
       routingSummary = document.getElementById('routing_summary');
   if (routingSummary) {
+    this.validator.isString(routingSummary.innerHTML);
     distanceString = routingSummary.innerHTML.split(':')[1].split(' ')[1];
     distanceString = distanceString.substring(0, distanceString.length - 1);
   }
@@ -71,9 +73,7 @@ OpenMapsManager.prototype.convertDistance = function(distanceStr) {
 
 OpenMapsManager.prototype.insertFootprintElement = function(e) {
   if (document.getElementsByClassName('carbon').length === 0) {
-    if (document.getElementById('routing_summary')) {
-      document.getElementById('routing_summary').appendChild(e);
-    }
+    document.getElementById('routing_summary').appendChild(e);
   }
 };
 
@@ -85,9 +85,7 @@ OpenMapsManager.prototype.insertFootprintElement = function(e) {
 OpenMapsManager.prototype.insertTravelCostElement = function(e) {
   //A check to ensure that the display travel cost checkbox is checked
   if (document.getElementsByClassName('travelCost').length === 0) {
-    if (document.getElementById('routing_summary')) {
-      document.getElementById('routing_summary').appendChild(e);
-    }
+    document.getElementById('routing_summary').appendChild(e);
   }
 };
 
@@ -96,9 +94,11 @@ OpenMapsManager.prototype.insertTravelCostElement = function(e) {
  */
 
 OpenMapsManager.prototype.update = function() {
-  if (this.isDriving()) {
+  if (this.isDriving() &&
+      document.getElementById('routing_summary')) {
     var distanceString = this.getDistanceString();
     var distanceInKm = this.convertDistance(distanceString);
+    this.validator.isNumber(distanceInKm);
     this.insertFootprintElement(
       this.footprintCore.createFootprintElement(distanceInKm)
     );
