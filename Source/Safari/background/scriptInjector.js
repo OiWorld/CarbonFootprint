@@ -1112,60 +1112,6 @@ safari.
     extension.
     addContentScript(injector.styleSheetMain, injector.allTrains, [],true);
 
-/**
- * links to scripts that are common to all services
- */
-
-injector.commonScripts = [
-    injector.URL + 'core/SettingsProviderCore.js',
-    injector.URL + 'core/settings/SafariSettingsProvider.js',
-    injector.URL + 'core/helpers/SafariHelper.js'
-];
-
-/**
- * links to scripts that are common to all map services
- */
-
-injector.commonScriptMaps = injector.commonScripts;
-injector.commonScriptMaps.concat([
-    injector.URL + 'core/init.js',
-    injector.URL + 'core/CarbonFootprintCore.js'
-]);
-
-/**
- * links to scripts that are common to all flight services
- */
-
-injector.commonScriptFlights = injector.commonScripts;
-injector.commonScriptFlights.concat([
-    injector.URL + 'core/initFlight.js',
-    injector.URL + 'core/FlightsFootprintCore.js'
-]);
-
-/**
- * links to scripts that are common to all train services
- */
-
-injector.commonScriptTrains = injector.commonScripts;
-injector.commonScriptTrains.concat([
-    injector.URL + 'core/initTrain.js',
-    injector.URL + 'core/TrainsFootprintCore.js'
-]);
-
-for (var i in injector.commonScripts){
-    safari
-        .extension
-        .addContentScriptFromURL(injector.commonScriptMaps[i],
-                                 injector.allMaps, [], true);
-    safari.
-        extension.
-        addContentScriptFromURL(injector.commonScriptFlights[i],
-                                injector.allFlights, [], true);
-    safari.
-        extension.
-        addContentScriptFromURL(injector.commonScriptTrains[i],
-                                injector.allTrains, [], true);
-}
 
 /**
  * links to manager script for different services
@@ -1266,4 +1212,56 @@ for( i in injector.allTrainURLs){
         extension.
         addContentScriptFromURL(injector.allTrainManagers[i],
                                 injector.allTrainURLs[i], [], true);
+}
+
+/**
+ * links to scripts that are common to all services
+ */
+
+injector.commonScripts = [
+    injector.URL + 'core/SettingsProviderCore.js',
+    injector.URL + 'core/settings/SafariSettingsProvider.js',
+    injector.URL + 'core/helpers/SafariHelper.js'
+];
+
+/**
+ * links to scripts that are common to all map services
+ */
+
+injector.commonScriptMaps = injector.commonScripts.concat([
+    injector.URL + 'core/init.js',
+    injector.URL + 'core/CarbonFootprintCore.js'
+]);
+
+/**
+ * links to scripts that are common to all flight services
+ */
+
+injector.commonScriptFlights = injector.commonScripts.concat([
+    injector.URL + 'core/initFlight.js',
+    injector.URL + 'core/FlightsFootprintCore.js'
+]);
+
+/**
+ * links to scripts that are common to all train services
+ */
+
+injector.commonScriptTrains = injector.commonScripts.concat([
+    injector.URL + 'core/initTrain.js',
+    injector.URL + 'core/TrainsFootprintCore.js'
+]);
+
+for (var i in injector.commonScriptMaps){
+    safari
+        .extension
+        .addContentScriptFromURL(injector.commonScriptMaps[i],
+                                 injector.allMaps, [], true);
+    safari.
+        extension.
+        addContentScriptFromURL(injector.commonScriptFlights[i],
+                                injector.allFlights, [], true);
+    safari.
+        extension.
+        addContentScriptFromURL(injector.commonScriptTrains[i],
+                                injector.allTrains, [], true);
 }
