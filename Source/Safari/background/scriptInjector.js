@@ -1057,7 +1057,7 @@ injector.allMaps = injector.allMaps.concat(injector.googleMaps,
     injector.yandexMaps
 );
 
-injector.allFlights = [].concate(injector.cleartrip,
+injector.allFlights = [].concat(injector.cleartrip,
     injector.expedia,
     injector.googleFlights,
     injector.hipmunk,
@@ -1113,37 +1113,49 @@ safari.
     addContentScript(injector.styleSheetMain, injector.allTrains, [],true);
 
 /**
- * links to scripts that are common to all map services
+ * links to scripts that are common to all services
  */
 
 injector.commonScripts = [
     injector.URL + 'core/SettingsProviderCore.js',
     injector.URL + 'core/settings/SafariSettingsProvider.js',
-    injector.URL + 'core/init.js',
-    injector.URL + 'core/CarbonFootprintCore.js',
     injector.URL + 'core/helpers/SafariHelper.js'
 ];
+
+/**
+ * links to scripts that are common to all map services
+ */
+
+injector.commonScriptMaps = injector.commonScripts;
+injector.commonScriptMaps.concat([
+    injector.URL + 'core/init.js',
+    injector.URL + 'core/CarbonFootprintCore.js'
+]);
 
 /**
  * links to scripts that are common to all flight services
  */
 
 injector.commonScriptFlights = injector.commonScripts;
-injector.commonScriptFlights[2] = injector.URL + 'core/initFlight.js';
-injector.commonScriptFlights[3] = injector.URL + 'core/FlightsFootprintCore.js';
+injector.commonScriptFlights.concat([
+    injector.URL + 'core/initFlight.js',
+    injector.URL + 'core/FlightsFootprintCore.js'
+]);
 
 /**
  * links to scripts that are common to all train services
  */
 
 injector.commonScriptTrains = injector.commonScripts;
-injector.commonScriptTrains[2] = injector.URL + 'core/initTrain.js';
-injector.commonScriptTrains[3] = injector.URL + 'core/TrainsFootprintCore.js';
+injector.commonScriptTrains.concat([
+    injector.URL + 'core/initTrain.js',
+    injector.URL + 'core/TrainsFootprintCore.js'
+]);
 
 for (var i in injector.commonScripts){
     safari
         .extension
-        .addContentScriptFromURL(injector.commonScripts[i],
+        .addContentScriptFromURL(injector.commonScriptMaps[i],
                                  injector.allMaps, [], true);
     safari.
         extension.
