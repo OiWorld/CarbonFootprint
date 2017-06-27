@@ -1046,32 +1046,45 @@ injector.voyages = [
  * matching patterns for all map services
  */
 
-injector.allMaps = injector.bingMaps;
+injector.allMaps = [];
 
-injector.allMaps = injector.allMaps.concat(injector.googleMaps,
-    injector.hereMaps,
-    injector.mapQuest,
-    injector.openStreetMap,
-    injector.viaMichelinMaps,
-    injector.wazeMaps,
-    injector.yandexMaps
+injector.allMaps = injector.allMaps.concat(injector.bingMaps,
+                                           injector.googleMaps,
+                                           injector.hereMaps,
+                                           injector.mapQuest,
+                                           injector.openStreetMap,
+                                           injector.viaMichelinMaps,
+                                           injector.wazeMaps,
+                                           injector.yandexMaps
 );
 
-injector.allFlights = [].concat(injector.cleartrip,
-    injector.expedia,
-    injector.googleFlights,
-    injector.hipmunk,
-    injector.kayak,
-    injector.makemytrip,
-    injector.priceline,
-    injector.skyscanner,
-    injector.travelocity
+/**
+ * matching patterns for all flight services
+ */
+
+injector.allFlights = [];
+
+injector.allFlights = injector.allFlights.concat(injector.cleartrip,
+                                                 injector.expedia,
+                                                 injector.googleFlights,
+                                                 injector.hipmunk,
+                                                 injector.kayak,
+                                                 injector.makemytrip,
+                                                 injector.priceline,
+                                                 injector.skyscanner,
+                                                 injector.travelocity
 );
 
-injector.allTrains = [].concat(injector.eurostar,
-    injector.ouigo,
-    injector.tgvlyria,
-    injector.voyages
+/**
+ * matching patterns for all train services
+ */
+
+injector.allTrains = [];
+
+injector.allTrains = injector.allTrains.concat(injector.eurostar,
+                                               injector.ouigo,
+                                               injector.tgvlyria,
+                                               injector.voyages
 );
 
 /**
