@@ -1191,33 +1191,33 @@ injector.allTrainURLs = [
  * links safari to different map services
  */
 
-for( i in injector.allMapURLs){
+for(injector.i in injector.allMapURLs){
     safari.
         extension.
-        addContentScriptFromURL(injector.allMapManagers[i],
-                                 injector.allMapURLs[i], [], true);
+        addContentScriptFromURL(injector.allMapManagers[injector.i],
+                                 injector.allMapURLs[injector.i], [], true);
 }
 
 /**
  * links safari to different flight services
  */
 
-for( i in injector.allFlightURLs){
+for(injector.i in injector.allFlightURLs){
     safari.
         extension.
-        addContentScriptFromURL(injector.allFlightManagers[i],
-                                injector.allFlightURLs[i], [], true);
+        addContentScriptFromURL(injector.allFlightManagers[injector.i],
+                                injector.allFlightURLs[injector.i], [], true);
 }
 
 /**
  * links safari to different train services
  */
 
-for( i in injector.allTrainURLs){
+for(injector.i in injector.allTrainURLs){
     safari.
         extension.
-        addContentScriptFromURL(injector.allTrainManagers[i],
-                                injector.allTrainURLs[i], [], true);
+        addContentScriptFromURL(injector.allTrainManagers[injector.i],
+                                injector.allTrainURLs[injector.i], [], true);
 }
 
 /**
@@ -1257,17 +1257,23 @@ injector.commonScriptTrains = injector.commonScripts.concat([
     injector.URL + 'core/TrainsFootprintCore.js'
 ]);
 
-for (var i in injector.commonScriptMaps){
-    safari
-        .extension
-        .addContentScriptFromURL(injector.commonScriptMaps[i],
-                                 injector.allMaps, [], true);
-    safari.
-        extension.
-        addContentScriptFromURL(injector.commonScriptFlights[i],
-                                injector.allFlights, [], true);
-    safari.
-        extension.
-        addContentScriptFromURL(injector.commonScriptTrains[i],
-                                injector.allTrains, [], true);
+for(injector.i in injector.commonScriptsMaps){
+  safari
+    .extension
+    .addContentScriptFromURL(injector.commonScriptsMaps[injector.i],
+                             injector.allMaps, [], true);
+}
+
+for(injector.i in injector.commonScriptsFlights){
+  safari
+    .extension
+    .addContentScriptFromURL(injector.commonScriptsFlights[injector.i],
+                            injector.allFlights, [], true);
+}
+
+for(injector.i in injector.commonScriptsTrains){
+  safari
+    .extension
+    .addContentScriptFromURL(injector.commonScriptsTrains[injector.i],
+                            injector.allTrains, [], true);
 }
