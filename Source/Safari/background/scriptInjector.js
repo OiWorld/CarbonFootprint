@@ -1081,17 +1081,18 @@ injector.allTrains = [].concat(injector.eurostar,
 injector.URL = safari.extension.baseURI;
 
 /**
- * script in Vanilla JS to load Stylesheet (main.css)
- * Note: native addContentStyleSheetFromURL method
- * doesn't work for some reason
- */
+ * legacy method: script in Vanilla JS to load Stylesheet (main.css)
 
 injector.styleSheetMain = 'var head  = document.getElementsByTagName(\'head\')[0];' +
     'var link  = document.createElement(\'link\');' +
     'link.rel  = \'stylesheet\';' +
     'link.type = \'text/css\';' +
     'link.href = safari.extension.baseURI + \'core/css/main.css\';' +
-    'head.appendChild(link);';
+  'head.appendChild(link);';
+
+safari
+  .extension
+  .addContentScript(injector.styleSheetMain, injector.allMaps, [], true);
 
 injector.styleSheetFlight = 'var head  = document.getElementsByTagName(\'head\')[0];' +
     'var link  = document.createElement(\'link\');' +
@@ -1101,17 +1102,22 @@ injector.styleSheetFlight = 'var head  = document.getElementsByTagName(\'head\')
     'head.appendChild(link);';
 
 safari
-    .extension
-    .addContentScript(injector.styleSheetMain, injector.allMaps, [], true);
+  .extension
+  .addContentScript(injector.styleSheetFlight, injector.allFlights, [], true);*/
+
+injector.styleSheetMain = injector.URL + 'core/css/main.css';
 
 safari
-    .extension
-    .addContentScript(injector.styleSheetFlight, injector.allFlights, [], true);
+  .extension
+  .addContentStyleSheetFromURL(injector.styleSheetMain,
+                               injector.allMaps, [], true);
 
-safari.
-    extension.
-    addContentScript(injector.styleSheetMain, injector.allTrains, [],true);
+injector.styleSheetFlight = injector.URL + 'core/css/flights.css';
 
+safari
+  .extension
+  .addContentStyleSheetFromURL(injector.styleSheetFlight,
+                               injector.allMaps, [], true);
 
 /**
  * links to manager script for different services
