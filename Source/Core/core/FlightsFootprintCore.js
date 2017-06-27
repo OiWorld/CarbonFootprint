@@ -1,5 +1,5 @@
 var FlightsFootprintCore = function(){
-  dataHelper = new DataHelper();
+  dataHelper = new FlightDataHelper();
   dataHelper.getData("core/resources/airplanes.json", function(data){
     core.airplanesData = data;
     console.log(data);

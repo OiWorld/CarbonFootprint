@@ -1,8 +1,8 @@
-var ChromeFlightDataHelper = function(){
+var FlightDataHelper = function(){
 
 };
 
-ChromeFlightDataHelper.prototype.getData = function(link, cb){
+FlightDataHelper.prototype.getData = function(link, cb){
   var req = new XMLHttpRequest();
   var data;
   req.open('GET', Helper.getFilePath(link));
@@ -16,5 +16,3 @@ ChromeFlightDataHelper.prototype.getData = function(link, cb){
   req.send();
   return data;
 };
-
-var DataHelper = ChromeFlightDataHelper;
