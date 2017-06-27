@@ -84,7 +84,7 @@ tripAdvisorManager.prototype.getEmission = function(processedList){
 };
 
 tripAdvisorManager.prototype.insertInDom = function(processedList){
-  insertIn = document.getElementsByClassName("outerItineraryWrapper");
+  insertIn = document.getElementsByClassName("mainFlightInfo");
   if(processedList.length == insertIn.length){
     for(var x = 0, i = insertIn.length; x < i; x++){
       if(insertIn[x].getElementsByClassName("carbon").length === 0){
@@ -112,13 +112,4 @@ tripAdvisorManager.prototype.insertInDom = function(processedList){
   }
 };
 
-tripAdvisorManager.prototype.update = function(){
-  var processedList = this.getList();
-  if(core.airplanesData && core.airportsData){
-    processedList = this.getCoordinates(processedList);
-    processedList = this.getDistances(processedList);
-    processedList = this.getEmission(processedList);
-    this.insertInDom(processedList);
-  }
-};
 var FlightManager = tripAdvisorManager;

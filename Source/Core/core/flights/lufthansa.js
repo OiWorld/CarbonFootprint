@@ -76,24 +76,21 @@ lufthansaManager.prototype.getEmission = function(processedList){
   return processedList;
 };
 
+lufthansaManager.prototype.style = function(e){
+  var td = document.createElement("td");
+  //e.style.top = "50%";
+  td.appendChild(e);
+  return td;
+};
+
 lufthansaManager.prototype.insertInDom = function(processedList){
   insertIn = document.getElementsByClassName("flight wdk-line");
   for(var x = 0, i = insertIn.length; x < i; x++){
-    var insert = insertIn[x].getElementsByClassName("description")[0];
-    if(insert.getElementsByClassName("carbon").length === 0){
-         insert.appendChild(core.createMark(processedList[x].co2Emission));
+    //var insert = insertIn[x].getElementsByClassName("carrier")[0];
+    if(insertIn[x].getElementsByClassName("carbon").length === 0){
+         insertIn[x].appendChild(this.style(core.createMark(processedList[x].co2Emission)));
     }
-    //console.log(insertIn[x].childNodes[1].childNodes[1]);
   }
 };
 
-lufthansaManager.prototype.update = function(){
-  var processedList = this.getList();
-  if(core.airplanesData && core.airportsData){
-    processedList = this.getCoordinates(processedList);
-    processedList = this.getDistances(processedList);
-    processedList = this.getEmission(processedList);
-    this.insertInDom(processedList);
-  }
-};
 var FlightManager = lufthansaManager;

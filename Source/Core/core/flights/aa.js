@@ -98,13 +98,4 @@ aaManager.prototype.insertInDom = function(processedList){
   }
 };
 
-aaManager.prototype.update = function(){
-  var processedList = this.getList();
-  if(core.airplanesData && core.airportsData){
-    processedList = this.getCoordinates(processedList);
-    processedList = this.getDistances(processedList);
-    processedList = this.getEmission(processedList);
-    this.insertInDom(processedList);
-  }
-};
 var FlightManager = aaManager;

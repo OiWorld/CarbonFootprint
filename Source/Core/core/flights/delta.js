@@ -74,13 +74,4 @@ deltaManager.prototype.insertInDom = function(processedList){
   }
 };
 
-deltaManager.prototype.update = function(){
-  var processedList = this.getList();
-  if(core.airplanesData && core.airportsData){
-    processedList = this.getCoordinates(processedList);
-    processedList = this.getDistances(processedList);
-    processedList = this.getEmission(processedList);
-    this.insertInDom(processedList);
-  }
-};
 var FlightManager = deltaManager;
