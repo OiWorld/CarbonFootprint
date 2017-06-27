@@ -1222,6 +1222,7 @@ for(injector.i in injector.allFlightURLs){
                                 injector.allFlightURLs[injector.i], [], true);
 }
 
+
 /**
  * links safari to different train services
  */
@@ -1247,27 +1248,28 @@ injector.commonScripts = [
  * links to scripts that are common to all map services
  */
 
-injector.commonScriptMaps = injector.commonScripts.concat([
-    injector.URL + 'core/init.js',
-    injector.URL + 'core/CarbonFootprintCore.js'
+injector.commonScriptsMaps = injector.commonScripts.concat([
+  injector.URL + 'core/CarbonFootprintCore.js',
+  injector.URL + 'core/init.js'
 ]);
 
 /**
  * links to scripts that are common to all flight services
  */
 
-injector.commonScriptFlights = injector.commonScripts.concat([
-    injector.URL + 'core/initFlight.js',
-    injector.URL + 'core/FlightsFootprintCore.js'
+injector.commonScriptsFlights = injector.commonScripts.concat([
+  injector.URL + 'core/FlightsFootprintCore.js',
+  injector.URL + 'core/helpers/flightDataHelper.js',
+  injector.URL + 'core/initFlight.js'
 ]);
 
 /**
  * links to scripts that are common to all train services
  */
 
-injector.commonScriptTrains = injector.commonScripts.concat([
-    injector.URL + 'core/initTrain.js',
-    injector.URL + 'core/TrainsFootprintCore.js'
+injector.commonScriptsTrains = injector.commonScripts.concat([
+  injector.URL + 'core/TrainsFootprintCore.js',
+  injector.URL + 'core/initTrain.js'
 ]);
 
 for(injector.i in injector.commonScriptsMaps){
