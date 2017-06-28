@@ -1130,7 +1130,7 @@ injector.styleSheetFlight = injector.URL + 'core/css/flights.css';
 safari
   .extension
   .addContentStyleSheetFromURL(injector.styleSheetFlight,
-                               injector.allMaps, [], true);
+                               injector.allFlights, [], true);
 
 /**
  * links to manager script for different services
