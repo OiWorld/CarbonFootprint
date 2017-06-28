@@ -1,6 +1,6 @@
 var tripAdvisorManager = function(){
   this.subtree = true;
-  this.refresh = "day-list";
+  this.childList = false;
 };
 //segmentHeading
 //outerItineraryWrapper

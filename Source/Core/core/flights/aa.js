@@ -1,6 +1,7 @@
 var aaManager = function(){
   this.subtree = true;
   this.list = [];
+  this.childList = false;
 };
 aaManager.prototype.getList = function(){
   var rawList = document.getElementsByClassName("bound-table-flightline");

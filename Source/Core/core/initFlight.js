@@ -1,6 +1,13 @@
 var flightManager = new FlightManager();
 var core = new FlightsFootprintCore();
 
+var childList;
+if(flightManager.childList !== undefined){
+  childList = flightManager.childList;
+}
+else{
+  childList = true;
+}
 /**
  * Function for Updating the DOM
  */
@@ -23,7 +30,7 @@ var target = document.getElementsByTagName("body")[0],
     });
 observer.observe(target, {
   attributes: true,
-  childList: true,
+  childList: childList,
   characterData: true,
   subtree: flightManager.subtree
 });

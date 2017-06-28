@@ -985,7 +985,7 @@
         },
         {
           "matches": [
-            "https://bookaa.amadeus.com/plnext/AADX/Override.action*"
+            "https://bookaa.amadeus.com/plnext/AADX*"
           ],
           "css": ["core/css/flights.css"],
           "js":[
@@ -1016,7 +1016,8 @@
         },
         {
           "matches": [
-            "https://www.tripadvisor.com/CheapFlightsSearchResults*"
+            "https://www.tripadvisor.com/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.in/CheapFlightsSearchResults*"
           ],
           "css": ["core/css/flights.css"],
           "js":[
