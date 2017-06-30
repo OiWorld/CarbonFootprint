@@ -5,6 +5,7 @@ var googleFlightsManager = function(){
 /**
 * Function for making an object of flight
 * @return array of Object
+* Note : for 'all airport' case the first airport for depart or(or and) arrive shown in the url is considered.
 */
 
 googleFlightsManager.prototype.getList = function(){
@@ -14,10 +15,13 @@ googleFlightsManager.prototype.getList = function(){
     console.log("--raw list--");
     //console.log(rawList);
     var processedList = [];
-    var route,airports=[],depart,arrive,stops=[];
+    var route,airports=[],depart,arrive,stops=[],url;
     airports = document.getElementsByClassName('OMOBOQD-Ib-a');
-    depart = airports[0].innerText;
-    arrive = airports[1].innerText;
+    url = location.href;
+    url = url.split(";");
+    airports = url.slice(1,3);
+    depart = airports[0].slice(2,5);
+    arrive = airports[1].slice(2,5);
     for(var x=1; x< rawList.length-1; x++){
         detail = rawList[x].getElementsByClassName('OMOBOQD-d-Qb')[0].innerText;
         detail = detail.split(" ");
