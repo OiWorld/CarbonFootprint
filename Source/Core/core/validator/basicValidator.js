@@ -50,6 +50,14 @@ BasicValidator.prototype.getByTag = function(t, element = document){
   }
 };
 
+BasicValidator.prototype.querySelector = function(q, element = document){
+  var e = element.querySelector(q);
+  if(!e){
+    this.counterMeasure("invalid element");
+  }
+  return e;
+};
+
 BasicValidator.prototype.getChildNode = function(children, element = document){
   for(var x = 0, i = children.length; x < i; x++){
     if(element && element.childNodes.length){

@@ -18,6 +18,7 @@ var MapQuestMapsManager = function(footprintCore, settingsProvider) {
   this.subtree = false;
   // click handler for angular route change
   var thisMap = this;
+  this.validator = new MapsValidator("mapquest");
   var ul = document.getElementsByTagName('body')[0];
   ul.addEventListener('click', function(e) {
     if (e.target.parentNode.classList[1] ===
@@ -83,16 +84,16 @@ MapQuestMapsManager.prototype.convertDistance = function(distanceStr) {
 MapQuestMapsManager.prototype.insertFootprintElement = function(e) {
   e.id = 'footprintDiv';
   if (document.getElementById('footprintDiv')) {
-    var el = document.getElementById('footprintDiv');
+    var el = this.validator.getById('footprintDiv');
     el.parentNode.removeChild(el);
   }
-  var directionButton = document
+  var directionButton = this.validator
         .querySelector('.route-selection .view-directions');
   e.setAttribute(
     'style',
     'padding:3px 15px;display:inline-block;position:relative;'
   );
-  document.querySelector('.via-area').insertBefore(e, directionButton);
+  this.validator.querySelector('.via-area').insertBefore(e, directionButton);
 };
 
 /**
@@ -103,16 +104,16 @@ MapQuestMapsManager.prototype.insertFootprintElement = function(e) {
 MapQuestMapsManager.prototype.insertTravelCostElement = function(e) {
   e.id = 'travelCostDiv';
   if (document.getElementById('travelCostDiv')) {
-    var el = document.getElementById('travelCostDiv');
+    var el = this.validator.getById('travelCostDiv');
     el.parentNode.removeChild(el);
   }
-  var directionButton = document
+  var directionButton = this.validator
         .querySelector('.route-selection .view-directions');
   e.setAttribute(
     'style',
     'padding:3px 15px;display:inline-block;position:relative;'
   );
-  document.querySelector('.via-area').insertBefore(e, directionButton);
+  this.validator.querySelector('.via-area').insertBefore(e, directionButton);
 };
 
 /**
@@ -123,8 +124,10 @@ MapQuestMapsManager.prototype.update = function() {
   console.log('update!');
   if (this.isDriving()) {
     var distanceString = this.getDistanceString();
+    this.validator.isString(distanceString);
     if (distanceString) {
       var distanceInKm = this.convertDistance(distanceString);
+      this.validator.isNumber(distanceInKm);
       this.insertFootprintElement(
         this.footprintCore.createFootprintElement(distanceInKm)
       );
