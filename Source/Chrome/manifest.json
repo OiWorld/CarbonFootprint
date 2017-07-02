@@ -235,6 +235,9 @@
                 "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/mapsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/maps/GoogleMapsManager.js",
                 "core/init.js"
             ],
@@ -251,6 +254,9 @@
                 "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/mapsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/maps/OpenMapsManager.js",
                 "core/init.js"
             ],
@@ -268,6 +274,9 @@
                 "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/mapsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/maps/BingMapsManager.js",
                 "core/init.js"
             ],
@@ -284,6 +293,9 @@
                 "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/mapsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/maps/HereMapsManager.js",
                 "core/init.js"
             ],
@@ -300,6 +312,9 @@
                 "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/mapsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/maps/MapQuestMapsManager.js",
                 "core/init.js"
             ],
@@ -319,6 +334,9 @@
                 "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/mapsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/maps/YandexMapsManager.js",
                 "core/init.js"
             ],
@@ -335,6 +353,9 @@
                 "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/mapsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/maps/WazeMapsManager.js",
                 "core/init.js"
             ],
@@ -391,6 +412,9 @@
             "js": [
                 "core/helpers/flightDataHelper.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/flightsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/flights/skyscanner.js",
                 "core/FlightsFootprintCore.js",
                 "core/initFlight.js"
@@ -961,6 +985,9 @@
             "js": [
                 "core/TrainsFootprintCore.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/trainsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/trains/voyages-sncf.js",
                 "core/initTrain.js"
             ],
@@ -975,6 +1002,9 @@
             "js": [
                 "core/TrainsFootprintCore.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/trainsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/trains/eurostar.js",
                 "core/initTrain.js"
             ],
@@ -989,6 +1019,9 @@
             "js": [
                 "core/TrainsFootprintCore.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/trainsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/trains/tgv-lyria.js",
                 "core/initTrain.js"
             ],
@@ -1003,6 +1036,9 @@
             "js": [
                 "core/TrainsFootprintCore.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/trainsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/trains/thalys.js",
                 "core/initTrain.js"
             ],
@@ -1017,6 +1053,9 @@
             "js": [
                 "core/TrainsFootprintCore.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/trainsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/trains/ouigo.js",
                 "core/initTrain.js"
             ],
