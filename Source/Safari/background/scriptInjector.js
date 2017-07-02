@@ -1042,6 +1042,80 @@ injector.voyages = [
     'https://en.voyages-sncf.com/en/results*'
 ];
 
+injector.thalys = [
+    'https://thalys.vsct.fr/billet-train/resultats*'
+];
+
+injector.lufthansa = [
+  'https://book.lufthansa.com/lh/dyn/air-lh/revenue/viewFlights*'
+];
+
+injector.delta = [
+  'https://*.delta.com/air-shopping/findFlights.action*'
+];
+
+injector.aa = [
+  'https://bookaa.amadeus.com/plnext/AADX*'
+];
+
+injector.spicejet = [
+  'http://book.spicejet.com/Select.aspx*',
+  'http://book2.spicejet.com/Select.aspx'
+];
+
+injector.tripadvisor = [
+  'https://www.tripadvisor.com/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.in/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.ca/CheapFlightsSearchResults*',
+  'https://fr.tripadvisor.ca/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.com.br/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.com.mx/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.com.ar/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.cl/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.co/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.com.pe/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.co.uk/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.it/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.es/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.de/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.fr/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.se/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.nl/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.com.tr/CheapFlightsSearchResults',
+  'https://www.tripadvisor.dk/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.ie/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.cz/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.at/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.com.gr/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.fi/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.co.hu/CheapFlightsSearchResults*',
+  'https://no.tripadvisor.com/CheapFlightsSearchResults*',
+  'https://pl.tripadvisor.com/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.pt/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.ru/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.sk/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.ch/CheapFlightsSearchResults*',
+  'https://fr.tripadvisor.ch/CheapFlightsSearchResults*',
+  'https://it.tripadvisor.ch/CheapFlightsSearchResults*',
+  'https://fr.tripadvisor.be/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.be/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.jp/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.com.au/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.com.my/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.co.nz/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.com.ph/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.com.sg/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.co.id/CheapFlightsSearchResults*',
+  'https://th.tripadvisor.com/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.com.vn/CheapFlightsSearchResults*',
+  'https://en.tripadvisor.com.hk/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.com.hk/CheapFlightsSearchResults*',
+  'https://www.tripadvisor.co.za/CheapFlightsSearchResults*'
+];
+
+injector.united = [
+  'https://www.united.com/ual/en/*/flight-search/book-a-flight/results/rev*'
+];
 /**
  * matching patterns for all map services
  */
@@ -1072,7 +1146,13 @@ injector.allFlights = injector.allFlights.concat(injector.cleartrip,
                                                  injector.makemytrip,
                                                  injector.priceline,
                                                  injector.skyscanner,
-                                                 injector.travelocity
+                                                 injector.travelocity,
+                                                 injector.lufthansa,
+                                                 injector.delta,
+                                                 injector.aa,
+                                                 injector.spicejet,
+                                                 injector.tripadvisor,
+                                                 injector.united
 );
 
 /**
@@ -1084,7 +1164,8 @@ injector.allTrains = [];
 injector.allTrains = injector.allTrains.concat(injector.eurostar,
                                                injector.ouigo,
                                                injector.tgvlyria,
-                                               injector.voyages
+                                               injector.voyages,
+                                               injector.thalys
 );
 
 /**
@@ -1156,14 +1237,21 @@ injector.allFlightManagers = [
     injector.URL + 'core/flights/makemytrip.js',
     injector.URL + 'core/flights/priceline.js',
     injector.URL + 'core/flights/skyscanner.js',
-    injector.URL + 'core/flights/travelocity.js'
+    injector.URL + 'core/flights/travelocity.js',
+    injector.URL + 'core/maps/lufthansa.js',
+    injector.URL + 'core/maps/delta.js',
+    injector.URL + 'core/maps/aa.js',
+    injector.URL + 'core/maps/spiceJet.js',
+    injector.URL + 'core/maps/tripAdvisor.js',
+    injector.URL + 'core/maps/united.js'
 ];
 
 injector.allTrainManagers = [
     injector.URL + 'core/trains/eurostar.js',
     injector.URL + 'core/trains/ouigo.js',
     injector.URL + 'core/trains/tgv-lyria.js',
-    injector.URL + 'core/trains/voyages-sncf.js'
+    injector.URL + 'core/trains/voyages-sncf.js',
+    injector.URL + 'core/trains/thalys.js'
 ];
 
 /**
@@ -1190,14 +1278,21 @@ injector.allFlightURLs = [
     injector.makemytrip,
     injector.priceline,
     injector.skyscanner,
-    injector.travelocity
+    injector.travelocity,
+    injector.lufthansa,
+    injector.delta,
+    injector.aa,
+    injector.spicejet,
+    injector.tripadvisor,
+    injector.united
 ];
 
 injector.allTrainURLs = [
     injector.eurostar,
     injector.ouigo,
     injector.tgvlyria,
-    injector.voyages
+    injector.voyages,
+    injector.thalys
 ];
 
 /**
