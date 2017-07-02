@@ -1,5 +1,5 @@
 var googleFlightsManager = function(){
-
+  
 };
 
 /**
@@ -81,7 +81,7 @@ googleFlightsManager.prototype.getDistances = function(processedList){
 
 /**
 * Function for getting Emission of flight
-* @param array 
+* @param array
 * @return array
 */
 

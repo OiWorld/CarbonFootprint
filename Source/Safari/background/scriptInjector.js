@@ -1241,7 +1241,9 @@ for(injector.i in injector.allTrainURLs){
 injector.commonScripts = [
     injector.URL + 'core/SettingsProviderCore.js',
     injector.URL + 'core/settings/SafariSettingsProvider.js',
-    injector.URL + 'core/helpers/SafariHelper.js'
+    injector.URL + 'core/helpers/SafariHelper.js',
+    injector.URL + 'core/validator/basicValidator.js',
+    injector.URL + 'core/validator/validatorServer.js'
 ];
 
 /**
@@ -1250,7 +1252,8 @@ injector.commonScripts = [
 
 injector.commonScriptsMaps = injector.commonScripts.concat([
   injector.URL + 'core/CarbonFootprintCore.js',
-  injector.URL + 'core/init.js'
+  injector.URL + 'core/init.js',
+  injector.URL + 'core/validator/mapsValidator.js'
 ]);
 
 /**
@@ -1260,7 +1263,8 @@ injector.commonScriptsMaps = injector.commonScripts.concat([
 injector.commonScriptsFlights = injector.commonScripts.concat([
   injector.URL + 'core/FlightsFootprintCore.js',
   injector.URL + 'core/helpers/flightDataHelper.js',
-  injector.URL + 'core/initFlight.js'
+  injector.URL + 'core/initFlight.js',
+  injector.URL + 'core/validator/flightsValidator.js'
 ]);
 
 /**
@@ -1269,7 +1273,8 @@ injector.commonScriptsFlights = injector.commonScripts.concat([
 
 injector.commonScriptsTrains = injector.commonScripts.concat([
   injector.URL + 'core/TrainsFootprintCore.js',
-  injector.URL + 'core/initTrain.js'
+  injector.URL + 'core/initTrain.js',
+  injector.URL + 'core/validator/trainsValidator.js'
 ]);
 
 for(injector.i in injector.commonScriptsMaps){

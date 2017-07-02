@@ -1,5 +1,5 @@
 var hipmunkManager = function(){
-
+ this.validator = new FlightsValidator("hipmunk");
 };
 
 /**
@@ -14,11 +14,13 @@ hipmunkManager.prototype.getList = function(){
     //console.log(rawList);
     var processedList = [];
     var route,airports=[],depart,arrive,stops=[];
-    depart = document.getElementsByClassName('flight-tab-chart-header__city-name m-left')[0].innerText;
-    arrive = document.getElementsByClassName('flight-tab-chart-header__city-name m-right')[0].innerText;
+    if(rawList.length){
+      depart = this.validator.getByClass('flight-tab-chart-header__city-name m-left')[0].innerText;
+      arrive = this.validator.getByClass('flight-tab-chart-header__city-name m-right')[0].innerText;
+    }
     for(var x=0; x< rawList.length; x++){
         airports = rawList[x].getElementsByClassName('flight-routing-bar__layover');
-        stops = []
+        stops = [];
         for(var y=0;y<airports.length;y++){
             stops.push(airports[y].innerText);
         }
@@ -30,6 +32,7 @@ hipmunkManager.prototype.getList = function(){
         });
         //console.log(stops);
     }
+    this.validator.verifyList(processedList);
     console.log(processedList);
     return processedList;
 };
@@ -62,7 +65,7 @@ hipmunkManager.prototype.getDistances = function(processedList){
 
 /**
 * Function for getting Emission of flight
-* @param array 
+* @param array
 * @return array
 */
 
@@ -79,8 +82,9 @@ hipmunkManager.prototype.getEmission = function(processedList){
 */
 
 hipmunkManager.prototype.insertInDom = function(processedList){
-    var checkOption = document.getElementsByClassName('flight-tab-itin__info-row');
-    var box = document.getElementsByClassName('flight-tab-itin g-no-select js-itin m-roundtrip m-group-0');
+  if(processedList.length){
+    var checkOption = this.validator.getByClass('flight-tab-itin__info-row');
+    var box = this.validator.getByClass('flight-tab-itin g-no-select js-itin m-roundtrip m-group-0');
     var insertIn = [];
     console.log(checkOption);
     console.log(processedList);
@@ -99,6 +103,7 @@ hipmunkManager.prototype.insertInDom = function(processedList){
             console.log("saved");
         }
     }
+  }
 };
 
 var FlightManager = hipmunkManager ;

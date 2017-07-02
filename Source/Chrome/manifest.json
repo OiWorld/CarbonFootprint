@@ -453,6 +453,9 @@
             "js": [
                 "core/helpers/flightDataHelper.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/flightsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/flights/kayak.js",
                 "core/FlightsFootprintCore.js",
                 "core/initFlight.js"
@@ -468,6 +471,9 @@
             "js": [
                 "core/helpers/flightDataHelper.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/flightsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/flights/cleartrip.js",
                 "core/FlightsFootprintCore.js",
                 "core/initFlight.js"
@@ -483,6 +489,9 @@
             "js": [
                 "core/helpers/flightDataHelper.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/flightsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/flights/hipmunk.js",
                 "core/FlightsFootprintCore.js",
                 "core/initFlight.js"
@@ -498,6 +507,9 @@
             "js": [
                 "core/helpers/flightDataHelper.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/flightsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/flights/makemytrip.js",
                 "core/FlightsFootprintCore.js",
                 "core/initFlight.js"
@@ -922,6 +934,9 @@
             "js": [
                 "core/helpers/flightDataHelper.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/flightsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/flights/googleflights.js",
                 "core/FlightsFootprintCore.js",
                 "core/initFlight.js"
@@ -970,6 +985,9 @@
             "js": [
                 "core/helpers/flightDataHelper.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/flightsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/flights/expedia.js",
                 "core/FlightsFootprintCore.js",
                 "core/initFlight.js"

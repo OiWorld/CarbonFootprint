@@ -21,33 +21,33 @@ BasicValidator.prototype.getByClass = function(c, element = document){
   var toGet = element.getElementsByClassName(c);
   if(toGet.length){
     console.log("got class " + c);
-    return toGet;
   }
   else{
     this.counterMeasure("cant get class " + c);
   }
+  return toGet;
 };
 
 BasicValidator.prototype.getById = function(i, element = document){
   var toGet = element.getElementById(i);
   if(toGet){
     console.log("got id " + i);
-    return toGet;
   }
   else{
     this.counterMeasure("cant get id " + i);
   }
+  return toGet;
 };
 
 BasicValidator.prototype.getByTag = function(t, element = document){
   var toGet = element.getElementsByTagName(t);
   if(toGet.length){
     console.log("got tag " + t);
-    return toGet;
   }
   else{
     this.counterMeasure("cant get tag " + t);
   }
+  return toGet;
 };
 
 BasicValidator.prototype.querySelector = function(q, element = document){
