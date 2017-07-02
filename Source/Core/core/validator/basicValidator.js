@@ -5,16 +5,6 @@ BasicValidator.prototype.counterMeasure = function(msg){
   console.error("Something is wrong");
   console.error(msg);
   this.server.error(this.website, msg);
-  this.showNotification();
-  this.throwError();
-};
-
-BasicValidator.prototype.showNotification = function(){
-  console.log("Show A notifiation");
-};
-
-BasicValidator.prototype.throwError = function(){
-  console.log("Throw an error");
 };
 
 BasicValidator.prototype.getByClass = function(c, element = document){
