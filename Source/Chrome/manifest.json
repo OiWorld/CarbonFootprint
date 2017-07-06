@@ -383,6 +383,9 @@
                 "core/CarbonFootprintCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/mapsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/maps/ViaMichelinMapsManager.js",
                 "core/init.js"
             ],
@@ -430,6 +433,9 @@
             "js": [
                 "core/helpers/flightDataHelper.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/flightsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/flights/priceline.js",
                 "core/FlightsFootprintCore.js",
                 "core/initFlight.js"
@@ -1088,6 +1094,9 @@
             "js": [
                 "core/helpers/flightDataHelper.js",
                 "core/helpers/ChromeHelper.js",
+                "core/validator/basicValidator.js",
+                "core/validator/flightsValidator.js",
+                "core/validator/validatorServer.js",
                 "core/flights/travelocity.js",
                 "core/FlightsFootprintCore.js",
                 "core/initFlight.js"
