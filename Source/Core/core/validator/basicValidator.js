@@ -1,11 +1,27 @@
+/**
+ * BasicValidator namespace.
+ * @constructor
+ */
 var BasicValidator = function() {
 };
+
+/**
+ * used to run funtions when something fails
+ * in any website.
+ * @param {string} msg
+ */
 
 BasicValidator.prototype.counterMeasure = function(msg){
   console.error("Something is wrong");
   console.error(msg);
   this.server.error(this.website, msg);
 };
+
+/**
+ * Wrapper function for document.getElementsByClassName()
+ * @param {string} c
+ * @param {object} element
+ */
 
 BasicValidator.prototype.getByClass = function(c, element = document){
   var toGet = element.getElementsByClassName(c);
@@ -18,6 +34,12 @@ BasicValidator.prototype.getByClass = function(c, element = document){
   return toGet;
 };
 
+/**
+ * Wrapper function for document.getElementById()
+ * @param {string} i
+ * @param {object} element
+ */
+
 BasicValidator.prototype.getById = function(i, element = document){
   var toGet = element.getElementById(i);
   if(toGet){
@@ -28,6 +50,12 @@ BasicValidator.prototype.getById = function(i, element = document){
   }
   return toGet;
 };
+
+/**
+ * Wrapper function for document.getElementsByTagNameById()
+ * @param {string} t
+ * @param {object} element
+ */
 
 BasicValidator.prototype.getByTag = function(t, element = document){
   var toGet = element.getElementsByTagName(t);
@@ -40,6 +68,12 @@ BasicValidator.prototype.getByTag = function(t, element = document){
   return toGet;
 };
 
+/**
+ * Wrapper function for document.querySelector()
+ * @param {string} q
+ * @param {object} element
+ */
+
 BasicValidator.prototype.querySelector = function(q, element = document){
   var e = element.querySelector(q);
   if(!e){
@@ -47,6 +81,13 @@ BasicValidator.prototype.querySelector = function(q, element = document){
   }
   return e;
 };
+
+/**
+ * Wrapper function for .childNodes[], gets
+ * children of children as in the array
+ * @param {array} children
+ * @param {object} element
+ */
 
 BasicValidator.prototype.getChildNode = function(children, element = document){
   for(var x = 0, i = children.length; x < i; x++){
@@ -65,11 +106,21 @@ BasicValidator.prototype.getChildNode = function(children, element = document){
   }
 };
 
+/**
+ * check if argument is a string
+ * @param {all} s
+ */
+
 BasicValidator.prototype.isString = function(s){
   if(typeof s !== 'string' || s.length === 0){
     this.counterMeasure("not a string");
   }
 };
+
+/**
+ * check if argument is a numerical value
+ * @param {all} i
+ */
 
 BasicValidator.prototype.isNumber = function(i){
   if(typeof i !== 'number'){
