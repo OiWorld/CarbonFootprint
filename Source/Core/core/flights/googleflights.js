@@ -3,10 +3,10 @@ var googleFlightsManager = function(){
 };
 
 /**
-* Function for making an object of flight
-* @return array of Object
-* Note : for 'all airport' case the first airport for depart or(or and) arrive shown in the url is considered.
-*/
+ * Function for making an object of flight
+ * @return array of Object
+ * Note : for 'all airport' case the first airport for depart or(or and) arrive shown in the url is considered.
+ */
 
 googleFlightsManager.prototype.getList = function(){
     console.log("Hey Google Flights!");
@@ -25,7 +25,16 @@ googleFlightsManager.prototype.getList = function(){
     for(var x=1; x< rawList.length-1; x++){
         detail = rawList[x].getElementsByClassName('OMOBOQD-d-Qb')[0].innerText;
         detail = detail.split(" ");
-        console.log(detail);
+
+        //In the case of city having more than one airport
+        // we try to find exact airport by not considering URL
+        var airportElement = rawList[x].getElementsByClassName('OMOBOQD-d-Jb');
+        console.log(airportElement);
+        if(airportElement.length>1){
+            airportElement = airportElement[0].getElementsByClassName('OMOBOQD-d-Ib')[0].innerText.split("-");
+            depart = airportElement[0];
+            arrive = airportElement[1];
+        }
         if(detail.length === 1 || rawList[x].getElementsByClassName('OMOBOQD-d-Z').length == 0){
             stops = [] ;
         }
@@ -40,11 +49,11 @@ googleFlightsManager.prototype.getList = function(){
                     stops = [stops];
                 }
             }
-        else{
-            stops = stops.join(" ").split(",").join("").split(" ");
-           }
+            else{
+                stops = stops.join(" ").split(",").join("").split(" ");
+            }
         }
-        //console.log(depart,arrive);
+        console.log(depart,arrive);
         processedList.push({
             depart: depart,
             arrive :arrive,
@@ -58,10 +67,10 @@ googleFlightsManager.prototype.getList = function(){
 };
 
 /**
-* Function for getting coordinates from the JSON
-* @param array
-* @return array
-*/
+ * Function for getting coordinates from the JSON
+ * @param array
+ * @return array
+ */
 
 googleFlightsManager.prototype.getCoordinates = function(processedList){
     processedList = core.getCoordinates(processedList);
@@ -71,10 +80,10 @@ googleFlightsManager.prototype.getCoordinates = function(processedList){
 };
 
 /**
-* Function for getting Total Distance of flight
-* @param array
-* @return array
-*/
+ * Function for getting Total Distance of flight
+ * @param array
+ * @return array
+ */
 
 googleFlightsManager.prototype.getDistances = function(processedList){
     processedList = core.getTotalDistance(processedList);
@@ -84,10 +93,10 @@ googleFlightsManager.prototype.getDistances = function(processedList){
 };
 
 /**
-* Function for getting Emission of flight
-* @param array 
-* @return array
-*/
+ * Function for getting Emission of flight
+ * @param array 
+ * @return array
+ */
 
 googleFlightsManager.prototype.getEmission = function(processedList){
     processedList = core.getEmission(processedList);
@@ -96,10 +105,10 @@ googleFlightsManager.prototype.getEmission = function(processedList){
 };
 
 /**
-* Function for inserting Element in DOM
-* @param array
-* @return array
-*/
+ * Function for inserting Element in DOM
+ * @param array
+ * @return array
+ */
 
 googleFlightsManager.prototype.insertInDom = function(processedList){
     var checkOption = document.getElementsByClassName('OMOBOQD-d-W OMOBOQD-d-Lb OMOBOQD-d-S');
