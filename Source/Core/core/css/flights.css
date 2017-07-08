@@ -3,6 +3,7 @@ span.carbon{
 }
 /* Styling for svg question mark icon */
 #quest_mark_icon {
+    color:#212121;
     position: relative;
     height: 14px;
     width: 14px;
@@ -19,9 +20,11 @@ span.carbon{
 }
 
 a#carbon{
-    color:#212121 !important;
-    text-decoration:none !important;
+    color:#424242 !important;
 }
 a#carbon:hover{
     text-decoration:none !important;
+}
+a:link{
+    text-decoration:none;
 }
