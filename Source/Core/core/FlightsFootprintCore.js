@@ -1,3 +1,18 @@
+
+/**
+ * Footprint Core file for flights websites
+ * Functions inside core Namespace :
+ * computeTrees() @param Float
+ * createHTMLElement @param Float
+ * createMark() @param Float,Float
+ * convertFuelToCO2()  @param Float,String
+ * getCoordinates() @param String
+ * getDistance() @param [objects]
+ * getEmission() @param [objects]
+ * getTotalDistance() @param [objects]
+ * treesToString() @param Number
+ */
+
 var FlightsFootprintCore = function(){
   dataHelper = new FlightDataHelper();
   dataHelper.getData("core/resources/airplanes.json", function(data){
@@ -54,6 +69,12 @@ FlightsFootprintCore.prototype.treesToString = function(trees) {
     }
 };
 
+/**
+ * Function for getting Stops,arrive and depart coordinates
+ * @param [Objects]
+ * @return [Objects]
+ */
+
 FlightsFootprintCore.prototype.getCoordinates = function(list){
   console.log("reached core");
   console.log("started placing coords");
@@ -72,6 +93,12 @@ FlightsFootprintCore.prototype.getCoordinates = function(list){
   return list;
 };
 
+/**
+ * Function for calculating total distance for a route
+ * @param [Objects]
+ * @return [Objects]
+ */
+
 FlightsFootprintCore.prototype.getTotalDistance = function(processedList){
     for(var x = 0, i = processedList.length; x < i; x++){
         processedList[x].distance = 0;
@@ -80,24 +107,39 @@ FlightsFootprintCore.prototype.getTotalDistance = function(processedList){
       if(processedList[x].stopCoordinatesNew.length>0){
           noOfStops = processedList[x].stopCoordinatesNew.length;
           console.log(noOfStops);
-      processedList[x].distance += this.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
-                                                   processedList[x].stopCoordinatesNew[0].lat, processedList[x].stopCoordinatesNew[0].lon) +
-              this.getDistance(processedList[x].stopCoordinatesNew[noOfStops-1].lat, processedList[x].stopCoordinatesNew[noOfStops-1].lon,
-                               processedList[x].arriveCoordinates.lat, processedList[x].arriveCoordinates.lon);
+          processedList[x].distance += this.getDistance(processedList[x].departCoordinates.lat,
+                                                        processedList[x].departCoordinates.lon,
+                                                        processedList[x].stopCoordinatesNew[0].lat,
+                                                        processedList[x].stopCoordinatesNew[0].lon) +
+              this.getDistance(processedList[x].stopCoordinatesNew[noOfStops-1].lat,
+                               processedList[x].stopCoordinatesNew[noOfStops-1].lon,
+                               processedList[x].arriveCoordinates.lat,
+                               processedList[x].arriveCoordinates.lon);
           for(var y = 0; y < noOfStops-1 ; y++){
               console.log("Totally working fine");
-              processedList[x].distance += this.getDistance(processedList[x].stopCoordinatesNew[y].lat,processedList[x].stopCoordinatesNew[y].lon,processedList[x].stopCoordinatesNew[y+1].lat,processedList[x].stopCoordinatesNew[y+1].lon);
+              processedList[x].distance += this.getDistance(processedList[x].stopCoordinatesNew[y].lat,
+                                                            processedList[x].stopCoordinatesNew[y].lon,
+                                                            processedList[x].stopCoordinatesNew[y+1].lat,
+                                                            processedList[x].stopCoordinatesNew[y+1].lon);
           }
     }
     else{
-      processedList[x].distance += this.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
-                                                   processedList[x].arriveCoordinates.lat, processedList[x].arriveCoordinates.lon);
+        processedList[x].distance += this.getDistance(processedList[x].departCoordinates.lat,
+                                                      processedList[x].departCoordinates.lon,
+                                                      processedList[x].arriveCoordinates.lat,
+                                                      processedList[x].arriveCoordinates.lon);
     }
   }
   console.log("---got distances---");
   console.log(processedList);
   return processedList;
 };
+
+/**
+ * Function to calculate flight distance between two coordinates
+ * @param Float,Float,Float,Float as Coordinates
+ * @return Float as Distance
+ */
 
 FlightsFootprintCore.prototype.getDistance = function(lat1, lon1, lat2, lon2){
   var p = 0.017453292519943295;    // Math.PI / 180
@@ -108,6 +150,12 @@ FlightsFootprintCore.prototype.getDistance = function(lat1, lon1, lat2, lon2){
 
   return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
 };
+
+/**
+ * Function to calculate the emission from the distance
+ * @param [Objects]
+ * @return [Objects]
+ */
 
 FlightsFootprintCore.prototype.getEmission = function(list){
   //console.log(core.airplanesData);
@@ -134,9 +182,21 @@ FlightsFootprintCore.prototype.getEmission = function(list){
   return list;
 };
 
+/**
+ * Function to calculate CO2 released from fuel used
+ * @param Float,String as Fuel,aircraft
+ * @return Float as CO2 in kg
+ */
+
 FlightsFootprintCore.prototype.convertFuelToCO2 = function(fuel, aircraft){
   return Math.floor(fuel*FlightsFootprintCore.CO2_FOR_JETFUEL/this.airplanesData[aircraft].capacity);
 };
+
+/**
+ * Function to create HTML element to insert in DOM element
+ * @param Float as CO2 Emission
+ * @return return htmlElement
+ */
 
 FlightsFootprintCore.prototype.createHTMLElement = function(co2Emission){
   var co2 = document.createElement("span");
@@ -145,6 +205,11 @@ FlightsFootprintCore.prototype.createHTMLElement = function(co2Emission){
   return co2;
 };
 
+/**
+ * Function to create svg mark to display more information
+ * @param Float,Float as Emission from outbound and return visit
+ * @return htmlElement
+ */
 
 FlightsFootprintCore.prototype.createMark = function(depart=0,arrive=0){
       var e = document.createElement('div');
@@ -165,5 +230,4 @@ FlightsFootprintCore.prototype.createMark = function(depart=0,arrive=0){
     });
     e.onh;
     return e;
-
 }
