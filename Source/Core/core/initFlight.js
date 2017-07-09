@@ -1,5 +1,6 @@
 var flightManager = new FlightManager();
 var core = new FlightsFootprintCore();
+var a = new inform();
 
 /**
  * Function for Updating the DOM
@@ -18,9 +19,12 @@ var flightsUpdate = function(){
 
 var target = document.getElementsByTagName("body")[0],
     observer = new MutationObserver(function() {
-      console.log('Observing!');
-      flightsUpdate();
+        console.log('Observing!');
+        if(a.permission()){
+            flightsUpdate();
+        }
     });
+
 observer.observe(target, {
   attributes: true,
   childList: true,
