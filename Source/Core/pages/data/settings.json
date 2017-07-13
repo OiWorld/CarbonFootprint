@@ -1,0 +1,99 @@
+{
+    "data":{
+        "maps":{
+            "google":{
+                "status": true,
+                "regex": "google\\.(.*)\\/maps"
+            },
+            "bing":{
+                "status": true,
+                "regex": "bing\\.(.*)\\/maps"
+            },
+            "here":{
+                "status": true,
+                "regex": "here\\.(.*)\\/"
+            },
+            "openstreet":{
+                "status": true,
+                "regex": "openstreetmap\\.(.*)\\/"
+            },
+            "mapquest":{
+                "status": true,
+                "regex": "mapquest\\.(.*)\\/"
+            },
+            "waze":{
+                "status": true,
+                "regex": "waze\\.(.*)\\/"
+
+            },
+            "yandex":{
+                "status": true,
+                "regex": "yandex\\.(.*)\\/"
+            }
+        },
+        "flights":{
+            "cleartrip":{
+                "status": true,
+                "regex": "cleartrip\\.(.*)\\/"
+            },
+            "expedia":{
+                "status": true,
+                "regex": "expedia\\.(.*)\\/"
+            },
+            "google":{
+                "status": true,
+                "regex": "google\\.(.*)\\/flights/"
+            },
+            "hipmunk":{
+                "status": true,
+                "regex": "hipmunk\\.(.*)\\/"
+            },
+            "kayak":{
+                "status": true,
+                "regex": "kayak\\.(.*)\\/"
+            },
+            "makemytrip":{
+                "status": true,
+                "regex": "makemytrip\\.(.*)\\/"
+            },
+            "priceline":{
+                "status": true,
+                "regex": "priceline\\.(.*)\\/"
+            },
+            "skyscanner":{
+                "status": true,
+                "regex": "skyscanner\\.(.*)\\/"
+            },
+            "travelocity":{
+                "status": true,
+                "regex": "travelocity\\.(.*)\\/"
+            }
+        },
+        "trains":{
+            "eurostar":{
+                "status": true,
+                "regex": "eurostar\\.(.*)\\/"
+            },
+            "ouigo":{
+                "status": true,
+                "regex": "ouigo\\.(.*)\\/"
+            },
+            "tgv-lyria":{
+                "status": true,
+                "regex": "tgv-lyria\\.(.*)\\/"
+            },
+            "thalys":{
+                "status": true,
+                "regex": "vsct\\.(.*)\\/"
+            },
+            "viamichelin":{
+                "status": true,
+                "regex": "viamichelin\\.(.*)\\/"
+            },
+            "voyages_sncf":{
+                "status": true,
+                "regex": "sncf\\.(.*)\\/"
+            }
+        }
+    }
+}
