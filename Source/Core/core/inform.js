@@ -1,41 +1,94 @@
 
-/*
- * Enable and disable websites for the current service
- * Work Flow : --> send message from this file to background.js
- * --> Message would be simple {"status":true/false}
- * --> Changing the local storage accordingly
- * --> Now in the init file check the status flag from the storage
- * -->    before running the update function
+/**
+ * Inform.js checks whether the website is allowed by the user
+ * to show footprints from all the current services
+ * @author vaibsharma (Vaibhav Sharma)
  */
+
+
+console.log('inform.js');
 
 /**
- * sending message to the background script
+ * Inform namespace to know which website is allowed
+ * by the user
  */
 
-
-var trialData = ["gitlab.com","www.google.co.in/flights"];
-
-var inform = function(){
-    this.flag=true;
+var inform = function(manager){
+    this.isSafari = false;
+    this.isChrome = false;
+    this.isFirefox = false;
+    this.__init__();
 };
 
-inform.prototype.permission = function(){
-    var y = this,
-        question = location.href;
-    chrome.storage.sync.get(['value'],function(correctAnswer){
-        console.log(correctAnswer['value']);
-        for(var x=0;x<correctAnswer['value'].length;x++){
-            console.log(question.indexOf(correctAnswer['value'][x]));
-            if(question.indexOf(correctAnswer['value'][x])>=0){
-                y.flag = false;
+/**
+ * Function to initialize browser information
+ */
+
+inform.prototype.__init__ = function(){
+    if (navigator.userAgent.toLowerCase().indexOf("chrom") != -1)
+    {
+        this.isChrome = true;
+        console.log("I am in chrom(e)(ium)");
+    }
+    else if (navigator.userAgent.toLowerCase().indexOf('safari') != -1)
+    {
+        this.isSafari = true;
+        console.log("I am in safari");
+    }
+    else if (navigator.userAgent.toLowerCase().indexOf("firefox") != -1)
+    {
+        this.isFirefox = true;
+        console.log("I am in mozilla");
+    }
+};
+
+/**
+ * Callback for storage API
+ * @param {object} result
+ * @param {class} serviceManager
+ */
+
+var cb = function(result,serviceManager){
+    var question = location.href,flag=true;
+    console.log(result['data']);
+    var data = result['data'];
+    for(var id in data){
+        for(var key in data[id]){
+            var check = data[id][key]['regex'];
+            var regex = new RegExp(check);
+            console.log(regex);
+            console.log(regex.test(question));
+            console.log(data[id][key]['status']);
+            if(regex.test(question) && !data[id][key]['status']){
+                flag = false;
+                console.log('this site is disabled');
             }
         }
-    });
-    return y.flag;
+    }
+    if(flag){
+        console.log("this should run");
+        serviceManager.update();
+    }
 };
 
-inform.prototype.addData = function(){
-    chrome.storage.sync.set({'value':trialData},function(err){
-        console.log(err);
-    });
+/**
+ * Function that give permission for manager update service
+ *     to run.
+ * @param {class} serviceManager
+ */
+
+inform.prototype.permission = function(serviceManager){
+    if(this.isChrome){
+        chrome.storage.sync.get('data',function(data){
+            cb(data,serviceManager);
+        });
+    }
+    else if(this.isSafari){
+        //chrome.storage.sync.get('data',cb);
+    }
+    else if(this.isFirefox){
+        browser.storage.sync.get('data',function(data){
+            cb(data,serviceManager);
+        });
+    }
 };
