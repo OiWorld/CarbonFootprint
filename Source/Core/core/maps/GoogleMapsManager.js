@@ -17,7 +17,7 @@ var GoogleMapsManager = function(footprintCore, settingsProvider) {
   this.footprintCore = footprintCore;
   this.settingsProvider = settingsProvider;
   this.subtree = true;
-  this.update();
+  this.allRoutes =[];
 };
 
 /**
@@ -52,7 +52,7 @@ GoogleMapsManager.prototype.getAllRoutes = function() {
       allRoutes.push(r[i]);
     }
   }
-  GoogleMapsManager.allRoutes = allRoutes;
+  this.allRoutes = allRoutes;
 };
 
 /**
@@ -62,7 +62,7 @@ GoogleMapsManager.prototype.getAllRoutes = function() {
 
 GoogleMapsManager.prototype.getAllDrivingRoutes = function() {
   var drivingRoutes = [];
-  var r = GoogleMapsManager.allRoutes;
+  var r = this.allRoutes;
   for (var i = r.length - 1; i >= 0; i--) {
     if (this.getMode(r[i]) == 'drive') {
       drivingRoutes.push(r[i]);
@@ -78,7 +78,7 @@ GoogleMapsManager.prototype.getAllDrivingRoutes = function() {
 
 GoogleMapsManager.prototype.getAllTransitRoutes = function() {
   var transitRoutes = [];
-  var r = GoogleMapsManager.allRoutes;
+  var r = this.allRoutes;
   for (var i = r.length - 1; i >= 0; i--) {
     if (this.getMode(r[i]) == 'transit') {
       transitRoutes.push(r[i]);
@@ -476,6 +476,10 @@ GoogleMapsManager.prototype.insertTravelCostElement = function(route, e) {
   }
 };
 
+GoogleMapsManager.prototype.googleMaps = function(){
+    this.getAllRoutes();
+};
+
 /**
  * Calling for inserting the footprint in lite Google maps
  */ 
@@ -514,7 +518,7 @@ GoogleMapsManager.prototype.liteMapsTransitMode = function(){
 
 GoogleMapsManager.prototype.liteMapsDrivingMode = function(){
   try{
-    var targetElements = GoogleMapsManager.drivingLiteModeScreen;
+    var targetElements = this.drivingLiteModeScreen;
     console.log(targetElements);
     var distanceString = document.getElementsByClassName('ml-directions-pane-header-distance')[0]
                         .innerText;
@@ -545,17 +549,20 @@ GoogleMapsManager.prototype.liteMapsDrivingMode = function(){
 };
 
 /**
- * called by MutationObeserver to update footprints
+ * called by MutationObserver to update footprints
  */
 
 GoogleMapsManager.prototype.update = function(){
+    var self = this;
+    console.log(GoogleMapsManager,this);
   if(document.getElementsByClassName('ml-directions-pane-toggle').length > 0){
     console.error('You are currently using lite version of google maps. To get more benefits on cabonfootprints please use normal version.');
-    this.liteGoogleMaps();  
+      this.liteGoogleMaps();
   }
   else
-  {
-    this.getAllRoutes();
+    {
+        console.log('You are currently using google maps');
+        this.googleMaps();
     var i;
     var drivingRoutes = this.getAllDrivingRoutes();
     var transitRoutes = this.getAllTransitRoutes();
@@ -576,19 +583,19 @@ GoogleMapsManager.prototype.update = function(){
       }
     }
     for (i = 0; i < transitRoutes.length; i++) {
-      var timeString = this.getTimeString(transitRoutes[i],"n");
-      var timeInMins = this.convertTime(timeString[0])*60;
-      var walkingTimeInMins = this.convertTime(timeString[1])*60;
-      console.log(walkingTimeInMins)
-      this.insertFootprintElement(
+        var timeString = this.getTimeString(transitRoutes[i],"n");
+        var timeInMins = this.convertTime(timeString[0])*60;
+        var walkingTimeInMins = this.convertTime(timeString[1])*60;
+        console.log(walkingTimeInMins);
+        this.insertFootprintElement(
         transitRoutes[i],
         this.footprintCore.createPTransitFootprintElement([timeInMins,walkingTimeInMins],'t'),
         't'
       );
     }
     check = document.getElementsByClassName('section-trip-summary-subtitle');
-    if (check.length > 0) {
-      this.insertDetailedFootprintElement();
+        if (check.length > 0) {
+        this.insertDetailedFootprintElement();
     }
   }
 };
