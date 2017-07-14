@@ -67,12 +67,12 @@ Settings.prototype.prepareBlock = function(data){
                 title: key
             })).append($("<div \>",{
                 class:"switch"
-            }).append($("<label \>").append("disable").append($('<input >',{
+            }).append($("<label \>").append("Disable").append($('<input >',{
                 type:"checkbox",
                 checked: data[id][key]['status']
             })).append($('<span \>',{
                 class: "lever"
-            })).append("enable"))).append($("<div \>",{
+            })).append("Enable"))).append($("<div \>",{
                 class:"status",
                 style:"background-color:"+color+";"
             }))));

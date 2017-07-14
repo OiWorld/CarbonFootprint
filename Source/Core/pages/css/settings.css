@@ -36,9 +36,9 @@
         margin-left:5px;
         height:13em;
         width:17em;
-        -webkit-box-shadow: 0 8px 6px -6px #212121;
-	      -moz-box-shadow: 0 8px 6px -6px #212121;
-	      box-shadow: 0 8px 6px -6px #212121;
+        -webkit-box-shadow: 0 8px 6px -6px #2196F3;
+	      -moz-box-shadow: 0 8px 6px -6px #2196F3;
+	      box-shadow: 0 8px 6px -6px #2196F3;
     }
     .logo>img{
         height:2.7em;
@@ -55,6 +55,10 @@
         width:80%;
         background-color:#4caf50;
         margin-top:2em;
+    }
+    label{
+        font-size:1.2em;
+        color:#212121;
     }
 }
 
