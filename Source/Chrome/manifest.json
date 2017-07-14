@@ -966,6 +966,143 @@
             "all_frames": true
         },
         {
+          "matches": [
+            "https://book.lufthansa.com/lh/dyn/air-lh/revenue/viewFlights*"
+          ],
+          "css": ["core/css/flights.css"],
+          "js":[
+            "core/helpers/flightDataHelper.js",
+            "core/helpers/ChromeHelper.js",
+            "core/flights/lufthansa.js",
+            "core/FlightsFootprintCore.js",
+            "core/initFlight.js"
+          ],
+          "run_at" : "document_end",
+          "all_frames" : true
+        },
+        {
+          "matches": [
+            "https://*.delta.com/air-shopping/findFlights.action*"
+          ],
+          "css": ["core/css/flights.css"],
+          "js":[
+            "core/helpers/flightDataHelper.js",
+            "core/helpers/ChromeHelper.js",
+            "core/flights/delta.js",
+            "core/FlightsFootprintCore.js",
+            "core/initFlight.js"
+          ],
+          "run_at" : "document_end",
+          "all_frames" : true
+        },
+        {
+          "matches": [
+            "https://bookaa.amadeus.com/plnext/AADX*"
+          ],
+          "css": ["core/css/flights.css"],
+          "js":[
+            "core/helpers/flightDataHelper.js",
+            "core/helpers/ChromeHelper.js",
+            "core/flights/aa.js",
+            "core/FlightsFootprintCore.js",
+            "core/initFlight.js"
+          ],
+          "run_at" : "document_end",
+          "all_frames" : true
+        },
+        {
+          "matches": [
+            "http://book.spicejet.com/Select.aspx*",
+            "http://book2.spicejet.com/Select.aspx"
+          ],
+          "css": ["core/css/flights.css"],
+          "js":[
+            "core/helpers/flightDataHelper.js",
+            "core/helpers/ChromeHelper.js",
+            "core/flights/spiceJet.js",
+            "core/FlightsFootprintCore.js",
+            "core/initFlight.js"
+          ],
+          "run_at" : "document_end",
+          "all_frames" : true
+        },
+        {
+          "matches": [
+            "https://www.tripadvisor.com/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.in/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.ca/CheapFlightsSearchResults*",
+            "https://fr.tripadvisor.ca/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.com.br/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.com.mx/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.com.ar/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.cl/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.co/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.com.pe/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.co.uk/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.it/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.es/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.de/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.fr/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.se/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.nl/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.com.tr/CheapFlightsSearchResults",
+            "https://www.tripadvisor.dk/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.ie/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.cz/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.at/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.com.gr/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.fi/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.co.hu/CheapFlightsSearchResults*",
+            "https://no.tripadvisor.com/CheapFlightsSearchResults*",
+            "https://pl.tripadvisor.com/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.pt/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.ru/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.sk/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.ch/CheapFlightsSearchResults*",
+            "https://fr.tripadvisor.ch/CheapFlightsSearchResults*",
+            "https://it.tripadvisor.ch/CheapFlightsSearchResults*",
+            "https://fr.tripadvisor.be/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.be/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.jp/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.com.au/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.com.my/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.co.nz/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.com.ph/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.com.sg/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.co.id/CheapFlightsSearchResults*",
+            "https://th.tripadvisor.com/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.com.vn/CheapFlightsSearchResults*",
+            "https://en.tripadvisor.com.hk/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.com.hk/CheapFlightsSearchResults*",
+            "https://www.tripadvisor.co.za/CheapFlightsSearchResults*"
+          ],
+          "css": ["core/css/flights.css"],
+          "js":[
+            "core/helpers/flightDataHelper.js",
+            "core/helpers/ChromeHelper.js",
+            "core/flights/tripAdvisor.js",
+            "core/FlightsFootprintCore.js",
+            "core/initFlight.js"
+          ],
+          "run_at" : "document_end",
+          "all_frames" : true
+        },
+        {
+          "matches": [
+            "https://www.united.com/ual/en/*/flight-search/book-a-flight/results/rev*"
+          ],
+          "css": ["core/css/flights.css"],
+          "js":[
+            "core/helpers/flightDataHelper.js",
+            "core/helpers/ChromeHelper.js",
+            "core/flights/united.js",
+            "core/FlightsFootprintCore.js",
+            "core/initFlight.js"
+          ],
+          "run_at" : "document_end",
+          "all_frames" : true
+        },
+        {
             "matches": [
                 "https://en.voyages-sncf.com/en/results*"
             ],
