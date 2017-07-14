@@ -56,7 +56,7 @@ var cb = function(result,serviceManager){
         for(var key in data[id]){
             var check = data[id][key]['regex'];
             var regex = new RegExp(check);
-            console.log(regex);
+            console.log(regex,check);
             console.log(regex.test(question));
             console.log(data[id][key]['status']);
             if(regex.test(question) && !data[id][key]['status']){
@@ -80,6 +80,7 @@ var cb = function(result,serviceManager){
 inform.prototype.permission = function(serviceManager){
     if(this.isChrome){
         chrome.storage.sync.get('data',function(data){
+            console.log(data['data']);
             cb(data,serviceManager);
         });
     }
@@ -88,6 +89,7 @@ inform.prototype.permission = function(serviceManager){
     }
     else if(this.isFirefox){
         browser.storage.sync.get('data',function(data){
+            console.log(data['data']);
             cb(data,serviceManager);
         });
     }

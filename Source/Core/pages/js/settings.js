@@ -48,7 +48,7 @@ Settings.prototype.build = function(){
  */
 
 Settings.prototype.prepareBlock = function(data){
-    console.log("prepare block");
+    console.log("preparing block");
     console.log(data);
     for(var id in data){
         var block = $('<div \>').empty(),
@@ -89,7 +89,7 @@ Settings.prototype.prepareBlock = function(data){
  */
 
 Settings.prototype.updateData = function(data,cb){
-    console.log("update default data");
+    console.log("updating data",data);
     var self = this;
     if(self.isChrome){
         chrome.storage.sync.set({"data":data},function(){
@@ -105,7 +105,7 @@ Settings.prototype.updateData = function(data,cb){
     }
     else if(self.isSafari){
         console.log("we expect something from here");
-        cb();
+        cb(data);
     }
     console.log("inserted data is ",data);
 };
@@ -174,30 +174,37 @@ Settings.prototype.update = function(category,name,status){
     self.name=name;
     self.status=status;
     console.log(self.status,self.name,self.category);
-    this.useSyncData(function(){
+    var cb = function(self,result){
+        var data = result['data'];
+        console.log(data);
+        if(data.hasOwnProperty(category)){
+            //console.log(data[category]);
+            if(data[category].hasOwnProperty(name)){
+                //console.log(data[category][name]);
+                data[category][name]["status"] = status;
+                console.log(data[category][name]['status']);
+            }
+        }
+        self.updateData(data,function(){
+            console.log("data updated");
+        });
+    };
+
         if(self.isSafari){
             console.log("we expect something to do here as well");
         }
         else if(self.isChrome){
             chrome.storage.sync.get('data',function(result){
-                var data = result['data'];
-                console.log(data);
-                if(data.hasOwnProperty(category)){
-                    //console.log(data[category]);
-                    if(data[category].hasOwnProperty(name)){
-                        //console.log(data[category][name]);
-                        data[category][name]["status"] = status;
-                        console.log(data[category][name]['status']);
-                    }
-                }
-                self.updateData(data,function(){
-                    console.log("data updated");
-                });
+                console.log("result found from chrome",result['data']);
+                cb(self,result);
             });
         }
         else if(this.isFirefox){
+            browser.storage.sync.get('data',function(result){
+                console.log("result found from firefox");
+                cb(self,result);
+            })
         }
-    });
 };
 
 /**
