@@ -174,7 +174,7 @@ Settings.prototype.prepareBlock = function(data){
             }))));
         }
         console.log(block);
-        $('#'+id).prepend(block);
+        $('#'+id).html(block);
     }
 };
 
