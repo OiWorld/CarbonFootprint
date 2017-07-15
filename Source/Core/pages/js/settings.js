@@ -7,14 +7,14 @@
 console.log("settings running");
 
 var Settings = function(){
+    this.isSafari = false;
+    this.isChrome = false;
+    this.firefox = false;
     this.enable = "#4caf50";
     this.disable = " #f44336";
     this.category;
     this.name;
     this.status;
-    this.isSafari = false;
-    this.isChrome = false;
-    this.firefox = false;
     //this.updateDefaultData(function(){});
 };
 
@@ -34,51 +34,6 @@ Settings.prototype.getLink = function(shortLink){
     else if(this.isFirefox){
         console.log("I am firefox");
         return browser.extension.getURL(shortLink);
-    }
-};
-
-
-Settings.prototype.build = function(){
-    this.defaultData();
-};
-
-/**
- * Function for automated insertion of elements
- * @param {object}
- */
-
-Settings.prototype.prepareBlock = function(data){
-    console.log("preparing block");
-    console.log(data);
-    for(var id in data){
-        var block = $('<div \>').empty(),
-            color;
-        for(var key in data[id]){
-            if(data[id][key]['status']){
-                color=setting.enable;
-            }
-            else color=setting.disable;
-            block.append($('<div \>',{
-                class:"item col-md-2"
-            }).append( $('<div \>',{
-                class:"logo"
-            }).append($("<img>",{
-                src : "./img/websites/"+id+"/"+key+".png",
-                title: key
-            })).append($("<div \>",{
-                class:"switch"
-            }).append($("<label \>").append("Disable").append($('<input >',{
-                type:"checkbox",
-                checked: data[id][key]['status']
-            })).append($('<span \>',{
-                class: "lever"
-            })).append("Enable"))).append($("<div \>",{
-                class:"status",
-                style:"background-color:"+color+";"
-            }))));
-        }
-        console.log(block);
-        $('#'+id).prepend(block);
     }
 };
 
@@ -137,37 +92,13 @@ Settings.prototype.updateDefaultData = function(cb){
 };
 
 /**
- * Function to initialize Settings namespace operation
- */
-
-Settings.prototype.__init__ = function(){
-    var self = this;
-    if (navigator.userAgent.toLowerCase().indexOf("chrom") != -1)
-    {
-        this.isChrome = true;
-        console.log("I am in chrom(e)(ium)");
-    }
-    else if (navigator.userAgent.toLowerCase().indexOf('safari') != -1)
-    {
-        this.isSafari = true;
-        console.log("I am in safari");
-    }
-    else if (navigator.userAgent.toLowerCase().indexOf("firefox") != -1)
-    {
-        this.isFirefox = true;
-        console.log("I am in mozilla");
-    }
-    this.useSyncData(this.prepareBlock);
-};
-
-/**
  * Function to update parameters in db
  * @param {string} category
  * @param {string} name
  * @param {string} status
  */
 
-Settings.prototype.update = function(category,name,status){
+Settings.prototype.onChange = function(category,name,status){
     console.log("update");
     var self = this;
     self.category=category;
@@ -185,8 +116,8 @@ Settings.prototype.update = function(category,name,status){
                 console.log(data[category][name]['status']);
             }
         }
-        self.updateData(data,function(){
-            console.log("data updated");
+        self.updateData(data,function(result){
+            console.log("data updated",result);
         });
     };
 
@@ -203,8 +134,48 @@ Settings.prototype.update = function(category,name,status){
             browser.storage.sync.get('data',function(result){
                 console.log("result found from firefox");
                 cb(self,result);
-            })
+            });
         }
+};
+
+/**
+ * Function for automated insertion of elements
+ * @param {object}
+ */
+
+Settings.prototype.prepareBlock = function(data){
+    console.log("preparing block");
+    console.log(data);
+    for(var id in data){
+        var block = $('<div \>').empty(),
+            color;
+        for(var key in data[id]){
+            if(data[id][key]['status']){
+                color=setting.enable;
+            }
+            else color=setting.disable;
+            block.append($('<div \>',{
+                class:"item col-md-2"
+            }).append( $('<div \>',{
+                class:"logo"
+            }).append($("<img>",{
+                src : "./img/websites/"+id+"/"+key+".png",
+                title: key
+            })).append($("<div \>",{
+                class:"switch"
+            }).append($("<label \>").append("Disable").append($('<input >',{
+                type:"checkbox",
+                checked: data[id][key]['status']
+            })).append($('<span \>',{
+                class: "lever"
+            })).append("Enable"))).append($("<div \>",{
+                class:"status",
+                style:"background-color:"+color+";"
+            }))));
+        }
+        console.log(block);
+        $('#'+id).prepend(block);
+    }
 };
 
 /**
@@ -238,11 +209,34 @@ Settings.prototype.useSyncData = function(cb){
         // if(true){
         //     self.updateDefaultData();
         // }
-
     }
     else{
         console.log("we found nothing");
     }
+};
+
+/**
+ * Function to initialize Settings namespace operation
+ */
+
+Settings.prototype.__init__ = function(){
+    var self = this;
+    if (navigator.userAgent.toLowerCase().indexOf("chrom") != -1)
+    {
+        this.isChrome = true;
+        console.log("I am in chrom(e)(ium)");
+    }
+    else if (navigator.userAgent.toLowerCase().indexOf('safari') != -1)
+    {
+        this.isSafari = true;
+        console.log("I am in safari");
+    }
+    else if (navigator.userAgent.toLowerCase().indexOf("firefox") != -1)
+    {
+        this.isFirefox = true;
+        console.log("I am in mozilla");
+    }
+    this.useSyncData(this.prepareBlock);
 };
 
 var setting = new Settings;
@@ -270,7 +264,7 @@ $('.items').on('click','.item',function(){
       }
     console.log(category,name,status);
 
-    setting.update(category,name,status);
+    setting.onChange(category,name,status);
 });
 
 setting.__init__();
