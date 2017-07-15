@@ -13,7 +13,7 @@ var Settings = function(){
     this.name;
     this.status;
     this.isSafari = false;
-    this.chrome = false;
+    this.isChrome = false;
     this.firefox = false;
     //this.updateDefaultData(function(){});
 };
