@@ -1,4 +1,3 @@
-
 /**
  * Namespace for settings page
  * @author vaibsharma (Vaibhav Sharma)
@@ -9,9 +8,9 @@ console.log("settings running");
 var Settings = function(){
     this.isSafari = false;
     this.isChrome = false;
-    this.firefox = false;
+    this.isFirefox = false;
     this.enable = "#4caf50";
-    this.disable = " #f44336";
+    this.disable = "#f44336";
     this.category;
     this.name;
     this.status;
@@ -81,7 +80,7 @@ Settings.prototype.updateDefaultData = function(cb){
         type: 'get',
         dataType: 'json',
         success: function (data) {
-            console.log("i am here");
+            console.log("link is found, default setting is used");
             dData=data;
             self.updateData(data['data'],cb);
         },
@@ -99,7 +98,7 @@ Settings.prototype.updateDefaultData = function(cb){
  */
 
 Settings.prototype.onChange = function(category,name,status){
-    console.log("update");
+    console.log('update');
     var self = this;
     self.category=category;
     self.name=name;
@@ -112,7 +111,7 @@ Settings.prototype.onChange = function(category,name,status){
             //console.log(data[category]);
             if(data[category].hasOwnProperty(name)){
                 //console.log(data[category][name]);
-                data[category][name]["status"] = status;
+                data[category][name]['status'] = status;
                 console.log(data[category][name]['status']);
             }
         }
@@ -155,23 +154,23 @@ Settings.prototype.prepareBlock = function(data){
             }
             else color=setting.disable;
             block.append($('<div \>',{
-                class:"item col-md-2"
+                class:'item col-md-2'
             }).append( $('<div \>',{
-                class:"logo"
-            }).append($("<img>",{
-                src : "./img/websites/"+id+"/"+key+".png",
+                class:'logo'
+            }).append($('<img>',{
+                src : './img/websites/'+id+'/'+key+'.png',
                 title: key
-            })).append($("<div \>",{
-                class:"switch"
-            }).append($("<label \>").append("Disable").append($('<input >',{
-                type:"checkbox",
+            }))).append($('<div \>',{
+                class:'switch'
+            }).append($('<label \>').append('Disable').append($('<input >',{
+                type:'checkbox',
                 checked: data[id][key]['status']
             })).append($('<span \>',{
-                class: "lever"
-            })).append("Enable"))).append($("<div \>",{
-                class:"status",
-                style:"background-color:"+color+";"
-            }))));
+                class: 'lever'
+            })).append('Enable'))).append($('<div \>',{
+                class:'status',
+                style:'background-color:'+color+';'
+            })));
         }
         console.log(block);
         $('#'+id).html(block);
@@ -184,13 +183,13 @@ Settings.prototype.prepareBlock = function(data){
  */
 
 Settings.prototype.useSyncData = function(cb){
-    console.log("use sync data");
+    console.log('use sync data');
     var self = this;
     var onGetStorage = function(data){
         if(!data['data']){
-            console.log("actually we didn't found any data");
+            console.log('actually we didn\'t found any data');
             self.updateDefaultData(cb);
-            console.log("Hey already called for update. will let you know when I am done");
+            console.log('Hey already called for update. will let you know when I am done');
         }
         else{
             console.log(data);
@@ -204,14 +203,14 @@ Settings.prototype.useSyncData = function(cb){
         browser.storage.sync.get('data',onGetStorage);
     }
     else if(self.isSafari){
-        console.log("we expect something from here");
+        console.log('we expect something from here');
 
         // if(true){
         //     self.updateDefaultData();
         // }
     }
     else{
-        console.log("we found nothing");
+        console.log('we found nothing');
     }
 };
 
@@ -221,20 +220,20 @@ Settings.prototype.useSyncData = function(cb){
 
 Settings.prototype.__init__ = function(){
     var self = this;
-    if (navigator.userAgent.toLowerCase().indexOf("chrom") != -1)
+    if (navigator.userAgent.toLowerCase().indexOf('chrom') != -1)
     {
         this.isChrome = true;
-        console.log("I am in chrom(e)(ium)");
+        console.log('I am in chrom(e)(ium)');
     }
     else if (navigator.userAgent.toLowerCase().indexOf('safari') != -1)
     {
         this.isSafari = true;
-        console.log("I am in safari");
+        console.log('I am in safari');
     }
-    else if (navigator.userAgent.toLowerCase().indexOf("firefox") != -1)
+    else if (navigator.userAgent.toLowerCase().indexOf('firefox') != -1)
     {
         this.isFirefox = true;
-        console.log("I am in mozilla");
+        console.log('I am in mozilla');
     }
     this.useSyncData(this.prepareBlock);
 };
@@ -247,7 +246,7 @@ var setting = new Settings;
  */
 
 $('.items').on('click','.item',function(){
-    console.log("hey I am clicked");
+    console.log('hey I am clicked');
     console.log($(this));
     var thisItem = $(this).parent()[0];
     var category = $(thisItem).parent()[0].id;
