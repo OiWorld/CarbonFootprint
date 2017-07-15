@@ -5,24 +5,27 @@ var sncfManager = function(){
     arrive: "",
     depart: ""
   };
+  this.validator = new TrainsValidator("sncf");
 };
 
 sncfManager.prototype.getList = function(){
-  console.log("get list");
+  //console.log("get list");
   var rawList = document.getElementsByClassName("proposal-info");
   var processedList = [];
   for(var x = 0, i = rawList.length; x < i; x++){
-    var lineShortner = rawList[x].childNodes[2].childNodes[1].childNodes[5].childNodes[0].childNodes[0];
+    var lineShortner = this.validator.getChildNode([2,1,5,0,0], rawList[x]);
     var numOfModes = (lineShortner.childNodes.length - 1) / 2;
-    console.log("mode count = " + numOfModes);
+    //console.log("mode count = " + numOfModes);
     processedList.push({
-      depart: rawList[x].childNodes[0].childNodes[1].childNodes[0].innerHTML,
-      arrive: rawList[x].childNodes[1].childNodes[1].childNodes[0].innerHTML,
+      depart: this.validator.getChildNode([0,1,0], rawList[x]).innerHTML,
+      arrive: this.validator.getChildNode([1,1,0], rawList[x]).innerHTML,
     });
     processedList[processedList.length-1].mode = [];
     for(var y = 1, j = numOfModes; y <= j; y++){
-      processedList[processedList.length-1].mode.push(lineShortner.childNodes[y*2 - 1].innerText.toLowerCase());
+      processedList[processedList.length-1].mode.push(this.validator.getChildNode([y*2 - 1], lineShortner).innerText.toLowerCase());
     }
+
+    this.validator.verifyList(processedList);
 
     if(core.distance === 0){  //Check if geocode never happened for current stations, proceed if not
       var toGeocode = [processedList[0].depart, processedList[0].arrive];
@@ -34,19 +37,19 @@ sncfManager.prototype.getList = function(){
 };
 
 sncfManager.prototype.insertInDom = function(emissions){
-  var list = document.getElementsByClassName("proposal-info");
+  var list = this.validator.getByClass("proposal-info");
   for(var x = 0, i = list.length; x < i; x++){
     if(list[x].getElementsByClassName('carbon').length === 0){
-      list[x].getElementsByClassName('row')[0].appendChild(emissions[x]);
+      this.validator.getByClass('row', list[x])[0].appendChild(emissions[x]);
     }
   }
 };
 
 // Checks wheather the departure or arrival stations have changed, if changed then geocode them again
 sncfManager.prototype.checkChangeInStations = function(){
-  currentArrive = document.getElementById("panel-origin-city-input").value;
-  currentDepart = document.getElementById("panel-destination-city-input").value;
-  console.log(currentArrive + " " + currentDepart);
+  currentArrive = this.validator.getById("panel-origin-city-input").value;
+  currentDepart = this.validator.getById("panel-destination-city-input").value;
+  //console.log(currentArrive + " " + currentDepart);
   if(this.stations.arrive != currentArrive || this.stations.depart != currentDepart){
     this.stations.arrive = currentArrive;
     this.stations.depart = currentDepart;

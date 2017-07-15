@@ -9,6 +9,7 @@ var ViaMichelinMapsManager = function(footprintCore, settingsProvider) {
  this.footprintCore = footprintCore;
  this.settingsProvider = settingsProvider;
  this.subtree = true;
+ this.validator = new MapsValidator("viaMichelin");
  this.update();
 };
 
@@ -31,7 +32,7 @@ ViaMichelinMapsManager.prototype.getDistanceString = function(d){
 ViaMichelinMapsManager.prototype.getAllRoutes = function(){
   var element = document.getElementsByClassName('itinerary-index-summary');
   if(element[0] && element[0].childNodes[0]){
-    table = element[0].childNodes[0].childNodes[2];
+    table = this.validator.getChildNode([0,2], element[0]);
   }
   else{
     table = false;
@@ -41,11 +42,11 @@ ViaMichelinMapsManager.prototype.getAllRoutes = function(){
   if(table){
     for (var i = 0, row; row = table.rows[i]; i++) {
        for (var j = 0, col; col = row.cells[j]; j++) {
-         var route = col.getElementsByTagName("p");
+         var route = this.validator.getByTag("p", col);
          routes.push({
            distance: route[0].innerHTML,
-           time: route[1].innerHTML
          });
+         this.validator.isString(route[0].innerHTML);
        }
     }
   }
@@ -58,14 +59,13 @@ ViaMichelinMapsManager.prototype.getAllRoutes = function(){
  */
 
 ViaMichelinMapsManager.prototype.insertFootprintElement = function(routes){
-  var el = document.getElementsByClassName('summary-header');
+  var el = this.validator.getByClass('summary-header');
   console.log(el);
   if(el){
     for (var i = 0, t = el.length; i < t; i++) {
        var d = this.getDistanceString(routes[i].distance);
-       if(el[i].childNodes.length < 3 &&
-          el[i].childNodes[el[i].childNodes.length - 1].id !==
-          "carbon-footprint-label"){
+       this.validator.isNumber(parseFloat(d));
+       if(el[i].getElementsByClassName('carbon').length === 0){
             el[i].appendChild(this.footprintCore.createFootprintElement(d));
        }
     }
@@ -78,13 +78,12 @@ ViaMichelinMapsManager.prototype.insertFootprintElement = function(routes){
  */
 
 ViaMichelinMapsManager.prototype.insertTravelCostElement = function(routes){
-  var el = document.getElementsByClassName('summary-header');
+  var el = this.validator.getByClass('summary-header');
   console.log(el);
   if(el){
     for (var i = 0, t = el.length; i < t; i++) {
          var d = this.getDistanceString(routes[i].distance);
-         if(el[i].childNodes.length < 4 &&
-            el[i].childNodes[el[i].childNodes.length - 1].id !== ""){
+         if(el[i].getElementsByClassName('travelCost').length === 0){
               el[i].appendChild(this.footprintCore.createTravelCostElement(d));
          }
     }
@@ -97,9 +96,11 @@ ViaMichelinMapsManager.prototype.insertTravelCostElement = function(routes){
 
 ViaMichelinMapsManager.prototype.update = function(){
   var routes = this.getAllRoutes();
-  this.insertFootprintElement(routes);
-  if (this.settingsProvider.showTravelCost()) {
-    this.insertTravelCostElement(routes);
+  if(routes.length){
+    this.insertFootprintElement(routes);
+    if (this.settingsProvider.showTravelCost()) {
+      this.insertTravelCostElement(routes);
+    }
   }
 };
 

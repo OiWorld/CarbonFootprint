@@ -16,6 +16,7 @@ var BingMapsManager = function(footprintCore, settingsProvider) {
   this.footprintCore = footprintCore;
   this.settingsProvider = settingsProvider;
   this.subtree = true;
+  this.validator = new MapsValidator("bing");
   this.update();
 };
 
@@ -45,7 +46,7 @@ BingMapsManager.prototype.isTransit = function() {
 BingMapsManager.prototype.getAllDrivingRoutes = function() {
   var drivingRoutes = [];
   if (this.isDriving()) {
-    var r = document.getElementsByClassName('drTitle');
+    var r = this.validator.getByClass('drTitle');
     for (var i = r.length - 1; i >= 0; i--) { // Filtering spurious routes.
       if (r[i].childNodes.length > 0) {
         drivingRoutes.push(r[i]);
@@ -63,7 +64,7 @@ BingMapsManager.prototype.getAllDrivingRoutes = function() {
 BingMapsManager.prototype.getAllTransitRoutes = function() {
   var transitRoutes = [];
   if (this.isTransit()) {
-    var r = document.getElementsByClassName('drTitle');
+    var r = this.validator.getByClass('drTitle');
     for (var i = r.length - 1; i >= 0; i--) { // Filtering spurious routes.
       if (r[i].childNodes.length > 0) {
         transitRoutes.push(r[i]);
@@ -80,10 +81,11 @@ BingMapsManager.prototype.getAllTransitRoutes = function() {
  */
 
 BingMapsManager.prototype.getDistanceString = function(route) {
-  var distanceString = route
-        .getElementsByClassName('drTitleRight')[0]
+  var distanceString = this.validator
+        .getByClass('drTitleRight', route)[0]
         .innerHTML;
   console.log('distanceString: ' + distanceString);
+  this.validator.isString(distanceString);
   return distanceString;
 };
 
@@ -94,9 +96,10 @@ BingMapsManager.prototype.getDistanceString = function(route) {
  */
 
 BingMapsManager.prototype.getTimeString = function(route) {
-  var timeString = route
-        .getElementsByClassName('drTitleRight')[0]
+  var timeString = this.validator
+        .getByClass('drTitleRight', route)[0]
         .innerHTML;
+  this.validator.isString(timeString);
   timeString = ' ' + timeString;
   console.log('timeString:' + timeString);
   return timeString;
@@ -155,7 +158,7 @@ BingMapsManager.prototype.convertTime = function(timeStr) {
 
 BingMapsManager.prototype.insertFootprintElement = function(route, e) {
   if (route.getElementsByClassName('carbon').length === 0) {
-    route.getElementsByClassName('drTitleRight')[0].appendChild(e);
+    this.validator.getByClass('drTitleRight', route)[0].appendChild(e);
   }
 };
 
@@ -167,7 +170,7 @@ BingMapsManager.prototype.insertFootprintElement = function(route, e) {
 
 BingMapsManager.prototype.insertTravelCostElement = function(route, e) {
   if (route.getElementsByClassName('travelCost').length === 0) {
-    route.getElementsByClassName('drTitleRight')[0].appendChild(e);
+    this.validator.getByClass('drTitleRight', route)[0].appendChild(e);
   }
 };
 
@@ -177,8 +180,13 @@ BingMapsManager.prototype.insertTravelCostElement = function(route, e) {
 
 BingMapsManager.prototype.update = function() {
   //var routes = this.getAllDrivingRoutes();
-  var drivingRoutes = this.getAllDrivingRoutes();
-  var transitRoutes = this.getAllTransitRoutes();
+  var mainContent = document.getElementsByClassName("directionsPanel")[1];
+  console.log(mainContent);
+  var drivingRoutes = [], transitRoutes = [];
+  if(mainContent){
+    drivingRoutes = this.getAllDrivingRoutes();
+    transitRoutes = this.getAllTransitRoutes();
+  }
   for (var i = 0; i < drivingRoutes.length; i++) {
     var distanceString = this.getDistanceString(drivingRoutes[i]);
     var distanceInKm = this.convertDistance(distanceString);

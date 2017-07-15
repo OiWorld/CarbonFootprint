@@ -6,11 +6,12 @@ var eurostarManager = function(){
     depart: ""
   };
   this.MODE = "eurostar"; // constant, the type of train on this website is only "eurostar"
+  this.validator = new TrainsValidator("eurostar");
 };
 
 eurostarManager.prototype.geocodeStations = function(){
   console.log("get list");
-  var stations = document.getElementsByClassName("train-table-head__journey-info-od")[0].innerHTML;
+  var stations = this.validator.getByClass("train-table-head__journey-info-od")[0].innerHTML;
   this.stations.depart = stations.split(" ")[0];
   this.stations.arrive = stations.split(" ")[2];
   console.log(this.stations.depart + " ->  " + this.stations.arrive);
@@ -28,30 +29,16 @@ eurostarManager.prototype.setStyle = function(emission){
 eurostarManager.prototype.insertInDom = function(emission){
   emission = this.setStyle(emission);
   console.log(emission);
-  var element = document.getElementsByClassName("train-table-head")[0];
+  var element = this.validator.getByClass("train-table-head")[0];
   if(element.getElementsByClassName('carbon').length === 0){
     element.appendChild(emission);
   }
 };
 
-// Checks wheather the departure or arrival stations have changed, if changed then geocode them again
-eurostarManager.prototype.checkChangeInStations = function(){
-  var stations = document.getElementsByClassName("train-table-head__journey-info-od")[0].innerHTML;
-  currentArrive = stations.split(" ")[0];
-  currentDepart = stations.split(" ")[2];
-  console.log(currentDepart + " ->  " + currentArrive);
-  if(this.stations.arrive != currentArrive || this.stations.depart != currentDepart){
-    this.stations.arrive = currentArrive;
-    this.stations.depart = currentDepart;
-    this.distance = 0; //geocode again
-  }
-};
-
 eurostarManager.prototype.update = function(){
-  //this.checkChangeInStations();
   var processedList = this.geocodeStations();
-  if(core.distance > 1){ //Check if station have alredy been geocoded
-    this.insertInDom(core.getEmission(["eurostar"])); //There is only 1 type of train
+  if(core.distance > 1){ //Check if station has alredy been geocoded
+    this.insertInDom(core.getEmission([this.MODE])); //There is only 1 type of train
   }
 };
 
