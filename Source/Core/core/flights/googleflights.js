@@ -25,18 +25,18 @@ googleFlightsManager.prototype.getList = function(){
     for(var x=1; x< rawList.length-1; x++){
         detail = rawList[x].getElementsByClassName('OMOBOQD-d-Qb')[0].innerText;
         detail = detail.split(" ");
-
+        console.log(detail);
         //In the case of city having more than one airport
         // we try to find exact airport by not considering URL
         var airportElement = rawList[x].getElementsByClassName('OMOBOQD-d-Jb');
-        console.log(airportElement);
-        if(airportElement.length>1){
+        console.log(airportElement,airportElement.length);
+        if(airportElement.length>0){
             airportElement = airportElement[0].getElementsByClassName('OMOBOQD-d-Ib')[0].innerText.split("-");
             depart = airportElement[0];
             arrive = airportElement[1];
         }
         if(detail.length === 1 || rawList[x].getElementsByClassName('OMOBOQD-d-Z').length == 0){
-            stops = [] ;
+            stops = [];
         }
         else {
             stops = rawList[x].getElementsByClassName('OMOBOQD-d-Z')[0].innerText.split(" ");
