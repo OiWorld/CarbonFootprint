@@ -6,13 +6,16 @@ var lyriaManager = function(){
     depart: ""
   };
   this.MODE = "lyria"; // constant, the type of train on this website is only "lyria"
+  this.validator = new TrainsValidator("tgv-lyria");
 };
 
 lyriaManager.prototype.geocodeStations = function(){
-  var stations = document.getElementsByTagName("h2")[0].innerText;
+  var stations = this.validator.getByTag("h2")[0].innerText;
   console.log(stations);
   this.stations.depart = stations.split(" > ")[0];
   this.stations.arrive = stations.split(" > ")[1];
+  this.validator.verifyStation(this.stations.depart);
+  this.validator.verifyStation(this.stations.arrive);
   console.log(this.stations.depart + " ->  " + this.stations.arrive);
   if(core.distance === 0 && this.stations.depart && this.stations.arrive){  //Check if geocode never happened for current stations, proceed if not
     var toGeocode = [this.stations.depart, this.stations.arrive];
@@ -29,7 +32,7 @@ lyriaManager.prototype.setStyle = function(emission){
 lyriaManager.prototype.insertInDom = function(emission){
   emission = this.setStyle(emission);
   console.log(emission);
-  var element = document.getElementsByTagName("h2")[0];
+  var element = this.validator.getByTag("h2")[0];
   if(element.getElementsByClassName('carbon').length === 0){
     element.appendChild(emission);
   }

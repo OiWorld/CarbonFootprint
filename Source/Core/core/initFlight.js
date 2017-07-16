@@ -1,6 +1,13 @@
 var flightManager = new FlightManager();
 var core = new FlightsFootprintCore();
 
+var childList;
+if(flightManager.childList !== undefined){
+  childList = flightManager.childList;
+}
+else{
+  childList = true;
+}
 /**
  * Function for Updating the DOM for flight websites
  */
@@ -8,9 +15,9 @@ var core = new FlightsFootprintCore();
 var flightsUpdate = function(){
     var processedList = flightManager.getList();
     if(core.airplanesData && core.airportsData){
-        processedList = flightManager.getCoordinates(processedList);
-        processedList = flightManager.getDistances(processedList);
-        processedList = flightManager.getEmission(processedList);
+        processedList = flightManager.getEmission(
+          flightManager.getDistances(
+            flightManager.getCoordinates(processedList)));
         flightManager.insertInDom(processedList);
     }
     console.log(processedList);
@@ -31,8 +38,8 @@ var target = document.getElementsByTagName("body")[0],
  */
 
 observer.observe(target, {
-    attributes: true,
-    childList: true,
-    characterData: true,
-    subtree: flightManager.subtree
+  attributes: true,
+  childList: childList,
+  characterData: true,
+  subtree: flightManager.subtree
 });

@@ -1,5 +1,5 @@
 var googleFlightsManager = function(){
-
+  
 };
 
 /**
