@@ -13,7 +13,7 @@ var Settings = function(){
     this.disable = "#f44336";
     this.category;
     this.name;
-    this.status;
+    this.active;
     //this.updateDefaultData(function(){});
 };
 
@@ -97,13 +97,13 @@ Settings.prototype.updateDefaultData = function(cb){
  * @param {string} status
  */
 
-Settings.prototype.onChange = function(category,name,status){
+Settings.prototype.onChange = function(category,name,active){
     console.log('update');
     var self = this;
     self.category=category;
     self.name=name;
-    self.status=status;
-    console.log(self.status,self.name,self.category);
+    self.active=active;
+    console.log(self.active,self.name,self.category);
     var cb = function(self,result){
         var data = result['data'];
         console.log(data);
@@ -111,8 +111,8 @@ Settings.prototype.onChange = function(category,name,status){
             //console.log(data[category]);
             if(data[category].hasOwnProperty(name)){
                 //console.log(data[category][name]);
-                data[category][name]['status'] = status;
-                console.log(data[category][name]['status']);
+                data[category][name]['active'] = active;
+                console.log(data[category][name]['active']);
             }
         }
         self.updateData(data,function(result){
@@ -149,7 +149,7 @@ Settings.prototype.prepareBlock = function(data){
         var block = $('<div \>').empty(),
             color;
         for(var key in data[id]){
-            if(data[id][key]['status']){
+            if(data[id][key]['active']){
                 color=setting.enable;
             }
             else color=setting.disable;
@@ -164,7 +164,7 @@ Settings.prototype.prepareBlock = function(data){
                 class:'switch'
             }).append($('<label \>').append('Disable').append($('<input >',{
                 type:'checkbox',
-                checked: data[id][key]['status']
+                checked: data[id][key]['active']
             })).append($('<span \>',{
                 class: 'lever'
             })).append('Enable'))).append($('<div \>',{
@@ -252,18 +252,18 @@ $('.items').on('click','.item',function(){
     var category = $(thisItem).parent()[0].id;
     var item = $(this);
     var name = item[0].getElementsByTagName('img')[0].getAttribute('title');
-    var status = item[0].getElementsByTagName('input')[0].checked;
+    var active = item[0].getElementsByTagName('input')[0].checked;
     var statusBlock = item[0].getElementsByClassName('status')[0];
     console.log();
-    if(status){
+    if(active){
         $(statusBlock).css('background-color',setting.enable);
       }
       else{
           $(statusBlock).css('background-color',setting.disable);
       }
-    console.log(category,name,status);
+    console.log(category,name,active);
 
-    setting.onChange(category,name,status);
+    setting.onChange(category,name,active);
 });
 
 setting.__init__();

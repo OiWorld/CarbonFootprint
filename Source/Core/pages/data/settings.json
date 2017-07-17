@@ -2,96 +2,96 @@
     "data":{
         "maps":{
             "google":{
-                "status": true,
+                "active": true,
                 "regex": "google\\.(.*)\\/maps"
             },
             "bing":{
-                "status": true,
+                "active": true,
                 "regex": "bing\\.(.*)\\/maps"
             },
             "here":{
-                "status": true,
+                "active": true,
                 "regex": "here\\.(.*)\\/"
             },
             "openstreet":{
-                "status": true,
+                "active": true,
                 "regex": "openstreetmap\\.(.*)\\/"
             },
             "mapquest":{
-                "status": true,
+                "active": true,
                 "regex": "mapquest\\.(.*)\\/"
             },
             "waze":{
-                "status": true,
+                "active": true,
                 "regex": "waze\\.(.*)\\/"
 
             },
             "yandex":{
-                "status": true,
+                "active": true,
                 "regex": "yandex\\.(.*)\\/"
             }
         },
         "flights":{
             "cleartrip":{
-                "status": true,
+                "active": true,
                 "regex": "cleartrip\\.(.*)\\/"
             },
             "expedia":{
-                "status": true,
+                "active": true,
                 "regex": "expedia\\.(.*)\\/"
             },
             "google":{
-                "status": true,
+                "active": true,
                 "regex": "google\\.(.*)\\/flights/"
             },
             "hipmunk":{
-                "status": true,
+                "active": true,
                 "regex": "hipmunk\\.(.*)\\/"
             },
             "kayak":{
-                "status": true,
+                "active": true,
                 "regex": "kayak\\.(.*)\\/"
             },
             "makemytrip":{
-                "status": true,
+                "active": true,
                 "regex": "makemytrip\\.(.*)\\/"
             },
             "priceline":{
-                "status": true,
+                "active": true,
                 "regex": "priceline\\.(.*)\\/"
             },
             "skyscanner":{
-                "status": true,
+                "active": true,
                 "regex": "skyscanner\\.(.*)\\/"
             },
             "travelocity":{
-                "status": true,
+                "active": true,
                 "regex": "travelocity\\.(.*)\\/"
             }
         },
         "trains":{
             "eurostar":{
-                "status": true,
+                "active": true,
                 "regex": "eurostar\\.(.*)\\/"
             },
             "ouigo":{
-                "status": true,
+                "active": true,
                 "regex": "ouigo\\.(.*)\\/"
             },
             "tgv-lyria":{
-                "status": true,
+                "active": true,
                 "regex": "tgv-lyria\\.(.*)\\/"
             },
             "thalys":{
-                "status": true,
+                "active": true,
                 "regex": "vsct\\.(.*)\\/"
             },
             "viamichelin":{
-                "status": true,
+                "active": true,
                 "regex": "viamichelin\\.(.*)\\/"
             },
             "voyages_sncf":{
-                "status": true,
+                "active": true,
                 "regex": "sncf\\.(.*)\\/"
             }
         }
