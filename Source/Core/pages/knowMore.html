@@ -119,6 +119,21 @@
                             </div>
                         </div>
                         <!-- Source: http://www.freepik.com/free-vector/social-media-icons_761444.htm -->
+                        <img src="img/airplanes.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="tile-caption">
+                        <h4>CO<sub>2</sub> Emission Calculator</h4>
+                        <p class="text-muted">For airplanes</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 tile-item">
+                    <a href="#tileModal7" class="tile-link" data-toggle="modal">
+                        <div class="tile-hover">
+                            <div class="tile-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <!-- Source: http://www.freepik.com/free-vector/social-media-icons_761444.htm -->
                         <img src="img/contact.jpg" class="img-responsive" alt="">
                     </a>
                     <div class="tile-caption">
@@ -632,8 +647,72 @@
         </div>
     </div>
 
-    <!-- tile Modal 6 - Contact Us -->
+    <!-- tile Modal 6 - CO2 Emission Calculator For Airplanes -->
     <div class="tile-modal modal fade" id="tileModal6" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2>Calculator of CO<sub>2</sub> Released by Airplanes</h2>
+                            <p>
+                                <div>
+                                    <form id="AirplaneEmissionForm" class="form-main" role="form">
+                                        <h3>Mass of CO<sub>2</sub> Released</h3>
+                                        <div class="form-group">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="trip" value="round">Round Trip
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="trip" value="oneway" checked>One Way Trip
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="depPort">Departing Airport</label>
+                                            <br>
+                                            <select id="depPort" name="depPort" class="form-control">
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="stopPort">Connecting Airport</label>
+                                            <br>
+                                            <select id="stopPort" name="stopPort" class="form-control">
+                                              <option value="none">--None--</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="desPort">Destination Airport</label>
+                                            <br>
+                                            <select id="desPort" name="desPort" class="form-control">
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="airplane">Airplane</label>
+                                            <br>
+                                            <select id="airplane" name="airplane" class="form-control">
+                                            </select>
+                                        </div>
+                                        <div id="airplaneFormSubmit" class="btn btn-md form-submit">Submit</div>
+                                        <div id="outputEmission" class="outputDiv"></div>
+                                    </form>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- tile Modal 7 - Contact Us -->
+    <div class="tile-modal modal fade" id="tileModal7" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -690,6 +769,8 @@
         </div>
     </div>
 
+
+
     <!-- jQuery -->
     <!-- Note:  Bootstrap's JavaScript requires jQuery version 1.9.1 or higher, but lower than version 3 -->
     <script src="js/jquery.min.js"></script>
@@ -706,6 +787,7 @@
     <script type="text/javascript" src="js/airIndex.js"></script>
     <script type="text/javascript" src="js/caloriesCalc.js"></script>
     <script type="text/javascript" src="js/absorptionCalc.js"></script>
+    <script type="text/javascript" src="js/airplaneCalc.js"></script>
 
 </body>
 

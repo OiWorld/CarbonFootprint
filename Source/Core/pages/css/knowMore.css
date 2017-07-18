@@ -633,7 +633,7 @@ input[type="radio"][name="unit"]:checked + span {
     font-weight: bold;
 }
 
-#outputCalories, #outputAbsorption {
+#outputCalories, #outputAbsorption, #outputEmission {
     padding: 15px 0 5px;
     font-size: 1.2em;
 }
