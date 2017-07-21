@@ -1,5 +1,5 @@
 var travelocityManager = function(){
-
+  this.validator = new FlightsValidator("travelocity");
 };
 
 /**
@@ -15,11 +15,11 @@ travelocityManager.prototype.getList = function(){
     var processedList = [];
     var route,airports=[],depart,arrive,stops=[];
     for(var x=0; x< rawList.length; x++){
-        details = rawList[x].getElementsByClassName('primary-block');
+        details = this.validator.getByClass('primary-block', rawList[x]);
         //console.log(rawList);
-        airports = details[1].getElementsByClassName('secondary')[0].innerText;
+        airports = this.validator.getByClass('secondary', details[1])[0].innerText;
         //console.log(airports);
-        check = details[2].getElementsByClassName('primary')[0].innerText;
+        check = this.validator.getByClass('primary', details[2])[0].innerText;
         //console.log(check);
         check = check.split(" ");
         //console.log(check);
@@ -28,7 +28,7 @@ travelocityManager.prototype.getList = function(){
             //console.log("no stops");
         }
         else{
-            stops = details[2].getElementsByClassName('secondary')[0].innerText;
+            stops = this.validator.getByClass('secondary', details[2])[0].innerText;
             //console.log(stops);
             if(parseInt(check[0]) == 1){
             stops = stops.split(" ");
@@ -52,6 +52,7 @@ travelocityManager.prototype.getList = function(){
         });
         //console.log(stops);
     }
+    this.validator.verifyList(processedList);
     console.log(processedList);
     return processedList;
 };
@@ -84,7 +85,7 @@ travelocityManager.prototype.getDistances = function(processedList){
 
 /**
 * Function for getting Emission of flight
-* @param array 
+* @param array
 * @return array
 */
 
@@ -101,7 +102,8 @@ travelocityManager.prototype.getEmission = function(processedList){
 */
 
 travelocityManager.prototype.insertInDom = function(processedList){
-    var checkOption = document.getElementsByClassName('details-holder');
+  if(processedList.length){
+    var checkOption = this.validator.getByClass('details-holder');
     var insertIn = [];
     console.log(checkOption);
     console.log(processedList);
@@ -119,6 +121,7 @@ travelocityManager.prototype.insertInDom = function(processedList){
             console.log("saved");
         }
     }
+  }
 };
 
 var FlightManager = travelocityManager ;

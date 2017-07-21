@@ -13,6 +13,11 @@ var WazeMapsManager = function(footprintCore, settingsProvider) {
   this.footprintCore = footprintCore;
   this.settingsProvider = settingsProvider;
   this.subtree = true;
+<<<<<<< HEAD
+=======
+  this.validator = new MapsValidator("waze");
+  this.update();
+>>>>>>> 80bde9cff9b9a0fd692af6addfe00c06365d926d
 };
 
 
@@ -39,23 +44,10 @@ WazeMapsManager.prototype.getAllDrivingRoutes = function() {
  */
 
 WazeMapsManager.prototype.getDistanceString = function(route) {
-  var distanceString = route.getElementsByClassName('route-length')[0].textContent;
+  var distanceString = this.validator.getByClass('route-length', route)[0].textContent;
   distanceString = distanceString.trim();
   console.log('distanceString: ' + distanceString);
   return distanceString;
-};
-
-/**
- * Gets time for transit route.
- * @param {object} route
- * @return {string} timeString
- */
-
-WazeMapsManager.prototype.getTimeString = function(route) {
-  var timeString = route.getElementsByClassName('route-time')[0].textContent;
-  timeString = ' ' + timeString.trim();
-  console.log('timeString:' + timeString);
-  return timeString;
 };
 
 /**
@@ -85,8 +77,8 @@ WazeMapsManager.prototype.convertDistance = function(distanceStr) {
        'style',
        'padding-left:5px;display:inline-block;position:relative;top:-5px;'
      );
-     route
-       .getElementsByClassName('route-stats')[0]
+     this.validator
+       .getByClass('route-stats', route)[0]
        .appendChild(e);
    }
  };
@@ -104,8 +96,8 @@ WazeMapsManager.prototype.insertTravelCostElement = function(route, e) {
       'style',
       'padding-right:15px;display:inline-block;position:relative;top:-15px;'
     );
-    route
-      .getElementsByClassName('route-stats')[0]
+    this.validator
+      .getByClass('route-stats', route)[0]
       .appendChild(e);
   }
 };
@@ -120,7 +112,9 @@ WazeMapsManager.prototype.update = function() {
   var i;
   for (i = 0; i < drivingRoutes.length; i++) {
     var distanceString = thisMap.getDistanceString(drivingRoutes[i]);
+    this.validator.isString(distanceString);
     var distanceInKm = thisMap.convertDistance(distanceString);
+    this.isNumber(distanceInKm);
     thisMap.insertFootprintElement(
       drivingRoutes[i],
       thisMap.footprintCore.createFootprintElement(distanceInKm)

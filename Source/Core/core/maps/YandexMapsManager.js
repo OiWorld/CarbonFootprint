@@ -13,6 +13,7 @@ var YandexMapsManager = function(footprintCore, settingsProvider) {
   this.footprintCore = footprintCore;
   this.settingsProvider = settingsProvider;
   this.subtree = true;
+  this.validator = new MapsValidator("yandex");
 };
 
 /**
@@ -76,8 +77,8 @@ YandexMapsManager.prototype.getAllTransitRoutes = function() {
  */
 
 YandexMapsManager.prototype.getDistanceString = function(route) {
-  var distanceString = route
-        .getElementsByClassName('driving-route-view__route-title-secondary')[0]
+  var distanceString = this.validator
+        .getByClass('driving-route-view__route-title-secondary', route)[0]
         .innerText;
   console.log('distanceString: ' + distanceString);
   return distanceString;
@@ -90,8 +91,8 @@ YandexMapsManager.prototype.getDistanceString = function(route) {
  */
 
 YandexMapsManager.prototype.getTimeString = function(route) {
-  var timeString = route
-        .getElementsByClassName('driving-route-view__route-title-primary')[0]
+  var timeString = this.validator
+        .getByClass('driving-route-view__route-title-primary', route)[0]
         .innerHTML;
   timeString = ' ' + timeString;
   console.log('timeString:' + timeString);
@@ -151,7 +152,7 @@ YandexMapsManager.prototype.convertTime = function(timeStr) {
 
 YandexMapsManager.prototype.insertFootprintElement = function(route, e) {
   if (route.getElementsByClassName('carbon').length === 0) {
-    route.getElementsByClassName('driving-route-view')[0].appendChild(e);
+    this.validator.getByClass('driving-route-view', route)[0].appendChild(e);
   }
 };
 
@@ -163,7 +164,7 @@ YandexMapsManager.prototype.insertFootprintElement = function(route, e) {
 
 YandexMapsManager.prototype.insertTravelCostElement = function(route, e) {
   if (route.getElementsByClassName('travelCost').length === 0) {
-    route.getElementsByClassName('driving-route-view')[0].appendChild(e);
+    this.validator.getByClass('driving-route-view', route)[0].appendChild(e);
   }
 };
 
@@ -176,7 +177,9 @@ YandexMapsManager.prototype.update = function() {
   var transitRoutes = this.getAllTransitRoutes();
   for (var i = 0; i < drivingRoutes.length; i++) {
     var distanceString = this.getDistanceString(drivingRoutes[i]);
+    this.validator.isString(distanceString);
     var distanceInKm = this.convertDistance(distanceString);
+    this.validator.isNumber(distanceInKm);
     this.insertFootprintElement(
       drivingRoutes[i],
       this.footprintCore.createFootprintElement(distanceInKm)
@@ -190,7 +193,9 @@ YandexMapsManager.prototype.update = function() {
   }
   for (i = 0; i < transitRoutes.length; i++) {
     var timeString = this.getTimeString(transitRoutes[i]);
+    this.validator.isString(timeString);
     var timeInHrs = this.convertTime(timeString);
+    this.validator.isNumber(timeInHrs);
     this.insertFootprintElement(
       transitRoutes[i],
       this.footprintCore.createPTFootprintElement(timeInHrs)

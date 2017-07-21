@@ -16,6 +16,7 @@ var HereMapsManager = function(footprintCore, settingsProvider) {
   this.footprintCore = footprintCore;
   this.settingsProvider = settingsProvider;
   this.subtree = true;
+  this.validator = new MapsValidator("here");
 };
 
 /**
@@ -79,7 +80,8 @@ HereMapsManager.prototype.getAllTransitRoutes = function() {
  */
 
 HereMapsManager.prototype.getDistanceString = function(route) {
-  var distanceString = route.getElementsByClassName('distance')[0].innerHTML;
+  var distanceString = this.validator.getByClass('distance', route)[0].innerHTML;
+  this.validator.isString(distanceString);
   console.log('distanceString: ' + distanceString);
   return distanceString;
 };
@@ -91,8 +93,9 @@ HereMapsManager.prototype.getDistanceString = function(route) {
  */
 
 HereMapsManager.prototype.getTimeString = function(route) {
-  var timeString = route.getElementsByClassName('duration')[0].textContent;
-  timeString = ' ' + timeString;
+  var timeString = this.validator.getByClass('duration', route)[0].textContent;
+  this.validator.isString(timeString);
+  timeString = timeString.trim();
   console.log('timeString:' + timeString);
   return timeString;
 };
@@ -120,9 +123,13 @@ HereMapsManager.prototype.convertDistance = function(distanceStr) {
 
 HereMapsManager.prototype.convertTime = function(timeStr) {
   if (timeStr) {
-    var days = (/ (\w*) d/).exec(timeStr);
-    var hrs = (/ (\w*) h/).exec(timeStr);
-    var mins = (/ (\w*) m/).exec(timeStr);
+    console.log("len of time str = " + timeStr.length);
+    var days = (/(\w*) d/).exec(timeStr);
+    var hrs = (/(\w*) h/).exec(timeStr);
+    var mins = (/(\w*) m/).exec(timeStr);
+    console.log("days = " + days);
+    console.log("hrs = " + hrs);
+    console.log("mins = " + mins);
     if (hrs) {
       hrs = parseFloat(hrs[1]);
     }
@@ -153,8 +160,8 @@ HereMapsManager.prototype.insertFootprintElement = function(route, e) {
       'style',
       'font-size:14px; padding-bottom: 0;'
     );
-    route
-      .getElementsByClassName('route_card_right')[0]
+    this.validator
+      .getByClass('route_card_right', route)[0]
       .appendChild(e);
 }
 };
@@ -168,8 +175,8 @@ HereMapsManager.prototype.insertFootprintElement = function(route, e) {
 HereMapsManager.prototype.insertTravelCostElement = function(route, e) {
   //A check to ensure that the display travel cost checkbox is checked
   if (route.getElementsByClassName('travelCost').length === 0) {
-    route
-      .getElementsByClassName('route_card_right')[0]
+    this.validator
+      .getByClass('route_card_right')[0]
       .appendChild(e);
   }
 };
@@ -185,6 +192,7 @@ HereMapsManager.prototype.update = function() {
   for (i = 0; i < drivingRoutes.length; i++) {
     var distanceString = thisMap.getDistanceString(drivingRoutes[i]);
     var distanceInKm = thisMap.convertDistance(distanceString);
+    this.validator.isNumber(distanceInKm);
     thisMap.insertFootprintElement(
       drivingRoutes[i],
       thisMap.footprintCore.createFootprintElement(distanceInKm)
@@ -198,7 +206,10 @@ HereMapsManager.prototype.update = function() {
   var transitRoutes = thisMap.getAllTransitRoutes();
   for (i = 0; i < transitRoutes.length; i++) {
     var timeString = this.getTimeString(transitRoutes[i]);
-    var timeInHrs = ' ' + this.convertTime(timeString);
+    var timeInHrs = this.convertTime(timeString);
+    this.validator.isNumber(timeInHrs);
+    timeInHrs = ' ' + timeInHrs;
+    console.log("timeinHrs = " + timeInHrs);
     thisMap.insertFootprintElement(
       transitRoutes[i],
       this.footprintCore.createPTFootprintElement(timeInHrs)

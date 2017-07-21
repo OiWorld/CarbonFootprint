@@ -6,13 +6,16 @@ var ouigoManager = function(){
     depart: ""
   };
   this.MODE = "ouigo"; // constant, the type of train on this website is only "ouigo"
+  this.validator = new TrainsValidator("ouigo");
 };
 
 ouigoManager.prototype.geocodeStations = function(){
-  var stations = document.getElementsByClassName("title-trajet")[0].childNodes[1].innerText;
+  var stations = this.validator.getByClass("title-trajet")[0].childNodes[1].innerText;
   console.log(stations);
   this.stations.depart = stations.split("  ")[0];
   this.stations.arrive = stations.split("  ")[1];
+  this.validator.verifyStation(this.stations.depart);
+  this.validator.verifyStation(this.stations.arrive);
   console.log(this.stations.depart + " ->  " + this.stations.arrive);
   if(core.distance === 0 && this.stations.depart && this.stations.arrive){  //Check if geocode never happened for current stations, proceed if not
     var toGeocode = [this.stations.depart, this.stations.arrive];
@@ -29,7 +32,7 @@ ouigoManager.prototype.setStyle = function(emission){
 ouigoManager.prototype.insertInDom = function(emission){
   emission = this.setStyle(emission);
   console.log(emission);
-  var element = document.getElementsByClassName("title-trajet")[0];
+  var element = this.validator.getByClass("title-trajet")[0];
   if(element.getElementsByClassName('carbon').length === 0){
     element.appendChild(emission);
   }
@@ -38,7 +41,7 @@ ouigoManager.prototype.insertInDom = function(emission){
 ouigoManager.prototype.update = function(){
   this.geocodeStations();
   if(core.distance > 1){ //Check if station have alredy been geocoded
-    this.insertInDom(core.getEmission(["ouigo"])); //There is only 1 type of train
+    this.insertInDom(core.getEmission([this.MODE])); //There is only 1 type of train
   }
 };
 

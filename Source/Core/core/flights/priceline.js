@@ -1,5 +1,6 @@
 var pricelineManager = function(){
     this.treeGrowthPerYear = 8.3;
+    this.validator = new FlightsValidator("priceline");
 };
 
 /**
@@ -15,8 +16,8 @@ pricelineManager.prototype.getList = function(){
     var processedList = [];
     var stops,depart,arrive,airport;
     for(var x=0; x< rawList.length; x++){
-        stops = rawList[x].getElementsByClassName('stopsLocations');
-        airport = rawList[x].getElementsByClassName('airport-code');
+        stops = this.validator.getByClass('stopsLocations', rawList[x]);
+        airport = this.validator.getByClass('airport-code', rawList[x]);
         depart = airport[0].innerText;
         arrive = airport[1].innerText;
         if(stops.length>0){
@@ -38,6 +39,7 @@ pricelineManager.prototype.getList = function(){
         });
         console.log(stops);
     }
+    this.validator.verifyList(processedList);
     console.log(processedList);
     return processedList;
 };
@@ -86,13 +88,14 @@ pricelineManager.prototype.getEmission = function(processedList){
 */
 
 pricelineManager.prototype.insertInDom = function(processedList){
-    var checkOption = document.getElementsByClassName('fly-itinerary retail');
+  if(processedList.length){
+    var checkOption = this.validator.getByClass('fly-itinerary retail');
     var insertIn = [];
     console.log(checkOption);
     console.log(processedList);
     for(var x=0;x<checkOption.length;x++){
         console.log(checkOption[x].getElementsByClassName('carbon'));
-        insertIn = checkOption[x].getElementsByClassName('fineprint');
+        insertIn = this.validator.getByClass('fineprint', checkOption[x]);
         insertIn = insertIn[insertIn.length-1];
         console.log(x);
         if(checkOption[x].getElementsByClassName('carbon').length < 1)
@@ -104,6 +107,7 @@ pricelineManager.prototype.insertInDom = function(processedList){
             console.log("saved");
         }
     }
+  }
 };
 
 var FlightManager = pricelineManager ;

@@ -1,4 +1,5 @@
 var kayakManager = function(){
+  this.validator = new FlightsValidator("kayak");
 };
  /**
  * Function for making an object of flight
@@ -14,12 +15,14 @@ kayakManager.prototype.getList = function(){
     var stops,depart,arrive,airport;
     for(var x = 0; x<rawList.length; x++){
 
-        stops = rawList[x].getElementsByClassName('stops')[0].innerText;
+        stops = this.validator.getByClass('stops', rawList[x])[0].innerText;
         stops = stops.split(",").join("");
         stops = stops.slice(0,stops.length-1);
         stops = stops.split(" ");
-        depart = rawList[x].getElementsByClassName('depart')[0].getElementsByClassName('bottom')[0].innerText;
-        arrive = rawList[x].getElementsByClassName('return')[0].getElementsByClassName('bottom')[0].innerText.split(" ")[0];
+        depart = this.validator.getByClass('depart', rawList[x])[0];
+        depart = this.validator.getByClass('bottom', depart)[0].innerText;
+        arrive = this.validator.getByClass('return', rawList[x])[0];
+        arrive = this.validator.getByClass('bottom', arrive)[0].innerText.split(" ")[0];
         console.log(stops);
         if(stops.length==1){
             if(stops[0]==="non-stop")
@@ -34,6 +37,7 @@ kayakManager.prototype.getList = function(){
         });
         //console.log(stops);
     }
+    this.validator.verifyList(processedList);
     console.log(processedList);
     return processedList;
 };
@@ -78,12 +82,13 @@ kayakManager.prototype.getEmission = function(processedList){
  */
 
 kayakManager.prototype.insertInDom = function(processedList){
-    var checkOption = document.getElementsByClassName('resultInner');
+  if(processedList){
+    var checkOption = this.validator.getByClass('resultInner');
     var insertIn = [];
     console.log(checkOption);
     console.log(processedList);
     for(var x=0;x<checkOption.length;x++){
-        insertIn = checkOption[x].getElementsByClassName('extraInfo');
+        insertIn = this.validator.getByClass('extraInfo', checkOption[x]);
         insertIn = insertIn[insertIn.length-1];
         if(checkOption[x].getElementsByClassName('carbon').length<1){
             insertIn.appendChild(core.createMark(processedList[2*x].co2Emission,processedList[(2*x)+1].co2Emission));
@@ -93,6 +98,7 @@ kayakManager.prototype.insertInDom = function(processedList){
             console.log("already presented");
         }
     }
+  }
 };
 
 var FlightManager = kayakManager ;
