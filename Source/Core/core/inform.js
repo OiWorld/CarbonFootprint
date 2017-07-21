@@ -38,7 +38,7 @@ inform.prototype.__init__ = function(){
     else if (navigator.userAgent.toLowerCase().indexOf("firefox") != -1)
     {
         this.isFirefox = true;
-        console.log("I am in mozilla");
+        console.log("I am in firefox");
     }
 };
 
@@ -58,8 +58,8 @@ var cb = function(result,serviceManager){
             var regex = new RegExp(check);
             console.log(regex,check);
             console.log(regex.test(question));
-            console.log(data[id][key]['status']);
-            if(regex.test(question) && !data[id][key]['status']){
+            console.log(data[id][key]['active']);
+            if(regex.test(question) && !data[id][key]['active']){
                 flag = false;
                 console.log('this site is disabled');
             }
