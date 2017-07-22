@@ -28,7 +28,8 @@ Settings.prototype.getLink = function(shortLink){
         return chrome.extension.getURL(shortLink);
     }
     else if(this.isSafari){
-        console.log("something is expected from too");
+        console.log("I am in safari");
+        return safari.extension.baseURI + shortLink;
     }
     else if(this.isFirefox){
         console.log("I am firefox");
@@ -59,6 +60,10 @@ Settings.prototype.updateData = function(data,cb){
     }
     else if(self.isSafari){
         console.log("we expect something from here");
+        safari.self.tab.dispatchMessage('data', {
+            type: 'setItem',
+            item: data
+        });
         cb(data);
     }
     console.log("inserted data is ",data);
@@ -120,9 +125,20 @@ Settings.prototype.onChange = function(category,name,active){
             console.log("data updated",result);
         });
     };
-
         if(self.isSafari){
-            console.log("we expect something to do here as well");
+            console.log('we expect something from here');
+            safari.self.tab.dispatchMessage('data', {
+                type: 'getItem'
+            });
+            safari.self.addEventListener('message', function(response) {
+                if (response.name === 'data') {
+                    console.log(response.message);
+                    if (response.message !== null)
+                        cb(self,{"data":response.message});
+                    else
+                        cb(self,{});
+                }
+            }, false);
         }
         else if(self.isChrome){
             chrome.storage.sync.get('data',function(result){
@@ -205,10 +221,18 @@ Settings.prototype.useSyncData = function(cb){
     }
     else if(self.isSafari){
         console.log('we expect something from here');
-
-        // if(true){
-        //     self.updateDefaultData();
-        // }
+        safari.self.tab.dispatchMessage('data', {
+            type: 'getItem'
+        });
+        safari.self.addEventListener('message', function(response) {
+            if (response.name === 'data') {
+                console.log(response.message);
+                if (response.message !== null)
+                    onGetStorage({"data":response.message});
+                else
+                    onGetStorage({});
+            }
+        }, false);
     }
     else{
         console.log('we found nothing');
