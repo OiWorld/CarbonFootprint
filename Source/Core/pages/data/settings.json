@@ -67,6 +67,30 @@
             "travelocity":{
                 "active": true,
                 "regex": "travelocity\\.(.*)\\/"
+            },
+            "aa":{
+                "active":true,
+                "regex":"aa\\.(.*)\\/"
+            },
+            "delta":{
+                "active":true,
+                "regex":"delta\\.(.*)\\/"
+            },
+            "lufthasana":{
+                "active":true,
+                "regex":"lufthasana\\.(.*)\\/"
+            },
+            "spicejet":{
+                "active":true,
+                "regex":"spicejet\\.(.*)\\/"
+            },
+            "tripadvisor":{
+                "active":true,
+                "regex":"tripadvisor\\.(.*)\\/"
+            },
+            "united":{
+                "active":true,
+                "regex":"united\\.(.*)\\/"
             }
         },
         "trains":{
