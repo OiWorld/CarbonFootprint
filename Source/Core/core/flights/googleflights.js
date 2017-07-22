@@ -10,48 +10,51 @@ var googleFlightsManager = function(){
 
 googleFlightsManager.prototype.getList = function(){
     console.log("Hey Google Flights!");
-    var rawList = document.getElementsByClassName('OMOBOQD-d-W OMOBOQD-d-Lb OMOBOQD-d-S');
+    var rawList = document.getElementsByClassName('EIGTDNC-d-W EIGTDNC-d-Lb EIGTDNC-d-S');
     console.log(rawList);
     console.log("--raw list--");
     //console.log(rawList);
     var processedList = [];
-    var route,airports=[],depart,arrive,stops=[],url;
-    airports = document.getElementsByClassName('OMOBOQD-Ib-a');
+    var route,airports=[],depart,arrive,stops=[],url,detail;
     url = location.href;
     url = url.split(";");
     airports = url.slice(1,3);
     depart = airports[0].slice(2,5);
     arrive = airports[1].slice(2,5);
     for(var x=1; x< rawList.length-1; x++){
-        detail = rawList[x].getElementsByClassName('OMOBOQD-d-Qb')[0].innerText;
+        detail = rawList[x].getElementsByClassName('EIGTDNC-d-Qb')[0].innerText;
         detail = detail.split(" ");
         console.log(detail);
-        //In the case of city having more than one airport
-        // we try to find exact airport by not considering URL
-        var airportElement = rawList[x].getElementsByClassName('OMOBOQD-d-Jb');
-        console.log(airportElement,airportElement.length);
-        if(airportElement.length>0){
-            airportElement = airportElement[0].getElementsByClassName('OMOBOQD-d-Ib')[0].innerText.split("-");
-            depart = airportElement[0];
-            arrive = airportElement[1];
-        }
-        if(detail.length === 1 || rawList[x].getElementsByClassName('OMOBOQD-d-Z').length == 0){
-            stops = [];
-        }
-        else {
-            stops = rawList[x].getElementsByClassName('OMOBOQD-d-Z')[0].innerText.split(" ");
-            if(parseInt(detail[0]) === 1){
+        if(detail.length>0){
+            if(!isNaN(parseInt(detail[0]))){
+                stops = rawList[x].getElementsByClassName('EIGTDNC-d-Z')[0].innerText.split(" ");
                 if(stops[0] === 'Change'){
                     stops = [];
                 }
-                else{
+                else if(parseInt(detail[0]) != stops.length){   // handle when stops is like ["1h", "50m", "in", "AUH"]
+                    console.log(stops);
                     stops = stops[stops.length-1];
                     stops = [stops];
                 }
+                else if(parseInt(detail[0])>1){
+                    stops = stops.join(" ").split(",").join("").split(" ");
+                }
             }
             else{
-                stops = stops.join(" ").split(",").join("").split(" ");
+                stops = [];
             }
+        }
+        else{
+            stops = [];
+        }
+        //In the case of city having more than one airport
+        // we try to find exact airport by not considering URL
+        var airportElement = rawList[x].getElementsByClassName('EIGTDNC-d-Ib');
+        console.log(airportElement,airportElement.length);
+        if(airportElement.length>0){
+            airportElement = airportElement[0].innerText.split("-");
+            depart = airportElement[0];
+            arrive = airportElement[1];
         }
         console.log(depart,arrive);
         processedList.push({
@@ -111,7 +114,7 @@ googleFlightsManager.prototype.getEmission = function(processedList){
  */
 
 googleFlightsManager.prototype.insertInDom = function(processedList){
-    var checkOption = document.getElementsByClassName('OMOBOQD-d-W OMOBOQD-d-Lb OMOBOQD-d-S');
+    var checkOption = document.getElementsByClassName('EIGTDNC-d-W EIGTDNC-d-Lb EIGTDNC-d-S');
     var alter = [];
     for(var x=1;x<checkOption.length-1;x++){
         alter.push(checkOption[x]);
@@ -122,7 +125,7 @@ googleFlightsManager.prototype.insertInDom = function(processedList){
     console.log(processedList);
     for(x =0;x<checkOption.length;x++){
         console.log(checkOption[x].getElementsByClassName('carbon'));
-        insertIn = checkOption[x].getElementsByClassName('OMOBOQD-d-X')[0];
+        insertIn = checkOption[x].getElementsByClassName('EIGTDNC-d-X')[0];
         console.log(x);
         if(checkOption[x].getElementsByClassName('carbon').length < 1)
         {
