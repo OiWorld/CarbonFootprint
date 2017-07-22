@@ -1026,6 +1026,9 @@
             "core/helpers/flightDataHelper.js",
             "core/helpers/ChromeHelper.js",
             "core/validator/raven.min.js",
+            "core/validator/basicValidator.js",
+            "core/validator/flightsValidator.js",
+            "core/validator/validatorServer.js",
             "core/flights/lufthansa.js",
             "core/FlightsFootprintCore.js",
             "core/initFlight.js"
@@ -1042,6 +1045,9 @@
             "core/helpers/flightDataHelper.js",
             "core/helpers/ChromeHelper.js",
             "core/validator/raven.min.js",
+            "core/validator/basicValidator.js",
+            "core/validator/flightsValidator.js",
+            "core/validator/validatorServer.js",
             "core/flights/delta.js",
             "core/FlightsFootprintCore.js",
             "core/initFlight.js"
@@ -1058,6 +1064,9 @@
             "core/helpers/flightDataHelper.js",
             "core/helpers/ChromeHelper.js",
             "core/validator/raven.min.js",
+            "core/validator/basicValidator.js",
+            "core/validator/flightsValidator.js",
+            "core/validator/validatorServer.js",
             "core/flights/aa.js",
             "core/FlightsFootprintCore.js",
             "core/initFlight.js"
@@ -1075,6 +1084,9 @@
             "core/helpers/flightDataHelper.js",
             "core/helpers/ChromeHelper.js",
             "core/validator/raven.min.js",
+            "core/validator/basicValidator.js",
+            "core/validator/flightsValidator.js",
+            "core/validator/validatorServer.js",
             "core/flights/spiceJet.js",
             "core/FlightsFootprintCore.js",
             "core/initFlight.js"
@@ -1137,6 +1149,9 @@
             "core/helpers/flightDataHelper.js",
             "core/helpers/ChromeHelper.js",
             "core/validator/raven.min.js",
+            "core/validator/basicValidator.js",
+            "core/validator/flightsValidator.js",
+            "core/validator/validatorServer.js",
             "core/flights/tripAdvisor.js",
             "core/FlightsFootprintCore.js",
             "core/initFlight.js"
@@ -1153,6 +1168,9 @@
             "core/helpers/flightDataHelper.js",
             "core/helpers/ChromeHelper.js",
             "core/validator/raven.min.js",
+            "core/validator/basicValidator.js",
+            "core/validator/flightsValidator.js",
+            "core/validator/validatorServer.js",
             "core/flights/united.js",
             "core/FlightsFootprintCore.js",
             "core/initFlight.js"
