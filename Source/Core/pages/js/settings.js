@@ -53,7 +53,7 @@ Settings.prototype.updateData = function(data,cb){
     }
     else if(self.isFirefox){
         browser.storage.sync.set({"data":data}).then(function(){
-            console.log("data added in (mozilla)");
+            console.log("data added in (firefox)");
             cb(data);
         });
     }
@@ -86,6 +86,7 @@ Settings.prototype.updateDefaultData = function(cb){
         },
         error:function(err){
             console.log(err);
+            cb(err,dData);
         }
     });
 };
