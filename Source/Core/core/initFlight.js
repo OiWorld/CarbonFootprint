@@ -9,7 +9,7 @@ else{
   childList = true;
 }
 /**
- * Function for Updating the DOM
+ * Function for Updating the DOM for flight websites
  */
 
 var flightsUpdate = function(){
@@ -23,11 +23,20 @@ var flightsUpdate = function(){
     console.log(processedList);
 };
 
+/**
+ * Structure to observe for changes
+ */
+
 var target = document.getElementsByTagName("body")[0],
     observer = new MutationObserver(function() {
-      console.log('Observing!');
-      flightsUpdate();
+        console.log('Observing!');
+        flightsUpdate();
     });
+
+/**
+ * Setting the properties for mutation Observer
+ */
+
 observer.observe(target, {
   attributes: true,
   childList: childList,
