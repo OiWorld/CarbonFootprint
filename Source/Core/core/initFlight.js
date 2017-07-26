@@ -13,6 +13,9 @@ else{
     childList = true;
 }
 
+/**
+ * Function for Updating the DOM for flight websites
+ */
 
 var Inform = new inform();
 var flightsInit = function(){
@@ -35,6 +38,10 @@ var target = document.getElementsByTagName("body")[0],
         console.log('Observing!');
         Inform.permission(serviceManager);
     });
+
+/**
+ * Setting the properties for mutation Observer
+ */
 
 observer.observe(target, {
   attributes: true,
