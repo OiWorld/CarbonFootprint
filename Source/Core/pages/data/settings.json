@@ -29,6 +29,10 @@
             "yandex":{
                 "active": true,
                 "regex": "yandex\\.(.*)\\/"
+            },
+            "viamichelin":{
+                "active": true,
+                "regex": "viamichelin\\.(.*)\\/"
             }
         },
         "flights":{
@@ -109,10 +113,6 @@
             "thalys":{
                 "active": true,
                 "regex": "vsct\\.(.*)\\/"
-            },
-            "viamichelin":{
-                "active": true,
-                "regex": "viamichelin\\.(.*)\\/"
             },
             "voyages_sncf":{
                 "active": true,
