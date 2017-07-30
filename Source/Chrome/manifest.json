@@ -393,6 +393,7 @@
             "css": ["core/css/main.css"],
             "js": [
                 "core/CarbonFootprintCore.js",
+                "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/basicValidator.js",
