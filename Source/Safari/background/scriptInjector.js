@@ -1337,6 +1337,7 @@ injector.commonScripts = [
     injector.URL + 'core/SettingsProviderCore.js',
     injector.URL + 'core/settings/SafariSettingsProvider.js',
     injector.URL + 'core/helpers/SafariHelper.js',
+    injector.URL + 'core/validator/raven.min.js',
     injector.URL + 'core/validator/basicValidator.js',
     injector.URL + 'core/validator/validatorServer.js'
 ];

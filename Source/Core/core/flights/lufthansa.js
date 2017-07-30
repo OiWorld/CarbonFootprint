@@ -1,5 +1,6 @@
 var lufthansaManager = function(){
   this.subtree = true;
+  this.validator = new FlightsValidator("lufthansa");
 };
 lufthansaManager.prototype.getList = function(){
   var rawList = document.getElementsByClassName("cell segments");
@@ -7,17 +8,17 @@ lufthansaManager.prototype.getList = function(){
   console.log(rawList);
   var processedList = [];
   for(var x = 0, i = rawList.length; x < i; x++){
-    var rawStops = rawList[x].getElementsByTagName('abbr');
+    var rawStops = this.validator.getByTag('abbr', rawList[x]);
     var stops = [];
     for(var y = 1, j = rawStops.length; y < j-1; y += 2){
       stops.push(rawStops[y].innerHTML);
     }
     var aircrafts = [];
     var aircraftsDiv = rawList[x].getElementsByClassName("aircraft");
-    segment = rawList[x].getElementsByClassName("segment-info");
+    segment = this.validator.getByClass("segment-info", rawList[x]);
     var a = 0;
     for(y = 0, j = segment.length; y < j; y++){
-      if(segment[y].childNodes[1].childNodes.length > 7){
+      if(this.validator.getChildNode([1], segment[y]).childNodes.length > 7){
         aircrafts.push(aircraftsDiv[a++].alt.split(" ").pop());
       }
       else{
@@ -31,6 +32,7 @@ lufthansaManager.prototype.getList = function(){
       aircraft: "A380" //hardcoded for now
     });
   }
+  this.validator.verifyList(processedList);
   console.log("--- initial list ---");
   console.log(processedList);
   return processedList;
@@ -84,11 +86,13 @@ lufthansaManager.prototype.style = function(e){
 };
 
 lufthansaManager.prototype.insertInDom = function(processedList){
-  insertIn = document.getElementsByClassName("flight wdk-line");
-  for(var x = 0, i = insertIn.length; x < i; x++){
-    //var insert = insertIn[x].getElementsByClassName("carrier")[0];
-    if(insertIn[x].getElementsByClassName("carbon").length === 0){
-         insertIn[x].appendChild(this.style(core.createMark(processedList[x].co2Emission)));
+  if(processedList.length > 0){
+    insertIn = this.validator.getByClass("flight wdk-line");
+    for(var x = 0, i = insertIn.length; x < i; x++){
+      //var insert = insertIn[x].getElementsByClassName("carrier")[0];
+      if(insertIn[x].getElementsByClassName("carbon").length === 0){
+           insertIn[x].appendChild(this.style(core.createMark(processedList[x].co2Emission)));
+      }
     }
   }
 };

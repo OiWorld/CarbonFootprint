@@ -1,5 +1,6 @@
 var spiceManager = function(){
   this.subtree = true;
+  this.validator = new FlightsValidator("spiceJet");
 };
 spiceManager.prototype.getList = function(){
   var rawList = document.getElementsByClassName("flightInfo");
@@ -8,7 +9,7 @@ spiceManager.prototype.getList = function(){
   var processedList = [];
   list = [];
   for(var x = 0, i = rawList.length; x < i; x+=2){
-    list.push(rawList[x].getElementsByTagName("p"));
+    list.push(this.validator.getByTag("p", rawList[x]));
   }
   console.log(list);
   for(x = 0, i = list.length; x < i; x++){
@@ -52,6 +53,7 @@ spiceManager.prototype.getList = function(){
   //console.log(list);
   console.log("--- initial list ---");
   console.log(processedList);
+  this.validator.verifyList(processedList);
   return processedList;
 };
 
@@ -102,10 +104,12 @@ spiceManager.prototype.style = function(e){
 };
 
 spiceManager.prototype.insertInDom = function(processedList){
-  insertIn = document.getElementsByClassName("flight-icon-symbol bold");
-  for(var x = 0, i = insertIn.length; x < i; x++){
-    if(insertIn[x].getElementsByClassName("carbon").length === 0){
-         insertIn[x].appendChild(this.style(core.createMark(processedList[x].co2Emission)));
+  if(processedList.length > 0){
+    insertIn = this.validator.getByClass("flight-icon-symbol bold");
+    for(var x = 0, i = insertIn.length; x < i; x++){
+      if(insertIn[x].getElementsByClassName("carbon").length === 0){
+           insertIn[x].appendChild(this.style(core.createMark(processedList[x].co2Emission)));
+      }
     }
   }
 };
