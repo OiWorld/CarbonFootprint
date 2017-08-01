@@ -160,22 +160,37 @@ FlightsFootprintCore.prototype.getDistance = function(lat1, lon1, lat2, lon2){
 FlightsFootprintCore.prototype.getEmission = function(list){
   //console.log(core.airplanesData);
     for(var x = 0, i = list.length; x < i; x++){
-    var aircraft = list[x].aircraft;
-    var fuelConsumptionFloor, fuelConsumptionCeil;
-        var distanceFloor, distanceCeil;
-    for(var y = 0, j = core.airplanesData.distances.length; y < j; y++){
-        if(core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM > list[x].distance){
-        fuelConsumptionFloor = core.airplanesData[aircraft].fuel[y-1];
-        fuelConsumptionCeil = core.airplanesData[aircraft].fuel[y];
-        distanceFloor = core.airplanesData.distances[y-1]*FlightsFootprintCore.NMI_TO_KM;
-        distanceCeil = core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM;
-        break;
-        }
-    }
-    var fuelConsumption = fuelConsumptionFloor + ((fuelConsumptionCeil - fuelConsumptionFloor)/
-                          (distanceCeil - distanceFloor))*(list[x].distance - distanceFloor);
-    //console.log("fuelConsumption1" + fuelConsumption1);
-    list[x].co2Emission = this.convertFuelToCO2(fuelConsumption, aircraft);
+      var aircraft = list[x].aircraft;
+      var fuelConsumptionFloor, fuelConsumptionCeil;
+          var distanceFloor, distanceCeil;
+      var interpolationFailed = false;
+      for(var y = 0, j = core.airplanesData.distances.length; y < j; y++){
+          if(core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM > list[x].distance){
+          fuelConsumptionFloor = core.airplanesData[aircraft].fuel[y-1];
+          fuelConsumptionCeil = core.airplanesData[aircraft].fuel[y];
+          distanceFloor = core.airplanesData.distances[y-1]*FlightsFootprintCore.NMI_TO_KM;
+          distanceCeil = core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM;
+
+          //check if interpolation will fail
+          if(!fuelConsumptionCeil){
+            interpolationFailed = true;
+          }
+          break;
+          }
+      }
+      var fuelConsumption = 0;
+      if(interpolationFailed){
+        l = core.airplanesData[aircraft].fuel.length - 1;
+        slope = ((core.airplanesData[aircraft].fuel[l] - core.airplanesData[aircraft].fuel[l]) /
+                          (core.airplanesData.distances[l]*FlightsFootprintCore.NMI_TO_KM -
+                            core.airplanesData.distances[l-1]*FlightsFootprintCore.NMI_TO_KM));
+        fuelConsumption = slope*(list[x].distance - core.airplanesData.distances[l]) + core.airplanesData[aircraft].fuel[l];
+      }
+      else{
+        fuelConsumption = fuelConsumptionFloor + ((fuelConsumptionCeil - fuelConsumptionFloor)/
+                              (distanceCeil - distanceFloor))*(list[x].distance - distanceFloor);
+      }
+      list[x].co2Emission = this.convertFuelToCO2(fuelConsumption, aircraft);
   }
   //console.log("--- final list ---");
   //console.log(list);
