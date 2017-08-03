@@ -1,18 +1,27 @@
+/**
+ * Initialises the extension when flights webpage is open
+ * @author vaibsharma (Vaibhav Sharma)
+ */
+
 var flightManager = new FlightManager();
 var core = new FlightsFootprintCore();
-
 var childList;
 if(flightManager.childList !== undefined){
-  childList = flightManager.childList;
+    childList = flightManager.childList;
 }
 else{
-  childList = true;
+    childList = true;
 }
+
 /**
  * Function for Updating the DOM for flight websites
  */
 
-var flightsUpdate = function(){
+var Inform = new inform();
+var flightsInit = function(){
+};
+
+flightsInit.prototype.update = function(){
     var processedList = flightManager.getList();
     if(core.airplanesData && core.airportsData){
         processedList = flightManager.getEmission(
@@ -23,14 +32,11 @@ var flightsUpdate = function(){
     console.log(processedList);
 };
 
-/**
- * Structure to observe for changes
- */
-
+var serviceManager = new flightsInit();
 var target = document.getElementsByTagName("body")[0],
     observer = new MutationObserver(function() {
         console.log('Observing!');
-        flightsUpdate();
+        Inform.permission(serviceManager);
     });
 
 /**

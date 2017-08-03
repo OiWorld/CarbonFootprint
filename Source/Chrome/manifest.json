@@ -21,7 +21,19 @@
     "options_ui": {
         "page": "pages/options.html"
     },
-    "content_scripts": [{
+    "content_scripts": [
+        {
+            "matches":[
+                "<all_urls>"
+            ],
+            "js": [
+                "core/inform.js"
+            ],
+            "run_at": "document_end",
+            "all_frames": true
+            
+        },
+        {
             "matches": [
                 "*://www.google.ac/maps*",
                 "*://www.google.ad/maps*",
@@ -388,6 +400,7 @@
             "css": ["core/css/main.css"],
             "js": [
                 "core/CarbonFootprintCore.js",
+                "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/raven.min.js",

@@ -4,7 +4,7 @@ var googleFlightsManager = function(){
 
 /**
  * Function for making an object of flight
- * @return array of Object
+ * @return {object} processedList
  * Note : for 'all airport' case the first airport for depart or(or and) arrive shown in the url is considered.
  */
 
@@ -51,7 +51,7 @@ googleFlightsManager.prototype.getList = function(){
         // we try to find exact airport by not considering URL
         var airportElement = rawList[x].getElementsByClassName('EIGTDNC-d-Ib');
         console.log(airportElement,airportElement.length);
-        if(airportElement.length>0){
+        if(airportElement.length>0 && airportElement[0].innerText.length >0){
             airportElement = airportElement[0].innerText.split("-");
             depart = airportElement[0];
             arrive = airportElement[1];
@@ -71,8 +71,8 @@ googleFlightsManager.prototype.getList = function(){
 
 /**
  * Function for getting coordinates from the JSON
- * @param array
- * @return array
+ * @param {array} processedList
+ * @return {array} processedList
  */
 
 googleFlightsManager.prototype.getCoordinates = function(processedList){
@@ -84,8 +84,8 @@ googleFlightsManager.prototype.getCoordinates = function(processedList){
 
 /**
  * Function for getting Total Distance of flight
- * @param array
- * @return array
+ * @param {array} processedList
+ * @return {array} processedList
  */
 
 googleFlightsManager.prototype.getDistances = function(processedList){
@@ -97,8 +97,8 @@ googleFlightsManager.prototype.getDistances = function(processedList){
 
 /**
  * Function for getting Emission of flight
- * @param array 
- * @return array
+ * @param {array} processedList
+ * @return {array} processedList
  */
 
 googleFlightsManager.prototype.getEmission = function(processedList){
@@ -109,8 +109,8 @@ googleFlightsManager.prototype.getEmission = function(processedList){
 
 /**
  * Function for inserting Element in DOM
- * @param array
- * @return array
+ * @param {array} processedList
+ * @return {array} processedList
  */
 
 googleFlightsManager.prototype.insertInDom = function(processedList){
