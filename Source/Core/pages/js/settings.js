@@ -171,7 +171,7 @@ Settings.prototype.prepareBlock = function(data){
             }
             else color=setting.disable;
             block.append($('<div \>',{
-                class:'item col-md-2'
+                class:'item col-md-2 col-xs-4 col-sm-4'
             }).append( $('<div \>',{
                 class:'logo'
             }).append($('<img>',{

@@ -1,37 +1,19 @@
-@media (min-width:801px)  {
-
-
-}
-
-
-@media (min-width:1025px){
-    .header{
-        margin-top:15px;
-        background-color:white;
-    }
-    .heading{
-        color: #1a237e;
-        font-size: 1.7em;
-        padding-left: 10px;px;
-        padding-top: 10px;
-    }
-    .content{
-        height: 7em;
+.content{
+        height: auto;
         background-color: #0277bd;
         margin-top: 2em;
         text-align: center;
         padding-top: 20px;
-    }
-    span.content-text{
-        opacity: 0.9;
-        font-size: 2.5em;
-        color: #FFFFFF;
-    }
-    span.data-heading{
-        color: #212121;
-        font-size: 2em;
-    }
-    .item{
+}
+.data-block{
+    margin-top:2em;
+    margin-left:2em;
+}
+.header{
+        margin-top:15px;
+        background-color:white;
+}
+.item{
         margin-top:10px;
         margin-left:5px;
         height:13em;
@@ -39,51 +21,25 @@
         -webkit-box-shadow: 0 8px 6px -6px #2196F3;
 	      -moz-box-shadow: 0 8px 6px -6px #2196F3;
 	      box-shadow: 0 8px 6px -6px #2196F3;
-    }
-    .logo>img{
+}
+.logo>img{
         height:2.7em;
         display: block;
         margin: auto;
+}
+span.content-text{
+        opacity: 0.9;
+        font-size: 2.5em;
+        color: #FFFFFF;
     }
-    .logo{
-        margin-top:2em;
-    }
-    .switch{
-        margin-top:2em;
-    }
-    .status{
-        position: absolute;
-        height:1em;
-        width:80%;
-        background-color:#4caf50;
-        margin-top:2em;
-    }
-    label{
+span.data-heading{
+        color: #212121;
+        font-size: 2em;
+}
+label{
         font-size:1.2em;
         color:#212121;
-    }
 }
-
-.header>img{
-    height:80px;
-}
-
-.data-block{
-    margin-top:2em;
-    margin-left:2em;
-}
-.items{
-    margin-left:1em;
-}
-
-#fountainG{
-	  position:relative;
-	  width:234px;
-	  height:28px;
-	  margin:auto;
-    margin-top:7em;
-}
-
 .fountainG{
 	  position:absolute;
 	  top:0;
@@ -121,7 +77,41 @@
 		-webkit-border-radius:19px;
 		-moz-border-radius:19px;
 }
+.header>img{
+    height:80px;
+}
+.heading{
+        color: #1a237e;
+        font-size: 1.7em;
+        padding-left: 10px;
+        padding-top: 10px;
+}
+.items{
+    margin-left:1em;
+}
+.logo{
+        margin-top:2em;
+}
 
+.status{
+        position: absolute;
+        height:1em;
+        width:80%;
+        background-color:#4caf50;
+        margin-top:2em;
+}
+.switch{
+        margin-top:2em;
+}
+
+
+#fountainG{
+	  position:relative;
+	  width:234px;
+	  height:28px;
+	  margin:auto;
+    margin-top:7em;
+}
 #fountainG_1{
 	  left:0;
 	  animation-delay:0.6s;
