@@ -153,6 +153,9 @@ FlightsFootprintCore.prototype.getDistance = function(lat1, lon1, lat2, lon2){
 
 /**
  * Function to calculate the emission from the distance
+ * Uses linear interpolation/extrapolation for calculating
+ * fuel consumed, fuel consumption is then converted to
+ * CO2 emission.
  * @param [Objects]
  * @return [Objects]
  */
