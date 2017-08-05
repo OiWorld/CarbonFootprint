@@ -17,7 +17,6 @@ var OpenMapsManager = function(footprintCore, settingsProvider) {
   this.settingsProvider = settingsProvider;
   this.subtree = true;
   this.validator = new MapsValidator("openmaps");
-  this.update();
 };
 
 /**

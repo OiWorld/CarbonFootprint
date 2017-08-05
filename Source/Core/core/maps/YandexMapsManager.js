@@ -14,7 +14,6 @@ var YandexMapsManager = function(footprintCore, settingsProvider) {
   this.settingsProvider = settingsProvider;
   this.subtree = true;
   this.validator = new MapsValidator("yandex");
-  this.update();
 };
 
 /**

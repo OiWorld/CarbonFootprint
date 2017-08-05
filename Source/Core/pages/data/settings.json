@@ -1,0 +1,123 @@
+{
+    "data":{
+        "maps":{
+            "google":{
+                "active": true,
+                "regex": "google\\.(.*)\\/maps"
+            },
+            "bing":{
+                "active": true,
+                "regex": "bing\\.(.*)\\/maps"
+            },
+            "here":{
+                "active": true,
+                "regex": "here\\.(.*)\\/"
+            },
+            "openstreet":{
+                "active": true,
+                "regex": "openstreetmap\\.(.*)\\/"
+            },
+            "mapquest":{
+                "active": true,
+                "regex": "mapquest\\.(.*)\\/"
+            },
+            "waze":{
+                "active": true,
+                "regex": "waze\\.(.*)\\/"
+
+            },
+            "yandex":{
+                "active": true,
+                "regex": "yandex\\.(.*)\\/"
+            },
+            "viamichelin":{
+                "active": true,
+                "regex": "viamichelin\\.(.*)\\/"
+            }
+        },
+        "flights":{
+            "cleartrip":{
+                "active": true,
+                "regex": "cleartrip\\.(.*)\\/"
+            },
+            "expedia":{
+                "active": true,
+                "regex": "expedia\\.(.*)\\/"
+            },
+            "google":{
+                "active": true,
+                "regex": "google\\.(.*)\\/flights/"
+            },
+            "hipmunk":{
+                "active": true,
+                "regex": "hipmunk\\.(.*)\\/"
+            },
+            "kayak":{
+                "active": true,
+                "regex": "kayak\\.(.*)\\/"
+            },
+            "makemytrip":{
+                "active": true,
+                "regex": "makemytrip\\.(.*)\\/"
+            },
+            "priceline":{
+                "active": true,
+                "regex": "priceline\\.(.*)\\/"
+            },
+            "skyscanner":{
+                "active": true,
+                "regex": "skyscanner\\.(.*)\\/"
+            },
+            "travelocity":{
+                "active": true,
+                "regex": "travelocity\\.(.*)\\/"
+            },
+            "aa":{
+                "active":true,
+                "regex":"aa\\.(.*)\\/"
+            },
+            "delta":{
+                "active":true,
+                "regex":"delta\\.(.*)\\/"
+            },
+            "lufthasana":{
+                "active":true,
+                "regex":"lufthasana\\.(.*)\\/"
+            },
+            "spicejet":{
+                "active":true,
+                "regex":"spicejet\\.(.*)\\/"
+            },
+            "tripadvisor":{
+                "active":true,
+                "regex":"tripadvisor\\.(.*)\\/"
+            },
+            "united":{
+                "active":true,
+                "regex":"united\\.(.*)\\/"
+            }
+        },
+        "trains":{
+            "eurostar":{
+                "active": true,
+                "regex": "eurostar\\.(.*)\\/"
+            },
+            "ouigo":{
+                "active": true,
+                "regex": "ouigo\\.(.*)\\/"
+            },
+            "tgv-lyria":{
+                "active": true,
+                "regex": "tgv-lyria\\.(.*)\\/"
+            },
+            "thalys":{
+                "active": true,
+                "regex": "vsct\\.(.*)\\/"
+            },
+            "voyages_sncf":{
+                "active": true,
+                "regex": "sncf\\.(.*)\\/"
+            }
+        }
+    }
+}

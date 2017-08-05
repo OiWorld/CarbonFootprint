@@ -17,7 +17,6 @@ var HereMapsManager = function(footprintCore, settingsProvider) {
   this.settingsProvider = settingsProvider;
   this.subtree = true;
   this.validator = new MapsValidator("here");
-  this.update();
 };
 
 /**

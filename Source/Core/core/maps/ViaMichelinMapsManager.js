@@ -10,7 +10,6 @@ var ViaMichelinMapsManager = function(footprintCore, settingsProvider) {
  this.settingsProvider = settingsProvider;
  this.subtree = true;
  this.validator = new MapsValidator("viaMichelin");
- this.update();
 };
 
 /**
