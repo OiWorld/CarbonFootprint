@@ -17,11 +17,11 @@ var FlightsFootprintCore = function(){
   dataHelper = new FlightDataHelper();
   dataHelper.getData("core/resources/airplanes.json", function(data){
     core.airplanesData = data;
-    console.log(data);
+    //console.log(data);
   });
   dataHelper.getData("core/resources/airports.json", function(data){
     core.airportsData = data;
-    console.log(data);
+    //console.log(data);
   });
     this.treeGrowthPerYear = 8.3; // Check EstimationSources/toronto-university-CO2-sequested-by-tree
 };
@@ -39,7 +39,7 @@ FlightsFootprintCore.NMI_TO_KM = 1.852; // 1 nautical mile = 1.852 kilometers
 FlightsFootprintCore.prototype.computeTrees = function(carbonFootprint) {
     var trees = carbonFootprint / this.treeGrowthPerYear;
     trees = Math.round(trees * 100) / 100;
-    console.log('Trees: ' + trees);
+    //console.log('Trees: ' + trees);
     return trees;
 };
 
@@ -76,8 +76,8 @@ FlightsFootprintCore.prototype.treesToString = function(trees) {
  */
 
 FlightsFootprintCore.prototype.getCoordinates = function(list){
-  console.log("reached core");
-  console.log("started placing coords");
+  //console.log("reached core");
+  //console.log("started placing coords");
   //console.log(core.airportsData);
   for(var x = 0, i = list.length; x < i; x++){
     list[x].departCoordinates = core.airportsData[list[x].depart];
@@ -87,7 +87,7 @@ FlightsFootprintCore.prototype.getCoordinates = function(list){
           for(var y=0;y<list[x].stops.length;y++){
               list[x].stopCoordinatesNew.push(core.airportsData[list[x].stops[y]]);
           }
-          console.log(list[x].stopCoordinatesNew);
+          //console.log(list[x].stopCoordinatesNew);
       }
   }
   return list;
@@ -102,11 +102,11 @@ FlightsFootprintCore.prototype.getCoordinates = function(list){
 FlightsFootprintCore.prototype.getTotalDistance = function(processedList){
     for(var x = 0, i = processedList.length; x < i; x++){
         processedList[x].distance = 0;
-        console.log(processedList[x]);
-        console.log(processedList[x].stopCoordinatesNew);
+        //console.log(processedList[x]);
+        //console.log(processedList[x].stopCoordinatesNew);
       if(processedList[x].stopCoordinatesNew.length>0){
           noOfStops = processedList[x].stopCoordinatesNew.length;
-          console.log(noOfStops);
+          //console.log(noOfStops);
           processedList[x].distance += this.getDistance(processedList[x].departCoordinates.lat,
                                                         processedList[x].departCoordinates.lon,
                                                         processedList[x].stopCoordinatesNew[0].lat,
@@ -116,7 +116,7 @@ FlightsFootprintCore.prototype.getTotalDistance = function(processedList){
                                processedList[x].arriveCoordinates.lat,
                                processedList[x].arriveCoordinates.lon);
           for(var y = 0; y < noOfStops-1 ; y++){
-              console.log("Totally working fine");
+              //console.log("Totally working fine");
               processedList[x].distance += this.getDistance(processedList[x].stopCoordinatesNew[y].lat,
                                                             processedList[x].stopCoordinatesNew[y].lon,
                                                             processedList[x].stopCoordinatesNew[y+1].lat,
@@ -130,8 +130,8 @@ FlightsFootprintCore.prototype.getTotalDistance = function(processedList){
                                                       processedList[x].arriveCoordinates.lon);
     }
   }
-  console.log("---got distances---");
-  console.log(processedList);
+  //console.log("---got distances---");
+  //console.log(processedList);
   return processedList;
 };
 
@@ -153,6 +153,9 @@ FlightsFootprintCore.prototype.getDistance = function(lat1, lon1, lat2, lon2){
 
 /**
  * Function to calculate the emission from the distance
+ * Uses linear interpolation/extrapolation for calculating
+ * fuel consumed, fuel consumption is then converted to
+ * CO2 emission.
  * @param [Objects]
  * @return [Objects]
  */
@@ -160,22 +163,36 @@ FlightsFootprintCore.prototype.getDistance = function(lat1, lon1, lat2, lon2){
 FlightsFootprintCore.prototype.getEmission = function(list){
   //console.log(core.airplanesData);
     for(var x = 0, i = list.length; x < i; x++){
-    var aircraft = list[x].aircraft;
-    var fuelConsumptionFloor, fuelConsumptionCeil;
-        var distanceFloor, distanceCeil;
-    for(var y = 0, j = core.airplanesData.distances.length; y < j; y++){
-        if(core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM > list[x].distance){
-        fuelConsumptionFloor = core.airplanesData[aircraft].fuel[y-1];
-        fuelConsumptionCeil = core.airplanesData[aircraft].fuel[y];
-        distanceFloor = core.airplanesData.distances[y-1]*FlightsFootprintCore.NMI_TO_KM;
-        distanceCeil = core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM;
-        break;
-        }
-    }
-    var fuelConsumption = fuelConsumptionFloor + ((fuelConsumptionCeil - fuelConsumptionFloor)/
-                          (distanceCeil - distanceFloor))*(list[x].distance - distanceFloor);
-    //console.log("fuelConsumption1" + fuelConsumption1);
-    list[x].co2Emission = this.convertFuelToCO2(fuelConsumption, aircraft);
+      var aircraft = list[x].aircraft;
+      var fuelConsumptionFloor, fuelConsumptionCeil;
+          var distanceFloor, distanceCeil;
+      var interpolationFailed = false;
+      for(var y = 0, j = core.airplanesData.distances.length; y < j; y++){
+          if(core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM > list[x].distance){
+            fuelConsumptionFloor = core.airplanesData[aircraft].fuel[y-1];
+            fuelConsumptionCeil = core.airplanesData[aircraft].fuel[y];
+            distanceFloor = core.airplanesData.distances[y-1]*FlightsFootprintCore.NMI_TO_KM;
+            distanceCeil = core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM;
+            break;
+          }
+      }
+      //check if interpolation will fail, if it does then use extrpolation
+      if(!fuelConsumptionCeil){
+        console.log("interpolation failed using extrapolation");
+        l = core.airplanesData[aircraft].fuel.length - 1;
+        slope = ((core.airplanesData[aircraft].fuel[l] - core.airplanesData[aircraft].fuel[l-1]) /
+                          (core.airplanesData.distances[l]*FlightsFootprintCore.NMI_TO_KM -
+                            core.airplanesData.distances[l-1]*FlightsFootprintCore.NMI_TO_KM));
+
+        fuelConsumption = slope*(list[x].distance - core.airplanesData.distances[l]*FlightsFootprintCore.NMI_TO_KM) +
+          core.airplanesData[aircraft].fuel[l];
+      }
+      //if interpolation wont fail then use it
+      else{
+        fuelConsumption = fuelConsumptionFloor + ((fuelConsumptionCeil - fuelConsumptionFloor)/
+                              (distanceCeil - distanceFloor))*(list[x].distance - distanceFloor);
+      }
+      list[x].co2Emission = this.convertFuelToCO2(fuelConsumption, aircraft);
   }
   //console.log("--- final list ---");
   //console.log(list);
@@ -218,7 +235,7 @@ FlightsFootprintCore.prototype.createMark = function(depart=0,arrive=0){
     if(depart>0) outBoundInfo = "Outbound : " + depart + " kg of CO₂e per person. \n";
     if(arrive>0) returnInfo = "Return : " + arrive + " kg of CO₂e per person. \n";
     Title = outBoundInfo + returnInfo;
-    console.log(depart,arrive);
+    //console.log(depart,arrive);
     var treesStr = this.treesToString(this.computeTrees(parseInt(depart)+parseInt(arrive)));
     knowMoreUrl = Helper.getFilePath('pages/knowMore.html');
     e.setAttribute("id", "carbon-footprint-label");
