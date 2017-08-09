@@ -25,7 +25,7 @@ new SettingsProvider(function(settingsProvider) {
       websiteManager.update = function(){
         var processedList = websiteManager.getList();
         if(core.airplanesData && core.airportsData){
-            processedList = flightManager.getEmission(
+            processedList = websiteManager.getEmission(
               websiteManager.getDistances(
                 websiteManager.getCoordinates(processedList)));
             websiteManager.insertInDom(processedList);
