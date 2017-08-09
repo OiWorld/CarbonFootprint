@@ -13,11 +13,8 @@ var WazeMapsManager = function(footprintCore, settingsProvider) {
   this.footprintCore = footprintCore;
   this.settingsProvider = settingsProvider;
   this.subtree = true;
-<<<<<<< HEAD
-=======
   this.validator = new MapsValidator("waze");
   this.update();
->>>>>>> 80bde9cff9b9a0fd692af6addfe00c06365d926d
 };
 
 
@@ -127,4 +124,4 @@ WazeMapsManager.prototype.update = function() {
   }
 };
 
-var MapManager = WazeMapsManager;
+var WebsiteManager = WazeMapsManager;

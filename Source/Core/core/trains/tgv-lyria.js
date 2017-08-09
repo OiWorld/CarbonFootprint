@@ -1,4 +1,6 @@
-var lyriaManager = function(){
+var lyriaManager = function(footprintCore, settingsProvider){
+  this.footprintCore = footprintCore;
+  this.settingsProvider = settingsProvider;
   this.subtree = true;
   this.dataSource = "sncf"; //select one of the emission information sources from trainEmissions.json
   this.stations = {
@@ -7,6 +9,7 @@ var lyriaManager = function(){
   };
   this.MODE = "lyria"; // constant, the type of train on this website is only "lyria"
   this.validator = new TrainsValidator("tgv-lyria");
+  this.footprintCore.storeDataSource(this.dataSource);
 };
 
 lyriaManager.prototype.geocodeStations = function(){
@@ -17,9 +20,9 @@ lyriaManager.prototype.geocodeStations = function(){
   this.validator.verifyStation(this.stations.depart);
   this.validator.verifyStation(this.stations.arrive);
   console.log(this.stations.depart + " ->  " + this.stations.arrive);
-  if(core.distance === 0 && this.stations.depart && this.stations.arrive){  //Check if geocode never happened for current stations, proceed if not
+  if(this.footprintCore.distance === 0 && this.stations.depart && this.stations.arrive){  //Check if geocode never happened for current stations, proceed if not
     var toGeocode = [this.stations.depart, this.stations.arrive];
-    core.geocode(toGeocode);
+    this.footprintCore.geocode(toGeocode);
   }
 };
 
@@ -40,9 +43,9 @@ lyriaManager.prototype.insertInDom = function(emission){
 
 lyriaManager.prototype.update = function(){
   this.geocodeStations();
-  if(core.distance > 1){ //Check if station have alredy been geocoded
-    this.insertInDom(core.getEmission(["lyria"])); //There is only 1 type of train
+  if(this.footprintCore.distance > 1){ //Check if station have alredy been geocoded
+    this.insertInDom(this.footprintCore.getEmission(["lyria"])); //There is only 1 type of train
   }
 };
 
-var TrainManager = lyriaManager;
+var WebsiteManager = lyriaManager;

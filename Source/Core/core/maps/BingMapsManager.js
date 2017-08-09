@@ -210,4 +210,4 @@ BingMapsManager.prototype.update = function() {
   }
 };
 
-var MapManager = BingMapsManager;
+var WebsiteManager = BingMapsManager;

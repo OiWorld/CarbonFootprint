@@ -1,4 +1,6 @@
-var spiceManager = function(){
+var spiceManager = function(footprintCore, settingsProvider){
+  this.core = footprintCore;
+  this.settingsProvider = settingsProvider;
   this.subtree = true;
   this.validator = new FlightsValidator("spiceJet");
 };
@@ -58,7 +60,7 @@ spiceManager.prototype.getList = function(){
 };
 
 spiceManager.prototype.getCoordinates = function(processedList){
-  processedList = core.getCoordinates(processedList);
+  processedList = this.core.getCoordinates(processedList);
   console.log("--- got coordinates ---");
   console.log(processedList);
   return processedList;
@@ -71,17 +73,17 @@ spiceManager.prototype.getDistances = function(processedList){
       if(processedList[x].stopCoordinatesNew.length){
           noOfStops = processedList[x].stopCoordinatesNew.length;
           console.log(noOfStops);
-      processedList[x].distance += core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
+      processedList[x].distance += this.core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
                                                    processedList[x].stopCoordinatesNew[0].lat, processedList[x].stopCoordinatesNew[0].lon) +
-              core.getDistance(processedList[x].stopCoordinatesNew[noOfStops-1].lat, processedList[x].stopCoordinatesNew[noOfStops-1].lon,
+              this.core.getDistance(processedList[x].stopCoordinatesNew[noOfStops-1].lat, processedList[x].stopCoordinatesNew[noOfStops-1].lon,
                                processedList[x].arriveCoordinates.lat, processedList[x].arriveCoordinates.lon);
           for(var y = 0; y < noOfStops-1 ; y++){
               console.log("Totally working fine");
-              processedList[x].distance += core.getDistance(processedList[x].stopCoordinatesNew[y].lat,processedList[x].stopCoordinatesNew[y].lon,processedList[x].stopCoordinatesNew[y+1].lat,processedList[x].stopCoordinatesNew[y+1].lon);
+              processedList[x].distance += this.core.getDistance(processedList[x].stopCoordinatesNew[y].lat,processedList[x].stopCoordinatesNew[y].lon,processedList[x].stopCoordinatesNew[y+1].lat,processedList[x].stopCoordinatesNew[y+1].lon);
           }
     }
     else{
-      processedList[x].distance += core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
+      processedList[x].distance += this.core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
                                                    processedList[x].arriveCoordinates.lat, processedList[x].arriveCoordinates.lon);
     }
   }
@@ -91,7 +93,7 @@ spiceManager.prototype.getDistances = function(processedList){
 };
 
 spiceManager.prototype.getEmission = function(processedList){
-  processedList = core.getEmission(processedList);
+  processedList = this.core.getEmission(processedList);
   console.log("---got fuel consumption---");
   console.log(processedList);
   return processedList;
@@ -108,10 +110,10 @@ spiceManager.prototype.insertInDom = function(processedList){
     insertIn = this.validator.getByClass("flight-icon-symbol bold");
     for(var x = 0, i = insertIn.length; x < i; x++){
       if(insertIn[x].getElementsByClassName("carbon").length === 0){
-           insertIn[x].appendChild(this.style(core.createMark(processedList[x].co2Emission)));
+           insertIn[x].appendChild(this.style(this.core.createMark(processedList[x].co2Emission)));
       }
     }
   }
 };
 
-var FlightManager = spiceManager;
+var WebsiteManager = spiceManager;

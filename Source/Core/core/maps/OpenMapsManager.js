@@ -109,4 +109,4 @@ OpenMapsManager.prototype.update = function() {
   }
 };
 
-var MapManager = OpenMapsManager;
+var WebsiteManager = OpenMapsManager;

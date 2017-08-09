@@ -87,4 +87,4 @@ makeMyTripManager.prototype.insertInDom = function(processedList){
   }
 };
 
-var FlightManager = skyscannerManager;
+var WebsiteManager = skyscannerManager;

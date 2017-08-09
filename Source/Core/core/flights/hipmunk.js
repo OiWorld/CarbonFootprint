@@ -1,4 +1,6 @@
-var hipmunkManager = function(){
+var hipmunkManager = function(footprintCore, settingsProvider){
+ this.core = footprintCore;
+ this.settingsProvider = settingsProvider;
  this.validator = new FlightsValidator("hipmunk");
 };
 
@@ -44,7 +46,7 @@ hipmunkManager.prototype.getList = function(){
 */
 
 hipmunkManager.prototype.getCoordinates = function(processedList){
-    processedList = core.getCoordinates(processedList);
+    processedList = this.core.getCoordinates(processedList);
     console.log("--- got coordinates ---");
     console.log(processedList);
     return processedList;
@@ -57,7 +59,7 @@ hipmunkManager.prototype.getCoordinates = function(processedList){
 */
 
 hipmunkManager.prototype.getDistances = function(processedList){
-    processedList = core.getTotalDistance(processedList);
+    processedList = this.core.getTotalDistance(processedList);
     console.log("---got Distance---");
     console.log(processedList);
     return processedList;
@@ -70,7 +72,7 @@ hipmunkManager.prototype.getDistances = function(processedList){
 */
 
 hipmunkManager.prototype.getEmission = function(processedList){
-    processedList = core.getEmission(processedList);
+    processedList = this.core.getEmission(processedList);
     console.log(processedList);
     return processedList;
 };
@@ -97,7 +99,7 @@ hipmunkManager.prototype.insertInDom = function(processedList){
         {
             console.log("here we are");
             console.log(insertIn);
-            insertIn.appendChild(core.createMark(processedList[x].co2Emission,0));
+            insertIn.appendChild(this.core.createMark(processedList[x].co2Emission,0));
         }
         else{
             console.log("saved");
@@ -106,4 +108,4 @@ hipmunkManager.prototype.insertInDom = function(processedList){
   }
 };
 
-var FlightManager = hipmunkManager ;
+var WebsiteManager = hipmunkManager ;

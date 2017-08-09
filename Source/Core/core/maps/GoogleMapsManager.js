@@ -99,7 +99,7 @@ GoogleMapsManager.prototype.transitWalkingTime = function(){
   walkingTimeInMin = this.convertTime(transitStep[0].innerText)*60;
   console.log("walkig time ->"+ walkingTimeInMin);
   return walkingTimeInMin;
-}
+};
 
 /**
  * Gets Distance for Private Mode of Transportation.
@@ -133,7 +133,7 @@ GoogleMapsManager.prototype.dataFromTransitMode = function(dataString,dataType){
   }else{
     return [totalTimeInMin, this.transitWalkingTime()];
   }
-}
+};
 
 /**
  * Gets transit distance(in meters) or time(in sec) when either of them is available .
@@ -606,4 +606,4 @@ GoogleMapsManager.prototype.update = function(){
   }
 };
 
-var MapManager = GoogleMapsManager;
+var WebsiteManager = GoogleMapsManager;

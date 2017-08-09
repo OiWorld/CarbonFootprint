@@ -1,4 +1,6 @@
-var sncfManager = function(){
+var sncfManager = function(footprintCore, settingsProvider){
+  this.footprintCore = footprintCore;
+  this.settingsProvider = settingsProvider;
   this.subtree = true;
   this.dataSource = "sncf"; //select one of the emission information sources from trainEmissions.json
   this.stations = {
@@ -6,6 +8,7 @@ var sncfManager = function(){
     depart: ""
   };
   this.validator = new TrainsValidator("sncf");
+  this.footprintCore.storeDataSource(this.dataSource);
 };
 
 sncfManager.prototype.getList = function(){
@@ -27,9 +30,9 @@ sncfManager.prototype.getList = function(){
 
     this.validator.verifyList(processedList);
 
-    if(core.distance === 0){  //Check if geocode never happened for current stations, proceed if not
+    if(this.footprintCore.distance === 0){  //Check if geocode never happened for current stations, proceed if not
       var toGeocode = [processedList[0].depart, processedList[0].arrive];
-      core.geocode(toGeocode);
+      this.footprintCore.geocode(toGeocode);
     }
   }
   //console.log(processedList);
@@ -60,14 +63,14 @@ sncfManager.prototype.checkChangeInStations = function(){
 sncfManager.prototype.update = function(){
   this.checkChangeInStations();
   var processedList = this.getList();
-  if(core.distance > 1){ //Check if station have alredy been geocoded
+  if(this.footprintCore.distance > 1){ //Check if station have alredy been geocoded
     var emissionList = [];
     for(var x = 0, i = processedList.length; x < i; x++){
-      emissionList.push(core.getEmission(processedList[x].mode));
+      emissionList.push(this.footprintCore.getEmission(processedList[x].mode));
     }
-    //var emissions = core.getEmission(processedList);
+    //var emissions = this.footprintCore.getEmission(processedList);
     this.insertInDom(emissionList);
   }
 };
 
-var TrainManager = sncfManager;
+var WebsiteManager = sncfManager;

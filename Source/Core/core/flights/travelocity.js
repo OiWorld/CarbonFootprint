@@ -1,4 +1,6 @@
-var travelocityManager = function(){
+var travelocityManager = function(footprintCore, settingsProvider){
+  this.core = footprintCore;
+  this.settingsProvider = settingsProvider;
   this.validator = new FlightsValidator("travelocity");
 };
 
@@ -64,7 +66,7 @@ travelocityManager.prototype.getList = function(){
 */
 
 travelocityManager.prototype.getCoordinates = function(processedList){
-    processedList = core.getCoordinates(processedList);
+    processedList = this.core.getCoordinates(processedList);
     console.log("--- got coordinates ---");
     console.log(processedList);
     return processedList;
@@ -77,7 +79,7 @@ travelocityManager.prototype.getCoordinates = function(processedList){
 */
 
 travelocityManager.prototype.getDistances = function(processedList){
-    processedList = core.getTotalDistance(processedList);
+    processedList = this.core.getTotalDistance(processedList);
     console.log("---got Distance---");
     console.log(processedList);
     return processedList;
@@ -90,7 +92,7 @@ travelocityManager.prototype.getDistances = function(processedList){
 */
 
 travelocityManager.prototype.getEmission = function(processedList){
-    processedList = core.getEmission(processedList);
+    processedList = this.core.getEmission(processedList);
     console.log(processedList);
     return processedList;
 };
@@ -115,7 +117,7 @@ travelocityManager.prototype.insertInDom = function(processedList){
         {
             console.log("here we are");
             console.log(insertIn);
-            insertIn.appendChild(core.createMark(processedList[x].co2Emission,0));
+            insertIn.appendChild(this.core.createMark(processedList[x].co2Emission,0));
         }
         else{
             console.log("saved");
@@ -124,4 +126,4 @@ travelocityManager.prototype.insertInDom = function(processedList){
   }
 };
 
-var FlightManager = travelocityManager ;
+var WebsiteManager = travelocityManager ;

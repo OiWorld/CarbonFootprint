@@ -1,6 +1,8 @@
-var pricelineManager = function(){
-    this.treeGrowthPerYear = 8.3;
-    this.validator = new FlightsValidator("priceline");
+var pricelineManager = function(footprintCore, settingsProvider){
+  this.core = footprintCore;
+  this.settingsProvider = settingsProvider;
+  this.treeGrowthPerYear = 8.3;
+  this.validator = new FlightsValidator("priceline");
 };
 
 /**
@@ -51,7 +53,7 @@ pricelineManager.prototype.getList = function(){
 */
 
 pricelineManager.prototype.getCoordinates = function(processedList){
-    processedList = core.getCoordinates(processedList);
+    processedList = this.core.getCoordinates(processedList);
     console.log("--- got coordinates ---");
     console.log(processedList);
     return processedList;
@@ -63,7 +65,7 @@ pricelineManager.prototype.getCoordinates = function(processedList){
 * @return array
 */
 pricelineManager.prototype.getDistances = function(processedList){
-    processedList = core.getTotalDistance(processedList);
+    processedList = this.core.getTotalDistance(processedList);
     console.log("---got Distance---");
     console.log(processedList);
     return processedList;
@@ -76,7 +78,7 @@ pricelineManager.prototype.getDistances = function(processedList){
 */
 
 pricelineManager.prototype.getEmission = function(processedList){
-    processedList = core.getEmission(processedList);
+    processedList = this.core.getEmission(processedList);
     console.log(processedList);
     return processedList;
 };
@@ -101,7 +103,7 @@ pricelineManager.prototype.insertInDom = function(processedList){
         if(checkOption[x].getElementsByClassName('carbon').length < 1)
         {
             console.log("here we are");
-            insertIn.appendChild(core.createMark(processedList[2*x].co2Emission,processedList[(2*x)+1].co2Emission));
+            insertIn.appendChild(this.core.createMark(processedList[2*x].co2Emission,processedList[(2*x)+1].co2Emission));
         }
         else{
             console.log("saved");
@@ -110,4 +112,4 @@ pricelineManager.prototype.insertInDom = function(processedList){
   }
 };
 
-var FlightManager = pricelineManager ;
+var WebsiteManager = pricelineManager ;

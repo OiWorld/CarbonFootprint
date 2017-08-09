@@ -13,14 +13,15 @@
  * treesToString() @param Number
  */
 
-var FlightsFootprintCore = function(){
+var FlightsFootprintCore = function(settingsProvider, helper){
+  this.flights = true; // used to identift a flight ticket website
   dataHelper = new FlightDataHelper();
-  dataHelper.getData("core/resources/airplanes.json", function(data){
-    core.airplanesData = data;
+  dataHelper.getData("core/resources/airplanes.json", (data) => {
+    this.airplanesData = data;
     //console.log(data);
   });
-  dataHelper.getData("core/resources/airports.json", function(data){
-    core.airportsData = data;
+  dataHelper.getData("core/resources/airports.json", (data) => {
+    this.airportsData = data;
     //console.log(data);
   });
     this.treeGrowthPerYear = 8.3; // Check EstimationSources/toronto-university-CO2-sequested-by-tree
@@ -80,12 +81,12 @@ FlightsFootprintCore.prototype.getCoordinates = function(list){
   //console.log("started placing coords");
   //console.log(core.airportsData);
   for(var x = 0, i = list.length; x < i; x++){
-    list[x].departCoordinates = core.airportsData[list[x].depart];
-      list[x].arriveCoordinates = core.airportsData[list[x].arrive];
+    list[x].departCoordinates = this.airportsData[list[x].depart];
+      list[x].arriveCoordinates = this.airportsData[list[x].arrive];
       list[x].stopCoordinatesNew = [];
       if(list[x].stops.length){
           for(var y=0;y<list[x].stops.length;y++){
-              list[x].stopCoordinatesNew.push(core.airportsData[list[x].stops[y]]);
+              list[x].stopCoordinatesNew.push(this.airportsData[list[x].stops[y]]);
           }
           //console.log(list[x].stopCoordinatesNew);
       }
@@ -161,31 +162,31 @@ FlightsFootprintCore.prototype.getDistance = function(lat1, lon1, lat2, lon2){
  */
 
 FlightsFootprintCore.prototype.getEmission = function(list){
-  //console.log(core.airplanesData);
+  //console.log(this.airplanesData);
     for(var x = 0, i = list.length; x < i; x++){
       var aircraft = list[x].aircraft;
       var fuelConsumptionFloor, fuelConsumptionCeil;
           var distanceFloor, distanceCeil;
       var interpolationFailed = false;
-      for(var y = 0, j = core.airplanesData.distances.length; y < j; y++){
-          if(core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM > list[x].distance){
-            fuelConsumptionFloor = core.airplanesData[aircraft].fuel[y-1];
-            fuelConsumptionCeil = core.airplanesData[aircraft].fuel[y];
-            distanceFloor = core.airplanesData.distances[y-1]*FlightsFootprintCore.NMI_TO_KM;
-            distanceCeil = core.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM;
+      for(var y = 0, j = this.airplanesData.distances.length; y < j; y++){
+          if(this.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM > list[x].distance){
+            fuelConsumptionFloor = this.airplanesData[aircraft].fuel[y-1];
+            fuelConsumptionCeil = this.airplanesData[aircraft].fuel[y];
+            distanceFloor = this.airplanesData.distances[y-1]*FlightsFootprintCore.NMI_TO_KM;
+            distanceCeil = this.airplanesData.distances[y]*FlightsFootprintCore.NMI_TO_KM;
             break;
           }
       }
       //check if interpolation will fail, if it does then use extrpolation
       if(!fuelConsumptionCeil){
         console.log("interpolation failed using extrapolation");
-        l = core.airplanesData[aircraft].fuel.length - 1;
-        slope = ((core.airplanesData[aircraft].fuel[l] - core.airplanesData[aircraft].fuel[l-1]) /
-                          (core.airplanesData.distances[l]*FlightsFootprintCore.NMI_TO_KM -
-                            core.airplanesData.distances[l-1]*FlightsFootprintCore.NMI_TO_KM));
+        l = this.airplanesData[aircraft].fuel.length - 1;
+        slope = ((this.airplanesData[aircraft].fuel[l] - this.airplanesData[aircraft].fuel[l-1]) /
+                          (this.airplanesData.distances[l]*FlightsFootprintCore.NMI_TO_KM -
+                            this.airplanesData.distances[l-1]*FlightsFootprintCore.NMI_TO_KM));
 
-        fuelConsumption = slope*(list[x].distance - core.airplanesData.distances[l]*FlightsFootprintCore.NMI_TO_KM) +
-          core.airplanesData[aircraft].fuel[l];
+        fuelConsumption = slope*(list[x].distance - this.airplanesData.distances[l]*FlightsFootprintCore.NMI_TO_KM) +
+          this.airplanesData[aircraft].fuel[l];
       }
       //if interpolation wont fail then use it
       else{

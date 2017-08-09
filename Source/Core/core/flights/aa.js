@@ -1,4 +1,6 @@
-var aaManager = function(){
+var aaManager = function(footprintCore, settingsProvider){
+  this.core = footprintCore;
+  this.settingsProvider = settingsProvider;
   this.subtree = true;
   this.list = [];
   this.childList = false;
@@ -46,7 +48,7 @@ aaManager.prototype.getList = function(){
 };
 
 aaManager.prototype.getCoordinates = function(processedList){
-  processedList = core.getCoordinates(processedList);
+  processedList = this.core.getCoordinates(processedList);
   console.log("--- got coordinates ---");
   console.log(processedList);
   return processedList;
@@ -59,17 +61,17 @@ aaManager.prototype.getDistances = function(processedList){
       if(processedList[x].stopCoordinatesNew.length){
           noOfStops = processedList[x].stopCoordinatesNew.length;
           console.log(noOfStops);
-      processedList[x].distance += core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
+      processedList[x].distance += this.core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
                                                    processedList[x].stopCoordinatesNew[0].lat, processedList[x].stopCoordinatesNew[0].lon) +
-              core.getDistance(processedList[x].stopCoordinatesNew[noOfStops-1].lat, processedList[x].stopCoordinatesNew[noOfStops-1].lon,
+              this.core.getDistance(processedList[x].stopCoordinatesNew[noOfStops-1].lat, processedList[x].stopCoordinatesNew[noOfStops-1].lon,
                                processedList[x].arriveCoordinates.lat, processedList[x].arriveCoordinates.lon);
           for(var y = 0; y < noOfStops-1 ; y++){
               console.log("Totally working fine");
-              processedList[x].distance += core.getDistance(processedList[x].stopCoordinatesNew[y].lat,processedList[x].stopCoordinatesNew[y].lon,processedList[x].stopCoordinatesNew[y+1].lat,processedList[x].stopCoordinatesNew[y+1].lon);
+              processedList[x].distance += this.core.getDistance(processedList[x].stopCoordinatesNew[y].lat,processedList[x].stopCoordinatesNew[y].lon,processedList[x].stopCoordinatesNew[y+1].lat,processedList[x].stopCoordinatesNew[y+1].lon);
           }
     }
     else{
-      processedList[x].distance += core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
+      processedList[x].distance += this.core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
                                                    processedList[x].arriveCoordinates.lat, processedList[x].arriveCoordinates.lon);
     }
   }
@@ -84,7 +86,7 @@ aaManager.prototype.getDistances = function(processedList){
 //bound-table-flightline-header
 //flight-details availability-flight-details flight-details-without-button availability-flight-details-without-button row
 aaManager.prototype.getEmission = function(processedList){
-  processedList = core.getEmission(processedList);
+  processedList = this.core.getEmission(processedList);
   console.log("---got fuel consumption---");
   console.log(processedList);
   return processedList;
@@ -95,14 +97,14 @@ aaManager.prototype.insertInDom = function(processedList){
     insertIn = this.validator.getByClass("bound-table-flightline-header");
     for(var x = 0, i = insertIn.length; x < i; x++){
       if(insertIn[x].getElementsByClassName("carbon").length === 0){
-        insertIn[x].appendChild(core.createMark(processedList[x].co2Emission));
+        insertIn[x].appendChild(this.core.createMark(processedList[x].co2Emission));
       }
       else{
         insertIn[x].removeChild(insertIn[x].childNodes[insertIn[x].childNodes.length - 1]);
-        insertIn[x].appendChild(core.createMark(processedList[x].co2Emission));
+        insertIn[x].appendChild(this.core.createMark(processedList[x].co2Emission));
       }
     }
   }
 };
 
-var FlightManager = aaManager;
+var WebsiteManager = aaManager;

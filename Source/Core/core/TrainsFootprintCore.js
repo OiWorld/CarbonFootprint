@@ -1,4 +1,6 @@
-var TrainsFootprintCore = function(){
+var TrainsFootprintCore = function(settingsProvider, helper){
+  this.settingsProvider = settingsProvider;
+  this.helper = helper;
   console.log("init core");
   this.getData = function(link, cb){
     var req = new XMLHttpRequest();
@@ -14,22 +16,27 @@ var TrainsFootprintCore = function(){
     req.send();
     return data;
   };
-  this.getData(Helper.getFilePath("core/resources/trainEmissions.json"), function(data){
-    core.trainData = data.trainData[trainManager.dataSource];
-    console.log(core.trainData);
-  });
   this.distance = 0;
+  var self = this;
+};
+
+TrainsFootprintCore.prototype.storeDataSource = function(dataSource){
+  this.getData(this.helper.getFilePath("core/resources/trainEmissions.json"), (data) => {
+    this.trainData = data.trainData[dataSource];
+    console.log(this.trainData);
+  });
 };
 
 TrainsFootprintCore.prototype.geocode = function(toGeocode){
+  var self = this;
   console.log("init geocode");
-  core.distance = 1; //This marks that geocoding request has been sent
-  this.getData("https://maps.googleapis.com/maps/api/geocode/json?&address=" + toGeocode[0], function(data1){
+  this.distance = 1; //This marks that geocoding request has been sent
+  this.getData("https://maps.googleapis.com/maps/api/geocode/json?&address=" + toGeocode[0], (data1) => {
     var depart = data1.results[0].geometry.location;
-    core.getData("https://maps.googleapis.com/maps/api/geocode/json?&address=" + toGeocode[1], function(data2){
+    this.getData("https://maps.googleapis.com/maps/api/geocode/json?&address=" + toGeocode[1], (data2) => {
       var arrive = data2.results[0].geometry.location;
-      core.distance = core.getDistance(depart.lat, depart.lng, arrive.lat, arrive.lng);
-      console.log("dist in func " + core.distance);
+      this.distance = this.getDistance(depart.lat, depart.lng, arrive.lat, arrive.lng);
+      console.log("dist in func " + this.distance);
     });
   });
 };
@@ -53,15 +60,14 @@ TrainsFootprintCore.prototype.getDistance = function(lat1, lon1, lat2, lon2){
 };
 
 TrainsFootprintCore.prototype.getEmission = function(modeList){
-  console.log(core.trainData);
   var modeAverage = 0;
   for(var y = 0, j = modeList.length; y < j; y++){
-    mode = core.trainData[modeList[y]] ? core.trainData[modeList[y]] : core.trainData.average;
+    mode = this.trainData[modeList[y]] ? this.trainData[modeList[y]] : this.trainData.average;
     console.log("mode = " + modeList[y] + " emission = " + mode);
-    modeAverage += core.trainData[modeList[y]] ? core.trainData[modeList[y]] : core.trainData.average;
+    modeAverage += this.trainData[modeList[y]] ? this.trainData[modeList[y]] : this.trainData.average;
   }
   modeAverage /= modeList.length;
-  var footprint = core.distance*modeAverage;
+  var footprint = this.distance*modeAverage;
   var emission = this.createHTMLElement(footprint);
   console.log(emission);
   return emission;
@@ -70,7 +76,7 @@ TrainsFootprintCore.prototype.getEmission = function(modeList){
 TrainsFootprintCore.prototype.createHTMLElement =
   function(footprint) {
     var e = document.createElement('div');
-    knowMoreUrl = Helper.getFilePath('pages/knowMore.html');
+    knowMoreUrl = this.helper.getFilePath('pages/knowMore.html');
     e.setAttribute("id", "carbon-footprint-label");
     e.innerHTML = '<a href=' + knowMoreUrl + ' target=\'_blank\' title=\'' +
       "footprint" + '\' class=\'carbon\' id=\'carbon\'>' +
@@ -92,3 +98,4 @@ TrainsFootprintCore.prototype.createHTMLElement =
     footprint = footprint.toFixed(1);
     return '' + footprint + unit + ' CO<sub>2</sub> per person';
   };
+  var CarbonFootprintCore = TrainsFootprintCore;

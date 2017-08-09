@@ -1,4 +1,6 @@
-var clearTripManager = function(){
+var clearTripManager = function(footprintCore, settingsProvider){
+  this.this.core = footprintCore;
+  this.settingsProvider = settingsProvider;
   this.validator = new FlightsValidator("cleartrip");
 };
 
@@ -47,7 +49,7 @@ clearTripManager.prototype.getList = function(){
 */
 
 clearTripManager.prototype.getCoordinates = function(processedList){
-    processedList = core.getCoordinates(processedList);
+    processedList = this.core.getCoordinates(processedList);
     console.log("--- got coordinates ---");
     console.log(processedList);
     return processedList;
@@ -60,7 +62,7 @@ clearTripManager.prototype.getCoordinates = function(processedList){
 */
 
 clearTripManager.prototype.getDistances = function(processedList){
-    processedList = core.getTotalDistance(processedList);
+    processedList = this.core.getTotalDistance(processedList);
     console.log("---got Distance---");
     console.log(processedList);
     return processedList;
@@ -73,7 +75,7 @@ clearTripManager.prototype.getDistances = function(processedList){
 */
 
 clearTripManager.prototype.getEmission = function(processedList){
-    processedList = core.getEmission(processedList);
+    processedList = this.core.getEmission(processedList);
     console.log(processedList);
     return processedList;
 };
@@ -97,7 +99,7 @@ clearTripManager.prototype.insertInDom = function(processedList){
         {
             console.log("here we are");
             console.log(insertIn);
-            insertIn.appendChild(core.createMark(processedList[x].co2Emission,0));
+            insertIn.appendChild(this.core.createMark(processedList[x].co2Emission,0));
         }
         else{
             console.log("saved");
@@ -105,4 +107,4 @@ clearTripManager.prototype.insertInDom = function(processedList){
     }
 };
 
-var FlightManager = clearTripManager ;
+var WebsiteManager = clearTripManager ;

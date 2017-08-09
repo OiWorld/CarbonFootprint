@@ -217,4 +217,4 @@ HereMapsManager.prototype.update = function() {
   }
 };
 
-var MapManager = HereMapsManager;
+var WebsiteManager = HereMapsManager;

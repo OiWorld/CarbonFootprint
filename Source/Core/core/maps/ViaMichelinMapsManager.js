@@ -103,4 +103,4 @@ ViaMichelinMapsManager.prototype.update = function(){
   }
 };
 
-var MapManager = ViaMichelinMapsManager;
+var WebsiteManager = ViaMichelinMapsManager;

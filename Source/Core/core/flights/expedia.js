@@ -1,4 +1,6 @@
-var expediaManager = function(){
+var expediaManager = function(footprintCore, settingsProvider){
+  this.core = footprintCore;
+  this.settingsProvider = settingsProvider;
   this.validator = new FlightsValidator("expedia");
 };
 
@@ -67,7 +69,7 @@ expediaManager.prototype.getList = function(){
 */
 
 expediaManager.prototype.getCoordinates = function(processedList){
-    processedList = core.getCoordinates(processedList);
+    processedList = this.core.getCoordinates(processedList);
     console.log("--- got coordinates ---");
     console.log(processedList);
     return processedList;
@@ -80,7 +82,7 @@ expediaManager.prototype.getCoordinates = function(processedList){
 */
 
 expediaManager.prototype.getDistances = function(processedList){
-    processedList = core.getTotalDistance(processedList);
+    processedList = this.core.getTotalDistance(processedList);
     console.log("---got Distance---");
     console.log(processedList);
     return processedList;
@@ -93,7 +95,7 @@ expediaManager.prototype.getDistances = function(processedList){
 */
 
 expediaManager.prototype.getEmission = function(processedList){
-    processedList = core.getEmission(processedList);
+    processedList = this.core.getEmission(processedList);
     console.log(processedList);
     return processedList;
 };
@@ -118,7 +120,7 @@ expediaManager.prototype.insertInDom = function(processedList){
         {
             console.log("here we are");
             console.log(insertIn);
-            insertIn.appendChild(core.createMark(processedList[x].co2Emission,0));
+            insertIn.appendChild(this.core.createMark(processedList[x].co2Emission,0));
         }
         else{
             console.log("saved");
@@ -127,4 +129,4 @@ expediaManager.prototype.insertInDom = function(processedList){
   }
 };
 
-var FlightManager = expediaManager ;
+var WebsiteManager = expediaManager ;

@@ -1,5 +1,6 @@
-var googleFlightsManager = function(){
-  
+var googleFlightsManager = function(footprintCore, settingsProvider){
+  this.core = footprintCore;
+  this.settingsProvider = settingsProvider;
 };
 
 /**
@@ -76,7 +77,7 @@ googleFlightsManager.prototype.getList = function(){
  */
 
 googleFlightsManager.prototype.getCoordinates = function(processedList){
-    processedList = core.getCoordinates(processedList);
+    processedList = this.core.getCoordinates(processedList);
     console.log("--- got coordinates ---");
     console.log(processedList);
     return processedList;
@@ -89,7 +90,7 @@ googleFlightsManager.prototype.getCoordinates = function(processedList){
  */
 
 googleFlightsManager.prototype.getDistances = function(processedList){
-    processedList = core.getTotalDistance(processedList);
+    processedList = this.core.getTotalDistance(processedList);
     console.log("---got Distance---");
     console.log(processedList);
     return processedList;
@@ -102,7 +103,7 @@ googleFlightsManager.prototype.getDistances = function(processedList){
  */
 
 googleFlightsManager.prototype.getEmission = function(processedList){
-    processedList = core.getEmission(processedList);
+    processedList = this.core.getEmission(processedList);
     console.log(processedList);
     return processedList;
 };
@@ -131,7 +132,7 @@ googleFlightsManager.prototype.insertInDom = function(processedList){
         {
             console.log("here we are");
             console.log(insertIn);
-            insertIn.appendChild(core.createMark(processedList[x].co2Emission,0));
+            insertIn.appendChild(this.core.createMark(processedList[x].co2Emission,0));
         }
         else{
             console.log("saved");
@@ -139,4 +140,4 @@ googleFlightsManager.prototype.insertInDom = function(processedList){
     }
 };
 
-var FlightManager = googleFlightsManager ;
+var WebsiteManager = googleFlightsManager ;
