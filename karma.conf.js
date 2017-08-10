@@ -7,6 +7,7 @@ module.exports = function(config) {
 			'jasmine'
 		],
 		files: [
+			'Source/Core/core/CarbonFootprintCommon.js',
 			'Source/Core/core/MapsCarbonFootprintCore.js',
 			'Spec/**/*Spec.js'
 		],
