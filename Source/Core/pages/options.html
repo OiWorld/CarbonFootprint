@@ -1,192 +1,191 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title data-language="extName" >Google Maps Carbon Footprint Options</title>
-        <link rel="stylesheet" href="css/options.css" type="text/css" media="screen" />
-    </head>
 
-    <body>
-        <div id="header">
-            <img src="../images/globe-128.png">
-            <div data-language="extName" >
-                Carbon Footprint for Google Maps<sup>TM</sup>
-            </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-language="extName">Google Maps Carbon Footprint Options</title>
+  <link rel="stylesheet" href="css/options.css" type="text/css" media="screen" />
+</head>
+
+<body>
+  <div id="header">
+    <img src="./img/logo.png">
+    <div data-language="extName">
+      <strong>CARBON FOOTPRINT</strong><br>FOR MAPS
+    </div>
+  </div>
+  <div id="container">
+    <img id="bg-image" src="./img/pollution.png" alt="pollution-illustration">
+    <div id="description" data-language="mainParah">
+      <p>
+        Find out approximately how much CO<sub>2</sub> is emitted by your car on driving routes suggested by Google Maps, Open Street Map or Here Maps. The CO<sub>2</sub> emission estimation is shown next to the route's total distance. Optionally, the
+        fuel cost may be shown as well.
+      </p>
+    </div>
+    <div id="form-cont">
+      <div id="form">
+        <div id="emission-type-cont">
+          <div class="tab-button selected" data-language="footprints">Enable page</div>
+          <div class="tab-button middle" data-language="costCalculator">Fuel Cost</div>
+          <div class="tab-button" data-language="notificationMenu">Vehicle Checkup</div>
         </div>
-        <div id="container">
-            <div id="description" data-language="mainParah" >
-                <p>
-                    Find out approximately how much CO<sub>2</sub> is emitted by your car
-                    on driving routes suggested by Google Maps, Open Street Map or Here Maps.
-                    The CO<sub>2</sub> emission estimation is shown next to the route's total distance.
-                    Optionally, the fuel cost may be shown as well.
-                </p>
+        <div id="form-fields">
+          <div class="tab open footprints">
+            <div class="form-group">
+              <label style="color: #999" data-language="emissionQues"></label>
             </div>
-            <div id="form-cont">
-                <div id="form">
-                    <div id="emission-type-cont">
-                        <div class="tab-button selected" data-language="footprints">Enable page</div>
-                        <div class="tab-button" data-language="costCalculator">Fuel Cost</div>
-                        <div class="tab-button" data-language="notificationMenu">Vehicle Checkup</div>
-                    </div>
-                    <div id="form-fields">
-                        <div class="tab open footprints">
-                            <div class="form-group">
-                                <label data-language="emissionQues"></label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" style="" id="direct-co-emission" checked>
-                                <div class="emission-input-cont">
-                                    <div class="form-data by-co">
-                                        <label for="direct-co-emission" data-language="coEmission">CO<sub>2</sub> Emission Rate</label>
-                                        <input id="emission" type="number" size="5" value="0.255384" style="text-align:center" min="0">
-                                        <select class="selectMUnit" style="text-align:center" id="emission-unit-mass">
+            <div class="form-group">
+              <input type="checkbox" style="" id="direct-co-emission" checked>
+              <div class="emission-input-cont">
+                <div class="form-data by-co">
+                  <label for="direct-co-emission" data-language="coEmission">CO<sub>2</sub> Emission Rate</label>
+                  <input id="emission" type="number" size="5" value="0.255384" style="text-align:center" min="0">
+                  <select class="selectMUnit" style="text-align:center" id="emission-unit-mass">
                                             <option value="kg" id="mass-unit">kg</option>
                                         </select>
-                                        <div class="unitper">/</div>
-                                        <select class="selectDUnit" style="margin-left:0;">
+                  <div class="unitper">/</div>
+                  <select class="selectDUnit" style="margin-left:0;">
                                             <option value="km" id="distance-unit" selected>km</option>
                                         </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" id="by-fuel-consumption">
-                                <div class="emission-input-cont by-fuel">
-                                    <div class="form-group" style="padding-top:0.4em;">
-                                        <label for="by-fuel-consumption" data-language="byFuelConsumption" ></label>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="form-data">
-                                            <label for="fuel-type" data-language="fuelType" >Fuel Type</label>
-						                                <select style="width:8em;margin-left:1em;" id="fuel-type" disabled>
+                </div>
+              </div>
+            </div>
+            <hr style="opacity: .2">
+            <div class="form-group">
+              <input type="checkbox" id="by-fuel-consumption">
+              <div class="emission-input-cont by-fuel">
+                <div class="form-group" style="padding-top:0.4em;">
+                  <label for="by-fuel-consumption" data-language="byFuelConsumption"></label>
+                </div>
+                <div class="form-group">
+                  <div class="form-data">
+                    <label for="fuel-type" data-language="fuelType">Fuel Type</label>
+                    <select style="width:8em;margin-left:1em;" id="fuel-type" disabled>
 						                                </select>
-                                            <div id="green-electricity" style="display:none;margin-left:2em;margin-bottom:0.4em;">
-                                                <label data-language="greenElectricity">Green Electricity:</label>
-                                                <input style="width:5em;margin-left:1em;height:2em;" min="0" max="100" disabled>
-                                                <span style="font-weight:bold;font-size:1.2em;">%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="form-data inputType">
-                                            <input type="checkbox" style="margin-left:0;" id="fuel-efficiency" checked disabled>
-                                            <label for="fuel-efficiency" data-language="byFuelEfficiency"></label>
-                                            <input type="checkbox" id="fuel-consumed-per" disabled>
-                                            <label for="fuel-consumed-per" data-language="byFuelConsumptionPer"></label>
-                                            <input type="checkbox" id="custom-values" disabled>
-                                            <label for="custom-values" data-language="byCustomValues"></label>
-                                        </div>
-                                        <div data-language="feMessage" id="usage-message"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="form-data">
-                                            <label for="consumption" data-language="distanceTravelled">Distance Travelled</label>
-                                            <input type="number" size="1" style="text-align:center" id="distance-value" value="0" min="0" disabled>
-                                            <select class="selectDUnit" style="text-align:center" disabled>
+                    <div id="green-electricity" style="display:none;margin-left:2em;margin-bottom:0.4em;">
+                      <label data-language="greenElectricity">Green Electricity:</label>
+                      <input style="width:5em;margin-left:1em;height:2em;" min="0" max="100" disabled>
+                      <span style="font-weight:bold;font-size:1.2em;">%</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-data inputType">
+                    <input type="radio" style="margin-left:0;" id="fuel-efficiency" checked disabled>
+                    <label for="fuel-efficiency" data-language="byFuelEfficiency"></label>
+                    <input type="radio" id="fuel-consumed-per" disabled>
+                    <label for="fuel-consumed-per" data-language="byFuelConsumptionPer"></label>
+                    <input type="radio" id="custom-values" disabled>
+                    <label for="custom-values" data-language="byCustomValues"></label>
+                  </div>
+                  <div data-language="feMessage" id="usage-message"></div>
+                </div>
+                <div class="form-group">
+                  <div class="form-data">
+                    <label for="consumption" data-language="distanceTravelled">Distance Travelled</label>
+                    <input type="number" size="1" style="text-align:center" id="distance-value" value="0" min="0" disabled>
+                    <select class="selectDUnit" style="text-align:center" disabled>
                                                 <option value="km" id="distance-unit" selected>km</option>
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="form-data">
-                                            <label for="consumption" data-language="fuelConsumed">Fuel Consumed</label>
-                                            <input type="number" size="1" style="text-align:center" id="fuel-value" value="1" min="0" disabled>
-                                            <select class="selectMUnit" style="text-align:center" disabled>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-data">
+                    <label for="consumption" data-language="fuelConsumed">Fuel Consumed</label>
+                    <input type="number" size="1" style="text-align:center" id="fuel-value" value="1" min="0" disabled>
+                    <select class="selectMUnit" style="text-align:center" disabled>
                                                 <option value="L" id="fuel-unit" selected>L</option>
                                             </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab">
-                            <div class="form-group">
-                                <input type="checkbox" id="display-travel-cost" unchecked>
-                                <label for="display-travel-cost" data-language="travelCostEstimate">Display travel cost estimation</label>
-                            </div>
-                            <div class="emission-input-cont cost-fields">
-                                <div class="form-group">
-                                    <div class="form-data">
-                                        <label for="fuel-type" data-language="fuelType" >Fuel Type</label>
-						                            <select style="width:10em;" id="fuel-type" disabled>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab">
+            <div class="form-group">
+              <input type="checkbox" id="display-travel-cost" unchecked>
+              <label for="display-travel-cost" data-language="travelCostEstimate">Display travel cost estimation</label>
+            </div>
+            <div class="emission-input-cont cost-fields">
+              <div class="form-group">
+                <div class="form-data">
+                  <label for="fuel-type" data-language="fuelType">Fuel Type</label>
+                  <select style="width:10em;" id="fuel-type" disabled>
 						                            </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-data">
-                                        <label for="fuel-cost" data-language="fuelCost" >Fuel Cost</label>
-                                        <input type="number" size="5" id="fuel-cost" value="0" min="0" disabled>
-                                        <select id="currency-codes" disabled>=
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-data">
+                  <label for="fuel-cost" data-language="fuelCost">Fuel Cost</label>
+                  <input type="number" size="5" id="fuel-cost" value="0" min="0" disabled>
+                  <select id="currency-codes" disabled>=
                                         </select>
-                                        <div class="unitper">/</div>
-                                        <select class="selectFUnit" style="margin-left:0;" disabled>
+                  <div class="unitper">/</div>
+                  <select class="selectFUnit" style="margin-left:0;" disabled>
                                             <option value="L" id"fuel-unit" selected>L</option>
                                         </select>
-                                        <button id="load-prices-button" data-language="loadPricesBtn">Get Prices</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab">
-                            <div class="form-group">
-                                <input type="checkbox" id="display-checkup-notify" unchecked>
-                                <label for="display-checkup-notify" data-language="notificationDisplayLabel">Display vehicle checkup notification</label>
-                            </div>
-                            <div class="emission-input-cont">
-                                <div class="form-group">
-                                    <div class="form-data">
-                                        <label for="last-checkup" data-language="notificationLastChekup" >Last checkup Date:</label>
-                                        <input type="date" id="last-checkup" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-data">
-                                        <div id="next-checkup">
-                                            <label for="next-checkup-month" data-language="notificationNextChekupNext" >Next Checkup in:</label>
-                                            <input class="checkup-number" type="number" id="next-checkup-year" value="0" min="0" step="1" disabled>
-                                            <label for="next-checkup-year" data-language="notificationNextChekupYears" >years and</label>
-                                            <input class="checkup-number" type="number" id="next-checkup-month" value="0" min="0" step="1" disabled>
-                                            <label for="next-checkup-year" data-language="notificationNextChekupMonths" >months</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p id="car-checkup-info" data-language="notificationInfoText"></p>
-                        </div>
-                        <div class="form-group" style="margin-top:0.5em;">
-                            <div style="margin-top:0.5em;margin-bottom:1em;">
-                                <div class="form-data save" >
-                                    <div class="row">
-                                        <button id="save-button" data-language="save">save</button>
-                                    </div>
-                                    <input style="margin-left:5em;margin-top:1em" type="checkbox" id="metric" checked>
-                                    <label for="metric" style="margin-top:1em" data-language="useMetric"></label>
-                                    <input style="margin-left:1em;margin-top:1em"  type="checkbox" id="uscustomary">
-                                    <label for="uscustomary" style="margin-top:1em" data-language="useUSCustomary"></label>
-                                    <input style="margin-left:1em;margin-top:1em"  type="checkbox" id="imperial">
-                                    <label for="imperial" style="margin-top:1em" data-language="imperial"></label>
-                                </div>
-                                <div class="form-data" style="width:100%;text-align:-webkit-right;justify-content: flex-end;">
-                                    <span id="location"> </span>
-                                    <img id="reLocation" src="../images/re.png" style="height:1.5em;cursor:pointer;margin:0.5em;pointer-events: none;">
-                                </div>
-                                <div style="margin-top:1em;">
-                                    <span id="message"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  <button id="load-prices-button" data-language="loadPricesBtn">Get Prices</button>
                 </div>
+              </div>
             </div>
+          </div>
+          <div class="tab">
+            <div class="form-group">
+              <input type="checkbox" id="display-checkup-notify" unchecked>
+              <label for="display-checkup-notify" data-language="notificationDisplayLabel">Display vehicle checkup notification</label>
+            </div>
+            <div class="emission-input-cont">
+              <div class="form-group">
+                <div class="form-data">
+                  <label for="last-checkup" data-language="notificationLastChekup">Last checkup Date:</label>
+                  <input type="date" id="last-checkup" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-data">
+                  <div id="next-checkup">
+                    <label for="next-checkup-month" data-language="notificationNextChekupNext">Next Checkup in:</label>
+                    <input class="checkup-number" type="number" id="next-checkup-year" value="0" min="0" step="1" disabled>
+                    <label for="next-checkup-year" data-language="notificationNextChekupYears">years and</label>
+                    <input class="checkup-number" type="number" id="next-checkup-month" value="0" min="0" step="1" disabled>
+                    <label for="next-checkup-year" data-language="notificationNextChekupMonths">months</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p id="car-checkup-info" data-language="notificationInfoText"></p>
+          </div>
+          <hr style="opacity: .2">
+          <div class="form-group">
+            <div style="text-align: right">
+              <input type="radio" id="metric" checked>
+              <label for="metric" data-language="useMetric"></label>
+              <input style="margin-left: 1.5em;" type="radio" id="uscustomary">
+              <label for="uscustomary" data-language="useUSCustomary"></label>
+              <input style="margin-left: 1.5em;" type="radio" id="imperial">
+              <label for="imperial" data-language="imperial"></label>
+            </div>
+            <div class="form-data save">
+              <button id="save-button" data-language="save">save</button>
+              <div>
+                <span id="location"> </span>
+                <img id="reLocation" src="./img/locate.svg" style="height:1.2em;cursor:pointer;margin-left:.6em;pointer-events: none;vertical-align:bottom">
+              </div>
+            </div>
+            <span id="message">sas</span>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <script src="js/datePatch.js"></script>
-        <script src="js/BackgroundDataAdapter.js"></script>
-        <script src="js/jquery.min.js"></script>
-        <script src="../background/google-analytics.js"></script>
-        <script src="js/browserServices.js"></script>
-        <script src="js/StorageManager.js"></script>
-        <script src="js/options.js"></script>
-    </body>
+  <script src="js/datePatch.js"></script>
+  <script src="js/BackgroundDataAdapter.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="../background/google-analytics.js"></script>
+  <script src="js/browserServices.js"></script>
+  <script src="js/StorageManager.js"></script>
+  <script src="js/options.js"></script>
+</body>
+
 </html>

@@ -222,13 +222,13 @@ options.showMessage = function(msgcode, type) {
         status
           .html(trans)
           .css('display', 'block')
-          .css('background-color', '#fb5151');
+          .css('background-color', '#e74c3c');
         break;
       case 'good':
         status
           .html(trans)
           .css('display', 'block')
-          .css('background-color', '#a6ff4d');
+          .css('background-color', '#27ae60');
         setTimeout(function() {
           status.css('display', 'none');
         }, 1200);
@@ -242,13 +242,13 @@ options.showMessage = function(msgcode, type) {
       status
         .html(options.getMessage(msgcode))
         .css('display', 'block')
-        .css('background-color', '#fb5151');
+        .css('background-color', '#e74c3c');
       break;
     case 'good':
       status
         .html(options.getMessage(msgcode))
         .css('display', 'block')
-        .css('background-color', '#a6ff4d');
+        .css('background-color', '#27ae60');
       setTimeout(function() {
         status.css('display', 'none');
       }, 1200);

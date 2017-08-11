@@ -11,7 +11,7 @@ html,body {
     height: 100%;
     width: 100%;
     overflow-x:hidden;
-    background: #2980B9;
+    background: #94b5dc;
 }
 
 @-moz-document url-prefix() {
@@ -56,21 +56,38 @@ html,body {
 }
 
 #header {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
     height: 130px;
     width: 100%;
-    background-color: #fff;
+    background-color: #495d76;
     font-size: 2.2em;
-    color:#27ae60;
-    padding: 10px;
+    color:#fff;
+    padding: 40px;
 }
 
 #header>img {
-    height: 80px;
+    height: 50px;
     vertical-align: middle;
+    margin-right: 20px;
 }
 
 #header>div {
     display: inline;
+}
+
+#container {
+  position: relative;
+  height: calc(100% - 130px);
+}
+
+#bg-image {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  max-width: 600px;
+  width: 45%;
 }
 
 #description {
@@ -82,33 +99,38 @@ html,body {
     min-width: 320px;
     text-align: justify;
 }
+#description > p {
+  background:#7e9cc0;
+  padding: 20px;
+  font-weight: 100;
+  line-height: 22px;
+}
 
 #form-cont {
     display: inline-block;
     width: 49%;
     margin: 0  2%;
     min-width: 320px;
-
-
     vertical-align: top;
     margin-top: -50px;
 }
 
 #form {
     border-radius: 4px;
-    background: #f0f0f0;
-    padding: 15px;
+    background: #f3f3f3;
     width: 100%;
     max-width: 500px;
     left: 0;
     right: 0;
     margin: auto;
     margin-bottom: 1em;
-    box-shadow: 0px 0px 5px 2px #333;
+    box-shadow: 2px 2px 15px rgba(0,0,0,.3);
+    border-radius: 3px;
+    overflow: hidden;
 }
 
 /*Styling for tabs of Emission, fuel intake , fuel efficiency*/
-input[type="text"],input[type="number"],select,button {
+input[type="text"],input[type="number"],select {
     display: block;
     margin-bottom: 0.4em;
 }
@@ -141,14 +163,13 @@ button {
     text-transform: uppercase;
     font-size: 1.05em;
     font-weight: bold;
-    margin-top: 1em;
-    color: #f0f0f0;
-    background: #27ae60;
+    color: #fff;
+    background: #4a8fe2;
     border:none;
     border-radius: 2px;
-    transition: background 0.2s ease-in;
-    -webkit-transition: background 0.2s ease-in;
-    -moz-transition: background 0.2s ease-in;
+    transition: background 0.1s ease-in;
+    -webkit-transition: background 0.1s ease-in;
+    -moz-transition: background 0.1s ease-in;
     cursor: pointer;
 }
 
@@ -156,8 +177,10 @@ button {
     margin-top: 0;
     width: 80px;
     margin-left: 1em;
+    margin-bottom: .4em;
     font-size: 0.95em;
-    height: 2em;
+    line-height: 2em;
+    padding: 0;
     font-weight: normal;
     white-space: nowrap;
 }
@@ -168,35 +191,48 @@ button {
 }
 
 button:hover {
-    background: #0ABE32;
+    background: #2d7cda;
 }
 
 div#emission-type-cont {
     width: 100%;
     text-align: center;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    height: 50px;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
 }
 
 div#emission-type-cont > div.tab-button {
     display: inline-block;
     cursor: pointer;
-    width: 32%;
-    background: #eee;
-    padding: 8px 0;
-    color:#222;
-    opacity: 0.9;
-    position: relative;
+    width: 32.5%;
+    color: #767676;
     font-weight: bold;
+    line-height: 46px;
+    height: 50px;
+    text-transform: uppercase;
+    flex: 1 0 0;
+    /*border-right: 2px solid rgba(0, 0, 0, 0.2);*/
+}
+
+div#emission-type-cont > div.tab-button.middle {
+    border: 2px solid #eaeaea;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
 }
 
 div#emission-type-cont > div.tab-button.selected {
-    background: #f0f0f0;
+    background: #efefef;
+    color: #888;
     opacity: 1;
-    border-bottom: 4px solid #2980B9;
+    border-bottom: 4px solid #4c8ce1;
 }
 
 div#form-fields {
-    padding: 20px;
-    padding-bottom: 0px;
+    padding: 15px 30px;
 }
 
 div.emission-input-cont > div.emission-input {
@@ -217,7 +253,6 @@ div.emission-input-cont > div.emission-input.open {
 
 .form-group {
     padding: 0.7em 0;
-    padding-right:0;
 }
 .form-head {
     font-size: 1.05em;
@@ -239,8 +274,7 @@ div.emission-input-cont > div.emission-input.open {
     text-align:center;
     height:2em;
     border-radius:4px;
-    border:none;
-    text-align:center;
+    border: 2px solid #eee;
 }
 
 .emission-input-cont input {
@@ -248,7 +282,7 @@ div.emission-input-cont > div.emission-input.open {
     width:10em;
 }
 
-.emission-input-cont input[type='checkbox'] {
+.emission-input-cont input[type='radio'] {
     width:auto;
 }
 
@@ -288,7 +322,17 @@ div.emission-input-cont > div.emission-input.open {
     width: 4em;
     display: inline-block;
 }
-
+.save {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1em;
+}
+#location {
+  color: #4a8fe2;
+  font-weight: bold;
+}
 #offset {
     text-align: center;
     font-size: 1.1em;
@@ -311,6 +355,9 @@ a:link,a:visited,a:hover,a:active {
     #header>img {
         height: 80px;
     }
+    #bg-image {
+      display: none;
+    }
     #description {
         font-size: 1.3em;
         width: 100%;
@@ -332,11 +379,13 @@ a:link,a:visited,a:hover,a:active {
 }
 
 #message {
-    padding:0.4em;
-    text-align:center;
-    border-radius:3px;
-    margin-top:2em;
-    display:none;
+    padding: 0.5em;
+    text-align: center;
+    border-radius: 3px;
+    margin-top: 2em;
+    color: #fff;
+    text-transform: uppercase;
+    display: none;
 }
 
 input:disabled {
