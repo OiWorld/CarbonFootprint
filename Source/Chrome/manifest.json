@@ -452,6 +452,7 @@
                 "core/validator/validatorServer.js",
                 "core/flights/skyscanner.js",
                 "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
                 "core/FlightsCarbonFootprintCore.js",
                 "core/init.js"
             ],
@@ -474,6 +475,7 @@
                 "core/validator/validatorServer.js",
                 "core/flights/priceline.js",
                 "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
                 "core/FlightsCarbonFootprintCore.js",
                 "core/init.js"
             ],
@@ -504,6 +506,7 @@
                 "core/validator/validatorServer.js",
                 "core/flights/kayak.js",
                 "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
                 "core/FlightsCarbonFootprintCore.js",
                 "core/init.js"
             ],
@@ -526,6 +529,7 @@
                 "core/validator/validatorServer.js",
                 "core/flights/cleartrip.js",
                 "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
                 "core/FlightsCarbonFootprintCore.js",
                 "core/init.js"
             ],
@@ -548,6 +552,7 @@
                 "core/validator/validatorServer.js",
                 "core/flights/hipmunk.js",
                 "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
                 "core/FlightsCarbonFootprintCore.js",
                 "core/init.js"
             ],
@@ -570,6 +575,7 @@
                 "core/validator/validatorServer.js",
                 "core/flights/makemytrip.js",
                 "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
                 "core/FlightsCarbonFootprintCore.js",
                 "core/init.js"
             ],
@@ -1001,6 +1007,7 @@
                 "core/validator/validatorServer.js",
                 "core/flights/googleflights.js",
                 "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
                 "core/FlightsCarbonFootprintCore.js",
                 "core/init.js"
             ],
@@ -1056,6 +1063,7 @@
                 "core/validator/validatorServer.js",
                 "core/flights/expedia.js",
                 "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
                 "core/FlightsCarbonFootprintCore.js",
                 "core/init.js"
             ],
@@ -1078,6 +1086,7 @@
             "core/validator/validatorServer.js",
             "core/flights/lufthansa.js",
             "core/CarbonFootprintCommon.js",
+            "core/FlightsFootprintCommon.js",
             "core/FlightsCarbonFootprintCore.js",
             "core/init.js"
           ],
@@ -1100,6 +1109,7 @@
             "core/validator/validatorServer.js",
             "core/flights/delta.js",
             "core/CarbonFootprintCommon.js",
+            "core/FlightsFootprintCommon.js",
             "core/FlightsCarbonFootprintCore.js",
             "core/init.js"
           ],
@@ -1122,6 +1132,7 @@
             "core/validator/validatorServer.js",
             "core/flights/aa.js",
             "core/CarbonFootprintCommon.js",
+            "core/FlightsFootprintCommon.js",
             "core/FlightsCarbonFootprintCore.js",
             "core/init.js"
           ],
@@ -1145,6 +1156,7 @@
             "core/validator/validatorServer.js",
             "core/flights/spiceJet.js",
             "core/CarbonFootprintCommon.js",
+            "core/FlightsFootprintCommon.js",
             "core/FlightsCarbonFootprintCore.js",
             "core/init.js"
           ],
@@ -1213,6 +1225,7 @@
             "core/validator/validatorServer.js",
             "core/flights/tripAdvisor.js",
             "core/CarbonFootprintCommon.js",
+            "core/FlightsFootprintCommon.js",
             "core/FlightsCarbonFootprintCore.js",
             "core/init.js"
           ],
@@ -1235,6 +1248,7 @@
             "core/validator/validatorServer.js",
             "core/flights/united.js",
             "core/CarbonFootprintCommon.js",
+            "core/FlightsFootprintCommon.js",
             "core/FlightsCarbonFootprintCore.js",
             "core/init.js"
           ],
@@ -1359,6 +1373,7 @@
                 "core/validator/validatorServer.js",
                 "core/flights/travelocity.js",
                 "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
                 "core/FlightsCarbonFootprintCore.js",
                 "core/init.js"
             ],

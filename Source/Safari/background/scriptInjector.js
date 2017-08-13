@@ -1358,6 +1358,7 @@ injector.commonScriptsMaps = injector.commonScripts.concat([
  */
 
 injector.commonScriptsFlights = injector.commonScripts.concat([
+  injector.URL + 'core/FlightsFootprintCommon.js',
   injector.URL + 'core/FlightsCarbonFootprintCore.js',
   injector.URL + 'core/helpers/flightDataHelper.js',
   injector.URL + 'core/initFlight.js',

@@ -1,4 +1,5 @@
 var CarbonFootprintCommon = function() {
+  console.log("CarbonFootprintCommon");
   this.treeGrowthPerYear = 8.3; // Check EstimationSources/toronto-university-CO2-sequested-by-tree
 };
 
