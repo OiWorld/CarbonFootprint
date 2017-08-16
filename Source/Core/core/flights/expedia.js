@@ -63,44 +63,6 @@ expediaManager.prototype.getList = function(){
 };
 
 /**
-* Function for getting coordinates from the JSON
-* @param array
-* @return array
-*/
-
-expediaManager.prototype.getCoordinates = function(processedList){
-    processedList = this.core.getCoordinates(processedList);
-    console.log("--- got coordinates ---");
-    console.log(processedList);
-    return processedList;
-};
-
-/**
-* Function for getting Total Distance of flight
-* @param array
-* @return array
-*/
-
-expediaManager.prototype.getDistances = function(processedList){
-    processedList = this.core.getTotalDistance(processedList);
-    console.log("---got Distance---");
-    console.log(processedList);
-    return processedList;
-};
-
-/**
-* Function for getting Emission of flight
-* @param array
-* @return array
-*/
-
-expediaManager.prototype.getEmission = function(processedList){
-    processedList = this.core.getEmission(processedList);
-    console.log(processedList);
-    return processedList;
-};
-
-/**
 * Function for inserting Element in DOM
 * @param array
 * @return array

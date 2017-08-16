@@ -10,7 +10,7 @@ var hipmunkManager = function(footprintCore, settingsProvider){
 */
 
 hipmunkManager.prototype.getList = function(){
-    console.log("Hey Expedia!");
+    console.log("Hey Hipmunk!");
     var rawList = document.getElementsByClassName('flight-routing-bar');
     console.log("--raw list--");
     //console.log(rawList);
@@ -35,44 +35,6 @@ hipmunkManager.prototype.getList = function(){
         //console.log(stops);
     }
     this.validator.verifyList(processedList);
-    console.log(processedList);
-    return processedList;
-};
-
-/**
-* Function for getting coordinates from the JSON
-* @param array
-* @return array
-*/
-
-hipmunkManager.prototype.getCoordinates = function(processedList){
-    processedList = this.core.getCoordinates(processedList);
-    console.log("--- got coordinates ---");
-    console.log(processedList);
-    return processedList;
-};
-
-/**
-* Function for getting Total Distance of flight
-* @param array
-* @return array
-*/
-
-hipmunkManager.prototype.getDistances = function(processedList){
-    processedList = this.core.getTotalDistance(processedList);
-    console.log("---got Distance---");
-    console.log(processedList);
-    return processedList;
-};
-
-/**
-* Function for getting Emission of flight
-* @param array
-* @return array
-*/
-
-hipmunkManager.prototype.getEmission = function(processedList){
-    processedList = this.core.getEmission(processedList);
     console.log(processedList);
     return processedList;
 };

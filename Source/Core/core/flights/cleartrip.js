@@ -1,5 +1,5 @@
 var clearTripManager = function(footprintCore, settingsProvider){
-  this.this.core = footprintCore;
+  this.core = footprintCore;
   this.settingsProvider = settingsProvider;
   this.validator = new FlightsValidator("cleartrip");
 };

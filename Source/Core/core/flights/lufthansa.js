@@ -40,46 +40,6 @@ lufthansaManager.prototype.getList = function(){
   return processedList;
 };
 
-lufthansaManager.prototype.getCoordinates = function(processedList){
-  processedList = this.core.getCoordinates(processedList);
-  console.log("--- got coordinates ---");
-  console.log(processedList);
-  return processedList;
-};
-
-lufthansaManager.prototype.getDistances = function(processedList){
-    for(var x = 0, i = processedList.length; x < i; x++){
-        processedList[x].distance = 0;
-    console.log(processedList[x]);
-      if(processedList[x].stopCoordinatesNew){
-          noOfStops = processedList[x].stopCoordinatesNew.length;
-          console.log(noOfStops);
-      processedList[x].distance += this.core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
-                                                   processedList[x].stopCoordinatesNew[0].lat, processedList[x].stopCoordinatesNew[0].lon) +
-              this.core.getDistance(processedList[x].stopCoordinatesNew[noOfStops-1].lat, processedList[x].stopCoordinatesNew[noOfStops-1].lon,
-                               processedList[x].arriveCoordinates.lat, processedList[x].arriveCoordinates.lon);
-          for(var y = 0; y < noOfStops-1 ; y++){
-              console.log("Totally working fine");
-              processedList[x].distance += this.core.getDistance(processedList[x].stopCoordinatesNew[y].lat,processedList[x].stopCoordinatesNew[y].lon,processedList[x].stopCoordinatesNew[y+1].lat,processedList[x].stopCoordinatesNew[y+1].lon);
-          }
-    }
-    else{
-      processedList[x].distance += this.core.getDistance(processedList[x].departCoordinates.lat, processedList[x].departCoordinates.lon,
-                                                   processedList[x].arriveCoordinates.lat, processedList[x].arriveCoordinates.lon);
-    }
-  }
-  console.log("---got distances---");
-  console.log(processedList);
-  return processedList;
-};
-
-lufthansaManager.prototype.getEmission = function(processedList){
-  processedList = this.core.getEmission(processedList);
-  console.log("---got fuel consumption---");
-  console.log(processedList);
-  return processedList;
-};
-
 lufthansaManager.prototype.style = function(e){
   var td = document.createElement("td");
   //e.style.top = "50%";

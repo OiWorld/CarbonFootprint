@@ -24,27 +24,6 @@ skyscannerManager.prototype.getList = function(){
   return processedList;
 };
 
-skyscannerManager.prototype.getCoordinates = function(processedList){
-  processedList = this.core.getCoordinates(processedList);
-  console.log("--- got coordinates ---");
-  //console.log(processedList);
-  return processedList;
-};
-
-skyscannerManager.prototype.getDistances = function(processedList){
-  processedList = this.core.getTotalDistance(processedList);
-  console.log("---got distances---");
-  //console.log(processedList);
-  return processedList;
-};
-
-skyscannerManager.prototype.getEmission = function(processedList){
-  processedList = this.core.getEmission(processedList);
-  console.log("---got fuel consumption---");
-  //console.log(processedList);
-  return processedList;
-};
-
 skyscannerManager.prototype.insertInDom = function(processedList){
   var insertIn = [];
   if(processedList.length){

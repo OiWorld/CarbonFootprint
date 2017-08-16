@@ -25,16 +25,16 @@ new SettingsProvider(function(settingsProvider) {
       websiteManager.update = function(){
         var processedList = websiteManager.getList();
         if(core.airplanesData && core.airportsData){
-            processedList = websiteManager.getEmission(
-              websiteManager.getDistances(
-                websiteManager.getCoordinates(processedList)));
+            processedList = core.getEmission(
+              core.getTotalDistance(
+                core.getCoordinates(processedList)));
             websiteManager.insertInDom(processedList);
         }
         console.log(processedList);
       };
     }
 
-    /*Because some websites need it to be true while some want false
+    /*Because some websites need it to be true while some want false,
       defaults to false if nothing specified*/
     var childList;
     if(websiteManager.childList !== undefined){
