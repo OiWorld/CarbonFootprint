@@ -1,4 +1,5 @@
-var FlightsFootprintCommon = function(DontLoadData){
+var FlightsFootprintCommon = function(){
+  this.seatType = "economy";
 	console.log("FlightsFootprintCommon");
 	CarbonFootprintCommon.call(this);
 	dataHelper = new FlightDataHelper();
@@ -114,5 +115,12 @@ FlightsFootprintCommon.prototype.getEmission = function(list){
  */
 
 FlightsFootprintCommon.prototype.convertFuelToCO2 = function(fuel, aircraft){
-  return Math.floor(fuel*FlightsFootprintCommon.CO2_FOR_JETFUEL/this.airplanesData[aircraft].capacity);
+  if(this.seatType == "economy")
+    return Math.floor(fuel*FlightsFootprintCommon.CO2_FOR_JETFUEL/this.airplanesData[aircraft].capacity);
+  else
+    return Math.floor(fuel*FlightsFootprintCommon.CO2_FOR_JETFUEL/this.airplanesData[aircraft].capacityTwoClass);
+};
+
+FlightsFootprintCommon.prototype.setSeatType = function(seatType){
+  this.seatType = seatType;
 };

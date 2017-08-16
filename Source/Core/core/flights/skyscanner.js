@@ -6,6 +6,18 @@ var skyscannerManager = function(footprintCore, settingsProvider){
 };
 skyscannerManager.prototype.getList = function(){
   var rawList = document.getElementsByClassName("card-main");
+  if(rawList.length){
+    var seatType = this.validator.getByClass("search-summary-info")[0].innerHTML;
+    if(seatType.indexOf("Economy") >= 0){
+      console.log(seatType.indexOf("Economy"));
+      this.core.setSeatType("economy");
+      console.log("economy");
+    }
+    else{
+      this.core.setSeatType("business");
+      console.log("business");
+    }
+  }
   console.log("raw list");
   //console.log(rawList);
   var processedList = [];

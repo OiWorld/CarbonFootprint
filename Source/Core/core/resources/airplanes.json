@@ -13,7 +13,8 @@
 			13757,
 			16104
 		],
-		"capacity": 130
+		"capacity": 130,
+		"capacityTwoClass": 130
 	},
 	"146": {
 		"fuel": [
@@ -25,7 +26,8 @@
 			9199,
 			11725
 		],
-		"capacity": 100
+		"capacity": 100,
+		"capacityTwoClass": 100
 	},
 	"310": {
 		"fuel": [
