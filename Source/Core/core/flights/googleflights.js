@@ -1,5 +1,6 @@
-var googleFlightsManager = function(){
-  
+var googleFlightsManager = function(footprintCore, settingsProvider){
+  this.core = footprintCore;
+  this.settingsProvider = settingsProvider;
 };
 
 /**
@@ -70,44 +71,6 @@ googleFlightsManager.prototype.getList = function(){
 };
 
 /**
- * Function for getting coordinates from the JSON
- * @param {array} processedList
- * @return {array} processedList
- */
-
-googleFlightsManager.prototype.getCoordinates = function(processedList){
-    processedList = core.getCoordinates(processedList);
-    console.log("--- got coordinates ---");
-    console.log(processedList);
-    return processedList;
-};
-
-/**
- * Function for getting Total Distance of flight
- * @param {array} processedList
- * @return {array} processedList
- */
-
-googleFlightsManager.prototype.getDistances = function(processedList){
-    processedList = core.getTotalDistance(processedList);
-    console.log("---got Distance---");
-    console.log(processedList);
-    return processedList;
-};
-
-/**
- * Function for getting Emission of flight
- * @param {array} processedList
- * @return {array} processedList
- */
-
-googleFlightsManager.prototype.getEmission = function(processedList){
-    processedList = core.getEmission(processedList);
-    console.log(processedList);
-    return processedList;
-};
-
-/**
  * Function for inserting Element in DOM
  * @param {array} processedList
  * @return {array} processedList
@@ -131,7 +94,7 @@ googleFlightsManager.prototype.insertInDom = function(processedList){
         {
             console.log("here we are");
             console.log(insertIn);
-            insertIn.appendChild(core.createMark(processedList[x].co2Emission,0));
+            insertIn.appendChild(this.core.createMark(processedList[x].co2Emission,0));
         }
         else{
             console.log("saved");
@@ -139,4 +102,4 @@ googleFlightsManager.prototype.insertInDom = function(processedList){
     }
 };
 
-var FlightManager = googleFlightsManager ;
+var WebsiteManager = googleFlightsManager ;

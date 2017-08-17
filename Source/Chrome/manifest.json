@@ -31,7 +31,7 @@
             ],
             "run_at": "document_end",
             "all_frames": true
-            
+
         },
         {
             "matches": [
@@ -244,6 +244,7 @@
             "css": ["core/css/main.css"],
             "js": [
                 "core/CarbonFootprintCore.js",
+                "core/CarbonFootprintCommon.js",
                 "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
@@ -264,6 +265,7 @@
             "css": ["core/css/main.css"],
             "js": [
                 "core/CarbonFootprintCore.js",
+                "core/CarbonFootprintCommon.js",
                 "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
@@ -284,7 +286,8 @@
             ],
             "css": ["core/css/main.css"],
             "js": [
-                "core/CarbonFootprintCore.js",
+                "core/MapsCarbonFootprintCore.js",
+                "core/CarbonFootprintCommon.js",
                 "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
@@ -304,7 +307,8 @@
             ],
             "css": ["core/css/main.css"],
             "js": [
-                "core/CarbonFootprintCore.js",
+                "core/MapsCarbonFootprintCore.js",
+                "core/CarbonFootprintCommon.js",
                 "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
@@ -324,7 +328,8 @@
             ],
             "css": ["core/css/main.css"],
             "js": [
-                "core/CarbonFootprintCore.js",
+                "core/MapsCarbonFootprintCore.js",
+                "core/CarbonFootprintCommon.js",
                 "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
@@ -347,7 +352,8 @@
             ],
             "css": ["core/css/main.css"],
             "js": [
-                "core/CarbonFootprintCore.js",
+                "core/MapsCarbonFootprintCore.js",
+                "core/CarbonFootprintCommon.js",
                 "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
@@ -367,7 +373,8 @@
             ],
             "css": ["core/css/main.css"],
             "js": [
-                "core/CarbonFootprintCore.js",
+                "core/MapsCarbonFootprintCore.js",
+                "core/CarbonFootprintCommon.js",
                 "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
@@ -399,7 +406,8 @@
             ],
             "css": ["core/css/main.css"],
             "js": [
-                "core/CarbonFootprintCore.js",
+                "core/MapsCarbonFootprintCore.js",
+                "core/CarbonFootprintCommon.js",
                 "core/SettingsProviderCore.js",
                 "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
@@ -435,14 +443,18 @@
             "css": ["core/css/flights.css"],
             "js": [
                 "core/helpers/flightDataHelper.js",
+                "core/SettingsProviderCore.js",
+                "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/raven.min.js",
                 "core/validator/basicValidator.js",
                 "core/validator/flightsValidator.js",
                 "core/validator/validatorServer.js",
                 "core/flights/skyscanner.js",
-                "core/FlightsFootprintCore.js",
-                "core/initFlight.js"
+                "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
+                "core/FlightsCarbonFootprintCore.js",
+                "core/init.js"
             ],
             "run_at": "document_end",
             "all_frames": true
@@ -454,14 +466,18 @@
             "css": ["core/css/flights.css"],
             "js": [
                 "core/helpers/flightDataHelper.js",
+                "core/SettingsProviderCore.js",
+                "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/raven.min.js",
                 "core/validator/basicValidator.js",
                 "core/validator/flightsValidator.js",
                 "core/validator/validatorServer.js",
                 "core/flights/priceline.js",
-                "core/FlightsFootprintCore.js",
-                "core/initFlight.js"
+                "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
+                "core/FlightsCarbonFootprintCore.js",
+                "core/init.js"
             ],
             "run_at": "document_end",
             "all_frames": true
@@ -481,14 +497,18 @@
             "css": ["core/css/flights.css"],
             "js": [
                 "core/helpers/flightDataHelper.js",
+                "core/SettingsProviderCore.js",
+                "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/raven.min.js",
                 "core/validator/basicValidator.js",
                 "core/validator/flightsValidator.js",
                 "core/validator/validatorServer.js",
                 "core/flights/kayak.js",
-                "core/FlightsFootprintCore.js",
-                "core/initFlight.js"
+                "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
+                "core/FlightsCarbonFootprintCore.js",
+                "core/init.js"
             ],
             "run_at": "document_end",
             "all_frames": true
@@ -500,14 +520,18 @@
             "css": ["core/css/flights.css"],
             "js": [
                 "core/helpers/flightDataHelper.js",
+                "core/SettingsProviderCore.js",
+                "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/raven.min.js",
                 "core/validator/basicValidator.js",
                 "core/validator/flightsValidator.js",
                 "core/validator/validatorServer.js",
                 "core/flights/cleartrip.js",
-                "core/FlightsFootprintCore.js",
-                "core/initFlight.js"
+                "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
+                "core/FlightsCarbonFootprintCore.js",
+                "core/init.js"
             ],
             "run_at": "document_end",
             "all_frames": true
@@ -519,14 +543,18 @@
             "css": ["core/css/flights.css"],
             "js": [
                 "core/helpers/flightDataHelper.js",
+                "core/SettingsProviderCore.js",
+                "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/raven.min.js",
                 "core/validator/basicValidator.js",
                 "core/validator/flightsValidator.js",
                 "core/validator/validatorServer.js",
                 "core/flights/hipmunk.js",
-                "core/FlightsFootprintCore.js",
-                "core/initFlight.js"
+                "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
+                "core/FlightsCarbonFootprintCore.js",
+                "core/init.js"
             ],
             "run_at": "document_end",
             "all_frames": true
@@ -538,14 +566,18 @@
             "css": ["core/css/flights.css"],
             "js": [
                 "core/helpers/flightDataHelper.js",
+                "core/SettingsProviderCore.js",
+                "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/raven.min.js",
                 "core/validator/basicValidator.js",
                 "core/validator/flightsValidator.js",
                 "core/validator/validatorServer.js",
                 "core/flights/makemytrip.js",
-                "core/FlightsFootprintCore.js",
-                "core/initFlight.js"
+                "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
+                "core/FlightsCarbonFootprintCore.js",
+                "core/init.js"
             ],
             "run_at": "document_end",
             "all_frames": true
@@ -966,14 +998,18 @@
             "css": ["core/css/flights.css"],
             "js": [
                 "core/helpers/flightDataHelper.js",
+                "core/SettingsProviderCore.js",
+                "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/raven.min.js",
                 "core/validator/basicValidator.js",
                 "core/validator/flightsValidator.js",
                 "core/validator/validatorServer.js",
                 "core/flights/googleflights.js",
-                "core/FlightsFootprintCore.js",
-                "core/initFlight.js"
+                "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
+                "core/FlightsCarbonFootprintCore.js",
+                "core/init.js"
             ],
             "run_at": "document_end",
             "all_frames": true
@@ -1018,14 +1054,18 @@
             "css": ["core/css/flights.css"],
             "js": [
                 "core/helpers/flightDataHelper.js",
+                "core/SettingsProviderCore.js",
+                "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/raven.min.js",
                 "core/validator/basicValidator.js",
                 "core/validator/flightsValidator.js",
                 "core/validator/validatorServer.js",
                 "core/flights/expedia.js",
-                "core/FlightsFootprintCore.js",
-                "core/initFlight.js"
+                "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
+                "core/FlightsCarbonFootprintCore.js",
+                "core/init.js"
             ],
             "run_at": "document_end",
             "all_frames": true
@@ -1037,14 +1077,18 @@
           "css": ["core/css/flights.css"],
           "js":[
             "core/helpers/flightDataHelper.js",
+            "core/SettingsProviderCore.js",
+            "core/settings/ChromeSettingsProvider.js",
             "core/helpers/ChromeHelper.js",
             "core/validator/raven.min.js",
             "core/validator/basicValidator.js",
             "core/validator/flightsValidator.js",
             "core/validator/validatorServer.js",
             "core/flights/lufthansa.js",
-            "core/FlightsFootprintCore.js",
-            "core/initFlight.js"
+            "core/CarbonFootprintCommon.js",
+            "core/FlightsFootprintCommon.js",
+            "core/FlightsCarbonFootprintCore.js",
+            "core/init.js"
           ],
           "run_at" : "document_end",
           "all_frames" : true
@@ -1056,14 +1100,18 @@
           "css": ["core/css/flights.css"],
           "js":[
             "core/helpers/flightDataHelper.js",
+            "core/SettingsProviderCore.js",
+            "core/settings/ChromeSettingsProvider.js",
             "core/helpers/ChromeHelper.js",
             "core/validator/raven.min.js",
             "core/validator/basicValidator.js",
             "core/validator/flightsValidator.js",
             "core/validator/validatorServer.js",
             "core/flights/delta.js",
-            "core/FlightsFootprintCore.js",
-            "core/initFlight.js"
+            "core/CarbonFootprintCommon.js",
+            "core/FlightsFootprintCommon.js",
+            "core/FlightsCarbonFootprintCore.js",
+            "core/init.js"
           ],
           "run_at" : "document_end",
           "all_frames" : true
@@ -1075,14 +1123,18 @@
           "css": ["core/css/flights.css"],
           "js":[
             "core/helpers/flightDataHelper.js",
+            "core/SettingsProviderCore.js",
+            "core/settings/ChromeSettingsProvider.js",
             "core/helpers/ChromeHelper.js",
             "core/validator/raven.min.js",
             "core/validator/basicValidator.js",
             "core/validator/flightsValidator.js",
             "core/validator/validatorServer.js",
             "core/flights/aa.js",
-            "core/FlightsFootprintCore.js",
-            "core/initFlight.js"
+            "core/CarbonFootprintCommon.js",
+            "core/FlightsFootprintCommon.js",
+            "core/FlightsCarbonFootprintCore.js",
+            "core/init.js"
           ],
           "run_at" : "document_end",
           "all_frames" : true
@@ -1095,14 +1147,18 @@
           "css": ["core/css/flights.css"],
           "js":[
             "core/helpers/flightDataHelper.js",
+            "core/SettingsProviderCore.js",
+            "core/settings/ChromeSettingsProvider.js",
             "core/helpers/ChromeHelper.js",
             "core/validator/raven.min.js",
             "core/validator/basicValidator.js",
             "core/validator/flightsValidator.js",
             "core/validator/validatorServer.js",
             "core/flights/spiceJet.js",
-            "core/FlightsFootprintCore.js",
-            "core/initFlight.js"
+            "core/CarbonFootprintCommon.js",
+            "core/FlightsFootprintCommon.js",
+            "core/FlightsCarbonFootprintCore.js",
+            "core/init.js"
           ],
           "run_at" : "document_end",
           "all_frames" : true
@@ -1160,14 +1216,18 @@
           "css": ["core/css/flights.css"],
           "js":[
             "core/helpers/flightDataHelper.js",
+            "core/SettingsProviderCore.js",
+            "core/settings/ChromeSettingsProvider.js",
             "core/helpers/ChromeHelper.js",
             "core/validator/raven.min.js",
             "core/validator/basicValidator.js",
             "core/validator/flightsValidator.js",
             "core/validator/validatorServer.js",
             "core/flights/tripAdvisor.js",
-            "core/FlightsFootprintCore.js",
-            "core/initFlight.js"
+            "core/CarbonFootprintCommon.js",
+            "core/FlightsFootprintCommon.js",
+            "core/FlightsCarbonFootprintCore.js",
+            "core/init.js"
           ],
           "run_at" : "document_end",
           "all_frames" : true
@@ -1179,14 +1239,18 @@
           "css": ["core/css/flights.css"],
           "js":[
             "core/helpers/flightDataHelper.js",
+            "core/SettingsProviderCore.js",
+            "core/settings/ChromeSettingsProvider.js",
             "core/helpers/ChromeHelper.js",
             "core/validator/raven.min.js",
             "core/validator/basicValidator.js",
             "core/validator/flightsValidator.js",
             "core/validator/validatorServer.js",
             "core/flights/united.js",
-            "core/FlightsFootprintCore.js",
-            "core/initFlight.js"
+            "core/CarbonFootprintCommon.js",
+            "core/FlightsFootprintCommon.js",
+            "core/FlightsCarbonFootprintCore.js",
+            "core/init.js"
           ],
           "run_at" : "document_end",
           "all_frames" : true
@@ -1197,14 +1261,17 @@
             ],
             "css": ["core/css/main.css"],
             "js": [
-                "core/TrainsFootprintCore.js",
+                "core/TrainsCarbonFootprintCore.js",
+                "core/SettingsProviderCore.js",
+                "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/raven.min.js",
                 "core/validator/basicValidator.js",
                 "core/validator/trainsValidator.js",
                 "core/validator/validatorServer.js",
+                "core/CarbonFootprintCommon.js",
                 "core/trains/voyages-sncf.js",
-                "core/initTrain.js"
+                "core/init.js"
             ],
             "run_at": "document_end",
             "all_frames": true
@@ -1215,14 +1282,17 @@
             ],
             "css": ["core/css/main.css"],
             "js": [
-                "core/TrainsFootprintCore.js",
+                "core/TrainsCarbonFootprintCore.js",
+                "core/SettingsProviderCore.js",
+                "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/raven.min.js",
                 "core/validator/basicValidator.js",
                 "core/validator/trainsValidator.js",
                 "core/validator/validatorServer.js",
+                "core/CarbonFootprintCommon.js",
                 "core/trains/eurostar.js",
-                "core/initTrain.js"
+                "core/init.js"
             ],
             "run_at": "document_end",
             "all_frames": true
@@ -1233,14 +1303,16 @@
             ],
             "css": ["core/css/main.css"],
             "js": [
-                "core/TrainsFootprintCore.js",
+                "core/TrainsCarbonFootprintCore.js",
+                "core/SettingsProviderCore.js",
+                "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/raven.min.js",
                 "core/validator/basicValidator.js",
                 "core/validator/trainsValidator.js",
                 "core/validator/validatorServer.js",
                 "core/trains/tgv-lyria.js",
-                "core/initTrain.js"
+                "core/init.js"
             ],
             "run_at": "document_end",
             "all_frames": true
@@ -1251,14 +1323,16 @@
             ],
             "css": ["core/css/main.css"],
             "js": [
-                "core/TrainsFootprintCore.js",
+                "core/TrainsCarbonFootprintCore.js",
+                "core/SettingsProviderCore.js",
+                "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/raven.min.js",
                 "core/validator/basicValidator.js",
                 "core/validator/trainsValidator.js",
                 "core/validator/validatorServer.js",
                 "core/trains/thalys.js",
-                "core/initTrain.js"
+                "core/init.js"
             ],
             "run_at": "document_end",
             "all_frames": true
@@ -1269,14 +1343,16 @@
             ],
             "css": ["core/css/main.css"],
             "js": [
-                "core/TrainsFootprintCore.js",
+                "core/TrainsCarbonFootprintCore.js",
+                "core/SettingsProviderCore.js",
+                "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/raven.min.js",
                 "core/validator/basicValidator.js",
                 "core/validator/trainsValidator.js",
                 "core/validator/validatorServer.js",
                 "core/trains/ouigo.js",
-                "core/initTrain.js"
+                "core/init.js"
             ],
             "run_at": "document_end",
             "all_frames": true
@@ -1288,14 +1364,18 @@
             "css": ["core/css/flights.css"],
             "js": [
                 "core/helpers/flightDataHelper.js",
+                "core/SettingsProviderCore.js",
+                "core/settings/ChromeSettingsProvider.js",
                 "core/helpers/ChromeHelper.js",
                 "core/validator/raven.min.js",
                 "core/validator/basicValidator.js",
                 "core/validator/flightsValidator.js",
                 "core/validator/validatorServer.js",
                 "core/flights/travelocity.js",
-                "core/FlightsFootprintCore.js",
-                "core/initFlight.js"
+                "core/CarbonFootprintCommon.js",
+                "core/FlightsFootprintCommon.js",
+                "core/FlightsCarbonFootprintCore.js",
+                "core/init.js"
             ],
             "run_at": "document_end",
             "all_frames": true

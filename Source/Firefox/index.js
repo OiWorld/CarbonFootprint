@@ -266,7 +266,6 @@ var mqmaps = pageMod.PageMod({
   onAttach: onAttachListener
 });
 
-<<<<<<< HEAD
 var ymaps = pageMod.PageMod({
   include: /https?:\/\/(www\.)?yandex.*\/maps\/.*/,
   contentScriptFile: [

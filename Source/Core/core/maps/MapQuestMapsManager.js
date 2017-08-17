@@ -140,4 +140,4 @@ MapQuestMapsManager.prototype.update = function() {
   }
 };
 
-var MapManager = MapQuestMapsManager;
+var WebsiteManager = MapQuestMapsManager;

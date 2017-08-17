@@ -19,12 +19,12 @@ TrainsValidator.prototype.constructor = TrainsValidator;
  */
 
 TrainsValidator.prototype.verifyTrain = function(train){
-  if(!core.trainData[train]){
+  /*if(!core.trainData[train]){
     this.counterMeasure("invalid train type");
   }
   else{
     console.log("valid train " + train);
-  }
+  }*/
 };
 
 /**

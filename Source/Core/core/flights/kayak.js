@@ -1,4 +1,6 @@
-var kayakManager = function(){
+var kayakManager = function(footprintCore, settingsProvider){
+  this.core = footprintCore;
+  this.settingsProvider = settingsProvider;
   this.validator = new FlightsValidator("kayak");
 };
  /**
@@ -43,39 +45,6 @@ kayakManager.prototype.getList = function(){
 };
 
 /**
-* Function for getting coordinates from the JSON
-* @param array
-* @result array
- */
-
-kayakManager.prototype.getCoordinates = function(processedList){
-    processedList = core.getCoordinates(processedList);
-    console.log("--- got coordinates ---");
-    console.log(processedList);
-    return processedList;
-};
-
-/**
- * Function for getting Total Distance of flight
- * @param array
- * @return array
- */
-
-kayakManager.prototype.getDistances = function(processedList){
-    processedList = core.getTotalDistance(processedList);
-    console.log("---got Distance---");
-    console.log(processedList);
-    return processedList;
-};
-
-kayakManager.prototype.getEmission = function(processedList){
-    processedList = core.getEmission(processedList);
-    console.log(processedList);
-    return processedList;
-};
-
-
-/**
  * Function for inserting Element in DOM
  * @param array
  * @return array
@@ -91,7 +60,7 @@ kayakManager.prototype.insertInDom = function(processedList){
         insertIn = this.validator.getByClass('extraInfo', checkOption[x]);
         insertIn = insertIn[insertIn.length-1];
         if(checkOption[x].getElementsByClassName('carbon').length<1){
-            insertIn.appendChild(core.createMark(processedList[2*x].co2Emission,processedList[(2*x)+1].co2Emission));
+            insertIn.appendChild(this.core.createMark(processedList[2*x].co2Emission,processedList[(2*x)+1].co2Emission));
             console.log('inserted');
         }
         else{
@@ -101,4 +70,4 @@ kayakManager.prototype.insertInDom = function(processedList){
   }
 };
 
-var FlightManager = kayakManager ;
+var WebsiteManager = kayakManager ;

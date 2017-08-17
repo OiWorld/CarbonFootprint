@@ -1,4 +1,6 @@
-var ouigoManager = function(){
+var ouigoManager = function(footprintCore, settingsProvider){
+  this.footprintCore = footprintCore;
+  this.settingsProvider = settingsProvider;
   this.subtree = true;
   this.dataSource = "sncf"; //select one of the emission information sources from trainEmissions.json
   this.stations = {
@@ -7,6 +9,7 @@ var ouigoManager = function(){
   };
   this.MODE = "ouigo"; // constant, the type of train on this website is only "ouigo"
   this.validator = new TrainsValidator("ouigo");
+  this.footprintCore.storeDataSource(this.dataSource);
 };
 
 ouigoManager.prototype.geocodeStations = function(){
@@ -17,9 +20,9 @@ ouigoManager.prototype.geocodeStations = function(){
   this.validator.verifyStation(this.stations.depart);
   this.validator.verifyStation(this.stations.arrive);
   console.log(this.stations.depart + " ->  " + this.stations.arrive);
-  if(core.distance === 0 && this.stations.depart && this.stations.arrive){  //Check if geocode never happened for current stations, proceed if not
+  if(this.footprintCore.distance === 0 && this.stations.depart && this.stations.arrive){  //Check if geocode never happened for current stations, proceed if not
     var toGeocode = [this.stations.depart, this.stations.arrive];
-    core.geocode(toGeocode);
+    this.footprintCore.geocode(toGeocode);
   }
 };
 
@@ -40,9 +43,9 @@ ouigoManager.prototype.insertInDom = function(emission){
 
 ouigoManager.prototype.update = function(){
   this.geocodeStations();
-  if(core.distance > 1){ //Check if station have alredy been geocoded
-    this.insertInDom(core.getEmission([this.MODE])); //There is only 1 type of train
+  if(this.footprintCore.distance > 1){ //Check if station have alredy been geocoded
+    this.insertInDom(this.footprintCore.getEmission([this.MODE])); //There is only 1 type of train
   }
 };
 
-var TrainManager = ouigoManager;
+var WebsiteManager = ouigoManager;

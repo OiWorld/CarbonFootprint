@@ -1,4 +1,6 @@
-var thalysManager = function(){
+var thalysManager = function(footprintCore, settingsProvider){
+  this.footprintCore = footprintCore;
+  this.settingsProvider = settingsProvider;
   this.subtree = true;
   this.dataSource = "sncf"; //select one of the emission information sources from trainEmissions.json
   this.stations = {
@@ -7,6 +9,7 @@ var thalysManager = function(){
   };
   this.MODE = "thalys"; // constant, the type of train on this website is only "thalys"
   this.validator = new TrainsValidator("thalys");
+  this.footprintCore.storeDataSource(this.dataSource);
 };
 
 thalysManager.prototype.geocodeStations = function(){
@@ -15,9 +18,9 @@ thalysManager.prototype.geocodeStations = function(){
   this.validator.verifyStation(this.stations.depart);
   this.validator.verifyStation(this.stations.arrive);
   console.log(this.stations.depart + " ->  " + this.stations.arrive);
-  if(core.distance === 0 && this.stations.depart && this.stations.arrive){  //Check if geocode never happened for current stations, proceed if not
+  if(this.footprintCore.distance === 0 && this.stations.depart && this.stations.arrive){  //Check if geocode never happened for current stations, proceed if not
     var toGeocode = [this.stations.depart, this.stations.arrive];
-    core.geocode(toGeocode);
+    this.footprintCore.geocode(toGeocode);
   }
 };
 
@@ -38,9 +41,9 @@ thalysManager.prototype.insertInDom = function(emission){
 
 thalysManager.prototype.update = function(){
   var processedList = this.geocodeStations();
-  if(core.distance > 1){ //Check if station have alredy been geocoded
-    this.insertInDom(core.getEmission([this.MODE])); //There is only 1 type of train
+  if(this.footprintCore.distance > 1){ //Check if station have alredy been geocoded
+    this.insertInDom(this.footprintCore.getEmission([this.MODE])); //There is only 1 type of train
   }
 };
 
-var TrainManager = thalysManager;
+var WebsiteManager = thalysManager;

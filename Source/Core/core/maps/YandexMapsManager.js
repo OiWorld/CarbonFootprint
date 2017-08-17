@@ -203,4 +203,4 @@ YandexMapsManager.prototype.update = function() {
   }
 };
 
-var MapManager = YandexMapsManager;
+var WebsiteManager = YandexMapsManager;

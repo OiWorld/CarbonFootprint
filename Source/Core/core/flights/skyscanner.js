@@ -1,4 +1,6 @@
-var skyscannerManager = function(){
+var skyscannerManager = function(footprintCore, settingsProvider){
+  this.core = footprintCore;
+  this.settingsProvider = settingsProvider;
   this.subtree = true;
   this.validator = new FlightsValidator("skyscanner");
 };
@@ -22,27 +24,6 @@ skyscannerManager.prototype.getList = function(){
   return processedList;
 };
 
-skyscannerManager.prototype.getCoordinates = function(processedList){
-  processedList = core.getCoordinates(processedList);
-  console.log("--- got coordinates ---");
-  //console.log(processedList);
-  return processedList;
-};
-
-skyscannerManager.prototype.getDistances = function(processedList){
-  processedList = core.getTotalDistance(processedList);
-  console.log("---got distances---");
-  //console.log(processedList);
-  return processedList;
-};
-
-skyscannerManager.prototype.getEmission = function(processedList){
-  processedList = core.getEmission(processedList);
-  console.log("---got fuel consumption---");
-  //console.log(processedList);
-  return processedList;
-};
-
 skyscannerManager.prototype.insertInDom = function(processedList){
   var insertIn = [];
   if(processedList.length){
@@ -53,10 +34,10 @@ skyscannerManager.prototype.insertInDom = function(processedList){
     if(this.validator.getChildNode([1], insertIn[x]).childNodes.length <= 4 ||
        this.validator.getChildNode([1,4], insertIn[x]).className == "leg-operator" &&
        this.validator.getChildNode([1], insertIn[x]).childNodes.length <= 5){
-         this.validator.getChildNode([1], insertIn[x]).appendChild(core.createMark(processedList[x].co2Emission, 0));
+         this.validator.getChildNode([1], insertIn[x]).appendChild(this.core.createMark(processedList[x].co2Emission, 0));
     }
     //console.log(insertIn[x].childNodes[1].childNodes[1]);
   }
 };
 
-var FlightManager = skyscannerManager;
+var WebsiteManager = skyscannerManager;
