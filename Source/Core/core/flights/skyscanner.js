@@ -46,7 +46,7 @@ skyscannerManager.prototype.insertInDom = function(processedList){
     if(this.validator.getChildNode([1], insertIn[x]).childNodes.length <= 4 ||
        this.validator.getChildNode([1,4], insertIn[x]).className == "leg-operator" &&
        this.validator.getChildNode([1], insertIn[x]).childNodes.length <= 5){
-         this.validator.getChildNode([1], insertIn[x]).appendChild(this.core.createMark(processedList[x].co2Emission, 0));
+         this.validator.getChildNode([1], insertIn[x]).appendChild(this.core.createMark(processedList[x].co2Emission));
     }
     //console.log(insertIn[x].childNodes[1].childNodes[1]);
   }
