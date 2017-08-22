@@ -16,7 +16,7 @@
 var FlightsFootprintCore = function(settingsProvider, helper){
   this.seatType = "average";
   FlightsFootprintCommon.call(this);
-  this.flights = true; // used to identift a flight ticket website
+  this.flights = true; // used to identify a flight ticket website
 };
 
 FlightsFootprintCore.prototype = Object.create(FlightsFootprintCommon.prototype);
@@ -85,8 +85,10 @@ FlightsFootprintCore.prototype.createHTMLElement = function(co2Emission){
  * @return htmlElement
  */
 
-FlightsFootprintCore.prototype.createMark = function(depart={average: 0, economy: 0, business: 0},
-  arrive={average: 0, economy: 0, business: 0}){
+FlightsFootprintCore.prototype.createMark = function(depart, arrive){
+    if(arrive === undefined){
+      arrive = {average: 0, economy: 0, business: 0};
+    }
     var e = document.createElement('div');
     //knowMoreUrl = this.helper.getFilePath('pages/knowMore.html');
     var outBoundInfo = "",returnInfo = "",Title="";

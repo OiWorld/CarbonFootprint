@@ -18,7 +18,7 @@ eurostarManager.prototype.geocodeStations = function(){
   this.stations.depart = stations.split(" ")[0];
   this.stations.arrive = stations.split(" ")[2];
   console.log(this.stations.depart + " ->  " + this.stations.arrive);
-  if(this.footprintCore.distance === 0 && this.stations.depart && this.stations.arrive){  //Check if geocode never happened for current stations, proceed if not
+  if(distanceBetween === 0 && this.stations.depart && this.stations.arrive){  //Check if geocode never happened for current stations, proceed if not
     var toGeocode = [this.stations.depart, this.stations.arrive];
     this.footprintCore.geocode(toGeocode);
   }
@@ -40,7 +40,7 @@ eurostarManager.prototype.insertInDom = function(emission){
 
 eurostarManager.prototype.update = function(){
   var processedList = this.geocodeStations();
-  if(this.footprintCore.distance > 1){ //Check if station has alredy been geocoded
+  if(distanceBetween > 1){ //Check if station has alredy been geocoded
     this.insertInDom(this.footprintCore.getEmission([this.MODE])); //There is only 1 type of train
   }
 };

@@ -20,7 +20,7 @@ lyriaManager.prototype.geocodeStations = function(){
   this.validator.verifyStation(this.stations.depart);
   this.validator.verifyStation(this.stations.arrive);
   console.log(this.stations.depart + " ->  " + this.stations.arrive);
-  if(this.footprintCore.distance === 0 && this.stations.depart && this.stations.arrive){  //Check if geocode never happened for current stations, proceed if not
+  if(distanceBetween === 0 && this.stations.depart && this.stations.arrive){  //Check if geocode never happened for current stations, proceed if not
     var toGeocode = [this.stations.depart, this.stations.arrive];
     this.footprintCore.geocode(toGeocode);
   }
@@ -43,7 +43,7 @@ lyriaManager.prototype.insertInDom = function(emission){
 
 lyriaManager.prototype.update = function(){
   this.geocodeStations();
-  if(this.footprintCore.distance > 1){ //Check if station have alredy been geocoded
+  if(distanceBetween > 1){ //Check if station have alredy been geocoded
     this.insertInDom(this.footprintCore.getEmission(["lyria"])); //There is only 1 type of train
   }
 };

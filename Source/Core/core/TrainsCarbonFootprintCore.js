@@ -16,27 +16,27 @@ var TrainsFootprintCore = function(settingsProvider, helper){
     req.send();
     return data;
   };
-  this.distance = 0;
+  distanceBetween = 0;
   var self = this;
 };
 
 TrainsFootprintCore.prototype.storeDataSource = function(dataSource){
-  this.getData(this.helper.getFilePath("core/resources/trainEmissions.json"), (data) => {
-    this.trainData = data.trainData[dataSource];
-    console.log(this.trainData);
+  this.getData(this.helper.getFilePath("core/resources/trainEmissions.json"), function(data){
+    trainData = data.trainData[dataSource];
+    console.log(trainData);
   });
 };
 
 TrainsFootprintCore.prototype.geocode = function(toGeocode){
   var self = this;
   console.log("init geocode");
-  this.distance = 1; //This marks that geocoding request has been sent
-  this.getData("https://maps.googleapis.com/maps/api/geocode/json?&address=" + toGeocode[0], (data1) => {
+  distanceBetween = 1; //This marks that geocoding request has been sent
+  this.getData("https://maps.googleapis.com/maps/api/geocode/json?&address=" + toGeocode[0], function(data1){
     var depart = data1.results[0].geometry.location;
-    this.getData("https://maps.googleapis.com/maps/api/geocode/json?&address=" + toGeocode[1], (data2) => {
+    self.getData("https://maps.googleapis.com/maps/api/geocode/json?&address=" + toGeocode[1], function(data2){
       var arrive = data2.results[0].geometry.location;
-      this.distance = this.getDistance(depart.lat, depart.lng, arrive.lat, arrive.lng);
-      console.log("dist in func " + this.distance);
+      distanceBetween = self.getDistance(depart.lat, depart.lng, arrive.lat, arrive.lng);
+      console.log("dist in func " + distanceBetween);
     });
   });
 };
@@ -62,12 +62,12 @@ TrainsFootprintCore.prototype.getDistance = function(lat1, lon1, lat2, lon2){
 TrainsFootprintCore.prototype.getEmission = function(modeList){
   var modeAverage = 0;
   for(var y = 0, j = modeList.length; y < j; y++){
-    mode = this.trainData[modeList[y]] ? this.trainData[modeList[y]] : this.trainData.average;
+    mode = trainData[modeList[y]] ? trainData[modeList[y]] : trainData.average;
     console.log("mode = " + modeList[y] + " emission = " + mode);
-    modeAverage += this.trainData[modeList[y]] ? this.trainData[modeList[y]] : this.trainData.average;
+    modeAverage += trainData[modeList[y]] ? trainData[modeList[y]] : trainData.average;
   }
   modeAverage /= modeList.length;
-  var footprint = this.distance*modeAverage;
+  var footprint = distanceBetween*modeAverage;
   var emission = this.createHTMLElement(footprint);
   console.log(emission);
   return emission;
@@ -98,4 +98,5 @@ TrainsFootprintCore.prototype.createHTMLElement =
     footprint = footprint.toFixed(1);
     return '' + footprint + unit + ' CO<sub>2</sub> per person';
   };
+  var trainData, distanceBetween;
   var CarbonFootprintCore = TrainsFootprintCore;
