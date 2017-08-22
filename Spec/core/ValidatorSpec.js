@@ -3,6 +3,7 @@ describe("Website Validator Tests With Mocks", function() {
   beforeAll(function() {
 		//removing console output
 		console.log = function () {};
+    console.error = function () {};
 
     trainsValidator = new TrainsValidator("test");
     flightsValidator = new FlightsValidator("test");
@@ -41,15 +42,6 @@ describe("Website Validator Tests With Mocks", function() {
 
 		for (var i = 0; i < airports.length; i++) {
 			expect(flightsValidator.verifyAirports(airports[i])).toBe(results[i]);
-		}
-	});
-
-  it("Verify Stops should return [true, false, false, false] for a list of [['DEL'], '', [], ['DE']]", function() {
-		var stops = [['DEL'], '', [], ['DE']];
-		var results = [true, false, false, false];
-
-		for (var i = 0; i < stops.length; i++) {
-			expect(flightsValidator.verifyAirports(stops[i])).toBe(results[i]);
 		}
 	});
 });
