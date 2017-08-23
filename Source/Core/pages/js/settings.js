@@ -164,24 +164,42 @@ Settings.prototype.prepareBlock = function(data){
     console.log(data);
     for(var id in data){
         var block = $('<div \>').empty(),
-            color;
+            color,
+            disabled,
+            status,
+            title;
         for(var key in data[id]){
             if(data[id][key]['active']){
                 color=setting.enable;
             }
             else color=setting.disable;
+            console.log(data[id][key]['working'])
+            if(data[id][key]['working']){
+                status = '';
+                title = key;
+                disabled = false;
+            }
+                else{
+                    console.log("disabled");
+                    status = "off";
+                    color = "#777777"; 
+                    title = "Unfortunately " + key + " " + id + " is not working";
+                    disabled = true;
+                }
             block.append($('<div \>',{
-                class:'item col-md-2 col-xs-4 col-sm-4'
+                class:'item col-md-2 col-xs-4 col-sm-4 ' + status,
+                title : title
             }).append( $('<div \>',{
                 class:'logo'
             }).append($('<img>',{
-                src : './img/websites/'+id+'/'+key+'.png',
+                src : './img/websites/'+id+'/'+key+status+'.png',
                 title: key
             }))).append($('<div \>',{
                 class:'switch'
             }).append($('<label \>').append('Disable').append($('<input >',{
                 type:'checkbox',
-                checked: data[id][key]['active']
+                checked: data[id][key]['active'],
+                disabled: disabled
             })).append($('<span \>',{
                 class: 'lever'
             })).append('Enable'))).append($('<div \>',{
@@ -276,16 +294,19 @@ $('.items').on('click','.item',function(){
     var thisItem = $(this).parent()[0];
     var category = $(thisItem).parent()[0].id;
     var item = $(this);
+    var status = true;
+    if(item.getElementsByClassName("off").length>0) status = false;
+    console.log(item);
     var name = item[0].getElementsByTagName('img')[0].getAttribute('title');
     var active = item[0].getElementsByTagName('input')[0].checked;
     var statusBlock = item[0].getElementsByClassName('status')[0];
-    console.log();
     if(active){
         $(statusBlock).css('background-color',setting.enable);
       }
       else{
           $(statusBlock).css('background-color',setting.disable);
       }
+    if(!status) $(statusBlock).css('background-color','#777777');
     console.log(category,name,active);
 
     setting.onChange(category,name,active);

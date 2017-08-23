@@ -27,6 +27,11 @@
         display: block;
         margin: auto;
 }
+.off{
+	-webkit-box-shadow: 0 8px 6px -6px #212121;
+	      -moz-box-shadow: 0 8px 6px -6px #212121;
+	      box-shadow: 0 8px 6px -6px #212121;
+}
 span.content-text{
         opacity: 0.9;
         font-size: 2.5em;
