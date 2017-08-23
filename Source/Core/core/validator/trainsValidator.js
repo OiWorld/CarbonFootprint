@@ -5,7 +5,7 @@
  */
 
 var TrainsValidator = function(website) {
-  BasicValidator.call(this);
+  BasicValidator.call(this,website,"trains");
   this.server = new Server();
   this.website = website;
 };

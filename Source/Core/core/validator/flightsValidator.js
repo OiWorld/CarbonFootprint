@@ -5,7 +5,7 @@
  */
 
 var FlightsValidator = function(website) {
-  BasicValidator.call(this);
+  BasicValidator.call(this,website,"flights");
   this.server = new Server();
   this.website = website;
 };

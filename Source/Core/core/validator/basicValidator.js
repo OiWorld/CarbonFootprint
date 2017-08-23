@@ -2,7 +2,11 @@
  * BasicValidator namespace.
  * @constructor
  */
-var BasicValidator = function() {
+var BasicValidator = function(website,type) {
+  this.website = website;
+  this.type = type;
+  this.isWorking = true;
+  this.storageManager = new storageManager();
 };
 
 /**
@@ -14,6 +18,8 @@ var BasicValidator = function() {
 BasicValidator.prototype.counterMeasure = function(msg){
   console.error("Something is wrong");
   console.error(msg);
+  this.isWorking = false;
+  this.updataCheck(this.isWorking);
   this.server.error(this.website, msg);
 };
 
@@ -24,11 +30,14 @@ BasicValidator.prototype.counterMeasure = function(msg){
  */
 
 BasicValidator.prototype.getByClass = function(c, element = document){
+  console.log("website",this.website);
+  console.log("type",this.type);
   var toGet = element.getElementsByClassName(c);
   if(toGet.length){
     console.log("got class " + c);
+    if(this.isWorking) this.updataCheck(this.isWorking);
   }
-  else{
+  else {
     this.counterMeasure("cant get class " + c);
   }
   return toGet;
@@ -44,6 +53,7 @@ BasicValidator.prototype.getById = function(i, element = document){
   var toGet = element.getElementById(i);
   if(toGet){
     console.log("got id " + i);
+    if(this.isWorking) this.updataCheck(this.isWorking);
   }
   else{
     this.counterMeasure("cant get id " + i);
@@ -61,6 +71,7 @@ BasicValidator.prototype.getByTag = function(t, element = document){
   var toGet = element.getElementsByTagName(t);
   if(toGet.length){
     console.log("got tag " + t);
+    if(this.isWorking) this.updataCheck(this.isWorking);
   }
   else{
     this.counterMeasure("cant get tag " + t);
@@ -78,6 +89,9 @@ BasicValidator.prototype.querySelector = function(q, element = document){
   var e = element.querySelector(q);
   if(!e){
     this.counterMeasure("invalid element");
+  }
+  else{
+    if(this.isWorking) this.updataCheck(this.isWorking);
   }
   return e;
 };
@@ -99,6 +113,7 @@ BasicValidator.prototype.getChildNode = function(children, element = document){
     }
   }
   if(element){
+    if(this.isWorking) this.updataCheck(this.isWorking);
     return element;
   }
   else{
@@ -115,6 +130,9 @@ BasicValidator.prototype.isString = function(s){
   if(typeof s !== 'string' || s.length === 0){
     this.counterMeasure("not a string");
   }
+  else{
+    if(this.isWorking) this.updataCheck(this.isWorking);
+  }
 };
 
 /**
@@ -126,4 +144,29 @@ BasicValidator.prototype.isNumber = function(i){
   if(typeof i !== 'number'){
     this.counterMeasure("not a number");
   }
+  else{
+    if(this.isWorking) this.updataCheck(this.isWorking);
+  }
 };
+
+/**
+ * Function to update the working status of website
+ * @param {bool} isWorking
+ */
+
+BasicValidator.prototype.updataCheck = function(isWorking){
+  var self = this;
+  console.log(this.storageManager);
+  this.storageManager.getStorage('data',function(data){
+    console.log(data);
+    if(data['data'][self.type][self.website].working != isWorking){
+      data['data'][self.type][self.website].working = isWorking;
+      self.storageManager.insertStorage('data',data,function(){
+      console.log("changed Data",data);
+    });
+    }
+    else{
+      console.log("data is stored already"); //because there is a limit on number of changes per min in chrome API
+    }
+  });
+}
