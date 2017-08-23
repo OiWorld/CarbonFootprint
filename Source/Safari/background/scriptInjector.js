@@ -1116,6 +1116,7 @@ injector.tripadvisor = [
 injector.united = [
   'https://*.united.com/ual/en/*/flight-search/book-a-flight/results/rev*'
 ];
+
 /**
  * matching patterns for all map services
  */
@@ -1168,11 +1169,18 @@ injector.allTrains = injector.allTrains.concat(injector.eurostar,
                                                injector.thalys
 );
 
+injector.allURLs = [].concat(injector.allMaps,
+                             injector.allFlights,
+                             injector.allTrains);
 /**
  * base URL of the extension in Safari
  */
 
 injector.URL = safari.extension.baseURI;
+
+
+
+
 
 /**
  * legacy method: script in Vanilla JS to load Stylesheet (main.css)
@@ -1198,6 +1206,29 @@ injector.styleSheetFlight = 'var head  = document.getElementsByTagName(\'head\')
 safari
   .extension
   .addContentScript(injector.styleSheetFlight, injector.allFlights, [], true);*/
+
+
+
+
+
+
+/**
+ * Script injection for all the URLs
+ */ 
+
+injector.informjs = injector.URL + 'core/inform.js';
+injector.storageManager = injector.URL + 'core/storageManager.js';
+
+safari
+    .extension
+    .addContentScriptFromURL(injector.informjs,
+                            injector.allURLs, [], true);
+
+safari
+    .extension
+    .addContentScriptFromURL(injector.storageManager,
+                            injector.allURLs, [], true);
+
 
 injector.styleSheetMain = injector.URL + 'core/css/main.css';
 

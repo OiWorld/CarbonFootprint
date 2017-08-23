@@ -27,7 +27,8 @@
                 "<all_urls>"
             ],
             "js": [
-                "core/inform.js"
+                "core/inform.js",
+                "core/storageManager.js"
             ],
             "run_at": "document_end",
             "all_frames": true
