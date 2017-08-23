@@ -14,7 +14,6 @@ var Settings = function(){
     this.category;
     this.name;
     this.active;
-    //this.updateDefaultData(function(){});
 };
 
 /**
@@ -278,7 +277,7 @@ Settings.prototype.__init__ = function(){
         this.isFirefox = true;
         console.log('I am in mozilla');
     }
-    this.useSyncData(this.prepareBlock);
+    this.useSyncData(this.prepareBlock);  // this line
 };
 
 var setting = new Settings;
@@ -295,8 +294,8 @@ $('.items').on('click','.item',function(){
     var category = $(thisItem).parent()[0].id;
     var item = $(this);
     var status = true;
-    if(item.getElementsByClassName("off").length>0) status = false;
-    console.log(item);
+    if(thisItem.getElementsByClassName("off").length>0) status = false;
+    //console.log(item);
     var name = item[0].getElementsByTagName('img')[0].getAttribute('title');
     var active = item[0].getElementsByTagName('input')[0].checked;
     var statusBlock = item[0].getElementsByClassName('status')[0];
@@ -313,3 +312,10 @@ $('.items').on('click','.item',function(){
 });
 
 setting.__init__();
+
+/** 
+ * Uncomment line 320 to forcefully insert the new data from settings.json
+ * and Comment line 280 as well 
+ */
+
+//setting.updateDefaultData(function(){});

@@ -7,7 +7,7 @@ var sncfManager = function(footprintCore, settingsProvider){
     arrive: "",
     depart: ""
   };
-  this.validator = new TrainsValidator("sncf");
+  this.validator = new TrainsValidator("voyages-sncf");
   this.footprintCore.storeDataSource(this.dataSource);
 };
 

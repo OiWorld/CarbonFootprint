@@ -19,7 +19,7 @@ BasicValidator.prototype.counterMeasure = function(msg){
   console.error("Something is wrong");
   console.error(msg);
   this.isWorking = false;
-  this.updataCheck(this.isWorking);
+  this.updateCheck(this.isWorking);
   this.server.error(this.website, msg);
 };
 
@@ -35,7 +35,7 @@ BasicValidator.prototype.getByClass = function(c, element = document){
   var toGet = element.getElementsByClassName(c);
   if(toGet.length){
     console.log("got class " + c);
-    if(this.isWorking) this.updataCheck(this.isWorking);
+    if(this.isWorking) this.updateCheck(this.isWorking);
   }
   else {
     this.counterMeasure("cant get class " + c);
@@ -53,7 +53,7 @@ BasicValidator.prototype.getById = function(i, element = document){
   var toGet = element.getElementById(i);
   if(toGet){
     console.log("got id " + i);
-    if(this.isWorking) this.updataCheck(this.isWorking);
+    if(this.isWorking) this.updateCheck(this.isWorking);
   }
   else{
     this.counterMeasure("cant get id " + i);
@@ -71,7 +71,7 @@ BasicValidator.prototype.getByTag = function(t, element = document){
   var toGet = element.getElementsByTagName(t);
   if(toGet.length){
     console.log("got tag " + t);
-    if(this.isWorking) this.updataCheck(this.isWorking);
+    if(this.isWorking) this.updateCheck(this.isWorking);
   }
   else{
     this.counterMeasure("cant get tag " + t);
@@ -91,7 +91,7 @@ BasicValidator.prototype.querySelector = function(q, element = document){
     this.counterMeasure("invalid element");
   }
   else{
-    if(this.isWorking) this.updataCheck(this.isWorking);
+    if(this.isWorking) this.updateCheck(this.isWorking);
   }
   return e;
 };
@@ -113,7 +113,7 @@ BasicValidator.prototype.getChildNode = function(children, element = document){
     }
   }
   if(element){
-    if(this.isWorking) this.updataCheck(this.isWorking);
+    if(this.isWorking) this.updateCheck(this.isWorking);
     return element;
   }
   else{
@@ -131,7 +131,7 @@ BasicValidator.prototype.isString = function(s){
     this.counterMeasure("not a string");
   }
   else{
-    if(this.isWorking) this.updataCheck(this.isWorking);
+    if(this.isWorking) this.updateCheck(this.isWorking);
   }
 };
 
@@ -145,7 +145,7 @@ BasicValidator.prototype.isNumber = function(i){
     this.counterMeasure("not a number");
   }
   else{
-    if(this.isWorking) this.updataCheck(this.isWorking);
+    if(this.isWorking) this.updateCheck(this.isWorking);
   }
 };
 
@@ -154,7 +154,8 @@ BasicValidator.prototype.isNumber = function(i){
  * @param {bool} isWorking
  */
 
-BasicValidator.prototype.updataCheck = function(isWorking){
+BasicValidator.prototype.updateCheck = function(isWorking){
+  console.log("validator update is running");
   var self = this;
   console.log(this.storageManager);
   this.storageManager.getStorage('data',function(data){

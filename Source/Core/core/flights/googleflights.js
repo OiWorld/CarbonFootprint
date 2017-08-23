@@ -1,6 +1,7 @@
 var googleFlightsManager = function(footprintCore, settingsProvider){
   this.core = footprintCore;
   this.settingsProvider = settingsProvider;
+  this.validator = new FlightsValidator("google");
 };
 
 /**
