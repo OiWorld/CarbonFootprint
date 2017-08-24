@@ -20,6 +20,10 @@ var TrainsFootprintCore = function(settingsProvider, helper){
   var self = this;
 };
 
+/**
+ * Function for getting the appropriate data according to the website.
+ * @param String
+ */
 TrainsFootprintCore.prototype.storeDataSource = function(dataSource){
   this.getData(this.helper.getFilePath("core/resources/trainEmissions.json"), function(data){
     trainData = data.trainData[dataSource];
@@ -27,6 +31,10 @@ TrainsFootprintCore.prototype.storeDataSource = function(dataSource){
   });
 };
 
+/**
+ * Geocodes station using google's api.
+ * @param Array
+ */
 TrainsFootprintCore.prototype.geocode = function(toGeocode){
   var self = this;
   console.log("init geocode");
@@ -41,13 +49,22 @@ TrainsFootprintCore.prototype.geocode = function(toGeocode){
   });
 };
 
-/*This formula was generated in skitlearn using the data at https://drive.google.com/file/d/0B4tFHTfBrq9wN2RCd2VxQ1Q0eG8/view?usp=sharing
-It is used to convert straight line distance between 2 train stations into distance travelled
-by a train between these 2 stations, for graph check trainDistance.png in Relevant Docs folder*/
+/*This formula was generated in skitlearn using the data at 
+* https://drive.google.com/file/d/0B4tFHTfBrq9wN2RCd2VxQ1Q0eG8/view?usp=sharing
+* It is used to convert straight line distance between 2 train stations into distance travelled
+* by a train between these 2 stations, for graph check trainDistance.png in Relevant Docs folder.
+* @param Float as straight line distance between 2 train stations.
+* @return Float as Distance travelled by train.
+*/
 TrainsFootprintCore.prototype.convertToTrainDistance = function(distance){
   return 1.4089*distance - 38;
 };
 
+/**
+ * Calculate distance between two coordinates.
+ * @param Float,Float,Float,Float as Coordinates.
+ * @return Float as Distance travelled by train.
+ */
 TrainsFootprintCore.prototype.getDistance = function(lat1, lon1, lat2, lon2){
   var p = 0.017453292519943295;    // Math.PI / 180
   var c = Math.cos;
@@ -59,6 +76,12 @@ TrainsFootprintCore.prototype.getDistance = function(lat1, lon1, lat2, lon2){
   return this.convertToTrainDistance(distanceBetweenCoords);
 };
 
+/**
+ * Calculate CO2 emission of trains
+ * @param Array as different types of trains used for
+ * travelling between the two stations.
+ * @return Object as HTML element for displaying in the website.
+ */
 TrainsFootprintCore.prototype.getEmission = function(modeList){
   var modeAverage = 0;
   for(var y = 0, j = modeList.length; y < j; y++){
@@ -73,6 +96,11 @@ TrainsFootprintCore.prototype.getEmission = function(modeList){
   return emission;
 };
 
+/**
+ * Gives a DOM element to insert in a website.
+ * @param Float as emission produced by the path.
+ * @return Object as HTML element for displaying in the website.
+ */
 TrainsFootprintCore.prototype.createHTMLElement =
   function(footprint) {
     var e = document.createElement('div');
@@ -89,14 +117,20 @@ TrainsFootprintCore.prototype.createHTMLElement =
     return e;
   };
 
-  TrainsFootprintCore.prototype.footprintToString = function(footprint) {
-    var unit = " g";
-    if(footprint >= 1000){
-      unit = " kg";
-      footprint /= 1000;
-    }
-    footprint = footprint.toFixed(1);
-    return '' + footprint + unit + ' CO<sub>2</sub> per person';
-  };
+/**
+ * Changes the unit depending on the emission
+ * @param Float as emission produced by the path.
+ * @return Float as emission produced by the path after processing.
+ */
+TrainsFootprintCore.prototype.footprintToString = function(footprint) {
+  var unit = " g";
+  if(footprint >= 1000){
+    unit = " kg";
+    footprint /= 1000;
+  }
+  footprint = footprint.toFixed(1);
+  return '' + footprint + unit + ' CO<sub>2</sub> per person';
+};
+
   var trainData, distanceBetween;
   var CarbonFootprintCore = TrainsFootprintCore;

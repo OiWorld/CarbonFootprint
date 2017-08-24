@@ -69,7 +69,6 @@ FlightsFootprintCommon.prototype.getDistance = function(lat1, lon1, lat2, lon2){
  */
 
 FlightsFootprintCommon.prototype.getEmission = function(list){
-	console.error(list);
     for(var x = 0, i = list.length; x < i; x++){
       var aircraft = list[x].aircraft;
       var fuelConsumptionFloor, fuelConsumptionCeil,
@@ -118,7 +117,7 @@ FlightsFootprintCommon.prototype.convertFuelToCO2 = function(fuel, aircraft){
     economy: Math.floor(fuel*FlightsFootprintCommon.CO2_FOR_JETFUEL/flightData.airplanesData[aircraft].capacity),
     business: Math.floor(fuel*FlightsFootprintCommon.CO2_FOR_JETFUEL/flightData.airplanesData[aircraft].capacityTwoClass)
   };
-  obj.average = (obj.economy + obj.business)/2;
+  obj.average = Math.floor((obj.economy + obj.business)/2);
   return obj;
 };
 
