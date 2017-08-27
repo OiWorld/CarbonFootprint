@@ -300,4 +300,4 @@ gulp.task('packageFirefox', ['groupFirefox'], function(done) {
 	done();
 });
 
-gulp.task('test', ['gjslint','karma']);
+gulp.task('test', ['karma']);

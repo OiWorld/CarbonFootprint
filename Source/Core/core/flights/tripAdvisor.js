@@ -11,6 +11,18 @@ tripAdvisorManager.prototype.getList = function(){
   console.log("raw list");
   console.log(rawList);
   var processedList = [];
+  if(rawList.length){
+    var seatType = this.validator.getByClass("travelersAndCos")[0].innerHTML;
+    if(seatType.indexOf("Economy") >= 0){
+      console.log(seatType.indexOf("Economy"));
+      this.core.setSeatType("economy");
+      console.log("economy");
+    }
+    else{
+      this.core.setSeatType("business");
+      console.log("business");
+    }
+  }
   for(var x = 0, i = rawList.length; x < i; x++){
     flights = this.validator.getByClass("segmentDescriptionWithDiagram", rawList[x]);
     rawStops = rawList[x].getElementsByClassName("segmentDetail");

@@ -14,8 +14,9 @@
  */
 
 var FlightsFootprintCore = function(settingsProvider, helper){
+  this.seatType = "average";
   FlightsFootprintCommon.call(this);
-  this.flights = true; // used to identift a flight ticket website
+  this.flights = true; // used to identify a flight ticket website
 };
 
 FlightsFootprintCore.prototype = Object.create(FlightsFootprintCommon.prototype);
@@ -80,28 +81,56 @@ FlightsFootprintCore.prototype.createHTMLElement = function(co2Emission){
 
 /**
  * Function to create svg mark to display more information
- * @param Float,Float as Emission from outbound and return visit
+ * @param Object,Object as Emission from outbound and return visit
  * @return htmlElement
  */
 
-FlightsFootprintCore.prototype.createMark = function(depart=0,arrive=0){
-      var e = document.createElement('div');
+FlightsFootprintCore.prototype.createMark = function(depart, arrive){
+    if(arrive === undefined){
+      arrive = {average: 0, economy: 0, business: 0};
+    }
+    var e = document.createElement('div');
     //knowMoreUrl = this.helper.getFilePath('pages/knowMore.html');
     var outBoundInfo = "",returnInfo = "",Title="";
-    if(depart>0) outBoundInfo = "Outbound : " + depart + " kg of CO₂e per person. \n";
-    if(arrive>0) returnInfo = "Return : " + arrive + " kg of CO₂e per person. \n";
+    if(depart.average > 0){
+      outBoundInfo = "Outbound : (Economy) " + depart.economy + " kg of CO₂e per person. \n";
+      outBoundInfo = outBoundInfo + "                   (Business) " + depart.business + " kg of CO₂e per person. \n";
+    }
+    if(arrive.average > 0){
+      returnInfo = "Return :      (Economy) " + arrive.economy + " kg of CO₂e per person. \n";
+      returnInfo = returnInfo + "                   (Business) " + arrive.business + " kg of CO₂e per person. \n";
+    }
     Title = outBoundInfo + returnInfo;
     //console.log(depart,arrive);
-    var treesStr = this.treesToString(this.computeTrees(parseInt(depart)+parseInt(arrive)));
+    var treesStr =  "";
+    var visibleEmisson = "";
     knowMoreUrl = Helper.getFilePath('pages/knowMore.html');
     e.setAttribute("id", "carbon-footprint-label");
-    e.innerHTML = '<a href=' + knowMoreUrl + ' target=\'_blank\' title=\'' + Title + treesStr + '\' class=\'carbon\' id=\'carbon\'>' + (parseInt(depart+arrive)).toString() + " kg of CO₂ per person\n" +
-      // question mark icon using svg
-      this.getSVG();
+    console.log("seatType is = " + this.seatType);
+    if(this.seatType == "economy"){
+      visibleEmisson = (parseInt(depart.economy+arrive.economy)).toString() + " kg of CO₂ per person\n";
+      treesStr = this.treesToString(this.computeTrees(parseInt(depart.economy)+parseInt(arrive.economy)));
+    }
+    else if(this.seatType == "business"){
+      visibleEmisson = (parseInt(depart.business+arrive.business)).toString() + " kg of CO₂ per person\n";
+      treesStr = this.treesToString(this.computeTrees(parseInt(depart.business)+parseInt(arrive.business)));
+    }
+    else{
+      visibleEmisson = (parseInt(depart.average+arrive.average)).toString() + " kg of CO₂ per person\n";
+      treesStr = this.treesToString(this.computeTrees(parseInt(depart.average)+parseInt(arrive.average)));
+    }
+    e.innerHTML = '<a href=' + knowMoreUrl + ' target=\'_blank\' title=\'' + Title +
+      treesStr + '\' class=\'carbon\' id=\'carbon\'>' +
+      visibleEmisson + this.getSVG(); //puts the questionmark svg in place
     e.querySelector('a').addEventListener('click', function(e) {
       e.stopPropagation();
     });
     e.onh;
     return e;
 };
+
+FlightsFootprintCommon.prototype.setSeatType = function(seatType){
+  this.seatType = seatType;
+};
+
 var CarbonFootprintCore = FlightsFootprintCore;

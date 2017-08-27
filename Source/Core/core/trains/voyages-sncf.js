@@ -30,7 +30,7 @@ sncfManager.prototype.getList = function(){
 
     this.validator.verifyList(processedList);
 
-    if(this.footprintCore.distance === 0){  //Check if geocode never happened for current stations, proceed if not
+    if(distanceBetween === 0){  //Check if geocode never happened for current stations, proceed if not
       var toGeocode = [processedList[0].depart, processedList[0].arrive];
       this.footprintCore.geocode(toGeocode);
     }
@@ -63,7 +63,7 @@ sncfManager.prototype.checkChangeInStations = function(){
 sncfManager.prototype.update = function(){
   this.checkChangeInStations();
   var processedList = this.getList();
-  if(this.footprintCore.distance > 1){ //Check if station have alredy been geocoded
+  if(distanceBetween > 1){ //Check if station have alredy been geocoded
     var emissionList = [];
     for(var x = 0, i = processedList.length; x < i; x++){
       emissionList.push(this.footprintCore.getEmission(processedList[x].mode));
