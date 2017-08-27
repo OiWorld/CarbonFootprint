@@ -19,12 +19,14 @@ TrainsValidator.prototype.constructor = TrainsValidator;
  */
 
 TrainsValidator.prototype.verifyTrain = function(train){
-  /*if(!core.trainData[train]){
+  if(typeof train !== 'string' || train.length === 0){
     this.counterMeasure("invalid train type");
+    return false;
   }
   else{
     console.log("valid train " + train);
-  }*/
+    return true;
+  }
 };
 
 /**
@@ -35,7 +37,9 @@ TrainsValidator.prototype.verifyTrain = function(train){
 TrainsValidator.prototype.verifyStation = function(station){
   if(typeof station !== 'string' || station.length === 0){
     this.counterMeasure("invalid station " + station);
+    return false;
   }
+  return true;
 };
 
 /**

@@ -29,9 +29,11 @@ BasicValidator.prototype.counterMeasure = function(msg){
  * @param {object} element
  */
 
-BasicValidator.prototype.getByClass = function(c, element = document){
+
+BasicValidator.prototype.getByClass = function(c, element){
   console.log("website",this.website);
   console.log("type",this.type);
+  if(element === undefined) element = document;
   var toGet = element.getElementsByClassName(c);
   if(toGet.length){
     console.log("got class " + c);
@@ -49,7 +51,8 @@ BasicValidator.prototype.getByClass = function(c, element = document){
  * @param {object} element
  */
 
-BasicValidator.prototype.getById = function(i, element = document){
+BasicValidator.prototype.getById = function(i, element){
+  if(element === undefined) element = document;
   var toGet = element.getElementById(i);
   if(toGet){
     console.log("got id " + i);
@@ -67,7 +70,8 @@ BasicValidator.prototype.getById = function(i, element = document){
  * @param {object} element
  */
 
-BasicValidator.prototype.getByTag = function(t, element = document){
+BasicValidator.prototype.getByTag = function(t, element){
+  if(element === undefined) element = document;
   var toGet = element.getElementsByTagName(t);
   if(toGet.length){
     console.log("got tag " + t);
@@ -85,7 +89,8 @@ BasicValidator.prototype.getByTag = function(t, element = document){
  * @param {object} element
  */
 
-BasicValidator.prototype.querySelector = function(q, element = document){
+BasicValidator.prototype.querySelector = function(q, element){
+  if(element === undefined) element = document;
   var e = element.querySelector(q);
   if(!e){
     this.counterMeasure("invalid element");
@@ -103,7 +108,8 @@ BasicValidator.prototype.querySelector = function(q, element = document){
  * @param {object} element
  */
 
-BasicValidator.prototype.getChildNode = function(children, element = document){
+BasicValidator.prototype.getChildNode = function(children, element){
+  if(element === undefined) element = document;
   for(var x = 0, i = children.length; x < i; x++){
     if(element && element.childNodes.length){
       element = element.childNodes[children.shift()];

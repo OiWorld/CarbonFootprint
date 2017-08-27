@@ -6,6 +6,18 @@ var skyscannerManager = function(footprintCore, settingsProvider){
 };
 skyscannerManager.prototype.getList = function(){
   var rawList = document.getElementsByClassName("card-main");
+  if(rawList.length){
+    var seatType = this.validator.getByClass("search-summary-info")[0].innerHTML;
+    if(seatType.indexOf("Economy") >= 0){
+      console.log(seatType.indexOf("Economy"));
+      this.core.setSeatType("economy");
+      console.log("economy");
+    }
+    else{
+      this.core.setSeatType("business");
+      console.log("business");
+    }
+  }
   console.log("raw list");
   //console.log(rawList);
   var processedList = [];
@@ -34,7 +46,7 @@ skyscannerManager.prototype.insertInDom = function(processedList){
     if(this.validator.getChildNode([1], insertIn[x]).childNodes.length <= 4 ||
        this.validator.getChildNode([1,4], insertIn[x]).className == "leg-operator" &&
        this.validator.getChildNode([1], insertIn[x]).childNodes.length <= 5){
-         this.validator.getChildNode([1], insertIn[x]).appendChild(this.core.createMark(processedList[x].co2Emission, 0));
+         this.validator.getChildNode([1], insertIn[x]).appendChild(this.core.createMark(processedList[x].co2Emission));
     }
     //console.log(insertIn[x].childNodes[1].childNodes[1]);
   }

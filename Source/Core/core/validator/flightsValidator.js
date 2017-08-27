@@ -22,9 +22,11 @@ FlightsValidator.prototype.constructor = FlightsValidator;
 FlightsValidator.prototype.verifyAirports = function(airport){
   if(typeof airport !== 'string' || airport.length != 3){
     this.counterMeasure("invalid airports");
+    return false;
   }
   else{
     console.log("valid airport");
+    return true;
   }
 };
 
@@ -34,8 +36,9 @@ FlightsValidator.prototype.verifyAirports = function(airport){
  */
 
 FlightsValidator.prototype.verifyStops = function(stops){
-  if(!Array.isArray(stops)){
+  if(!Array.isArray(stops) || stops.length == 0){
     this.counterMeasure("invalid stop");
+    return false;
   }
   else{
     for(var x = 0, i = stops.length; x < i; x++){
@@ -51,18 +54,21 @@ FlightsValidator.prototype.verifyStops = function(stops){
  */
 
 FlightsValidator.prototype.verifyAirplanes = function(airplanes){
-  if(!Array.isArray(airplanes)){
+  if(!Array.isArray(airplanes) || airplanes.length == 0){
     this.counterMeasure("invalid airplanes");
+    return false;
   }
   else{
     for(var x = 0, i = airplanes.length; x < i; x++){
       if(typeof airplanes[x] !== 'string' || airplanes[x].length > 15 || airplanes[x].length < 3){ //15 is an experimental value right now
         this.counterMeasure("invalid airplane");
+        return false;
       }
       else{
         console.log("valid airplane");
       }
     }
+    return true;
   }
 };
 

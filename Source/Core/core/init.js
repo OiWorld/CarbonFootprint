@@ -24,7 +24,7 @@ new SettingsProvider(function(settingsProvider) {
     if(core.flights){
       websiteManager.update = function(){
         var processedList = websiteManager.getList();
-        if(core.airplanesData && core.airportsData){
+        if(flightData.airplanesData && flightData.airportsData){
             processedList = core.getEmission(
               core.getTotalDistance(
                 core.getCoordinates(processedList)));
