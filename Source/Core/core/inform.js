@@ -62,12 +62,14 @@ var cb = function(result,serviceManager){
             if(regex.test(question) && !data[id][key]['active']){
                 flag = false;
                 console.log('this site is disabled');
+                return false;
             }
         }
     }
     if(flag){
         console.log("this should run");
         serviceManager.update();
+        return true;
     }
 };
 
