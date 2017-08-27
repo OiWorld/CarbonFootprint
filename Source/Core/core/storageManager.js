@@ -33,6 +33,7 @@ var storageManager = function(){
 storageManager.prototype.getStorage = function(key,cb){
 	console.log('use sync data');
     var self = this;
+    try{
     if(self.isChrome){
         chrome.storage.sync.get(key,cb);
     }
@@ -60,6 +61,20 @@ storageManager.prototype.getStorage = function(key,cb){
     else{
         console.log('we found nothing');
     }
+  }
+  catch (err){
+    var req = new XMLHttpRequest(),
+      link = '../pages/data/settings.json';
+    req.open('GET', link);
+    req.onreadystatechange = function(ev) {
+      if (req.readyState == 4) {
+        if (req.status == 200) {
+          cb(JSON.parse(req.responseText));
+        }
+      }
+    };
+    req.send();
+  }
 }
 
 /**
