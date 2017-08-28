@@ -9,6 +9,7 @@ module.exports = function(config) {
 		files: [
 			{pattern: 'Source/Core/core/resources/airplanes.json', included: false, served: true, watched: false, nocache: true},
 			{pattern: 'Source/Core/core/resources/airports.json', included: false, served: true, watched: false, nocache: true},
+			'Source/Core/core/storageManager.js',
 			'Source/Core/core/CarbonFootprintCommon.js',
 			'Source/Core/core/TrainsCarbonFootprintCore.js',
 			'Source/Core/core/helpers/flightDataHelper.js',

@@ -1,5 +1,7 @@
-var makeMyTripManager = function(){
-
+var makeMyTripManager = function(footprintCore, settingsProvider){
+  this.core = footprintCore;
+  this.settingsProvider = settingsProvider;
+  this.validator = new FlightsValidator("makemytrip");
 };
 
 

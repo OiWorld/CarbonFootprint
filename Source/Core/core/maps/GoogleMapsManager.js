@@ -254,7 +254,7 @@ GoogleMapsManager.summaryTitleClass =
 GoogleMapsManager.prototype.getDistanceString = function(route) {
   var e = this.validator
         .getByClass(GoogleMapsManager.infoClasses[0] + ' ' +
-                                GoogleMapsManager.infoClasses[1])[0];
+                                GoogleMapsManager.infoClasses[1],route)[0];
   var distanceString = this.validator.getChildNode([5], e).innerHTML;
   console.log('distanceString: ' + distanceString);
   this.validator.isString(distanceString);
@@ -269,11 +269,12 @@ GoogleMapsManager.prototype.getDistanceString = function(route) {
 
 GoogleMapsManager.prototype.getTimeString = function(route,type) {
   if(type == "n"){
+    //console.log(route);
   var timeString = this.validator
-        .getByClass(GoogleMapsManager.durationClass)[0].innerHTML;
+        .getByClass(GoogleMapsManager.durationClass,route)[0].innerHTML;
   var walkingTime = this.validator
         .getByClass(GoogleMapsManager.walkingSummary[0] + ' ' +
-                                  GoogleMapsManager.walkingSummary[1])[0].innerText;
+                                  GoogleMapsManager.walkingSummary[1],route)[0].innerText;
   timeString = ' ' + timeString;
   console.log(walkingTime);
   console.log('timeString:' + timeString);
@@ -301,6 +302,8 @@ GoogleMapsManager.prototype.convertDistance = function(distanceStr) {
     var distanceAndUnit = distanceStr.replace('&nbsp;', ' ').split(/ /);
     var distance = distanceAndUnit[0];
     var unit = distanceAndUnit[1];
+    console.log(distance,unit);
+    console.log(this);
     var distanceFloat = this.footprintCore
           .getDistanceFromStrings(distance, unit);
     this.validator.isNumber(distanceFloat);
@@ -572,6 +575,7 @@ GoogleMapsManager.prototype.update = function(){
     var i;
     var drivingRoutes = this.getAllDrivingRoutes();
     var transitRoutes = this.getAllTransitRoutes();
+    //console.log(transitRoutes);
     for (i = 0; i < drivingRoutes.length; i++) {
       var distanceString = this.getDistanceString(drivingRoutes[i]);
       console.log(distanceString);
@@ -590,9 +594,10 @@ GoogleMapsManager.prototype.update = function(){
     }
     for (i = 0; i < transitRoutes.length; i++) {
         var timeString = this.getTimeString(transitRoutes[i],"n");
+        console.log("timeString",timeString);
         var timeInMins = this.convertTime(timeString[0])*60;
         var walkingTimeInMins = this.convertTime(timeString[1])*60;
-        console.log(walkingTimeInMins);
+        console.log("walkingTime",walkingTimeInMins,"timeInMins",timeInMins);
         this.insertFootprintElement(
         transitRoutes[i],
         this.footprintCore.createPTransitFootprintElement([timeInMins,walkingTimeInMins],'t'),

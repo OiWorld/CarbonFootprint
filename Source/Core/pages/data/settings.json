@@ -3,119 +3,147 @@
         "maps":{
             "google":{
                 "active": true,
+                "working": true,
                 "regex": "google\\.(.*)\\/maps"
             },
             "bing":{
                 "active": true,
+                "working": true,
                 "regex": "bing\\.(.*)\\/maps"
             },
             "here":{
                 "active": true,
+                "working": true,
                 "regex": "here\\.(.*)\\/"
             },
-            "openstreet":{
+            "openmaps":{
                 "active": true,
+                "working": true,
                 "regex": "openstreetmap\\.(.*)\\/"
             },
             "mapquest":{
                 "active": true,
+                "working": true,
                 "regex": "mapquest\\.(.*)\\/"
             },
             "waze":{
                 "active": true,
+                "working": true,
                 "regex": "waze\\.(.*)\\/"
 
             },
             "yandex":{
                 "active": true,
+                "working": true,
                 "regex": "yandex\\.(.*)\\/"
             },
-            "viamichelin":{
+            "viaMichelin":{
                 "active": true,
+                "working":true,
                 "regex": "viamichelin\\.(.*)\\/"
             }
         },
         "flights":{
             "cleartrip":{
                 "active": true,
+                "working": true,
                 "regex": "cleartrip\\.(.*)\\/"
             },
             "expedia":{
                 "active": true,
+                "working": true,
                 "regex": "expedia\\.(.*)\\/"
             },
             "google":{
                 "active": true,
+                "working": true,
                 "regex": "google\\.(.*)\\/flights/"
             },
             "hipmunk":{
                 "active": true,
+                "working": true,
                 "regex": "hipmunk\\.(.*)\\/"
             },
             "kayak":{
                 "active": true,
+                "working": true,
                 "regex": "kayak\\.(.*)\\/"
             },
             "makemytrip":{
                 "active": true,
+                "working": true,
                 "regex": "makemytrip\\.(.*)\\/"
             },
             "priceline":{
                 "active": true,
+                "working": true,
                 "regex": "priceline\\.(.*)\\/"
             },
             "skyscanner":{
                 "active": true,
+                "working": true,
                 "regex": "skyscanner\\.(.*)\\/"
             },
             "travelocity":{
                 "active": true,
+                "working": true,
                 "regex": "travelocity\\.(.*)\\/"
             },
-            "aa":{
+            "americanAirlines":{
                 "active":true,
+                "working": true,
                 "regex":"aa\\.(.*)\\/"
             },
             "delta":{
-                "active":true,
-                "regex":"delta\\.(.*)\\/"
+                "active": true,
+                "working": true,
+                "regex": "delta\\.(.*)\\/"
             },
-            "lufthasana":{
-                "active":true,
-                "regex":"lufthasana\\.(.*)\\/"
+            "lufthansa":{
+                "active": true,
+                "working": true,
+                "regex": "lufthansa\\.(.*)\\/"
             },
-            "spicejet":{
-                "active":true,
-                "regex":"spicejet\\.(.*)\\/"
+            "spiceJet":{
+                "active": true,
+                "working": true,
+                "regex": "spicejet\\.(.*)\\/"
             },
-            "tripadvisor":{
-                "active":true,
-                "regex":"tripadvisor\\.(.*)\\/"
+            "tripAdvisor":{
+                "active": true,
+                "working": true,
+                "regex": "tripadvisor\\.(.*)\\/"
             },
             "united":{
-                "active":true,
-                "regex":"united\\.(.*)\\/"
+                "active": true,
+                "working": true,
+                "regex": "united\\.(.*)\\/"
             }
         },
         "trains":{
             "eurostar":{
                 "active": true,
+                "working": true,
                 "regex": "eurostar\\.(.*)\\/"
             },
             "ouigo":{
                 "active": true,
+                "working": true,
                 "regex": "ouigo\\.(.*)\\/"
             },
             "tgv-lyria":{
                 "active": true,
+                "working": true,
                 "regex": "tgv-lyria\\.(.*)\\/"
             },
             "thalys":{
                 "active": true,
+                "working": true,
                 "regex": "vsct\\.(.*)\\/"
             },
-            "voyages_sncf":{
+            "voyages-sncf":{
                 "active": true,
+                "working": true,
                 "regex": "sncf\\.(.*)\\/"
             }
         }

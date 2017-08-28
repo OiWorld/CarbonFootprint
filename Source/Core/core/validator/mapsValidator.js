@@ -4,7 +4,7 @@
  * @param {string} website
  */
 var MapsValidator = function(website) {
-  BasicValidator.call(this);
+  BasicValidator.call(this,website,"maps");
   this.server = new Server();
   this.website = website;
 };
