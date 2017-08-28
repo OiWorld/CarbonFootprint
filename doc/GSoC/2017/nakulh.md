@@ -2,13 +2,12 @@
 
 Working with awesome mentors fellow students made my summer super productive.
 
-I have contributed to project [Carbon Footprint](https://gitlab.com/aossie/CarbonFootprint). The goals completed during GSoC 2017 are :-
-
-<h2>Carbon Footprint</h2>
+I have contributed to project [Carbon Footprint](https://gitlab.com/aossie/CarbonFootprint).
+<strong> Project URL </strong> : https://gitlab.com/aossie/CarbonFootprint
 
 The team member with me in this project was [vaibsharma](https://gitlab.com/vaibsharma) .
 
-<strong> Project URL </strong> : https://gitlab.com/aossie/CarbonFootprint
+The goals I completed during GSoC 2017 are :-
 
 * <strong>Adding support for calculating carbon emission of trains on websites that sell train tickets</strong>
 
