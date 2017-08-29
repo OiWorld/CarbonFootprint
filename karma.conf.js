@@ -20,6 +20,7 @@ module.exports = function(config) {
 			'Source/Core/core/validator/flightsValidator.js',
 			'Source/Core/core/validator/mapsValidator.js',
 			'Source/Core/core/validator/trainsValidator.js',
+			'Source/Core/core/inform.js',
 			'Spec/Mocks/SentryServerMock.js',
 			'Spec/Mocks/MockHelper.js',
 			'Spec/**/*Spec.js'
