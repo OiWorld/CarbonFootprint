@@ -1,8 +1,8 @@
 {
   "title": "Carbon Footprint",
   "name": "carbon-footprint",
-  "version": "4.0.1",
-  "description": "Automatically estimates the CO2 emissions for driving on routes suggested by Google Maps™.",
+  "version": "5.0.0",
+  "description": "Automatically estimates the CO2 emissions for driving on routes suggested by Google Maps™ and other maps. Also estimates CO2 emissions for trains and flights searched through several search engines.",
   "main": "index.js",
   "author": "Kolya Opahle",
   "engines": {

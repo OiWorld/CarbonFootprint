@@ -1,6 +1,6 @@
 {
   "name": "carbon-footprint",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "Carbon Footprint",
   "scripts": {
     "test": "gulp test"
