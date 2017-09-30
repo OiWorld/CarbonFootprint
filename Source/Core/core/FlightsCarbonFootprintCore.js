@@ -86,7 +86,7 @@ FlightsFootprintCore.prototype.createHTMLElement = function(co2Emission){
  */
 
 FlightsFootprintCore.prototype.createMark = function(depart, arrive){
-    if(arrive === undefined){
+    if(!arrive){
       arrive = {average: 0, economy: 0, business: 0};
     }
     var e = document.createElement('div');
