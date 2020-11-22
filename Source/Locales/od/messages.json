@@ -1,0 +1,185 @@
+{
+"extName": {
+    "message": "ଗୁଗୁଲ୍ ମ୍ୟାପ୍ସ™ ପାଇଁ କାର୍ବନ ପାଦଚିହ୍ନ|",
+    "description": "Odia title"
+  },
+  "extDesc": {
+    "message": "ଗୁଗୁଲ୍ ମ୍ୟାପ୍ସ ଦ୍ୱାରା ପରାମର୍ଶ ଦିଆଯାଇଥିବା ମାର୍ଗରେ ଗାଡି ଚଲାଇବା ପାଇଁ ସ୍ୱୟଂଚାଳିତ ଭାବରେ CO2 ନିର୍ଗମନକୁ ଆକଳନ କରେ |",
+    "description": "Odia description"
+  },
+  "mainParah": {
+    "message": "<p>ଗୁଗୁଲ୍ ମ୍ୟାପ୍, ଓପନ୍ ଷ୍ଟ୍ରିଟ୍ ମାନଚିତ୍ର କିମ୍ବା HERE ମାନଚିତ୍ରଗୁଡିକ ଦ୍ୱାରା ପରାମର୍ଶ ଦିଆଯାଇଥିବା ଡ୍ରାଇଭିଂ ରୁଟ୍ରେ ଆପଣଙ୍କ କାର୍ ଦ୍ୱାରା କେତେ CO <sub> 2 </sub> ନିର୍ଗତ ହେଉଛି ତାହା ଖୋଜ | ମାର୍ଗର ସମୁଦାୟ ଦୂରତା ପାଖରେ CO <sub> 2 </sub> ନିର୍ଗମନ ଆକଳନ ଦର୍ଶାଯାଇଛି | ବିକଳ୍ପ ଭାବରେ, ଇନ୍ଧନ ମୂଲ୍ୟ ମଧ୍ୟ ଦେଖାଯାଇପାରେ |</p>",
+    "description": "The paragraph beside form"
+  },
+  "distanceTravelled": {
+    "message": "ଦୂରତା ଭ୍ରମଣ:"
+  },
+  "fuelConsumed": {
+    "message": "ଇନ୍ଧନ ଖର୍ଚ୍ଚ:"
+  },
+  "fuelConsumptionUnit": {
+    "message": "ଇନ୍ଧନ ଖର୍ଚ୍ଚ ଏକକ"
+  },
+  "fuelEfficiency": {
+    "message": "ଇନ୍ଧନ ଦକ୍ଷତା"
+  },
+  "fuelEfficiencyUnit": {
+    "message": "ଇନ୍ଧନ ଦକ୍ଷତା ଏକକ"
+  },
+  "coEmission": {
+    "message": "CO<sub>2</sub> ନିର୍ଗମନ ହାର:"
+  },
+  "emissionQues": {
+    "message": "ଆକଳନଗୁଡିକର ସଠିକତାକୁ ଉନ୍ନତ କରିବାକୁ, ଦୟାକରି ଇନ୍ଧନ ଦକ୍ଷତା, ଇନ୍ଧନ ବ୍ୟବହାର କିମ୍ବା ଆପଣଙ୍କ କାରର CO <sub> 2 </sub> ନିର୍ଗମନ ହାର ତଳେ ସଜାଡନ୍ତୁ |"
+  },
+  "byFuelConsumption": {
+    "message": "ଇନ୍ଧନ ବ୍ୟବହାର:"
+  },
+  "costCalculator": {
+    "message": "ଇନ୍ଧନ ମୂଲ୍ୟ"
+  },
+  "coEmissionUnit": {
+    "message": "CO<sub>2</sub> ନିର୍ଗମନ ଏକକ"
+  },
+  "fuelType": {
+    "message": "ଇନ୍ଧନ ପ୍ରକାର:"
+  },
+  "fuelDiesel": {
+    "message": "Diesel"
+  },
+  "fuelPetrol": {
+    "message": "Petrol"
+  },
+  "fuelGasoline": {
+    "message": "Gasoline"
+  },
+  "fuelLPG": {
+    "message": "LPG"
+  },
+  "fuelE10": {
+    "message": "E10"
+  },
+  "fuelE25": {
+    "message": "E25"
+  },
+  "fuelE85": {
+    "message": "E85"
+  },
+  "fuelEthanol": {
+    "message": "Ethanol"
+  },
+  "fuelBioDiesel": {
+    "message": "Bio-Diesel"
+  },
+  "fuelCNG": {
+    "message": "CNG"
+  },
+  "fuelElectricity":{
+    "message": "ବିଦ୍ୟୁତ୍"
+  },
+  "fuelCost": {
+    "message": "ଇନ୍ଧନ ମୂଲ୍ୟ:"
+  },
+  "fuelCostUnit": {
+    "message": "&#36; ରେ ଭଲ୍ୟୁମର ୟୁନିଟ୍ ପିଛା "
+  },
+  "fuelCostNote": {
+    "message": "'&#36;' ଏକ ସାଧାରଣ ମୁଦ୍ରାକୁ ସୂଚିତ କରେ "
+  },
+  "distance": {
+    "message": "ଦୂରତା"
+  },
+  "volume": {
+    "message": "ଭଲ୍ୟୁମ୍"
+  },
+  "mass": {
+    "message": "ମାସ"
+  },
+  "perVolume": {
+    "message": "ଭଲ୍ୟୁମ୍ ଦ୍ୱାରା"
+  },
+  "perDistance": {
+    "message": "ଦୂରତା ପାଇଁ"
+  },
+  "conversionNote": {
+    "message": "ରୂପାନ୍ତର ପାଇବାକୁ, ଏକକଗୁଡ଼ିକୁ ପରିବର୍ତ୍ତନ କରନ୍ତୁ "
+  },
+  "travelCostEstimate": {
+    "message": "ଇନ୍ଧନ ମୂଲ୍ୟ ଆକଳନ ପ୍ରଦର୍ଶନ କରନ୍ତୁ "
+  },
+  "save": {
+    "message": "ସଞ୍ଚୟ କରନ୍ତୁ "
+  },
+  "notificationMenu": {
+    "message": "ଯାନ ଯାଞ୍ଚ "
+  },
+  "notificationDisplayLabel": {
+    "message": "ଯାନ ଯାଞ୍ଚ ବିଜ୍ଞପ୍ତି ପ୍ରଦର୍ଶନ କରନ୍ତୁ |"
+  },
+  "notificationLastChekup": {
+    "message": "ଶେଷ ଯାଞ୍ଚ ତାରିଖ:"
+  },
+  "notificationNextChekupNext": {
+    "message": "ପରବର୍ତ୍ତୀ ଚେକଅପ୍:"
+  },
+  "notificationNextChekupYears": {
+    "message": "ବର୍ଷ ଏବଂ"
+  },
+  "notificationNextChekupMonths": {
+    "message": "ମାସଗୁଡିକ"
+  },
+  "notificationTitle": {
+    "message": "ତୁମେ ତୁମର କାର ଯାଞ୍ଚ କରିବା ଉଚିତ୍ |"
+  },
+  "notificationMessage": {
+    "message": "ଆପଣ କାର ଯାଞ୍ଚ ପାଇଁ ସ୍ଥିର କରିଥିବା ସମୟ ଅତିବାହିତ ହୋଇଛି ବୋଲି ସେ କହିଛନ୍ତି। "
+  },
+  "notificationInfoText": {
+    "message": "ତୁମର କାର୍ ଚେକ୍ ଅପ୍ ସହିତ ସୁନିଶ୍ଚିତ କରେ ଯେ ତୁମର କାର ସର୍ବଦା କ୍ଷୁଦ୍ରତମ ପରିମାଣର co₂ ଆଉଟପୁଟ କରେ |"
+  },
+  "byFuelEfficiency": {
+    "message": "ଇନ୍ଧନ ଦକ୍ଷତା |"
+  },
+  "byFuelConsumptionPer": {
+    "message": "ଇନ୍ଧନ ବ୍ୟବହାର"
+  },
+  "byCustomValues": {
+    "message": "କଷ୍ଟମ୍ ମୂଲ୍ୟଗୁଡିକ"
+  },
+  "feMessage": {
+    "message": "<i> ଇନ୍ଧନ ଖର୍ଚ୍ଚ </ i> ର 1 ୟୁନିଟରେ <i> ଦୂରତା ଭ୍ରମଣ </ i> ପ୍ରବେଶ କରନ୍ତୁ "
+  },
+  "fcpMessage": {
+    "message": "<i> ଦୂରତା ଭ୍ରମଣ </ i> ର 100 ୟୁନିଟ୍ ପ୍ରତି <i> ଇନ୍ଧନ ଖର୍ଚ୍ଚ </ i> ପ୍ରବେଶ କରନ୍ତୁ "
+  },
+  "cvMessage": {
+    "message": "ସମୁଦାୟ <i> ଇନ୍ଧନ ଖର୍ଚ୍ଚ </ i> ପାଇଁ ସମୁଦାୟ <i> ଦୂରତା ଭ୍ରମଣ </ i> ପ୍ରବେଶ କରନ୍ତୁ "
+  },
+  "useMetric": {
+    "message": "ମେଟ୍ରିକ୍ "
+  },
+  "useUSCustomary": {
+    "message": "US କଷ୍ଟୋମାରି "
+  },
+  "saved": {
+    "message": "ସଫଳତାର ସହିତ ସଞ୍ଚୟ ହୋଇଛି"
+  },
+  "error": {
+    "message": "ଦୟାକରି ଏକ ବ valid ଧ ଇନପୁଟ୍ ପ୍ରବେଶ କରନ୍ତୁ"
+  },
+  "imperial": {
+    "message": "ସାମ୍ରାଜ୍ୟ"
+  },
+  "greenElectricity": {
+    "message": "ସବୁଜ ବିଦ୍ୟୁତ୍:"
+  },
+  "fuelB20": {
+    "message": "B20"
+  },
+  "footprints": {
+    "message": "କାର୍ବନ ପାଦଚିହ୍ନ"
+  },
+  "loadPricesBtn": {
+    "message": "ମୂଲ୍ୟ ପାଆନ୍ତୁ"
+  }
+}
