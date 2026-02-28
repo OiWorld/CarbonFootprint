@@ -1,3 +1,5 @@
+This README is intended to help new contributors get started quickly.
+
 Carbon Footprint for Google Maps
 ================================
 
